@@ -41,3 +41,5 @@ body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:c
 .sway{animation:sway 3s ease-in-out infinite;transform-origin:430px 0}@keyframes sway{50%{transform:rotate(1.4deg)}}
 
 #box{z-index:25}#fade{z-index:30}
+
+.wheel{animation:spin 14s linear infinite;transform-origin:430px 300px}@keyframes spin{to{transform:rotate(360deg)}}.flow{stroke-dasharray:6 5;animation:flow .5s linear infinite}@keyframes flow{to{stroke-dashoffset:-11}}

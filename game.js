@@ -444,7 +444,7 @@ function paintDorf(){const o=S0;sky(o);far(o);ground(o);
   let x=lay();chapel(x,330,214,.5);bgRow(x,26,208,240,10,18,0);[[150,236,5,0,96],[560,226,4,1,104],[740,234,6,-1,96]].forEach(b=>birch(x,...b));put(x,.6);
   x=lay();grass(x,7000,o.hz,500,1);details(x);dirt(x,50);[[300,336,14],[540,348,18],[396,420,30],[470,472,26],[150,348,12],[700,350,16]].forEach(([X,Y,r])=>mud(x,X,Y,r));put(x);
   x=lay();izba(x,220,300,.5,0,{win:'dark',smoke:0});wood(x,180,246,80,10,0);x.fillStyle='#b8302a';x.font='bold 8px Georgia';x.textAlign='center';x.fillText('LADEN',220,254);
-  x.fillStyle='#e8e0c8';x.fillRect(197,274,10,8);izba(x,660,298,.5,1,{win:'board',smoke:0});poles(x);well(x,530,338);sign(x,492,346,1.1,[[1,0,'Ins Dorf','hIns']]);bush(x,120,320,16,0);bush(x,760,322,18,0);rock(x,340,330,6,1);put(x);
+  x.fillStyle='#e8e0c8';x.fillRect(197,274,10,8);izba(x,660,298,.5,1,{win:'board',smoke:0});poles(x);well(x,530,338);sign(x,492,346,1.1,[[1,0,'Ins Dorf','hIns']]);sign(x,330,338,1,[[-1,0,'Zur alten Mühle','hMue']]);bush(x,120,320,16,0);bush(x,760,322,18,0);rock(x,340,330,6,1);put(x);
   x=lay();izba(x,130,412,.95,0,{win:'dark',trim:'#7a6a5a',smoke:0});fence2(x,-10,268,428,[236,262]);bush(x,290,424,14,0);
   ruin(x,712,404,.95);for(let i=0;i<30;i++){const X=560+R()*240;reeds(x,X,410+R()*20,3,16,0)}
   wood(x,530,380,60,5,0);wood(x,536,384,6,48,1);wood(x,578,384,6,48,1);shadowAt(x,560,432,36);
@@ -911,6 +911,42 @@ function cutscene(){changing=true;const cv3=document.createElement('canvas');cv3
     await tween(2200,p=>{lid=1-p;blur=12*(1-p)+1.5;tilt=-.12*(1-p)});await tween(800,p=>blur=1.5*(1-p));
     await talk([['P','Uhhh... mein Kopf...'],['P','Wo bin ich? Das ist nicht meine Wohnung. Meine Wohnung hat weniger... Birken.'],['P','Der Joint von Wowa. Er hat gesagt, da sind „Kräuter von Oma" drin. Was für eine Oma?!'],['P','Ich muss hier irgendwie wieder aufwachen.']]);
     fade.style.opacity=1;await wait(450);fin=true;cv3.remove();changing=false;fade.style.opacity=0})()}
+// ================= Die alte Mühle =================
+function millHouse(x){shadowAt(x,250,376,170,.6);
+  for(let X=120;X<380;X+=18)for(let Y=340;Y<378;Y+=12){const g=x.createRadialGradient(X+6,Y+3,1,X+9,Y+6,14);g.addColorStop(0,'#9a968a');g.addColorStop(1,'#4a4740');x.fillStyle=g;x.beginPath();x.ellipse(X+9+((Y/12)%2)*6,Y+6,9.5,6.5,0,0,7);x.fill()}
+  const side=new Path2D('M360,342L360,200L410,176L410,330Z');x.save();x.clip(side);for(let X=356;X<414;X+=9)wood(x,X,160,9,190,1);x.fillStyle='rgba(0,0,0,.4)';x.fill(side);x.restore();
+  for(let X=130;X<360;X+=11){wood(x,X,200,11,142,1);x.fillStyle='rgba(120,120,120,.25)';x.fillRect(X,200,11,142);x.fillStyle='rgba(10,8,4,.8)';x.fillRect(X,200,1,142)}
+  const gab=new Path2D('M130,202L245,112L360,202Z');x.save();x.clip(gab);for(let X=130;X<360;X+=11){wood(x,X,108,11,96,1);x.fillStyle='rgba(10,8,4,.8)';x.fillRect(X,108,1,96)}x.fillStyle='rgba(120,120,120,.2)';x.fill(gab);x.restore();
+  const roof=new Path2D('M245,106L292,82L420,176L374,204Z');x.save();x.clip(roof);x.fillStyle='#3a3026';x.fill(roof);for(let r=0;r<20;r++)for(let k=0;k<12;k++){const t=r/20,u=k/12;const X=245+47*u+129*t,Y=106-24*u+98*t;x.fillStyle=rgba(mix([50,42,32],[100,88,70],R()),1);x.fillRect(X,Y,9,6);x.fillStyle='rgba(0,0,0,.5)';x.fillRect(X,Y+5,9,1)}
+  for(let i=0;i<120;i++)ell(x,250+R()*170,90+R()*110,1+R()*3,1+R()*2,mix([50,80,20],[110,140,50],R()),.75);x.restore();
+  x.lineCap='round';x.strokeStyle='#1a140c';x.lineWidth=7;x.beginPath();x.moveTo(118,212);x.lineTo(245,104);x.lineTo(372,212);x.stroke();x.strokeStyle='#6a5a44';x.lineWidth=4;x.stroke();
+  wood(x,232,96,26,8,0);x.strokeStyle='#3a3a3a';x.lineWidth=1;x.beginPath();x.moveTo(252,104);x.lineTo(252,170);x.stroke();x.fillStyle='#4a4a4a';x.beginPath();x.arc(252,104,4,0,7);x.fill();ell(x,252,176,9,7,[200,186,150]);
+  x.fillStyle='#120c06';x.fillRect(196,268,44,74);for(let X=198;X<238;X+=8)wood(x,X,270,8,72,1);x.fillStyle='rgba(0,0,0,.35)';x.fillRect(198,270,40,72);x.strokeStyle='#2a2a2a';x.lineWidth=2;x.beginPath();x.moveTo(200,290);x.lineTo(236,290);x.moveTo(200,320);x.lineTo(236,320);x.stroke();
+  [[150,230],[290,230],[290,290]].forEach(([X,Y],i)=>{x.fillStyle='#1a1c1e';x.fillRect(X,Y,30,28);x.strokeStyle='#4a3a28';x.lineWidth=3;x.strokeRect(X,Y,30,28);x.beginPath();x.moveTo(X+15,Y);x.lineTo(X+15,Y+28);x.moveTo(X,Y+14);x.lineTo(X+30,Y+14);x.stroke();
+    if(i==1){x.strokeStyle='rgba(220,220,220,.5)';x.lineWidth=.7;x.beginPath();x.moveTo(X+2,Y+2);x.lineTo(X+12,Y+10);x.lineTo(X+6,Y+14);x.stroke()}});
+  wood(x,190,160,110,16,0);x.fillStyle='rgba(230,220,190,.55)';x.font='bold 12px Georgia';x.textAlign='center';x.fillText('M Ü H L E',245,172);web(x,130,202,26,0)}
+function flume(x){[[620,214],[560,218],[500,222]].forEach(([X,Y])=>{wood(x,X-2,Y,4,130,1);ripple(x,X,Y+128,6)});x.save();x.beginPath();x.moveTo(660,206);x.lineTo(444,222);x.lineTo(444,232);x.lineTo(660,216);x.closePath();x.clip();wood(x,440,200,224,34,0);x.restore();
+  x.strokeStyle='rgba(180,210,220,.8)';x.lineWidth=2;x.beginPath();x.moveTo(660,207);x.lineTo(446,223);x.stroke()}
+function millPond(x){const p=new Path2D('M330,396C330,376 380,366 440,366C520,366 540,380 536,398C520,408 360,410 330,396Z');const g=x.createLinearGradient(0,366,0,410);g.addColorStop(0,'#5a7a7c');g.addColorStop(1,'#1a2a2a');x.fillStyle=g;x.fill(p);
+  x.strokeStyle='rgba(40,30,20,.8)';x.lineWidth=5;x.stroke(p);const ch=new Path2D('M0,360C80,352 200,352 340,384L340,396C200,368 80,368 0,376Z');x.fillStyle='#2a3e40';x.fill(ch);
+  for(let i=0;i<40;i++){x.strokeStyle=`rgba(220,235,235,${.1+R()*.3})`;x.lineWidth=1;const X=340+R()*190,Y=372+R()*30;x.beginPath();x.moveTo(X,Y);x.lineTo(X+8+R()*20,Y);x.stroke()}
+  for(let i=0;i<30;i++)dab(x,400+R()*50,368+R()*14,4+R()*6,[240,250,250],.5)}
+function millstone(x,X,Y,r,lean){x.save();x.translate(X,Y);x.scale(lean,1);const g=x.createRadialGradient(-r*.3,-r*1.2,1,0,-r,r*1.2);g.addColorStop(0,'#b0aca0');g.addColorStop(1,'#5a5850');x.fillStyle=g;x.beginPath();x.arc(0,-r,r,0,7);x.fill();
+  x.strokeStyle='rgba(40,40,36,.6)';x.lineWidth=1;for(let k=0;k<8;k++){const a=k/8*6.28;x.beginPath();x.moveTo(Math.cos(a)*r*.25,-r+Math.sin(a)*r*.25);x.lineTo(Math.cos(a+.3)*r*.95,-r+Math.sin(a+.3)*r*.95);x.stroke()}x.fillStyle='#2a2824';x.beginPath();x.arc(0,-r,r*.18,0,7);x.fill();x.restore()}
+function sacks(x,X,Y){[[0,0],[22,2],[11,-16],[34,-4]].forEach(([a,b])=>{shadowAt(x,X+a,Y+b+2,14,.4);ell(x,X+a,Y+b-8,12,10,[214,200,166]);ell(x,X+a-3,Y+b-11,5,3,[240,230,200],.7);x.strokeStyle='#8a7a5a';x.lineWidth=1.4;x.beginPath();x.moveTo(X+a-3,Y+b-18);x.lineTo(X+a+3,Y+b-18);x.stroke()});
+  for(let i=0;i<20;i++)dab(x,X+10+(R()-.5)*60,Y+4+R()*6,3+R()*4,[240,236,226],.4)}
+function cart(x,X,Y){shadowAt(x,X,Y+2,50,.5);wood(x,X-44,Y-26,88,10,0);wood(x,X-44,Y-40,88,6,0);x.strokeStyle='#3a2a18';x.lineWidth=3;x.beginPath();x.moveTo(X-44,Y-26);x.lineTo(X-90,Y-6);x.stroke();
+  x.strokeStyle='#3a2a18';x.lineWidth=3;x.beginPath();x.arc(X+28,Y-12,13,0,7);x.stroke();for(let k=0;k<6;k++){const a=k/6*6.28;x.beginPath();x.moveTo(X+28,Y-12);x.lineTo(X+28+Math.cos(a)*13,Y-12+Math.sin(a)*13);x.stroke()}
+  x.save();x.translate(X-30,Y+2);x.scale(1,.35);x.beginPath();x.arc(0,0,13,0,7);x.stroke();x.restore()}
+function willow(x,X,B){x.strokeStyle='#2a2018';x.lineWidth=10;x.beginPath();x.moveTo(X,B);x.quadraticCurveTo(X-6,B-50,X+4,B-90);x.stroke();for(let i=0;i<5;i++)foliage(x,X+(R()-.5)*70,B-100+(R()-.5)*30,26,0,1);
+  for(let i=0;i<50;i++){const sx=X+(R()-.5)*110,sy=B-110+R()*30,L=40+R()*60;x.strokeStyle=rgba(mix(S0.fol[1],S0.fol[2],R()),.8);x.lineWidth=1.2;x.beginPath();x.moveTo(sx,sy);x.quadraticCurveTo(sx+3,sy+L*.5,sx+(R()-.5)*8,sy+L);x.stroke()}}
+function paintMuehle(){const o=S0;sky(o);far(o);ground(o);
+  let x=lay();bgRow(x,30,206,250,12,22,0);[[80,240,6,0,96],[520,236,5,1,104],[700,244,6,-1,100]].forEach(b=>birch(x,...b));put(x,.6);
+  x=lay();grass(x,7000,o.hz,500,1);details(x);dirt(x,30);leavesOnPath(x,80);put(x);
+  x=lay();willow(x,700,330);millPond(x);flume(x);millHouse(x);[[520,372,20,32],[300,382,10,24],[560,380,12,28],[20,368,14,30]].forEach(a=>reeds(x,...a));
+  millstone(x,150,410,26,.45);millstone(x,182,414,24,.4);sacks(x,410,446);cart(x,600,452);fence2(x,640,820,420,null);rock(x,500,470,14,1);shrooms(x,90,430,4);
+  sign(x,700,486,1.6,[[1,0,'Zum Dorf','hMD']]);put(x);
+  x=lay();grass(x,600,470,515,2.4,1);bush(x,30,500,40,1);put(x,1);rays(o,[[.3,.07],[.55,.05]]);grade(o)}
 // ================= Schauplätze =================
 const BASE={seed:3,cov:.52,cs:[156,160,175],cl:[258,262,268],sunc:[255,252,228],sunr:60,band:[250,620],bc:[[88,134,112],[140,176,160]],lit:[[84,140,48],[150,190,72]],dark:[[20,50,26],[46,84,40]],haze:[196,218,228],trunks:1,
   g:[[44,92,20],[116,168,40],[176,190,72]],sand:[[146,114,68],[226,200,146]],gh:[176,204,178],dapple:.2,b0:[[36,80,18],[70,118,28]],b1:[[120,172,46],[214,222,112]],d0:[[12,34,10],[26,60,16]],d1:[[36,80,22],[70,120,36]],
@@ -948,6 +984,10 @@ const SCN={
    pe:segPath([[400,512,170,420,420,70],[420,420,70,440,330,24],[440,330,24,452,250,6],[430,446,50,620,420,32],[620,420,32,840,398,24]]),gtop:X=>201+Math.pow(Math.abs(X-440)/440,1.6)*14,k:1.05/286,x0:60,x1:760,ymin:()=>FL.cut?340:398,ymax:494,paint:paintSperre,
    intro:[['P','Na toll. Alles voller Birken. Als hätte sie jemand absichtlich hier hingeworfen.'],['P','Und links und rechts nur Wald. Dicht wie eine Mauer. Und dunkel wie im Arsch eines Bären.'],['P','Ohne Säge komm ich da nicht durch.']]}
 };
+SCN.muehle={...BASE,seed:139,hz:200,sun:[180,110],sunr:50,top:[70,100,150],hor:[236,214,170],sunc:[255,226,170],cs:[130,120,120],cl:[244,230,210],cov:.47,masses:[[-30,330,30,80],[480,830,30,80]],band:[250,560],
+  fol:[[50,36,10],[150,104,30],[230,176,70]],lit:[[150,110,40],[210,170,80]],b1:[[150,140,50],[220,200,100]],nfl:80,gr:['rgba(255,200,120,.4)','rgba(50,50,90,.3)'],vig:.5,raya:.3,rayc:[255,220,160],
+  pe:segPath([[830,478,50,520,432,40],[520,432,40,218,346,14]]),gtop:X=>201+Math.pow(Math.abs(X-400)/400,1.6)*12,k:1/270,x0:40,x1:760,ymin:x=>x<540?410:384,ymax:494,paint:paintMuehle,
+  intro:[['P','Eine alte Wassermühle. Das Rad dreht sich, das Wasser rauscht.'],['P','Und keiner ist da. Wer hat das Ding angeschaltet? Wasser... ja gut. Aber trotzdem.']]};
 SCN.gnome={...BASE,seed:113,hz:200,sun:[300,120],sunr:50,top:[60,90,140],hor:[230,200,150],sunc:[255,220,160],cs:[120,110,120],cl:[240,220,200],cov:.45,masses:[[-30,600,40,70]],spruce:1,band:[0,600],nfl:120,gr:['rgba(255,200,130,.35)','rgba(40,50,90,.35)'],vig:.5,raya:.3,rayc:[255,220,160],
   pe:segPath([[-30,476,50,300,440,40],[300,440,40,600,420,30],[600,420,30,712,406,20],[300,440,30,190,314,10],[400,436,20,440,292,8]]),gtop:X=>201+Math.pow(Math.abs(X-400)/400,1.6)*12,k:1/270,x0:40,x1:760,ymin:x=>x>590?416:350,ymax:494,paint:paintGnome,
   intro:[['P','Eine Siedlung. Runde Hütten, Riesenkohl... und da stehen Gnome.'],['P','Große Gnome. Sehr große Gnome. Mit sehr, sehr großen Nasen.']]};
@@ -1229,6 +1269,15 @@ const T={
   kristalle:{n:'Kristalle',at:[640,446],l:[[['P','Lila Kristalle. Sie summen leise.'],['P','Wenn man das Ohr ranhält, hört man... Radio Moskau?']]]},
   lpilze:{n:'Leuchtpilze',at:[180,450],l:[[['P','Leuchtpilze. Hoffentlich nicht verwandt mit denen aus dem Joint.']]]},
   hsee:{n:'Unterirdischer See',at:[430,430],l:[[['P','Ein unterirdischer See. Da schwimmt was Weißes ohne Augen.'],['P','Es winkt. Ich winke nicht zurück.']]]},
+  sMue:{n:'Schild: Zur alten Mühle',at:[330,344],go:'muehle',to:[700,470]},
+  sMD:{n:'Schild: Zum Dorf',at:[690,486],go:'dorf',to:[340,346]},
+  muehle:{n:'Alte Mühle',at:[250,414],l:[[['P','Die Tür ist zu. Mit Brettern vernagelt. Von innen.'],['P','Von INNEN. Wer nagelt eine Tür von innen zu?!']],[['P','Drinnen knarzt es. Wie Schritte. Oder Mahlsteine. Hoffentlich Mahlsteine.']]]},
+  mrad:{n:'Wasserrad',at:[470,412],l:[[['P','Ein Wasserrad. Es dreht sich und dreht sich. Seit hundert Jahren vermutlich.'],['P','Wenn ich lange genug draufschaue, werd ich wieder high. Lieber nicht.']]]},
+  rinne:{n:'Wasserrinne',at:[560,404],l:[[['P','Eine Holzrinne bringt das Wasser vom Bach zum Rad. Clever. Für 1820.']]]},
+  mteich:{n:'Mühlteich',at:[440,414],l:[[['P','Unten am Rad schäumt das Wasser. Da glitzert was zwischen den Steinen.'],['P','...Ein Kronkorken. Diese Welt hat ein Müllproblem.']]]},
+  mstein:{n:'Mühlsteine',at:[200,430],l:[[['P','Alte Mühlsteine. Schwer wie Omas Kuchen.']]]},
+  saecke:{n:'Mehlsäcke',at:[400,462],l:[[['P','Mehlsäcke. Einer ist aufgeplatzt. Hier war jemand. Vor Kurzem.'],['P','Fußspuren im Mehl. Barfuß. Mit... sechs Zehen.']]]},
+  karren:{n:'Alter Karren',at:[600,470],l:[[['P','Ein Karren mit einem Rad. Das andere ist wohl auch abgehauen.']]]},
   sZG2:{n:'Schild: Zum Waldweg',at:[150,484],go:'sperre',to:[505,350]},
   huette:{n:'Baba Jagas Hütte',at:[470,438],fn(){if(inv.includes('leiter'))return bjEnter();this.i=(this.i||0);say(this.l[this.i++%this.l.length])},l:[
     [['P','Schief, alt, und ich schwör, sie atmet. Die Hütte atmet.']],
