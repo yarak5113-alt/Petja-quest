@@ -533,6 +533,40 @@ const KATER=`<g stroke="#0a0a0c" stroke-width="1" stroke-linejoin="round" stroke
 <ellipse cx="-4.6" cy="-40" rx="2.8" ry="2.1" fill="#e8d030"/><ellipse cx="4.6" cy="-40" rx="2.8" ry="2.1" fill="#e8d030"/><path d="M-4.6,-41.8V-38.2M4.6,-41.8V-38.2" stroke="#000" stroke-width="1.1"/>
 <path d="M2,-46L7,-36" stroke="#6a5a5a" stroke-width=".8"/><path d="M-1,-35.6L1,-35.6L0,-34.2Z" fill="#a05060"/>
 <path d="M-3,-34L-14,-35M-3,-33L-13,-31M3,-34L14,-35M3,-33L13,-31" stroke="#9a9aa4" stroke-width=".5"/></g>`;
+function appleTree(x,X,B){shadowAt(x,X,B+2,60,.55);x.lineCap='round';
+  const br=(x0,y0,a,l,w,d)=>{if(d>4)return;const x1=x0+Math.cos(a)*l,y1=y0+Math.sin(a)*l;x.lineWidth=w;x.strokeStyle=d?'#4a3a28':'#3a2a1a';x.beginPath();x.moveTo(x0,y0);x.quadraticCurveTo((x0+x1)/2+(R()-.5)*l*.4,(y0+y1)/2,x1,y1);x.stroke();for(let i=0;i<2;i++)br(x1,y1,a+(R()-.5)*1.3,l*.68,w*.62,d+1)};
+  br(X,B,-1.57,36,10,0);for(let i=0;i<9;i++)foliage(x,X+(R()-.5)*90,B-70+(R()-.5)*50,22+R()*10,0,1);
+  for(let i=0;i<22;i++){const a=R()*6.28,r=Math.sqrt(R())*48,ax=X+Math.cos(a)*r,ay=B-72+Math.sin(a)*r*.6;ell(x,ax,ay,3.2,3,[176,30,20]);ell(x,ax-1,ay-1,1.1,1,[255,140,120],.8)}
+  for(let i=0;i<4;i++)ell(x,X-30+R()*60,B+2+R()*6,3,2.4,[150,40,20])}
+// ================= Angel-Minispiel =================
+function craft(){if(inv.includes('stock')&&inv.includes('seil')){['stock','seil'].forEach(i=>inv.splice(inv.indexOf(i),1));inv.push('angel');renderInv();
+  setTimeout(()=>say([['P','Stock... Schnur dran... und als Haken eine Sicherheitsnadel aus meiner Hose.'],['P','Fertig ist die Angel! Wenn mein Vater mich jetzt sehen könnte. Er würde sich schämen.']]),300)}}
+function fishing(){if($('#fg'))return;const cv2=document.createElement('canvas');cv2.id='fg';cv2.width=800;cv2.height=500;cv2.style.cssText='position:absolute;inset:0;width:100%;height:100%;z-index:20;cursor:none';$('#game').appendChild(cv2);
+  const x=cv2.getContext('2d');let mx=400,my=250,m=[400,250],ang=Math.random()*6.28,prog=0,out=0,fin=false;const t0=performance.now();let last=t0;
+  const pos=(cx,cy)=>{const r=cv2.getBoundingClientRect();mx=(cx-r.left)/r.width*800;my=(cy-r.top)/r.height*500};
+  cv2.onmousemove=e=>pos(e.clientX,e.clientY);cv2.ontouchmove=e=>{e.preventDefault();pos(e.touches[0].clientX,e.touches[0].clientY)};
+  cv2.onclick=e=>{e.stopPropagation();if(mx>680&&my>455)end(0)};const esc=e=>{if(e.key=='Escape')end(0)};addEventListener('keydown',esc);
+  function end(win){if(fin)return;fin=true;cv2.remove();removeEventListener('keydown',esc);
+    if(win){FL.fisch=1;inv.push('fisch');renderInv();say([['P','Ich hab einen! Einen echten Fisch!'],['F','Der ist ja winzig. Den hätt ich zurückgeworfen.'],['P','Der ist für einen Kater, nicht für Sie.']])}
+    else say([['P','Weg ist er. Der Fisch hat mehr Kraft als ich.'],['F','Nochmal! Und halt dagegen, Junge! Wie beim Tanzen mit meiner ersten Frau.']])}
+  function frame(){if(fin)return;const t=performance.now(),dt=Math.max(0,Math.min(.05,(t-last)/1000));last=t;const el=Math.max(0,(t-t0)/1000);
+    ang+=(Math.random()-.5)*dt*6+Math.sin(el*1.3)*dt*1.5;if(Math.random()<dt*.6)ang+=Math.random()*3-1.5;
+    const str=110+70*Math.sin(el*2.1)+50*Math.sin(el*5.3)+Math.min(60,el*6);
+    m[0]+=((mx-m[0])*3.4+Math.cos(ang)*str)*dt;m[1]+=((my-m[1])*3.4+Math.sin(ang)*str*.75)*dt;m[0]=Math.max(10,Math.min(790,m[0]));m[1]=Math.max(10,Math.min(490,m[1]));
+    const d=Math.hypot(m[0]-400,m[1]-250),ins=d<44;if(ins)prog+=dt;else prog=Math.max(0,prog-dt*.6);if(d>190)out+=dt;else out=Math.max(0,out-dt*.5);
+    let g=x.createRadialGradient(400,250,20,400,250,520);g.addColorStop(0,'#3a5a62');g.addColorStop(1,'#0c1a1e');x.fillStyle=g;x.fillRect(0,0,800,500);
+    for(let k=0;k<6;k++){const r=((el*30+k*60)%360);x.strokeStyle=`rgba(200,220,220,${.18*(1-r/360)})`;x.lineWidth=1;x.beginPath();x.ellipse(400,250,r,r*.45,0,0,7);x.stroke()}
+    x.setLineDash([8,8]);x.strokeStyle=out>0?'rgba(255,90,60,.8)':'rgba(255,120,90,.4)';x.lineWidth=2;x.beginPath();x.arc(400,250,190,0,7);x.stroke();x.setLineDash([]);
+    x.fillStyle=ins?'rgba(120,230,120,.25)':'rgba(255,255,255,.08)';x.strokeStyle=ins?'#8ef08e':'#e8e8d8';x.lineWidth=3;x.beginPath();x.arc(400,250,44,0,7);x.fill();x.stroke();
+    const fx=m[0]+Math.cos(ang)*46,fy=m[1]+Math.sin(ang)*30;x.save();x.translate(fx,fy);x.rotate(ang);x.fillStyle='rgba(0,0,0,.35)';x.beginPath();x.ellipse(0,0,26,9,0,0,7);x.moveTo(-22,0);x.lineTo(-36,-9);x.lineTo(-36,9);x.fill();x.restore();
+    x.strokeStyle='rgba(230,230,220,.8)';x.lineWidth=1.2;x.beginPath();x.moveTo(400,520);x.quadraticCurveTo((400+m[0])/2,(520+m[1])/2+40-Math.min(40,str/6),m[0],m[1]);x.stroke();
+    x.fillStyle='#f4f0e8';x.beginPath();x.arc(m[0],m[1],9,0,Math.PI);x.fill();x.fillStyle='#d02818';x.beginPath();x.arc(m[0],m[1],9,Math.PI,0);x.fill();x.strokeStyle='#200';x.lineWidth=1.2;x.beginPath();x.arc(m[0],m[1],9,0,7);x.stroke();
+    x.strokeStyle='rgba(255,255,255,.7)';x.lineWidth=1;x.beginPath();x.moveTo(mx-7,my);x.lineTo(mx+7,my);x.moveTo(mx,my-7);x.lineTo(mx,my+7);x.stroke();
+    x.fillStyle='rgba(0,0,0,.55)';x.fillRect(200,14,400,26);x.fillStyle='#7ad06a';x.fillRect(204,18,392*Math.min(1,prog/5),18);x.fillStyle='#fff';x.font='bold 14px Arial';x.textAlign='center';x.fillText('Fisch: '+prog.toFixed(1)+' / 5 s',400,32);
+    x.font='15px Arial';x.fillText(out>0?'Er reißt sich los! Zieh dagegen!':'Halte den Schwimmer im Kreis – der Fisch zieht dagegen!',400,474);
+    x.textAlign='right';x.font='13px Arial';x.fillStyle='rgba(255,255,255,.6)';x.fillText('[Aufgeben]',790,490);
+    if(prog>=5)return end(1);if(out>1.6)return end(0);requestAnimationFrame(frame)}
+  requestAnimationFrame(frame)}
 // ================= Schauplätze =================
 const BASE={seed:3,cov:.52,cs:[156,160,175],cl:[258,262,268],sunc:[255,252,228],sunr:60,band:[250,620],bc:[[88,134,112],[140,176,160]],lit:[[84,140,48],[150,190,72]],dark:[[20,50,26],[46,84,40]],haze:[196,218,228],trunks:1,
   g:[[44,92,20],[116,168,40],[176,190,72]],sand:[[146,114,68],[226,200,146]],gh:[176,204,178],dapple:.2,b0:[[36,80,18],[70,118,28]],b1:[[120,172,46],[214,222,112]],d0:[[12,34,10],[26,60,16]],d1:[[36,80,22],[70,120,36]],
@@ -583,7 +617,7 @@ function paintWald(){const o=S0;sky(o);far(o);ground(o);
   MB.forEach(b=>b[0]==650?birch(x,650,322,20,-4,-12,eb):birch(x,...b));
   x.fillStyle='rgba(18,14,8,.92)';x.beginPath();x.ellipse(643,231,5.5,2.4,.05,0,7);x.ellipse(656.5,230,5,2.2,-.1,0,7);x.fill();
   x.strokeStyle='rgba(18,14,8,.85)';x.lineWidth=1.8;x.beginPath();x.moveTo(642,246);x.quadraticCurveTo(649,250,656,245);x.stroke();
-  x.lineCap='round';x.strokeStyle='#3e3428';x.lineWidth=4.5;x.beginPath();x.moveTo(652,206);x.quadraticCurveTo(690,193,732,190);x.moveTo(700,197);x.lineTo(713,185);x.moveTo(722,191);x.lineTo(740,180);x.stroke();
+  if(!FL.ast){x.lineCap='round';x.strokeStyle='#3e3428';x.lineWidth=4.5;x.beginPath();x.moveTo(652,206);x.quadraticCurveTo(690,193,732,190);x.moveTo(700,197);x.lineTo(713,185);x.moveTo(722,191);x.lineTo(740,180);x.stroke()}else{x.strokeStyle='#d8c8a0';x.lineWidth=3;x.beginPath();x.moveTo(650,203);x.lineTo(658,208);x.stroke()}
   MB.forEach(([X,,w,L])=>{for(let i=0;i<3;i++)foliage(x,X+L*.8+(R()-.5)*60,10+R()*150,22+R()*18)});
   for(let X=-10;X<820;X+=32){if(X>290&&X<560)continue;foliage(x,X,R()*40-6,30+R()*14)}put(x);
   x=lay();sign(x,300,415,1.3,[[1,0,'Zum Pfad','hPfad']]);mushroom(x,212,460);stump(x,612,452);grass(x,160,440,470,1);put(x);
@@ -597,7 +631,7 @@ function paintGabel(){const o=S0;sky(o);far(o);ground(o);
   x=lay();grass(x,9000,o.hz,500,1);details(x);put(x);
   x=lay();MB.forEach(b=>birch(x,...b));MB.forEach(([X,,w,L])=>{for(let i=0;i<3;i++)foliage(x,X+L*.8+(R()-.5)*60,10+R()*160,22+R()*18)});
   for(let X=-10;X<820;X+=32){if(X>330&&X<520)continue;foliage(x,X,R()*44-6,30+R()*14)}
-  gabelDeco(x);fallenBirch(x);sign(x,432,338,1.3,[[-1,0,'Zu Baba Jaga','hBaba'],[1,14,'Zum Sumpf','hUnbek']]);sign(x,170,472,1.8,[[-1,0,'Zum Birkenwald','hZW']]);grass(x,240,270,345,1);put(x);
+  appleTree(x,290,376);gabelDeco(x);fallenBirch(x);sign(x,432,338,1.3,[[-1,0,'Zu Baba Jaga','hBaba'],[1,14,'Zum Sumpf','hUnbek']]);sign(x,170,472,1.8,[[-1,0,'Zum Birkenwald','hZW']]);grass(x,240,270,345,1);put(x);
   x=lay();birch(x,780,520,44,-5);for(let i=0;i<500;i++){const X=R()<.5?R()*230-20:600+R()*220;dab(x,X,440+R()*70,6+R()*8,mix([10,30,8],[40,84,24],R()),.6)}
   grass(x,700,470,515,2.4,1);foliage(x,-10,22,58,1);foliage(x,812,12,62,1);put(x,1.1);
   rays(o,[[.1,.08],[.4,.1],[.75,.06],[1.0,.05]]);grade(o)}
@@ -713,7 +747,9 @@ const T={
   birke:{n:'Alte Birke',at:[640,400],l:[
     [['P','Die Birke guckt mich an.'],['B','...'],['P','Sie guckt immer noch.']],
     [['B','Geh weg, du riechst nach Stadt.'],['P','Und du nach Brennholz.']]]},
-  kraehe:{n:'Krähe',at:[680,400],l:[
+  kraehe:{n:'Krähe',at:[680,400],fn(){if(inv.includes('apfel'))return say([['P','Hey, Krähe! Fang!'],['P','*wirft den Apfel*'],['K','KRAH! Bist du irre?! Ich hab dir den Weg gezeigt, du Undankbarer!'],['K','Ich geh zur Baba Jaga petzen! Krah!'],['P','So. Der Ast ist frei.']],()=>{FL.kraehe=1;inv.splice(inv.indexOf('apfel'),1);renderInv();$('#kraeheG').remove()});
+    if(FL.angelQ&&!FL.kraehe&&R()<.5)return say([['P','Der Ast, auf dem die Krähe sitzt, wäre ein guter Angelstock.'],['P','Aber die geht da nicht runter. Vielleicht muss ich sie verscheuchen. Mit irgendwas werfen.']]);
+    this.i=(this.i||0);say(this.l[this.i++%this.l.length])},l:[
     [['K','Krah! Noch einer, der nicht aufwacht!'],['P','Noch einer? Wie viele gibt es denn?'],['K','Frag die Baba Jaga. Ihre Hütte steht tiefer im Wald. Krah!']],
     [['P','Die mit dem Haus auf Hühnerbeinen?'],['K','Krah! Und sie macht nichts umsonst.']]]},
   stumpf:{n:'Baumstumpf',at:[565,470],l:[
@@ -738,7 +774,8 @@ const T={
     [['P','Dahinter riecht es nach Sumpf. Und nach Ärger.']]]},
   sFisch:{n:'Schild: Zum Fischerhaus',at:[660,432],fn(){walkTo(760,404,()=>enter('fischer',[90,476]))}},
   sZD:{n:'Schild: Zum dunklen Wald',at:[130,484],go:'sperre',to:[730,412]},
-  fischer:{n:'Fischer',at:[690,394],fn(){if(FL.ks&&!FL.fisch&&!FL.kater)return say([['P','Könnten Sie mir einen Fisch geben? Für einen Kater.'],['F','Für den Kater vom Popen? Der Satan hat mir mal den ganzen Fang geklaut.'],['F','Hier, nimm den kleinen. Der hat eh so komisch geguckt.'],['P','*bekommt einen Fisch*']],()=>{FL.fisch=1;inv.push('fisch');renderInv()});if(!FL.boot){if(inv.includes('brett')&&inv.includes('teer'))return repairBoat();
+  fischer:{n:'Fischer',at:[690,394],fn(){if(FL.ks&&!FL.fisch&&!FL.kater){if(inv.includes('angel'))return say([['F','Na, eine Angel! Selbst gebaut? Sieht aus wie ein Unfall.'],['F','Dann zeig mal. Schwimmer in der Mitte halten, nicht vom Fisch wegziehen lassen!']],fishing);
+    FL.angelQ=1;return say([['P','Könnten Sie mir einen Fisch geben? Für einen Kater.'],['F','Für den Kater vom Popen? Der Satan hat mir mal den ganzen Fang geklaut. Von mir kriegt der nix.'],['F','Fang dir selber einen. Keine Angel? Dann bau dir eine.'],['F','Ein Stock und eine Schnur. Mehr braucht ein Mann nicht. Und Wodka.'],['P','Und wo krieg ich die her?'],['F','Stöcke wachsen an Bäumen, Junge. Und Schnur... frag nicht mich, ich sitz hier seit 1987.']])}if(!FL.boot){if(inv.includes('brett')&&inv.includes('teer'))return repairBoat();
     if(!FL.auftrag){FL.auftrag=1;return say([['P','Sie haben nicht zufällig eine Säge? Da liegen Birken auf dem Weg.'],['F','Hab ich. Aber umsonst gibt’s nix. Erst flickst du mein Boot. Da, wo der Wels durch ist.'],['F','Du brauchst ein ordentliches Brett und Teer. Beides gibt’s im Dorf hinter der Hütte von der Alten.'],['P','Hinter Baba Jagas Hütte?'],['F','Na, wo denn sonst. Ist ja nicht so, dass sie umziehen könnte. ...Obwohl. Mit den Beinen.']])}
     if(R()<.5)return say([['F','Brett UND Teer, Junge. Ohne Teer säuft der Kahn ab. Ohne Brett auch. Ohne beides sowieso.']])}
     this.i=(this.i||0);say(this.l[this.i++%this.l.length])},l:[
@@ -747,7 +784,7 @@ const T={
     [['P','Wissen Sie, wie ich hier rauskomme?'],['F','Raus? Aus dem Wald kommt keiner raus. Ich wollte 1987 nur Zigaretten holen.'],['F','Frag die Alte in der Hütte auf Hühnerbeinen. Aber nimm Wodka mit. Nüchtern ist sie unerträglich.']]]},
   fhaus:{n:'Fischerhütte',at:[160,362],l:[[['P','Die Hütte vom Fischer. Riecht nach Rauch, Fisch und Einsamkeit.']],[['P','Abgeschlossen.'],['F','Da ist nur Wodka drin! Und Fisch! Und Wodka!']]]},
   boot:{n:'Altes Boot',at:[400,394],fn(){if(!FL.boot&&inv.includes('brett')&&inv.includes('teer'))return repairBoat();say(FL.boot?[['P','Geflickt. Hält bestimmt. Eine Woche. Oder bis zum ersten Wels.']]:this.l[0])},l:[[['P','Ein umgedrehtes Boot. Unten hat es mehr Löcher als Boden.'],['F','Das schwimmt noch! Nur nicht nach oben.']]]},
-  see:{n:'See',at:[480,356],l:[[['P','Der See ist so still, als würde er die Luft anhalten.']],[['P','Da unten hat sich was bewegt. Groß. Ich geh nicht schwimmen.']]]},
+  see:{n:'See',at:[480,356],fn(){if(inv.includes('angel')&&!FL.fisch&&!FL.kater)return say([['P','Dann wollen wir mal. Auswerfen... und warten...'],['P','Da! Es zieht!']],fishing);this.i=(this.i||0);say(this.l[this.i++%this.l.length])},l:[[['P','Der See ist so still, als würde er die Luft anhalten.']],[['P','Da unten hat sich was bewegt. Groß. Ich geh nicht schwimmen.']]]},
   netz:{n:'Fischernetze',at:[300,382],l:[[['P','Fischernetze zum Trocknen. Oder moderne Kunst. Schwer zu sagen.']]]},
   sDorf:{n:'Schild: Zum Dorf',at:[650,480],go:'dorf',to:[150,486]},
   sZB:{n:'Schild: Zu Baba Jaga',at:[130,488],go:'huette',to:[640,474]},
@@ -780,6 +817,11 @@ const T={
   kater:{n:'Kater',at:[560,452],fn(){FL.ks=1;if(inv.includes('fisch'))return say([['P','Hier, Mieze. Ein Fisch. Frisch aus dem See.'],['P','*der Kater schnappt sich den Fisch und verschwindet hinter der Kirche*'],['P','Und da liegt... Omas Gebiss. Na lecker.']],()=>{FL.kater=1;inv.splice(inv.indexOf('fisch'),1);renderInv();$('#katerG').remove()});
     this.i=(this.i||0)+1;say(this.i%2?[['P','Na, Mieze? Gehst du mal kurz runter da?'],['P','*FAUCH*'],['P','Okay. Okay! Er sitzt auf irgendwas. Das glitzert.']]:[['P','Der geht da nicht weg. Vielleicht mit Futter.'],['P','Was fressen Kater? Fisch. Und wer hat Fisch? ...Genau.']])}},
   gebiss:{n:'Gebiss',at:[580,452],fn(){if(!FL.kater)return say([['P','Da komm ich nicht ran. Der Kater sitzt drauf und guckt böse.']]);say([['P','Omas Gebiss. Ich fass das nur mit zwei Fingern an.']],()=>{$('#gebissG').remove();inv.push('gebiss');renderInv()})}},
+  apfel:{n:'Apfel',at:[300,400],fn(){say([['P','Ein Apfel. Schön rot. Zum Essen zu schade...'],['P','...zum Werfen genau richtig.']],()=>{$('#apfelG').remove();inv.push('apfel');renderInv()})}},
+  apfelbaum:{n:'Apfelbaum',at:[300,400],l:[[['P','Ein Apfelbaum mitten im Birkenwald. Den hat bestimmt jemand gepflanzt. Oder verloren.']],[['P','Die anderen Äpfel hängen zu hoch.']]]},
+  ast:{n:'Ast',at:[690,400],fn(){if(!FL.kraehe)return say([['P','Ein schöner gerader Ast. Aber da sitzt die Krähe drauf.'],['K','Krah! Finger weg, das ist meiner!']]);
+    say([['P','*spring* ... *spring* ... *SPRING*'],['P','*KNACK*'],['P','Ein Stock! Perfekt für eine Angel.']],()=>{FL.ast=1;delete cache.wald;inv.push('stock');renderInv();enter('wald',[P.x,P.y]);craft()})}},
+  altnetz:{n:'Kaputtes Netz',at:[262,372],fn(){say([['P','Ein kaputtes Fischernetz, versteckt neben der Hütte.'],['F','He! Das ist... ach, nimm. Das hat der Wels zerfetzt.'],['P','Da zieh ich mir eine lange Schnur raus.']],()=>{$('#altnetzG').remove();inv.push('seil');renderInv();craft()})}},
   sZG2:{n:'Schild: Zum Waldweg',at:[150,484],go:'sperre',to:[505,350]},
   huette:{n:'Baba Jagas Hütte',at:[470,438],l:[
     [['P','Schief, alt, und ich schwör, sie atmet. Die Hütte atmet.']],
@@ -796,7 +838,7 @@ const T={
   _:{}
 };
 function use(id){const o=T[id];if(!o)return;if(o.go)return enter(o.go,o.to);if(o.fn)return o.fn();o.i=o.i||0;const set=o.l[o.i%o.l.length];o.i++;say(set,o.after)}
-const ITEMS={kippe:['🚬','Joint-Stummel','Lieber nicht. Sonst wach ich in einem noch schlimmeren Märchen auf.'],saege:['🪚','Säge','Eine Säge vom Fischer. Damit könnte man Birken klein machen.'],fisch:['🐟','Fisch','Ein kleiner Fisch. Guckt komisch.'],gebiss:['🦷','Omas Gebiss','Ein Gebiss. Riecht nach Kater und Friedhof.'],brett:['🪵','Brett','Ein Brett aus Opas Ruine. Nur ein bisschen angekokelt.'],teer:['🛢️','Birkenteer','Riecht nach Lagerfeuer und Omas Rheuma.']};
+const ITEMS={kippe:['🚬','Joint-Stummel','Lieber nicht. Sonst wach ich in einem noch schlimmeren Märchen auf.'],saege:['🪚','Säge','Eine Säge vom Fischer. Damit könnte man Birken klein machen.'],apfel:['🍎','Apfel','Ein roter Apfel. Liegt gut in der Hand. Wurfgewicht: perfekt.'],stock:['🌿','Stock','Ein gerader Ast. Daraus wird was.'],seil:['🧶','Schnur','Schnur aus einem kaputten Fischernetz.'],angel:['🎣','Angel','Selbst gebaut. Stock, Schnur, Sicherheitsnadel. Hält bestimmt.'],fisch:['🐟','Fisch','Ein kleiner Fisch. Guckt komisch.'],gebiss:['🦷','Omas Gebiss','Ein Gebiss. Riecht nach Kater und Friedhof.'],brett:['🪵','Brett','Ein Brett aus Opas Ruine. Nur ein bisschen angekokelt.'],teer:['🛢️','Birkenteer','Riecht nach Lagerfeuer und Omas Rheuma.']};
 function repairBoat(){say([['P','Brett und Teer! Ich flick Ihnen das Boot.'],['P','*klopf* ... *schmier* ... *klopf* ... *Daumen* ... AUA!'],['F','Junge, du bist ein Held. Das Ding hält jetzt bestimmt eine Woche.'],['F','Hier, meine Säge. Pass auf die Finger auf, die hast du ja schon geübt.'],['P','*bekommt eine Säge*']],()=>{FL.boot=1;['brett','teer'].forEach(i=>inv.splice(inv.indexOf(i),1));inv.push('saege');renderInv()})};
 function renderInv(){$('#slots').innerHTML='';inv.forEach(id=>{const it=ITEMS[id],d=document.createElement('div');d.className='slot';d.textContent=it[0];d.title=it[1];
   d.onclick=e=>{e.stopPropagation();if(!busy)say([['P',it[2]]])};$('#slots').appendChild(d)})}
@@ -953,7 +995,7 @@ function onLocationLeave(from){if(from==='sumpf')updateSwampNymphs()}
 updateSwampNymphs();
 const game=$('#game'),label=$('#label'),svg=$('#scene');
 function svgPt(e){const p=svg.createSVGPoint();p.x=e.clientX;p.y=e.clientY;return p.matrixTransform(svg.getScreenCTM().inverse())}
-game.addEventListener('click',e=>{if(busy)return advance();if(changing||!S0)return;const h=e.target.closest('.interactive');
+game.addEventListener('click',e=>{if($('#fg'))return;if(busy)return advance();if(changing||!S0)return;const h=e.target.closest('.interactive');
   if(h){const id=h.dataset.id,o=T[id];if(!o)return;if(id=='petja'||!o.at)return use(id);return walkTo(o.at[0],o.at[1],()=>use(id))}
   if(e.target.closest('#scene')){const p=svgPt(e);walkTo(p.x,p.y)}});
 game.addEventListener('mousemove',e=>{const h=e.target.closest('.interactive');label.textContent=!busy&&h&&T[h.dataset.id]?T[h.dataset.id].n:''});
