@@ -1143,7 +1143,7 @@ const T={
   birke:{n:'Alte Birke',at:[640,400],l:[
     [['P','Die Birke guckt mich an.'],['B','...'],['P','Sie guckt immer noch.']],
     [['B','Geh weg, du riechst nach Stadt.'],['P','Und du nach Brennholz.']]]},
-  kraehe:{n:'Krähe',at:[680,400],fn(){if(inv.includes('apfel'))return say([['P','Hey, Krähe! Fang!'],['P','*wirft den Apfel*'],['K','KRAH! Bist du irre?! Ich hab dir den Weg gezeigt, du Undankbarer!'],['K','Ich geh zur Baba Jaga petzen! Krah!'],['P','So. Der Ast ist frei.']],()=>{FL.kraehe=1;inv.splice(inv.indexOf('apfel'),1);renderInv();$('#kraeheG').remove()});
+  kraehe:{n:'Krähe',at:[680,400],fn(){if(inv.includes('apfel'))return say([['P','Hey, Krähe! Fang!'],['P','*wirft den Apfel*'],['K','KRAH! Bist du irre?! Ich hab dir den Weg gezeigt, du Undankbarer!'],['K','Ich geh zur Baba Jaga petzen! Krah!'],['P','So. Der Ast ist frei.']],()=>{FL.kraehe=1;inv.splice(inv.indexOf('apfel'),1);renderInv();rm('kraeheG')});
     if(FL.angelQ&&!FL.kraehe&&R()<.5)return say([['P','Der Ast, auf dem die Krähe sitzt, wäre ein guter Angelstock.'],['P','Aber die geht da nicht runter. Vielleicht muss ich sie verscheuchen. Mit irgendwas werfen.']]);
     this.i=(this.i||0);say(this.l[this.i++%this.l.length])},l:[
     [['K','Krah! Noch einer, der nicht aufwacht!'],['P','Noch einer? Wie viele gibt es denn?'],['K','Frag die Baba Jaga. Ihre Hütte steht tiefer im Wald. Krah!']],
@@ -1153,7 +1153,7 @@ const T={
     [['P','Ich setz mich lieber nicht drauf. Wer weiß, ob der auch redet.']]]},
   kippe:{n:'Joint-Stummel',at:[565,470],l:[
     [['P','Da ist er. Der Rest von meinem Joint. Der Schuldige.'],['P','Den nehm ich mit. Als Beweismittel.']]],
-    after(){$('#kippe').remove();inv.push('kippe');renderInv()}},
+    after(){rm('kippe');inv.push('kippe');renderInv()}},
   sPfad:{n:'Schild: Zum Pfad',at:[330,425],go:'gabel',to:[320,488]},
   sBaba:{n:'Schild: Zu Baba Jaga',at:[404,350],go:'huette',to:[640,488]},
   sUnbek:{n:'Schild: Zum Sumpf',at:[462,350],go:'sperre',to:[400,488]},
@@ -1191,13 +1191,13 @@ const T={
     if(inv.includes('gebiss'))return say([['P','Oma, ich hab Ihr Gebiss gefunden.'],['O','Mein Gebiff! Wo war ef?'],['P','Unter dem Kater vom Popen. Auf dem Friedhof.'],['O','*klack* ...Ah. Viel besser. Schmeckt nach Kater, aber egal.'],['O','Teer willst du? Hier, Birkenteer. Gegen Rheuma, Läuse und Männer.'],['P','*bekommt eine Flasche Birkenteer*']],()=>{FL.teer=1;inv.splice(inv.indexOf('gebiss'),1);inv.push('teer');renderInv()});
     if(!FL.gq){FL.gq=1;return say([['P','Guten Tag, Oma! Haben Sie zufällig Teer?'],['O','Teer? Hab ich. Birkenteer. Aber erft... erft...'],['P','Was ist mit Ihren Zähnen?'],['O','Weg! Bei Fjodorf Beerdigung hab ich fo geheult, da ift mir daf Gebiff raufgeflogen.'],['O','Und jetft hockt der Kater vom Popen drauf. Daf Miftvieh! Faucht jeden an.'],['O','Bring mir mein Gebiff, dann kriegft du den Teer. Und waf zu effen. Du bift fo dünn.']])}
     this.i=(this.i||0)+1;say(this.i%2?[['O','Mein Gebiff, Junge! Friedhof! Hinter der Kirche! Der Kater!']]:[['O','Den Grifcha am Dorfeingang hab ich angezeigt. Wegen Brandgefahr. Eine Woche vorher. Keiner hört auf Oma.']])}},
-  opa:{n:'Opa Grischa',at:[504,452],fn(){if(inv.includes('schnaps'))return say([['P','Opa, ich hab da was für Sie.'],['G','Ist das... Kusmitschs Selbstgebrannter?! Riecht nach Teer und Trauer. Perfekt!'],['G','*gluck* *gluck* ...AAAH. Da wird mir ganz warm. Wie damals beim Brand.'],['G','Die Leiter gehört dir. Hat das Feuer überlebt. Wie ich.'],['P','*bekommt eine Leiter*']],()=>{FL.leiter=1;inv.splice(inv.indexOf('schnaps'),1);inv.push('leiter');renderInv();$('#leiterG').remove()});
+  opa:{n:'Opa Grischa',at:[504,452],fn(){if(inv.includes('schnaps'))return say([['P','Opa, ich hab da was für Sie.'],['G','Ist das... Kusmitschs Selbstgebrannter?! Riecht nach Teer und Trauer. Perfekt!'],['G','*gluck* *gluck* ...AAAH. Da wird mir ganz warm. Wie damals beim Brand.'],['G','Die Leiter gehört dir. Hat das Feuer überlebt. Wie ich.'],['P','*bekommt eine Leiter*']],()=>{FL.leiter=1;inv.splice(inv.indexOf('schnaps'),1);inv.push('leiter');renderInv();rm('leiterG')});
     if(FL.bjNo&&!FL.leiterQ){FL.leiterQ=1;return say([['P','Opa, haben Sie eine Leiter? Ich muss in Baba Jagas Hütte. Die steht auf Hühnerbeinen.'],['G','Eine Leiter hab ich. Da, am Ofen. Hat das Feuer überlebt.'],['G','Aber umsonst gibt’s nix. Bring mir was zu trinken. Mein Selbstgebrannter ist ja... verdampft.'],['G','Der Kusmitsch am See brennt den besten. Aber der rückt nix raus. Der schläft sogar mit der Flasche.']])}
     this.i=(this.i||0);say(this.l[this.i++%this.l.length])},l:[
     [['P','Was ist denn mit Ihrem Haus passiert?'],['G','Der Samowar. Oder der Selbstgebrannte. Oder ich. Die Untersuchung läuft noch.'],['G','Die Feuerwehr kam aus der Stadt. Drei Tage später. Haben Fotos gemacht.']],
     [['P','Kann ich hier was mitnehmen?'],['G','Nimm, was nicht verbrannt ist. Also nix.'],['G','Höchstens das Brett da. Das lag unterm Ofen. Ofen brennt nicht, Brett brennt nicht. Physik.']],
     [['G','Die Dusja aus dem Dorf hat mich angezeigt. Eine Woche bevor’s gebrannt hat.'],['G','Hexe. Die zweite im Wald. Die eine hat Hühnerbeine, die andre ’ne Gartenschere.']]]},
-  brett:{n:'Brett',at:[664,458],l:[[['P','Ein Brett. Nur ein bisschen angekokelt.'],['G','Nimm’s mit! Ist eh versichert. ...War. War versichert.']]],after(){$('#brett').remove();inv.push('brett');renderInv()}},
+  brett:{n:'Brett',at:[664,458],l:[[['P','Ein Brett. Nur ein bisschen angekokelt.'],['G','Nimm’s mit! Ist eh versichert. ...War. War versichert.']]],after(){rm('brett');inv.push('brett');renderInv()}},
   haus1:{n:'Leeres Haus',at:[300,446],l:[[['P','Ein leeres Haus. Die Gardinen sind noch da, die Leute nicht.']]]},
   omahaus:{n:'Omas Haus',at:[300,452],l:[[['P','Omas Haus. Sonnenblumen, Gardinen, frisch gestrichen. Das einzige Haus hier, das nicht stirbt.']]]},
   ruine:{n:'Opas abgebranntes Haus',at:[600,452],l:[[['P','Opas Haus. Übrig ist nur der Ofen.'],['G','Der Ofen ist das Wichtigste! Der Rest war eh nur Dekoration.']]]},
@@ -1214,14 +1214,14 @@ const T={
   kirche2:{n:'Holzkirche',at:[460,336],l:[[['P','Abgeschlossen. Ein Zettel: „Pope in der Stadt. Zurück bald.“ Datiert 1993.']],[['P','Die Kuppeln sind vergoldet. Das Dach leckt. Prioritäten.']]]},
   glocke:{n:'Glocke',at:[360,340],l:[[['P','Eine Glocke im Turm. Ich komm nicht ran. Zum Glück. Sonst würd ich läuten.']]]},
   graeber:{n:'Gräber',at:[250,450],l:[[['P','„Fjodor, 1931–2024. Hat nie gewonnen.“ Wobei, was?'],['P','Plastikblumen. Die halten länger als die Leute.']]]},
-  kater:{n:'Kater',at:[560,452],fn(){FL.ks=1;if(inv.includes('fisch'))return say([['P','Hier, Mieze. Ein Fisch. Frisch aus dem See.'],['P','*der Kater schnappt sich den Fisch und verschwindet hinter der Kirche*'],['P','Und da liegt... Omas Gebiss. Na lecker.']],()=>{FL.kater=1;inv.splice(inv.indexOf('fisch'),1);renderInv();$('#katerG').remove()});
+  kater:{n:'Kater',at:[560,452],fn(){FL.ks=1;if(inv.includes('fisch'))return say([['P','Hier, Mieze. Ein Fisch. Frisch aus dem See.'],['P','*der Kater schnappt sich den Fisch und verschwindet hinter der Kirche*'],['P','Und da liegt... Omas Gebiss. Na lecker.']],()=>{FL.kater=1;inv.splice(inv.indexOf('fisch'),1);renderInv();rm('katerG')});
     this.i=(this.i||0)+1;say(this.i%2?[['P','Na, Mieze? Gehst du mal kurz runter da?'],['P','*FAUCH*'],['P','Okay. Okay! Er sitzt auf irgendwas. Das glitzert.']]:[['P','Der geht da nicht weg. Vielleicht mit Futter.'],['P','Was fressen Kater? Fisch. Und wer hat Fisch? ...Genau.']])}},
-  gebiss:{n:'Gebiss',at:[580,452],fn(){if(!FL.kater)return say([['P','Da komm ich nicht ran. Der Kater sitzt drauf und guckt böse.']]);say([['P','Omas Gebiss. Ich fass das nur mit zwei Fingern an.']],()=>{$('#gebissG').remove();inv.push('gebiss');renderInv()})}},
-  apfel:{n:'Apfel',at:[300,400],fn(){say([['P','Ein Apfel. Schön rot. Zum Essen zu schade...'],['P','...zum Werfen genau richtig.']],()=>{$('#apfelG').remove();inv.push('apfel');renderInv()})}},
+  gebiss:{n:'Gebiss',at:[580,452],fn(){if(!FL.kater)return say([['P','Da komm ich nicht ran. Der Kater sitzt drauf und guckt böse.']]);say([['P','Omas Gebiss. Ich fass das nur mit zwei Fingern an.']],()=>{rm('gebissG');inv.push('gebiss');renderInv()})}},
+  apfel:{n:'Apfel',at:[300,400],fn(){say([['P','Ein Apfel. Schön rot. Zum Essen zu schade...'],['P','...zum Werfen genau richtig.']],()=>{rm('apfelG');inv.push('apfel');renderInv()})}},
   apfelbaum:{n:'Apfelbaum',at:[300,400],l:[[['P','Ein Apfelbaum mitten im Birkenwald. Den hat bestimmt jemand gepflanzt. Oder verloren.']],[['P','Die anderen Äpfel hängen zu hoch.']]]},
   ast:{n:'Ast',at:[690,400],fn(){if(!FL.kraehe)return say([['P','Ein schöner gerader Ast. Aber da sitzt die Krähe drauf.'],['K','Krah! Finger weg, das ist meiner!']]);
     say([['P','*spring* ... *spring* ... *SPRING*'],['P','*KNACK*'],['P','Ein Stock! Perfekt für eine Angel.']],()=>{FL.ast=1;delete cache.wald;inv.push('stock');renderInv();enter('wald',[P.x,P.y]);craft()})}},
-  altnetz:{n:'Kaputtes Netz',at:[262,372],fn(){say([['P','Ein kaputtes Fischernetz, versteckt neben der Hütte.'],['F','He! Das ist... ach, nimm. Das hat der Wels zerfetzt.'],['P','Da zieh ich mir eine lange Schnur raus.']],()=>{$('#altnetzG').remove();inv.push('seil');renderInv();craft()})}},
+  altnetz:{n:'Kaputtes Netz',at:[262,372],fn(){say([['P','Ein kaputtes Fischernetz, versteckt neben der Hütte.'],['F','He! Das ist... ach, nimm. Das hat der Wels zerfetzt.'],['P','Da zieh ich mir eine lange Schnur raus.']],()=>{rm('altnetzG');inv.push('seil');renderInv();craft()})}},
   sUfer:{n:'Schild: Zum Ufer',at:[716,480],fn(){walkTo(770,470,()=>enter('ufer',[60,452]))}},
   sFH:{n:'Schild: Zum Fischerhaus',at:[130,486],go:'fischer',to:[740,470]},
   sUP:{n:'Schild: Unter den Pier',at:[176,404],go:'unter',to:[640,470]},
@@ -1233,9 +1233,9 @@ const T={
     if(inv.includes('knochen'))return say([['P','Ich bind den Knochen an seinen Haken. Doppelter Knoten. Wie Opa es mir beigebracht hat. Also mein Opa, nicht der verbrannte.'],['P','Und jetzt halt ich die Schnur fest und warte. Der Wels muss richtig ziehen, damit Kusmitsch was merkt.']],()=>{FL.tied=1;inv.splice(inv.indexOf('knochen'),1);renderInv();wels()});
     say([['P','Die Angelschnur vom Fischer. Leerer Haken.'],['P','Wenn hier was richtig Großes dranziehen würde, wäre Kusmitsch eine Weile beschäftigt...']])}},
   muell:{n:'Müll',at:[540,460],l:[[['P','Eine leere Flasche, ein Stiefel, ein Reifen. Kusmitschs Lebenslauf.']]]},
-  knochen:{n:'Knochen',at:[540,474],fn(){say([['P','Ein Knochen. Von wem, will ich gar nicht wissen.'],['J','Lass meine Knochen liegen, Bürschchen!'],['P','Ich leih ihn nur aus!']],()=>{$('#knochenG').remove();inv.push('knochen');renderInv()})}},
+  knochen:{n:'Knochen',at:[540,474],fn(){say([['P','Ein Knochen. Von wem, will ich gar nicht wissen.'],['J','Lass meine Knochen liegen, Bürschchen!'],['P','Ich leih ihn nur aus!']],()=>{rm('knochenG');inv.push('knochen');renderInv()})}},
   schnaps:{n:'Selbstgebrannter',at:[680,392],fn(){if(!FL.ablenk)return say([['F','FINGER WEG! Das ist mein Selbstgebrannter! Den hab ich im Auge, Junge!']]);
-    say([['P','*schnapp*'],['F','(kämpfend) KOMM HER! KOMM HER, DU MISTVIEH!'],['P','Der merkt gar nichts. Dreißig Jahre Warten machen blind.']],()=>{FL.schnaps=1;$('#schnapsG').remove();inv.push('schnaps');renderInv()})}},
+    say([['P','*schnapp*'],['F','(kämpfend) KOMM HER! KOMM HER, DU MISTVIEH!'],['P','Der merkt gar nichts. Dreißig Jahre Warten machen blind.']],()=>{FL.schnaps=1;rm('schnapsG');inv.push('schnaps');renderInv()})}},
   leiter:{n:'Leiter',at:[700,452],fn(){say(FL.leiterQ?[['G','Die Leiter gibt’s gegen Selbstgebrannten. Nicht gegen Bitte-Bitte.']]:[['P','Eine alte Leiter am Ofen. Angekokelt, aber stabil.'],['G','Finger weg! Das ist das Einzige, was mir geblieben ist. Außer dem Ofen.']])}},
   baba:{n:'Baba Jaga',at:[540,460],fn(){
     if(inv.includes('pilze'))return say([['P','Hier. Die waren in dem Joint. Blau angelaufen.'],['J2','*schnüffel* ...*schnüffel*... HA! Wusst ich’s. Traumschwamm.'],['J2','Wächst nur im Sumpf der ertrunkenen Huren, unter den Seerosen. Die Nymphen trocknen ihn und verkaufen ihn an Dummköpfe.'],
@@ -1459,4 +1459,61 @@ game.addEventListener('click',e=>{if($('#fg'))return;if(busy)return advance();if
 game.addEventListener('mousemove',e=>{const h=e.target.closest('.interactive');label.textContent=!busy&&h&&T[h.dataset.id]?T[h.dataset.id].n:''});
 
 setTimeout(()=>{enter('wald',[400,476]);setTimeout(()=>{const b=$('#start button');if(b){b.disabled=false;b.textContent='Neues Spiel'}},500)},30);
-$('#start button').onclick=e=>{e.stopPropagation();$('#start').remove();cutscene()};
+$('#start button').onclick=e=>{e.stopPropagation();rm('start');cutscene()};
+
+// ================= Menü, Speichern, Inventar & Aufträge, Karte =================
+const REM=[];function rm(id){const e=document.getElementById(id);if(e)e.remove();if(!REM.includes(id))REM.push(id)}
+const LOCN={wald:'Birkenwald',gabel:'Weggabelung',huette:'Baba Jagas Hütte',innen:'Hütte (innen)',dorf:'Dorfeingang',dorfstr:'Dorfstraße',kirche:'Kirche',muehle:'Alte Mühle',sperre:'Birkensperre',sumpf:'Sumpf',fischer:'Fischerhaus',ufer:'Ufer',unter:'Unter dem Pier',gnome:'Gnomsiedlung',hoehle:'Höhle'};
+const has=i=>inv.includes(i);
+function quests(){const Q=[];
+  Q.push({t:'Raus aus dem Märchen',d:'Irgendwas stimmt nicht. Ich muss hier wieder aufwachen.',v:1,ok:0,s:[
+    {t:'Jemanden finden, der sich hier auskennt',v:1,ok:seen.huette},
+    {t:'In Baba Jagas Hütte kommen',v:FL.bjNo,ok:FL.drin},
+    {t:'Herausfinden, was mit mir los ist',v:FL.drin,ok:FL.bjInfo},
+    {t:'Zutaten für das Gegengift besorgen',v:FL.bjInfo,ok:0,s:[{t:'Eine Träne',v:FL.bjInfo,ok:0},{t:'Eine Feder',v:FL.bjInfo,ok:0},{t:'Ein besonderer Saft',v:FL.bjInfo,ok:0}]}]});
+  Q.push({t:'Der versperrte Weg',d:'Umgestürzte Birken versperren den Weg zum Sumpf.',v:seen.sperre,ok:FL.cut,s:[
+    {t:'Etwas zum Zerkleinern finden',v:seen.sperre,ok:has('saege')||FL.cut},
+    {t:'Dem Fischer einen Gefallen tun',v:FL.auftrag,ok:FL.boot,s:[{t:'Ein Brett',v:FL.auftrag,ok:has('brett')||FL.boot},{t:'Etwas zum Abdichten',v:FL.auftrag,ok:has('teer')||FL.boot}]},
+    {t:'Den Weg freiräumen',v:has('saege')||FL.cut,ok:FL.cut}]});
+  Q.push({t:'Omas Gebiss',d:'Oma hat etwas verloren. Ohne das gibt’s keinen Teer.',v:FL.gq,ok:FL.teer,s:[
+    {t:'Das Gebiss finden',v:FL.gq,ok:FL.ks},
+    {t:'Den Wächter loswerden',v:FL.ks,ok:FL.kater,s:[{t:'Etwas, das er nicht ablehnen kann',v:FL.ks,ok:FL.fisch||FL.kater},
+      {t:'Selbst ist der Mann',v:FL.angelQ,ok:has('angel')||FL.fisch||FL.kater,s:[{t:'Ein Stock',v:FL.angelQ,ok:FL.ast},{t:'Eine Schnur',v:FL.angelQ,ok:REM.includes('altnetzG')}]}]},
+    {t:'Das Gebiss zurückbringen',v:has('gebiss')||FL.teer,ok:FL.teer}]});
+  Q.push({t:'Hoch hinaus',d:'Durch die Tür kommt man bei Baba Jaga nicht rein.',v:FL.bjNo,ok:FL.leiter||FL.drin,s:[
+    {t:'Jemanden mit einer Leiter finden',v:FL.bjNo,ok:FL.leiterQ},
+    {t:'Den Preis bezahlen',v:FL.leiterQ,ok:FL.leiter,s:[{t:'An die Flasche kommen',v:FL.schnapsQ,ok:FL.schnaps},{t:'Für Ablenkung sorgen',v:FL.schnapsQ,ok:FL.ablenk},{t:'Ein Köder für etwas Großes',v:FL.schnapsQ,ok:FL.tied||FL.ablenk}]}]});
+  Q.push({t:'Der Joint',d:'Baba Jaga will wissen, was drin war.',v:FL.drin,ok:FL.bjInfo,s:[{t:'Den Joint untersuchen',v:FL.drin,ok:FL.pilze},{t:'Das Ergebnis zeigen',v:FL.pilze,ok:FL.bjInfo}]});
+  return Q.filter(q=>q.v)}
+function qHTML(list,lv){return list.filter(q=>q.v).map(q=>`<div class="q l${lv} ${q.ok?'done':''}"><span>${q.ok?'☑':'☐'} ${q.t}</span>${q.d?`<i>${q.d}</i>`:''}${q.s?qHTML(q.s,lv+1):''}</div>`).join('')}
+let ovl=null;function closeO(){if(ovl){ovl.remove();ovl=null}}
+function openO(html,cls){closeO();ovl=document.createElement('div');ovl.className='ovl '+(cls||'');ovl.innerHTML=html;ovl.onclick=e=>e.stopPropagation();$('#game').appendChild(ovl);return ovl}
+function openInv(){const o=openO(`<div class="pan inv2"><h3>Taschen</h3><div class="grid">${inv.length?inv.map(id=>{const it=ITEMS[id]||['❔',id,id];return`<div class="card" data-i="${id}"><b>${it[0]}</b><span>${it[1]}</span></div>`}).join(''):'<p class="em">Leer. Wie mein Kühlschrank.</p>'}</div><p class="desc">Klick auf einen Gegenstand.</p></div>
+  <div class="pan qs"><h3>Aufträge</h3>${qHTML(quests(),0)}</div><div class="hint">[I] oder [ESC] schließen</div>`,'two');
+  o.querySelectorAll('.card').forEach(c=>c.onclick=()=>{const it=ITEMS[c.dataset.i];o.querySelector('.desc').textContent=it?it[1]+': '+it[2]:''})}
+const MAPN={muehle:[10,10],dorf:[42,10],dorfstr:[74,10],kirche:[106,10],huette:[42,36],innen:[74,36],wald:[10,62],gabel:[42,62],sperre:[74,62],sumpf:[106,62],fischer:[74,88],ufer:[106,88],unter:[106,112],gnome:[138,88],hoehle:[170,88]};
+const MAPE=[['wald','gabel'],['gabel','huette'],['gabel','sperre'],['huette','dorf'],['huette','innen'],['dorf','dorfstr'],['dorfstr','kirche'],['dorf','muehle'],['sperre','sumpf'],['sperre','fischer'],['fischer','ufer'],['ufer','unter'],['ufer','gnome'],['gnome','hoehle']];
+function openMap(){const P2=(id)=>MAPN[id];let svg=`<svg viewBox="-12 0 200 122" class="map">`;
+  MAPE.forEach(([a,b])=>{if(seen[a]&&seen[b])svg+=`<line x1="${P2(a)[0]}" y1="${P2(a)[1]}" x2="${P2(b)[0]}" y2="${P2(b)[1]}" stroke="#8a7050" stroke-width="1.2" stroke-dasharray="2 1.5"/>`});
+  Object.keys(MAPN).forEach(id=>{if(!seen[id])return;const[x,y]=P2(id),c=id==cur;svg+=`<circle cx="${x}" cy="${y}" r="${c?3.4:2.4}" fill="${c?'#e04020':'#c8a060'}" stroke="#2a1a0a" stroke-width=".6"/><text x="${x}" y="${y+6}" font-size="3.2" text-anchor="middle" fill="#f0e0c0">${LOCN[id]}</text>`});
+  openO(`<div class="pan mp"><h3>Karte</h3>${svg}</svg><p class="em">● Du bist hier · Nur besuchte Orte</p></div><div class="hint">[M] oder [ESC] schließen</div>`)}
+const SKEY='petjaQuestSave';
+function slots(){try{return JSON.parse(localStorage.getItem(SKEY)||'[]')}catch(e){return[]}}
+function saveGame(n){if(!cur)return;const d={inv:[...inv],FL:{...FL},seen:{...seen},cur,P:{x:P.x,y:P.y},REM:[...REM],ti:Object.fromEntries(Object.entries(T).map(([k,o])=>[k,o.i||0])),date:new Date().toLocaleString('de-DE')};
+  const a=slots();a[n]=d;try{localStorage.setItem(SKEY,JSON.stringify(a));return true}catch(e){return false}}
+function loadGame(n){const d=slots()[n];if(!d)return;closeO();if($('#start'))rm('start');
+  inv.length=0;inv.push(...d.inv);Object.keys(FL).forEach(k=>delete FL[k]);Object.assign(FL,d.FL);Object.assign(seen,d.seen);d.REM.forEach(rm);
+  Object.entries(d.ti||{}).forEach(([k,v])=>{if(T[k])T[k].i=v});if(FL.cut){const h=$('[data-id=sHolz]');if(h)h.style.display='none'}
+  for(const k in cache)delete cache[k];renderInv();busy=false;box.style.display='none';enter(d.cur,[d.P.x,d.P.y])}
+function openMenu(view){const a=slots(),sl=(mode)=>[0,1,2].map(n=>`<button data-${mode}="${n}" ${mode=='l'&&!a[n]?'disabled':''}>Slot ${n+1}: ${a[n]?LOCN[a[n].cur]+' – '+a[n].date:'leer'}</button>`).join('');
+  const body=view=='s'?`<h3>Speichern</h3>${cur&&!$('#start')?sl('s'):'<p class="em">Erst spielen, dann speichern.</p>'}<button data-v="m">Zurück</button>`:view=='l'?`<h3>Laden</h3>${sl('l')}<button data-v="m">Zurück</button>`:
+    view=='k'?`<h3>Steuerung</h3><table><tr><td>Linksklick</td><td>Laufen, ansehen, benutzen, sprechen</td></tr><tr><td>Klick in den Text</td><td>Dialog weiter</td></tr><tr><td>Schilder</td><td>Zum nächsten Ort</td></tr><tr><td>I</td><td>Taschen &amp; Aufträge</td></tr><tr><td>M</td><td>Karte</td></tr><tr><td>ESC</td><td>Menü / schließen</td></tr></table><button data-v="m">Zurück</button>`:
+    `<h3>Menü</h3><button data-v="x">Weiterspielen</button><button data-v="s">Spiel speichern</button><button data-v="l">Spielstand laden</button><button data-v="i">Taschen &amp; Aufträge</button><button data-v="map">Karte</button><button data-v="k">Steuerung</button>`;
+  const o=openO(`<div class="pan menu">${body}</div><div class="hint">[ESC] schließen</div>`);
+  o.querySelectorAll('button').forEach(b=>b.onclick=()=>{const v=b.dataset.v;if(v=='x')return closeO();if(v=='i')return openInv();if(v=='map')return openMap();if(v)return openMenu(v);
+    if(b.dataset.s!=null){const ok=saveGame(+b.dataset.s);openMenu('s');const m=document.createElement('p');m.className='em';m.textContent=ok?'Gespeichert!':'Speichern nicht möglich (Browser blockiert Speicher).';ovl.querySelector('.pan').appendChild(m)}
+    if(b.dataset.l!=null)loadGame(+b.dataset.l)})}
+addEventListener('keydown',e=>{if($('#fg')||$('#cut'))return;const k=e.key.toLowerCase();
+  if(k=='escape'){if(ovl)closeO();else openMenu()}
+  else if(k=='i'&&!$('#start')){if(ovl&&ovl.classList.contains('two'))closeO();else openInv()}
+  else if(k=='m'&&!$('#start')){if(ovl&&ovl.querySelector('.mp'))closeO();else openMap()}});
