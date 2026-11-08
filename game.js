@@ -644,6 +644,102 @@ function wels(){if($('#fg'))return;const cv2=document.createElement('canvas');cv
     x.font='15px Arial';x.fillText(msg,400,474);x.textAlign='right';x.font='13px Arial';x.fillStyle='rgba(255,255,255,.6)';x.fillText('[Aufgeben]',790,494);
     requestAnimationFrame(frame)}
   requestAnimationFrame(frame)}
+// ================= Baba Jagas Hütte (innen) =================
+function logWall(x,x0,x1,y0,y1){for(let y=y0;y<y1;y+=26){const g=x.createLinearGradient(0,y,0,y+26);g.addColorStop(0,'#2a1c10');g.addColorStop(.25,'#7a5a36');g.addColorStop(.55,'#8a6a42');g.addColorStop(.9,'#3a2814');g.addColorStop(1,'#140c06');x.fillStyle=g;x.fillRect(x0,y,x1-x0,26);
+  for(let i=0;i<(x1-x0)/6;i++){x.strokeStyle=`rgba(${R()<.5?30:150},${R()<.5?20:120},10,.25)`;x.lineWidth=.6;const X=x0+R()*(x1-x0),Y=y+4+R()*18;x.beginPath();x.moveTo(X,Y);x.lineTo(X+10+R()*40,Y+(R()-.5)*2);x.stroke()}
+  for(let i=0;i<(x1-x0)/20;i++)ell(x,x0+R()*(x1-x0),y+25,3+R()*6,1.5,[60,80,30],.6)}}
+function web(x,X,Y,r,a0){x.strokeStyle='rgba(220,220,220,.35)';x.lineWidth=.5;for(let k=0;k<6;k++){const a=a0+k/5*1.57;x.beginPath();x.moveTo(X,Y);x.lineTo(X+Math.cos(a)*r,Y+Math.sin(a)*r);x.stroke()}
+  for(let j=1;j<5;j++){x.beginPath();for(let k=0;k<6;k++){const a=a0+k/5*1.57,rr=r*j/5;x.lineTo(X+Math.cos(a)*rr,Y+Math.sin(a)*rr+2)}x.stroke()}}
+function jar(x,X,Y,h,k){ell(x,X,Y,h*.36,h*.1,[0,0,0],.4);x.fillStyle=rgba(k,.7);x.fillRect(X-h*.32,Y-h,h*.64,h);x.fillStyle='rgba(255,255,255,.25)';x.fillRect(X-h*.24,Y-h*.9,h*.08,h*.75);x.fillStyle='#5a4a3a';x.fillRect(X-h*.34,Y-h-3,h*.68,4)}
+function paintInnen(){const o=S0;c.fillStyle='#120c08';c.fillRect(0,0,W,H);
+  let x=lay();logWall(x,0,800,-10,300);x.fillStyle='rgba(0,0,0,.35)';x.fillRect(0,0,800,300);
+  x.save();x.beginPath();x.moveTo(300,90);x.lineTo(384,84);x.lineTo(388,170);x.lineTo(304,176);x.closePath();const wg=x.createLinearGradient(300,84,388,176);wg.addColorStop(0,'#c8a0b0');wg.addColorStop(1,'#6a4a6a');x.fillStyle=wg;x.fill();x.restore();
+  x.strokeStyle='#2a1a0c';x.lineWidth=5;x.beginPath();x.moveTo(300,90);x.lineTo(384,84);x.lineTo(388,170);x.lineTo(304,176);x.closePath();x.moveTo(342,87);x.lineTo(346,173);x.moveTo(302,133);x.lineTo(386,127);x.stroke();web(x,304,92,30,0);
+  const fl=new Path2D('M0,300L800,300L800,500L0,500Z');x.fillStyle='#4a3420';x.fill(fl);for(let i=-12;i<=12;i++){x.strokeStyle='rgba(20,12,6,.8)';x.lineWidth=1.2;x.beginPath();x.moveTo(400+i*18,300);x.lineTo(400+i*80,500);x.stroke()}
+  for(let i=0;i<600;i++){const Y=300+R()*200;ell(x,R()*800,Y,2+R()*10*(Y-280)/200,.6,R()<.5?[90,66,40]:[30,20,12],.35)}
+  for(let i=0;i<40;i++)dab(x,R()*800,320+R()*170,10+R()*24,[20,14,8],.35);
+  x.fillStyle='rgba(0,0,0,.45)';x.beginPath();x.moveTo(0,0);x.lineTo(60,30);x.lineTo(60,300);x.lineTo(0,330);x.fill();x.beginPath();x.moveTo(800,0);x.lineTo(740,30);x.lineTo(740,300);x.lineTo(800,330);x.fill();
+  wood(x,-10,14,820,12,0);for(let i=0;i<7;i++){const X=430+i*40+R()*10;x.strokeStyle='#5a4a2a';x.lineWidth=1;x.beginPath();x.moveTo(X,26);x.lineTo(X,40);x.stroke();for(let k=0;k<14;k++){x.strokeStyle=rgba(mix([60,80,30],[150,130,60],R()),.9);x.beginPath();x.moveTo(X,40);x.lineTo(X+(R()-.5)*14,70+R()*20);x.stroke()}}
+  put(x);
+  x=lay();for(let k=0;k<3;k++)wood(x,600,110+k*62,160,6,0);[[612,110],[640,110],[668,110],[700,172],[624,172],[730,234],[612,234]].forEach(([X,Y],i)=>jar(x,X,Y,20+R()*16,P2([[120,160,60],[160,60,50],[80,110,160],[200,170,80],[90,60,110]])));skull(x,736,100,1.6);skull(x,672,224,1.3);
+  web(x,800,0,60,1.57);web(x,0,0,50,0);
+  x.fillStyle='#d8d0c0';x.fillRect(30,140,200,280);const sg=x.createLinearGradient(30,0,230,0);sg.addColorStop(0,'rgba(0,0,0,.35)');sg.addColorStop(.6,'rgba(0,0,0,0)');sg.addColorStop(1,'rgba(0,0,0,.25)');x.fillStyle=sg;x.fillRect(30,140,200,280);
+  for(let i=0;i<30;i++){x.strokeStyle='rgba(90,80,70,.4)';x.lineWidth=.6;const X=30+R()*200,Y=140+R()*280;x.beginPath();x.moveTo(X,Y);x.lineTo(X+(R()-.5)*20,Y+R()*20);x.stroke()}
+  x.fillStyle='#bab2a2';x.fillRect(20,128,220,14);x.fillStyle='#c8c0b0';x.fillRect(150,-10,50,140);x.fillStyle='rgba(30,20,10,.5)';x.fillRect(150,-10,50,30);
+  const sog=x.createLinearGradient(0,240,0,330);sog.addColorStop(0,'rgba(20,14,10,.8)');sog.addColorStop(1,'rgba(20,14,10,0)');x.fillStyle=sog;x.fillRect(60,230,140,100);
+  x.fillStyle='#0c0806';x.beginPath();x.moveTo(70,340);x.lineTo(70,280);x.quadraticCurveTo(130,236,190,280);x.lineTo(190,340);x.fill();
+  x.save();x.globalCompositeOperation='lighter';for(let i=0;i<10;i++)dab(x,110+R()*40,330-R()*14,8+R()*10,R()<.5?[255,120,30]:[255,200,80],.6);dab(x,130,320,70,[255,120,40],.25);x.restore();
+  ell(x,130,316,18,6,[20,20,20]);x.fillStyle='#1a1a1a';x.beginPath();x.ellipse(130,306,16,12,0,0,7);x.fill();
+  x.fillStyle='#8a8070';x.fillRect(60,340,140,8);x.fillRect(20,410,220,10);woodpile(x,270,440);
+  x.fillStyle='#5a2a2a';x.beginPath();x.ellipse(450,450,190,34,0,0,7);x.fill();x.strokeStyle='#c8a050';x.lineWidth=2;x.beginPath();x.ellipse(450,450,170,28,0,0,7);x.stroke();x.strokeStyle='#2a1010';x.beginPath();x.ellipse(450,450,140,22,0,0,7);x.stroke();
+  shadowAt(x,450,446,140,.6);[[336,384],[564,384],[350,360],[550,360]].forEach(([X,Y],i)=>wood(x,X-5,Y,10,(i<2?62:20),1));
+  x.save();x.beginPath();x.moveTo(340,352);x.lineTo(560,352);x.lineTo(588,384);x.lineTo(312,384);x.closePath();x.clip();wood(x,300,350,300,36,0);for(let X=320;X<600;X+=30){x.strokeStyle='rgba(20,10,4,.7)';x.beginPath();x.moveTo(X+20,352);x.lineTo(X,384);x.stroke()}x.restore();
+  wood(x,312,384,276,10,0);x.fillStyle='rgba(0,0,0,.4)';x.fillRect(312,384,276,10);
+  x.fillStyle='#6a6a66';x.beginPath();x.moveTo(520,370);x.lineTo(524,356);x.lineTo(546,356);x.lineTo(550,370);x.fill();x.strokeStyle='#4a3a2a';x.lineWidth=4;x.beginPath();x.moveTo(536,358);x.lineTo(552,334);x.stroke();
+  x.fillStyle='#e8dcb0';x.fillRect(372,348,6,16);x.save();x.globalCompositeOperation='lighter';dab(x,375,342,40,[255,190,90],.4);dab(x,375,344,5,[255,240,180],.9);x.restore();
+  x.strokeStyle='#5a3a1c';x.lineWidth=4;x.beginPath();x.moveTo(770,470);x.lineTo(752,250);x.stroke();for(let i=0;i<30;i++){x.strokeStyle='rgba(150,120,60,.9)';x.lineWidth=1;x.beginPath();x.moveTo(768,440);x.lineTo(760+(R()-.5)*30,490+R()*8);x.stroke()}
+  x.fillStyle='rgba(240,230,210,.8)';x.save();x.translate(240,470);x.rotate(.3);x.fillRect(0,0,26,18);x.restore();put(x);
+  x=lay();x.fillStyle='rgba(220,180,200,.5)';x.beginPath();x.moveTo(300,90);x.lineTo(388,84);x.lineTo(560,420);x.lineTo(420,440);x.fill();put(x,14,'screen',.25);
+  const vg=c.createRadialGradient(420,330,120,420,300,560);vg.addColorStop(0,'rgba(0,0,0,0)');vg.addColorStop(1,'rgba(0,0,0,.65)');c.fillStyle=vg;c.fillRect(0,0,W,H);grade(o)}
+const BJ=`<g stroke="#1a1a10" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round">
+<path d="M-24,0L-22,-10L-8,-10L-6,0Z" fill="#8a6a3a"/><path d="M8,0L8,-10L22,-10L26,0Z" fill="#8a6a3a"/>
+<path d="M-28,-8L-24,-14L-20,-6L-16,-14L-12,-6L-8,-14L-4,-6L0,-14L4,-6L8,-14L12,-6L16,-14L20,-6L24,-14L28,-8C30,-40 26,-70 20,-96L-22,-96C-28,-70 -30,-40 -28,-8Z" fill="#4a4038"/>
+<path d="M-16,-94L14,-94L18,-30L-20,-30Z" fill="#a89a7a"/><ellipse cx="-4" cy="-60" rx="5" ry="3" fill="#6a5a3a" stroke="none" opacity=".6"/><ellipse cx="6" cy="-44" rx="4" ry="2.5" fill="#5a6a3a" stroke="none" opacity=".6"/>
+<path d="M-26,-96C-34,-110 -32,-128 -18,-140L14,-142C26,-130 26,-110 22,-96Z" fill="#4a3a4a"/><path d="M-30,-126L-6,-110L18,-130" fill="none" stroke="#2a2030"/>
+<path d="M14,-134C26,-120 28,-100 22,-80L16,-80C20,-98 16,-114 8,-124Z" fill="#9aa878"/><path d="M16,-82L22,-80L22,-74L14,-76Z" fill="#9aa878"/>
+<path d="M-20,-136C-34,-128 -44,-112 -46,-98L-40,-96C-36,-108 -28,-118 -16,-124Z" fill="#4a3a4a"/><path d="M-46,-98C-50,-94 -52,-88 -50,-84M-44,-97C-46,-92 -46,-86 -44,-82M-41,-96C-41,-91 -40,-87 -38,-84" fill="none" stroke="#9aa878" stroke-width="2"/>
+<path d="M-44,-120L-40,-120L-30,4L-34,4Z" fill="#5a3a1c"/><path d="M-46,-124C-44,-130 -38,-130 -38,-122" fill="none" stroke="#5a3a1c" stroke-width="4"/>
+<ellipse cx="-12" cy="-158" rx="16" ry="19" fill="#9aa878"/>
+<path d="M-26,-160C-34,-150 -34,-130 -30,-118M-24,-168C-36,-160 -40,-140 -36,-128M2,-170C12,-162 14,-146 10,-132M4,-164C16,-156 18,-140 16,-128" fill="none" stroke="#c8c8c0" stroke-width="2"/>
+<path d="M-30,-164C-32,-184 -18,-190 -8,-190C4,-190 10,-182 6,-166C0,-174 -16,-176 -30,-164Z" fill="#3a3a2e"/><path d="M4,-168L14,-160L10,-156Z" fill="#3a3a2e"/>
+<path d="M-24,-156L-40,-146L-26,-146Z" fill="#8a9868"/><circle cx="-34" cy="-148" r="1.6" fill="#6a7a4a"/>
+<ellipse cx="-20" cy="-162" rx="3" ry="2.2" fill="#e8d040"/><ellipse cx="-8" cy="-163" rx="3" ry="2.2" fill="#e8d040"/><circle cx="-21" cy="-162" r="1" fill="#000" stroke="none"/><circle cx="-9" cy="-163" r="1" fill="#000" stroke="none"/>
+<path d="M-25,-167L-17,-165M-12,-167L-4,-168" stroke="#c8c8c0" stroke-width="1.6"/>
+<path d="M-26,-142C-20,-140 -12,-140 -6,-144" fill="none"/><path d="M-18,-141L-17,-137L-15,-141Z" fill="#e8e0b0" stroke-width=".6"/>
+<path d="M-6,-150C-2,-146 -2,-140 -6,-136" fill="none" stroke="#6a7848" stroke-width=".8"/></g>`;
+// ================= Tisch-Minispiel: Joint zerlegen & sortieren =================
+function tableGame(){if($('#fg'))return;const cv2=document.createElement('canvas');cv2.id='fg';cv2.width=800;cv2.height=500;cv2.style.cssText='position:absolute;inset:0;width:100%;height:100%;z-index:20;cursor:grab';$('#game').appendChild(cv2);
+  const x=cv2.getContext('2d');let fin=false,ph=0,mx=0,my=0,drag=null,un=0,unA=false,miss=0,msg='Zieh den Filter vom Joint ab und leg ihn ins Feld „Filter“.';
+  const ZP=[60,40,180,110],ZF=[560,40,180,110],BOWL=[640,380,70];let filt={x:560,y:250},paper={x:400,y:250,on:false},PT=[];
+  const inR=(p,[a,b,w,h])=>p.x>a&&p.x<a+w&&p.y>b&&p.y<b+h,inB=p=>Math.hypot(p.x-BOWL[0],p.y-BOWL[1])<BOWL[2];
+  function scatter(){PT=[];for(let i=0;i<34;i++){const t=i<9?2:i<15?1:0;PT.push({t,x:250+Math.random()*300,y:200+Math.random()*190,a:Math.random()*6.28,s:1.35+Math.random()*.5,inb:0})}}
+  const pos=(cx,cy)=>{const r=cv2.getBoundingClientRect();mx=(cx-r.left)/r.width*800;my=(cy-r.top)/r.height*500};
+  function down(){if(mx>680&&my>470)return end(0);
+    if(ph==0){if(Math.hypot(mx-filt.x,my-filt.y)<26)drag=filt}else if(ph==1){if(mx<300&&Math.abs(my-250)<30)unA=true}else if(ph==2){if(Math.abs(mx-paper.x)<140&&Math.abs(my-paper.y)<34)drag=paper}
+    else if(ph==3){for(let i=PT.length-1;i>=0;i--){const p=PT[i];if(!p.inb&&Math.hypot(mx-p.x,my-p.y)<10*p.s+4){drag=p;break}}}if(drag){drag.ox=drag.x-mx;drag.oy=drag.y-my}}
+  function move(){if(drag){drag.x=mx+drag.ox;drag.y=my+drag.oy}if(ph==1&&unA){un=Math.max(un,Math.min(1,(mx-260)/280));if(un>=1){ph=2;unA=false;msg='Aufgerollt! Jetzt das Papier ins Feld „Papier“ legen.'}}}
+  function up(){unA=false;if(!drag)return;const d=drag;drag=null;
+    if(ph==0){if(inR(d,ZF)){ph=1;msg='Jetzt das Papier aufrollen: Von links nach rechts über den Joint ziehen.'}else{d.x=560;d.y=250}}
+    else if(ph==2){if(inR(d,ZP)){ph=3;scatter();msg='Sortiere die blau angelaufenen Pilzstücke in die Schale. Nur die! (Fehler: 0/3)'}else{d.x=400;d.y=250}}
+    else if(ph==3&&inB(d)){if(d.t==2){d.inb=1;d.x=BOWL[0]+(Math.random()-.5)*60;d.y=BOWL[1]+(Math.random()-.5)*30;if(PT.filter(p=>p.t==2&&!p.inb).length==0)return end(1)}
+      else{miss++;d.x=300+Math.random()*200;d.y=220+Math.random()*150;msg=(d.t==1?'Das ist ein normaler Champignon! ':'Das ist Tabak! ')+'(Fehler: '+miss+'/3)';if(miss>=3){miss=0;scatter();msg='Die Schale ist verunreinigt! Alles nochmal sortieren. (Fehler: 0/3)'}}}}
+  cv2.onmousedown=e=>{pos(e.clientX,e.clientY);down()};cv2.onmousemove=e=>{pos(e.clientX,e.clientY);move()};const mu=()=>up();addEventListener('mouseup',mu);
+  cv2.ontouchstart=e=>{e.preventDefault();pos(e.touches[0].clientX,e.touches[0].clientY);down()};cv2.ontouchmove=e=>{e.preventDefault();pos(e.touches[0].clientX,e.touches[0].clientY);move()};cv2.ontouchend=()=>up();
+  cv2.onclick=e=>e.stopPropagation();const esc=e=>{if(e.key=='Escape')end(0)};addEventListener('keydown',esc);
+  function end(win){if(fin)return;fin=true;cv2.remove();removeEventListener('keydown',esc);removeEventListener('mouseup',mu);
+    if(win){inv.splice(inv.indexOf('kippe'),1);inv.push('pilze');renderInv();FL.pilze=1;say([['P','Neun Stück. Alle blau angelaufen. Das sind keine normalen Pilze.'],['J2','Bring sie her, Bürschchen. Lass die alte Jaga mal schnüffeln.']])}
+    else say([['P','Später. Mir zittern die Finger.']])}
+  const TB=document.createElement('canvas');TB.width=800;TB.height=500;{const t=TB.getContext('2d');for(let i=0;i<9;i++){const g=t.createLinearGradient(0,i*56,0,i*56+56);g.addColorStop(0,'#6a4a2a');g.addColorStop(.5,'#8a6a42');g.addColorStop(1,'#4a3018');t.fillStyle=g;t.fillRect(0,i*56,800,56);t.fillStyle='#1a0e06';t.fillRect(0,i*56+54,800,2)}
+    for(let i=0;i<500;i++){t.strokeStyle=`rgba(${Math.random()<.5?30:160},${Math.random()<.5?20:120},10,.2)`;t.beginPath();const X=Math.random()*800,Y=Math.random()*500;t.moveTo(X,Y);t.lineTo(X+20+Math.random()*60,Y);t.stroke()}
+    for(let i=0;i<12;i++){t.fillStyle='rgba(20,10,4,.25)';t.beginPath();t.ellipse(Math.random()*800,Math.random()*500,10+Math.random()*30,6+Math.random()*12,0,0,7);t.fill()}}
+  const BI=Array.from({length:70},()=>[Math.random(),Math.random(),Math.random()<.2?'#c8c0a0':'#5a4022']);
+  function zone([a,b,w,h],t){x.setLineDash([6,5]);x.strokeStyle='rgba(255,240,200,.7)';x.lineWidth=2;x.strokeRect(a,b,w,h);x.setLineDash([]);x.fillStyle='rgba(255,240,200,.8)';x.font='bold 15px Georgia';x.textAlign='center';x.fillText(t,a+w/2,b+h-10)}
+  function frame(){if(fin)return;x.drawImage(TB,0,0);zone(ZP,'Papier');zone(ZF,'Filter');
+    x.fillStyle='#3a3a40';x.beginPath();x.ellipse(BOWL[0],BOWL[1],BOWL[2],BOWL[2]*.55,0,0,7);x.fill();x.fillStyle='#22222a';x.beginPath();x.ellipse(BOWL[0],BOWL[1]-4,BOWL[2]-8,BOWL[2]*.45,0,0,7);x.fill();x.fillStyle='rgba(255,240,200,.7)';x.font='bold 14px Georgia';x.textAlign='center';x.fillText('Schale',BOWL[0],BOWL[1]+BOWL[2]*.55+18);
+    if(ph<=1){const L=260+un*280;x.fillStyle='#6a5a3a';for(let i=0;i<40;i++){x.fillRect(260+i*7,240+Math.sin(i*1.7)*6,3,2)}if(un>0){x.fillStyle='#f0ead8';x.fillRect(260,232,L-260,36);BI.forEach(([u,v,k])=>{if(260+u*280<L){x.fillStyle=k;x.fillRect(260+u*280,244+v*12,3,2)}})}
+      x.fillStyle='#f4f0e2';x.beginPath();x.moveTo(L,236);x.lineTo(540,240);x.lineTo(540,260);x.lineTo(L,264);x.closePath();x.fill();x.strokeStyle='rgba(120,110,90,.6)';x.stroke();x.fillStyle='#2a2a2a';x.beginPath();x.ellipse(L,250,4,14,0,0,7);x.fill()}
+    if(ph==2){x.fillStyle='#f0ead8';x.fillRect(paper.x-140,paper.y-18,280,36);x.strokeStyle='rgba(120,110,90,.6)';x.strokeRect(paper.x-140,paper.y-18,280,36);BI.forEach(([u,v])=>{x.fillStyle='#5a4022';x.fillRect(300+u*200,300+v*50,3,2)})}
+    if(ph>=3){x.fillStyle='#f0ead8';x.fillRect(80,60,140,20)}
+    if(ph>=1){x.fillStyle='#e8dcc0';x.fillRect(filt.x-10,filt.y-12,20,24);x.strokeStyle='#8a7a5a';for(let k=-8;k<10;k+=4){x.beginPath();x.moveTo(filt.x+k,filt.y-12);x.lineTo(filt.x+k,filt.y+12);x.stroke()}}
+    else{x.fillStyle='#e8dcc0';x.fillRect(filt.x-10,filt.y-12,20,24);x.strokeStyle='#8a7a5a';x.strokeRect(filt.x-10,filt.y-12,20,24)}
+    if(ph==3)PT.forEach(p=>{x.save();x.translate(p.x,p.y);x.rotate(p.a);x.scale(p.s,p.s);
+      if(p.t==0){x.strokeStyle='#5a3a1a';x.lineWidth=2.4;x.beginPath();x.moveTo(-9,0);x.quadraticCurveTo(0,-4,9,1);x.stroke();x.strokeStyle='#7a5a2a';x.lineWidth=1;x.beginPath();x.moveTo(-7,2);x.lineTo(6,3);x.stroke()}
+      else{x.fillStyle='#d8ccb0';x.beginPath();x.moveTo(-8,3);x.quadraticCurveTo(-8,-8,0,-8);x.quadraticCurveTo(8,-8,8,3);x.closePath();x.fill();x.fillStyle='#c8bca0';x.fillRect(-2.5,2,5,7);
+        if(p.t==2){x.fillStyle='rgba(60,110,200,.75)';x.beginPath();x.ellipse(-2,-3,3.5,2.5,0,0,7);x.fill();x.beginPath();x.ellipse(3,1,2,3,0,0,7);x.fill()}x.strokeStyle='rgba(60,50,30,.6)';x.lineWidth=.6;x.stroke()}x.restore()});
+    const done=PT.filter(p=>p.t==2&&p.inb).length;x.fillStyle='rgba(0,0,0,.6)';x.fillRect(150,452,500,40);x.fillStyle='#fff';x.font='15px Arial';x.textAlign='center';x.fillText(msg,400,470);
+    x.font='bold 13px Arial';x.fillText(['Schritt 1/4: Filter ab','Schritt 2/4: Aufrollen','Schritt 3/4: Papier weg','Schritt 4/4: Sortieren – '+done+' / 9 Pilze'][ph],400,486);x.textAlign='right';x.fillStyle='rgba(255,255,255,.6)';x.fillText('[Später]',790,492);
+    requestAnimationFrame(frame)}
+  requestAnimationFrame(frame)}
 // ================= Schauplätze =================
 const BASE={seed:3,cov:.52,cs:[156,160,175],cl:[258,262,268],sunc:[255,252,228],sunr:60,band:[250,620],bc:[[88,134,112],[140,176,160]],lit:[[84,140,48],[150,190,72]],dark:[[20,50,26],[46,84,40]],haze:[196,218,228],trunks:1,
   g:[[44,92,20],[116,168,40],[176,190,72]],sand:[[146,114,68],[226,200,146]],gh:[176,204,178],dapple:.2,b0:[[36,80,18],[70,118,28]],b1:[[120,172,46],[214,222,112]],d0:[[12,34,10],[26,60,16]],d1:[[36,80,22],[70,120,36]],
@@ -681,6 +777,8 @@ const SCN={
    pe:segPath([[400,512,170,420,420,70],[420,420,70,440,330,24],[440,330,24,452,250,6],[430,446,50,620,420,32],[620,420,32,840,398,24]]),gtop:X=>201+Math.pow(Math.abs(X-440)/440,1.6)*14,k:1.05/286,x0:60,x1:760,ymin:()=>FL.cut?340:398,ymax:494,paint:paintSperre,
    intro:[['P','Na toll. Alles voller Birken. Als hätte sie jemand absichtlich hier hingeworfen.'],['P','Und links und rechts nur Wald. Dicht wie eine Mauer. Und dunkel wie im Arsch eines Bären.'],['P','Ohne Säge komm ich da nicht durch.']]}
 };
+SCN.innen={...BASE,seed:101,hz:200,pe:()=>null,gtop:()=>500,k:1.1/270,x0:60,x1:740,ymin:x=>x>300&&x<600?452:404,ymax:494,paint:paintInnen,gr:['rgba(255,170,90,.3)','rgba(40,20,60,.45)'],vig:.4,
+  intro:[['J2','Na sieh mal an! Ein Gast durchs Fenster. Wie es sich gehört!'],['J2','Du riechst nach Rauch, Bürschchen. Und nach etwas anderem... Zeig mal, was du in der Tasche hast.'],['P','Nur einen alten Joint-Stummel.'],['J2','Leg ihn auf den Tisch und zerleg ihn. Ich fass sowas nicht an. Gicht in den Fingern.']]};
 SCN.ufer={...SCN.fischer,seed:91,pe:segPath([[-30,470,60,400,432,50],[400,432,50,830,452,60],[100,440,30,60,392,14]]),ymin:x=>x<160?396:366,x0:30,x1:770,paint:paintUfer,
   intro:[['P','Das Ufer. Schilf, Schlamm und ein Boot, das schon lange aufgegeben hat.'],['P','Da vorne fängt der Steg an. Unten drunter ist es dunkel. Natürlich.']]};
 SCN.unter={...BASE,seed:97,hz:200,pe:()=>null,gtop:()=>500,k:1/270,x0:60,x1:740,ymin:()=>412,ymax:494,paint:paintUnter,
@@ -781,7 +879,7 @@ function sprite(inner,[x,y,w,h],k){return new Promise(res=>{const cw=Math.round(
   im.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="${cw}" height="${ch}" viewBox="${x} ${y} ${w} ${h}">${ROUGH}<g filter="url(#r)">${inner}</g></svg>`)})}
 const petimg=$('#petimg'),petG=$('#petja'),PB=[-48,-254,96,258],K=1.15;let frames=[],talking=false,ft=0;
 const NB=[-30,-100,60,104];
-Promise.all([sprite(PET(0,0),PB,K),sprite(PET(1,0),PB,K),sprite(PET(0,1),PB,K),sprite(CROW,[-30,-26,64,44],K),sprite(FISHER,[-64,-142,134,224],K),sprite(OMA,[-46,-200,92,204],K),sprite(OPA,[-42,-170,84,174],K)]).then(([a,b,st,cr,fi,om,op])=>{$('#omaimg').setAttribute('href',om);$('#opaimg').setAttribute('href',op);sprite(KATER,[-22,-58,52,62],K).then(k=>$('#katerimg').setAttribute('href',k));document.querySelectorAll('.fishimg').forEach(e=>e.setAttribute('href',fi));frames=[a,b,st];petimg.setAttribute('href',a);$('#crowimg').setAttribute('href',cr)});
+Promise.all([sprite(PET(0,0),PB,K),sprite(PET(1,0),PB,K),sprite(PET(0,1),PB,K),sprite(CROW,[-30,-26,64,44],K),sprite(FISHER,[-64,-142,134,224],K),sprite(OMA,[-46,-200,92,204],K),sprite(OPA,[-42,-170,84,174],K)]).then(([a,b,st,cr,fi,om,op])=>{$('#omaimg').setAttribute('href',om);$('#opaimg').setAttribute('href',op);sprite(BJ,[-56,-194,90,198],K).then(k=>$('#bjimg').setAttribute('href',k));sprite(KATER,[-22,-58,52,62],K).then(k=>$('#katerimg').setAttribute('href',k));document.querySelectorAll('.fishimg').forEach(e=>e.setAttribute('href',fi));frames=[a,b,st];petimg.setAttribute('href',a);$('#crowimg').setAttribute('href',cr)});
 setInterval(()=>{if(!frames[2])return;ft=1-ft;petimg.setAttribute('href',frames[mv?(ft?2:0):talking?ft:0])},150);
 
 // ================= Laufen & Szenenwechsel =================
@@ -922,6 +1020,20 @@ const T={
   schnaps:{n:'Selbstgebrannter',at:[680,392],fn(){if(!FL.ablenk)return say([['F','FINGER WEG! Das ist mein Selbstgebrannter! Den hab ich im Auge, Junge!']]);
     say([['P','*schnapp*'],['F','(kämpfend) KOMM HER! KOMM HER, DU MISTVIEH!'],['P','Der merkt gar nichts. Dreißig Jahre Warten machen blind.']],()=>{FL.schnaps=1;$('#schnapsG').remove();inv.push('schnaps');renderInv()})}},
   leiter:{n:'Leiter',at:[700,452],fn(){say(FL.leiterQ?[['G','Die Leiter gibt’s gegen Selbstgebrannten. Nicht gegen Bitte-Bitte.']]:[['P','Eine alte Leiter am Ofen. Angekokelt, aber stabil.'],['G','Finger weg! Das ist das Einzige, was mir geblieben ist. Außer dem Ofen.']])}},
+  baba:{n:'Baba Jaga',at:[540,460],fn(){
+    if(inv.includes('pilze'))return say([['P','Hier. Die waren in dem Joint. Blau angelaufen.'],['J2','*schnüffel* ...*schnüffel*... HA! Wusst ich’s. Traumschwamm.'],['J2','Wächst nur im Sumpf der ertrunkenen Huren, unter den Seerosen. Die Nymphen trocknen ihn und verkaufen ihn an Dummköpfe.'],
+      ['J2','Wer den raucht, schläft ein und wacht im Märchen auf. In MEINEM Märchen. Darum kommst du nicht raus, Bürschchen.'],['P','Wowa! Dieser Idiot hat mir das Ding gedreht!'],['J2','Dein Wowa ist mir egal. Aufwachen kannst du nur mit einem Gegengift. Ich brau’s dir.'],
+      ['J2','Aber ich brauche drei Dinge: Eine Träne von einer wirklich schönen Nymphe. Eine schwarze Krähenfeder. Und Saft aus der ältesten Birke im Wald.'],['J2','Und bis du alles hast, fegst du mir nicht die Hütte voll. Raus mit dir. Hihihi!']],()=>{inv.splice(inv.indexOf('pilze'),1);renderInv();FL.bjInfo=1});
+    if(FL.bjInfo)return say([['J2','Träne, Feder, Birkensaft. Kann doch nicht so schwer sein. Na los!']]);
+    if(inv.includes('kippe'))return say([['J2','Auf den Tisch damit! Zerlegen! Papier, Filter, Kraut. Ich will sehen, was drin ist.']]);
+    say([['J2','Wo ist der Stummel? Du hast ihn doch nicht etwa geraucht? Bring ihn her!']])}},
+  tisch:{n:'Tisch',at:[450,460],fn(){if(FL.pilze)return say([['P','Hier hab ich einen Joint zerlegt. Vor einer Hexe. Ein Satz, den ich nie sagen wollte.']]);
+    if(inv.includes('kippe'))return say([['P','Ich leg den Joint auf den Tisch.'],['J2','Vorsichtig! Erst den Filter ab, dann aufrollen, dann sortieren.']],tableGame);
+    say([['P','Ein schwerer Holztisch. Voller Kerben und Flecken. Ich frag nicht, wovon.']])}},
+  ofen:{n:'Ofen',at:[260,440],l:[[['P','Ein russischer Ofen. Warm. Zu warm. Und groß genug für einen Petja.'],['J2','Der ist für Piroggen! ...Meistens.']],[['P','Im Topf blubbert was. Es riecht nach Pilzen und Socken.']]]},
+  regal:{n:'Regal',at:[640,420],l:[[['P','Gläser mit Kräutern, Augen und etwas, das mir zuwinkt.'],['P','Und zwei Schädel. Hoffentlich keine Stadtkinder.']]]},
+  besen:{n:'Besen',at:[700,450],l:[[['P','Ihr Besen. Ich glaub, der fliegt. Ich setz mich lieber nicht drauf.']]]},
+  fenster:{n:'Fenster (raus)',at:[300,430],go:'huette',to:[600,474]},
   sZG2:{n:'Schild: Zum Waldweg',at:[150,484],go:'sperre',to:[505,350]},
   huette:{n:'Baba Jagas Hütte',at:[470,438],fn(){if(inv.includes('leiter'))return bjEnter();this.i=(this.i||0);say(this.l[this.i++%this.l.length])},l:[
     [['P','Schief, alt, und ich schwör, sie atmet. Die Hütte atmet.']],
@@ -939,7 +1051,7 @@ const T={
 };
 function use(id){const o=T[id];if(!o)return;if(o.go)return enter(o.go,o.to);if(o.fn)return o.fn();o.i=o.i||0;const set=o.l[o.i%o.l.length];o.i++;say(set,o.after)}
 const ITEMS={kippe:['🚬','Joint-Stummel','Lieber nicht. Sonst wach ich in einem noch schlimmeren Märchen auf.'],saege:['🪚','Säge','Eine Säge vom Fischer. Damit könnte man Birken klein machen.'],apfel:['🍎','Apfel','Ein roter Apfel. Liegt gut in der Hand. Wurfgewicht: perfekt.'],stock:['🌿','Stock','Ein gerader Ast. Daraus wird was.'],seil:['🧶','Schnur','Schnur aus einem kaputten Fischernetz.'],angel:['🎣','Angel','Selbst gebaut. Stock, Schnur, Sicherheitsnadel. Hält bestimmt.'],knochen:['🦴','Knochen','Ein Knochen von Baba Jagas Hof. Riecht nach Suppe.'],schnaps:['🍶','Selbstgebrannter','Kusmitschs Selbstgebrannter. Schon der Geruch macht blind.'],leiter:['🪜','Leiter','Opas Leiter. Angekokelt, aber stabil.'],fisch:['🐟','Fisch','Ein kleiner Fisch. Guckt komisch.'],gebiss:['🦷','Omas Gebiss','Ein Gebiss. Riecht nach Kater und Friedhof.'],brett:['🪵','Brett','Ein Brett aus Opas Ruine. Nur ein bisschen angekokelt.'],teer:['🛢️','Birkenteer','Riecht nach Lagerfeuer und Omas Rheuma.']};
-function bjEnter(){say([['P','So. Leiter ans Fenster... festhalten, liebe Hühnerbeine... nicht wackeln...'],['P','*kletter* *kletter* *knarz*'],['J','Na sieh mal an! Ein Gast durchs Fenster. Wie es sich gehört!'],['J','Komm rein, Bürschchen. Der Ofen ist schon warm. Hihihi.'],['P','...Warum ist der Ofen schon warm?']],()=>{FL.drin=1;const d=document.createElement('div');d.id='tbc';d.innerHTML='<h2>Petja ist in Baba Jagas Hütte!</h2><p>Fortsetzung folgt…</p>';d.style.cssText='position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,.85);color:#ffd000;font:bold 20px Arial;z-index:30;text-align:center';d.onclick=e=>{e.stopPropagation();d.remove()};$('#game').appendChild(d)})}
+function bjEnter(){if(FL.drin)return enter('innen',[250,470]);say([['P','So. Leiter ans Fenster... festhalten, liebe Hühnerbeine... nicht wackeln...'],['P','*kletter* *kletter* *knarz*']],()=>{FL.drin=1;enter('innen',[250,470])})}
 function repairBoat(){say([['P','Brett und Teer! Ich flick Ihnen das Boot.'],['P','*klopf* ... *schmier* ... *klopf* ... *Daumen* ... AUA!'],['F','Junge, du bist ein Held. Das Ding hält jetzt bestimmt eine Woche.'],['F','Hier, meine Säge. Pass auf die Finger auf, die hast du ja schon geübt.'],['P','*bekommt eine Säge*']],()=>{FL.boot=1;['brett','teer'].forEach(i=>inv.splice(inv.indexOf(i),1));inv.push('saege');renderInv()})};
 function renderInv(){$('#slots').innerHTML='';inv.forEach(id=>{const it=ITEMS[id],d=document.createElement('div');d.className='slot';d.textContent=it[0];d.title=it[1];
   d.onclick=e=>{e.stopPropagation();if(!busy)say([['P',it[2]]])};$('#slots').appendChild(d)})}
