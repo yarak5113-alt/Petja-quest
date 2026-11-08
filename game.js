@@ -1112,7 +1112,7 @@ SCN.lounge={...BASE,seed:171,hz:200,pe:()=>null,gtop:()=>500,k:1.1/270,x0:60,x1:
 SCN.irrwald={...SCN.sperre,seed:151,xr:null,vig:.5,top:[60,74,84],hor:[120,136,128],g:[[30,40,22],[56,70,34],[86,92,52]],pe:segPath([[420,512,150,420,380,40],[420,380,40,150,250,8],[420,380,40,450,214,5],[420,380,40,700,250,8]]),gtop:X=>201+Math.pow(Math.abs(X-440)/440,1.6)*14,ymin:()=>384,paint:paintIrrwald,
   intro:[['P','Der Irrwald. Drei Wege, alle sehen gleich aus. Und irgendwas glotzt mich aus dem Dunkeln an.']]};
 SCN.banja={...BASE,seed:163,hz:200,pe:()=>null,gtop:()=>500,k:1.1/270,x0:60,x1:740,ymin:()=>424,ymax:494,paint:paintBanja,gr:['rgba(255,120,180,.3)','rgba(60,0,40,.45)'],vig:.4,
-  intro:[['P','Das Banja. Dampf, rotes Licht, Wodka-Geruch. Und eine Bühne mit Vorhang.'],['Z','Neues Gesicht! Komm rein, Süßer, aber putz dir die Füße ab. Das ist ein anständiges Etablissement.']]};
+  intro:[['P','Das Banja. Dampf, rotes Licht, Wodka-Geruch. Und eine Bühne mit Vorhang.'],['Z','Neues Gesicht! Komm rein, Süßer. Füße abputzen, Hose zulassen, Geld locker machen. In der Reihenfolge.']]};
 SCN.muehle={...BASE,seed:139,hz:200,sun:[180,110],sunr:50,top:[70,100,150],hor:[236,214,170],sunc:[255,226,170],cs:[130,120,120],cl:[244,230,210],cov:.47,masses:[[-30,330,30,80],[480,830,30,80]],band:[250,560],
   fol:[[50,36,10],[150,104,30],[230,176,70]],lit:[[150,110,40],[210,170,80]],b1:[[150,140,50],[220,200,100]],nfl:80,gr:['rgba(255,200,120,.4)','rgba(50,50,90,.3)'],vig:.5,raya:.3,rayc:[255,220,160],
   pe:segPath([[830,478,50,520,432,40],[520,432,40,218,346,14]]),gtop:X=>201+Math.pow(Math.abs(X-400)/400,1.6)*12,k:1/270,x0:40,x1:760,ymin:x=>x<540?410:384,ymax:494,paint:paintMuehle,
@@ -1430,11 +1430,11 @@ const T={
     if(FL.clubQ)return say([['Z','Na? Schon eine gefunden? Denk an meine Liste. Und bring mir keine, die nur blubbert.']]);
     say([['P','Guten Abend, Madame. Ein Müller schickt mich. Er hätte gern eine... Braut.'],['Z','Eine Braut? Hier? Süßer, das ist ein Tanzlokal, kein Standesamt.'],['Z','Aber gut. Wir können uns helfen. Mir laufen die Tänzerinnen weg. Die letzte ist mit einem Gnom durchgebrannt.'],
       ['Z','Bring mir eine Neue. Aus dem Sumpf, da sitzen genug, die sich langweilen. Aber nicht irgendeine. Hier ist meine Liste.'],['Z','Wenn sie passt, kriegst du einen Gutschein. Für deinen Müller. Oder für dich.']],()=>{FL.clubQ=1;inv.push('liste');renderInv()})}},
-  bar:{n:'Bar',at:[220,446],l:[[['P','Einen Kwas, bitte.'],['Z','Kwas? Hier? Süßer, hier gibt es Wodka oder Wodka.'],['P','...Dann Wodka.'],['P','*kipp* ...UARGH. Das ist kein Wodka, das ist Abflussreiniger.']],[['Z','Noch einen?'],['P','Ich seh jetzt schon doppelt. Zwei Madames. Das ist zu viel Madame.']],[['P','Nein danke. Ich muss noch durch einen Irrwald.']]]},
+  bar:{n:'Bar',at:[220,446],l:[[['P','Einen Kwas, bitte.'],['Z','Kwas? Hier? Süßer, hier gibt es Wodka oder Wodka.'],['P','...Dann Wodka.'],['P','*kipp* ...UARGH. Das ist kein Wodka, das ist Abflussreiniger.']],[['Z','Noch einen?'],['P','Ich seh jetzt schon doppelt. Zwei Madames. Das ist zu viel Madame.'],['Z','Süßer, von mir gibt’s nie zu viel. Frag die Feuerwehr. Die kommt jeden Freitag. Ohne Feuer.']],[['Z','Trinkgeld geht in den Ausschnitt, Beschwerden in den Sumpf.']],[['P','Nein danke. Ich muss noch durch einen Irrwald.']]]},
   buehne:{n:'Bühne',at:[600,446],fn(){if(FL.rekrut)return T.taenzerin.fn();say([['P','Heute keine Show. Die Tänzerinnen sind... ausgegangen. Für immer.']])}},
   taenzerin:{n:'Nastja (auf der Bühne)',at:[600,470],fn(){say([['P','Ich geh mal näher ran. Nur um... die Technik zu studieren.']],()=>enter('buehne',[260,486]))}},
   nastja2:{n:'Nastja',at:[400,486],fn(){if(FL.lounge)return say([['NA','Nochmal, Süßer? Die zweite Runde kostet extra. Und du hast nicht mal Trinkgeld.']]);
-    say([['NA','*dreht sich an der Stange* Na, Petja? Guckst du nur, oder willst du mehr?'],['P','Ich... äh... Madame sagt, hier gibt’s Privattänze?'],['NA','Für den Mann, der mich aus dem Schlamm gezogen hat? Aufs Haus. Komm mit in die Lounge.']],lapDance)}},
+    say([['NA','*dreht sich an der Stange* Na, Petja? Kiefer wieder hochklappen, du sabberst auf meine Bühne.'],['NA','Guckst du nur, oder willst du mehr?'],['P','Ich... äh... Madame sagt, hier gibt’s Privattänze?'],['NA','Für den Mann, der mich aus dem Schlamm gezogen hat? Aufs Haus. Komm mit in die Lounge.']],lapDance)}},
   sBZ:{n:'Schild: Zurück an die Bar',at:[130,488],go:'banja',to:[300,480]},
   sLB:{n:'Schild: Zurück in den Club',at:[690,486],go:'banja',to:[300,480]},
   sZG2:{n:'Schild: Zum Waldweg',at:[150,484],go:'sperre',to:[505,350]},
@@ -1466,17 +1466,20 @@ function renderInv(){$('#slots').innerHTML='';inv.forEach(id=>{const it=ITEMS[id
 // ================= Nymphen-Pool (gemalte Figuren, wechseln beim Verlassen des Sumpfs) =================
 const NYMPHS=[
  {id:'nastja',n:'Nastja',col:'#c8d0e0',age:.24,build:.05,beauty:1,skin:[238,228,218],shade:[120,104,118],hair:[196,172,124],eye:[84,128,160],pose:1,lips:[184,124,140],l:[
-  [['nastja','Bitte guck mich nicht so an. Ich bin erst seit Dienstag tot, ich weiß noch nicht, wie man das macht.']],
-  [['nastja','Mir ist so kalt. Warum ist mir kalt, wenn ich tot bin?'],['P','Ich... hab keine Ahnung. Tut mir leid.'],['nastja','Lauf weg, solange du noch kannst. Die anderen wollen dich reinziehen.']]]},
+  [['nastja','Na, Stadtjunge? Glotzen kostet nix. Anfassen kostet dich die Lunge.'],['P','Ich... glotz nicht. Ich... orientier mich.'],['nastja','Klar. Und ich bin hier nur zum Baden.']],
+  [['nastja','Weißt du, was das Schlimmste am Ertrinken ist? Die Frisur. Hundert Jahre nasse Haare und kein einziger Kerl, der ein Handtuch bringt.']],
+  [['nastja','Die Frösche hier sind die einzigen Männer, die mir hinterherhüpfen. Und selbst die haben mehr Mumm als du.']]]},
  {id:'marfa',n:'Marfa',col:'#d8a8c8',age:.3,build:.3,beauty:1,skin:[234,214,196],shade:[124,96,104],hair:[26,20,28],eye:[96,72,46],pose:1,kohl:1,strangle:1,earring:1,lips:[176,58,72],l:[
-  [['marfa','Komm näher, Petja. Der Letzte, der so geschaut hat, liegt jetzt unter mir. Er hat sich nicht beschwert.']],
+  [['marfa','Komm näher, Petja. Der Letzte, der so geschaut hat, liegt jetzt unter mir. Er hat sich nicht beschwert. Er hat sich gar nicht mehr bewegt.']],
+  [['marfa','Ich war die teuerste Frau im ganzen Gouvernement. Jetzt bin ich gratis und keiner traut sich. Typisch Männer.'],['P','Vielleicht liegt’s am Schlamm.'],['marfa','Schlamm ist ein Peeling, du Bauer.']],
   [['marfa','Seine Frau hat mich ertränkt. Mit beiden Händen. Ich hab gelächelt, bis zum Schluss.'],['P','Warum erzählst du mir das?'],['marfa','Damit du weißt, was ich mit Händen anstellen kann.']]]},
  {id:'ustinja',n:'Matrone Ustinja',col:'#e0c890',age:.78,build:.12,skin:[208,190,166],hair:[176,172,162],eye:[96,84,70],pose:0,gaunt:1,updo:1,pearls:1,rouge:1,gold:1,stole:1,marble:.4,l:[
   [['ustinja','Im Bordell hätte ich dich nicht mal die Treppe putzen lassen, Bürschchen. Aber hier unten nimmt man, was der Sumpf anspült.']],
   [['ustinja','Meine eigenen Mädchen haben mich hier versenkt. Undankbares Pack.'],['ustinja','Das Haus am Fluss gehört immer noch mir. Den Schlüssel kriegst du, wenn du mir einen Gefallen tust.'],['P','Was für ein Haus?'],['ustinja','Das wirst du noch sehen, Süßer.']]]},
  {id:'fekla',n:'Fekla',col:'#c0d098',age:.45,build:1,skin:[178,184,152],hair:[92,66,40],eye:[96,84,62],pose:0,bloat:1,milky:1,blisters:1,marble:1,shade:[44,78,58],l:[
   [['fekla','Riechst du das? Das bin ich. Und in zwei Wochen bist das du, wenn du weiter so dumm am Ufer rumstehst.']],
-  [['fekla','Früher war ich die Dickste im Dorf. Jetzt bin ich die Dickste im Sumpf. Karriere, was?']]]},
+  [['fekla','Früher war ich die Dickste im Dorf. Jetzt bin ich die Dickste im Sumpf. Karriere, was?']],
+  [['fekla','Willst du mal anfassen? Ist wie Wackelpudding. Mit Würmern drin.'],['P','Ich... verzichte.'],['fekla','Feigling. Die Aale haben weniger Hemmungen.']]]},
  {id:'glafira',n:'Glafira',col:'#f0a070',age:.25,build:.2,skin:[214,194,168],hair:[128,54,24],eye:[156,132,52],pose:0,scar:1,wounds:1,broken:1,algaeHair:1},
  {id:'alte',n:'Die Alte',col:'#c8c4b0',age:1,build:0,skin:[188,184,162],hair:[52,70,36],eye:[0,0,0],pose:0,skel:1,marble:.6,algaeHair:1,l:[
   [['alte','Blub... Jungchen... hast du... meine Nase... gesehen? Irgendein Hecht... hat sie... mitgenommen.']],
