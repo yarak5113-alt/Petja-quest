@@ -1002,24 +1002,58 @@ function interview(nd){const idx=NYMPHS.indexOf(nd),tr=NT[nd.id];const qs=['Kann
     if(!(tr.s&&tr.t&&tr.v&&tr.r)){r.textContent='Die Karte stimmt. Aber auf Madames Liste passt sie nicht.';return}
     closeO();FL.rekrut=1;delete cache.banja;say([['P','Nastja... hättest du Lust auf einen Job? Tanzen. Musik. Wodka. Ein Ort ohne Frösche.'],['NA','Ein Job? Mit Bühne und Publikum? Süßer, ich bin schon unterwegs. Ich wring nur noch die Haare aus.'],['P','Das Banja ist hinterm Irrwald. Sag, Petja schickt dich.'],['P','...Das wird Madame freuen. Und mich hoffentlich auch.']])}}
 // ================= Banja-Show & Lounge =================
-const DANCER=`<g stroke="#1a0a10" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round">
+const DANCER = `<g stroke="#1a0a10" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round">
+<!-- Beine & Schuhe -->
 <path d="M-14,0L-12,-8L-6,-8L-5,0ZM6,0L6,-8L12,-8L14,0Z" fill="#111"/>
-<path d="M-13,-8L-11,-70L-3,-70L-6,-8ZM6,-8L3,-70L11,-70L13,-8Z" fill="#2a2030"/><path d="M-12,-30L-5,-30M5,-30L12,-30" stroke="#5a4a60" stroke-width=".6"/>
-<path d="M-24,-74C-30,-90 -26,-104 -18,-112L18,-112C26,-104 30,-90 24,-74C14,-68 -14,-68 -24,-74Z" fill="#1e50b0"/><path d="M-22,-76C-12,-72 12,-72 22,-76M-20,-84C-10,-80 10,-80 20,-84" fill="none" stroke="#90c0ff" stroke-width="1"/>
-<path d="M-17,-112L-15,-160C-10,-166 10,-166 15,-160L17,-112Z" fill="#2860c8"/><path d="M-15,-160C-8,-154 0,-158 0,-152C0,-158 8,-154 15,-160" fill="none" stroke="#90c0ff" stroke-width="1.4"/>
-<circle cx="-8" cy="-130" r="1.4" fill="#e0f0ff" stroke="none"/><circle cx="6" cy="-140" r="1.4" fill="#e0f0ff" stroke="none"/><circle cx="2" cy="-120" r="1.4" fill="#e0f0ff" stroke="none"/><circle cx="-12" cy="-92" r="1.4" fill="#e0f0ff" stroke="none"/><circle cx="12" cy="-88" r="1.4" fill="#e0f0ff" stroke="none"/>
-<path d="M-15,-160C-20,-166 -22,-170 -20,-174L-12,-172Z" fill="#f0d4c0"/><path d="M15,-160C20,-166 22,-170 20,-174L12,-172Z" fill="#f0d4c0"/>
-<path d="M-20,-172C-30,-160 -32,-140 -24,-120L-17,-122C-22,-140 -20,-156 -14,-166Z" fill="#f4f4f8"/><ellipse cx="-20" cy="-118" rx="5" ry="4.5" fill="#f4f4f8"/>
-<path d="M20,-172C30,-182 34,-200 30,-214L24,-212C26,-200 22,-186 14,-176Z" fill="#f4f4f8"/><ellipse cx="28" cy="-216" rx="5" ry="4.5" fill="#f4f4f8"/>
-<g fill="#fff0f8" stroke="#c8a0b8" stroke-width=".8"><ellipse cx="22" cy="-238" rx="7" ry="20" transform="rotate(-30 22 -238)"/><ellipse cx="32" cy="-240" rx="7" ry="21"/><ellipse cx="42" cy="-236" rx="7" ry="20" transform="rotate(30 42 -236)"/></g>
-<path d="M-5,-172L-5,-178L5,-178L5,-172Z" fill="#f0d4c0"/>
-<path d="M-16,-196C-22,-170 -26,-140 -20,-118C-14,-140 -12,-166 -10,-186ZM16,-196C22,-170 26,-140 20,-118C14,-140 12,-166 10,-186Z" fill="#e8d08a"/>
+<path d="M-13,-8L-11,-70L-3,-70L-6,-8ZM6,-8L3,-70L11,-70L13,-8Z" fill="#222"/>
+
+<!-- Unterkörper / Haut -->
+<path d="M-15,-70L-12,-112L12,-112L15,-70Z" fill="#f4dccb"/>
+<path d="M-14,-112L-12,-160C-8,-164 8,-164 12,-160L14,-112Z" fill="#f4dccb"/>
+
+<!-- Lange blonde Haarsträhnen als untere Bedeckung für den Intimbereich -->
+<path d="M-14,-130C-20,-90 -22,-50 -15,-20C-8,-40 -4,-80 0,-110C4,-80 8,-40 15,-20C22,-50 20,-90 14,-130Z" fill="#c4ac7c"/>
+
+<!-- Arme in Pose -->
+<path d="M-15,-160C-20,-166 -22,-170 -20,-174L-12,-172Z" fill="#f4dccb"/>
+<path d="M15,-160C20,-166 22,-170 20,-174L12,-172Z" fill="#f4dccb"/>
+<path d="M-20,-172C-30,-160 -32,-140 -24,-120L-17,-122C-22,-140 -20,-156 -14,-166Z" fill="#f4dccb"/>
+<path d="M20,-172C30,-182 34,-200 30,-214L24,-212C26,-200 22,-186 14,-176Z" fill="#f4dccb"/>
+
+<!-- Federspreizer / Accessoire in der Hand -->
+<g fill="#fff0f8" stroke="#c8a0b8" stroke-width=".8">
+  <ellipse cx="22" cy="-238" rx="7" ry="20" transform="rotate(-30 22 -238)"/>
+  <ellipse cx="32" cy="-240" rx="7" ry="21"/>
+  <ellipse cx="42" cy="-236" rx="7" ry="20" transform="rotate(30 42 -236)"/>
+</g>
+<path d="M10,-208C16,-222 20,-226 22,-230" stroke="#fff0f8" stroke-width="3"/>
+
+<!-- VOLLSTÄNDIGE BEDECKUNG DER BRUST MIT BLONDEN HAAREN (Keine Haut/Brüste sichtbar) -->
+<g fill="#c4ac7c">
+  <path d="M-16,-186C-20,-160 -18,-130 -12,-105C-8,-125 -6,-150 -5,-175Z"/>
+  <path d="M16,-186C20,-160 18,-130 12,-105C8,-125 6,-150 5,-175Z"/>
+  <!-- Dichter Vorhang über der Mitte -->
+  <path d="M-10,-175C-14,-150 -12,-120 -4,-110C0,-130 2,-150 4,-175Z"/>
+  <path d="M10,-175C14,-150 12,-120 4,-110C0,-130 -2,-150 -4,-175Z"/>
+</g>
+
+<!-- Hals & Kopf -->
+<path d="M-5,-172L-5,-178L5,-178L5,-172Z" fill="#f4dccb"/>
 <ellipse cx="0" cy="-194" rx="13" ry="16" fill="#f4dccb"/>
-<path d="M-15,-196C-18,-212 -6,-216 0,-216C8,-216 18,-212 15,-196C12,-206 6,-210 0,-208C-6,-210 -12,-206 -15,-196Z" fill="#e8d08a"/><path d="M-14,-206C-8,-210 8,-210 14,-206" fill="none" stroke="#1e50b0" stroke-width="2"/><path d="M10,-208C16,-222 20,-226 22,-230" stroke="#fff0f8" stroke-width="3"/>
-<path d="M-8,-196C-6,-198 -3,-198 -2,-196M2,-196C3,-198 6,-198 8,-196" fill="none"/><path d="M-9,-196l-2,-2M-6,-198l-1,-2M9,-196l2,-2M6,-198l1,-2" stroke-width=".8"/>
-<circle cx="-5" cy="-194.5" r="1.2" fill="#3a6a9a" stroke="none"/><circle cx="5" cy="-194.5" r="1.2" fill="#3a6a9a" stroke="none"/>
-<path d="M0,-192L-1,-187L1,-187" fill="none" stroke-width=".7"/><path d="M-4,-183C-2,-185 2,-185 4,-183C2,-181 -2,-181 -4,-183Z" fill="#c8204a" stroke-width=".7"/><circle cx="6" cy="-186" r=".8" fill="#3a2a20" stroke="none"/>
-<ellipse cx="-8" cy="-188" rx="2.6" ry="1.6" fill="#f0a0a0" stroke="none" opacity=".5"/><ellipse cx="8" cy="-188" rx="2.6" ry="1.6" fill="#f0a0a0" stroke="none" opacity=".5"/></g>`;
+
+<!-- Blonde Hauptfrisur / Haarkranz -->
+<path d="M-15,-196C-18,-212 -6,-216 0,-216C8,-216 18,-212 15,-196C12,-206 6,-210 0,-208C-6,-210 -12,-206 -15,-196Z" fill="#c4ac7c"/>
+<path d="M-14,-206C-8,-210 8,-210 14,-206" fill="none" stroke="#2e5090" stroke-width="2"/>
+
+<!-- Gesichtszüge, Augen, Make-up -->
+<path d="M-8,-196C-6,-198 -3,-198 -2,-196M2,-196C3,-198 6,-198 8,-196" fill="none"/>
+<circle cx="-5" cy="-194.5" r="1.2" fill="#3a6a9a" stroke="none"/>
+<circle cx="5" cy="-194.5" r="1.2" fill="#3a6a9a" stroke="none"/>
+<path d="M0,-192L-1,-187L1,-187" fill="none" stroke-width=".7"/>
+<path d="M-4,-183C-2,-185 2,-185 4,-183C2,-181 -2,-181 -4,-183Z" fill="#c8204a" stroke-width=".7"/>
+<ellipse cx="-8" cy="-188" rx="2.6" ry="1.6" fill="#f0a0a0" stroke="none" opacity=".5"/>
+<ellipse cx="8" cy="-188" rx="2.6" ry="1.6" fill="#f0a0a0" stroke="none" opacity=".5"/>
+</g>`;
 function paintLounge(){c.fillStyle='#1a0408';c.fillRect(0,0,W,H);let x=lay();
   for(let X=0;X<800;X+=20){const g=x.createLinearGradient(X,0,X+20,0);g.addColorStop(0,'#3a0610');g.addColorStop(.5,'#6a1020');g.addColorStop(1,'#3a0610');x.fillStyle=g;x.fillRect(X,0,20,330)}
   x.fillStyle='#2a0a10';x.fillRect(0,330,800,170);for(let i=0;i<400;i++)ell(x,R()*800,330+R()*170,2+R()*6,1,[60,10,20],.4);
@@ -1623,8 +1657,20 @@ game.addEventListener('click',e=>{if($('#fg'))return;if(busy)return advance();if
   if(e.target.closest('#scene')){const p=svgPt(e);walkTo(p.x,p.y)}});
 game.addEventListener('mousemove',e=>{const h=e.target.closest('.interactive');label.textContent=!busy&&h&&T[h.dataset.id]?T[h.dataset.id].n:''});
 
-setTimeout(()=>{enter('wald',[400,476]);setTimeout(()=>{const b=$('#start button');if(b){b.disabled=false;b.textContent='Neues Spiel'}},500)},30);
-$('#start button').onclick=e=>{e.stopPropagation();rm('start');cutscene()};
+setTimeout(()=>{enter('wald',[400,476]);setTimeout(()=>{const b=$('#bNew');if(b){b.disabled=false;b.textContent='Neues Spiel'}},500)},30);
+$('#bNew').onclick=e=>{e.stopPropagation();rm('start');cutscene()};$('#bLoad').onclick=e=>{e.stopPropagation();openMenu('l')};$('#bKeys').onclick=e=>{e.stopPropagation();openMenu('k')};
+(function title(){const tc=$('#tcv'),x=tc.getContext('2d'),FF=Array.from({length:30},()=>[Math.random()*800,250+Math.random()*230,Math.random()*6.28]),EY=[[150,380],[640,360],[90,300],[720,420]];
+  const bg=document.createElement('canvas');bg.width=800;bg.height=500;{const b=bg.getContext('2d');let g=b.createLinearGradient(0,0,0,500);g.addColorStop(0,'#05070f');g.addColorStop(.55,'#141c2a');g.addColorStop(1,'#060806');b.fillStyle=g;b.fillRect(0,0,800,500);
+    g=b.createRadialGradient(560,120,10,560,120,160);g.addColorStop(0,'rgba(240,236,210,1)');g.addColorStop(.12,'rgba(230,226,200,.9)');g.addColorStop(.14,'rgba(160,170,190,.25)');g.addColorStop(1,'rgba(0,0,0,0)');b.fillStyle=g;b.fillRect(0,0,800,500);
+    for(let i=0;i<120;i++){b.fillStyle='rgba(255,255,255,'+Math.random()*.6+')';b.fillRect(Math.random()*800,Math.random()*260,1,1)}
+    for(let i=0;i<34;i++){const X=Math.random()*820-10,w=4+Math.random()*16*(i/34+.3),t=(i%3)*20;b.fillStyle=i<20?'#1a1e24':'#0c0e10';b.fillRect(X,t+Math.random()*40,w,500);b.fillStyle='rgba(220,220,210,'+(i<20?.25:.5)+')';b.fillRect(X+w*.3,t+60,w*.4,440);
+      for(let k=0;k<12;k++){b.fillStyle='rgba(0,0,0,.8)';b.fillRect(X,80+Math.random()*400,w,2+Math.random()*3)}}
+    g=b.createLinearGradient(0,360,0,500);g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(1,'rgba(0,0,0,.9)');b.fillStyle=g;b.fillRect(0,360,800,140)}
+  (function L(t){if(!$('#start'))return;x.drawImage(bg,0,0);const T=t/1000;
+    for(let i=0;i<6;i++){const fx=((T*12+i*160)%1000)-100,g=x.createRadialGradient(fx,380+i*14,10,fx,380+i*14,140);g.addColorStop(0,'rgba(170,190,200,.13)');g.addColorStop(1,'rgba(170,190,200,0)');x.fillStyle=g;x.fillRect(fx-140,240+i*14,280,280)}
+    FF.forEach(f=>{const a=.4+.6*Math.abs(Math.sin(T*1.5+f[2]));x.fillStyle='rgba(220,255,140,'+a+')';x.beginPath();x.arc(f[0]+Math.sin(T+f[2])*12,f[1]+Math.cos(T*.8+f[2])*8,1.6,0,7);x.fill()});
+    EY.forEach((e,i)=>{if(Math.sin(T*.7+i*2)>.6)return;x.fillStyle='rgba(255,200,40,.85)';x.fillRect(e[0],e[1],3,2);x.fillRect(e[0]+8,e[1],3,2)});
+    requestAnimationFrame(L)})(0)})();
 
 // ================= Menü, Speichern, Inventar & Aufträge, Karte =================
 const REM=[];function rm(id){const e=document.getElementById(id);if(e)e.remove();if(!REM.includes(id))REM.push(id)}
