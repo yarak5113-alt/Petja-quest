@@ -444,8 +444,8 @@ function paintDorf(){const o=S0;sky(o);far(o);ground(o);
   let x=lay();chapel(x,330,214,.5);bgRow(x,26,208,240,10,18,0);[[150,236,5,0,96],[560,226,4,1,104],[740,234,6,-1,96]].forEach(b=>birch(x,...b));put(x,.6);
   x=lay();grass(x,7000,o.hz,500,1);details(x);dirt(x,50);[[300,336,14],[540,348,18],[396,420,30],[470,472,26],[150,348,12],[700,350,16]].forEach(([X,Y,r])=>mud(x,X,Y,r));put(x);
   x=lay();izba(x,220,300,.5,0,{win:'dark',smoke:0});wood(x,180,246,80,10,0);x.fillStyle='#b8302a';x.font='bold 8px Georgia';x.textAlign='center';x.fillText('LADEN',220,254);
-  x.fillStyle='#e8e0c8';x.fillRect(197,274,10,8);izba(x,660,298,.5,1,{win:'board',smoke:0});poles(x);well(x,530,338);bush(x,120,320,16,0);bush(x,760,322,18,0);rock(x,340,330,6,1);put(x);
-  x=lay();for(let i=0;i<7;i++)sunflower(x,40+i*30+R()*8,404,40+R()*20);izba(x,130,412,.95,0,{trim:'#4a8a5a'});fence2(x,-10,268,428,[236,262]);bush(x,290,424,14,0);
+  x.fillStyle='#e8e0c8';x.fillRect(197,274,10,8);izba(x,660,298,.5,1,{win:'board',smoke:0});poles(x);well(x,530,338);sign(x,492,346,1.1,[[1,0,'Ins Dorf','hIns']]);bush(x,120,320,16,0);bush(x,760,322,18,0);rock(x,340,330,6,1);put(x);
+  x=lay();izba(x,130,412,.95,0,{win:'dark',trim:'#7a6a5a',smoke:0});fence2(x,-10,268,428,[236,262]);bush(x,290,424,14,0);
   ruin(x,712,404,.95);for(let i=0;i<30;i++){const X=560+R()*240;reeds(x,X,410+R()*20,3,16,0)}
   wood(x,530,380,60,5,0);wood(x,536,384,6,48,1);wood(x,578,384,6,48,1);shadowAt(x,560,432,36);
   sign(x,110,484,1.7,[[-1,0,'Zu Baba Jaga','hZB']]);put(x);
@@ -488,6 +488,51 @@ const OPA=`<g stroke="#2a1a0e" stroke-width="1.3" stroke-linejoin="round" stroke
 <path d="M-15,-152L-18,-162M-12,-154L-12,-166M15,-150L19,-160M12,-153L14,-164" fill="none" stroke="#5a5450" stroke-width="1.6"/>
 <path d="M-16,-150C-18,-160 -8,-166 2,-165C12,-164 20,-158 22,-150C14,-152 -6,-153 -16,-150Z" fill="#4a4844"/><path d="M-6,-163C-4,-165 0,-165 2,-163C0,-161 -4,-161 -6,-163Z" fill="#111" stroke="none"/>
 <path d="M-16,-151C-4,-148 14,-148 24,-148L22,-150" fill="none" stroke-width="1.8"/></g>`;
+// ================= Dorfstraße & Kirche =================
+function laundry(x){[[300,362,58],[368,352,54]].forEach(([X,B,h])=>{shadowAt(x,X,B,8);wood(x,X-2,B-h,4,h,1)});x.strokeStyle='#2a2a2a';x.lineWidth=.7;x.beginPath();x.moveTo(300,306);x.quadraticCurveTo(334,312,368,300);x.stroke();
+  [[306,[220,220,214],12,16],[322,[90,110,170],10,22],[338,[230,190,190],22,14],[356,[200,60,50],8,12]].forEach(([X,k,w,h])=>{const Y=306+Math.sin((X-300)/68*3.14)*5;x.fillStyle=rgba(k);x.fillRect(X,Y,w,h);x.fillStyle='rgba(0,0,0,.2)';x.fillRect(X+w*.6,Y,w*.4,h);x.strokeStyle='rgba(20,20,20,.6)';x.strokeRect(X,Y,w,h)})}
+function paintDorfstr(){const o=S0;sky(o);far(o);ground(o);
+  let x=lay();chapel(x,440,216,.75);bgRow(x,30,206,236,10,18,0);[[180,234,5,0,96],[700,232,5,1,100],[600,226,4,-1,104]].forEach(b=>birch(x,...b));put(x,.6);
+  x=lay();grass(x,7000,o.hz,500,1);details(x);dirt(x,50);[[410,380,20],[470,460,28],[380,440,16],[440,300,8]].forEach(([X,Y,r])=>mud(x,X,Y,r));put(x);
+  x=lay();izba(x,250,300,.5,0,{win:'dark',smoke:0});izba(x,620,296,.5,1,{win:'board',smoke:0});bush(x,330,306,14,0);bush(x,540,310,16,0);laundry(x);sign(x,488,360,1.1,[[1,0,'Zur Kirche','hKi']]);put(x);
+  x=lay();for(let i=0;i<7;i++)sunflower(x,46+i*30+R()*8,412,40+R()*20);izba(x,140,420,.95,0,{trim:'#4a8a5a'});fence2(x,-10,272,436,[240,266]);
+  izba(x,690,410,.9,1,{trim:'#8a4a4a'});fence2(x,560,810,428,null);bush(x,540,428,16,0);bucket(x,300,440);
+  sign(x,110,486,1.7,[[-1,0,'Zum Dorfeingang','hDE']]);put(x);
+  x=lay();grass(x,700,470,515,2.4,1);bush(x,770,500,40,1);put(x,1);rays(o,[[.3,.05]]);grade(o)}
+function onion(x,X,Y,r,c0,c1){const g=x.createRadialGradient(X-r*.4,Y-r*1.1,1,X,Y-r,r*1.4);g.addColorStop(0,c0);g.addColorStop(1,c1);x.fillStyle=g;x.beginPath();x.moveTo(X-r*.55,Y);
+  x.bezierCurveTo(X-r*1.5,Y-r*.6,X-r*.7,Y-r*1.5,X,Y-r*2.3);x.bezierCurveTo(X+r*.7,Y-r*1.5,X+r*1.5,Y-r*.6,X+r*.55,Y);x.fill();x.strokeStyle='rgba(20,14,6,.7)';x.lineWidth=.8;x.stroke();orthCross(x,X,Y-r*2.3,r*1.3,'#c8a850',1.4)}
+function orthCross(x,X,Y,h,col,w){x.strokeStyle=col;x.lineWidth=w;x.lineCap='butt';x.beginPath();x.moveTo(X,Y);x.lineTo(X,Y-h);x.moveTo(X-h*.14,Y-h*.86);x.lineTo(X+h*.14,Y-h*.86);x.moveTo(X-h*.3,Y-h*.68);x.lineTo(X+h*.3,Y-h*.68);x.moveTo(X-h*.18,Y-h*.22);x.lineTo(X+h*.18,Y-h*.34);x.stroke()}
+function logs(x,x0,y0,w,h){for(let y=y0+h-9;y>=y0-1;y-=9){wood(x,x0,y,w,9,0);x.fillStyle='rgba(10,6,2,.85)';x.fillRect(x0,y+8,w,1.2)}x.fillStyle='rgba(60,70,90,.18)';x.fillRect(x0,y0,w,h)}
+function churchBig(x,X,B){shadowAt(x,X,B+6,220,.55);
+  logs(x,X-150,B-170,48,170);x.fillStyle='#0c0a08';x.fillRect(X-142,B-160,32,34);const bg=x.createRadialGradient(X-128,B-146,1,X-126,B-142,12);bg.addColorStop(0,'#e8c860');bg.addColorStop(1,'#6a4a10');x.fillStyle=bg;x.beginPath();x.moveTo(X-134,B-132);x.quadraticCurveTo(X-134,B-152,X-126,B-153);x.quadraticCurveTo(X-118,B-152,X-118,B-132);x.fill();
+  x.fillStyle='#2e2a26';x.beginPath();x.moveTo(X-158,B-170);x.lineTo(X-126,B-226);x.lineTo(X-94,B-170);x.fill();onion(x,X-126,B-226,8,'#6aa070','#1e4a2a');
+  logs(x,X+80,B-74,74,74);x.fillStyle='#2e2a26';x.beginPath();x.moveTo(X+74,B-74);x.lineTo(X+118,B-104);x.lineTo(X+160,B-74);x.fill();
+  logs(x,X-84,B-110,168,110);x.fillStyle='#2e2a26';x.beginPath();x.moveTo(X-96,B-110);x.lineTo(X+96,B-110);x.lineTo(X+44,B-158);x.lineTo(X-44,B-158);x.fill();
+  for(let i=0;i<30;i++){x.strokeStyle='rgba(120,110,96,.35)';x.lineWidth=1;const t=i/30;x.beginPath();x.moveTo(X-96+192*t,B-110);x.lineTo(X-44+88*t,B-158);x.stroke()}
+  logs(x,X-22,B-204,44,48);x.fillStyle='#2e2a26';x.fillRect(X-26,B-208,52,6);onion(x,X,B-208,24,'#e8c860','#7a5a18');
+  [[-58,-158],[58,-158]].forEach(([dx,dy])=>{logs(x,X+dx-8,B+dy-22,16,22);onion(x,X+dx,B+dy-22,10,'#6aa070','#1e4a2a')});
+  x.fillStyle='#120c06';x.beginPath();x.moveTo(X-16,B);x.lineTo(X-16,B-40);x.quadraticCurveTo(X,B-60,X+16,B-40);x.lineTo(X+16,B);x.fill();x.strokeStyle='#c8c0a8';x.lineWidth=3;x.stroke();
+  [[-56,-70],[44,-70],[100,-50],[128,-50]].forEach(([dx,dy])=>{const g=x.createLinearGradient(0,B+dy,0,B+dy+24);g.addColorStop(0,'#3a3020');g.addColorStop(1,'#0a0806');x.fillStyle=g;x.beginPath();x.moveTo(X+dx,B+dy+24);x.lineTo(X+dx,B+dy+6);x.quadraticCurveTo(X+dx+6,B+dy-2,X+dx+12,B+dy+6);x.lineTo(X+dx+12,B+dy+24);x.fill();x.strokeStyle='#c8c0a8';x.lineWidth=1.5;x.stroke()});
+  orthCross(x,X,B-66,14,'#c8a850',1.6)}
+function grave(x,X,Y,s,blue){shadowAt(x,X,Y+2,20*s,.5);ell(x,X,Y,18*s,6*s,[60,46,30]);ell(x,X,Y-1.5*s,15*s,4.5*s,[80,62,40]);for(let i=0;i<8;i++)ell(x,X+(R()-.5)*24*s,Y-1+(R()-.5)*6*s,1.5*s,1*s,P2([[200,40,60],[240,200,60],[230,230,240],[60,120,200]]),.9);
+  wood(x,X-1.5*s,Y-40*s,3*s,38*s,1);x.save();x.translate(X,Y-2*s);orthCross(x,0,0,38*s,'#5a4a36',2.6*s);x.restore();
+  if(blue){x.strokeStyle='#4a7ab0';x.lineWidth=1.2*s;x.beginPath();x.rect(X-22*s,Y-14*s,44*s,16*s);x.stroke();for(let k=-22;k<=22;k+=4){x.beginPath();x.moveTo(X+k*s,Y+2*s);x.lineTo(X+k*s,Y-14*s);x.stroke()}}}
+function paintKirche(){const o=S0;sky(o);far(o);ground(o);
+  let x=lay();bgRow(x,30,206,250,12,22,0);[[250,250,6,0,96],[680,250,6,1,100],[760,256,7,-1,96],[160,256,6,1,92]].forEach(b=>birch(x,...b));[[250,110,16],[680,100,16],[760,110,18],[160,104,16]].forEach(([a,b,r])=>foliage(x,a,b,r));put(x,.5);
+  x=lay();grass(x,7000,o.hz,500,1);details(x);dirt(x,30);put(x);
+  x=lay();churchBig(x,460,302);fence2(x,-10,330,340,null);fence2(x,590,820,342,null);
+  [[90,360,.7,1],[200,372,.75,0],[300,384,.8,1],[640,370,.75,0],[740,378,.8,1],[150,420,.95,0],[290,440,1,1],[700,430,.95,1],[606,436,1,0]].forEach(([X,Y,s,b])=>grave(x,X,Y,s,b));
+  deadTree(x,60,440,260,8,'#1e1a14');sign(x,110,486,1.7,[[-1,0,'Zurück ins Dorf','hZD2']]);put(x);
+  x=lay();birch(x,790,520,42,-6);foliage(x,770,30,60);grass(x,700,470,515,2.4,1);bush(x,20,500,40,1);put(x,1);
+  x=lay();for(let i=0;i<24;i++)dab(x,R()*800,380+R()*100,30+R()*40,[200,200,210],.16);put(x,8,'screen',.5);rays(o,[[.2,.06]]);grade(o)}
+const KATER=`<g stroke="#0a0a0c" stroke-width="1" stroke-linejoin="round" stroke-linecap="round">
+<path d="M12,-2C24,-2 28,-12 22,-18C18,-21 14,-16 16,-12" fill="none" stroke="#1c1c22" stroke-width="5"/>
+<path d="M-15,0C-19,-10 -17,-24 -10,-32L10,-32C17,-24 19,-10 15,0Z" fill="#1c1c22"/><path d="M-7,0V-12M7,0V-12M-4,-28C-2,-20 2,-20 4,-28" fill="none" stroke="#44444e" stroke-width=".8"/>
+<path d="M-10,-42L-12,-56L-3,-47Z" fill="#1c1c22"/><path d="M10,-42L12,-55L8,-52L9,-50L4,-47Z" fill="#1c1c22"/>
+<ellipse cx="0" cy="-39" rx="11.5" ry="9" fill="#1c1c22"/>
+<ellipse cx="-4.6" cy="-40" rx="2.8" ry="2.1" fill="#e8d030"/><ellipse cx="4.6" cy="-40" rx="2.8" ry="2.1" fill="#e8d030"/><path d="M-4.6,-41.8V-38.2M4.6,-41.8V-38.2" stroke="#000" stroke-width="1.1"/>
+<path d="M2,-46L7,-36" stroke="#6a5a5a" stroke-width=".8"/><path d="M-1,-35.6L1,-35.6L0,-34.2Z" fill="#a05060"/>
+<path d="M-3,-34L-14,-35M-3,-33L-13,-31M3,-34L14,-35M3,-33L13,-31" stroke="#9a9aa4" stroke-width=".5"/></g>`;
 // ================= Schauplätze =================
 const BASE={seed:3,cov:.52,cs:[156,160,175],cl:[258,262,268],sunc:[255,252,228],sunr:60,band:[250,620],bc:[[88,134,112],[140,176,160]],lit:[[84,140,48],[150,190,72]],dark:[[20,50,26],[46,84,40]],haze:[196,218,228],trunks:1,
   g:[[44,92,20],[116,168,40],[176,190,72]],sand:[[146,114,68],[226,200,146]],gh:[176,204,178],dapple:.2,b0:[[36,80,18],[70,118,28]],b1:[[120,172,46],[214,222,112]],d0:[[12,34,10],[26,60,16]],d1:[[36,80,22],[70,120,36]],
@@ -517,12 +562,18 @@ const SCN={
    lit:[[80,100,56],[130,140,84]],haze:[196,200,198],g:[[44,54,26],[84,96,44],[130,128,76]],sand:[[66,52,36],[124,104,78]],gh:[170,176,166],dapple:.06,b1:[[110,130,56],[170,170,96]],fol:[[22,40,16],[66,94,32],[160,170,86]],nfl:90,rayc:[255,240,210],raya:.15,gr:['rgba(240,220,180,.3)','rgba(40,50,80,.35)'],vig:.5,
    pe:segPath([[430,512,190,436,330,46],[436,330,46,446,206,5],[-30,352,26,436,322,40],[436,322,40,830,344,30],[380,470,60,262,432,18]]),gtop:X=>201+Math.pow(Math.abs(X-440)/440,1.6)*12,k:1.05/286,x0:40,x1:760,ymin:x=>x<300?440:x>530?446:330,ymax:494,paint:paintDorf,
    intro:[['P','Ein Dorf! Mit Häusern! Und Strom!'],['P','...Nein. Die Leitungen hängen nur so rum.'],['P','Ein Laden, ein Brunnen, eine Kirche und ein abgebranntes Haus. Klassisches Dorf.']]},
+ dorfstr:{},
+ kirche:{},
  sperre:{...BASE,seed:41,hz:200,sun:[450,40],sunr:30,top:[26,34,38],hor:[60,74,68],sunc:[150,170,150],cl:[80,90,88],cs:[40,48,50],cov:.5,masses:[[-30,830,0,40]],spruce:1,trunks:0,band:[0,800],bc:[[24,32,32],[40,50,48]],
    lit:[[30,44,26],[50,64,36]],dark:[[8,14,10],[18,26,18]],haze:[50,62,60],g:[[20,28,14],[38,50,22],[58,64,34]],sand:[[58,46,30],[100,84,58]],gh:[50,62,58],dapple:.03,b0:[[14,22,10],[28,38,16]],b1:[[46,62,26],[78,90,46]],d0:[[4,8,4],[12,18,8]],d1:[[20,30,14],[36,48,22]],
    fol:[[10,18,8],[30,46,20],[74,92,46]],fl:[[150,150,170],[170,180,140]],nfl:30,rayc:[180,210,190],raya:.22,gr:['rgba(120,150,130,.3)','rgba(10,20,40,.55)'],vig:.75,xr:y=>{const e=cxS(y),w=opS(y)-40;return[e-w,y>384&&y<466?770:e+w]},
    pe:segPath([[400,512,170,420,420,70],[420,420,70,440,330,24],[440,330,24,452,250,6],[430,446,50,620,420,32],[620,420,32,840,398,24]]),gtop:X=>201+Math.pow(Math.abs(X-440)/440,1.6)*14,k:1.05/286,x0:60,x1:760,ymin:()=>FL.cut?340:398,ymax:494,paint:paintSperre,
    intro:[['P','Na toll. Alles voller Birken. Als hätte sie jemand absichtlich hier hingeworfen.'],['P','Und links und rechts nur Wald. Dicht wie eine Mauer. Und dunkel wie im Arsch eines Bären.'],['P','Ohne Säge komm ich da nicht durch.']]}
 };
+Object.assign(SCN.dorfstr,SCN.dorf,{seed:71,pe:segPath([[420,512,170,430,360,60],[430,360,60,440,214,6],[300,452,20,236,438,10],[540,452,20,600,432,10]]),ymin:x=>x<300?448:x>560?446:342,paint:paintDorfstr,
+  intro:[['P','Die Dorfstraße. Sonnenblumen, Wäscheleinen, Hühnerdreck. Fast gemütlich.'],['P','Hinten ist eine Kirche. Und hier schaut eine Oma aus dem Gartentor. Die schauen immer.']]});
+Object.assign(SCN.kirche,SCN.dorf,{seed:83,top:[86,96,112],hor:[196,192,184],cov:.36,vig:.6,gr:['rgba(220,200,170,.3)','rgba(30,40,70,.45)'],pe:segPath([[420,512,160,450,330,40],[450,330,40,460,302,14]]),ymin:x=>x<300||x>600?446:332,paint:paintKirche,
+  intro:[['P','Eine Holzkirche mit Zwiebeltürmen. Und ein Friedhof mit blauen Gittern.'],['P','Da auf dem Grab hockt ein fetter schwarzer Kater. Er starrt mich an. Ich starre zurück. Er gewinnt.']]});
 function paintWald(){const o=S0;sky(o);far(o);ground(o);
   let x=lay();[[300,286,5,1,150],[322,280,4,-1,170],[540,282,4,1,165],[562,288,6,-2,140],[280,292,6,0,120],[600,294,7,1,110]].forEach(b=>birch(x,...b));
   [[300,150,16],[322,170,13],[540,165,13],[562,140,16],[280,120,20],[600,110,22]].forEach(([a,b,r])=>foliage(x,a,b,r));put(x,.6);
@@ -615,7 +666,7 @@ function sprite(inner,[x,y,w,h],k){return new Promise(res=>{const cw=Math.round(
   im.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="${cw}" height="${ch}" viewBox="${x} ${y} ${w} ${h}">${ROUGH}<g filter="url(#r)">${inner}</g></svg>`)})}
 const petimg=$('#petimg'),petG=$('#petja'),PB=[-48,-254,96,258],K=1.15;let frames=[],talking=false,ft=0;
 const NB=[-30,-100,60,104];
-Promise.all([sprite(PET(0,0),PB,K),sprite(PET(1,0),PB,K),sprite(PET(0,1),PB,K),sprite(CROW,[-30,-26,64,44],K),sprite(FISHER,[-64,-142,134,224],K),sprite(OMA,[-46,-200,92,204],K),sprite(OPA,[-42,-170,84,174],K)]).then(([a,b,st,cr,fi,om,op])=>{$('#omaimg').setAttribute('href',om);$('#opaimg').setAttribute('href',op);$('#fishimg').setAttribute('href',fi);frames=[a,b,st];petimg.setAttribute('href',a);$('#crowimg').setAttribute('href',cr)});
+Promise.all([sprite(PET(0,0),PB,K),sprite(PET(1,0),PB,K),sprite(PET(0,1),PB,K),sprite(CROW,[-30,-26,64,44],K),sprite(FISHER,[-64,-142,134,224],K),sprite(OMA,[-46,-200,92,204],K),sprite(OPA,[-42,-170,84,174],K)]).then(([a,b,st,cr,fi,om,op])=>{$('#omaimg').setAttribute('href',om);$('#opaimg').setAttribute('href',op);sprite(KATER,[-22,-58,52,62],K).then(k=>$('#katerimg').setAttribute('href',k));$('#fishimg').setAttribute('href',fi);frames=[a,b,st];petimg.setAttribute('href',a);$('#crowimg').setAttribute('href',cr)});
 setInterval(()=>{if(!frames[2])return;ft=1-ft;petimg.setAttribute('href',frames[mv?(ft?2:0):talking?ft:0])},150);
 
 // ================= Laufen & Szenenwechsel =================
@@ -687,7 +738,7 @@ const T={
     [['P','Dahinter riecht es nach Sumpf. Und nach Ärger.']]]},
   sFisch:{n:'Schild: Zum Fischerhaus',at:[660,432],fn(){walkTo(760,404,()=>enter('fischer',[90,476]))}},
   sZD:{n:'Schild: Zum dunklen Wald',at:[130,484],go:'sperre',to:[730,412]},
-  fischer:{n:'Fischer',at:[690,394],fn(){if(!FL.boot){if(inv.includes('brett')&&inv.includes('teer'))return repairBoat();
+  fischer:{n:'Fischer',at:[690,394],fn(){if(FL.ks&&!FL.fisch&&!FL.kater)return say([['P','Könnten Sie mir einen Fisch geben? Für einen Kater.'],['F','Für den Kater vom Popen? Der Satan hat mir mal den ganzen Fang geklaut.'],['F','Hier, nimm den kleinen. Der hat eh so komisch geguckt.'],['P','*bekommt einen Fisch*']],()=>{FL.fisch=1;inv.push('fisch');renderInv()});if(!FL.boot){if(inv.includes('brett')&&inv.includes('teer'))return repairBoat();
     if(!FL.auftrag){FL.auftrag=1;return say([['P','Sie haben nicht zufällig eine Säge? Da liegen Birken auf dem Weg.'],['F','Hab ich. Aber umsonst gibt’s nix. Erst flickst du mein Boot. Da, wo der Wels durch ist.'],['F','Du brauchst ein ordentliches Brett und Teer. Beides gibt’s im Dorf hinter der Hütte von der Alten.'],['P','Hinter Baba Jagas Hütte?'],['F','Na, wo denn sonst. Ist ja nicht so, dass sie umziehen könnte. ...Obwohl. Mit den Beinen.']])}
     if(R()<.5)return say([['F','Brett UND Teer, Junge. Ohne Teer säuft der Kahn ab. Ohne Brett auch. Ohne beides sowieso.']])}
     this.i=(this.i||0);say(this.l[this.i++%this.l.length])},l:[
@@ -700,20 +751,35 @@ const T={
   netz:{n:'Fischernetze',at:[300,382],l:[[['P','Fischernetze zum Trocknen. Oder moderne Kunst. Schwer zu sagen.']]]},
   sDorf:{n:'Schild: Zum Dorf',at:[650,480],go:'dorf',to:[150,486]},
   sZB:{n:'Schild: Zu Baba Jaga',at:[130,488],go:'huette',to:[640,474]},
-  oma:{n:'Oma Dusja',at:[322,450],fn(){if(inv.includes('teer')||FL.boot)return say([['O','Was willst du noch? Iss was, du bist zu dünn. Baba Jaga mag keine Knochen.']]);
-    if(inv.includes('kippe'))return say([['P','Oma, haben Sie zufällig Teer?'],['O','Birkenteer? Hab ich. Gegen Rheuma, Läuse und Männer.'],['O','Aber umsonst gibt’s nix. Was riecht da in deiner Tasche? Riecht nach... Medizin.'],['P','Das ist ein... Joint.'],['O','Her damit. Für die Gelenke. Der Doktor kommt ja nicht mehr, seit dem Sozialismus.'],['P','*bekommt eine Flasche Birkenteer*']],()=>{inv.splice(inv.indexOf('kippe'),1);inv.push('teer');renderInv()});
-    this.i=(this.i||0)+1;say(this.i%2?[['O','Noch so ein Stadtkind. Die letzten zwei hat Baba Jaga gefressen.'],['P','Haben Sie Teer, Oma?'],['O','Umsonst gibt’s nix, Bürschchen. Bring mir was Schönes. Was Medizinisches.']]:[['O','Siehst du den Grischa da drüben? Hat sein Haus abgefackelt. Mit Selbstgebranntem.'],['O','Ich hab ihn angezeigt. Wegen Brandgefahr. Eine Woche vorher. Keiner hört auf Oma.']])}},
+  oma:{n:'Oma Dusja',at:[330,454],fn(){
+    if(FL.teer)return say([['O','Iff waf... ach nein, ich hab ja wieder Zähne. Iss was, du bist zu dünn! Baba Jaga mag keine Knochen.']]);
+    if(inv.includes('gebiss'))return say([['P','Oma, ich hab Ihr Gebiss gefunden.'],['O','Mein Gebiff! Wo war ef?'],['P','Unter dem Kater vom Popen. Auf dem Friedhof.'],['O','*klack* ...Ah. Viel besser. Schmeckt nach Kater, aber egal.'],['O','Teer willst du? Hier, Birkenteer. Gegen Rheuma, Läuse und Männer.'],['P','*bekommt eine Flasche Birkenteer*']],()=>{FL.teer=1;inv.splice(inv.indexOf('gebiss'),1);inv.push('teer');renderInv()});
+    if(!FL.gq){FL.gq=1;return say([['P','Guten Tag, Oma! Haben Sie zufällig Teer?'],['O','Teer? Hab ich. Birkenteer. Aber erft... erft...'],['P','Was ist mit Ihren Zähnen?'],['O','Weg! Bei Fjodorf Beerdigung hab ich fo geheult, da ift mir daf Gebiff raufgeflogen.'],['O','Und jetft hockt der Kater vom Popen drauf. Daf Miftvieh! Faucht jeden an.'],['O','Bring mir mein Gebiff, dann kriegft du den Teer. Und waf zu effen. Du bift fo dünn.']])}
+    this.i=(this.i||0)+1;say(this.i%2?[['O','Mein Gebiff, Junge! Friedhof! Hinter der Kirche! Der Kater!']]:[['O','Den Grifcha am Dorfeingang hab ich angezeigt. Wegen Brandgefahr. Eine Woche vorher. Keiner hört auf Oma.']])}},
   opa:{n:'Opa Grischa',at:[504,452],l:[
     [['P','Was ist denn mit Ihrem Haus passiert?'],['G','Der Samowar. Oder der Selbstgebrannte. Oder ich. Die Untersuchung läuft noch.'],['G','Die Feuerwehr kam aus der Stadt. Drei Tage später. Haben Fotos gemacht.']],
     [['P','Kann ich hier was mitnehmen?'],['G','Nimm, was nicht verbrannt ist. Also nix.'],['G','Höchstens das Brett da. Das lag unterm Ofen. Ofen brennt nicht, Brett brennt nicht. Physik.']],
-    [['G','Die Alte da drüben hat mich angezeigt. Eine Woche bevor’s gebrannt hat.'],['G','Hexe. Die zweite im Wald. Die eine hat Hühnerbeine, die andre ’ne Gartenschere.']]]},
+    [['G','Die Dusja aus dem Dorf hat mich angezeigt. Eine Woche bevor’s gebrannt hat.'],['G','Hexe. Die zweite im Wald. Die eine hat Hühnerbeine, die andre ’ne Gartenschere.']]]},
   brett:{n:'Brett',at:[664,458],l:[[['P','Ein Brett. Nur ein bisschen angekokelt.'],['G','Nimm’s mit! Ist eh versichert. ...War. War versichert.']]],after(){$('#brett').remove();inv.push('brett');renderInv()}},
-  omahaus:{n:'Omas Haus',at:[300,446],l:[[['P','Omas Haus. Sonnenblumen, Gardinen, frisch gestrichen. Das einzige Haus hier, das nicht stirbt.']]]},
+  haus1:{n:'Leeres Haus',at:[300,446],l:[[['P','Ein leeres Haus. Die Gardinen sind noch da, die Leute nicht.']]]},
+  omahaus:{n:'Omas Haus',at:[300,452],l:[[['P','Omas Haus. Sonnenblumen, Gardinen, frisch gestrichen. Das einzige Haus hier, das nicht stirbt.']]]},
   ruine:{n:'Opas abgebranntes Haus',at:[600,452],l:[[['P','Opas Haus. Übrig ist nur der Ofen.'],['G','Der Ofen ist das Wichtigste! Der Rest war eh nur Dekoration.']]]},
   laden:{n:'Dorfladen',at:[300,340],l:[[['P','„Laden“. Am Zettel steht: „Geschlossen seit 1991. Kommen bald wieder.“'],['P','Ich glaube, die kommen nicht wieder.']]]},
   leer:{n:'Vernageltes Haus',at:[560,350],l:[[['P','Vernagelt. Hier wohnt keiner mehr.'],['G','Doch, der Kolja. Der macht nur nicht auf. Seit der Wahl.']]]},
   brunnen:{n:'Ziehbrunnen',at:[500,350],l:[[['P','Ein Ziehbrunnen. Unten glitzert was.'],['P','...Eine Bierdose. Natürlich.']]]},
   kirche:{n:'Kapelle',at:[440,336],l:[[['P','Eine kleine Kapelle mit goldener Zwiebel. Die einzige Sache im Dorf, die noch glänzt.']]]},
+  sIns:{n:'Schild: Ins Dorf',at:[480,352],go:'dorfstr',to:[420,488]},
+  sDE:{n:'Schild: Zum Dorfeingang',at:[130,488],go:'dorf',to:[470,354]},
+  sKi:{n:'Schild: Zur Kirche',at:[474,368],go:'kirche',to:[420,488]},
+  sZD2:{n:'Schild: Zurück ins Dorf',at:[130,488],go:'dorfstr',to:[466,374]},
+  galja:{n:'Tante Galjas Haus',at:[560,452],l:[[['P','Tante Galjas Haus. Steht zumindest auf dem Briefkasten.'],['P','Drinnen läuft ein Fernseher. Laut. Seit 1987 vermutlich.']]]},
+  waesche:{n:'Wäscheleine',at:[340,370],l:[[['P','Wäsche. Eine Unterhose so groß wie ein Segel.'],['P','Wenn Galja die anzieht, kann sie damit über den See.']]]},
+  kirche2:{n:'Holzkirche',at:[460,336],l:[[['P','Abgeschlossen. Ein Zettel: „Pope in der Stadt. Zurück bald.“ Datiert 1993.']],[['P','Die Kuppeln sind vergoldet. Das Dach leckt. Prioritäten.']]]},
+  glocke:{n:'Glocke',at:[360,340],l:[[['P','Eine Glocke im Turm. Ich komm nicht ran. Zum Glück. Sonst würd ich läuten.']]]},
+  graeber:{n:'Gräber',at:[250,450],l:[[['P','„Fjodor, 1931–2024. Hat nie gewonnen.“ Wobei, was?'],['P','Plastikblumen. Die halten länger als die Leute.']]]},
+  kater:{n:'Kater',at:[560,452],fn(){FL.ks=1;if(inv.includes('fisch'))return say([['P','Hier, Mieze. Ein Fisch. Frisch aus dem See.'],['P','*der Kater schnappt sich den Fisch und verschwindet hinter der Kirche*'],['P','Und da liegt... Omas Gebiss. Na lecker.']],()=>{FL.kater=1;inv.splice(inv.indexOf('fisch'),1);renderInv();$('#katerG').remove()});
+    this.i=(this.i||0)+1;say(this.i%2?[['P','Na, Mieze? Gehst du mal kurz runter da?'],['P','*FAUCH*'],['P','Okay. Okay! Er sitzt auf irgendwas. Das glitzert.']]:[['P','Der geht da nicht weg. Vielleicht mit Futter.'],['P','Was fressen Kater? Fisch. Und wer hat Fisch? ...Genau.']])}},
+  gebiss:{n:'Gebiss',at:[580,452],fn(){if(!FL.kater)return say([['P','Da komm ich nicht ran. Der Kater sitzt drauf und guckt böse.']]);say([['P','Omas Gebiss. Ich fass das nur mit zwei Fingern an.']],()=>{$('#gebissG').remove();inv.push('gebiss');renderInv()})}},
   sZG2:{n:'Schild: Zum Waldweg',at:[150,484],go:'sperre',to:[505,350]},
   huette:{n:'Baba Jagas Hütte',at:[470,438],l:[
     [['P','Schief, alt, und ich schwör, sie atmet. Die Hütte atmet.']],
@@ -730,7 +796,7 @@ const T={
   _:{}
 };
 function use(id){const o=T[id];if(!o)return;if(o.go)return enter(o.go,o.to);if(o.fn)return o.fn();o.i=o.i||0;const set=o.l[o.i%o.l.length];o.i++;say(set,o.after)}
-const ITEMS={kippe:['🚬','Joint-Stummel','Lieber nicht. Sonst wach ich in einem noch schlimmeren Märchen auf.'],saege:['🪚','Säge','Eine Säge vom Fischer. Damit könnte man Birken klein machen.'],brett:['🪵','Brett','Ein Brett aus Opas Ruine. Nur ein bisschen angekokelt.'],teer:['🛢️','Birkenteer','Riecht nach Lagerfeuer und Omas Rheuma.']};
+const ITEMS={kippe:['🚬','Joint-Stummel','Lieber nicht. Sonst wach ich in einem noch schlimmeren Märchen auf.'],saege:['🪚','Säge','Eine Säge vom Fischer. Damit könnte man Birken klein machen.'],fisch:['🐟','Fisch','Ein kleiner Fisch. Guckt komisch.'],gebiss:['🦷','Omas Gebiss','Ein Gebiss. Riecht nach Kater und Friedhof.'],brett:['🪵','Brett','Ein Brett aus Opas Ruine. Nur ein bisschen angekokelt.'],teer:['🛢️','Birkenteer','Riecht nach Lagerfeuer und Omas Rheuma.']};
 function repairBoat(){say([['P','Brett und Teer! Ich flick Ihnen das Boot.'],['P','*klopf* ... *schmier* ... *klopf* ... *Daumen* ... AUA!'],['F','Junge, du bist ein Held. Das Ding hält jetzt bestimmt eine Woche.'],['F','Hier, meine Säge. Pass auf die Finger auf, die hast du ja schon geübt.'],['P','*bekommt eine Säge*']],()=>{FL.boot=1;['brett','teer'].forEach(i=>inv.splice(inv.indexOf(i),1));inv.push('saege');renderInv()})};
 function renderInv(){$('#slots').innerHTML='';inv.forEach(id=>{const it=ITEMS[id],d=document.createElement('div');d.className='slot';d.textContent=it[0];d.title=it[1];
   d.onclick=e=>{e.stopPropagation();if(!busy)say([['P',it[2]]])};$('#slots').appendChild(d)})}
