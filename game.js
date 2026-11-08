@@ -328,9 +328,9 @@ function paintSperre(){const o=S0;sky(o);far(o);ground(o);
   x=lay();dab(x,840,410,190,[180,205,195],.55);put(x,6,'screen');grade(o)}
 // ================= Fischerhaus am See =================
 const LAKE='M232,200C252,272 300,318 400,326C520,334 680,344 830,352L830,200Z';
-function lake(x){const p=new Path2D(LAKE),sh=new Path2D(LAKE.split('L830')[0]);x.lineWidth=12;x.strokeStyle='rgba(34,28,18,.85)';x.stroke(sh);x.lineWidth=5;x.strokeStyle='rgba(100,90,64,.6)';x.stroke(sh);
+function lake(x,LP=LAKE,SH=LAKE.split('L830')[0]){const p=new Path2D(LP),sh=new Path2D(SH);x.lineWidth=12;x.strokeStyle='rgba(34,28,18,.85)';x.stroke(sh);x.lineWidth=5;x.strokeStyle='rgba(100,90,64,.6)';x.stroke(sh);
   const g=x.createLinearGradient(0,200,0,352);g.addColorStop(0,'#a8acaa');g.addColorStop(.25,'#6c7c82');g.addColorStop(1,'#1e2c30');x.fillStyle=g;x.fill(p);
-  x.save();x.clip(p);x.save();x.globalAlpha=.55;x.translate(0,400);x.scale(1,-1);x.drawImage(cv,0,130*SC,W,70*SC,0,130,800,70);x.restore();
+  x.save();x.clip(p);x.save();x.translate(0,400);x.scale(1,-1);for(let k=0;k<7;k++){x.globalAlpha=.55*(1-k/7);const y=190-k*10;x.drawImage(cv,0,y*SC,W,10*SC,0,y,800,10)}x.restore();
   for(let i=0;i<200;i++){const Y=202+Math.pow(R(),1.4)*150,X=230+R()*600,l=8+R()*50*(Y-190)/100;x.strokeStyle=`rgba(210,216,214,${.04+R()*.12})`;x.lineWidth=.5+R()*(Y-200)/80;x.beginPath();x.moveTo(X,Y);x.lineTo(X+l,Y);x.stroke()}
   for(let i=0;i<120;i++){const Y=202+Math.pow(R(),1.3)*150,X=230+R()*600;x.strokeStyle=`rgba(10,18,20,${.1+R()*.2})`;x.lineWidth=.6+R();x.beginPath();x.moveTo(X,Y);x.lineTo(X+10+R()*30,Y);x.stroke()}
   for(let i=0;i<260;i++){const Y=202+Math.pow(R(),1.5)*140,X=640+(R()-.5)*(10+(Y-200)*1.3);ell(x,X,Y,1.5+R()*5,.5,[255,226,180],.25+R()*.45)}
@@ -370,7 +370,7 @@ function paintFischer(){const o=S0;sky(o);far(o);ground(o);
   x=lay();for(let i=0;i<30;i++)dab(x,240+R()*580,200+R()*60,30+R()*50,[190,196,196],.25);put(x,8,'screen',.6);
   x=lay();[[250,286,8,26],[300,322,10,32],[470,334,12,30],[540,340,9,28],[760,356,14,36],[810,360,10,30]].forEach(a=>reeds(x,...a));
   fisherHut(x);netRack(x);boat(x,400,380);pier(x);bush(x,330,352,16,0);bush(x,24,360,22,1);rock(x,470,372,10,1);rock(x,620,452,14,1);fern(x,240,450,1.4);shrooms(x,300,392,4);bucket(x,120,372);
-  sign(x,110,482,1.7,[[-1,0,'Zum dunklen Wald','hZD']]);put(x);
+  sign(x,110,482,1.7,[[-1,0,'Zum dunklen Wald','hZD']]);sign(x,690,476,1.3,[[1,0,'Zum Ufer','hUfer']]);put(x);
   x=lay();trunk(x,-6,520,60);fir(x,812,540,560,230,.3);bush(x,760,498,44,1);reeds(x,620,500,20,70,1);grass(x,600,470,515,2.4,1);put(x,1);
   rays(o,[[.4,.06]]);grade(o)}
 const FISHER=`<g stroke="#2a1a0e" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round">
@@ -567,6 +567,83 @@ function fishing(){if($('#fg'))return;const cv2=document.createElement('canvas')
     x.textAlign='right';x.font='13px Arial';x.fillStyle='rgba(255,255,255,.6)';x.fillText('[Aufgeben]',790,490);
     if(prog>=5)return end(1);if(out>1.6)return end(0);requestAnimationFrame(frame)}
   requestAnimationFrame(frame)}
+// ================= Ufer & Unter dem Pier =================
+const LAKE2='M-10,200L830,200L830,330C700,340 560,350 420,346C300,342 160,352 -10,360Z';
+function pierSide(x){const D=(X)=>330-X*.084;x.fillStyle='rgba(6,10,10,.85)';x.beginPath();x.moveTo(-10,D(-10)+10);x.lineTo(330,D(330)+10);x.lineTo(330,D(330)+40);x.lineTo(150,350);x.lineTo(-10,372);x.fill();
+  for(let X=0;X<=330;X+=55){const y=D(X);wood(x,X-3,y,6,62-X*.06,1);x.fillStyle='rgba(0,0,0,.35)';x.fillRect(X-3,y,6,62-X*.06);ripple(x,X,y+58-X*.06,7)}
+  x.strokeStyle='#2a2018';x.lineWidth=3;for(let X=0;X<330;X+=55){x.beginPath();x.moveTo(X,D(X)+12);x.lineTo(X+55,D(X+55)+44);x.moveTo(X,D(X)+44);x.lineTo(X+55,D(X+55)+12);x.stroke()}
+  x.save();x.beginPath();x.moveTo(-10,D(-10));x.lineTo(330,D(330));x.lineTo(330,D(330)+10);x.lineTo(-10,D(-10)+10);x.closePath();x.clip();wood(x,-10,290,340,50,0);x.restore();
+  x.fillStyle='#8a7c66';x.beginPath();x.moveTo(-10,D(-10)-4);x.lineTo(330,D(330)-3);x.lineTo(330,D(330));x.lineTo(-10,D(-10));x.fill();
+  x.save();x.translate(330,D(330));for(let i=0;i<3;i++)ell(x,0,8+i*10,40-i*8,3,[0,0,0],.15);x.restore()}
+function wreck(x,X,Y){x.save();x.translate(X,Y);x.rotate(.12);const p=new Path2D('M-60,0C-50,-22 40,-24 62,-6L56,6C20,10 -30,10 -60,0Z');x.save();x.clip(p);wood(x,-62,-26,126,36,0);x.fillStyle='rgba(20,30,30,.35)';x.fillRect(-62,-26,126,36);x.restore();
+  x.strokeStyle='#120c06';x.lineWidth=1;x.stroke(p);for(let k=-40;k<50;k+=14){x.beginPath();x.moveTo(k,-16);x.lineTo(k+2,4);x.stroke()}dab(x,10,-6,10,[0,0,0],.8);x.restore();ripple(x,X,Y+8,40)}
+function paintUfer(){const o=S0;sky(o);far(o);ground(o);
+  let x=lay();grass(x,6000,o.hz,500,1);details(x);dirt(x,30);put(x);
+  x=lay();lake(x,LAKE2,'M830,330C700,340 560,350 420,346C300,342 160,352 -10,360');put(x);
+  x=lay();for(let i=0;i<24;i++)dab(x,R()*800,200+R()*60,30+R()*50,[190,196,196],.25);put(x,8,'screen',.6);
+  x=lay();pierSide(x);wreck(x,600,350);deadTree(x,730,356,240,8,'#1e1a14');
+  [[440,352,14,34],[500,356,12,30],[690,362,18,44],[770,364,14,40],[220,358,10,28]].forEach(a=>reeds(x,...a));rock(x,380,380,12,1);rock(x,560,420,16,1);rock(x,250,440,10,1);
+  shadowAt(x,700,452,20);ell(x,700,446,18,7,[24,24,24]);ell(x,700,446,9,3.5,[60,70,60]);bucket(x,320,402);bone(x,470,460,.3,10);
+  sign(x,196,400,1.2,[[-1,0,'Unter den Pier','hUP']]);sign(x,110,484,1.7,[[-1,0,'Zum Fischerhaus','hFH']]);put(x);
+  x=lay();reeds(x,640,500,24,80,1);reeds(x,780,500,20,90,1);grass(x,600,470,515,2.4,1);bush(x,30,500,40,1);put(x,1);rays(o,[[.4,.06]]);grade(o)}
+function paintUnter(){const o=S0;let g=c.createLinearGradient(0,0,0,500);g.addColorStop(0,'#0c0a08');g.addColorStop(.4,'#1c2624');g.addColorStop(.75,'#0e1614');g.addColorStop(1,'#1a1612');c.fillStyle=g;c.fillRect(0,0,W,H);
+  let x=lay();const wg=x.createLinearGradient(0,150,0,400);wg.addColorStop(0,'#5a7470');wg.addColorStop(.5,'#22363a');wg.addColorStop(1,'#0c1618');x.fillStyle=wg;x.fillRect(0,150,800,250);
+  for(let i=0;i<260;i++){const Y=160+Math.pow(R(),1.3)*240,X=R()*800;x.strokeStyle=`rgba(200,220,210,${.04+R()*.12})`;x.lineWidth=.6+R()*(Y-150)/90;x.beginPath();x.moveTo(X,Y);x.lineTo(X+10+R()*40,Y);x.stroke()}
+  const SL=[90,250,430,600,740];SL.forEach(X=>{for(let i=0;i<40;i++)ell(x,X+(R()-.5)*30,170+R()*220,2+R()*10,.6,[230,236,210],.15+R()*.25)});put(x);
+  x=lay();for(let Y=-10;Y<130;Y+=12)for(let X=-20;X<820;X+=150){wood(x,X,Y,148,11,0)}x.fillStyle='rgba(0,0,0,.45)';x.fillRect(0,0,800,140);
+  SL.forEach(X=>{x.fillStyle='rgba(255,250,220,.9)';x.fillRect(X-3,0,6,140)});
+  for(let k=0;k<3;k++){const Y=40+k*44;wood(x,-10,Y,820,14,0);x.fillStyle='rgba(0,0,0,.5)';x.fillRect(-10,Y+11,820,4)}put(x);
+  x=lay();x.fillStyle='rgba(255,246,210,.5)';SL.forEach(X=>{x.beginPath();x.moveTo(X-3,140);x.lineTo(X+3,140);x.lineTo(X+40,420);x.lineTo(X-20,420);x.fill()});put(x,10,'screen',.35);
+  x=lay();[[150,30],[350,34],[560,32],[690,40]].forEach(([X,w])=>{wood(x,X-w/2,0,w,410,1);x.fillStyle='rgba(0,0,0,.45)';x.fillRect(X-w/2,0,w*.45,410);x.fillStyle='rgba(40,70,40,.7)';x.fillRect(X-w/2,330,w,40);ripple(x,X,404,w)});
+  x.strokeStyle='#1a120a';x.lineWidth=7;[[150,350],[560,690]].forEach(([a,b])=>{x.beginPath();x.moveTo(a,150);x.lineTo(b,320);x.moveTo(a,320);x.lineTo(b,150);x.stroke()});
+  for(let i=0;i<6;i++){x.strokeStyle='rgba(220,220,220,.25)';x.lineWidth=.5;const X=150+i*3,Y=150;x.beginPath();x.arc(X+16,Y,10+i*4,0,3.14);x.stroke()}put(x);
+  x=lay();const bank=new Path2D('M-10,500L-10,404C120,396 260,410 400,400C540,392 680,406 810,398L810,500Z');const bg=x.createLinearGradient(0,396,0,500);bg.addColorStop(0,'#4a4232');bg.addColorStop(1,'#1e1a14');x.fillStyle=bg;x.fill(bank);
+  x.save();x.clip(bank);for(let i=0;i<400;i++)ell(x,R()*800,400+R()*100,1+R()*4,.6+R()*2,mix([60,54,44],[140,130,110],R()),.8);for(let i=0;i<60;i++)dab(x,R()*800,410+R()*90,10+R()*20,[20,18,14],.4);x.restore();
+  rock(x,90,440,18,1);rock(x,740,470,24,1);rock(x,260,420,10,0);ell(x,520,446,16,6,[24,24,24]);ell(x,520,446,8,3,[50,60,50]);
+  x.save();x.translate(320,470);x.rotate(-.4);x.fillStyle='#2a5a3a';x.fillRect(-4,-16,8,16);x.fillRect(-2,-22,4,7);x.restore();x.fillStyle='#2a2420';x.fillRect(600,452,18,20);x.fillRect(600,468,30,8);
+  grass(x,300,420,500,1.8,1);sign(x,700,486,1.6,[[1,0,'Zurück zum Ufer','hUZ']]);put(x);
+  const vg=c.createRadialGradient(430,300,100,430,300,560);vg.addColorStop(0,'rgba(0,0,0,0)');vg.addColorStop(1,'rgba(0,0,0,.6)');c.fillStyle=vg;c.fillRect(0,0,W,H)}
+// ================= Wels-Minispiel (unter dem Pier) =================
+function wels(){if($('#fg'))return;const cv2=document.createElement('canvas');cv2.id='fg';cv2.width=800;cv2.height=500;cv2.style.cssText='position:absolute;inset:0;width:100%;height:100%;z-index:20;cursor:crosshair';$('#game').appendChild(cv2);
+  const x=cv2.getContext('2d'),T0=performance.now();let last=T0,pt=T0,fin=false,mx=400,my=250,down=false,ph=0,msg='Warte auf den Biss… Klicke erst, wenn er RICHTIG zieht!',
+    nib=0,nibT=2,bite=0,miss=0,bmiss=0,ten=.45,fx=400,ftx=400,hold=0,low=0,surge=0,sta=1,ring=3,hits=0,bad=0,rs=1.2;
+  const pos=(cx,cy)=>{const r=cv2.getBoundingClientRect();mx=(cx-r.left)/r.width*800;my=(cy-r.top)/r.height*500};
+  cv2.onmousemove=e=>pos(e.clientX,e.clientY);cv2.onmousedown=e=>{e.preventDefault();down=true;act()};addEventListener('mouseup',onup);
+  cv2.ontouchstart=e=>{e.preventDefault();pos(e.touches[0].clientX,e.touches[0].clientY);down=true;act()};cv2.ontouchmove=e=>{e.preventDefault();pos(e.touches[0].clientX,e.touches[0].clientY)};cv2.ontouchend=()=>down=false;
+  cv2.onclick=e=>e.stopPropagation();const esc=e=>{if(e.key=='Escape')end(0,'Aufgegeben.')};addEventListener('keydown',esc);
+  function onup(){down=false}
+  function act(){if(mx>680&&my>455)return end(0,'Aufgegeben.');
+    if(ph==0){if(bite>0){ph=1;pt=performance.now();msg='ANGEBISSEN! Maustaste halten = ziehen, loslassen = Schnur geben. Folge dem Wels!'}else{miss++;msg='Zu früh! Das war nur Knabbern. ('+miss+'/3)';if(miss>=3)end(0,'Zu oft zu früh gezogen. Der Wels traut dem Knochen nicht mehr.')}}
+    else if(ph==2){if(Math.abs(ring-1)<.16){hits++;sta-=.125;msg='Treffer! Er wird müde…';ring=3;rs=Math.min(2.4,rs+.12)}else{bad++;sta=Math.min(1,sta+.15);msg='Falscher Moment! Er holt wieder Kraft. ('+bad+'/4)';ring=3;if(bad>=4)end(0,'Der Wels hat sich mit letzter Kraft losgerissen.')}}}
+  function end(win,m){if(fin)return;fin=true;cv2.remove();removeEventListener('keydown',esc);removeEventListener('mouseup',onup);
+    if(win){FL.ablenk=1;say([['F','(von oben) WAS?! Es zieht! ES ZIEHT! Das ist ER! DER WELS!'],['F','Komm her, du Mistvieh! Dreißig Jahre hab ich auf dich gewartet!'],['P','Perfekt. Der ist jetzt eine Weile beschäftigt.'],['P','Und seine Flasche steht ganz allein auf dem Steg…']])}
+    else say([['P',m],['P','Nochmal. Der Knochen hängt ja noch dran.']])}
+  function frame(){if(fin)return;const t=performance.now(),dt=Math.max(0,Math.min(.05,(t-last)/1000));last=t;const el=(t-T0)/1000,pe=(t-pt)/1000;
+    let g=x.createLinearGradient(0,0,0,500);g.addColorStop(0,'#2a4446');g.addColorStop(1,'#060e10');x.fillStyle=g;x.fillRect(0,0,800,500);
+    for(let i=0;i<5;i++){x.fillStyle='rgba(255,250,220,.05)';x.beginPath();x.moveTo(80+i*170,0);x.lineTo(110+i*170,0);x.lineTo(150+i*170,500);x.lineTo(60+i*170,500);x.fill()}
+    let hx=400,hy=230;
+    if(ph==0){nibT-=dt;if(nibT<=0){if(Math.random()<.32)bite=.5;else nib=.4;nibT=1.3+Math.random()*2.4}nib=Math.max(0,nib-dt);
+      if(bite>0){bite-=dt;if(bite<=0){bmiss++;msg='Verpasst! ('+bmiss+'/3)';if(bmiss>=3)return end(0,'Dreimal den Biss verpasst. Der Wels hat den Knochen abgenagt und ist weg.')}}
+      hy+=bite>0?60:nib>0?Math.sin(t/40)*7:Math.sin(el*2)*3;const wx=400+Math.cos(el*.8)*160,wy=330+Math.sin(el*.8)*40;x.fillStyle='rgba(0,0,0,.4)';x.beginPath();x.ellipse(wx,wy,90,24,Math.cos(el*.8)>0?.1:-.1,0,7);x.fill();
+      if(bite>0)for(let k=1;k<4;k++){x.strokeStyle='rgba(220,240,230,.4)';x.beginPath();x.ellipse(hx,hy,k*18,k*6,0,0,7);x.stroke()}}
+    if(ph==1){if(Math.random()<dt*.5)ftx=120+Math.random()*560;fx+=(ftx-fx)*dt*1.2;if(surge<=0&&Math.random()<dt*.35)surge=.8;surge=Math.max(0,surge-dt);
+      const f=.3+.18*Math.sin(el*1.7)+.12*Math.sin(el*4.3)+(surge>0?.5:0);ten+=((down?.62:-.5)+(f-.35)*1.3+(Math.abs(mx-fx)>90?.45:0))*dt;ten=Math.max(0,ten);
+      const bc=.55+.12*Math.sin(el*.7),bw=Math.max(.1,.17-pe*.002),B0=bc-bw,B1=bc+bw;if(ten>=1)return end(0,'RISS! Zu fest gezogen – die Schnur ist gerissen.');
+      if(ten<.08){low+=dt;if(low>1.5)return end(0,'Zu locker! Der Wels hat den Knochen ausgespuckt.')}else low=0;if(ten>B0&&ten<B1)hold+=dt;if(hold>=25){ph=2;msg='Er ermüdet! Klicke genau, wenn der Ring den Kreis berührt!'}
+      hx=fx;hy=320+Math.sin(el*3)*14;x.fillStyle='rgba(0,0,0,.55)';x.beginPath();x.ellipse(fx,330,95,26,(ftx-fx)/900,0,7);x.fill();
+      x.fillStyle='rgba(0,0,0,.6)';x.fillRect(752,80,26,340);x.fillStyle='rgba(120,220,120,.6)';x.fillRect(754,80+340*(1-B1),22,340*(B1-B0));x.fillStyle=ten>.9?'#ff4030':'#f0e0a0';x.fillRect(748,80+340*(1-Math.min(1,ten))-3,34,6);
+      x.fillStyle='#fff';x.font='12px Arial';x.textAlign='center';x.fillText('Spannung',765,72);if(surge>0){x.fillStyle='#ff8060';x.font='bold 18px Arial';x.fillText('ER ZIEHT!',fx,280)}
+      x.strokeStyle=Math.abs(mx-fx)>90?'rgba(255,90,60,.8)':'rgba(255,255,255,.5)';x.beginPath();x.moveTo(mx,440);x.lineTo(mx,470);x.stroke()}
+    if(ph==2){if(Math.random()<dt*.6)ftx=150+Math.random()*500;fx+=(ftx-fx)*dt*1.6;hx=fx;hy=300;ring-=dt*rs;if(ring<.75){bad++;sta=Math.min(1,sta+.15);ring=3;msg='Zu spät! ('+bad+'/4)';if(bad>=4)return end(0,'Der Wels hat sich mit letzter Kraft losgerissen.')}
+      x.fillStyle='rgba(0,0,0,.55)';x.beginPath();x.ellipse(fx,320,95,26,0,0,7);x.fill();x.strokeStyle='#f0e8c0';x.lineWidth=3;x.beginPath();x.arc(fx,300,34,0,7);x.stroke();x.strokeStyle='rgba(120,230,120,.9)';x.beginPath();x.arc(fx,300,34*ring,0,7);x.stroke();
+      x.fillStyle='rgba(0,0,0,.6)';x.fillRect(200,52,400,14);x.fillStyle='#e06040';x.fillRect(202,54,396*Math.max(0,sta),10);x.fillStyle='#fff';x.font='12px Arial';x.textAlign='center';x.fillText('Kraft des Welses',400,80);if(sta<=0)return end(1)}
+    x.strokeStyle='rgba(230,230,220,.85)';x.lineWidth=1.3;x.beginPath();x.moveTo(400,0);x.quadraticCurveTo((400+hx)/2,hy*.5+(ph==1?40-ten*40:0),hx,hy);x.stroke();
+    x.save();x.translate(hx,hy);x.rotate(.4);x.fillStyle='#e8e0cc';x.fillRect(-10,-2,20,4);[[-10,0],[10,0]].forEach(([a])=>{x.beginPath();x.arc(a,-2,3,0,7);x.arc(a,2,3,0,7);x.fill()});x.restore();
+    x.fillStyle='rgba(0,0,0,.55)';x.fillRect(150,10,500,30);const prog=ph==0?0:ph==1?hold/25*.7:.7+(1-sta)*.3;x.fillStyle='#7ad06a';x.fillRect(154,14,492*prog,22);
+    x.fillStyle='#fff';x.font='bold 13px Arial';x.textAlign='center';x.fillText(['Phase 1: Anbiss','Phase 2: Kampf – '+hold.toFixed(1)+' / 25 s in der Zone','Phase 3: Auspowern'][ph],400,30);
+    x.font='15px Arial';x.fillText(msg,400,474);x.textAlign='right';x.font='13px Arial';x.fillStyle='rgba(255,255,255,.6)';x.fillText('[Aufgeben]',790,494);
+    requestAnimationFrame(frame)}
+  requestAnimationFrame(frame)}
 // ================= Schauplätze =================
 const BASE={seed:3,cov:.52,cs:[156,160,175],cl:[258,262,268],sunc:[255,252,228],sunr:60,band:[250,620],bc:[[88,134,112],[140,176,160]],lit:[[84,140,48],[150,190,72]],dark:[[20,50,26],[46,84,40]],haze:[196,218,228],trunks:1,
   g:[[44,92,20],[116,168,40],[176,190,72]],sand:[[146,114,68],[226,200,146]],gh:[176,204,178],dapple:.2,b0:[[36,80,18],[70,118,28]],b1:[[120,172,46],[214,222,112]],d0:[[12,34,10],[26,60,16]],d1:[[36,80,22],[70,120,36]],
@@ -604,6 +681,10 @@ const SCN={
    pe:segPath([[400,512,170,420,420,70],[420,420,70,440,330,24],[440,330,24,452,250,6],[430,446,50,620,420,32],[620,420,32,840,398,24]]),gtop:X=>201+Math.pow(Math.abs(X-440)/440,1.6)*14,k:1.05/286,x0:60,x1:760,ymin:()=>FL.cut?340:398,ymax:494,paint:paintSperre,
    intro:[['P','Na toll. Alles voller Birken. Als hätte sie jemand absichtlich hier hingeworfen.'],['P','Und links und rechts nur Wald. Dicht wie eine Mauer. Und dunkel wie im Arsch eines Bären.'],['P','Ohne Säge komm ich da nicht durch.']]}
 };
+SCN.ufer={...SCN.fischer,seed:91,pe:segPath([[-30,470,60,400,432,50],[400,432,50,830,452,60],[100,440,30,60,392,14]]),ymin:x=>x<160?396:366,x0:30,x1:770,paint:paintUfer,
+  intro:[['P','Das Ufer. Schilf, Schlamm und ein Boot, das schon lange aufgegeben hat.'],['P','Da vorne fängt der Steg an. Unten drunter ist es dunkel. Natürlich.']]};
+SCN.unter={...BASE,seed:97,hz:200,pe:()=>null,gtop:()=>500,k:1/270,x0:60,x1:740,ymin:()=>412,ymax:494,paint:paintUnter,
+  intro:[['P','Unter dem Steg. Es riecht nach Algen, Fisch und Kusmitschs Füßen.'],['P','Da hängt seine Schnur durch die Bretter. Mit leerem Haken. Kein Wunder, dass nie was beißt.']]};
 Object.assign(SCN.dorfstr,SCN.dorf,{seed:71,pe:segPath([[420,512,170,430,360,60],[430,360,60,440,214,6],[300,452,20,236,438,10],[540,452,20,600,432,10]]),ymin:x=>x<300?448:x>560?446:342,paint:paintDorfstr,
   intro:[['P','Die Dorfstraße. Sonnenblumen, Wäscheleinen, Hühnerdreck. Fast gemütlich.'],['P','Hinten ist eine Kirche. Und hier schaut eine Oma aus dem Gartentor. Die schauen immer.']]});
 Object.assign(SCN.kirche,SCN.dorf,{seed:83,top:[86,96,112],hor:[196,192,184],cov:.36,vig:.6,gr:['rgba(220,200,170,.3)','rgba(30,40,70,.45)'],pe:segPath([[420,512,160,450,330,40],[450,330,40,460,302,14]]),ymin:x=>x<300||x>600?446:332,paint:paintKirche,
@@ -700,7 +781,7 @@ function sprite(inner,[x,y,w,h],k){return new Promise(res=>{const cw=Math.round(
   im.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="${cw}" height="${ch}" viewBox="${x} ${y} ${w} ${h}">${ROUGH}<g filter="url(#r)">${inner}</g></svg>`)})}
 const petimg=$('#petimg'),petG=$('#petja'),PB=[-48,-254,96,258],K=1.15;let frames=[],talking=false,ft=0;
 const NB=[-30,-100,60,104];
-Promise.all([sprite(PET(0,0),PB,K),sprite(PET(1,0),PB,K),sprite(PET(0,1),PB,K),sprite(CROW,[-30,-26,64,44],K),sprite(FISHER,[-64,-142,134,224],K),sprite(OMA,[-46,-200,92,204],K),sprite(OPA,[-42,-170,84,174],K)]).then(([a,b,st,cr,fi,om,op])=>{$('#omaimg').setAttribute('href',om);$('#opaimg').setAttribute('href',op);sprite(KATER,[-22,-58,52,62],K).then(k=>$('#katerimg').setAttribute('href',k));$('#fishimg').setAttribute('href',fi);frames=[a,b,st];petimg.setAttribute('href',a);$('#crowimg').setAttribute('href',cr)});
+Promise.all([sprite(PET(0,0),PB,K),sprite(PET(1,0),PB,K),sprite(PET(0,1),PB,K),sprite(CROW,[-30,-26,64,44],K),sprite(FISHER,[-64,-142,134,224],K),sprite(OMA,[-46,-200,92,204],K),sprite(OPA,[-42,-170,84,174],K)]).then(([a,b,st,cr,fi,om,op])=>{$('#omaimg').setAttribute('href',om);$('#opaimg').setAttribute('href',op);sprite(KATER,[-22,-58,52,62],K).then(k=>$('#katerimg').setAttribute('href',k));document.querySelectorAll('.fishimg').forEach(e=>e.setAttribute('href',fi));frames=[a,b,st];petimg.setAttribute('href',a);$('#crowimg').setAttribute('href',cr)});
 setInterval(()=>{if(!frames[2])return;ft=1-ft;petimg.setAttribute('href',frames[mv?(ft?2:0):talking?ft:0])},150);
 
 // ================= Laufen & Szenenwechsel =================
@@ -718,7 +799,7 @@ function enter(id,pos){if(cur&&cur!==id)onLocationLeave(cur);changing=true;mv=nu
   fade.style.opacity=0;changing=false;if(!seen[id]){seen[id]=1;S0.intro&&setTimeout(()=>say(S0.intro),450)}},420)}
 
 // ================= Dialog =================
-const N={P:['Petja','#ffb070'],K:['Krähe','#b0bcd8'],S:['Sonne','#ffe680'],M:['Fliegenpilz','#ff8a70'],B:['Birke','#c8e09a'],J:['Stimme aus der Hütte','#e0a0ff'],M1:['Mila','#a8e0b0'],W:['Wera','#c8b8f0'],D:['Dunja','#f0a070'],F:['Fischer Kusmitsch','#9cc8e0'],O:['Oma Dusja','#f0a0a0'],G:['Opa Grischa','#d8c890']};
+const N={P:['Petja','#ffb070'],K:['Krähe','#b0bcd8'],S:['Sonne','#ffe680'],M:['Fliegenpilz','#ff8a70'],B:['Birke','#c8e09a'],J:['Stimme aus der Hütte','#e0a0ff'],M1:['Mila','#a8e0b0'],W:['Wera','#c8b8f0'],D:['Dunja','#f0a070'],F:['Fischer Kusmitsch','#9cc8e0'],O:['Oma Dusja','#f0a0a0'],J2:['Baba Jaga','#e0a0ff'],G:['Opa Grischa','#d8c890']};
 const box=$('#box'),who=$('#who'),txt=$('#txt');
 let queue=[],typing=null,full='',busy=false,done=null;
 function say(lines,cb){queue=lines.slice();done=cb;busy=true;box.style.display='block';next()}
@@ -774,7 +855,9 @@ const T={
     [['P','Dahinter riecht es nach Sumpf. Und nach Ärger.']]]},
   sFisch:{n:'Schild: Zum Fischerhaus',at:[660,432],fn(){walkTo(760,404,()=>enter('fischer',[90,476]))}},
   sZD:{n:'Schild: Zum dunklen Wald',at:[130,484],go:'sperre',to:[730,412]},
-  fischer:{n:'Fischer',at:[690,394],fn(){if(FL.ks&&!FL.fisch&&!FL.kater){if(inv.includes('angel'))return say([['F','Na, eine Angel! Selbst gebaut? Sieht aus wie ein Unfall.'],['F','Dann zeig mal. Schwimmer in der Mitte halten, nicht vom Fisch wegziehen lassen!']],fishing);
+  fischer:{n:'Fischer',at:[690,394],fn(){if(FL.ablenk&&!FL.schnaps)return say([['F','NICHT JETZT! DER WELS! Er zieht mich gleich vom Steg!'],['P','Lassen Sie sich Zeit.']]);
+    if(FL.leiterQ&&!FL.schnapsQ){FL.schnapsQ=1;return say([['P','Herr Kusmitsch, könnten Sie mir Ihren Selbstgebrannten geben? Für den Opa.'],['F','Meinen Selbstgebrannten?! Für den Brandstifter? Eher fress ich mein Netz.'],['F','Die Flasche lass ich nicht aus den Augen. Nur wenn einer anbeißt. Und hier beißt seit 1987 nix Großes mehr an.'],['F','Außer dem Wels. Der wohnt unterm Steg. Aber der frisst nur Fleisch. Knochen und so. Mit meinem Brot lockst du den nicht.']])}
+    if(FL.ks&&!FL.fisch&&!FL.kater){if(inv.includes('angel'))return say([['F','Na, eine Angel! Selbst gebaut? Sieht aus wie ein Unfall.'],['F','Dann zeig mal. Schwimmer in der Mitte halten, nicht vom Fisch wegziehen lassen!']],fishing);
     FL.angelQ=1;return say([['P','Könnten Sie mir einen Fisch geben? Für einen Kater.'],['F','Für den Kater vom Popen? Der Satan hat mir mal den ganzen Fang geklaut. Von mir kriegt der nix.'],['F','Fang dir selber einen. Keine Angel? Dann bau dir eine.'],['F','Ein Stock und eine Schnur. Mehr braucht ein Mann nicht. Und Wodka.'],['P','Und wo krieg ich die her?'],['F','Stöcke wachsen an Bäumen, Junge. Und Schnur... frag nicht mich, ich sitz hier seit 1987.']])}if(!FL.boot){if(inv.includes('brett')&&inv.includes('teer'))return repairBoat();
     if(!FL.auftrag){FL.auftrag=1;return say([['P','Sie haben nicht zufällig eine Säge? Da liegen Birken auf dem Weg.'],['F','Hab ich. Aber umsonst gibt’s nix. Erst flickst du mein Boot. Da, wo der Wels durch ist.'],['F','Du brauchst ein ordentliches Brett und Teer. Beides gibt’s im Dorf hinter der Hütte von der Alten.'],['P','Hinter Baba Jagas Hütte?'],['F','Na, wo denn sonst. Ist ja nicht so, dass sie umziehen könnte. ...Obwohl. Mit den Beinen.']])}
     if(R()<.5)return say([['F','Brett UND Teer, Junge. Ohne Teer säuft der Kahn ab. Ohne Brett auch. Ohne beides sowieso.']])}
@@ -793,7 +876,9 @@ const T={
     if(inv.includes('gebiss'))return say([['P','Oma, ich hab Ihr Gebiss gefunden.'],['O','Mein Gebiff! Wo war ef?'],['P','Unter dem Kater vom Popen. Auf dem Friedhof.'],['O','*klack* ...Ah. Viel besser. Schmeckt nach Kater, aber egal.'],['O','Teer willst du? Hier, Birkenteer. Gegen Rheuma, Läuse und Männer.'],['P','*bekommt eine Flasche Birkenteer*']],()=>{FL.teer=1;inv.splice(inv.indexOf('gebiss'),1);inv.push('teer');renderInv()});
     if(!FL.gq){FL.gq=1;return say([['P','Guten Tag, Oma! Haben Sie zufällig Teer?'],['O','Teer? Hab ich. Birkenteer. Aber erft... erft...'],['P','Was ist mit Ihren Zähnen?'],['O','Weg! Bei Fjodorf Beerdigung hab ich fo geheult, da ift mir daf Gebiff raufgeflogen.'],['O','Und jetft hockt der Kater vom Popen drauf. Daf Miftvieh! Faucht jeden an.'],['O','Bring mir mein Gebiff, dann kriegft du den Teer. Und waf zu effen. Du bift fo dünn.']])}
     this.i=(this.i||0)+1;say(this.i%2?[['O','Mein Gebiff, Junge! Friedhof! Hinter der Kirche! Der Kater!']]:[['O','Den Grifcha am Dorfeingang hab ich angezeigt. Wegen Brandgefahr. Eine Woche vorher. Keiner hört auf Oma.']])}},
-  opa:{n:'Opa Grischa',at:[504,452],l:[
+  opa:{n:'Opa Grischa',at:[504,452],fn(){if(inv.includes('schnaps'))return say([['P','Opa, ich hab da was für Sie.'],['G','Ist das... Kusmitschs Selbstgebrannter?! Riecht nach Teer und Trauer. Perfekt!'],['G','*gluck* *gluck* ...AAAH. Da wird mir ganz warm. Wie damals beim Brand.'],['G','Die Leiter gehört dir. Hat das Feuer überlebt. Wie ich.'],['P','*bekommt eine Leiter*']],()=>{FL.leiter=1;inv.splice(inv.indexOf('schnaps'),1);inv.push('leiter');renderInv();$('#leiterG').remove()});
+    if(FL.bjNo&&!FL.leiterQ){FL.leiterQ=1;return say([['P','Opa, haben Sie eine Leiter? Ich muss in Baba Jagas Hütte. Die steht auf Hühnerbeinen.'],['G','Eine Leiter hab ich. Da, am Ofen. Hat das Feuer überlebt.'],['G','Aber umsonst gibt’s nix. Bring mir was zu trinken. Mein Selbstgebrannter ist ja... verdampft.'],['G','Der Kusmitsch am See brennt den besten. Aber der rückt nix raus. Der schläft sogar mit der Flasche.']])}
+    this.i=(this.i||0);say(this.l[this.i++%this.l.length])},l:[
     [['P','Was ist denn mit Ihrem Haus passiert?'],['G','Der Samowar. Oder der Selbstgebrannte. Oder ich. Die Untersuchung läuft noch.'],['G','Die Feuerwehr kam aus der Stadt. Drei Tage später. Haben Fotos gemacht.']],
     [['P','Kann ich hier was mitnehmen?'],['G','Nimm, was nicht verbrannt ist. Also nix.'],['G','Höchstens das Brett da. Das lag unterm Ofen. Ofen brennt nicht, Brett brennt nicht. Physik.']],
     [['G','Die Dusja aus dem Dorf hat mich angezeigt. Eine Woche bevor’s gebrannt hat.'],['G','Hexe. Die zweite im Wald. Die eine hat Hühnerbeine, die andre ’ne Gartenschere.']]]},
@@ -822,11 +907,26 @@ const T={
   ast:{n:'Ast',at:[690,400],fn(){if(!FL.kraehe)return say([['P','Ein schöner gerader Ast. Aber da sitzt die Krähe drauf.'],['K','Krah! Finger weg, das ist meiner!']]);
     say([['P','*spring* ... *spring* ... *SPRING*'],['P','*KNACK*'],['P','Ein Stock! Perfekt für eine Angel.']],()=>{FL.ast=1;delete cache.wald;inv.push('stock');renderInv();enter('wald',[P.x,P.y]);craft()})}},
   altnetz:{n:'Kaputtes Netz',at:[262,372],fn(){say([['P','Ein kaputtes Fischernetz, versteckt neben der Hütte.'],['F','He! Das ist... ach, nimm. Das hat der Wels zerfetzt.'],['P','Da zieh ich mir eine lange Schnur raus.']],()=>{$('#altnetzG').remove();inv.push('seil');renderInv();craft()})}},
+  sUfer:{n:'Schild: Zum Ufer',at:[716,480],fn(){walkTo(770,470,()=>enter('ufer',[60,452]))}},
+  sFH:{n:'Schild: Zum Fischerhaus',at:[130,486],go:'fischer',to:[740,470]},
+  sUP:{n:'Schild: Unter den Pier',at:[176,404],go:'unter',to:[640,470]},
+  sUZ:{n:'Schild: Zurück zum Ufer',at:[690,486],go:'ufer',to:[180,406]},
+  wrack:{n:'Bootswrack',at:[560,420],l:[[['P','Ein Boot, halb versunken. Das ist wohl das, was passiert, wenn man es NICHT flickt.']]]},
+  steg:{n:'Steg',at:[200,404],l:[[['P','Der Steg vom Fischer. Unten drunter kann man gebückt durchkriechen.']],[['P','Ganz hinten sitzt Kusmitsch. Er hat mich nicht gesehen. Gut so.']]]},
+  schnur:{n:'Angelschnur',at:[430,430],fn(){if(FL.ablenk)return say([['P','Die Schnur zappelt wie verrückt. Oben flucht Kusmitsch. Herrlich.']]);
+    if(FL.tied)return say([['P','Der Knochen hängt dran. Jetzt muss nur noch der Wels anbeißen.']],wels);
+    if(inv.includes('knochen'))return say([['P','Ich bind den Knochen an seinen Haken. Doppelter Knoten. Wie Opa es mir beigebracht hat. Also mein Opa, nicht der verbrannte.'],['P','Und jetzt halt ich die Schnur fest und warte. Der Wels muss richtig ziehen, damit Kusmitsch was merkt.']],()=>{FL.tied=1;inv.splice(inv.indexOf('knochen'),1);renderInv();wels()});
+    say([['P','Die Angelschnur vom Fischer. Leerer Haken.'],['P','Wenn hier was richtig Großes dranziehen würde, wäre Kusmitsch eine Weile beschäftigt...']])}},
+  muell:{n:'Müll',at:[540,460],l:[[['P','Eine leere Flasche, ein Stiefel, ein Reifen. Kusmitschs Lebenslauf.']]]},
+  knochen:{n:'Knochen',at:[540,474],fn(){say([['P','Ein Knochen. Von wem, will ich gar nicht wissen.'],['J','Lass meine Knochen liegen, Bürschchen!'],['P','Ich leih ihn nur aus!']],()=>{$('#knochenG').remove();inv.push('knochen');renderInv()})}},
+  schnaps:{n:'Selbstgebrannter',at:[680,392],fn(){if(!FL.ablenk)return say([['F','FINGER WEG! Das ist mein Selbstgebrannter! Den hab ich im Auge, Junge!']]);
+    say([['P','*schnapp*'],['F','(kämpfend) KOMM HER! KOMM HER, DU MISTVIEH!'],['P','Der merkt gar nichts. Dreißig Jahre Warten machen blind.']],()=>{FL.schnaps=1;$('#schnapsG').remove();inv.push('schnaps');renderInv()})}},
+  leiter:{n:'Leiter',at:[700,452],fn(){say(FL.leiterQ?[['G','Die Leiter gibt’s gegen Selbstgebrannten. Nicht gegen Bitte-Bitte.']]:[['P','Eine alte Leiter am Ofen. Angekokelt, aber stabil.'],['G','Finger weg! Das ist das Einzige, was mir geblieben ist. Außer dem Ofen.']])}},
   sZG2:{n:'Schild: Zum Waldweg',at:[150,484],go:'sperre',to:[505,350]},
-  huette:{n:'Baba Jagas Hütte',at:[470,438],l:[
+  huette:{n:'Baba Jagas Hütte',at:[470,438],fn(){if(inv.includes('leiter'))return bjEnter();this.i=(this.i||0);say(this.l[this.i++%this.l.length])},l:[
     [['P','Schief, alt, und ich schwör, sie atmet. Die Hütte atmet.']],
     [['P','Aus dem Schornstein riecht es nach Kohl. Und nach... etwas, das kein Kohl ist.']]]},
-  tuer:{n:'Tür',at:[478,436],l:[
+  tuer:{n:'Tür',at:[478,436],fn(){if(inv.includes('leiter'))return bjEnter();if(!FL.bjNo){FL.bjNo=1;return say([['P','Hallo? Frau Jaga? Darf ich reinkommen?'],['J','Durch die Tür kommt hier keiner rein! Die Tür ist Dekoration!'],['J','Wer was von mir will, kommt durchs Fenster. Wenn er hochkommt. Hihihi!'],['P','Das Fenster ist drei Meter hoch. Und die Hütte steht auf Hühnerbeinen.'],['P','Ich brauch eine Leiter.']])}this.i=(this.i||0);say(this.l[this.i++%this.l.length])},l:[
     [['P','Hallo? Ich wollte nur fragen, wie man hier wieder aufwacht.'],['J','Erst klopfen, dann reden! Und die Füße abputzen!']],
     [['P','*klopf klopf*'],['J','Jetzt nicht! Der Ofen ist heiß. Komm später wieder.']]]},
   beine:{n:'Hühnerbeine',at:[492,438],l:[
@@ -838,7 +938,8 @@ const T={
   _:{}
 };
 function use(id){const o=T[id];if(!o)return;if(o.go)return enter(o.go,o.to);if(o.fn)return o.fn();o.i=o.i||0;const set=o.l[o.i%o.l.length];o.i++;say(set,o.after)}
-const ITEMS={kippe:['🚬','Joint-Stummel','Lieber nicht. Sonst wach ich in einem noch schlimmeren Märchen auf.'],saege:['🪚','Säge','Eine Säge vom Fischer. Damit könnte man Birken klein machen.'],apfel:['🍎','Apfel','Ein roter Apfel. Liegt gut in der Hand. Wurfgewicht: perfekt.'],stock:['🌿','Stock','Ein gerader Ast. Daraus wird was.'],seil:['🧶','Schnur','Schnur aus einem kaputten Fischernetz.'],angel:['🎣','Angel','Selbst gebaut. Stock, Schnur, Sicherheitsnadel. Hält bestimmt.'],fisch:['🐟','Fisch','Ein kleiner Fisch. Guckt komisch.'],gebiss:['🦷','Omas Gebiss','Ein Gebiss. Riecht nach Kater und Friedhof.'],brett:['🪵','Brett','Ein Brett aus Opas Ruine. Nur ein bisschen angekokelt.'],teer:['🛢️','Birkenteer','Riecht nach Lagerfeuer und Omas Rheuma.']};
+const ITEMS={kippe:['🚬','Joint-Stummel','Lieber nicht. Sonst wach ich in einem noch schlimmeren Märchen auf.'],saege:['🪚','Säge','Eine Säge vom Fischer. Damit könnte man Birken klein machen.'],apfel:['🍎','Apfel','Ein roter Apfel. Liegt gut in der Hand. Wurfgewicht: perfekt.'],stock:['🌿','Stock','Ein gerader Ast. Daraus wird was.'],seil:['🧶','Schnur','Schnur aus einem kaputten Fischernetz.'],angel:['🎣','Angel','Selbst gebaut. Stock, Schnur, Sicherheitsnadel. Hält bestimmt.'],knochen:['🦴','Knochen','Ein Knochen von Baba Jagas Hof. Riecht nach Suppe.'],schnaps:['🍶','Selbstgebrannter','Kusmitschs Selbstgebrannter. Schon der Geruch macht blind.'],leiter:['🪜','Leiter','Opas Leiter. Angekokelt, aber stabil.'],fisch:['🐟','Fisch','Ein kleiner Fisch. Guckt komisch.'],gebiss:['🦷','Omas Gebiss','Ein Gebiss. Riecht nach Kater und Friedhof.'],brett:['🪵','Brett','Ein Brett aus Opas Ruine. Nur ein bisschen angekokelt.'],teer:['🛢️','Birkenteer','Riecht nach Lagerfeuer und Omas Rheuma.']};
+function bjEnter(){say([['P','So. Leiter ans Fenster... festhalten, liebe Hühnerbeine... nicht wackeln...'],['P','*kletter* *kletter* *knarz*'],['J','Na sieh mal an! Ein Gast durchs Fenster. Wie es sich gehört!'],['J','Komm rein, Bürschchen. Der Ofen ist schon warm. Hihihi.'],['P','...Warum ist der Ofen schon warm?']],()=>{FL.drin=1;const d=document.createElement('div');d.id='tbc';d.innerHTML='<h2>Petja ist in Baba Jagas Hütte!</h2><p>Fortsetzung folgt…</p>';d.style.cssText='position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,.85);color:#ffd000;font:bold 20px Arial;z-index:30;text-align:center';d.onclick=e=>{e.stopPropagation();d.remove()};$('#game').appendChild(d)})}
 function repairBoat(){say([['P','Brett und Teer! Ich flick Ihnen das Boot.'],['P','*klopf* ... *schmier* ... *klopf* ... *Daumen* ... AUA!'],['F','Junge, du bist ein Held. Das Ding hält jetzt bestimmt eine Woche.'],['F','Hier, meine Säge. Pass auf die Finger auf, die hast du ja schon geübt.'],['P','*bekommt eine Säge*']],()=>{FL.boot=1;['brett','teer'].forEach(i=>inv.splice(inv.indexOf(i),1));inv.push('saege');renderInv()})};
 function renderInv(){$('#slots').innerHTML='';inv.forEach(id=>{const it=ITEMS[id],d=document.createElement('div');d.className='slot';d.textContent=it[0];d.title=it[1];
   d.onclick=e=>{e.stopPropagation();if(!busy)say([['P',it[2]]])};$('#slots').appendChild(d)})}
