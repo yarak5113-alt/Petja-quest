@@ -945,8 +945,62 @@ function paintMuehle(){const o=S0;sky(o);far(o);ground(o);
   x=lay();grass(x,7000,o.hz,500,1);details(x);dirt(x,30);leavesOnPath(x,80);put(x);
   x=lay();willow(x,700,330);millPond(x);flume(x);millHouse(x);[[520,372,20,32],[300,382,10,24],[560,380,12,28],[20,368,14,30]].forEach(a=>reeds(x,...a));
   millstone(x,150,410,26,.45);millstone(x,182,414,24,.4);sacks(x,410,446);cart(x,600,452);fence2(x,640,820,420,null);rock(x,500,470,14,1);shrooms(x,90,430,4);
-  sign(x,700,486,1.6,[[1,0,'Zum Dorf','hMD']]);put(x);
+  sign(x,700,486,1.6,[[1,0,'Zum Dorf','hMD']]);sign(x,90,472,1.4,[[-1,0,'In den Irrwald','hIW']]);put(x);
   x=lay();grass(x,600,470,515,2.4,1);bush(x,30,500,40,1);put(x,1);rays(o,[[.3,.07],[.55,.05]]);grade(o)}
+// ================= Irrwald & Banja =================
+function paintIrrwald(){const o=S0;sky(o);far(o);ground(o);
+  let x=lay();for(let i=0;i<40;i++){const X=R()*820-10,b=212+R()*70;R()<.5?fir(x,X,b,120+R()*160,40+R()*40,.2):trunk(x,X,b,4+R()*8)}put(x,.8);fog(300,.35);
+  x=lay();grass(x,4000,o.hz,500,1);details(x);leavesOnPath(x,60);put(x);
+  x=lay();[[60,470],[160,400],[250,330],[600,330],[700,400],[790,470],[330,300],[540,300]].forEach(([X,b])=>{const t=(b-200)/300;R()<.5?trunk(x,X,b,8+t*40):deadTree(x,X,b,200+t*200,6+t*10,'#14120e');bush(x,X,b+4,10+t*30,1)});
+  for(let i=0;i<7;i++){const X=60+R()*680,Y=240+R()*90;dab(x,X-4,Y,3,[255,220,60],.9);dab(x,X+4,Y,3,[255,220,60],.9)}
+  sign(x,420,376,1.15,[[-1,0,'Links','hIL'],[1,12,'Rechts','hIR']]);sign(x,446,300,.7,[[1,0,'Geradeaus','hIG']]);sign(x,110,486,1.6,[[-1,0,'Zurück zur Mühle','hIM']]);put(x);
+  x=lay();for(let i=0;i<40;i++)dab(x,R()*800,280+R()*200,40+R()*50,[150,170,180],.18);put(x,8,'screen',.6);
+  grade(o)}
+function paintBanja(){const o=S0;c.fillStyle='#120808';c.fillRect(0,0,W,H);
+  let x=lay();logWall(x,0,800,-10,320);x.fillStyle='rgba(60,0,30,.45)';x.fillRect(0,0,800,320);
+  x.fillStyle='#2a1410';x.fillRect(0,320,800,180);for(let i=-12;i<=12;i++){x.strokeStyle='rgba(0,0,0,.6)';x.beginPath();x.moveTo(400+i*18,320);x.lineTo(400+i*80,500);x.stroke()}
+  x.save();x.globalCompositeOperation='lighter';dab(x,400,80,160,[255,40,140],.35);x.restore();x.fillStyle='#ff4fb0';x.font='bold 54px Georgia';x.textAlign='center';x.shadowColor='#ff3090';x.shadowBlur=20;x.fillText('BANJA',400,100);x.shadowBlur=0;x.font='italic 16px Georgia';x.fillStyle='#ffd0e8';x.fillText('Dampf · Tanz · Wodka',400,124);
+  x.fillStyle='#5a0a14';x.fillRect(520,150,240,180);for(let X=520;X<760;X+=12){x.fillStyle=(X/12)%2?'rgba(0,0,0,.25)':'rgba(255,80,80,.12)';x.fillRect(X,150,12,180)}x.fillStyle='#d8b050';x.fillRect(514,142,252,10);wood(x,510,330,260,14,0);
+  x.fillStyle='#e8d8b0';x.fillRect(612,250,60,24);x.fillStyle='#5a0a14';x.font='bold 10px Georgia';x.fillText('HEUTE KEINE SHOW',642,266);
+  wood(x,40,180,250,8,0);wood(x,40,240,250,8,0);for(let i=0;i<16;i++){const X=52+i*15,Y=i<8?180:240;bottle(x,X,Y,22+R()*10,P2([[60,120,60],[200,200,210],[160,60,40],[200,170,60]]))}
+  wood(x,30,330,290,18,0);x.fillStyle='#3a1a10';x.fillRect(30,348,290,80);x.fillStyle='rgba(255,60,150,.2)';x.fillRect(30,348,290,6);
+  [[120,322],[200,320],[260,324]].forEach(([X,Y])=>{x.fillStyle='rgba(220,240,255,.7)';x.fillRect(X,Y-12,7,12)});
+  [[420,440],[620,450]].forEach(([X,Y])=>{shadowAt(x,X,Y+4,40,.5);ell(x,X,Y-30,36,10,[60,20,16]);wood(x,X-3,Y-30,6,30,1);ell(x,X,Y-32,30,7,[90,40,30]);bottle(x,X-6,Y-34,16,[200,200,210]);ell(x,X+10,Y-34,4,2,[240,200,80])});
+  x.fillStyle='#6a1020';x.beginPath();x.moveTo(680,500);x.lineTo(700,410);x.lineTo(800,400);x.lineTo(800,500);x.fill();
+  [[80,40],[300,40],[500,40],[720,40]].forEach(([X,Y])=>{x.strokeStyle='#2a1a10';x.beginPath();x.moveTo(X,0);x.lineTo(X,Y);x.stroke();x.save();x.globalCompositeOperation='lighter';dab(x,X,Y+10,50,[255,30,60],.5);x.restore();ell(x,X,Y+10,10,13,[220,30,40])});
+  put(x);x=lay();for(let i=0;i<40;i++)dab(x,R()*800,200+R()*300,40+R()*60,[255,200,220],.12);put(x,10,'screen',.6);
+  x=lay();sign(x,700,486,1.4,[[1,0,'Abkürzung zur Mühle','hBM']]);put(x);
+  const vg=c.createRadialGradient(400,300,120,400,300,540);vg.addColorStop(0,'rgba(0,0,0,0)');vg.addColorStop(1,'rgba(0,0,0,.55)');c.fillStyle=vg;c.fillRect(0,0,W,H)}
+const ZINA=`<g stroke="#1a0a0a" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round">
+<path d="M-14,0L-12,-10L-4,-10L-4,0ZM4,0L4,-10L12,-10L14,0Z" fill="#111"/>
+<path d="M-28,-8L-30,-60C-34,-110 -32,-150 -24,-178L24,-178C32,-150 34,-110 30,-60L28,-8Z" fill="#b01830"/><path d="M-2,-120C6,-90 10,-50 16,-10" fill="none" stroke="#7a0a1a"/>
+<circle cx="-14" cy="-140" r="1.6" fill="#ffd0d0" stroke="none"/><circle cx="10" cy="-110" r="1.6" fill="#ffd0d0" stroke="none"/><circle cx="-6" cy="-70" r="1.6" fill="#ffd0d0" stroke="none"/><circle cx="18" cy="-40" r="1.6" fill="#ffd0d0" stroke="none"/>
+<path d="M-24,-176C-36,-160 -40,-130 -30,-112L-22,-114C-28,-130 -26,-150 -18,-164Z" fill="#e8b494"/><ellipse cx="-26" cy="-110" rx="6" ry="5" fill="#e8b494"/>
+<path d="M24,-176C38,-166 42,-150 36,-136L28,-140C32,-150 28,-160 20,-166Z" fill="#e8b494"/><ellipse cx="34" cy="-136" rx="5.5" ry="5" fill="#e8b494"/><path d="M36,-138L58,-168" stroke="#111" stroke-width="2"/><circle cx="58" cy="-168" r="2" fill="#ff7030" stroke="none"/>
+<path d="M-30,-176C-20,-168 -10,-184 0,-174C10,-184 20,-168 30,-176C34,-168 28,-160 20,-164C10,-156 -10,-156 -20,-164C-28,-160 -34,-168 -30,-176Z" fill="#f4c8e0"/>
+<path d="M-6,-182L-6,-190L6,-190L6,-182Z" fill="#e8b494"/>
+<path d="M-24,-200C-34,-250 34,-250 24,-200C20,-224 -20,-224 -24,-200Z" fill="#f0d070"/><path d="M-12,-238C-6,-230 6,-230 12,-238M-18,-226C-8,-218 8,-218 18,-226" fill="none" stroke="#c8a040" stroke-width="1"/>
+<ellipse cx="0" cy="-204" rx="15" ry="18" fill="#f0c0a0"/><path d="M-15,-214C-14,-224 14,-224 15,-214C10,-218 -10,-218 -15,-214Z" fill="#f0d070"/>
+<path d="M-10,-208C-8,-211 -4,-211 -2,-208M2,-208C4,-211 8,-211 10,-208" fill="#5a90d0" stroke-width=".8"/><path d="M-11,-207l-2,-2M-8,-209l-1,-2M11,-207l2,-2M8,-209l1,-2" stroke-width=".8"/>
+<circle cx="-6" cy="-206" r="1.3" fill="#2a1a10" stroke="none"/><circle cx="6" cy="-206" r="1.3" fill="#2a1a10" stroke="none"/><path d="M0,-204L-1,-198L1,-198" fill="none" stroke-width=".7"/>
+<path d="M-6,-192C-3,-195 3,-195 6,-192C3,-189 -3,-189 -6,-192Z" fill="#d01030"/><circle cx="8" cy="-196" r=".9" fill="#2a1a10" stroke="none"/><ellipse cx="-9" cy="-198" rx="3" ry="2" fill="#f08080" stroke="none" opacity=".5"/><ellipse cx="9" cy="-198" rx="3" ry="2" fill="#f08080" stroke="none" opacity=".5"/>
+<circle cx="-15" cy="-198" r="2.4" fill="#e8c040"/><circle cx="15" cy="-198" r="2.4" fill="#e8c040"/></g>`;
+// ================= Nymphen-Bewerbungsgespräch =================
+const NT={nastja:{s:1,t:1,v:0,r:0,a:['Tanzen? Ich schwebe eher. Unter Wasser, bei Mondschein. Das zählt doch?','Raus? Nein... hier ist es ruhig. Und die Frösche singen so schön.','Du bist... nett. Du hast freundliche Augen. *errötet*']},
+  marfa:{s:1,t:1,v:1,r:1,a:['Schätzchen, ich hab auf Kaufmannshochzeiten getanzt, bis die Tische gebrochen sind.','Raus aus diesem Froschloch? SOFORT. Ich hab seit 1890 keine Musik gehört.','Du? Siehst aus wie ein nasser Pudel, der zu viel geraucht hat. Aber ein süßer Pudel.']},
+  ustinja:{s:0,t:1,v:1,r:1,a:['Primaballerina, 1903! ...Gut, die Knie sind jetzt aus Schlamm.','Oh ja! Ich will wieder Publikum! Applaus! Blumen!','Junger Mann, Sie riechen wie der Bodensatz einer Wodkaflasche. Charmant.']},
+  fekla:{s:0,t:0,v:1,r:0,a:['Tanzen? Ich kann mich kaum umdrehen. *blubb*','Raus? Ich bin hier eingeweicht. Mich kriegt keiner mehr raus.','Du stinkst. Und ich bin eine Wasserleiche. Also: Respekt.']},
+  glafira:{s:0,t:0,v:1,r:1,a:['Nein. Ich schlag eher, als dass ich tanze.','Raus! Und dann such ich den, der mich ersäuft hat.','Halt die Klappe, Grünschnabel, oder ich zieh dich runter.']},
+  alte:{s:0,t:1,v:0,r:0,a:['*klapper* Ich tanze den Knochentanz. Jede Nacht. Alleine.','Raus? Wohin denn? Ich war schon überall. Tot.','*klapper* ...Hübscher Junge. Hübsch fleischig.']}};
+function interview(nd){const idx=NYMPHS.indexOf(nd),tr=NT[nd.id];const qs=['Kannst du tanzen?','Willst du aus dem Sumpf raus?','Wie findest du mich?'];
+  const o=openO(`<div class="pan iv"><img src="${NIMG[idx]}" class="por"><h3>${nd.n}</h3></div><div class="pan ivq"><h3>Gespräch</h3>${qs.map((q,i)=>`<button class="qb" data-q="${i}">${q}</button>`).join('')}<p class="ans em">Frag sie was.</p>
+  <h3>Eigenschaftskarte</h3><label><input type="checkbox" data-k="s"> Schön</label><label><input type="checkbox" data-k="t"> Tanzt gern</label><label><input type="checkbox" data-k="v"> Frech / vulgär</label><label><input type="checkbox" data-k="r"> Will raus</label>
+  <div class="row"><button class="go">Anwerben</button><button class="bk">Zurück</button></div><p class="res"></p></div><div class="hint">[ESC] schließen</div>`,'two menu2');
+  o.querySelectorAll('.qb').forEach(b=>b.onclick=()=>{o.querySelector('.ans').textContent='„'+tr.a[+b.dataset.q]+'“'});o.querySelector('.bk').onclick=closeO;
+  o.querySelector('.go').onclick=()=>{const ck={};o.querySelectorAll('input').forEach(i=>ck[i.dataset.k]=i.checked?1:0);const r=o.querySelector('.res');
+    if(['s','t','v','r'].some(k=>ck[k]!=tr[k])){r.textContent='Hm. Ich glaube, ich hab sie falsch eingeschätzt. Die Karte stimmt nicht.';return}
+    if(!(tr.s&&tr.t&&tr.v&&tr.r)){r.textContent='Die Karte stimmt. Aber auf Madames Liste passt sie nicht.';return}
+    closeO();FL.rekrut=1;say([['P','Marfa... hättest du Lust auf einen Job? Tanzen. Musik. Wodka. Ein Ort ohne Frösche.'],['MA','Ein Job? Mit Musik? Schätzchen, ich bin schon unterwegs. Ich trockne mich nur kurz ab.'],['P','Das Banja ist hinterm Irrwald. Sag, Petja schickt dich.'],['P','...Das wird Madame freuen. Und mich hoffentlich auch.']])}}
 // ================= Schauplätze =================
 const BASE={seed:3,cov:.52,cs:[156,160,175],cl:[258,262,268],sunc:[255,252,228],sunr:60,band:[250,620],bc:[[88,134,112],[140,176,160]],lit:[[84,140,48],[150,190,72]],dark:[[20,50,26],[46,84,40]],haze:[196,218,228],trunks:1,
   g:[[44,92,20],[116,168,40],[176,190,72]],sand:[[146,114,68],[226,200,146]],gh:[176,204,178],dapple:.2,b0:[[36,80,18],[70,118,28]],b1:[[120,172,46],[214,222,112]],d0:[[12,34,10],[26,60,16]],d1:[[36,80,22],[70,120,36]],
@@ -984,6 +1038,10 @@ const SCN={
    pe:segPath([[400,512,170,420,420,70],[420,420,70,440,330,24],[440,330,24,452,250,6],[430,446,50,620,420,32],[620,420,32,840,398,24]]),gtop:X=>201+Math.pow(Math.abs(X-440)/440,1.6)*14,k:1.05/286,x0:60,x1:760,ymin:()=>FL.cut?340:398,ymax:494,paint:paintSperre,
    intro:[['P','Na toll. Alles voller Birken. Als hätte sie jemand absichtlich hier hingeworfen.'],['P','Und links und rechts nur Wald. Dicht wie eine Mauer. Und dunkel wie im Arsch eines Bären.'],['P','Ohne Säge komm ich da nicht durch.']]}
 };
+SCN.irrwald={...SCN.sperre,seed:151,xr:null,vig:.5,top:[60,74,84],hor:[120,136,128],g:[[30,40,22],[56,70,34],[86,92,52]],pe:segPath([[420,512,150,420,380,40],[420,380,40,150,250,8],[420,380,40,450,214,5],[420,380,40,700,250,8]]),gtop:X=>201+Math.pow(Math.abs(X-440)/440,1.6)*14,ymin:()=>384,paint:paintIrrwald,
+  intro:[['P','Der Irrwald. Drei Wege, alle sehen gleich aus. Und irgendwas glotzt mich aus dem Dunkeln an.']]};
+SCN.banja={...BASE,seed:163,hz:200,pe:()=>null,gtop:()=>500,k:1.1/270,x0:60,x1:740,ymin:()=>424,ymax:494,paint:paintBanja,gr:['rgba(255,120,180,.3)','rgba(60,0,40,.45)'],vig:.4,
+  intro:[['P','Das Banja. Dampf, rotes Licht, Wodka-Geruch. Und eine Bühne mit Vorhang.'],['Z','Neues Gesicht! Komm rein, Süßer, aber putz dir die Füße ab. Das ist ein anständiges Etablissement.']]};
 SCN.muehle={...BASE,seed:139,hz:200,sun:[180,110],sunr:50,top:[70,100,150],hor:[236,214,170],sunc:[255,226,170],cs:[130,120,120],cl:[244,230,210],cov:.47,masses:[[-30,330,30,80],[480,830,30,80]],band:[250,560],
   fol:[[50,36,10],[150,104,30],[230,176,70]],lit:[[150,110,40],[210,170,80]],b1:[[150,140,50],[220,200,100]],nfl:80,gr:['rgba(255,200,120,.4)','rgba(50,50,90,.3)'],vig:.5,raya:.3,rayc:[255,220,160],
   pe:segPath([[830,478,50,520,432,40],[520,432,40,218,346,14]]),gtop:X=>201+Math.pow(Math.abs(X-400)/400,1.6)*12,k:1/270,x0:40,x1:760,ymin:x=>x<540?410:384,ymax:494,paint:paintMuehle,
@@ -1095,7 +1153,7 @@ function sprite(inner,[x,y,w,h],k){return new Promise(res=>{const cw=Math.round(
   im.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="${cw}" height="${ch}" viewBox="${x} ${y} ${w} ${h}">${ROUGH}<g filter="url(#r)">${inner}</g></svg>`)})}
 const petimg=$('#petimg'),petG=$('#petja'),PB=[-48,-254,96,258],K=1.15;let frames=[],talking=false,ft=0;
 const NB=[-30,-100,60,104];
-Promise.all([sprite(PET(0,0),PB,K),sprite(PET(1,0),PB,K),sprite(PET(0,1),PB,K),sprite(CROW,[-30,-26,64,44],K),sprite(FISHER,[-64,-142,134,224],K),sprite(OMA,[-46,-200,92,204],K),sprite(OPA,[-42,-170,84,174],K)]).then(([a,b,st,cr,fi,om,op])=>{$('#omaimg').setAttribute('href',om);$('#opaimg').setAttribute('href',op);sprite(GNOM1,[-66,-296,140,300],K).then(k=>$('#gnom1img').setAttribute('href',k));sprite(GNOM2,[-52,-232,106,236],K).then(k=>$('#gnom2img').setAttribute('href',k));sprite(WOWA,[-52,-262,104,266],K).then(u=>{WOWAIMG=new Image();WOWAIMG.src=u});sprite(BJ,[-62,-250,108,256],K).then(k=>$('#bjimg').setAttribute('href',k));sprite(KATER,[-22,-58,52,62],K).then(k=>$('#katerimg').setAttribute('href',k));document.querySelectorAll('.fishimg').forEach(e=>e.setAttribute('href',fi));frames=[a,b,st];PETIMG.src=a;petimg.setAttribute('href',a);$('#crowimg').setAttribute('href',cr)});
+Promise.all([sprite(PET(0,0),PB,K),sprite(PET(1,0),PB,K),sprite(PET(0,1),PB,K),sprite(CROW,[-30,-26,64,44],K),sprite(FISHER,[-64,-142,134,224],K),sprite(OMA,[-46,-200,92,204],K),sprite(OPA,[-42,-170,84,174],K)]).then(([a,b,st,cr,fi,om,op])=>{$('#omaimg').setAttribute('href',om);$('#opaimg').setAttribute('href',op);sprite(GNOM1,[-66,-296,140,300],K).then(k=>$('#gnom1img').setAttribute('href',k));sprite(GNOM2,[-52,-232,106,236],K).then(k=>$('#gnom2img').setAttribute('href',k));sprite(WOWA,[-52,-262,104,266],K).then(u=>{WOWAIMG=new Image();WOWAIMG.src=u});sprite(ZINA,[-44,-262,106,266],K).then(k=>$('#zinaimg').setAttribute('href',k));sprite(BJ,[-62,-250,108,256],K).then(k=>$('#bjimg').setAttribute('href',k));sprite(KATER,[-22,-58,52,62],K).then(k=>$('#katerimg').setAttribute('href',k));document.querySelectorAll('.fishimg').forEach(e=>e.setAttribute('href',fi));frames=[a,b,st];PETIMG.src=a;petimg.setAttribute('href',a);$('#crowimg').setAttribute('href',cr)});
 setInterval(()=>{if(!frames[2])return;ft=1-ft;petimg.setAttribute('href',frames[mv?(ft?2:0):talking?ft:0])},150);
 
 // ================= Laufen & Szenenwechsel =================
@@ -1114,7 +1172,7 @@ function enter(id,pos){if(cur&&cur!==id)onLocationLeave(cur);changing=true;mv=nu
   fade.style.opacity=0;changing=false;if(!seen[id]){seen[id]=1;S0.intro&&setTimeout(()=>say(S0.intro),450)}},420)}
 
 // ================= Dialog =================
-const N={P:['Petja','#ffb070'],K:['Krähe','#b0bcd8'],S:['Sonne','#ffe680'],M:['Fliegenpilz','#ff8a70'],B:['Birke','#c8e09a'],J:['Stimme aus der Hütte','#e0a0ff'],M1:['Mila','#a8e0b0'],W:['Wera','#c8b8f0'],D:['Dunja','#f0a070'],F:['Fischer Kusmitsch','#9cc8e0'],O:['Oma Dusja','#f0a0a0'],WO:['Wowa','#9ad0ff'],N1:['Grobnik','#d8a060'],N2:['Opa Schnobbel','#a0b8e0'],J2:['Baba Jaga','#e0a0ff'],G:['Opa Grischa','#d8c890']};
+const N={P:['Petja','#ffb070'],K:['Krähe','#b0bcd8'],S:['Sonne','#ffe680'],M:['Fliegenpilz','#ff8a70'],B:['Birke','#c8e09a'],J:['Stimme aus der Hütte','#e0a0ff'],M1:['Mila','#a8e0b0'],W:['Wera','#c8b8f0'],D:['Dunja','#f0a070'],F:['Fischer Kusmitsch','#9cc8e0'],O:['Oma Dusja','#f0a0a0'],Z:['Madame Zinaida','#ff80c0'],MU:['Stimme aus der Mühle','#e8dcb0'],PK:['Pilzmeister Knolle','#c0e080'],MA:['Marfa','#d8a8c8'],WO:['Wowa','#9ad0ff'],N1:['Grobnik','#d8a060'],N2:['Opa Schnobbel','#a0b8e0'],J2:['Baba Jaga','#e0a0ff'],G:['Opa Grischa','#d8c890']};
 const box=$('#box'),who=$('#who'),txt=$('#txt');
 let queue=[],typing=null,full='',busy=false,done=null;
 function say(lines,cb){queue=lines.slice();done=cb;busy=true;box.style.display='block';next()}
@@ -1238,10 +1296,12 @@ const T={
     say([['P','*schnapp*'],['F','(kämpfend) KOMM HER! KOMM HER, DU MISTVIEH!'],['P','Der merkt gar nichts. Dreißig Jahre Warten machen blind.']],()=>{FL.schnaps=1;rm('schnapsG');inv.push('schnaps');renderInv()})}},
   leiter:{n:'Leiter',at:[700,452],fn(){say(FL.leiterQ?[['G','Die Leiter gibt’s gegen Selbstgebrannten. Nicht gegen Bitte-Bitte.']]:[['P','Eine alte Leiter am Ofen. Angekokelt, aber stabil.'],['G','Finger weg! Das ist das Einzige, was mir geblieben ist. Außer dem Ofen.']])}},
   baba:{n:'Baba Jaga',at:[540,460],fn(){
-    if(inv.includes('pilze'))return say([['P','Hier. Die waren in dem Joint. Blau angelaufen.'],['J2','*schnüffel* ...*schnüffel*... HA! Wusst ich’s. Traumschwamm.'],['J2','Wächst nur im Sumpf der ertrunkenen Huren, unter den Seerosen. Die Nymphen trocknen ihn und verkaufen ihn an Dummköpfe.'],
-      ['J2','Wer den raucht, schläft ein und wacht im Märchen auf. In MEINEM Märchen. Darum kommst du nicht raus, Bürschchen.'],['P','Wowa! Dieser Idiot hat mir das Ding gedreht!'],['J2','Dein Wowa ist mir egal. Aufwachen kannst du nur mit einem Gegengift. Ich brau’s dir.'],
-      ['J2','Aber ich brauche drei Dinge: Eine Träne von einer wirklich schönen Nymphe. Eine schwarze Krähenfeder. Und Saft aus der ältesten Birke im Wald.'],['J2','Und bis du alles hast, fegst du mir nicht die Hütte voll. Raus mit dir. Hihihi!']],()=>{inv.splice(inv.indexOf('pilze'),1);renderInv();FL.bjInfo=1});
-    if(FL.bjInfo)return say([['J2','Träne, Feder, Birkensaft. Kann doch nicht so schwer sein. Na los!']]);
+    if(inv.includes('pilze')&&!FL.bjInfo)return say([['P','Hier. Die waren in dem Joint. Blau angelaufen.'],['J2','*schnüffel* ...*schnüffel*... HA! Traumschwamm. Aber welche Sorte? Da gibt es hundert.'],
+      ['J2','Wer den raucht, wacht in MEINEM Märchen auf. Darum kommst du nicht raus, Bürschchen.'],['P','Wowa! Dieser Idiot!'],['J2','Welche Sorte genau, weiß nur der Pilzmeister der Gnome. Tief in ihrer Höhle. Bring ihm die Pilze.'],
+      ['J2','Aber die Gnome lassen keinen umsonst in ihren Stollen. Gnome sind schlimmer als Steuerprüfer.']],()=>{FL.bjInfo=1;FL.labQ=1});
+    if(FL.mullerQ&&!FL.karte)return say([['P','Ich muss ins Banja. Hinter dem Irrwald. Kennen Sie den Weg?'],['J2','Ins BANJA? Du? Hihihi! Warte...'],['J2','*kramt im Ofen* ...*hust* ...Da! Meine alte Wegkarte. Nur ein bisschen angekokelt.'],['P','Da steht: 2× links, 1× rechts, 1× geradeaus.'],['J2','Verlauf dich nicht. Im Irrwald fressen einen die Bäume. Langsam.']],()=>{FL.karte=1;inv.push('karte');renderInv()});
+    if(FL.recipe)return say([['J2','Träne, Feder, Birkensaft. Bring mir alles, dann brau ich. Na los!']]);
+    if(FL.bjInfo)return say([['J2','Zu den Gnomen mit den Pilzen! Und lass dich nicht übers Ohr hauen. Die haben große Ohren. Und Nasen.']]);
     if(inv.includes('kippe'))return say([['J2','Auf den Tisch damit! Zerlegen! Papier, Filter, Kraut. Ich will sehen, was drin ist.']]);
     say([['J2','Wo ist der Stummel? Du hast ihn doch nicht etwa geraucht? Bring ihn her!']])}},
   tisch:{n:'Tisch',at:[450,460],fn(){if(FL.pilze)return say([['P','Hier hab ich einen Joint zerlegt. Vor einer Hexe. Ein Satz, den ich nie sagen wollte.']]);
@@ -1255,7 +1315,11 @@ const T={
   sZU:{n:'Schild: Zum Ufer',at:[130,488],go:'ufer',to:[740,456]},
   sHO:{n:'Schild: Zur Höhle',at:[640,428],fn(){walkTo(712,418,()=>enter('hoehle',[400,486]))}},
   sAU:{n:'Schild: Zum Ausgang',at:[130,488],go:'gnome',to:[640,428]},
-  gnom1:{n:'Grobnik',at:[300,462],l:[
+  gnom1:{n:'Grobnik',at:[300,462],fn(){
+    if(inv.includes('mehl'))return say([['P','Drei Säcke Mehl. Wie bestellt.'],['N1','*schnüff* ...*SCHNÜFF* ...OH ja. Das ist gutes... Mehl.'],['N1','Der Stollen ist offen für dich, Langer. Der Pilzmeister wartet hinten im Dunkeln. Hier, nimm die Laterne.']],()=>{FL.stollen=1;inv.splice(inv.indexOf('mehl'),1);inv.push('laterne');renderInv()});
+    if(FL.labQ&&!FL.mehlQ){FL.mehlQ=1;return say([['P','Ich muss zu eurem Pilzmeister. In den Stollen.'],['N1','In den Stollen? Ohne Wegezoll kommt da keiner rein. Drei Säcke Mehl.'],['P','Mehl? Ihr backt?'],['N1','...Ja. Wir backen. Sehr viel. Den ganzen Tag. *schnief*'],['N1','Der Müller hat das gute Zeug. Das ganz gute. Aber der rückt nix raus.']])}
+    if(FL.mehlQ&&!FL.stollen)return say([['N1','Drei Säcke. Vom Müller. Vorher kein Stollen. *schnief*']]);
+    this.i=(this.i||0);say(this.l[this.i++%this.l.length])},l:[
     [['P','Hallo! Sind Sie... ein Gnom?'],['N1','GROSS-Gnom! Kleine Gnome gibt’s in Deutschland. In Vorgärten. Mit Angel. Peinlich.'],['N1','Wir sind die Nasigen vom See. Je größer die Nase, desto höher der Rang. Ich bin Vorarbeiter.']],
     [['P','Was machen Sie mit der Spitzhacke?'],['N1','Graben. In der Höhle. Seit dreihundert Jahren.'],['P','Und was suchen Sie?'],['N1','Weiß keiner mehr. Aber jetzt aufhören wäre unhöflich.']],
     [['N1','Geh nicht zu tief in die Höhle, Langer. Da hinten ist es dunkel. Und dunkel ist erst der Anfang.']]]},
@@ -1266,19 +1330,37 @@ const T={
   ghut:{n:'Gnomhütte',at:[230,360],l:[[['P','Runde Tür, rundes Fenster, runde Bewohner.']],[['P','Drinnen schnarcht jemand. Die Wände wackeln.']]]},
   kohl:{n:'Riesenkohl',at:[200,470],l:[[['P','Kohl. So groß wie ein Kinderwagen.'],['N1','Finger weg! Das ist Schnobbels Rente!']]]},
   hoehleE:{n:'Höhleneingang',at:[680,420],l:[[['P','Ein Höhleneingang mit Fackeln. Kalter Wind kommt raus. Und Gemurmel.']]]},
-  gang:{n:'Dunkler Gang',at:[420,430],l:[[['P','Der Gang führt tiefer. Stockdunkel. Ohne Licht geh ich da nicht rein.']],[['P','Da hinten hat was gekichert. Nein. Nein, danke.']]]},
+  gang:{n:'Dunkler Gang',at:[420,430],fn(){if(FL.stollen&&!FL.recipe)return say([['P','*mit der Laterne in den Gang* ...Hallo? Pilzmeister?'],['PK','Psst! Nicht so laut, die Pilze schlafen. Zeig her...'],['PK','*schnüff* ...Traumschwamm. Edelsorte. Von Nymphenhand im Mondlicht getrocknet. Teures Zeug.'],
+      ['PK','Ohne Gegengift wachst du nie mehr auf, Langer. Die Hexe kann es brauen. Sie braucht drei Dinge:'],['PK','Eine Träne von einer wirklich schönen Nymphe. Eine schwarze Krähenfeder. Und Saft aus der ältesten Birke im Wald.'],['PK','Und jetzt raus. Du störst die Pilze beim Wachsen.']],()=>{FL.recipe=1;inv.splice(inv.indexOf('pilze'),1);renderInv()});
+    if(FL.recipe)return say([['PK','*aus dem Dunkeln* Träne, Feder, Birkensaft! Und leise sein!']]);this.i=(this.i||0);say(this.l[this.i++%this.l.length])},l:[[['P','Der Gang führt tiefer. Stockdunkel. Ohne Licht geh ich da nicht rein.']],[['P','Da hinten hat was gekichert. Nein. Nein, danke.']]]},
   kristalle:{n:'Kristalle',at:[640,446],l:[[['P','Lila Kristalle. Sie summen leise.'],['P','Wenn man das Ohr ranhält, hört man... Radio Moskau?']]]},
   lpilze:{n:'Leuchtpilze',at:[180,450],l:[[['P','Leuchtpilze. Hoffentlich nicht verwandt mit denen aus dem Joint.']]]},
   hsee:{n:'Unterirdischer See',at:[430,430],l:[[['P','Ein unterirdischer See. Da schwimmt was Weißes ohne Augen.'],['P','Es winkt. Ich winke nicht zurück.']]]},
   sMue:{n:'Schild: Zur alten Mühle',at:[330,344],go:'muehle',to:[700,470]},
   sMD:{n:'Schild: Zum Dorf',at:[690,486],go:'dorf',to:[340,346]},
-  muehle:{n:'Alte Mühle',at:[250,414],l:[[['P','Die Tür ist zu. Mit Brettern vernagelt. Von innen.'],['P','Von INNEN. Wer nagelt eine Tür von innen zu?!']],[['P','Drinnen knarzt es. Wie Schritte. Oder Mahlsteine. Hoffentlich Mahlsteine.']]]},
+  muehle:{n:'Alte Mühle',at:[250,414],fn(){
+    if(inv.includes('gutschein'))return say([['P','*klopf klopf* Ich hab was für Sie. Einen Gutschein. Fürs Banja. Ein Abend mit Privattanz.'],['MU','...EIN WAS?! *Bretter krachen* *Nägel fliegen*'],['MU','*Tür geht einen Spalt auf* Gib her! ...Oh. Oh ja. Ich muss mich rasieren. Überall.'],['MU','Hier, drei Säcke. Das „Mehl“. Frag nicht, was drin ist. Ich frag auch nicht, was im Banja passiert.']],()=>{inv.splice(inv.indexOf('gutschein'),1);inv.push('mehl');renderInv();FL.mehl=1});
+    if(FL.mehlQ&&!FL.mullerQ){FL.mullerQ=1;return say([['P','*klopf klopf* Hallo? Ich bräuchte Mehl!'],['MU','Mehl? Hab ich. Das besondere. Die Gnome sind ganz wild drauf.'],['MU','Aber umsonst gibt’s nix. Ich will was anderes. Eine Frau. Eine schöne Braut.'],['MU','Vierzig Jahre sitz ich hier allein. Mit sechs Zehen. Da kommt keine freiwillig.'],['MU','Im Banja, hinterm Irrwald, da sollen die Schönsten sein. Aber durch den Irrwald findet keiner. Nur die Hexe kennt den Weg.']])}
+    if(FL.mullerQ&&!FL.mehl)return say([['MU','Bring mir was aus dem Banja! Eine Braut... oder wenigstens einen Tanz.']]);
+    this.i=(this.i||0);say(this.l[this.i++%this.l.length])},l:[[['P','Die Tür ist zu. Mit Brettern vernagelt. Von innen.'],['P','Von INNEN. Wer nagelt eine Tür von innen zu?!']],[['P','Drinnen knarzt es. Wie Schritte. Oder Mahlsteine. Hoffentlich Mahlsteine.']]]},
   mrad:{n:'Wasserrad',at:[470,412],l:[[['P','Ein Wasserrad. Es dreht sich und dreht sich. Seit hundert Jahren vermutlich.'],['P','Wenn ich lange genug draufschaue, werd ich wieder high. Lieber nicht.']]]},
   rinne:{n:'Wasserrinne',at:[560,404],l:[[['P','Eine Holzrinne bringt das Wasser vom Bach zum Rad. Clever. Für 1820.']]]},
   mteich:{n:'Mühlteich',at:[440,414],l:[[['P','Unten am Rad schäumt das Wasser. Da glitzert was zwischen den Steinen.'],['P','...Ein Kronkorken. Diese Welt hat ein Müllproblem.']]]},
   mstein:{n:'Mühlsteine',at:[200,430],l:[[['P','Alte Mühlsteine. Schwer wie Omas Kuchen.']]]},
   saecke:{n:'Mehlsäcke',at:[400,462],l:[[['P','Mehlsäcke. Einer ist aufgeplatzt. Hier war jemand. Vor Kurzem.'],['P','Fußspuren im Mehl. Barfuß. Mit... sechs Zehen.']]]},
   karren:{n:'Alter Karren',at:[600,470],l:[[['P','Ein Karren mit einem Rad. Das andere ist wohl auch abgehauen.']]]},
+  sIW:{n:'Schild: In den Irrwald',at:[130,476],go:'irrwald',to:[420,486]},
+  sIM:{n:'Schild: Zurück zur Mühle',at:[130,488],go:'muehle',to:[150,470]},
+  sIL:{n:'Weg links',at:[380,392],fn(){irrGo('L')}},sIR:{n:'Weg rechts',at:[470,392],fn(){irrGo('R')}},sIG:{n:'Weg geradeaus',at:[440,388],fn(){irrGo('G')}},
+  sBM:{n:'Schild: Abkürzung zur Mühle',at:[690,486],go:'muehle',to:[150,470]},
+  madame:{n:'Madame Zinaida',at:[320,470],fn(){
+    if(FL.rekrut&&!FL.gutschein)return say([['Z','Marfa ist da! Ein Knaller! Sie tanzt, sie flucht, sie trinkt die Gäste unter den Tisch. Perfekt!'],['Z','Hier, Süßer. Ein Gutschein: Ein Abend im Banja mit Privattanz. Geht aufs Haus.'],['P','Der ist nicht für mich. Ich kenn da einen Müller...'],['Z','Mir egal, wer kommt. Hauptsache, er zahlt die Getränke.']],()=>{FL.gutschein=1;inv.push('gutschein');renderInv()});
+    if(FL.gutschein)return say([['Z','Marfa ist der Star! Komm mal wieder, Süßer.']]);
+    if(FL.clubQ)return say([['Z','Na? Schon eine gefunden? Denk an meine Liste. Und bring mir keine, die nur blubbert.']]);
+    say([['P','Guten Abend, Madame. Ein Müller schickt mich. Er hätte gern eine... Braut.'],['Z','Eine Braut? Hier? Süßer, das ist ein Tanzlokal, kein Standesamt.'],['Z','Aber gut. Wir können uns helfen. Mir laufen die Tänzerinnen weg. Die letzte ist mit einem Gnom durchgebrannt.'],
+      ['Z','Bring mir eine Neue. Aus dem Sumpf, da sitzen genug, die sich langweilen. Aber nicht irgendeine. Hier ist meine Liste.'],['Z','Wenn sie passt, kriegst du einen Gutschein. Für deinen Müller. Oder für dich.']],()=>{FL.clubQ=1;inv.push('liste');renderInv()})}},
+  bar:{n:'Bar',at:[220,446],l:[[['P','Einen Kwas, bitte.'],['Z','Kwas? Hier? Süßer, hier gibt es Wodka oder Wodka.'],['P','...Dann Wodka.'],['P','*kipp* ...UARGH. Das ist kein Wodka, das ist Abflussreiniger.']],[['Z','Noch einen?'],['P','Ich seh jetzt schon doppelt. Zwei Madames. Das ist zu viel Madame.']],[['P','Nein danke. Ich muss noch durch einen Irrwald.']]]},
+  buehne:{n:'Bühne',at:[600,446],l:[[['P','Heute keine Show. Die Tänzerinnen sind... ausgegangen. Für immer.']]]},
   sZG2:{n:'Schild: Zum Waldweg',at:[150,484],go:'sperre',to:[505,350]},
   huette:{n:'Baba Jagas Hütte',at:[470,438],fn(){if(inv.includes('leiter'))return bjEnter();this.i=(this.i||0);say(this.l[this.i++%this.l.length])},l:[
     [['P','Schief, alt, und ich schwör, sie atmet. Die Hütte atmet.']],
@@ -1294,8 +1376,12 @@ const T={
     [['P','Ist das Deko oder eine Warnung?'],['P','...Beides. Ganz sicher beides.']]]},
   _:{}
 };
-function use(id){const o=T[id];if(!o)return;if(o.go)return enter(o.go,o.to);if(o.fn)return o.fn();o.i=o.i||0;const set=o.l[o.i%o.l.length];o.i++;say(set,o.after)}
-const ITEMS={kippe:['🚬','Joint-Stummel','Lieber nicht. Sonst wach ich in einem noch schlimmeren Märchen auf.'],saege:['🪚','Säge','Eine Säge vom Fischer. Damit könnte man Birken klein machen.'],apfel:['🍎','Apfel','Ein roter Apfel. Liegt gut in der Hand. Wurfgewicht: perfekt.'],stock:['🌿','Stock','Ein gerader Ast. Daraus wird was.'],seil:['🧶','Schnur','Schnur aus einem kaputten Fischernetz.'],angel:['🎣','Angel','Selbst gebaut. Stock, Schnur, Sicherheitsnadel. Hält bestimmt.'],pilze:['🍄','Blaue Pilze','Neun blau angelaufene Pilzstücke aus dem Joint. Traumschwamm?'],knochen:['🦴','Knochen','Ein Knochen von Baba Jagas Hof. Riecht nach Suppe.'],schnaps:['🍶','Selbstgebrannter','Kusmitschs Selbstgebrannter. Schon der Geruch macht blind.'],leiter:['🪜','Leiter','Opas Leiter. Angekokelt, aber stabil.'],fisch:['🐟','Fisch','Ein kleiner Fisch. Guckt komisch.'],gebiss:['🦷','Omas Gebiss','Ein Gebiss. Riecht nach Kater und Friedhof.'],brett:['🪵','Brett','Ein Brett aus Opas Ruine. Nur ein bisschen angekokelt.'],teer:['🛢️','Birkenteer','Riecht nach Lagerfeuer und Omas Rheuma.']};
+function use(id){const o=T[id];if(!o)return;if(/^slot\d$/.test(id)&&FL.clubQ&&!FL.rekrut)return interview(o);if(o.go)return enter(o.go,o.to);if(o.fn)return o.fn();o.i=o.i||0;const set=o.l[o.i%o.l.length];o.i++;say(set,o.after)}
+const ITEMS={kippe:['🚬','Joint-Stummel','Lieber nicht. Sonst wach ich in einem noch schlimmeren Märchen auf.'],saege:['🪚','Säge','Eine Säge vom Fischer. Damit könnte man Birken klein machen.'],apfel:['🍎','Apfel','Ein roter Apfel. Liegt gut in der Hand. Wurfgewicht: perfekt.'],stock:['🌿','Stock','Ein gerader Ast. Daraus wird was.'],seil:['🧶','Schnur','Schnur aus einem kaputten Fischernetz.'],angel:['🎣','Angel','Selbst gebaut. Stock, Schnur, Sicherheitsnadel. Hält bestimmt.'],pilze:['🍄','Blaue Pilze','Neun blau angelaufene Pilzstücke aus dem Joint. Traumschwamm?'],karte:['🗺️','Angekokelte Karte','Baba Jagas Wegkarte: „2× links, 1× rechts, 1× geradeaus“.'],liste:['📋','Madames Liste','Gesucht: schön, tanzt gern, frech, will raus. Keine Blubberer.'],gutschein:['🎟️','Gutschein','„Ein Abend im Banja mit Privattanz“. Geht aufs Haus.'],mehl:['🥡','3 Säcke „Mehl“','Riecht nicht nach Mehl. Riecht nach Ärger.'],laterne:['🏮','Laterne','Eine Gnomlaterne. Brennt mit irgendwas Grünem.'],knochen:['🦴','Knochen','Ein Knochen von Baba Jagas Hof. Riecht nach Suppe.'],schnaps:['🍶','Selbstgebrannter','Kusmitschs Selbstgebrannter. Schon der Geruch macht blind.'],leiter:['🪜','Leiter','Opas Leiter. Angekokelt, aber stabil.'],fisch:['🐟','Fisch','Ein kleiner Fisch. Guckt komisch.'],gebiss:['🦷','Omas Gebiss','Ein Gebiss. Riecht nach Kater und Friedhof.'],brett:['🪵','Brett','Ein Brett aus Opas Ruine. Nur ein bisschen angekokelt.'],teer:['🛢️','Birkenteer','Riecht nach Lagerfeuer und Omas Rheuma.']};
+function irrGo(d){const SEQ='LLRG';FL.irrs=(FL.irrs||'')+d;
+  if(!SEQ.startsWith(FL.irrs)){FL.irrs='';return say([['P','Moment... den Baum kenn ich doch. Und den. Und den da auch.'],['P','Ich hab mich verlaufen. Zurück, bevor mich die Bäume fressen.']],()=>enter('muehle',[150,470]))}
+  if(FL.irrs==SEQ){FL.irrs='';return enter('banja',[200,480])}
+  enter('irrwald',[420,486]);setTimeout(()=>say([['P',['Bäume. Noch mehr Bäume.','War das ein Kichern?','Hier riecht es nach Parfüm... und Sauna.'][FL.irrs.length-1]]]),500)}
 function bjEnter(){if(FL.drin)return enter('innen',[250,470]);say([['P','So. Leiter ans Fenster... festhalten, liebe Hühnerbeine... nicht wackeln...'],['P','*kletter* *kletter* *knarz*']],()=>{FL.drin=1;enter('innen',[250,470])})}
 function repairBoat(){say([['P','Brett und Teer! Ich flick Ihnen das Boot.'],['P','*klopf* ... *schmier* ... *klopf* ... *Daumen* ... AUA!'],['F','Junge, du bist ein Held. Das Ding hält jetzt bestimmt eine Woche.'],['F','Hier, meine Säge. Pass auf die Finger auf, die hast du ja schon geübt.'],['P','*bekommt eine Säge*']],()=>{FL.boot=1;['brett','teer'].forEach(i=>inv.splice(inv.indexOf(i),1));inv.push('saege');renderInv()})};
 function renderInv(){$('#slots').innerHTML='';inv.forEach(id=>{const it=ITEMS[id]||['❔',id,id],d=document.createElement('div');d.className='slot';d.textContent=it[0];d.title=it[1];
@@ -1463,14 +1549,17 @@ $('#start button').onclick=e=>{e.stopPropagation();rm('start');cutscene()};
 
 // ================= Menü, Speichern, Inventar & Aufträge, Karte =================
 const REM=[];function rm(id){const e=document.getElementById(id);if(e)e.remove();if(!REM.includes(id))REM.push(id)}
-const LOCN={wald:'Birkenwald',gabel:'Weggabelung',huette:'Baba Jagas Hütte',innen:'Hütte (innen)',dorf:'Dorfeingang',dorfstr:'Dorfstraße',kirche:'Kirche',muehle:'Alte Mühle',sperre:'Birkensperre',sumpf:'Sumpf',fischer:'Fischerhaus',ufer:'Ufer',unter:'Unter dem Pier',gnome:'Gnomsiedlung',hoehle:'Höhle'};
+const LOCN={wald:'Birkenwald',gabel:'Weggabelung',huette:'Baba Jagas Hütte',innen:'Hütte (innen)',irrwald:'Irrwald',banja:'Banja',dorf:'Dorfeingang',dorfstr:'Dorfstraße',kirche:'Kirche',muehle:'Alte Mühle',sperre:'Birkensperre',sumpf:'Sumpf',fischer:'Fischerhaus',ufer:'Ufer',unter:'Unter dem Pier',gnome:'Gnomsiedlung',hoehle:'Höhle'};
 const has=i=>inv.includes(i);
 function quests(){const Q=[];
   Q.push({t:'Raus aus dem Märchen',d:'Irgendwas stimmt nicht. Ich muss hier wieder aufwachen.',v:1,ok:0,s:[
     {t:'Jemanden finden, der sich hier auskennt',v:1,ok:seen.huette},
     {t:'In Baba Jagas Hütte kommen',v:FL.bjNo,ok:FL.drin},
-    {t:'Herausfinden, was mit mir los ist',v:FL.drin,ok:FL.bjInfo},
-    {t:'Zutaten für das Gegengift besorgen',v:FL.bjInfo,ok:0,s:[{t:'Eine Träne',v:FL.bjInfo,ok:0},{t:'Eine Feder',v:FL.bjInfo,ok:0},{t:'Ein besonderer Saft',v:FL.bjInfo,ok:0}]}]});
+    {t:'Herausfinden, was mit mir los ist',v:FL.drin,ok:FL.recipe},
+    {t:'Zutaten für das Gegengift besorgen',v:FL.recipe,ok:0,s:[{t:'Eine Träne',v:FL.recipe,ok:0},{t:'Eine Feder',v:FL.recipe,ok:0},{t:'Ein besonderer Saft',v:FL.recipe,ok:0}]}]});
+  Q.push({t:'Das Pilzlabor',d:'Jemand in der Höhle kennt sich mit Pilzen aus. Aber umsonst ist nichts.',v:FL.labQ,ok:FL.recipe,s:[{t:'In den Stollen kommen',v:FL.labQ,ok:FL.stollen,s:[
+    {t:'Den Wegezoll besorgen',v:FL.mehlQ,ok:FL.mehl,s:[{t:'Ein Wunsch des Müllers',v:FL.mullerQ,ok:FL.gutschein||FL.mehl,s:[{t:'Den Weg nicht verlieren',v:FL.mullerQ,ok:FL.karte},{t:'Das Banja finden',v:FL.mullerQ,ok:seen.banja},{t:'Eine Neue für Madame',v:FL.clubQ,ok:FL.rekrut}]}]}]},
+    {t:'Die Pilze untersuchen lassen',v:FL.stollen,ok:FL.recipe}]});
   Q.push({t:'Der versperrte Weg',d:'Umgestürzte Birken versperren den Weg zum Sumpf.',v:seen.sperre,ok:FL.cut,s:[
     {t:'Etwas zum Zerkleinern finden',v:seen.sperre,ok:has('saege')||FL.cut},
     {t:'Dem Fischer einen Gefallen tun',v:FL.auftrag,ok:FL.boot,s:[{t:'Ein Brett',v:FL.auftrag,ok:has('brett')||FL.boot},{t:'Etwas zum Abdichten',v:FL.auftrag,ok:has('teer')||FL.boot}]},
@@ -1491,9 +1580,9 @@ function openO(html,cls){closeO();ovl=document.createElement('div');ovl.classNam
 function openInv(){const o=openO(`<div class="pan inv2"><h3>Taschen</h3><div class="grid">${inv.length?inv.map(id=>{const it=ITEMS[id]||['❔',id,id];return`<div class="card" data-i="${id}"><b>${it[0]}</b><span>${it[1]}</span></div>`}).join(''):'<p class="em">Leer. Wie mein Kühlschrank.</p>'}</div><p class="desc">Klick auf einen Gegenstand.</p></div>
   <div class="pan qs"><h3>Aufträge</h3>${qHTML(quests(),0)}</div><div class="hint">[I] oder [ESC] schließen</div>`,'two');
   o.querySelectorAll('.card').forEach(c=>c.onclick=()=>{const it=ITEMS[c.dataset.i];o.querySelector('.desc').textContent=it?it[1]+': '+it[2]:''})}
-const MAPN={muehle:[10,10],dorf:[42,10],dorfstr:[74,10],kirche:[106,10],huette:[42,36],innen:[74,36],wald:[10,62],gabel:[42,62],sperre:[74,62],sumpf:[106,62],fischer:[74,88],ufer:[106,88],unter:[106,112],gnome:[138,88],hoehle:[170,88]};
-const MAPE=[['wald','gabel'],['gabel','huette'],['gabel','sperre'],['huette','dorf'],['huette','innen'],['dorf','dorfstr'],['dorfstr','kirche'],['dorf','muehle'],['sperre','sumpf'],['sperre','fischer'],['fischer','ufer'],['ufer','unter'],['ufer','gnome'],['gnome','hoehle']];
-function openMap(){const P2=(id)=>MAPN[id];let svg=`<svg viewBox="-12 0 200 122" class="map">`;
+const MAPN={irrwald:[-22,10],banja:[-22,36],muehle:[10,10],dorf:[42,10],dorfstr:[74,10],kirche:[106,10],huette:[42,36],innen:[74,36],wald:[10,62],gabel:[42,62],sperre:[74,62],sumpf:[106,62],fischer:[74,88],ufer:[106,88],unter:[106,112],gnome:[138,88],hoehle:[170,88]};
+const MAPE=[['muehle','irrwald'],['irrwald','banja'],['wald','gabel'],['gabel','huette'],['gabel','sperre'],['huette','dorf'],['huette','innen'],['dorf','dorfstr'],['dorfstr','kirche'],['dorf','muehle'],['sperre','sumpf'],['sperre','fischer'],['fischer','ufer'],['ufer','unter'],['ufer','gnome'],['gnome','hoehle']];
+function openMap(){const P2=(id)=>MAPN[id];let svg=`<svg viewBox="-44 0 232 122" class="map">`;
   MAPE.forEach(([a,b])=>{if(seen[a]&&seen[b])svg+=`<line x1="${P2(a)[0]}" y1="${P2(a)[1]}" x2="${P2(b)[0]}" y2="${P2(b)[1]}" stroke="#8a7050" stroke-width="1.2" stroke-dasharray="2 1.5"/>`});
   Object.keys(MAPN).forEach(id=>{if(!seen[id])return;const[x,y]=P2(id),c=id==cur;svg+=`<circle cx="${x}" cy="${y}" r="${c?3.4:2.4}" fill="${c?'#e04020':'#c8a060'}" stroke="#2a1a0a" stroke-width=".6"/><text x="${x}" y="${y+6}" font-size="3.2" text-anchor="middle" fill="#f0e0c0">${LOCN[id]}</text>`});
   openO(`<div class="pan mp"><h3>Karte</h3>${svg}</svg><p class="em">● Du bist hier · Nur besuchte Orte</p></div><div class="hint">[M] oder [ESC] schließen</div>`)}
