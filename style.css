@@ -39,3 +39,5 @@ body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:c
 .nymg{transition:opacity .7s}
 
 .sway{animation:sway 3s ease-in-out infinite;transform-origin:430px 0}@keyframes sway{50%{transform:rotate(1.4deg)}}
+
+#box{z-index:25}#fade{z-index:30}
