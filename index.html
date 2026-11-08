@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Petja und der Verfluchte Birkenwald</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="game">
+<canvas id="bg"></canvas>
+<svg id="scene" viewBox="0 0 800 500">
+<defs>
+  <filter id="outline" x="-20%" y="-20%" width="140%" height="140%"><feMorphology in="SourceAlpha" operator="dilate" radius="2.5" result="d"/><feFlood flood-color="#000"/><feComposite in2="d" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect id="floor" width="800" height="500" fill="#000" fill-opacity="0"/>
+
+<!-- ===== Birkenwald ===== -->
+<g id="r-wald" class="room">
+  <g class="interactive painted" data-id="sonne"><circle class="hit" cx="560" cy="42" r="28"/></g>
+  <g id="ebirch" class="interactive painted" data-id="birke">
+    <path id="ebhit" class="hit"/>
+    <g class="glare"><circle cx="643" cy="231" r="2" fill="#ffd030"/><circle cx="656.5" cy="230" r="2" fill="#ffd030"/></g>
+  </g>
+  <g class="interactive painted" data-id="pilz" transform="translate(212,460)">
+    <path class="hit" d="M-8,0Q-11,-16 -6,-31L-33,-31Q-31,-60 -3,-63Q29,-63 35,-34L7,-32Q9,-16 10,0Q1,3 -8,0Z"/>
+    <g class="blink"><path d="M-5.5,-16q2,-1.5 4,0M2.5,-16.5q2,-1.5 4,0" fill="none" stroke="#3a2a1a" stroke-width="1"/><circle cx="-3.5" cy="-15" r=".9" fill="#2a1a0a"/><circle cx="4.5" cy="-15.5" r=".9" fill="#2a1a0a"/></g>
+  </g>
+  <g class="interactive painted" data-id="stumpf" transform="translate(612,452)">
+    <path class="hit" d="M-40,10Q-31,4 -30,-26A30,9 0 0 1 30,-26Q31,4 42,11Q26,8 18,13Q4,8 -8,13Q-22,8 -40,10Z"/>
+  </g>
+  <g id="kippe" class="interactive" data-id="kippe" transform="translate(612,452)"><g stroke="#3a2a1a" stroke-width=".7">
+    <path d="M-15,-27L8,-30L8.6,-26L-14.6,-23.6Z" fill="#f2eee2"/>
+    <path d="M-15,-27L-9,-27.8L-8.6,-24.2L-14.6,-23.6Z" fill="#c89858" stroke="none"/>
+    <circle cx="8.6" cy="-28" r="1.8" fill="#ff6a10" stroke="none"/>
+    <path class="smoke" d="M9,-32Q4,-42 11,-50Q18,-58 10,-68" fill="none" stroke="#f0ece4" stroke-width="2.4"/>
+  </g></g>
+  <g class="interactive" data-id="kraehe" transform="translate(706,188)"><image id="crowimg" class="spr" x="-30" y="-26" width="64" height="44"/></g>
+  <g class="interactive painted" data-id="sPfad"><path id="hPfad" class="hit"/></g>
+</g>
+
+<!-- ===== Weggabelung ===== -->
+<g id="r-gabel" class="room">
+  <g class="interactive painted" data-id="sBaba"><path id="hBaba" class="hit"/></g>
+  <g class="interactive painted" data-id="sUnbek"><path id="hUnbek" class="hit"/></g>
+  <g class="interactive painted" data-id="sZW"><path id="hZW" class="hit"/></g>
+  <g class="interactive painted" data-id="baum"><path class="hit" d="M486,272L506,272L656,338L646,362L496,298L484,296Z"/></g>
+</g>
+
+<!-- ===== Baba Jagas Hütte ===== -->
+<g id="r-huette" class="room">
+  <g transform="translate(478,420) scale(1.25) translate(-478,-398)">
+  <g class="interactive painted" data-id="huette"><path class="hit" d="M390,222H566V302H390Z"/></g>
+  <g class="interactive painted" data-id="tuer"><path class="hit" d="M456,302V246Q472,238 488,246V302Z"/></g>
+  <g class="interactive painted" data-id="beine"><path class="hit" d="M422,302L440,302L456,340L444,384L462,392L440,399L414,396L430,384L440,342ZM506,302L524,302L540,342L526,386L544,394L522,401L496,398L512,386L522,344Z"/></g>
+  </g>
+  <g transform="translate(300,425) scale(1.25) translate(-300,-398)"><g class="interactive painted" data-id="zaun"><path class="hit" d="M248,399L250,338H352L354,399Z"/><g id="skulleyes" class="glare"></g></g></g>
+  <g class="interactive painted" data-id="sZG"><path id="hZG" class="hit"/></g>
+  <g id="saege" class="interactive" data-id="saege" transform="translate(624,392) rotate(-10)"><path d="M0,0L46,-3L46,5L2,9Z" fill="#8c8e90" stroke="#2a2420" stroke-width=".8"/><path d="M2,9L5,12L8,9L11,12L14,8.6L17,11.6L20,8.3L23,11.3L26,8L29,11L32,7.6L35,10.6L38,7.3L41,10.3L44,7L46,5" fill="#76787c" stroke="#2a2420" stroke-width=".6"/><path d="M8,1L30,-.6" stroke="#b4b6b8" stroke-width=".8"/><path d="M14,4l3,1M30,3l4,1" stroke="#7a4a20" stroke-width="1.2" opacity=".7"/><path d="M-13,-5H2V13H-13Z" fill="#6a4424" stroke="#2a1a0a" stroke-width=".8"/><ellipse cx="-5.5" cy="4" rx="3" ry="4.2" fill="#2a1a0a"/></g>
+</g>
+
+<!-- ===== Birkensperre ===== -->
+<g id="r-sperre" class="room">
+  <g class="interactive painted" data-id="sHolz"><path class="hit" d="M240,330L380,306L560,310L660,330L668,356L620,404L300,380L238,366Z"/></g>
+  <g class="interactive painted" data-id="sSumpf2"><path id="hSumpf2" class="hit"/></g>
+  <g class="interactive painted" data-id="sZG3"><path id="hZG3" class="hit"/></g>
+</g>
+
+<!-- ===== Sumpf der ertrunkenen Huren ===== -->
+<g id="r-sumpf" class="room">
+  <g class="interactive" data-id="slot1" transform="translate(460,338) scale(.8)"><image id="slot1img" class="nymg" x="-40" y="-100" width="80" height="110"/></g>
+  <g class="interactive" data-id="slot0" transform="translate(290,384) scale(1.08)"><image id="slot0img" class="nymg" x="-40" y="-100" width="80" height="110"/></g>
+  <g class="interactive" data-id="slot2" transform="translate(604,390) scale(-1.14,1.14)"><image id="slot2img" class="nymg" x="-40" y="-100" width="80" height="110"/></g>
+  <g class="interactive painted" data-id="sZG2"><path id="hZG2" class="hit"/></g>
+  <g class="ffly" pointer-events="none" fill="#e8ff90"><circle cx="210" cy="300" r="1.4"/><circle cx="380" cy="270" r="1.2" style="animation-delay:-1s"/><circle cx="530" cy="290" r="1.5" style="animation-delay:-2s"/><circle cx="660" cy="310" r="1.3" style="animation-delay:-.5s"/><circle cx="330" cy="340" r="1.2" style="animation-delay:-1.6s"/><circle cx="700" cy="260" r="1.1" style="animation-delay:-2.4s"/></g>
+</g>
+
+<!-- ===== Petja ===== -->
+<g id="petja" class="interactive" data-id="petja">
+  <ellipse cy="1" rx="30" ry="5" fill="#1a2a0a" opacity=".4"/>
+  <image id="petimg" class="spr" x="-48" y="-254" width="96" height="258"/>
+</g>
+</svg>
+
+<div id="fade"></div>
+<div id="label"></div>
+<div id="inv"><span>Taschen:</span><div id="slots"></div></div>
+<div id="box"><b id="who"></b> <span id="txt"></span></div>
+<div id="start"><h1>PETJA</h1><h2>und der Verfluchte Birkenwald</h2><button disabled>Wald wird gemalt...</button></div>
+</div>
+<script src="game.js"></script>
+</body>
+</html>
