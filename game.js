@@ -1003,56 +1003,79 @@ function interview(nd){const idx=NYMPHS.indexOf(nd),tr=NT[nd.id];const qs=['Kann
     closeO();FL.rekrut=1;delete cache.banja;say([['P','Nastja... hättest du Lust auf einen Job? Tanzen. Musik. Wodka. Ein Ort ohne Frösche.'],['NA','Ein Job? Mit Bühne und Publikum? Süßer, ich bin schon unterwegs. Ich wring nur noch die Haare aus.'],['P','Das Banja ist hinterm Irrwald. Sag, Petja schickt dich.'],['P','...Das wird Madame freuen. Und mich hoffentlich auch.']])}}
 // ================= Banja-Show & Lounge =================
 const DANCER = `<g stroke="#1a0a10" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round">
-<!-- Beine & Schuhe -->
-<path d="M-14,0L-12,-8L-6,-8L-5,0ZM6,0L6,-8L12,-8L14,0Z" fill="#111"/>
-<path d="M-13,-8L-11,-70L-3,-70L-6,-8ZM6,-8L3,-70L11,-70L13,-8Z" fill="#222"/>
 
-<!-- Unterkörper / Haut -->
-<path d="M-15,-70L-12,-112L12,-112L15,-70Z" fill="#f4dccb"/>
-<path d="M-14,-112L-12,-160C-8,-164 8,-164 12,-160L14,-112Z" fill="#f4dccb"/>
 
-<!-- Lange blonde Haarsträhnen als untere Bedeckung für den Intimbereich -->
-<path d="M-14,-130C-20,-90 -22,-50 -15,-20C-8,-40 -4,-80 0,-110C4,-80 8,-40 15,-20C22,-50 20,-90 14,-130Z" fill="#c4ac7c"/>
+<!-- Kompletter Körper: Breiterer Oberkörper, breitere untere Rippen, schmale Taille, breite Hüften & getrennte Beine -->
+<path d="M-12,-10
+         C-15,-30 -21,-50 -18,-70
+         C-16,-85 -13,-105 -11,-120
+         C-10,-132 -18,-148 -17,-158
+         C-16,-165 -5,-167 -5,-172
+         L5,-172
+         C5,-167 16,-165 17,-158
+         C18,-148 10,-132 11,-120
+         C13,-105 16,-85 18,-70
+         C21,-50 15,-30 12,-10
+         L4,-10
+         C3,-30 5,-50 3,-68
+         C2,-72 -2,-72 -3,-68
+         C-5,-50 -3,-30 -4,-10
+         Z" fill="#f4dccb"/>
+
+<!-- Bauch & Nabel -->
+<circle cx="0" cy="-110" r="1" fill="#c89880" stroke="none"/>
+<path d="M-3,-112C-1,-110 1,-110 3,-112" fill="none" stroke="#d8a890" stroke-width="0.7"/>
+
+<!-- BLATT ALS INTIMBEDECKUNG -->
+<g fill="#2d8a3d" stroke="#1a4d22" stroke-width="0.9">
+  <path d="M0,-83C-6,-50 -9,-63 0,-53C9,-63 6,-76 0,-83Z"/>
+  <path d="M0,-80L0,-57" stroke="#1a4d22" stroke-width="0.6" fill="none"/>
+</g>
+
+<!-- Brüste (an den breiteren Brustkorb angepasst) -->
+<circle cx="-7.5" cy="-143" r="8.5" fill="#eed0bb" stroke="#a06850" stroke-width="1.1"/>
+<circle cx="7.5" cy="-143" r="8.5" fill="#eed0bb" stroke="#a06850" stroke-width="1.1"/>
+<!-- Schatten unter der Brust -->
+<path d="M-13,-134C-10,-131 -5,-131 -2,-134" fill="none" stroke="#d09880" stroke-width="0.8"/>
+<path d="M2,-134C5,-131 10,-131 13,-134" fill="none" stroke="#d09880" stroke-width="0.8"/>
 
 <!-- Arme in Pose -->
-<path d="M-15,-160C-20,-166 -22,-170 -20,-174L-12,-172Z" fill="#f4dccb"/>
-<path d="M15,-160C20,-166 22,-170 20,-174L12,-172Z" fill="#f4dccb"/>
-<path d="M-20,-172C-30,-160 -32,-140 -24,-120L-17,-122C-22,-140 -20,-156 -14,-166Z" fill="#f4dccb"/>
-<path d="M20,-172C30,-182 34,-200 30,-214L24,-212C26,-200 22,-186 14,-176Z" fill="#f4dccb"/>
+<path d="M-17,-158C-22,-164 -24,-168 -22,-172L-14,-170Z" fill="#f4dccb"/>
+<path d="M17,-158C22,-164 24,-168 22,-172L14,-170Z" fill="#f4dccb"/>
+<path d="M-22,-170C-32,-158 -34,-138 -26,-118L-19,-120C-24,-138 -22,-154 -16,-164Z" fill="#f4dccb"/>
+<path d="M22,-170C32,-180 36,-198 32,-212L26,-210C28,-198 24,-184 16,-174Z" fill="#f4dccb"/>
 
-<!-- Federspreizer / Accessoire in der Hand -->
+<!-- Federspreizer in der Hand -->
 <g fill="#fff0f8" stroke="#c8a0b8" stroke-width=".8">
-  <ellipse cx="22" cy="-238" rx="7" ry="20" transform="rotate(-30 22 -238)"/>
-  <ellipse cx="32" cy="-240" rx="7" ry="21"/>
-  <ellipse cx="42" cy="-236" rx="7" ry="20" transform="rotate(30 42 -236)"/>
+  <ellipse cx="26" cy="-236" rx="7" ry="20" transform="rotate(-30 26 -236)"/>
+  <ellipse cx="36" cy="-238" rx="7" ry="21"/>
+  <ellipse cx="46" cy="-234" rx="7" ry="20" transform="rotate(30 46 -234)"/>
 </g>
-<path d="M10,-208C16,-222 20,-226 22,-230" stroke="#fff0f8" stroke-width="3"/>
+<path d="M14,-206C20,-220 24,-224 26,-228" stroke="#fff0f8" stroke-width="3"/>
 
-<!-- VOLLSTÄNDIGE BEDECKUNG DER BRUST MIT BLONDEN HAAREN (Keine Haut/Brüste sichtbar) -->
+<!-- HAARSTRÄHNEN (Nahtlos am Kopf angebunden & über den Brüsten) -->
 <g fill="#c4ac7c">
-  <path d="M-16,-186C-20,-160 -18,-130 -12,-105C-8,-125 -6,-150 -5,-175Z"/>
-  <path d="M16,-186C20,-160 18,-130 12,-105C8,-125 6,-150 5,-175Z"/>
-  <!-- Dichter Vorhang über der Mitte -->
-  <path d="M-10,-175C-14,-150 -12,-120 -4,-110C0,-130 2,-150 4,-175Z"/>
-  <path d="M10,-175C14,-150 12,-120 4,-110C0,-130 -2,-150 -4,-175Z"/>
+  <path d="M-12,-208C-17,-183 -13,-158 -8,-143C-4,-143 -6,-173 -10,-208Z"/>
+  <path d="M12,-208C17,-183 13,-158 8,-143C4,-143 6,-173 10,-208Z"/>
+  <path d="M-18,-184C-22,-168 -20,-148 -16,-133C-14,-148 -14,-168 -16,-178Z" fill="#b49c6c"/>
+  <path d="M18,-184C22,-168 20,-148 16,-133C14,-148 14,-168 16,-178Z" fill="#b49c6c"/>
 </g>
 
-<!-- Hals & Kopf -->
-<path d="M-5,-172L-5,-178L5,-178L5,-172Z" fill="#f4dccb"/>
-<ellipse cx="0" cy="-194" rx="13" ry="16" fill="#f4dccb"/>
+<!-- Kopf -->
+<ellipse cx="0" cy="-192" rx="13" ry="16" fill="#f4dccb"/>
 
-<!-- Blonde Hauptfrisur / Haarkranz -->
-<path d="M-15,-196C-18,-212 -6,-216 0,-216C8,-216 18,-212 15,-196C12,-206 6,-210 0,-208C-6,-210 -12,-206 -15,-196Z" fill="#c4ac7c"/>
-<path d="M-14,-206C-8,-210 8,-210 14,-206" fill="none" stroke="#2e5090" stroke-width="2"/>
+<!-- Blonde Hauptfrisur & Stirnband -->
+<path d="M-15,-194C-18,-210 -6,-214 0,-214C8,-214 18,-210 15,-194C12,-204 6,-208 0,-206C-6,-208 -12,-204 -15,-194Z" fill="#c4ac7c"/>
+<path d="M-14,-204C-8,-208 8,-208 14,-204" fill="none" stroke="#2e5090" stroke-width="2"/>
 
-<!-- Gesichtszüge, Augen, Make-up -->
-<path d="M-8,-196C-6,-198 -3,-198 -2,-196M2,-196C3,-198 6,-198 8,-196" fill="none"/>
-<circle cx="-5" cy="-194.5" r="1.2" fill="#3a6a9a" stroke="none"/>
-<circle cx="5" cy="-194.5" r="1.2" fill="#3a6a9a" stroke="none"/>
-<path d="M0,-192L-1,-187L1,-187" fill="none" stroke-width=".7"/>
-<path d="M-4,-183C-2,-185 2,-185 4,-183C2,-181 -2,-181 -4,-183Z" fill="#c8204a" stroke-width=".7"/>
-<ellipse cx="-8" cy="-188" rx="2.6" ry="1.6" fill="#f0a0a0" stroke="none" opacity=".5"/>
-<ellipse cx="8" cy="-188" rx="2.6" ry="1.6" fill="#f0a0a0" stroke="none" opacity=".5"/>
+<!-- Gesichtszüge -->
+<path d="M-8,-194C-6,-196 -3,-196 -2,-194M2,-194C3,-196 6,-196 8,-194" fill="none"/>
+<circle cx="-5" cy="-192.5" r="1.2" fill="#3a6a9a" stroke="none"/>
+<circle cx="5" cy="-192.5" r="1.2" fill="#3a6a9a" stroke="none"/>
+<path d="M0,-190L-1,-185L1,-185" fill="none" stroke-width=".7"/>
+<path d="M-4,-181C-2,-183 2,-183 4,-181C2,-179 -2,-179 -4,-181Z" fill="#c8204a" stroke-width=".7"/>
+<ellipse cx="-8" cy="-186" rx="2.6" ry="1.6" fill="#f0a0a0" stroke="none" opacity=".5"/>
+<ellipse cx="8" cy="-186" rx="2.6" ry="1.6" fill="#f0a0a0" stroke="none" opacity=".5"/>
 </g>`;
 function paintLounge(){c.fillStyle='#1a0408';c.fillRect(0,0,W,H);let x=lay();
   for(let X=0;X<800;X+=20){const g=x.createLinearGradient(X,0,X+20,0);g.addColorStop(0,'#3a0610');g.addColorStop(.5,'#6a1020');g.addColorStop(1,'#3a0610');x.fillStyle=g;x.fillRect(X,0,20,330)}
