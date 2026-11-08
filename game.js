@@ -584,7 +584,7 @@ function paintUfer(){const o=S0;sky(o);far(o);ground(o);
   x=lay();pierSide(x);wreck(x,600,350);deadTree(x,730,356,240,8,'#1e1a14');
   [[440,352,14,34],[500,356,12,30],[690,362,18,44],[770,364,14,40],[220,358,10,28]].forEach(a=>reeds(x,...a));rock(x,380,380,12,1);rock(x,560,420,16,1);rock(x,250,440,10,1);
   shadowAt(x,700,452,20);ell(x,700,446,18,7,[24,24,24]);ell(x,700,446,9,3.5,[60,70,60]);bucket(x,320,402);bone(x,470,460,.3,10);
-  sign(x,196,400,1.2,[[-1,0,'Unter den Pier','hUP']]);sign(x,110,484,1.7,[[-1,0,'Zum Fischerhaus','hFH']]);put(x);
+  sign(x,196,400,1.2,[[-1,0,'Unter den Pier','hUP']]);sign(x,676,470,1.3,[[1,0,'Zur Gnomsiedlung','hGN']]);sign(x,110,484,1.7,[[-1,0,'Zum Fischerhaus','hFH']]);put(x);
   x=lay();reeds(x,640,500,24,80,1);reeds(x,780,500,20,90,1);grass(x,600,470,515,2.4,1);bush(x,30,500,40,1);put(x,1);rays(o,[[.4,.06]]);grade(o)}
 function paintUnter(){const o=S0;let g=c.createLinearGradient(0,0,0,500);g.addColorStop(0,'#0c0a08');g.addColorStop(.4,'#1c2624');g.addColorStop(.75,'#0e1614');g.addColorStop(1,'#1a1612');c.fillStyle=g;c.fillRect(0,0,W,H);
   let x=lay();const wg=x.createLinearGradient(0,150,0,400);wg.addColorStop(0,'#5a7470');wg.addColorStop(.5,'#22363a');wg.addColorStop(1,'#0c1618');x.fillStyle=wg;x.fillRect(0,150,800,250);
@@ -768,6 +768,75 @@ function tableGame(){if($('#fg'))return;const cv2=document.createElement('canvas
     x.font='bold 13px Arial';x.fillText(['Schritt 1/4: Filter ab','Schritt 2/4: Aufrollen','Schritt 3/4: Papier weg','Schritt 4/4: Sortieren – '+done+' / 9 Pilze'][ph],400,486);x.textAlign='right';x.fillStyle='rgba(255,255,255,.6)';x.fillText('[Später]',790,492);
     requestAnimationFrame(frame)}
   requestAnimationFrame(frame)}
+// ================= Gnomsiedlung & Höhle =================
+function gHut(x,X,B,s){const w=110*s,h=120*s;shadowAt(x,X,B+3,w*1.2,.55);const p=new Path2D(`M${X-w},${B}C${X-w},${B-h*.9} ${X-w*.5},${B-h} ${X},${B-h}C${X+w*.5},${B-h} ${X+w},${B-h*.9} ${X+w},${B}Z`);
+  x.save();x.clip(p);const g=x.createLinearGradient(X-w,0,X+w,0);g.addColorStop(0,'#5a4430');g.addColorStop(.6,'#8a6a48');g.addColorStop(1,'#4a3424');x.fillStyle=g;x.fill(p);
+  for(let i=0;i<w*1.2;i++)ell(x,X+(R()-.5)*w*2,B-R()*h*.5,2+R()*4*s,1.5+R()*3*s,mix([90,80,70],[150,140,120],R()),.8);
+  for(let i=0;i<w*4;i++){const a=R()*3.14,r=Math.sqrt(R());ell(x,X-Math.cos(a)*w*r,B-h*.45-Math.sin(a)*h*.6*r,1+R()*2,1+R()*3,mix([50,90,30],[120,150,60],R()),.9,R())}x.restore();
+  x.strokeStyle='rgba(20,30,10,.7)';x.lineWidth=1;x.stroke(p);for(let i=0;i<30;i++){const t=R(),Xx=X-w+t*w*2;x.strokeStyle='#4a7a2a';x.beginPath();x.moveTo(Xx,B-h*Math.sin(t*3.14)*.95);x.lineTo(Xx+(R()-.5)*4,B-h*Math.sin(t*3.14)*.95-4-R()*6*s);x.stroke()}
+  const dw=26*s,dh=56*s;x.fillStyle='#2a1a0c';x.beginPath();x.arc(X-w*.25,B-dh+dw,dw+3,3.14,0);x.lineTo(X-w*.25+dw+3,B);x.lineTo(X-w*.25-dw-3,B);x.fill();x.save();x.beginPath();x.arc(X-w*.25,B-dh+dw,dw,3.14,0);x.lineTo(X-w*.25+dw,B);x.lineTo(X-w*.25-dw,B);x.clip();
+  for(let k=-dw;k<dw;k+=7*s)wood(x,X-w*.25+k,B-dh-2,7*s,dh+2,1);x.restore();x.strokeStyle='#8a8a80';x.lineWidth=1.4*s;x.beginPath();x.arc(X-w*.25+dw*.5,B-dh*.45,4*s,0,7);x.stroke();
+  const wg=x.createRadialGradient(X+w*.4,B-h*.55,1,X+w*.4,B-h*.55,13*s);wg.addColorStop(0,'#ffe0a0');wg.addColorStop(1,'#b0601c');x.fillStyle=wg;x.beginPath();x.arc(X+w*.4,B-h*.55,12*s,0,7);x.fill();x.strokeStyle='#3a2a18';x.lineWidth=3*s;x.stroke();x.beginPath();x.moveTo(X+w*.4-12*s,B-h*.55);x.lineTo(X+w*.4+12*s,B-h*.55);x.stroke();
+  x.save();x.globalCompositeOperation='lighter';dab(x,X+w*.4,B-h*.55,30*s,[255,170,70],.3);x.restore();
+  x.fillStyle='#6a6458';x.beginPath();x.moveTo(X+w*.2,B-h*.9);x.lineTo(X+w*.24,B-h*1.25);x.lineTo(X+w*.38,B-h*1.28);x.lineTo(X+w*.36,B-h*.8);x.fill();for(let i=0;i<10;i++)dab(x,X+w*.31+i*3,B-h*1.3-i*8,5+i*1.5,[180,180,180],.14)}
+function cabbage(x,X,Y,r){shadowAt(x,X,Y+2,r*1.2,.5);for(let i=0;i<9;i++){const a=i/9*6.28;ell(x,X+Math.cos(a)*r*.55,Y-r*.5+Math.sin(a)*r*.25,r*.6,r*.42,mix([70,120,50],[150,190,110],R()),.95,a)}ell(x,X,Y-r*.6,r*.5,r*.4,[180,210,140]);x.strokeStyle='rgba(40,70,30,.6)';x.lineWidth=.8;for(let k=0;k<5;k++){x.beginPath();x.moveTo(X,Y-r*.6);x.lineTo(X+(R()-.5)*r*1.6,Y-r*.2);x.stroke()}}
+function cliff(x){const p=new Path2D('M590,420C600,330 610,240 650,170C690,110 760,80 830,70L830,420Z');x.save();x.clip(p);const g=x.createLinearGradient(590,0,830,0);g.addColorStop(0,'#6a645a');g.addColorStop(1,'#3a3630');x.fillStyle=g;x.fill(p);
+  for(let i=0;i<500;i++)ell(x,590+R()*240,70+R()*350,4+R()*16,3+R()*10,mix([60,56,50],[140,132,118],R()),.35,R());for(let i=0;i<40;i++){x.strokeStyle='rgba(20,18,14,.6)';x.lineWidth=1+R();const X=600+R()*220,Y=100+R()*300;x.beginPath();x.moveTo(X,Y);x.lineTo(X+(R()-.5)*30,Y+10+R()*30);x.stroke()}
+  for(let i=0;i<160;i++)ell(x,600+R()*220,80+R()*200,1+R()*3,1+R()*2,mix([50,80,30],[110,140,50],R()),.8);
+  const m=new Path2D('M650,412L652,330C656,280 690,252 712,252C736,252 770,282 772,330L774,412Z');const mg=x.createRadialGradient(712,330,10,712,340,90);mg.addColorStop(0,'#000');mg.addColorStop(1,'#1a1612');x.fillStyle=mg;x.fill(m);x.strokeStyle='#2a2620';x.lineWidth=6;x.stroke(m);
+  x.fillStyle='#4a453c';for(let k=0;k<7;k++){const X=664+k*16;x.beginPath();x.moveTo(X-5,270+Math.abs(k-3)*-6+18);x.lineTo(X,300+Math.abs(k-3)*-6);x.lineTo(X+5,270+Math.abs(k-3)*-6+18);x.fill()}x.restore();
+  [[636,372],[790,372]].forEach(([X,Y])=>{wood(x,X-2,Y,4,40,1);x.save();x.globalCompositeOperation='lighter';dab(x,X,Y-8,40,[255,130,40],.4);dab(x,X,Y-6,8,[255,220,120],.9);x.restore()})}
+function paintGnome(){const o=S0;sky(o);far(o);ground(o);
+  let x=lay();bgRow(x,30,206,250,12,22,0);[[120,240,6,0,96],[360,236,5,1,104],[520,240,5,-1,100]].forEach(b=>birch(x,...b));put(x,.6);
+  x=lay();grass(x,7000,o.hz,500,1);details(x);dirt(x,30);put(x);
+  x=lay();cliff(x);gHut(x,450,282,.55);gHut(x,190,304,.75);x.fillStyle='#5a3a1c';x.beginPath();x.ellipse(240,392,22,8,0,0,7);x.fill();wood(x,220,374,40,18,1);ell(x,240,374,20,6,[200,160,110]);
+  [[60,440,22],[120,452,26],[178,436,20],[90,404,16],[150,410,18]].forEach(a=>cabbage(x,...a));fence2(x,30,240,470,null);
+  x.strokeStyle='#3a2a18';x.lineWidth=1;x.beginPath();x.moveTo(300,320);x.quadraticCurveTo(350,330,400,316);x.stroke();[[312,[200,60,50],14,22],[336,[60,110,60],20,14],[364,[220,200,120],12,26]].forEach(([X,k,w,h])=>{const Y=322+Math.sin((X-300)/100*3.14)*6;x.fillStyle=rgba(k);x.fillRect(X,Y,w,h);x.strokeStyle='rgba(20,20,20,.6)';x.strokeRect(X,Y,w,h)});
+  [[300,322,58],[400,316,56]].forEach(([X,Y,h])=>wood(x,X-2,Y-4,4,h,1));bucket(x,520,350);rock(x,560,440,12,1);shrooms(x,470,380,5);
+  sign(x,604,412,1.2,[[1,0,'Zur Höhle','hHO']]);sign(x,110,486,1.7,[[-1,0,'Zum Ufer','hZU']]);put(x);
+  x=lay();grass(x,600,470,515,2.4,1);bush(x,30,500,40,1);put(x,1);rays(o,[[.5,.06],[.8,.04]]);grade(o)}
+function paintHoehle(){const o=S0;c.fillStyle='#0a0908';c.fillRect(0,0,W,H);
+  let x=lay();let g=x.createRadialGradient(420,320,40,420,300,520);g.addColorStop(0,'#6e6450');g.addColorStop(1,'#16120e');x.fillStyle=g;x.fillRect(0,0,800,500);
+  for(let i=0;i<700;i++)ell(x,R()*800,R()*400,4+R()*20,3+R()*12,mix([30,28,24],[110,100,86],R()),.25,R());
+  const gm=new Path2D('M370,330C372,270 396,236 420,236C446,236 470,270 472,330Z');x.fillStyle='#000';x.fill(gm);
+  for(let i=0;i<26;i++){const X=R()*800,L=20+R()*80,w=6+R()*14;const sg=x.createLinearGradient(X,0,X+w,0);sg.addColorStop(0,'#2a2620');sg.addColorStop(.5,'#6a6252');sg.addColorStop(1,'#1a1814');x.fillStyle=sg;x.beginPath();x.moveTo(X-w/2,-5);x.lineTo(X+w/2,-5);x.lineTo(X,L);x.fill()}
+  const fl=new Path2D('M-10,500L-10,380C140,370 300,384 420,376C560,368 700,384 810,372L810,500Z');x.fillStyle='#2a261e';x.fill(fl);x.save();x.clip(fl);for(let i=0;i<300;i++)ell(x,R()*800,370+R()*130,2+R()*8,1+R()*3,mix([40,36,30],[100,92,80],R()),.6);x.restore();
+  x.fillStyle='#0e1a1e';x.beginPath();x.ellipse(430,392,130,16,0,0,7);x.fill();for(let i=0;i<40;i++){x.strokeStyle=`rgba(120,200,220,${.05+R()*.15})`;x.beginPath();const X=310+R()*240,Y=384+R()*16;x.moveTo(X,Y);x.lineTo(X+10+R()*20,Y);x.stroke()}
+  [[90,420],[150,436],[120,404],[60,446]].forEach(([X,Y])=>{for(let k=0;k<4;k++){const h=8+R()*14,px=X+(R()-.5)*30;x.strokeStyle='#bfe8f0';x.lineWidth=2;x.beginPath();x.moveTo(px,Y);x.lineTo(px,Y-h);x.stroke();ell(x,px,Y-h,6,3,[140,230,255])}});
+  [[640,420],[680,432],[720,410],[760,428]].forEach(([X,Y])=>{for(let k=0;k<3;k++){const h=20+R()*30,a=(R()-.5)*.6;x.save();x.translate(X+k*8,Y);x.rotate(a);x.fillStyle=rgba(mix([150,80,200],[220,160,255],R()),.9);x.beginPath();x.moveTo(-5,0);x.lineTo(-4,-h*.8);x.lineTo(0,-h);x.lineTo(4,-h*.8);x.lineTo(5,0);x.fill();x.fillStyle='rgba(255,255,255,.4)';x.fillRect(-2,-h*.8,1.5,h*.6);x.restore()}});
+  for(let i=0;i<14;i++){const X=R()*800,h=14+R()*40;x.fillStyle='#3a342a';x.beginPath();x.moveTo(X-8,384+R()*10);x.lineTo(X,384-h);x.lineTo(X+8,384+R()*10);x.fill()}
+  bone(x,520,450,.3,16);skull(x,560,456,1.3);wood(x,240,460,40,6,0);put(x);
+  x=lay();x.globalCompositeOperation='lighter';dab(x,110,420,140,[60,180,220],.6);dab(x,700,410,150,[160,70,220],.6);dab(x,420,300,80,[40,40,60],.2);put(x,8,'screen',.9);
+  x=lay();sign(x,110,486,1.7,[[-1,0,'Zum Ausgang','hAU']]);put(x);
+  const vg=c.createRadialGradient(420,330,100,420,300,540);vg.addColorStop(0,'rgba(0,0,0,0)');vg.addColorStop(1,'rgba(0,0,0,.5)');c.fillStyle=vg;c.fillRect(0,0,W,H)}
+const GNOM1=`<g stroke="#1a1208" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round">
+<path d="M60,-150L28,-222" stroke="#6a4a24" stroke-width="5"/><path d="M8,-228C24,-240 46,-236 58,-224L52,-216C42,-226 26,-228 12,-220Z" fill="#8a8a90"/>
+<path d="M-30,0L-30,-18L-6,-18L-4,0Z" fill="#3a2a1a"/><path d="M4,0L6,-18L30,-18L34,0Z" fill="#3a2a1a"/>
+<path d="M-26,-18L-24,-52L-6,-52L-8,-18Z" fill="#5a4a6a"/><path d="M8,-18L6,-52L24,-52L26,-18Z" fill="#5a4a6a"/>
+<path d="M-44,-50C-54,-90 -50,-140 -32,-160L32,-160C50,-140 54,-90 44,-50Z" fill="#8a3a2a"/><path d="M-30,-156C-36,-120 -34,-80 -28,-56L28,-56C34,-80 36,-120 30,-156Z" fill="#6a4a2a"/>
+<path d="M-46,-66L46,-66L46,-56L-46,-56Z" fill="#2a1a0a"/><path d="M-8,-68H8V-54H-8Z" fill="#d8b040"/>
+<path d="M-40,-150C-62,-130 -64,-100 -58,-78L-44,-76C-46,-98 -42,-120 -32,-136Z" fill="#8a3a2a"/><ellipse cx="-52" cy="-74" rx="10" ry="9" fill="#e0a080"/>
+<path d="M38,-152C58,-144 64,-160 56,-178L44,-172C46,-162 40,-154 32,-144Z" fill="#8a3a2a"/><ellipse cx="50" cy="-178" rx="9" ry="8" fill="#e0a080"/>
+<ellipse cx="-30" cy="-192" rx="8" ry="12" fill="#e0a080"/><ellipse cx="30" cy="-192" rx="8" ry="12" fill="#e0a080"/>
+<ellipse cx="0" cy="-192" rx="30" ry="30" fill="#e8aa86"/>
+<path d="M-36,-180C-46,-140 -30,-98 0,-88C30,-98 46,-140 36,-180C22,-168 -22,-168 -36,-180Z" fill="#b8642a"/><path d="M-20,-150L-16,-110M0,-152V-96M20,-150L16,-110M-28,-162L-24,-130M28,-162L24,-130" fill="none" stroke="#8a4a1a" stroke-width="1"/>
+<path d="M-22,-170C-10,-164 10,-164 22,-170C16,-158 -16,-158 -22,-170Z" fill="#a8541a"/>
+<ellipse cx="0" cy="-180" rx="17" ry="15" fill="#d86a5a"/><ellipse cx="-6" cy="-186" rx="5" ry="3.5" fill="#f0a090" stroke="none"/><ellipse cx="-6" cy="-172" rx="3" ry="2" fill="#7a2a2a" stroke="none"/><ellipse cx="6" cy="-172" rx="3" ry="2" fill="#7a2a2a" stroke="none"/>
+<circle cx="-13" cy="-200" r="2.6" fill="#1a1208"/><circle cx="13" cy="-200" r="2.6" fill="#1a1208"/><path d="M-22,-206C-16,-212 -8,-210 -5,-205M5,-205C8,-210 16,-212 22,-206" fill="none" stroke="#b8642a" stroke-width="4"/>
+<path d="M-32,-206C-30,-240 -10,-280 20,-292C30,-294 40,-288 34,-282C20,-276 16,-250 32,-206Z" fill="#3a5a2a"/><path d="M-34,-210C-12,-204 12,-204 34,-210L34,-202C12,-196 -12,-196 -34,-202Z" fill="#2a4020"/></g>`;
+const GNOM2=`<g stroke="#1a1208" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round">
+<path d="M-30,0L-30,-12L-8,-12L-6,0Z" fill="#2a2018"/><path d="M8,0L8,-12L30,-12L32,0Z" fill="#2a2018"/>
+<path d="M-28,-12L-26,-44L-10,-44L-10,-12Z" fill="#5a4030"/><path d="M28,-12L26,-44L10,-44L10,-12Z" fill="#5a4030"/>
+<path d="M-32,-58L-4,-58L-6,-42L-32,-42Z" fill="#5a4030"/><path d="M32,-58L4,-58L6,-42L32,-42Z" fill="#5a4030"/>
+<path d="M-40,-56C-46,-90 -42,-120 -28,-136L28,-136C42,-120 46,-90 40,-56Z" fill="#4a5a7a"/><path d="M-24,-80h10v10h-10z" fill="#6a7a4a"/>
+<ellipse cx="-26" cy="-58" rx="9" ry="7" fill="#e0a080"/><ellipse cx="26" cy="-58" rx="9" ry="7" fill="#e0a080"/>
+<ellipse cx="-26" cy="-164" rx="7" ry="10" fill="#e0a080"/><ellipse cx="26" cy="-164" rx="7" ry="10" fill="#e0a080"/>
+<ellipse cx="0" cy="-164" rx="26" ry="26" fill="#e8aa86"/>
+<path d="M-30,-152C-38,-110 -20,-64 0,-56C20,-64 38,-110 30,-152C16,-144 -16,-144 -30,-152Z" fill="#d8d4cc"/><path d="M-14,-130L-10,-80M0,-132V-64M14,-130L10,-80" fill="none" stroke="#a8a49c" stroke-width="1"/>
+<path d="M-8,-172C-12,-150 -8,-124 4,-118C14,-120 14,-136 10,-150C8,-162 8,-168 6,-174Z" fill="#d27a66"/><ellipse cx="0" cy="-130" rx="4" ry="3" fill="#f0a090" stroke="none"/>
+<path d="M-16,-172C-13,-170 -9,-170 -6,-172M8,-173C11,-171 15,-171 18,-173" fill="none" stroke-width="1.6"/><path d="M-20,-178L-6,-176M8,-177L22,-179" stroke="#f0f0e8" stroke-width="3.4"/>
+<path d="M12,-140L36,-132" stroke="#5a3a1c" stroke-width="2.6"/><path d="M32,-144h8v12h-8z" fill="#5a3a1c"/><circle cx="40" cy="-152" r="3" fill="#ccc" stroke="none" opacity=".5"/><circle cx="44" cy="-162" r="4" fill="#ccc" stroke="none" opacity=".35"/>
+<path d="M-28,-176C-24,-206 0,-226 30,-220C44,-218 52,-206 46,-198C38,-208 24,-206 26,-176Z" fill="#a82a20"/><path d="M-30,-180C-10,-174 10,-174 28,-180L28,-172C10,-166 -10,-166 -30,-172Z" fill="#7a1a14"/></g>`;
 // ================= Schauplätze =================
 const BASE={seed:3,cov:.52,cs:[156,160,175],cl:[258,262,268],sunc:[255,252,228],sunr:60,band:[250,620],bc:[[88,134,112],[140,176,160]],lit:[[84,140,48],[150,190,72]],dark:[[20,50,26],[46,84,40]],haze:[196,218,228],trunks:1,
   g:[[44,92,20],[116,168,40],[176,190,72]],sand:[[146,114,68],[226,200,146]],gh:[176,204,178],dapple:.2,b0:[[36,80,18],[70,118,28]],b1:[[120,172,46],[214,222,112]],d0:[[12,34,10],[26,60,16]],d1:[[36,80,22],[70,120,36]],
@@ -805,6 +874,11 @@ const SCN={
    pe:segPath([[400,512,170,420,420,70],[420,420,70,440,330,24],[440,330,24,452,250,6],[430,446,50,620,420,32],[620,420,32,840,398,24]]),gtop:X=>201+Math.pow(Math.abs(X-440)/440,1.6)*14,k:1.05/286,x0:60,x1:760,ymin:()=>FL.cut?340:398,ymax:494,paint:paintSperre,
    intro:[['P','Na toll. Alles voller Birken. Als hätte sie jemand absichtlich hier hingeworfen.'],['P','Und links und rechts nur Wald. Dicht wie eine Mauer. Und dunkel wie im Arsch eines Bären.'],['P','Ohne Säge komm ich da nicht durch.']]}
 };
+SCN.gnome={...BASE,seed:113,hz:200,sun:[300,120],sunr:50,top:[60,90,140],hor:[230,200,150],sunc:[255,220,160],cs:[120,110,120],cl:[240,220,200],cov:.45,masses:[[-30,600,40,70]],spruce:1,band:[0,600],nfl:120,gr:['rgba(255,200,130,.35)','rgba(40,50,90,.35)'],vig:.5,raya:.3,rayc:[255,220,160],
+  pe:segPath([[-30,476,50,300,440,40],[300,440,40,600,420,30],[600,420,30,712,406,20],[300,440,30,190,314,10],[400,436,20,440,292,8]]),gtop:X=>201+Math.pow(Math.abs(X-400)/400,1.6)*12,k:1/270,x0:40,x1:760,ymin:x=>x>590?416:350,ymax:494,paint:paintGnome,
+  intro:[['P','Eine Siedlung. Runde Hütten, Riesenkohl... und da stehen Gnome.'],['P','Große Gnome. Sehr große Gnome. Mit sehr, sehr großen Nasen.']]};
+SCN.hoehle={...BASE,seed:127,hz:200,pe:()=>null,gtop:()=>500,k:1.05/270,x0:60,x1:740,ymin:()=>420,ymax:494,paint:paintHoehle,
+  intro:[['P','Eine Höhle. Kalt, feucht und irgendwo tropft es.'],['P','Leuchtpilze, Kristalle, ein unterirdischer See. Und hinten ein Gang ins Schwarze.']]};
 SCN.innen={...BASE,seed:101,hz:200,pe:()=>null,gtop:()=>500,k:1.1/270,x0:60,x1:740,ymin:x=>x>300&&x<600?452:404,ymax:494,paint:paintInnen,gr:['rgba(255,170,90,.3)','rgba(40,20,60,.45)'],vig:.4,
   intro:[['J2','Na sieh mal an! Ein Gast durchs Fenster. Wie es sich gehört!'],['J2','Du riechst nach Rauch, Bürschchen. Und nach etwas anderem... Zeig mal, was du in der Tasche hast.'],['P','Nur einen alten Joint-Stummel.'],['J2','Leg ihn auf den Tisch und zerleg ihn. Ich fass sowas nicht an. Gicht in den Fingern.']]};
 SCN.ufer={...SCN.fischer,seed:91,pe:segPath([[-30,470,60,400,432,50],[400,432,50,830,452,60],[100,440,30,60,392,14]]),ymin:x=>x<160?396:366,x0:30,x1:770,paint:paintUfer,
@@ -907,7 +981,7 @@ function sprite(inner,[x,y,w,h],k){return new Promise(res=>{const cw=Math.round(
   im.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="${cw}" height="${ch}" viewBox="${x} ${y} ${w} ${h}">${ROUGH}<g filter="url(#r)">${inner}</g></svg>`)})}
 const petimg=$('#petimg'),petG=$('#petja'),PB=[-48,-254,96,258],K=1.15;let frames=[],talking=false,ft=0;
 const NB=[-30,-100,60,104];
-Promise.all([sprite(PET(0,0),PB,K),sprite(PET(1,0),PB,K),sprite(PET(0,1),PB,K),sprite(CROW,[-30,-26,64,44],K),sprite(FISHER,[-64,-142,134,224],K),sprite(OMA,[-46,-200,92,204],K),sprite(OPA,[-42,-170,84,174],K)]).then(([a,b,st,cr,fi,om,op])=>{$('#omaimg').setAttribute('href',om);$('#opaimg').setAttribute('href',op);sprite(BJ,[-62,-250,108,256],K).then(k=>$('#bjimg').setAttribute('href',k));sprite(KATER,[-22,-58,52,62],K).then(k=>$('#katerimg').setAttribute('href',k));document.querySelectorAll('.fishimg').forEach(e=>e.setAttribute('href',fi));frames=[a,b,st];petimg.setAttribute('href',a);$('#crowimg').setAttribute('href',cr)});
+Promise.all([sprite(PET(0,0),PB,K),sprite(PET(1,0),PB,K),sprite(PET(0,1),PB,K),sprite(CROW,[-30,-26,64,44],K),sprite(FISHER,[-64,-142,134,224],K),sprite(OMA,[-46,-200,92,204],K),sprite(OPA,[-42,-170,84,174],K)]).then(([a,b,st,cr,fi,om,op])=>{$('#omaimg').setAttribute('href',om);$('#opaimg').setAttribute('href',op);sprite(GNOM1,[-66,-296,140,300],K).then(k=>$('#gnom1img').setAttribute('href',k));sprite(GNOM2,[-52,-232,106,236],K).then(k=>$('#gnom2img').setAttribute('href',k));sprite(BJ,[-62,-250,108,256],K).then(k=>$('#bjimg').setAttribute('href',k));sprite(KATER,[-22,-58,52,62],K).then(k=>$('#katerimg').setAttribute('href',k));document.querySelectorAll('.fishimg').forEach(e=>e.setAttribute('href',fi));frames=[a,b,st];petimg.setAttribute('href',a);$('#crowimg').setAttribute('href',cr)});
 setInterval(()=>{if(!frames[2])return;ft=1-ft;petimg.setAttribute('href',frames[mv?(ft?2:0):talking?ft:0])},150);
 
 // ================= Laufen & Szenenwechsel =================
@@ -925,7 +999,7 @@ function enter(id,pos){if(cur&&cur!==id)onLocationLeave(cur);changing=true;mv=nu
   fade.style.opacity=0;changing=false;if(!seen[id]){seen[id]=1;S0.intro&&setTimeout(()=>say(S0.intro),450)}},420)}
 
 // ================= Dialog =================
-const N={P:['Petja','#ffb070'],K:['Krähe','#b0bcd8'],S:['Sonne','#ffe680'],M:['Fliegenpilz','#ff8a70'],B:['Birke','#c8e09a'],J:['Stimme aus der Hütte','#e0a0ff'],M1:['Mila','#a8e0b0'],W:['Wera','#c8b8f0'],D:['Dunja','#f0a070'],F:['Fischer Kusmitsch','#9cc8e0'],O:['Oma Dusja','#f0a0a0'],J2:['Baba Jaga','#e0a0ff'],G:['Opa Grischa','#d8c890']};
+const N={P:['Petja','#ffb070'],K:['Krähe','#b0bcd8'],S:['Sonne','#ffe680'],M:['Fliegenpilz','#ff8a70'],B:['Birke','#c8e09a'],J:['Stimme aus der Hütte','#e0a0ff'],M1:['Mila','#a8e0b0'],W:['Wera','#c8b8f0'],D:['Dunja','#f0a070'],F:['Fischer Kusmitsch','#9cc8e0'],O:['Oma Dusja','#f0a0a0'],N1:['Grobnik','#d8a060'],N2:['Opa Schnobbel','#a0b8e0'],J2:['Baba Jaga','#e0a0ff'],G:['Opa Grischa','#d8c890']};
 const box=$('#box'),who=$('#who'),txt=$('#txt');
 let queue=[],typing=null,full='',busy=false,done=null;
 function say(lines,cb){queue=lines.slice();done=cb;busy=true;box.style.display='block';next()}
@@ -1062,6 +1136,25 @@ const T={
   regal:{n:'Regal',at:[640,420],l:[[['P','Gläser mit Kräutern, Augen und etwas, das mir zuwinkt.'],['P','Und zwei Schädel. Hoffentlich keine Stadtkinder.']]]},
   besen:{n:'Besen',at:[700,450],l:[[['P','Ihr Besen. Ich glaub, der fliegt. Ich setz mich lieber nicht drauf.']]]},
   fenster:{n:'Fenster (raus)',at:[300,430],go:'huette',to:[600,474]},
+  sGN:{n:'Schild: Zur Gnomsiedlung',at:[700,474],fn(){walkTo(770,458,()=>enter('gnome',[60,472]))}},
+  sZU:{n:'Schild: Zum Ufer',at:[130,488],go:'ufer',to:[740,456]},
+  sHO:{n:'Schild: Zur Höhle',at:[640,428],fn(){walkTo(712,418,()=>enter('hoehle',[400,486]))}},
+  sAU:{n:'Schild: Zum Ausgang',at:[130,488],go:'gnome',to:[640,428]},
+  gnom1:{n:'Grobnik',at:[300,462],l:[
+    [['P','Hallo! Sind Sie... ein Gnom?'],['N1','GROSS-Gnom! Kleine Gnome gibt’s in Deutschland. In Vorgärten. Mit Angel. Peinlich.'],['N1','Wir sind die Nasigen vom See. Je größer die Nase, desto höher der Rang. Ich bin Vorarbeiter.']],
+    [['P','Was machen Sie mit der Spitzhacke?'],['N1','Graben. In der Höhle. Seit dreihundert Jahren.'],['P','Und was suchen Sie?'],['N1','Weiß keiner mehr. Aber jetzt aufhören wäre unhöflich.']],
+    [['N1','Geh nicht zu tief in die Höhle, Langer. Da hinten ist es dunkel. Und dunkel ist erst der Anfang.']]]},
+  gnom2:{n:'Opa Schnobbel',at:[300,420],l:[
+    [['N2','*paff* ...Noch ein Langer. Letzte Woche war einer da. Hat nach dem Weg nach Hause gefragt.'],['P','Und?'],['N2','Wir haben gelacht. Lange. *paff*']],
+    [['P','Ihre Nase ist... beeindruckend.'],['N2','Danke. Hab sie seit 1612. Sie hat mal einen Bären gerochen, bevor er geboren war.']],
+    [['N2','Die Baba Jaga? Die schuldet mir drei Pfund Pilze. Grüß sie nicht von mir. *paff*']]]},
+  ghut:{n:'Gnomhütte',at:[230,360],l:[[['P','Runde Tür, rundes Fenster, runde Bewohner.']],[['P','Drinnen schnarcht jemand. Die Wände wackeln.']]]},
+  kohl:{n:'Riesenkohl',at:[200,470],l:[[['P','Kohl. So groß wie ein Kinderwagen.'],['N1','Finger weg! Das ist Schnobbels Rente!']]]},
+  hoehleE:{n:'Höhleneingang',at:[680,420],l:[[['P','Ein Höhleneingang mit Fackeln. Kalter Wind kommt raus. Und Gemurmel.']]]},
+  gang:{n:'Dunkler Gang',at:[420,430],l:[[['P','Der Gang führt tiefer. Stockdunkel. Ohne Licht geh ich da nicht rein.']],[['P','Da hinten hat was gekichert. Nein. Nein, danke.']]]},
+  kristalle:{n:'Kristalle',at:[640,446],l:[[['P','Lila Kristalle. Sie summen leise.'],['P','Wenn man das Ohr ranhält, hört man... Radio Moskau?']]]},
+  lpilze:{n:'Leuchtpilze',at:[180,450],l:[[['P','Leuchtpilze. Hoffentlich nicht verwandt mit denen aus dem Joint.']]]},
+  hsee:{n:'Unterirdischer See',at:[430,430],l:[[['P','Ein unterirdischer See. Da schwimmt was Weißes ohne Augen.'],['P','Es winkt. Ich winke nicht zurück.']]]},
   sZG2:{n:'Schild: Zum Waldweg',at:[150,484],go:'sperre',to:[505,350]},
   huette:{n:'Baba Jagas Hütte',at:[470,438],fn(){if(inv.includes('leiter'))return bjEnter();this.i=(this.i||0);say(this.l[this.i++%this.l.length])},l:[
     [['P','Schief, alt, und ich schwör, sie atmet. Die Hütte atmet.']],
