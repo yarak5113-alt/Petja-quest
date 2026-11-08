@@ -961,7 +961,7 @@ function paintBanja(){const o=S0;c.fillStyle='#120808';c.fillRect(0,0,W,H);
   x.fillStyle='#2a1410';x.fillRect(0,320,800,180);for(let i=-12;i<=12;i++){x.strokeStyle='rgba(0,0,0,.6)';x.beginPath();x.moveTo(400+i*18,320);x.lineTo(400+i*80,500);x.stroke()}
   x.save();x.globalCompositeOperation='lighter';dab(x,400,80,160,[255,40,140],.35);x.restore();x.fillStyle='#ff4fb0';x.font='bold 54px Georgia';x.textAlign='center';x.shadowColor='#ff3090';x.shadowBlur=20;x.fillText('BANJA',400,100);x.shadowBlur=0;x.font='italic 16px Georgia';x.fillStyle='#ffd0e8';x.fillText('Dampf · Tanz · Wodka',400,124);
   x.fillStyle='#5a0a14';x.fillRect(520,150,240,180);for(let X=520;X<760;X+=12){x.fillStyle=(X/12)%2?'rgba(0,0,0,.25)':'rgba(255,80,80,.12)';x.fillRect(X,150,12,180)}x.fillStyle='#d8b050';x.fillRect(514,142,252,10);wood(x,510,330,260,14,0);
-  x.fillStyle='#e8d8b0';x.fillRect(612,250,60,24);x.fillStyle='#5a0a14';x.font='bold 10px Georgia';x.fillText('HEUTE KEINE SHOW',642,266);
+  if(FL.rekrut){x.fillStyle='#14060a';x.fillRect(560,152,160,178);x.save();x.globalCompositeOperation='lighter';x.fillStyle='rgba(255,220,240,.18)';x.beginPath();x.moveTo(630,0);x.lineTo(660,0);x.lineTo(720,330);x.lineTo(570,330);x.fill();dab(x,640,320,90,[255,120,200],.35);x.restore();for(let X=520;X<560;X+=10){x.fillStyle='#7a1020';x.fillRect(X,150,10,180)}for(let X=720;X<760;X+=10){x.fillStyle='#7a1020';x.fillRect(X,150,10,180)}x.strokeStyle='#c8c8d0';x.lineWidth=3;x.beginPath();x.moveTo(690,150);x.lineTo(690,330);x.stroke()}else{x.fillStyle='#e8d8b0';x.fillRect(612,250,60,24);x.fillStyle='#5a0a14';x.font='bold 10px Georgia';x.fillText('HEUTE KEINE SHOW',642,266)}
   wood(x,40,180,250,8,0);wood(x,40,240,250,8,0);for(let i=0;i<16;i++){const X=52+i*15,Y=i<8?180:240;bottle(x,X,Y,22+R()*10,P2([[60,120,60],[200,200,210],[160,60,40],[200,170,60]]))}
   wood(x,30,330,290,18,0);x.fillStyle='#3a1a10';x.fillRect(30,348,290,80);x.fillStyle='rgba(255,60,150,.2)';x.fillRect(30,348,290,6);
   [[120,322],[200,320],[260,324]].forEach(([X,Y])=>{x.fillStyle='rgba(220,240,255,.7)';x.fillRect(X,Y-12,7,12)});
@@ -986,8 +986,8 @@ const ZINA=`<g stroke="#1a0a0a" stroke-width="1.3" stroke-linejoin="round" strok
 <path d="M-6,-192C-3,-195 3,-195 6,-192C3,-189 -3,-189 -6,-192Z" fill="#d01030"/><circle cx="8" cy="-196" r=".9" fill="#2a1a10" stroke="none"/><ellipse cx="-9" cy="-198" rx="3" ry="2" fill="#f08080" stroke="none" opacity=".5"/><ellipse cx="9" cy="-198" rx="3" ry="2" fill="#f08080" stroke="none" opacity=".5"/>
 <circle cx="-15" cy="-198" r="2.4" fill="#e8c040"/><circle cx="15" cy="-198" r="2.4" fill="#e8c040"/></g>`;
 // ================= Nymphen-Bewerbungsgespräch =================
-const NT={nastja:{s:1,t:1,v:0,r:0,a:['Tanzen? Ich schwebe eher. Unter Wasser, bei Mondschein. Das zählt doch?','Raus? Nein... hier ist es ruhig. Und die Frösche singen so schön.','Du bist... nett. Du hast freundliche Augen. *errötet*']},
-  marfa:{s:1,t:1,v:1,r:1,a:['Schätzchen, ich hab auf Kaufmannshochzeiten getanzt, bis die Tische gebrochen sind.','Raus aus diesem Froschloch? SOFORT. Ich hab seit 1890 keine Musik gehört.','Du? Siehst aus wie ein nasser Pudel, der zu viel geraucht hat. Aber ein süßer Pudel.']},
+const NT={nastja:{s:1,t:1,v:1,r:1,a:['Tanzen? Süßer, ich hab den ganzen Sumpf um den Finger gewickelt. Mit den Hüften. Die Frösche quaken seitdem anders.','Raus? JA! Hier unten fasst einen nur Schilf an. Und das ist nicht zärtlich.','Du? Riechst nach Rauch und Panik. Aber du guckst mich an wie ein Kater die Sahne. Gefällt mir.']},
+  marfa:{s:1,t:1,v:1,r:0,a:['Tanzen? Ich hab auf Kaufmannshochzeiten getanzt, bis die Tische gebrochen sind. Und die Ehen.','Raus? Pff. Hier bin ich die Königin. Draußen bin ich nur eine nasse Frau mit Vergangenheit.','Hübscher Pudel. Komm näher, ich beiß nur, wenn du drum bittest.']},
   ustinja:{s:0,t:1,v:1,r:1,a:['Primaballerina, 1903! ...Gut, die Knie sind jetzt aus Schlamm.','Oh ja! Ich will wieder Publikum! Applaus! Blumen!','Junger Mann, Sie riechen wie der Bodensatz einer Wodkaflasche. Charmant.']},
   fekla:{s:0,t:0,v:1,r:0,a:['Tanzen? Ich kann mich kaum umdrehen. *blubb*','Raus? Ich bin hier eingeweicht. Mich kriegt keiner mehr raus.','Du stinkst. Und ich bin eine Wasserleiche. Also: Respekt.']},
   glafira:{s:0,t:0,v:1,r:1,a:['Nein. Ich schlag eher, als dass ich tanze.','Raus! Und dann such ich den, der mich ersäuft hat.','Halt die Klappe, Grünschnabel, oder ich zieh dich runter.']},
@@ -1000,7 +1000,41 @@ function interview(nd){const idx=NYMPHS.indexOf(nd),tr=NT[nd.id];const qs=['Kann
   o.querySelector('.go').onclick=()=>{const ck={};o.querySelectorAll('input').forEach(i=>ck[i.dataset.k]=i.checked?1:0);const r=o.querySelector('.res');
     if(['s','t','v','r'].some(k=>ck[k]!=tr[k])){r.textContent='Hm. Ich glaube, ich hab sie falsch eingeschätzt. Die Karte stimmt nicht.';return}
     if(!(tr.s&&tr.t&&tr.v&&tr.r)){r.textContent='Die Karte stimmt. Aber auf Madames Liste passt sie nicht.';return}
-    closeO();FL.rekrut=1;say([['P','Marfa... hättest du Lust auf einen Job? Tanzen. Musik. Wodka. Ein Ort ohne Frösche.'],['MA','Ein Job? Mit Musik? Schätzchen, ich bin schon unterwegs. Ich trockne mich nur kurz ab.'],['P','Das Banja ist hinterm Irrwald. Sag, Petja schickt dich.'],['P','...Das wird Madame freuen. Und mich hoffentlich auch.']])}}
+    closeO();FL.rekrut=1;delete cache.banja;say([['P','Nastja... hättest du Lust auf einen Job? Tanzen. Musik. Wodka. Ein Ort ohne Frösche.'],['NA','Ein Job? Mit Bühne und Publikum? Süßer, ich bin schon unterwegs. Ich wring nur noch die Haare aus.'],['P','Das Banja ist hinterm Irrwald. Sag, Petja schickt dich.'],['P','...Das wird Madame freuen. Und mich hoffentlich auch.']])}}
+// ================= Banja-Show & Lounge =================
+const DANCER=`<g stroke="#1a0a10" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round">
+<path d="M-14,0L-12,-8L-6,-8L-5,0ZM6,0L6,-8L12,-8L14,0Z" fill="#111"/>
+<path d="M-13,-8L-11,-70L-3,-70L-6,-8ZM6,-8L3,-70L11,-70L13,-8Z" fill="#2a2030"/><path d="M-12,-30L-5,-30M5,-30L12,-30" stroke="#5a4a60" stroke-width=".6"/>
+<path d="M-24,-74C-30,-90 -26,-104 -18,-112L18,-112C26,-104 30,-90 24,-74C14,-68 -14,-68 -24,-74Z" fill="#1e50b0"/><path d="M-22,-76C-12,-72 12,-72 22,-76M-20,-84C-10,-80 10,-80 20,-84" fill="none" stroke="#90c0ff" stroke-width="1"/>
+<path d="M-17,-112L-15,-160C-10,-166 10,-166 15,-160L17,-112Z" fill="#2860c8"/><path d="M-15,-160C-8,-154 0,-158 0,-152C0,-158 8,-154 15,-160" fill="none" stroke="#90c0ff" stroke-width="1.4"/>
+<circle cx="-8" cy="-130" r="1.4" fill="#e0f0ff" stroke="none"/><circle cx="6" cy="-140" r="1.4" fill="#e0f0ff" stroke="none"/><circle cx="2" cy="-120" r="1.4" fill="#e0f0ff" stroke="none"/><circle cx="-12" cy="-92" r="1.4" fill="#e0f0ff" stroke="none"/><circle cx="12" cy="-88" r="1.4" fill="#e0f0ff" stroke="none"/>
+<path d="M-15,-160C-20,-166 -22,-170 -20,-174L-12,-172Z" fill="#f0d4c0"/><path d="M15,-160C20,-166 22,-170 20,-174L12,-172Z" fill="#f0d4c0"/>
+<path d="M-20,-172C-30,-160 -32,-140 -24,-120L-17,-122C-22,-140 -20,-156 -14,-166Z" fill="#f4f4f8"/><ellipse cx="-20" cy="-118" rx="5" ry="4.5" fill="#f4f4f8"/>
+<path d="M20,-172C30,-182 34,-200 30,-214L24,-212C26,-200 22,-186 14,-176Z" fill="#f4f4f8"/><ellipse cx="28" cy="-216" rx="5" ry="4.5" fill="#f4f4f8"/>
+<g fill="#fff0f8" stroke="#c8a0b8" stroke-width=".8"><ellipse cx="22" cy="-238" rx="7" ry="20" transform="rotate(-30 22 -238)"/><ellipse cx="32" cy="-240" rx="7" ry="21"/><ellipse cx="42" cy="-236" rx="7" ry="20" transform="rotate(30 42 -236)"/></g>
+<path d="M-5,-172L-5,-178L5,-178L5,-172Z" fill="#f0d4c0"/>
+<path d="M-16,-196C-22,-170 -26,-140 -20,-118C-14,-140 -12,-166 -10,-186ZM16,-196C22,-170 26,-140 20,-118C14,-140 12,-166 10,-186Z" fill="#e8d08a"/>
+<ellipse cx="0" cy="-194" rx="13" ry="16" fill="#f4dccb"/>
+<path d="M-15,-196C-18,-212 -6,-216 0,-216C8,-216 18,-212 15,-196C12,-206 6,-210 0,-208C-6,-210 -12,-206 -15,-196Z" fill="#e8d08a"/><path d="M-14,-206C-8,-210 8,-210 14,-206" fill="none" stroke="#1e50b0" stroke-width="2"/><path d="M10,-208C16,-222 20,-226 22,-230" stroke="#fff0f8" stroke-width="3"/>
+<path d="M-8,-196C-6,-198 -3,-198 -2,-196M2,-196C3,-198 6,-198 8,-196" fill="none"/><path d="M-9,-196l-2,-2M-6,-198l-1,-2M9,-196l2,-2M6,-198l1,-2" stroke-width=".8"/>
+<circle cx="-5" cy="-194.5" r="1.2" fill="#3a6a9a" stroke="none"/><circle cx="5" cy="-194.5" r="1.2" fill="#3a6a9a" stroke="none"/>
+<path d="M0,-192L-1,-187L1,-187" fill="none" stroke-width=".7"/><path d="M-4,-183C-2,-185 2,-185 4,-183C2,-181 -2,-181 -4,-183Z" fill="#c8204a" stroke-width=".7"/><circle cx="6" cy="-186" r=".8" fill="#3a2a20" stroke="none"/>
+<ellipse cx="-8" cy="-188" rx="2.6" ry="1.6" fill="#f0a0a0" stroke="none" opacity=".5"/><ellipse cx="8" cy="-188" rx="2.6" ry="1.6" fill="#f0a0a0" stroke="none" opacity=".5"/></g>`;
+function paintLounge(){c.fillStyle='#1a0408';c.fillRect(0,0,W,H);let x=lay();
+  for(let X=0;X<800;X+=20){const g=x.createLinearGradient(X,0,X+20,0);g.addColorStop(0,'#3a0610');g.addColorStop(.5,'#6a1020');g.addColorStop(1,'#3a0610');x.fillStyle=g;x.fillRect(X,0,20,330)}
+  x.fillStyle='#2a0a10';x.fillRect(0,330,800,170);for(let i=0;i<400;i++)ell(x,R()*800,330+R()*170,2+R()*6,1,[60,10,20],.4);
+  x.fillStyle='#d8b050';x.fillRect(0,320,800,8);x.save();x.translate(400,170);x.strokeStyle='#d8b050';x.lineWidth=6;x.beginPath();x.ellipse(0,0,70,90,0,0,7);x.stroke();const mg=x.createLinearGradient(-60,-80,60,80);mg.addColorStop(0,'#5a3a50');mg.addColorStop(1,'#1a0a14');x.fillStyle=mg;x.beginPath();x.ellipse(0,0,64,84,0,0,7);x.fill();x.restore();
+  x.fillStyle='#8a0a20';x.beginPath();x.moveTo(180,440);x.quadraticCurveTo(180,330,400,330);x.quadraticCurveTo(620,330,620,440);x.lineTo(600,460);x.lineTo(200,460);x.fill();x.fillStyle='#a8102a';x.beginPath();x.ellipse(400,430,210,34,0,0,7);x.fill();
+  for(let i=0;i<9;i++){x.fillStyle='rgba(0,0,0,.25)';x.beginPath();x.arc(230+i*42,370,6,0,7);x.fill()}
+  [[120,420],[680,420],[90,300],[710,300]].forEach(([X,Y])=>{x.fillStyle='#e8dcb0';x.fillRect(X-4,Y-24,8,24);x.save();x.globalCompositeOperation='lighter';dab(x,X,Y-30,60,[255,160,80],.4);dab(x,X,Y-28,6,[255,240,180],.9);x.restore()});
+  put(x);x=lay();for(let i=0;i<20;i++)dab(x,R()*800,R()*400,40+R()*60,[255,120,160],.1);put(x,10,'screen',.6);
+  x=lay();sign(x,700,486,1.4,[[1,0,'Zurück in den Club','hLB']]);put(x);
+  const vg=c.createRadialGradient(400,330,100,400,300,520);vg.addColorStop(0,'rgba(0,0,0,0)');vg.addColorStop(1,'rgba(0,0,0,.6)');c.fillStyle=vg;c.fillRect(0,0,W,H)}
+function animG(g,a,b,ms){return new Promise(r=>{const t0=performance.now();(function k(){const p=Math.min(1,(performance.now()-t0)/ms),e=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2,x=a[0]+(b[0]-a[0])*e,y=a[1]+(b[1]-a[1])*e,s=a[2]+(b[2]-a[2])*e;g.setAttribute('transform',`translate(${x},${y}) scale(${s})`);p<1?requestAnimationFrame(k):r()})()})}
+async function privatTanz(){const g=$('#dancerG');changing=true;g.querySelector('.dance').classList.remove('dance');
+  await animG(g,[640,330,.62],[560,440,.9],1400);walkTo(470,470);await animG(g,[560,440,.9],[760,452,.95],1600);g.style.display='none';
+  changing=false;enter('lounge',[260,480]);setTimeout(()=>{$('#loungeG').style.display='';say([['NA','Willkommen in der Lounge, Süßer. Setz dich. Hände bleiben auf dem Sofa. Hausregel.'],['P','Ich... äh... ja. Sofa. Hände. Klar.'],['NA','Und jetzt... Musik!']],async()=>{
+    fade.style.opacity=1;await new Promise(r=>setTimeout(r,900));say([['P','*Drei Minuten später*'],['P','...'],['P','Ich glaube, ich brauche einen Wodka. Oder zwei. Oder eine kalte Dusche im Sumpf.'],['NA','Komm wieder, Petja. Aber bring Trinkgeld mit.']],()=>{FL.lounge=1;$('#loungeG').style.display='none';enter('banja',[300,480])})})},700)}
 // ================= Schauplätze =================
 const BASE={seed:3,cov:.52,cs:[156,160,175],cl:[258,262,268],sunc:[255,252,228],sunr:60,band:[250,620],bc:[[88,134,112],[140,176,160]],lit:[[84,140,48],[150,190,72]],dark:[[20,50,26],[46,84,40]],haze:[196,218,228],trunks:1,
   g:[[44,92,20],[116,168,40],[176,190,72]],sand:[[146,114,68],[226,200,146]],gh:[176,204,178],dapple:.2,b0:[[36,80,18],[70,118,28]],b1:[[120,172,46],[214,222,112]],d0:[[12,34,10],[26,60,16]],d1:[[36,80,22],[70,120,36]],
@@ -1038,6 +1072,7 @@ const SCN={
    pe:segPath([[400,512,170,420,420,70],[420,420,70,440,330,24],[440,330,24,452,250,6],[430,446,50,620,420,32],[620,420,32,840,398,24]]),gtop:X=>201+Math.pow(Math.abs(X-440)/440,1.6)*14,k:1.05/286,x0:60,x1:760,ymin:()=>FL.cut?340:398,ymax:494,paint:paintSperre,
    intro:[['P','Na toll. Alles voller Birken. Als hätte sie jemand absichtlich hier hingeworfen.'],['P','Und links und rechts nur Wald. Dicht wie eine Mauer. Und dunkel wie im Arsch eines Bären.'],['P','Ohne Säge komm ich da nicht durch.']]}
 };
+SCN.lounge={...BASE,seed:171,hz:200,pe:()=>null,gtop:()=>500,k:1.1/270,x0:60,x1:740,ymin:()=>440,ymax:494,paint:paintLounge,gr:['rgba(255,120,160,.3)','rgba(60,0,30,.5)'],vig:.4};
 SCN.irrwald={...SCN.sperre,seed:151,xr:null,vig:.5,top:[60,74,84],hor:[120,136,128],g:[[30,40,22],[56,70,34],[86,92,52]],pe:segPath([[420,512,150,420,380,40],[420,380,40,150,250,8],[420,380,40,450,214,5],[420,380,40,700,250,8]]),gtop:X=>201+Math.pow(Math.abs(X-440)/440,1.6)*14,ymin:()=>384,paint:paintIrrwald,
   intro:[['P','Der Irrwald. Drei Wege, alle sehen gleich aus. Und irgendwas glotzt mich aus dem Dunkeln an.']]};
 SCN.banja={...BASE,seed:163,hz:200,pe:()=>null,gtop:()=>500,k:1.1/270,x0:60,x1:740,ymin:()=>424,ymax:494,paint:paintBanja,gr:['rgba(255,120,180,.3)','rgba(60,0,40,.45)'],vig:.4,
@@ -1153,7 +1188,7 @@ function sprite(inner,[x,y,w,h],k){return new Promise(res=>{const cw=Math.round(
   im.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="${cw}" height="${ch}" viewBox="${x} ${y} ${w} ${h}">${ROUGH}<g filter="url(#r)">${inner}</g></svg>`)})}
 const petimg=$('#petimg'),petG=$('#petja'),PB=[-48,-254,96,258],K=1.15;let frames=[],talking=false,ft=0;
 const NB=[-30,-100,60,104];
-Promise.all([sprite(PET(0,0),PB,K),sprite(PET(1,0),PB,K),sprite(PET(0,1),PB,K),sprite(CROW,[-30,-26,64,44],K),sprite(FISHER,[-64,-142,134,224],K),sprite(OMA,[-46,-200,92,204],K),sprite(OPA,[-42,-170,84,174],K)]).then(([a,b,st,cr,fi,om,op])=>{$('#omaimg').setAttribute('href',om);$('#opaimg').setAttribute('href',op);sprite(GNOM1,[-66,-296,140,300],K).then(k=>$('#gnom1img').setAttribute('href',k));sprite(GNOM2,[-52,-232,106,236],K).then(k=>$('#gnom2img').setAttribute('href',k));sprite(WOWA,[-52,-262,104,266],K).then(u=>{WOWAIMG=new Image();WOWAIMG.src=u});sprite(ZINA,[-44,-262,106,266],K).then(k=>$('#zinaimg').setAttribute('href',k));sprite(BJ,[-62,-250,108,256],K).then(k=>$('#bjimg').setAttribute('href',k));sprite(KATER,[-22,-58,52,62],K).then(k=>$('#katerimg').setAttribute('href',k));document.querySelectorAll('.fishimg').forEach(e=>e.setAttribute('href',fi));frames=[a,b,st];PETIMG.src=a;petimg.setAttribute('href',a);$('#crowimg').setAttribute('href',cr)});
+Promise.all([sprite(PET(0,0),PB,K),sprite(PET(1,0),PB,K),sprite(PET(0,1),PB,K),sprite(CROW,[-30,-26,64,44],K),sprite(FISHER,[-64,-142,134,224],K),sprite(OMA,[-46,-200,92,204],K),sprite(OPA,[-42,-170,84,174],K)]).then(([a,b,st,cr,fi,om,op])=>{$('#omaimg').setAttribute('href',om);$('#opaimg').setAttribute('href',op);sprite(GNOM1,[-66,-296,140,300],K).then(k=>$('#gnom1img').setAttribute('href',k));sprite(GNOM2,[-52,-232,106,236],K).then(k=>$('#gnom2img').setAttribute('href',k));sprite(WOWA,[-52,-262,104,266],K).then(u=>{WOWAIMG=new Image();WOWAIMG.src=u});sprite(DANCER,[-50,-262,104,266],K).then(k=>{$('#dancerimg').setAttribute('href',k);$('#dancer2img').setAttribute('href',k)});sprite(ZINA,[-44,-262,106,266],K).then(k=>$('#zinaimg').setAttribute('href',k));sprite(BJ,[-62,-250,108,256],K).then(k=>$('#bjimg').setAttribute('href',k));sprite(KATER,[-22,-58,52,62],K).then(k=>$('#katerimg').setAttribute('href',k));document.querySelectorAll('.fishimg').forEach(e=>e.setAttribute('href',fi));frames=[a,b,st];PETIMG.src=a;petimg.setAttribute('href',a);$('#crowimg').setAttribute('href',cr)});
 setInterval(()=>{if(!frames[2])return;ft=1-ft;petimg.setAttribute('href',frames[mv?(ft?2:0):talking?ft:0])},150);
 
 // ================= Laufen & Szenenwechsel =================
@@ -1168,11 +1203,11 @@ let last=0;(function loop(t){const dt=Math.min(.05,(t-last)/1000||0);last=t;
 const fade=$('#fade');
 function enter(id,pos){if(cur&&cur!==id)onLocationLeave(cur);changing=true;mv=null;fade.style.opacity=1;setTimeout(()=>{S0=SCN[id];
   if(cache[id])c.drawImage(cache[id],0,0);else{s=S0.seed;S0.paint();const k=document.createElement('canvas');k.width=W;k.height=H;k.getContext('2d').drawImage(cv,0,0);cache[id]=k}
-  document.querySelectorAll('.room').forEach(r=>r.classList.toggle('on',r.id=='r-'+id));cur=id;document.getElementById('petimg').style.filter=id=='sperre'?'brightness(.6) saturate(.75)':'';if(id=='sumpf')applySwampNymphs();P.x=pos[0];P.y=pos[1];render();
+  document.querySelectorAll('.room').forEach(r=>r.classList.toggle('on',r.id=='r-'+id));cur=id;document.getElementById('petimg').style.filter=id=='sperre'?'brightness(.6) saturate(.75)':'';if(id=='sumpf')applySwampNymphs();if(id=='banja'){const d=$('#dancerG');d.style.display=FL.rekrut?'':'none';d.setAttribute('transform','translate(640,330) scale(.62)');d.querySelector('g').classList.add('dance')}P.x=pos[0];P.y=pos[1];render();
   fade.style.opacity=0;changing=false;if(!seen[id]){seen[id]=1;S0.intro&&setTimeout(()=>say(S0.intro),450)}},420)}
 
 // ================= Dialog =================
-const N={P:['Petja','#ffb070'],K:['Krähe','#b0bcd8'],S:['Sonne','#ffe680'],M:['Fliegenpilz','#ff8a70'],B:['Birke','#c8e09a'],J:['Stimme aus der Hütte','#e0a0ff'],M1:['Mila','#a8e0b0'],W:['Wera','#c8b8f0'],D:['Dunja','#f0a070'],F:['Fischer Kusmitsch','#9cc8e0'],O:['Oma Dusja','#f0a0a0'],Z:['Madame Zinaida','#ff80c0'],MU:['Stimme aus der Mühle','#e8dcb0'],PK:['Pilzmeister Knolle','#c0e080'],MA:['Marfa','#d8a8c8'],WO:['Wowa','#9ad0ff'],N1:['Grobnik','#d8a060'],N2:['Opa Schnobbel','#a0b8e0'],J2:['Baba Jaga','#e0a0ff'],G:['Opa Grischa','#d8c890']};
+const N={P:['Petja','#ffb070'],K:['Krähe','#b0bcd8'],S:['Sonne','#ffe680'],M:['Fliegenpilz','#ff8a70'],B:['Birke','#c8e09a'],J:['Stimme aus der Hütte','#e0a0ff'],M1:['Mila','#a8e0b0'],W:['Wera','#c8b8f0'],D:['Dunja','#f0a070'],F:['Fischer Kusmitsch','#9cc8e0'],O:['Oma Dusja','#f0a0a0'],Z:['Madame Zinaida','#ff80c0'],MU:['Stimme aus der Mühle','#e8dcb0'],PK:['Pilzmeister Knolle','#c0e080'],MA:['Marfa','#d8a8c8'],NA:['Nastja','#c8e0ff'],WO:['Wowa','#9ad0ff'],N1:['Grobnik','#d8a060'],N2:['Opa Schnobbel','#a0b8e0'],J2:['Baba Jaga','#e0a0ff'],G:['Opa Grischa','#d8c890']};
 const box=$('#box'),who=$('#who'),txt=$('#txt');
 let queue=[],typing=null,full='',busy=false,done=null;
 function say(lines,cb){queue=lines.slice();done=cb;busy=true;box.style.display='block';next()}
@@ -1313,7 +1348,7 @@ const T={
   fenster:{n:'Fenster (raus)',at:[300,430],go:'huette',to:[600,474]},
   sGN:{n:'Schild: Zur Gnomsiedlung',at:[700,474],fn(){walkTo(770,458,()=>enter('gnome',[60,472]))}},
   sZU:{n:'Schild: Zum Ufer',at:[130,488],go:'ufer',to:[740,456]},
-  sHO:{n:'Schild: Zur Höhle',at:[640,428],fn(){walkTo(712,418,()=>enter('hoehle',[400,486]))}},
+  sHO:{n:'Schild: Zur Höhle',at:[640,428],fn(){if(!FL.stollen)return say([['N1','HALT, Langer! In die Höhle kommt keiner ohne Wegezoll.'],['N1','Die Höhle ist Gnomgebiet. Geschäftsgeheimnis. Sehr geheim. Sehr... geschäftlich.']],()=>{if(FL.labQ)FL.mehlQ=1});walkTo(712,418,()=>enter('hoehle',[400,486]))}},
   sAU:{n:'Schild: Zum Ausgang',at:[130,488],go:'gnome',to:[640,428]},
   gnom1:{n:'Grobnik',at:[300,462],fn(){
     if(inv.includes('mehl'))return say([['P','Drei Säcke Mehl. Wie bestellt.'],['N1','*schnüff* ...*SCHNÜFF* ...OH ja. Das ist gutes... Mehl.'],['N1','Der Stollen ist offen für dich, Langer. Der Pilzmeister wartet hinten im Dunkeln. Hier, nimm die Laterne.']],()=>{FL.stollen=1;inv.splice(inv.indexOf('mehl'),1);inv.push('laterne');renderInv()});
@@ -1354,13 +1389,16 @@ const T={
   sIL:{n:'Weg links',at:[380,392],fn(){irrGo('L')}},sIR:{n:'Weg rechts',at:[470,392],fn(){irrGo('R')}},sIG:{n:'Weg geradeaus',at:[440,388],fn(){irrGo('G')}},
   sBM:{n:'Schild: Abkürzung zur Mühle',at:[690,486],go:'muehle',to:[150,470]},
   madame:{n:'Madame Zinaida',at:[320,470],fn(){
-    if(FL.rekrut&&!FL.gutschein)return say([['Z','Marfa ist da! Ein Knaller! Sie tanzt, sie flucht, sie trinkt die Gäste unter den Tisch. Perfekt!'],['Z','Hier, Süßer. Ein Gutschein: Ein Abend im Banja mit Privattanz. Geht aufs Haus.'],['P','Der ist nicht für mich. Ich kenn da einen Müller...'],['Z','Mir egal, wer kommt. Hauptsache, er zahlt die Getränke.']],()=>{FL.gutschein=1;inv.push('gutschein');renderInv()});
-    if(FL.gutschein)return say([['Z','Marfa ist der Star! Komm mal wieder, Süßer.']]);
+    if(FL.rekrut&&!FL.gutschein)return say([['Z','Nastja ist da! Ein Knaller! Sie tanzt, sie flirtet, sie trinkt die Gäste unter den Tisch. Perfekt!'],['Z','Hier, Süßer. Ein Gutschein: Ein Abend im Banja mit Privattanz. Geht aufs Haus.'],['P','Der ist nicht für mich. Ich kenn da einen Müller...'],['Z','Mir egal, wer kommt. Hauptsache, er zahlt die Getränke.']],()=>{FL.gutschein=1;inv.push('gutschein');renderInv()});
+    if(FL.gutschein)return say([['Z','Nastja ist der Star! Guck dir die Show an, Süßer.']]);
     if(FL.clubQ)return say([['Z','Na? Schon eine gefunden? Denk an meine Liste. Und bring mir keine, die nur blubbert.']]);
     say([['P','Guten Abend, Madame. Ein Müller schickt mich. Er hätte gern eine... Braut.'],['Z','Eine Braut? Hier? Süßer, das ist ein Tanzlokal, kein Standesamt.'],['Z','Aber gut. Wir können uns helfen. Mir laufen die Tänzerinnen weg. Die letzte ist mit einem Gnom durchgebrannt.'],
       ['Z','Bring mir eine Neue. Aus dem Sumpf, da sitzen genug, die sich langweilen. Aber nicht irgendeine. Hier ist meine Liste.'],['Z','Wenn sie passt, kriegst du einen Gutschein. Für deinen Müller. Oder für dich.']],()=>{FL.clubQ=1;inv.push('liste');renderInv()})}},
   bar:{n:'Bar',at:[220,446],l:[[['P','Einen Kwas, bitte.'],['Z','Kwas? Hier? Süßer, hier gibt es Wodka oder Wodka.'],['P','...Dann Wodka.'],['P','*kipp* ...UARGH. Das ist kein Wodka, das ist Abflussreiniger.']],[['Z','Noch einen?'],['P','Ich seh jetzt schon doppelt. Zwei Madames. Das ist zu viel Madame.']],[['P','Nein danke. Ich muss noch durch einen Irrwald.']]]},
   buehne:{n:'Bühne',at:[600,446],l:[[['P','Heute keine Show. Die Tänzerinnen sind... ausgegangen. Für immer.']]]},
+  taenzerin:{n:'Nastja (auf der Bühne)',at:[540,470],fn(){if(FL.lounge)return say([['NA','Nochmal, Süßer? Die zweite Runde kostet extra. Und du hast nicht mal Trinkgeld.']]);
+    say([['P','*winkt* Nastja! Du bist ja... wow.'],['NA','Gefällt dir die Show, Petja? Ich hab dich gesehen. Du starrst seit fünf Minuten.'],['P','Ich... starr nicht. Ich... bewundere die Choreografie.'],['NA','Ha! Weißt du was? Du hast mich aus dem Schlamm geholt. Dafür gibt’s einen Privattanz. In der Lounge. Aufs Haus.']],privatTanz)}},
+  sLB:{n:'Schild: Zurück in den Club',at:[690,486],go:'banja',to:[300,480]},
   sZG2:{n:'Schild: Zum Waldweg',at:[150,484],go:'sperre',to:[505,350]},
   huette:{n:'Baba Jagas Hütte',at:[470,438],fn(){if(inv.includes('leiter'))return bjEnter();this.i=(this.i||0);say(this.l[this.i++%this.l.length])},l:[
     [['P','Schief, alt, und ich schwör, sie atmet. Die Hütte atmet.']],
@@ -1389,7 +1427,7 @@ function renderInv(){$('#slots').innerHTML='';inv.forEach(id=>{const it=ITEMS[id
 
 // ================= Nymphen-Pool (gemalte Figuren, wechseln beim Verlassen des Sumpfs) =================
 const NYMPHS=[
- {id:'nastja',n:'Nastja',col:'#c8d0e0',age:.05,build:.05,beauty:1,skin:[238,228,218],shade:[120,104,118],hair:[196,172,124],eye:[84,128,160],pose:1,lips:[184,124,140],l:[
+ {id:'nastja',n:'Nastja',col:'#c8d0e0',age:.24,build:.05,beauty:1,skin:[238,228,218],shade:[120,104,118],hair:[196,172,124],eye:[84,128,160],pose:1,lips:[184,124,140],l:[
   [['nastja','Bitte guck mich nicht so an. Ich bin erst seit Dienstag tot, ich weiß noch nicht, wie man das macht.']],
   [['nastja','Mir ist so kalt. Warum ist mir kalt, wenn ich tot bin?'],['P','Ich... hab keine Ahnung. Tut mir leid.'],['nastja','Lauf weg, solange du noch kannst. Die anderen wollen dich reinziehen.']]]},
  {id:'marfa',n:'Marfa',col:'#d8a8c8',age:.3,build:.3,beauty:1,skin:[234,214,196],shade:[124,96,104],hair:[26,20,28],eye:[96,72,46],pose:1,kohl:1,strangle:1,earring:1,lips:[176,58,72],l:[
@@ -1549,7 +1587,7 @@ $('#start button').onclick=e=>{e.stopPropagation();rm('start');cutscene()};
 
 // ================= Menü, Speichern, Inventar & Aufträge, Karte =================
 const REM=[];function rm(id){const e=document.getElementById(id);if(e)e.remove();if(!REM.includes(id))REM.push(id)}
-const LOCN={wald:'Birkenwald',gabel:'Weggabelung',huette:'Baba Jagas Hütte',innen:'Hütte (innen)',irrwald:'Irrwald',banja:'Banja',dorf:'Dorfeingang',dorfstr:'Dorfstraße',kirche:'Kirche',muehle:'Alte Mühle',sperre:'Birkensperre',sumpf:'Sumpf',fischer:'Fischerhaus',ufer:'Ufer',unter:'Unter dem Pier',gnome:'Gnomsiedlung',hoehle:'Höhle'};
+const LOCN={wald:'Birkenwald',gabel:'Weggabelung',huette:'Baba Jagas Hütte',innen:'Hütte (innen)',lounge:'Private Lounge',irrwald:'Irrwald',banja:'Banja',dorf:'Dorfeingang',dorfstr:'Dorfstraße',kirche:'Kirche',muehle:'Alte Mühle',sperre:'Birkensperre',sumpf:'Sumpf',fischer:'Fischerhaus',ufer:'Ufer',unter:'Unter dem Pier',gnome:'Gnomsiedlung',hoehle:'Höhle'};
 const has=i=>inv.includes(i);
 function quests(){const Q=[];
   Q.push({t:'Raus aus dem Märchen',d:'Irgendwas stimmt nicht. Ich muss hier wieder aufwachen.',v:1,ok:0,s:[
