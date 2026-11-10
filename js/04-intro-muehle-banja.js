@@ -70,7 +70,7 @@ function cutscene(){changing=true;const cv3=document.createElement('canvas');cv3
     await tween(3500,p=>{blur=3+p*10;dark=p});await wait(1500);
     st='wake';blur=12;lid=1;tilt=-.12;dark=0;await wait(800);await tween(700,p=>lid=1-p*.55);await tween(350,p=>lid=.45+p*.55);await wait(500);
     await tween(2200,p=>{lid=1-p;blur=12*(1-p)+1.5;tilt=-.12*(1-p)});await tween(800,p=>blur=1.5*(1-p));
-    await talk([['P','Uhhh... mein Kopf...'],['P','Wo bin ich? Das ist nicht meine Wohnung. Meine Wohnung hat weniger... Birken.'],['P','Der Joint von Wowa. Er hat gesagt, da sind „Kräuter von Oma" drin. Was für eine Oma?!'],['P','Ich muss hier irgendwie wieder aufwachen.']]);
+    await talk([['P','Uhhh... mein Kopf...'],['P','Wo bin ich? Das ist nicht meine Wohnung. Meine Wohnung hat weniger... Birken.'],['P','Der Joint von Wowa. Er hat gesagt, da sind „Kräuter von Oma" drin. Was für eine Oma? ...Natürlich passiert mir das.'],['P','Na super. Dann muss ich wohl irgendwie wieder aufwachen.']]);
     fade.style.opacity=1;await wait(450);fin=true;cv3.remove();changing=false;fade.style.opacity=0})()}
 // ================= Die alte Mühle =================
 function millHouse(x){shadowAt(x,250,376,170,.6);

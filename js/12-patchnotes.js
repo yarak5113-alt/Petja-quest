@@ -1,6 +1,9 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.5',d:'10.11.2026',t:'Petja bleibt locker',n:[
+    'Petja klingt jetzt durchgehend trocken und entspannt – weniger Geschrei, mehr „Na super…“',
+    'Neue Sprüche, wenn Petja eine Weile rumsteht']},
   {v:'1.4',d:'10.11.2026',t:'Bessere Bedienung & neue Menüs',n:[
     'Knopfleiste oben rechts: Tipp, Zeigen, Taschen, Aufträge, Karte, Menü – verschwindet während Gesprächen',
     'Leertaste halten zeigt alles, was man anklicken kann',

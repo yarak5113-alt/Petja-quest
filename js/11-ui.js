@@ -40,8 +40,8 @@ game.addEventListener('mousedown',()=>showSpots(false));
 
 // ----- Tipp: Petja überlegt laut, was als Nächstes dran ist -----
 function tipp(){if(busy||ovl||changing||!cur||$('#start')||$('#fg')||$('#cut'))return;const ns=nextSteps();
-  if(!ns.length)return say([['P','Hm. Gerade weiß ich auch nicht weiter.'],['P','Vielleicht red ich nochmal mit allen. Oder ich schau mich genauer um. (Leertaste zeigt alles Klickbare.)']]);
-  const L=[['P',['Mal überlegen...','Okay, Petja. Konzentrier dich.','Was war nochmal der Plan?'][Math.random()*3|0]],['P','Als Nächstes: '+ns[0].q.t+'.']];
+  if(!ns.length)return say([['P','Hm. Keine Ahnung. Natürlich.'],['P','Vielleicht red ich nochmal mit allen. Oder ich schau mich genauer um. (Leertaste zeigt alles Klickbare.)']]);
+  const L=[['P',['Mal überlegen...','Na gut. Denken. Muss ja.','Was war nochmal der Plan? Ach ja.'][Math.random()*3|0]],['P','Als Nächstes: '+ns[0].q.t+'.']];
   if(ns[1]&&ns[1].top!==ns[0].top)L.push(['P','Oder ich kümmere mich erst um: '+ns[1].q.t+'.']);say(L)}
 
 // ----- Meldungen bei neuen Gegenständen und Auftragsfortschritt -----

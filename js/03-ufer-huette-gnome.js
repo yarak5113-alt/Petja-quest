@@ -1,13 +1,13 @@
 // ================= Angel-Minispiel =================
 function craft(){if(inv.includes('stock')&&inv.includes('seil')){['stock','seil'].forEach(i=>inv.splice(inv.indexOf(i),1));inv.push('angel');renderInv();
-  setTimeout(()=>say([['P','Stock... Schnur dran... und als Haken eine Sicherheitsnadel aus meiner Hose.'],['P','Fertig ist die Angel! Wenn mein Vater mich jetzt sehen könnte. Er würde sich schämen.']]),300)}}
+  setTimeout(()=>say([['P','Stock... Schnur dran... und als Haken eine Sicherheitsnadel aus meiner Hose.'],['P','Fertig ist die Angel. Wenn mein Vater mich jetzt sehen könnte... würde er sich schämen. Wie immer.']]),300)}}
 function fishing(){if($('#fg'))return;const cv2=document.createElement('canvas');cv2.id='fg';cv2.width=800;cv2.height=500;cv2.style.cssText='position:absolute;inset:0;width:100%;height:100%;z-index:20;cursor:none';$('#game').appendChild(cv2);
   const x=cv2.getContext('2d');let mx=400,my=250,m=[400,250],ang=Math.random()*6.28,prog=0,out=0,fin=false;const t0=performance.now();let last=t0;
   const pos=(cx,cy)=>{const r=cv2.getBoundingClientRect();mx=(cx-r.left)/r.width*800;my=(cy-r.top)/r.height*500};
   cv2.onmousemove=e=>pos(e.clientX,e.clientY);cv2.ontouchmove=e=>{e.preventDefault();pos(e.touches[0].clientX,e.touches[0].clientY)};
   cv2.onclick=e=>{e.stopPropagation();if(mx>680&&my>455)end(0)};const esc=e=>{if(e.key=='Escape')end(0)};addEventListener('keydown',esc);
   function end(win){if(fin)return;fin=true;cv2.remove();removeEventListener('keydown',esc);
-    if(win){FL.fisch=1;inv.push('fisch');renderInv();say([['P','Ich hab einen! Einen echten Fisch!'],['F','Der ist ja winzig. Den hätt ich zurückgeworfen.'],['P','Der ist für einen Kater, nicht für Sie.']])}
+    if(win){FL.fisch=1;inv.push('fisch');renderInv();say([['P','Oh. Ich hab tatsächlich einen. Einen echten Fisch. Wer hätte das gedacht.'],['F','Der ist ja winzig. Den hätt ich zurückgeworfen.'],['P','Der ist für einen Kater, nicht für Sie.']])}
     else say([['P','Weg ist er. Der Fisch hat mehr Kraft als ich.'],['F','Nochmal! Und halt dagegen, Junge! Wie beim Tanzen mit meiner ersten Frau.']])}
   function frame(){if(fin)return;const t=performance.now(),dt=Math.max(0,Math.min(.05,(t-last)/1000));last=t;const el=Math.max(0,(t-t0)/1000);
     ang+=(Math.random()-.5)*dt*6+Math.sin(el*1.3)*dt*1.5;if(Math.random()<dt*.6)ang+=Math.random()*3-1.5;
@@ -209,7 +209,7 @@ function tableGame(){if($('#fg'))return;const cv2=document.createElement('canvas
   cv2.onclick=e=>e.stopPropagation();const esc=e=>{if(e.key=='Escape')end(0)};addEventListener('keydown',esc);
   function end(win){if(fin)return;fin=true;cv2.remove();removeEventListener('keydown',esc);removeEventListener('mouseup',mu);
     if(win){inv.splice(inv.indexOf('kippe'),1);inv.push('pilze');renderInv();FL.pilze=1;say([['P','Neun Stück. Alle blau angelaufen. Das sind keine normalen Pilze.'],['J2','Bring sie her, Bürschchen. Lass die alte Jaga mal schnüffeln.']])}
-    else say([['P','Später. Mir zittern die Finger.']])}
+    else say([['P','Später. Meine Finger haben heute keine Lust.']])}
   const TB=document.createElement('canvas');TB.width=800;TB.height=500;{const t=TB.getContext('2d');for(let i=0;i<9;i++){const g=t.createLinearGradient(0,i*56,0,i*56+56);g.addColorStop(0,'#6a4a2a');g.addColorStop(.5,'#8a6a42');g.addColorStop(1,'#4a3018');t.fillStyle=g;t.fillRect(0,i*56,800,56);t.fillStyle='#1a0e06';t.fillRect(0,i*56+54,800,2)}
     for(let i=0;i<500;i++){t.strokeStyle=`rgba(${Math.random()<.5?30:160},${Math.random()<.5?20:120},10,.2)`;t.beginPath();const X=Math.random()*800,Y=Math.random()*500;t.moveTo(X,Y);t.lineTo(X+20+Math.random()*60,Y);t.stroke()}
     for(let i=0;i<12;i++){t.fillStyle='rgba(20,10,4,.25)';t.beginPath();t.ellipse(Math.random()*800,Math.random()*500,10+Math.random()*30,6+Math.random()*12,0,0,7);t.fill()}}

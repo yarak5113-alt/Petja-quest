@@ -29,7 +29,7 @@ function toggleVoice(){VOICE_ON=!VOICE_ON;try{localStorage.setItem('petjaVoice',
 
 // Leerlauf-Sprüche: Steht Petja eine Weile rum, sagt er was zum aktuellen Ort.
 const BARKS={
-  _:['Wenn ich hier rauskomme, rauch ich nie wieder was. ...Fast nie.','Hallo? Spieler? Ich steh hier nur rum.','Meine Füße schlafen. Wenigstens die.','Ich hab Hunger. Auf Pelmeni. Oder auf irgendwas, das nicht redet.','Mama hat immer gesagt, aus mir wird nichts. Jetzt bin ich in einem Märchen. Ha!','Wenn ich lang genug still stehe, wach ich vielleicht einfach auf.','Ich zähl bis drei, dann ist alles normal. Eins... zwei... Nein. Immer noch Märchen.','Irgendwo da draußen liegt mein Körper auf einem Sofa. Hoffentlich mit Decke.'],
+  _:['Wenn ich hier rauskomme, rauch ich nie wieder was. ...Fast nie.','Hallo? Spieler? Ich steh hier nur rum.','Meine Füße schlafen. Wenigstens die.','Ich hab Hunger. Auf Pelmeni. Oder auf irgendwas, das nicht redet.','Mama hat immer gesagt, aus mir wird nichts. Jetzt bin ich in einem Märchen. ...Na ja. Immerhin.','Wenn ich lang genug still stehe, wach ich vielleicht einfach auf.','Ich zähl bis drei, dann ist alles normal. Eins... zwei... Nein. Immer noch Märchen.','Irgendwo da draußen liegt mein Körper auf einem Sofa. Hoffentlich mit Decke.','Na super. Ich steh im Wald und warte auf ein Wunder. Wie jeden Samstag.','Natürlich passiert mir das. Wem auch sonst.','Ob jemand merkt, dass ich weg bin? ...Wahrscheinlich nicht. Ist auch egal. ...Ist es.','Mama ruft sonntags immer an. ...Hoffentlich geht da jemand ran. Egal. Weiter.'],
   wald:['Diese Birken flüstern über mich. Ich hör das genau.','Gestern war das hier noch mein Wohnzimmer. Glaub ich.','Ich schwör, der Fliegenpilz hat mir gerade zugezwinkert.'],
   gabel:['Links, rechts, geradeaus. Alles fühlt sich nach falsch an.','Ein Wegweiser wäre nett. Einer, der nicht lügt.'],
   huette:['Ein Haus auf Hühnerbeinen. Ganz normal. Total normal.','Wenn die Hütte gleich wegrennt, renn ich mit.'],
@@ -38,7 +38,7 @@ const BARKS={
   lounge:['Ich... sollte vielleicht einfach gehen. Gleich. Bald.'],
   irrwald:['Ich bin hier schon zum dritten Mal. Oder zum ersten Mal. Dreimal.','Die Bäume stehen anders als vorhin. Ich schwör.'],
   banja:['Dampf, Birkenzweige, Wodka. Endlich ein Ort, den ich verstehe.','Ich krieg Durst vom Zuschauen.'],
-  dorf:['Ein Dorf! Mit Menschen! ...Hoffentlich mit Menschen.','Irgendwer hier hat bestimmt Kwas. Ich muss nur fragen.'],
+  dorf:['Ein Dorf. Mit Menschen. ...Hoffentlich mit Menschen.','Irgendwer hier hat bestimmt Kwas. Ich muss nur fragen.'],
   dorfstr:['Die Leute gucken mich an, als wär ich der Komische hier.','Riecht nach Rauch und Kohlsuppe. Wie bei Oma.'],
   kirche:['Pssst, Petja. Hier drin nicht fluchen.','Wenn hier einer ein Wunder braucht, dann ich.'],
   muehle:['Die Mühle knarzt. Oder ist das mein Rücken?','Mehl überall. Ich seh aus wie ein Gespenst. Ein hungriges.'],
@@ -48,7 +48,7 @@ const BARKS={
   ufer:['Das Wasser ist so ruhig. Viel zu ruhig.','Wenn ich jetzt reinspringe, bin ich wenigstens wach.'],
   unter:['Dunkel, nass, und irgendwas tropft mir in den Kragen.','Hier unten hört mich keiner schreien. Gut zu wissen.'],
   gnome:['Alles so klein hier. Ich fühl mich wie ein Riese. Ein müder Riese.','Ich hoffe, die Gnome beißen nicht. Die gucken so.'],
-  hoehle:['Pilze an den Wänden. Na super. Genau mein Problem.','Echo! ...Echo? Keine Antwort. Nicht mal das Echo mag mich.']};
+  hoehle:['Pilze an den Wänden. Na super. Genau mein Problem.','Echo. ...Echo? Keine Antwort. Nicht mal das Echo mag mich.']};
 const IDLE_MS=35000;let lastAct=Date.now(),barkBag={};
 function nextBark(id){const pool=(BARKS[id]||[]).concat(BARKS._);let b=barkBag[id];if(!b||!b.length){b=barkBag[id]=pool.slice().sort(()=>Math.random()-.5)}return b.pop()}
 ['click','keydown','mousemove'].forEach(ev=>addEventListener(ev,()=>lastAct=Date.now(),true));
