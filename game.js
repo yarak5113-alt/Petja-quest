@@ -1308,10 +1308,50 @@ function next(){
   clearInterval(typing);typing=null;talking=false;
   if(!queue.length){box.style.display='none';busy=false;const d=done;done=null;d&&d();return}
   const [w,t]=queue.shift();who.textContent=N[w][0]+':';who.style.color=N[w][1];full=t;txt.textContent='';
-  if(w==='P')talking=true;
+  if(w==='P'){talking=true;voice(t)}else voice('');
   let i=0;typing=setInterval(()=>{txt.textContent=t.slice(0,++i);if(i>=t.length){clearInterval(typing);typing=null;talking=false}},28);
 }
 function advance(){if(typing){clearInterval(typing);typing=null;txt.textContent=full;talking=false}else next()}
+
+// ================= Petjas Stimme & Sprüche =================
+// Sprachausgabe für Petjas Zeilen (Browser-TTS, Deutsch). [V] schaltet an/aus.
+let VOICE_ON=true;try{VOICE_ON=localStorage.getItem('petjaVoice')!=='0'}catch(e){}
+let deVoice=null;const TTS=window.speechSynthesis;
+function pickVoice(){if(!TTS)return;const v=TTS.getVoices().filter(v=>/^de/i.test(v.lang));deVoice=v.find(v=>/male|mann|stefan|conrad|killian|hans/i.test(v.name))||v[0]||null}
+if(TTS){pickVoice();TTS.onvoiceschanged=pickVoice}
+function voice(t){if(!TTS)return;TTS.cancel();if(!VOICE_ON||!t)return;
+  t=t.replace(/\*[^*]*\*/g,' ').replace(/\.{2,}/g,', ').trim();if(!t||!/[a-zäöüß]/i.test(t))return;
+  const u=new SpeechSynthesisUtterance(t);u.lang='de-DE';if(deVoice)u.voice=deVoice;u.pitch=.8;u.rate=.95;TTS.speak(u)}
+function toggleVoice(){VOICE_ON=!VOICE_ON;try{localStorage.setItem('petjaVoice',VOICE_ON?'1':'0')}catch(e){}if(!VOICE_ON&&TTS)TTS.cancel();
+  label.textContent='Petjas Stimme: '+(VOICE_ON?'an':'aus');setTimeout(()=>{if(label.textContent.startsWith('Petjas Stimme'))label.textContent=''},1500)}
+
+// Leerlauf-Sprüche: Steht Petja eine Weile rum, sagt er was zum aktuellen Ort.
+const BARKS={
+  _:['Wenn ich hier rauskomme, rauch ich nie wieder was. ...Fast nie.','Hallo? Spieler? Ich steh hier nur rum.','Meine Füße schlafen. Wenigstens die.','Ich hab Hunger. Auf Pelmeni. Oder auf irgendwas, das nicht redet.','Mama hat immer gesagt, aus mir wird nichts. Jetzt bin ich in einem Märchen. Ha!','Wenn ich lang genug still stehe, wach ich vielleicht einfach auf.','Ich zähl bis drei, dann ist alles normal. Eins... zwei... Nein. Immer noch Märchen.','Irgendwo da draußen liegt mein Körper auf einem Sofa. Hoffentlich mit Decke.'],
+  wald:['Diese Birken flüstern über mich. Ich hör das genau.','Gestern war das hier noch mein Wohnzimmer. Glaub ich.','Ich schwör, der Fliegenpilz hat mir gerade zugezwinkert.'],
+  gabel:['Links, rechts, geradeaus. Alles fühlt sich nach falsch an.','Ein Wegweiser wäre nett. Einer, der nicht lügt.'],
+  huette:['Ein Haus auf Hühnerbeinen. Ganz normal. Total normal.','Wenn die Hütte gleich wegrennt, renn ich mit.'],
+  innen:['Hier riecht alles nach Kräutern und schlechten Entscheidungen.','Ich fass hier besser nichts an. Außer vielleicht die Piroggen.'],
+  buehne:['Laute Musik, rotes Licht. Fast wie zu Hause am Freitag.','Ganz ruhig, Petja. Hände in die Taschen.'],
+  lounge:['Ich... sollte vielleicht einfach gehen. Gleich. Bald.'],
+  irrwald:['Ich bin hier schon zum dritten Mal. Oder zum ersten Mal. Dreimal.','Die Bäume stehen anders als vorhin. Ich schwör.'],
+  banja:['Dampf, Birkenzweige, Wodka. Endlich ein Ort, den ich verstehe.','Ich krieg Durst vom Zuschauen.'],
+  dorf:['Ein Dorf! Mit Menschen! ...Hoffentlich mit Menschen.','Irgendwer hier hat bestimmt Kwas. Ich muss nur fragen.'],
+  dorfstr:['Die Leute gucken mich an, als wär ich der Komische hier.','Riecht nach Rauch und Kohlsuppe. Wie bei Oma.'],
+  kirche:['Pssst, Petja. Hier drin nicht fluchen.','Wenn hier einer ein Wunder braucht, dann ich.'],
+  muehle:['Die Mühle knarzt. Oder ist das mein Rücken?','Mehl überall. Ich seh aus wie ein Gespenst. Ein hungriges.'],
+  sperre:['Wer hat die Birken umgeschubst? Ich war das nicht. Glaub ich.','Mit bloßen Händen krieg ich das nie weg.'],
+  sumpf:['Nicht hinstarren. Nicht hinstarren. ...Mist.','Wenn ich hier einsinke, sucht mich keiner.'],
+  fischer:['Fischgeruch. Ich glaub, der wohnt jetzt in meiner Jacke.','Ein Fischer ohne Boot. Ein Petja ohne Plan. Wir passen zusammen.'],
+  ufer:['Das Wasser ist so ruhig. Viel zu ruhig.','Wenn ich jetzt reinspringe, bin ich wenigstens wach.'],
+  unter:['Dunkel, nass, und irgendwas tropft mir in den Kragen.','Hier unten hört mich keiner schreien. Gut zu wissen.'],
+  gnome:['Alles so klein hier. Ich fühl mich wie ein Riese. Ein müder Riese.','Ich hoffe, die Gnome beißen nicht. Die gucken so.'],
+  hoehle:['Pilze an den Wänden. Na super. Genau mein Problem.','Echo! ...Echo? Keine Antwort. Nicht mal das Echo mag mich.']};
+const IDLE_MS=35000;let lastAct=Date.now(),barkBag={};
+function nextBark(id){const pool=(BARKS[id]||[]).concat(BARKS._);let b=barkBag[id];if(!b||!b.length){b=barkBag[id]=pool.slice().sort(()=>Math.random()-.5)}return b.pop()}
+['click','keydown','mousemove'].forEach(ev=>addEventListener(ev,()=>lastAct=Date.now(),true));
+setInterval(()=>{if(busy||mv||ovl||changing||!cur||$('#start')||$('#fg')||$('#cut')||document.hidden){lastAct=Date.now();return}
+  if(Date.now()-lastAct<IDLE_MS)return;lastAct=Date.now();say([['P',nextBark(cur)]])},1000);
 
 // ================= Objekte =================
 const inv=[];
@@ -1744,7 +1784,7 @@ function loadGame(n){const d=slots()[n];if(!d)return;closeO();if($('#start'))rm(
   for(const k in cache)delete cache[k];renderInv();busy=false;box.style.display='none';enter(d.cur,[d.P.x,d.P.y])}
 function openMenu(view){const a=slots(),sl=(mode)=>[0,1,2].map(n=>`<button data-${mode}="${n}" ${mode=='l'&&!a[n]?'disabled':''}>Slot ${n+1}: ${a[n]?LOCN[a[n].cur]+' – '+a[n].date:'leer'}</button>`).join('');
   const body=view=='s'?`<h3>Speichern</h3>${cur&&!$('#start')?sl('s'):'<p class="em">Erst spielen, dann speichern.</p>'}<button data-v="m">Zurück</button>`:view=='l'?`<h3>Laden</h3>${sl('l')}<button data-v="m">Zurück</button>`:
-    view=='k'?`<h3>Steuerung</h3><table><tr><td>Linksklick</td><td>Laufen, ansehen, benutzen, sprechen</td></tr><tr><td>Klick in den Text</td><td>Dialog weiter</td></tr><tr><td>Schilder</td><td>Zum nächsten Ort</td></tr><tr><td>I</td><td>Taschen &amp; Aufträge</td></tr><tr><td>M</td><td>Karte</td></tr><tr><td>ESC</td><td>Menü / schließen</td></tr></table><button data-v="m">Zurück</button>`:
+    view=='k'?`<h3>Steuerung</h3><table><tr><td>Linksklick</td><td>Laufen, ansehen, benutzen, sprechen</td></tr><tr><td>Klick in den Text</td><td>Dialog weiter</td></tr><tr><td>Schilder</td><td>Zum nächsten Ort</td></tr><tr><td>I</td><td>Taschen &amp; Aufträge</td></tr><tr><td>M</td><td>Karte</td></tr><tr><td>V</td><td>Petjas Stimme an/aus</td></tr><tr><td>ESC</td><td>Menü / schließen</td></tr></table><button data-v="m">Zurück</button>`:
     `<h3>Menü</h3><button data-v="x">Weiterspielen</button><button data-v="s">Spiel speichern</button><button data-v="l">Spielstand laden</button><button data-v="i">Taschen &amp; Aufträge</button><button data-v="map">Karte</button><button data-v="k">Steuerung</button>`;
   const o=openO(`<div class="pan menu">${body}</div><div class="hint">[ESC] schließen</div>`);
   o.querySelectorAll('button').forEach(b=>b.onclick=()=>{const v=b.dataset.v;if(v=='x')return closeO();if(v=='i')return openInv();if(v=='map')return openMap();if(v)return openMenu(v);
@@ -1753,4 +1793,5 @@ function openMenu(view){const a=slots(),sl=(mode)=>[0,1,2].map(n=>`<button data-
 addEventListener('keydown',e=>{if($('#fg')||$('#cut'))return;const k=e.key.toLowerCase();
   if(k=='escape'){if(ovl)closeO();else openMenu()}
   else if(k=='i'&&!$('#start')){if(ovl&&ovl.classList.contains('two'))closeO();else openInv()}
-  else if(k=='m'&&!$('#start')){if(ovl&&ovl.querySelector('.mp'))closeO();else openMap()}});
+  else if(k=='m'&&!$('#start')){if(ovl&&ovl.querySelector('.mp'))closeO();else openMap()}
+  else if(k=='v')toggleVoice()});
