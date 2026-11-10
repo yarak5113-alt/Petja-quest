@@ -1,23 +1,33 @@
 Echte Sound-Dateien für Petja Quest
 ====================================
 
-Lege Dateien mit genau diesen Namen hier ab (.mp3 oder .ogg).
-Das Spiel benutzt sie automatisch statt des erzeugten Rauschens.
+Jeder Ort hat schon eine eigene, erzeugte Geräuschkulisse.
+Legst du hier eine echte Aufnahme mit genau diesem Namen ab (.mp3 oder .ogg),
+benutzt das Spiel automatisch die Aufnahme statt der erzeugten Kulisse.
 Fehlt eine Datei, passiert nichts Schlimmes.
 
-Umgebung (läuft in Schleife, am besten 30-90 Sekunden, ohne harten Schnitt am Ende):
-  amb-forest    Birkenwald, Weggabelung, Gnome      (Wind, Vögel)
-  amb-dark      Hütte, Birkensperre, Irrwald        (Nachtwald, Eule, Grillen)
-  amb-village   Dorf, Dorfstraße, Kirche            (Wind, Hühner, ferner Hund)
-  amb-mill      Mühle                               (Wasserrad, Bach)
-  amb-lake      Fischerhaus, Ufer                   (Wellen, Schilf)
-  amb-under     Unter dem Steg                      (Wasser unter Holz, Tropfen)
-  amb-swamp     Sumpf                               (Frösche, Blubbern)
-  amb-cave      Höhle                               (Tropfen, Hall)
-  amb-indoor    Baba Jagas Hütte innen              (Ofenfeuer)
-  amb-clubOut   Vor dem Banja                       (gedämpfte Musik durch die Wand)
-  amb-clubIn    Im Banja, Bühne, Lounge             (Musik, Stimmen)
-  amb-title     Startmenü                           (Nachtwald)
+Umgebung je Ort (läuft in Schleife, am besten 30-90 Sekunden, ohne harten Schnitt am Ende):
+  amb-wald      Birkenwald          Blätter, Windböen, Specht
+  amb-gabel     Weggabelung         Wind über die Wiese, Fliege
+  amb-huette    Vor Baba Jagas Hütte  dunkler Wind, Knarzen, Kessel, Eule
+  amb-innen     Hütte innen         Ofenfeuer, brodelnder Kessel, Dielen
+  amb-sperre    Birkensperre        Äste knarzen, Zweige knacken
+  amb-irrwald   Irrwald             Flüstern, Knacken, Eule
+  amb-dorf      Dorfeingang         Wind, flatternde Wäsche
+  amb-dorfstr   Dorfstraße          Wäscheleine, Fernseher von drinnen
+  amb-kirche    Kirche & Friedhof   Stille, ferne Glocke
+  amb-muehle    Mühle               Bach, Wasserrad
+  amb-fischer   Fischerhaus         Wellen, Glucksen, springende Fische
+  amb-ufer      Ufer                Wellen, Schilf, knarzender Steg
+  amb-unter     Unter dem Steg      Tropfen mit Hall, Schritte über dir
+  amb-sumpf     Sumpf               Frösche, Fliegen, Blubbern, Platschen
+  amb-gnome     Gnomsiedlung        Wind, Spitzhacken aus der Höhle
+  amb-hoehle    Höhle               Tropfen, großer Hall, Grollen
+  amb-banjaV    Vor dem Banja       Musik dumpf durch die Wand
+  amb-banja     Im Banja            Musik, Gemurmel, Gläser
+  amb-buehne    Bühnenrand          Musik laut
+  amb-lounge    Lounge              Musik hinter dem Vorhang
+  amb-titel     Startmenü           Nachtwald
 
 Effekte (kurz, unter 1 Sekunde):
   step-grass    Schritt auf Gras/Erde

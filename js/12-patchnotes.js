@@ -1,6 +1,11 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.9',d:'10.11.2026',t:'Jeder Ort klingt anders',n:[
+    'Sumpf: Frösche quaken, Fliegen brummen vorbei, es blubbert und platscht',
+    'Birkenwald mit Specht, Hütte die knarzt, Irrwald mit Flüstern, Mühle mit Wasserrad',
+    'See mit Wellen und springenden Fischen, Höhle mit Tropfen und Hall',
+    'Banja mit Musik durch die Wand, drinnen Gemurmel und klirrende Gläser']},
   {v:'1.8',d:'10.11.2026',t:'Weniger Roboter',n:[
     'Die Vorlesestimme ist jetzt standardmäßig aus (in den Einstellungen wieder einschaltbar)',
     'Keine künstlichen Piep-Töne mehr – nur noch leises Wind-, Wasser- und Feuerrauschen',
