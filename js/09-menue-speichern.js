@@ -33,17 +33,22 @@ let ovl=null;function closeO(){if(ovl){ovl.remove();ovl=null}}
 function openO(html,cls){closeO();ovl=document.createElement('div');ovl.className='ovl '+(cls||'');ovl.innerHTML=html;ovl.onclick=e=>{e.stopPropagation();if(e.target===ovl)closeO()};
   ovl.querySelectorAll('.x').forEach(b=>b.onclick=closeO);$('#game').appendChild(ovl);return ovl}
 // ===== Tagebuch: Taschen | Aufträge | Karte =====
-const BOOKT=[['tasche','🎒','Taschen','I'],['auftrag','📜','Aufträge','J'],['karte','🗺️','Karte','M']];
+const BOOKT=[['tasche','🎒','Taschen','I'],['auftrag','📜','Aufträge','J'],['karte','🗺️','Karte','M'],['log','💬','Gespräche','L']];
+// Gesprächsverlauf: die letzten Sätze zum Nachlesen, Regieanweisungen kursiv
+function logHTML(){if(!LOG.length)return'<p class="empty">💬<br><span class="em">Noch hat niemand was gesagt.</span></p>';
+  const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])).replace(/\*([^*]+)\*/g,'<i>$1</i>');
+  return'<div class="log">'+LOG.map(([w,t])=>`<p><b style="color:${(N[w]||['?','#ccc'])[1]}">${(N[w]||[w])[0]}:</b> ${esc(t)}</p>`).join('')+'</div>'}
 function openBook(tab){tab=tab||'tasche';let body='';
   if(tab=='tasche')body=inv.length?`<div class="grid">${inv.map(id=>{const it=ITEMS[id]||['❔',id,id];return`<button class="card" data-i="${id}"><b>${it[0]}</b><span>${it[1]}</span></button>`}).join('')}</div>
       <div class="detail"><span class="em">Klick auf einen Gegenstand, um ihn anzusehen.</span></div>`:'<p class="empty">🕸️<br>Leer. Wie mein Kühlschrank.<br><span class="em">Sammle Dinge ein, indem du sie in der Welt anklickst.</span></p>';
   if(tab=='auftrag'){const Q=quests(),ns=nextSteps(Q),NEXT=ns[0]&&ns[0].q,open=Q.filter(q=>!q.ok),fin=Q.filter(q=>q.ok);
     body=`${NEXT?`<div class="nextbox"><small>Nächster Schritt</small>➤ ${NEXT.t}</div>`:''}${qTree(open,0,NEXT)||'<p class="em">Gerade nichts offen.</p>'}
       ${fin.length?`<details class="fin"><summary>Erledigt (${fin.length})</summary>${qTree(fin,0)}</details>`:''}`;if(typeof badge=='function')badge('auftrag',0)}
+  if(tab=='log')body=logHTML();
   if(tab=='karte')body=mapSVG()+`<p class="legend"><span class="lg here"></span> Du bist hier <span class="lg"></span> Besucht <span class="lg unk">?</span> Noch unerkundet</p>`;
   if(tab=='tasche'&&typeof badge=='function')badge('tasche',0);
   const o=openO(`<div class="pan book"><div class="tabs">${BOOKT.map(([k,ic,t,key])=>`<button class="tab ${k==tab?'on':''}" data-tab="${k}">${ic} ${t} <kbd>${key}</kbd></button>`).join('')}<button class="x" title="Schließen (ESC)">✕</button></div>
-    <div class="bbody b-${tab}">${body}</div></div>`,'bookO');o.dataset.book=tab;
+    <div class="bbody b-${tab}">${body}</div></div>`,'bookO');o.dataset.book=tab;if(tab=='log'){const bb=o.querySelector('.bbody');bb.scrollTop=bb.scrollHeight}
   o.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>openBook(b.dataset.tab));
   o.querySelectorAll('.card').forEach(c=>c.onclick=()=>{o.querySelectorAll('.card').forEach(k=>k.classList.toggle('sel',k===c));const it=ITEMS[c.dataset.i];
     o.querySelector('.detail').innerHTML=it?`<b class="big">${it[0]}</b><div><h4>${it[1]}</h4><p>${it[2]}</p></div>`:''})}
@@ -62,9 +67,14 @@ function mapSVG(){const P2=id=>MAPN[id],unk={};let s=`<svg viewBox="-44 -2 232 1
   return s+'</svg>'}
 const SKEY='petjaQuestSave';
 function slots(){try{return JSON.parse(localStorage.getItem(SKEY)||'[]')}catch(e){return[]}}
-function saveGame(n){if(!cur)return;const d={inv:[...inv],FL:{...FL},seen:{...seen},cur,P:{x:P.x,y:P.y},REM:[...REM],ti:Object.fromEntries(Object.entries(T).map(([k,o])=>[k,o.i||0])),date:new Date().toLocaleString('de-DE')};
+function snapState(){return{inv:[...inv],FL:{...FL},seen:{...seen},cur,P:{x:P.x,y:P.y},REM:[...REM],ti:Object.fromEntries(Object.entries(T).map(([k,o])=>[k,o.i||0])),date:new Date().toLocaleString('de-DE'),ts:Date.now()}}
+function saveGame(n){if(!cur)return;const d=snapState();
   const a=slots();a[n]=d;try{localStorage.setItem(SKEY,JSON.stringify(a));return true}catch(e){return false}}
-function loadGame(n){const d=slots()[n];if(d)loadState(d)}
+// Automatisch speichern (bei jedem Ortswechsel, siehe 13-komfort.js)
+const AKEY='petjaQuestAuto';
+function autoSlot(){try{return JSON.parse(localStorage.getItem(AKEY)||'null')}catch(e){return null}}
+function autoSave(){if(!cur||$('#start'))return false;try{localStorage.setItem(AKEY,JSON.stringify(snapState()));return true}catch(e){return false}}
+function loadGame(n){const d=n==='auto'?autoSlot():slots()[n];if(d)loadState(d)}
 function loadState(d){closeO();if($('#start'))rm('start');
   // alte Spielstände: Knochen wurde zu Würmern
   d.inv=d.inv.map(i=>i=='knochen'?'wuermer':i);d.REM=d.REM.map(r=>r=='knochenG'?'wuermerG':r);
@@ -72,15 +82,17 @@ function loadState(d){closeO();if($('#start'))rm('start');
   Object.entries(d.ti||{}).forEach(([k,v])=>{if(T[k])T[k].i=v});if(FL.cut){const h=$('[data-id=sHolz]');if(h)h.style.display='none'}
   for(const k in cache)delete cache[k];renderInv();busy=false;box.style.display='none';enter(d.cur,[d.P.x,d.P.y])}
 // ===== Pausemenü =====
-const KEYS=[['Linksklick','Laufen, ansehen, benutzen, sprechen'],['Klick / Leertaste im Dialog','Text weiter'],['➜ Schilder & Türen','Zu einem anderen Ort'],['Leertaste (halten)','Alles Klickbare zeigen'],['H','Tipp: Was soll ich als Nächstes tun?'],['I','Taschen'],['J','Aufträge'],['M','Karte'],['V','Petjas Stimme an/aus'],['ESC','Menü / schließen']];
+const KEYS=[['Linksklick','Laufen, ansehen, benutzen, sprechen'],['Klick / Leertaste im Dialog','Text weiter'],['ESC / Rechtsklick im Dialog','Gespräch überspringen'],['➜ Schilder & Türen','Zu einem anderen Ort'],['Leertaste (halten)','Alles Klickbare zeigen'],['H','Tipp: Was soll ich als Nächstes tun?'],['I','Taschen'],['J','Aufträge'],['M','Karte'],['L','Gesprächsverlauf'],['V','Stimmen an/aus'],['ESC','Menü / schließen']];
 const SPEEDS=[[45,'Langsam'],[28,'Normal'],[14,'Schnell'],[4,'Sofort']];
 function openMenu(view){view=view||'m';const a=slots(),inGame=cur&&!$('#start'),back=`<button class="mb back" data-v="m">← Zurück</button>`;
   const slot=(mode,n)=>{const d=a[n];return`<button class="slotc" data-${mode}="${n}" ${mode=='l'&&!d?'disabled':''}><b>Platz ${n+1}</b><span>${d?'📍 '+(LOCN[d.cur]||d.cur)+'<br><small>'+d.date+'</small>':'<i>leer</i>'}</span></button>`};
   const sp=SPEEDS.find(s=>s[0]==OPT.speed)||SPEEDS[1];
   const body=view=='s'?`<h3>💾 Spiel speichern</h3>${inGame?`<div class="slots3">${[0,1,2].map(n=>slot('s',n)).join('')}</div><p class="msg em">Wähl einen Platz.</p>`:'<p class="em">Erst spielen, dann speichern.</p>'}${back}`
-    :view=='l'?`<h3>📂 Spielstand laden</h3><div class="slots3">${[0,1,2].map(n=>slot('l',n)).join('')}</div>${back}`
+    :view=='l'?`<h3>📂 Spielstand laden</h3><div class="slots3">${(()=>{const d=autoSlot();return`<button class="slotc" data-l="auto" ${d?'':'disabled'}><b>Auto</b><span>${d?'📍 '+(LOCN[d.cur]||d.cur)+'<br><small>Automatisch · '+d.date+'</small>':'<i>noch nichts</i>'}</span></button>`})()}${[0,1,2].map(n=>slot('l',n)).join('')}</div>${back}`
     :view=='o'?`<h3>⚙️ Einstellungen</h3><div class="opts">
-        <button class="mb" data-o="voice">🔊 Petjas Stimme <b>${VOICE_ON?'An':'Aus'}</b></button>
+        <button class="mb" data-o="voice">🔊 Stimmen <b>${!VOICE_ON?'Aus':OPT.voices==='petja'?'Nur Petja':'Alle Figuren'}</b></button>
+        <label class="sl">🗣️ Lautstärke Stimmen <input type="range" min="0" max="100" value="${Math.round(OPT.vox*100)}" data-r="vox"></label>
+        <label class="sl">🌲 Lautstärke Geräusche <input type="range" min="0" max="100" value="${Math.round(OPT.sfx*100)}" data-r="sfx"></label>
         <button class="mb" data-o="barks">💬 Sprüche beim Rumstehen <b>${OPT.barks?'An':'Aus'}</b></button>
         <button class="mb" data-o="speed">⏩ Textgeschwindigkeit <b>${sp[1]}</b></button></div>${back}`
     :view=='k'?`<h3>⌨️ Steuerung</h3><table>${KEYS.map(([k,t])=>`<tr><td>${k}</td><td>${t}</td></tr>`).join('')}</table><button class="mb" data-v="tut">❓ Anleitung nochmal zeigen</button>${back}`
@@ -95,14 +107,17 @@ function openMenu(view){view=view||'m';const a=slots(),inGame=cur&&!$('#start'),
     if(v=='home'){if(b.dataset.armed)return location.reload();b.dataset.armed=1;b.innerHTML='⚠️ Wirklich? Nicht Gespeichertes geht verloren. <b>Nochmal klicken</b>';return}
     openMenu(v)});
   o.querySelectorAll('button[data-o]').forEach(b=>b.onclick=()=>{const k=b.dataset.o;
-    if(k=='voice')toggleVoice();if(k=='barks'){OPT.barks=!OPT.barks;saveOpt()}if(k=='speed'){const i=SPEEDS.findIndex(s=>s[0]==OPT.speed);OPT.speed=SPEEDS[(i+1)%SPEEDS.length][0];saveOpt()}openMenu('o')});
+    if(k=='voice'){if(!VOICE_ON){VOICE_ON=true;OPT.voices='alle'}else if(OPT.voices!=='petja')OPT.voices='petja';else VOICE_ON=false;
+      try{localStorage.setItem('petjaVoice',VOICE_ON?'1':'0')}catch(e){}saveOpt();if(TTS)TTS.cancel();if(VOICE_ON)voice(OPT.voices==='petja'?'So klinge ich.':'So klingen wir alle.','P')}if(k=='barks'){OPT.barks=!OPT.barks;saveOpt()}if(k=='speed'){const i=SPEEDS.findIndex(s=>s[0]==OPT.speed);OPT.speed=SPEEDS[(i+1)%SPEEDS.length][0];saveOpt()}openMenu('o')});
   o.querySelectorAll('button[data-s]').forEach(b=>b.onclick=()=>{const n=+b.dataset.s;
     if(a[n]&&!b.dataset.armed){o.querySelectorAll('[data-armed]').forEach(x=>delete x.dataset.armed);b.dataset.armed=1;b.classList.add('warn');o.querySelector('.msg').textContent='Platz '+(n+1)+' ist belegt. Nochmal klicken zum Überschreiben.';return}
     const ok=saveGame(n);openMenu('s');ovl.querySelector('.msg').textContent=ok?'✔ Gespeichert auf Platz '+(n+1)+'!':'Speichern nicht möglich (Browser blockiert Speicher).';ovl.querySelector('.msg').classList.toggle('ok',!!ok)});
-  o.querySelectorAll('button[data-l]').forEach(b=>b.onclick=()=>loadGame(+b.dataset.l))}
+  o.querySelectorAll('button[data-l]').forEach(b=>b.onclick=()=>loadGame(b.dataset.l==='auto'?'auto':+b.dataset.l));
+  o.querySelectorAll('input[data-r]').forEach(r=>{r.oninput=()=>{OPT[r.dataset.r]=r.value/100;saveOpt();if(r.dataset.r=='sfx'&&typeof sfxVolume=='function')sfxVolume()};
+    r.onchange=()=>{if(r.dataset.r=='vox')voice('So laut bin ich jetzt.','P');else if(typeof sfx=='function')sfx('click')}})}
 addEventListener('keydown',e=>{if($('#fg')||$('#cut')||e.repeat&&e.key!=' ')return;const k=e.key.toLowerCase(),play=!$('#start');
-  if(k=='escape'){if(ovl)closeO();else openMenu()}
+  if(k=='escape'){if(ovl)closeO();else if(busy)skipDialog();else openMenu()}
   else if(ovl&&ovl.classList.contains('tutO'))return
-  else if(k=='i'&&play)toggleBook('tasche');else if(k=='j'&&play)toggleBook('auftrag');else if(k=='m'&&play)toggleBook('karte');
+  else if(k=='i'&&play)toggleBook('tasche');else if(k=='j'&&play)toggleBook('auftrag');else if(k=='m'&&play)toggleBook('karte');else if(k=='l'&&play)toggleBook('log');
   else if(k=='h'&&play&&!ovl)typeof tipp=='function'&&tipp();
   else if(k=='v')toggleVoice()});

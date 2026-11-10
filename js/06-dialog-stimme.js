@@ -3,29 +3,39 @@ const N={P:['Petja','#ffb070'],K:['Krähe','#b0bcd8'],S:['Sonne','#ffe680'],M:['
 const box=$('#box'),who=$('#who'),txt=$('#txt');
 let queue=[],typing=null,full='',busy=false,done=null;
 // Einstellungen (Menü → Einstellungen): Textgeschwindigkeit in ms pro Buchstabe, Leerlauf-Sprüche an/aus
-const OPT={speed:28,barks:true};try{Object.assign(OPT,JSON.parse(localStorage.getItem('petjaOpts')||'{}'))}catch(e){}
+// voices: 'alle' = jede Figur spricht, 'petja' = nur Petja; sfx/vox = Lautstärke Geräusche/Stimmen (0..1)
+const OPT={speed:28,barks:true,voices:'alle',sfx:.6,vox:1};try{Object.assign(OPT,JSON.parse(localStorage.getItem('petjaOpts')||'{}'))}catch(e){}
 function saveOpt(){try{localStorage.setItem('petjaOpts',JSON.stringify(OPT))}catch(e){}}
 function say(lines,cb){queue=lines.slice();done=cb;busy=true;box.style.display='block';next()}
 function next(){
   clearInterval(typing);typing=null;talking=false;box.classList.remove('done');
   if(!queue.length){box.style.display='none';busy=false;const d=done;done=null;d&&d();return}
   const [w,t]=queue.shift();who.textContent=N[w][0]+':';who.style.color=N[w][1];full=t;txt.textContent='';
-  if(w==='P'){talking=true;voice(t)}else voice('');
+  LOG.push([w,t]);if(LOG.length>120)LOG.shift();
+  if(w==='P')talking=true;voice(t,w);
   let i=0;typing=setInterval(()=>{txt.textContent=t.slice(0,++i);if(i>=t.length){clearInterval(typing);typing=null;talking=false;box.classList.add('done')}},OPT.speed);
 }
 function advance(){if(typing){clearInterval(typing);typing=null;txt.textContent=full;talking=false;box.classList.add('done')}else next()}
+// Gespräch überspringen (ESC / Rechtsklick): restliche Zeilen weg, aber was danach passieren soll (Gegenstand, Flag …) passiert trotzdem
+function skipDialog(){if(!busy)return;queue.length=0;clearInterval(typing);typing=null;talking=false;if(TTS)TTS.cancel();next()}
+// Gesprächsverlauf fürs Tagebuch
+const LOG=[];
 
-// ================= Petjas Stimme & Sprüche =================
-// Sprachausgabe für Petjas Zeilen (Browser-TTS, Deutsch). [V] schaltet an/aus.
+// ================= Stimmen & Sprüche =================
+// Sprachausgabe (Browser-TTS, Deutsch). Jede Figur hat eine eigene Stimmlage: [weiblich?, Tonhöhe, Tempo]. [V] schaltet an/aus.
 let VOICE_ON=true;try{VOICE_ON=localStorage.getItem('petjaVoice')!=='0'}catch(e){}
-let deVoice=null;const TTS=window.speechSynthesis;
-function pickVoice(){if(!TTS)return;const v=TTS.getVoices().filter(v=>/^de/i.test(v.lang));deVoice=v.find(v=>/male|mann|stefan|conrad|killian|hans/i.test(v.name))||v[0]||null}
+let deVoice=null,deVoiceF=null;const TTS=window.speechSynthesis;
+const VOX={P:[0,.8,.95],F:[0,.6,.85],G:[0,.7,.82],N1:[0,.3,.9],N2:[0,.5,.75],MU:[0,.95,1.12],PK:[0,1.25,1.1],WO:[0,1.05,1.15],K:[0,1.8,1.3],M:[0,1.5,1.2],
+  J:[1,1.7,1.0],J2:[1,1.7,1.0],O:[1,1.35,.82],Z:[1,1.0,.95],NA:[1,1.2,1.05],S:[1,1.15,.9],B:[1,.6,.78],alte:[1,.5,.7],fekla:[1,.8,.85],ustinja:[1,1.1,.9]};
+function pickVoice(){if(!TTS)return;const v=TTS.getVoices().filter(v=>/^de/i.test(v.lang)),fem=/female|frau|katja|hedda|marlene|vicki|anna|petra|seraphina|amala|louisa|elke|gisela|klarissa|maja|tanja/i;
+  deVoiceF=v.find(x=>fem.test(x.name))||null;deVoice=v.find(x=>!fem.test(x.name)&&/male|mann|stefan|conrad|killian|hans|florian|ralf|bernd|christoph/i.test(x.name))||v.find(x=>!fem.test(x.name))||v[0]||null}
 if(TTS){pickVoice();TTS.onvoiceschanged=pickVoice}
-function voice(t){if(!TTS)return;TTS.cancel();if(!VOICE_ON||!t)return;
-  t=t.replace(/\*[^*]*\*/g,' ').replace(/\.{2,}/g,', ').trim();if(!t||!/[a-zäöüß]/i.test(t))return;
-  const u=new SpeechSynthesisUtterance(t);u.lang='de-DE';if(deVoice)u.voice=deVoice;u.pitch=.8;u.rate=.95;TTS.speak(u)}
+function voice(t,w){if(!TTS)return;TTS.cancel();w=w||'P';if(!VOICE_ON||!t||(w!=='P'&&OPT.voices==='petja'))return;
+  t=t.replace(/\*[^*]*\*/g,' ').replace(/\.{2,}/g,', ').replace(/[()]/g,'').trim();if(!t||!/[a-zäöüß]/i.test(t))return;
+  const s=VOX[w]||[1,1.1,.95],u=new SpeechSynthesisUtterance(t);u.lang='de-DE';const vo=s[0]?(deVoiceF||deVoice):deVoice;if(vo)u.voice=vo;
+  u.pitch=s[1];u.rate=s[2];u.volume=Math.max(0,Math.min(1,OPT.vox));TTS.speak(u)}
 function toggleVoice(){VOICE_ON=!VOICE_ON;try{localStorage.setItem('petjaVoice',VOICE_ON?'1':'0')}catch(e){}if(!VOICE_ON&&TTS)TTS.cancel();
-  toast('🔊 Petjas Stimme: '+(VOICE_ON?'an':'aus'))}
+  toast('🔊 Stimmen: '+(VOICE_ON?'an':'aus'))}
 
 // Leerlauf-Sprüche: Steht Petja eine Weile rum, sagt er was zum aktuellen Ort.
 const BARKS={

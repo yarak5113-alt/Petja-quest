@@ -1,6 +1,16 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.7',d:'10.11.2026',t:'Hören, speichern, weiterspielen',n:[
+    'Der Wald lebt: Wind, Vögel, Wasser, Frösche, Höhlentropfen und Bass vor dem Banja – dazu Schritte und Klicks',
+    'Alle Figuren sprechen jetzt mit eigener Stimme (einstellbar: alle, nur Petja, aus)',
+    'Lautstärke-Regler für Stimmen und Geräusche',
+    'Automatisches Speichern bei jedem Ortswechsel und „Weiterspielen“ im Startmenü',
+    'Gespräche mit ESC oder Rechtsklick überspringen, Gesprächsverlauf im Tagebuch (L)',
+    'Tipp-Knopf in Stufen mit kurzer Denkpause',
+    'Minispiele lassen sich nach 3 Fehlversuchen überspringen',
+    'Petja merkt im Sumpf, wenn die Richtige gerade nicht da ist',
+    'Viele Dinge haben jetzt einen zweiten Spruch']},
   {v:'1.6',d:'10.11.2026',t:'Wer fragt, kommt weiter',n:[
     'Figuren geben bei mehrmaligem Ansprechen immer deutlichere Hinweise – aber nie die Lösung',
     'Petja denkt öfter selbst nach („Mhh. Ohne Leiter komm ich hier nicht weiter.“) – geholfen wird nur, wenn jemand was davon hat',

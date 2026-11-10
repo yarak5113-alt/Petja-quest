@@ -39,10 +39,19 @@ addEventListener('keyup',e=>{if(e.key===' '){clearTimeout(spotT);showSpots(false
 game.addEventListener('mousedown',()=>showSpots(false));
 
 // ----- Tipp: Petja überlegt laut, was als Nächstes dran ist -----
-function tipp(){if(busy||ovl||changing||!cur||$('#start')||$('#fg')||$('#cut'))return;const ns=nextSteps();
+// Tipp in Stufen: 1. nur der große Auftrag, 2. der konkrete nächste Schritt, 3. plus Alternative und Hinweis aufs Fragen.
+// Die Stufe gilt pro Schritt (neuer Schritt = wieder vage). Danach kurze Denkpause, damit man nicht nur Tipps drückt.
+const TIPP_PAUSE=20000;let tippT=0,tippKey='',tippLvl=0;
+function tipp(){if(busy||ovl||changing||!cur||$('#start')||$('#fg')||$('#cut'))return;
+  const wait=Math.ceil((tippT+TIPP_PAUSE-Date.now())/1000);if(wait>0)return toast('💡 Petja denkt noch nach… ('+wait+' s)');
+  const Q=quests(),ns=nextSteps(Q);tippT=Date.now();
   if(!ns.length)return say([['P','Hm. Keine Ahnung. Natürlich.'],['P','Vielleicht red ich nochmal mit allen. Oder ich schau mich genauer um. (Leertaste zeigt alles Klickbare.)']]);
-  const L=[['P',['Mal überlegen...','Na gut. Denken. Muss ja.','Was war nochmal der Plan? Ach ja.'][Math.random()*3|0]],['P','Als Nächstes: '+ns[0].q.t+'.']];
-  if(ns[1]&&ns[1].top!==ns[0].top)L.push(['P','Oder ich kümmere mich erst um: '+ns[1].q.t+'.']);say(L)}
+  const k=ns[0].q.t;if(k!==tippKey){tippKey=k;tippLvl=0}const lvl=tippLvl++,top=Q[ns[0].top];
+  const L=[['P',['Mal überlegen...','Na gut. Denken. Muss ja.','Was war nochmal der Plan? Ach ja.'][Math.random()*3|0]]];
+  if(lvl==0)L.push(['P','Es geht gerade um: '+top.t+'.'+(top.d?' '+top.d:'')]);
+  else{L.push(['P','Als Nächstes: '+k+'.']);
+    if(lvl>=2){if(ns[1]&&ns[1].top!==ns[0].top)L.push(['P','Oder ich kümmere mich erst um: '+ns[1].q.t+'.']);L.push(['P','Und wenn ich nicht weiterkomme: Leute fragen. Mehrmals. Irgendwer quatscht immer.'])}}
+  say(L)}
 
 // ----- Meldungen bei neuen Gegenständen und Auftragsfortschritt -----
 let invSeen=null,quiet=0,qBase=null;
