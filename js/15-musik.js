@@ -1,54 +1,88 @@
-// ================= Musik: Russischer Lo-Fi – Volksinstrumente auf entspanntem Groove =================
-// Keine Lieder in Schleife: Akkordfolgen, Melodien, Instrumentwahl und Aufbau (Intro → Groove → Break → Pause) werden laufend neu gewürfelt.
-// Instrumente (alle live erzeugt):
-//   Balalaika  – dreieckige Zupflaute, hell/twangy (Saitenmodell + heller Korpus)
-//   Domra      – runde Zupflaute, weich, mit Tremolo (Saitenmodell + runder Korpus)
-//   Gusli      – Brettzither, harfenartig, lange klingende Arpeggios
-//   Bajan      – Knopfakkordeon: verstimmte Zungen (Musette) + Balg-Schwellen
-//   Swirel     – Hirtenflöte mit Atemgeräusch und spätem Vibrato
-//   Schaleika  – nasale Rohrblatt-Pfeife, Ton rutscht von unten an
-//   Loschki (Holzlöffel), Buben (Schellentrommel), dazu leiser Lo-Fi-Beat, E-Piano und Bass
-// Wechselt nur, wenn die Stimmung wechselt. Lautstärke: Menü → Einstellungen (OPT.mus).
-// Liegt assets/sound/mus-<stimmung>.mp3 vor, wird stattdessen die Datei leise geloopt.
+// ================= Musik: Russische Volksmusik – jeder Ort hat sein eigenes Stück =================
+// Kein endloses Gedudel: Jeder Ort spielt einen eigenen Tanz mit eigener Taktart, eigenen Instrumenten und einer
+// Melodie, die sich innerhalb eines Stücks WIEDERHOLT (Form: Intro → A → A → B → A → Pause). Das nächste Stück wird neu gewürfelt.
+//   Birkenwald/Gabelung  Chorowod (Reigen) im 6/8 – Swirel-Flöte, Domra, Gusli, Holzlöffel – Dur, hüpfend
+//   Gnome                Zwergenmarsch – Schleich-Bass, Balalaika-Stöße, Schaleika, Holzklötze wie Spitzhacken
+//   Wasser-Orte          Wolga-Walzer im 3/4 – Bajan-Melodie, Domra-Tremolo, Kontrabass-Balalaika
+//   Hütte/dunkler Wald   Hexenhaus – absteigender Klagebass, Bajan-Brummen, Herzschlag-Trommel, spärliche Melodie
+//   Sumpf                Sumpf-Blues – träge, geschleppt, Schaleika rutscht ab, Bajan seufzt
+//   Hütte innen          Hexenküche – orientalische Tonleiter, wird immer schneller (wie ein Volkstanz), dann Stopp
+//   Startmenü            Straßenmusikant – Bajan mit Bass-und-Akkord-Begleitung, Swirel/Domra
+//   Dorf                 Dorffest (schnelle Balalaika)
+//   Irrwald, Höhle, Kirche bleiben Klangflächen (band)
+// Lautstärke: Menü → Einstellungen (OPT.mus). Liegt assets/sound/mus-<stimmung>.mp3 vor, wird stattdessen die Datei leise geloopt.
 if(OPT.mus==null)OPT.mus=.35;
 const MOOD={wald:'wald',gabel:'wald',gnome:'gnome',huette:'dunkel',sperre:'dunkel',irrwald:'irrwald',dorf:'dorf',dorfstr:'dorf',kirche:'kirche',
   muehle:'wasser',fischer:'wasser',ufer:'wasser',unter:'wasser',sumpf:'sumpf',hoehle:'hoehle',innen:'innen'};
 const C=(n,b)=>({n,b});
-// comp = Begleitung (gusli | bajan | ep), lead = Melodie-Instrumente (pro Phrase gewürfelt), kit = Beat (full|soft|shaker|none), loschki/buben = Volks-Percussion
+// Klangflächen (ohne festes Stück): comp = Begleitung, lead = Melodie-Instrumente, kit = Beat
 const MUSIK={
-  // Birkenwald/Gabelung: sonnig – Gusli-Arpeggios, Swirel und Domra, Holzlöffel, leichter Beat
-  wald:{bpm:[88,96],swing:.58,kit:'soft',loschki:1,comp:'gusli',lead:['swirel','domra','swirel'],cut:4000,mel:[62,64,66,69,71,74,76,78],
-    progs:[[C([62,66,69,73],38),C([59,62,66,69],47),C([55,59,62,66],43),C([57,61,64,67],45)],
-           [C([55,59,62,66],43),C([57,61,64,67],45),C([62,66,69,73],38),C([59,62,66,69],47)]]},
-  // Gnome: verschmitzt – Bajan-Nachschläge, Balalaika, Löffel und Schellentrommel
-  gnome:{bpm:[100,108],swing:.55,kit:'soft',loschki:1,buben:1,comp:'bajan',lead:['balalaika','schaleika'],cut:3800,mel:[64,67,69,71,74,76],
-    progs:[[C([60,64,67],36),C([62,65,69],38),C([59,64,67],40),C([60,64,67],36)],[C([60,64,67],36),C([57,60,64],45),C([62,65,69],38),C([59,62,67],43)]]},
-  // Wasser: chillig – E-Piano, Domra-Tremolo und Gusli-Tropfen
-  wasser:{bpm:[76,84],swing:.6,kit:'soft',comp:'ep',lead:['domra','gusli'],cut:3000,mel:[60,62,64,67,69,72,74,76],
-    progs:[[C([57,60,64,65],41),C([55,59,62,64],40),C([57,60,62,65],38),C([55,59,60,64],36)],
-           [C([57,60,64,65],41),C([55,59,60,64],36),C([57,60,62,65],38),C([55,59,62,64],40)]]},
-  // Dunkel (Hütte, dunkler Wald): tiefer Bajan, Domra in Moll, nur Rimshot
-  dunkel:{bpm:[72,80],swing:.57,kit:'soft',comp:'bajan',low:1,lead:['domra'],cut:1800,mel:[57,60,62,64,65,68,69],
-    progs:[[C([57,60,64],45),C([53,57,62],38),C([56,59,64],40),C([57,60,64],45)],[C([57,60,64],45),C([57,60,65],41),C([56,59,62],40),C([57,60,64],45)]]},
   // Irrwald: unheimlich – Gusli-Tropfen im Hall, Schaleika von weit weg, kein Beat
   irrwald:{bpm:[66,72],swing:.5,kit:'none',comp:'gusli',lead:['schaleika','gusli'],cut:2000,space:1,mel:[57,58,61,62,64,65,68],
     progs:[[C([57,61,64],45),C([58,62,65],46),C([57,61,64],45),C([56,59,62],44)]]},
-  // Sumpf: schwül – Bajan-Brummen, faule Schaleika, Shaker
-  sumpf:{bpm:[66,72],swing:.62,kit:'shaker',comp:'bajan',low:1,lead:['schaleika'],cut:1500,mel:[52,55,57,59,62,64,67],
-    progs:[[C([55,59,62,64],40),C([55,59,60,64],36),C([55,57,60,64],45),C([57,59,63,66],47)]]},
-  // Hütte innen: Hexenküche – Gusli, Schaleika, Holzlöffel, kein Beat
-  innen:{bpm:[92,100],swing:.6,kit:'none',loschki:1,comp:'gusli',lead:['schaleika','balalaika'],cut:3000,mel:[62,63,66,67,69,70,74],
-    progs:[[C([62,66,69],38),C([63,67,70],39),C([62,66,69],38),C([60,63,67],36)]]},
   // Höhle: nur Gusli-Töne mit viel Hall
   hoehle:{bpm:[60,64],swing:.5,kit:'none',comp:'gusli',sparse:1,lead:[],cut:2200,mel:[57,60,64,67,69,72],progs:[[C([57,60,64,67],45),C([57,60,64,65],41)]]},
   // Kirche: ruhig – Gusli und Swirel von fern
   kirche:{bpm:[64,70],swing:.5,kit:'none',comp:'gusli',lead:['swirel'],cut:1800,space:1,mel:[62,64,65,67,69,72],
     progs:[[C([62,65,69],38),C([60,64,67],36),C([58,62,65],46),C([57,61,64],45)]]},
-  // Startmenü: Bajan und Domra, ganz entspannt
-  titel:{bpm:[78,84],swing:.58,kit:'soft',comp:'bajan',lead:['domra','swirel'],cut:2600,mel:[57,60,62,64,67,69,72],
-    progs:[[C([57,60,64,67],45),C([57,60,62,65],38),C([55,59,62,65],43),C([55,59,60,64],36)]]},
   // Dorf: Dorffest – schnelle Balalaika, Bajan-Begleitung, Holzlöffel, Schellentrommel
   dorf:{balalaika:1}};
+
+// ----- Stücke: root = Grundton, sc = Tonleiter, bar = Zählzeiten pro Takt, bpm = Zählzeiten pro Minute,
+//       CH = Akkorde (Abstände zum Grundton, b = Basston), A/B = Akkordfolgen, rh = Rhythmen (Summe = bar), cad = Schluss-Rhythmen,
+//       lead = [Instrument Teil A, Instrument Teil B], acc/perc = Begleitung & Schlagwerk pro Takt (k = Werkzeugkasten)
+const MAJ=[0,2,4,5,7,9,11],HMIN=[0,2,3,5,7,8,11];
+const FOLK={
+  wald:{root:62,sc:MAJ,bar:6,bpm:[264,288],rng:[69,86],long:3,bassI:'gusli',vol:.34,rev:.25,
+    CH:{I:[0,4,7],IV:[5,9,12],V:[7,11,14],vi:[9,12,16],ii:[2,5,9]},
+    A:[['I','V','I','V'],['I','IV','V','I'],['I','I','IV','V']],B:[['vi','IV','I','V'],['IV','I','ii','V'],['vi','V','IV','V']],
+    rh:[[3,3],[2,1,3],[2,1,2,1],[1,1,1,3],[3,2,1],[2,1,1,1,1]],cad:[[3,3],[2,1,3]],
+    lead:[['swirel','domra'],['domra','swirel'],['swirel','balalaika']],
+    acc(k,ch,t,u){k.bass(ch.b,t,.38);k.I.arp('gusli',k.abs(ch),t+u,.04,.13);k.bass(ch.b+7,t+3*u,.28);k.I.arp('gusli',k.abs(ch),t+4*u,.04,.1)},
+    perc(k,t,u,sec){if(sec=='i')return;[0,2,3,5].forEach(p=>k.I.loschki(t+p*u,p%3?.05:.09,p>=3));if(sec=='B')k.I.buben(t+3*u,.04)}},
+  gnome:{root:64,sc:HMIN,bar:4,bpm:[220,240],rng:[71,88],long:2,bassI:'kbass',stacc:1,vol:.34,rev:.3,
+    CH:{i:[0,3,7],iv:[5,8,12],V:[7,11,14],VI:[8,12,15],III:[3,7,10]},
+    A:[['i','iv','V','i'],['i','VI','iv','V'],['i','V','i','V']],B:[['III','VI','iv','V'],['iv','i','V','i'],['VI','III','iv','V']],
+    rh:[[1,1,1,1],[.5,.5,1,1,1],[1,.5,.5,2],[2,1,1],[1,1,2],[.5,.5,.5,.5,1,1]],cad:[[1,1,2],[2,2]],
+    lead:[['balalaika','schaleika'],['schaleika','balalaika']],
+    acc(k,ch,t,u){[0,12,7,12].forEach((o,p)=>k.bass(ch.b+o,t+p*u,p%2?.22:.34));k.I.arp('balalaika',k.abs(ch),t+u,.008,.16);k.I.arp('balalaika',k.abs(ch),t+3*u,.008,.13)},
+    perc(k,t,u,sec){k.I.hit(t,'bandpass',780,11,.16,.07);k.I.hit(t+2*u,'bandpass',780,11,.12,.07);if(sec!='i'){k.I.loschki(t+u,.05,1);k.I.loschki(t+3*u,.05,1)}}},
+  wasser:{root:57,sc:HMIN,bar:3,bpm:[138,150],rng:[64,84],long:2,bassI:'kbass',vol:.34,rev:.35,form:['i','A','B','A'],
+    CH:{i:[0,3,7],iv:[5,8,12],V:[7,11,14],III:[3,7,10],VI:[8,12,15]},
+    A:[['i','iv','V','i'],['i','III','iv','V'],['VI','iv','V','i']],B:[['III','VI','iv','V'],['iv','i','V','V'],['III','iv','V','i']],
+    rh:[[2,1],[1,1,1],[3],[1.5,.5,1],[1,2],[.5,.5,1,1]],cad:[[3],[2,1]],
+    lead:[['bajan','domra'],['domra','bajan'],['gusli','bajan']],
+    acc(k,ch,t,u){k.bass(ch.b,t,.4);[1,2].forEach(p=>k.I.arp('gusli',k.abs(ch),t+p*u,.012,.09))},
+    perc(){}},
+  dunkel:{root:62,sc:HMIN,bar:4,bpm:[70,78],rng:[62,77],long:1,bassI:'kbass',sparse:.45,vol:.36,rev:.45,form:['i','A','B','A'],
+    CH:{Dm:C([0,3,7],0),AC:C([7,11,16],-1),DmC:C([0,3,7],-2),GB:C([5,9,12],-3),Bb:C([8,12,15],-4),A:C([7,11,14],-5)},
+    A:[['Dm','AC','DmC','GB']],B:[['Bb','GB','A','A'],['Bb','A','Dm','A']],
+    rh:[[2,2],[3,1],[1,1,2],[4],[1.5,.5,2]],cad:[[4],[2,2]],
+    lead:[['domra','schaleika'],['schaleika','domra']],
+    acc(k,ch,t,u){k.I.bajan(k.abs(ch,-12),t,4*u,.045,1);k.bass(ch.b,t,.4);k.bass(ch.b,t+2*u,.3)},
+    perc(k,t,u,sec){k.I.drum(t,.3);k.I.drum(t+.42*u,.18);if(sec!='i'&&Math.random()<.3)k.I.loschki(t+3.5*u,.05)}},
+  sumpf:{root:64,sc:[0,2,3,5,7,9,10],bar:4,bpm:[64,70],rng:[64,81],long:1,bassI:'kbass',bend:1,hum:.035,vol:.6,rev:.3,form:['i','A','A','B','A'],
+    CH:{i:[0,3,7,10],IV:[5,9,12,15],v:[7,10,14]},
+    A:[['i','i','IV','i'],['i','IV','i','v']],B:[['IV','IV','i','i'],['v','IV','i','i']],
+    rh:[[1.33,.67,2],[2,1.33,.67],[.67,.67,.67,2],[3,1],[1.33,.67,1.33,.67],[4]],cad:[[4],[3,1]],
+    lead:[['schaleika','bajan'],['bajan','schaleika']],
+    acc(k,ch,t,u){k.I.bajan(k.abs(ch,-12),t+.05,3.6*u,.04,1);k.bass(ch.b,t,.38);k.bass(ch.b+7,t+2.67*u,.26)},
+    perc(k,t,u,sec){if(sec=='i')return;[.67,1.67,2.67,3.67].forEach(p=>k.I.hit(t+p*u,'bandpass',5200,1.4,rnd(.03,.05),.08))}},
+  innen:{root:57,sc:[0,1,4,5,7,8,10],bar:2,bpm:[92,100],accel:1.035,bpmMax:172,rng:[64,81],long:1,bassI:'gusli',vol:.34,rev:.25,form:['i','A','A','B','B','A','A'],
+    CH:{I:[0,4,7],II:[1,5,8],iv:[5,8,12],vii:[10,13,17]},
+    A:[['I','II','I','I'],['I','iv','II','I'],['iv','II','I','I']],B:[['iv','iv','I','I'],['vii','II','I','I']],
+    rh:[[.5,.5,.5,.5],[1,.5,.5],[.5,.5,1],[.25,.25,.5,1],[1,1],[.5,.25,.25,.5,.5]],cad:[[1,1],[.5,.5,1]],
+    lead:[['balalaika','schaleika'],['gusli','balalaika']],
+    acc(k,ch,t,u){k.bass(ch.b,t,.36);k.bass(ch.b+7,t+u,.28);k.I.arp('balalaika',k.abs(ch),t+.5*u,.01,.15);k.I.arp('balalaika',k.abs(ch),t+1.5*u,.01,.13)},
+    perc(k,t,u,sec,bpm){if(sec=='i')return;[0,.5,1,1.5].forEach((p,i)=>k.I.loschki(t+p*u,i%2?.05:.08,i>1));if(bpm>125)k.I.buben(t+u,.05)}},
+  titel:{root:57,sc:HMIN,bar:4,bpm:[88,96],rng:[64,84],long:1,bassI:'bajan',vol:.52,rev:.3,form:['i','A','B','A'],
+    CH:{i:[0,3,7],iv:[5,8,12],V:[7,11,14],III:[3,7,10],VI:[8,12,15]},
+    A:[['i','iv','V','i'],['i','VI','III','V']],B:[['III','VI','iv','V'],['iv','i','V','i']],
+    rh:[[1,1,2],[1.5,.5,1,1],[2,1,1],[1,.5,.5,2],[4],[.5,.5,1,2]],cad:[[4],[2,2]],
+    lead:[['bajan','swirel'],['domra','bajan']],
+    acc(k,ch,t,u){k.bass(ch.b,t,1,u*.7);k.I.bajan(k.abs(ch),t+u,u*.5,.035);k.bass(ch.b+7,t+2*u,1,u*.7);k.I.bajan(k.abs(ch),t+3*u,u*.5,.035)},
+    perc(k,t,u,sec){if(sec!='i'){k.I.loschki(t+u,.05);k.I.loschki(t+3*u,.05)}}}};
+
 ['wald','gnome','dunkel','irrwald','dorf','kirche','wasser','sumpf','hoehle','innen','titel'].forEach(m=>probe('mus-'+m));
 let MUS=null,MREV=null,musNow=null,musCur='';
 const mtof=m=>440*Math.pow(2,(m-69)/12);
@@ -65,8 +99,9 @@ function ksBuf(m,damp,len){const key=m+'_'+damp;if(KS[key])return KS[key];const 
 
 // ----- Instrumente (Ziel = Gain-Knoten) -----
 function instruments(dest){
-  const body={},BODY={balalaika:[.997,1700,5,4200,1.8],domra:[.998,1050,4,2800,2],gusli:[.9994,2600,2,5200,3.5],gitarre:[.997,900,2,2600,1.8]};
-  const chain=k=>{if(body[k])return body[k];const[, f,g,lpf]=BODY[k],hp=AC.createBiquadFilter(),pk=AC.createBiquadFilter(),lp=AC.createBiquadFilter();hp.type='highpass';hp.frequency.value=150;
+  // [Dämpfung, Korpus-Resonanz Hz, Resonanz dB, Tiefpass Hz, Ausklang s, Hochpass Hz]
+  const body={},BODY={balalaika:[.997,1700,5,4200,1.8],domra:[.998,1050,4,2800,2],gusli:[.9994,2600,2,5200,3.5],gitarre:[.997,900,2,2600,1.8],kbass:[.996,200,5,1100,1.4,35]};
+  const chain=k=>{if(body[k])return body[k];const[, f,g,lpf,,hpf]=BODY[k],hp=AC.createBiquadFilter(),pk=AC.createBiquadFilter(),lp=AC.createBiquadFilter();hp.type='highpass';hp.frequency.value=hpf||150;
     pk.type='peaking';pk.frequency.value=f;pk.gain.value=g;pk.Q.value=1.1;lp.type='lowpass';lp.frequency.value=lpf;hp.connect(pk);pk.connect(lp);lp.connect(dest);return body[k]=hp};
   const pluck=(k,m,t,v)=>{const[damp,,,,len]=BODY[k],s=AC.createBufferSource(),g=AC.createGain();s.buffer=ksBuf(m,damp,len);s.playbackRate.value=1+(Math.random()-.5)*.003;g.gain.value=v;s.connect(g);g.connect(chain(k));s.start(t);s.stop(t+len)};
   const trem=(k,m,t,dur,v,rate)=>{const r=rate||rnd(11,13);let n=0;for(let tt=t;tt<t+dur-.04;tt+=1/r,n++)pluck(k,m,tt,v*(n%2?.7:1)*(1-.2*(tt-t)/dur))};
@@ -75,7 +110,7 @@ function instruments(dest){
   const bajan=(ms,t,dur,v,low)=>{const g=AC.createGain(),bp=AC.createBiquadFilter(),lp=AC.createBiquadFilter(),bel=AC.createOscillator(),bg=AC.createGain();
     bp.type='bandpass';bp.frequency.value=low?800:1150;bp.Q.value=.6;lp.type='lowpass';lp.frequency.value=low?1800:3000;bp.connect(lp);lp.connect(g);g.connect(dest);
     bel.frequency.value=rnd(.4,.7);bg.gain.value=v*.18;bel.connect(bg);bg.connect(g.gain);
-    g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v,t+.07);g.gain.setValueAtTime(v,t+dur-.08);g.gain.exponentialRampToValueAtTime(.0001,t+dur+.1);
+    const at=Math.min(.07,dur*.3);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v,t+at);g.gain.setValueAtTime(v,t+Math.max(at,dur-.08));g.gain.exponentialRampToValueAtTime(.0001,t+dur+.1);
     const os=[bel];ms.forEach(m=>{const f=mtof(m);[[-8,'sawtooth',.5],[8,'sawtooth',.5],[0,'square',.18]].forEach(([dt,ty,a])=>{const o=AC.createOscillator(),og=AC.createGain();o.type=ty;o.frequency.value=f*(ty=='square'?.5:1);o.detune.value=dt;og.gain.value=a/ms.length;o.connect(og);og.connect(bp);os.push(o)})});
     os.forEach(o=>{o.start(t);o.stop(t+dur+.15)})};
   // Swirel: Flöte – Grundton + leiser Oberton + Atemgeräusch, Vibrato setzt spät ein
@@ -83,75 +118,95 @@ function instruments(dest){
     lp.type='lowpass';lp.frequency.value=3200;o.frequency.value=f;o2.frequency.value=f*2;g2.gain.value=.12;vib.frequency.value=5.3;vg.gain.setValueAtTime(0,t);vg.gain.linearRampToValueAtTime(f*.007,t+Math.min(.5,dur*.6));
     vib.connect(vg);vg.connect(o.frequency);vg.connect(o2.frequency);o.connect(lp);o2.connect(g2);g2.connect(lp);lp.connect(g);g.connect(dest);
     const s=AC.createBufferSource(),bx=AC.createBiquadFilter(),bg=AC.createGain();s.buffer=NOISE;bx.type='bandpass';bx.frequency.value=f*1.5;bx.Q.value=4;bg.gain.value=.35;s.connect(bx);bx.connect(bg);bg.connect(g);
-    g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v,t+.07);g.gain.setValueAtTime(v,t+dur-.1);g.gain.exponentialRampToValueAtTime(.0001,t+dur+.12);
+    const at=Math.min(.07,dur*.3);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v,t+at);g.gain.setValueAtTime(v,t+Math.max(at,dur-.1));g.gain.exponentialRampToValueAtTime(.0001,t+dur+.12);
     [o,o2,vib].forEach(x=>{x.start(t);x.stop(t+dur+.15)});s.start(t,Math.random());s.stop(t+dur+.15)};
-  // Schaleika: nasale Rohrblatt-Pfeife – Rechteck + Säge durch enges Formantfilter, Ton rutscht von unten an
-  const schaleika=(m,t,dur,v)=>{const f=mtof(m),g=AC.createGain(),bp=AC.createBiquadFilter(),lp=AC.createBiquadFilter(),o=AC.createOscillator(),o2=AC.createOscillator(),g2=AC.createGain(),vib=AC.createOscillator(),vg=AC.createGain();
+  // Schaleika: nasale Rohrblatt-Pfeife – Rechteck + Säge durch Formantfilter, Ton rutscht von unten an (bend: rutscht am Ende ab)
+  const schaleika=(m,t,dur,v,bend)=>{const f=mtof(m),g=AC.createGain(),bp=AC.createBiquadFilter(),lp=AC.createBiquadFilter(),o=AC.createOscillator(),o2=AC.createOscillator(),g2=AC.createGain(),vib=AC.createOscillator(),vg=AC.createGain();
     bp.type='bandpass';bp.frequency.value=1500;bp.Q.value=1.6;lp.type='lowpass';lp.frequency.value=3600;o.type='square';o2.type='sawtooth';g2.gain.value=.5;
-    [o,o2].forEach(x=>{x.frequency.setValueAtTime(f*.955,t);x.frequency.exponentialRampToValueAtTime(f,t+.07)});vib.frequency.value=6;vg.gain.value=f*.009;vib.connect(vg);vg.connect(o.frequency);vg.connect(o2.frequency);
+    [o,o2].forEach(x=>{x.frequency.setValueAtTime(f*.955,t);x.frequency.exponentialRampToValueAtTime(f,t+.07);if(bend&&dur>.4){x.frequency.setValueAtTime(f,t+dur*.55);x.frequency.exponentialRampToValueAtTime(f*Math.pow(2,-bend/12),t+dur)}});
+    vib.frequency.value=6;vg.gain.value=f*.009;vib.connect(vg);vg.connect(o.frequency);vg.connect(o2.frequency);
     o.connect(bp);o2.connect(g2);g2.connect(bp);bp.connect(lp);lp.connect(g);g.connect(dest);
-    g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v,t+.04);g.gain.setValueAtTime(v*.85,t+dur-.08);g.gain.exponentialRampToValueAtTime(.0001,t+dur+.08);
+    const at=Math.min(.04,dur*.3);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v,t+at);g.gain.setValueAtTime(v*.85,t+Math.max(at,dur-.08));g.gain.exponentialRampToValueAtTime(.0001,t+dur+.08);
     [o,o2,vib].forEach(x=>{x.start(t);x.stop(t+dur+.1)})};
   const hit=(t,type,f,q,v,dec)=>{const s=AC.createBufferSource(),x=AC.createBiquadFilter(),g=AC.createGain();s.buffer=NOISE;x.type=type;x.frequency.value=f;x.Q.value=q;s.connect(x);x.connect(g);g.connect(dest);
     g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+dec);s.start(t,Math.random()*1.5);s.stop(t+dec+.02)};
   const loschki=(t,v,hi)=>{hit(t,'bandpass',hi?2500:1650,16,v,.05);hit(t+.012,'bandpass',hi?2500:1650,16,v*.5,.04)};
   const buben=(t,v)=>hit(t,'highpass',6500,.5,v,.12);
-  return{pluck,trem,arp,bajan,swirel,schaleika,loschki,buben,hit}}
+  // Rahmentrommel: dumpfer Schlag
+  const drum=(t,v)=>{const o=AC.createOscillator(),g=AC.createGain();o.frequency.setValueAtTime(95,t);o.frequency.exponentialRampToValueAtTime(52,t+.15);g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+.45);o.connect(g);g.connect(dest);o.start(t);o.stop(t+.5);hit(t,'lowpass',400,.7,v*.3,.08)};
+  return{pluck,trem,arp,bajan,swirel,schaleika,loschki,buben,hit,drum}}
 
-function makeMusic(name){const M=MUSIK[name];if(!M)return null;
+function makeMusic(name){const M=MUSIK[name],F=FOLK[name];if(!M&&!F)return null;
   if(SNDOK['mus-'+name]){const el=new Audio(SNDOK['mus-'+name]);el.loop=true;el.volume=0;el.play().catch(()=>{});let v=0;const fi=setInterval(()=>{v=Math.min(1,v+.03);el.volume=v*Math.min(1,OPT.mus);if(v>=1)clearInterval(fi)},100);
     return{el,stop(){clearInterval(fi);const fo=setInterval(()=>{el.volume=Math.max(0,el.volume-.03);if(el.volume<=0){clearInterval(fo);el.pause()}},100)}}}
   const out=AC.createGain();out.gain.value=0;out.connect(MUS);out.gain.setTargetAtTime(1,AC.currentTime,2.5);const tim=[];let alive=true;
   const stop=()=>{alive=false;tim.forEach(t=>{clearTimeout(t);clearInterval(t)});out.gain.setTargetAtTime(0,AC.currentTime,2);setTimeout(()=>out.disconnect(),9000)};
+  if(F){folk(F,out,tim,()=>alive);return{stop}}
   if(M.balalaika){out.connect(MREV);dorffest(out,tim,()=>alive);return{stop}}
   band(M,out,tim,()=>alive);return{stop}}
 
-// ----- Band: Groove + Volksinstrumente -----
+// ----- Volksstück: komponiert Teil A und B, wiederholt sie (wiedererkennbare Melodie), Begleitung & Schlagwerk je nach Stil -----
+function folk(S,out,tim,alive){
+  const g=AC.createGain();g.gain.value=S.vol;g.connect(out);const send=AC.createGain();send.gain.value=S.rev;g.connect(send);send.connect(MREV);
+  const I=instruments(g),R=S.root,pc=m=>((m-R)%12+12)%12,inSc=m=>S.sc.includes(pc(m));
+  const chord=n=>{const c=S.CH[n];return c.n?c:{n:c,b:c[0]}};
+  const k={I,abs:(ch,o)=>ch.n.map(x=>R+x+(o||0)),
+    bass(off,t,v,dur){const m=R+off;if(S.bassI=='kbass')I.pluck('kbass',m-24,t,v);else if(S.bassI=='bajan')I.bajan([m-12],t,dur||.3,.06,1);else I.pluck('gusli',m-12,t,v)}};
+  // Melodie-Ton je nach Instrument
+  const note=(L,m,t,d,v)=>{if(S.hum)t+=rnd(0,S.hum);
+    if(L=='swirel')I.swirel(m,t,d*.95,.1*v);
+    else if(L=='schaleika')I.schaleika(m,t,S.stacc?Math.min(d,.16):d*.9,.07*v,S.bend);
+    else if(L=='bajan')I.bajan([m],t,S.stacc?Math.min(d,.18):d*.92,.075*v);
+    else if(L=='gusli')I.pluck('gusli',m,t,.32*v);
+    else if(d>=.38&&!S.stacc)I.trem(L,m,t,d,(L=='domra'?.3:.32)*v,L=='balalaika'?13:11);
+    else I.pluck(L,m,t,(L=='domra'?.4:.42)*v)};
+  let mel=Math.round((S.rng[0]+S.rng[1])/2);
+  // Einen Takt Melodie erfinden: lange/betonte Töne auf Akkordtöne, sonst schrittweise; Schluss-Takt endet auf dem Grundton des Akkords
+  const invent=(ch,rh,cad)=>{const pcs=ch.n.map(x=>((x%12)+12)%12);return rh.map((d,i)=>{let cand=[];for(let m=mel-5;m<=mel+5;m++)if(m>=S.rng[0]&&m<=S.rng[1]&&inSc(m))cand.push(m);
+      if(i==0||d>=S.long){const ct=cand.filter(m=>pcs.includes(pc(m)));if(ct.length)cand=ct}if(!cand.length)cand=[mel];
+      if(cad&&i==rh.length-1){const rt=cand.filter(m=>pc(m)==pcs[0]);if(rt.length)cand=rt}
+      mel=pick(cand.sort((a,b)=>Math.abs(a-mel)-Math.abs(b-mel)).slice(0,3));return mel})};
+  const compose=prog=>{const r0=pick(S.rh),r1=pick(S.rh);return prog.map((n,i)=>{const ch=chord(n),last=i==prog.length-1,rh=last?pick(S.cad):i%2?r1:r0;
+    const rest=S.sparse&&!last&&Math.random()<S.sparse;return{ch,rh,notes:rest?null:invent(ch,rh,last)}})};
+  // Ein ganzes Stück: Form durchgehen, Teil für Teil kurz vor seinem Einsatz einplanen
+  const song=()=>{if(!alive())return;let bpm=rnd(S.bpm[0],S.bpm[1]),t=AC.currentTime+.3;
+    const form=S.form||['i','A','A','B','A'],L=pick(S.lead),parts={A:compose(pick(S.A)),B:compose(pick(S.B))};let seenA=0;
+    const playSec=(i)=>{if(!alive())return;
+      if(i>=form.length){const ch=parts.A[0].ch,u=60/bpm;S.acc(k,ch,t,u);k.bass(ch.b,t,.4,u);
+        tim.push(setTimeout(song,(t+S.bar*u-AC.currentTime)*1000+rnd(7000,15000)));return}
+      const sec=form[i];let bars;
+      if(sec=='i')bars=parts.A.slice(0,2).map(b=>({ch:b.ch,rh:null,notes:null}));
+      else{if(sec=='A'&&seenA++>0&&Math.random()<.5){const last=parts.A[3];last.notes=invent(last.ch,last.rh,true)}bars=parts[sec]}
+      const lead=sec=='B'?L[1]:L[0];
+      bars.forEach(b=>{const u=60/bpm;S.acc(k,b.ch,t,u);S.perc(k,t,u,sec,bpm);
+        if(b.notes){let bt=0;b.rh.forEach((d,j)=>{note(lead,b.notes[j],t+bt*u,d*u,j==0?1:.85);bt+=d})}
+        t+=S.bar*u;if(S.accel)bpm=Math.min(S.bpmMax,bpm*S.accel)});
+      tim.push(setTimeout(()=>playSec(i+1),Math.max(0,(t-AC.currentTime-1)*1000)))};
+    playSec(0)};
+  tim.push(setTimeout(song,rnd(800,2500)))}
+
+// ----- Klangfläche: Begleitung + gelegentliche Melodie-Töne, ohne festes Stück (Irrwald, Höhle, Kirche) -----
 function band(M,out,tim,alive){
   const bus=AC.createGain(),lp=AC.createBiquadFilter();lp.type='lowpass';lp.frequency.value=M.cut;lp.Q.value=.4;bus.gain.value=.5;bus.connect(lp);lp.connect(out);
   const send=AC.createGain();send.gain.value=M.sparse||M.space?.9:.3;send.connect(MREV);bus.connect(send);
   const I=instruments(bus);
-  const wow=AC.createOscillator(),wg=AC.createGain();wow.frequency.value=.35;wg.gain.value=6;wow.connect(wg);wow.start();
-  const ep=(m,t,dur,v)=>{const f=mtof(m),c=AC.createOscillator(),mo=AC.createOscillator(),mi=AC.createGain(),g=AC.createGain();c.frequency.value=f;mo.frequency.value=f;wg.connect(c.detune);
-    mi.gain.setValueAtTime(f*1.1,t);mi.gain.exponentialRampToValueAtTime(f*.15,t+.7);mo.connect(mi);mi.connect(c.frequency);c.connect(g);g.connect(bus);
-    g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v,t+.008);g.gain.exponentialRampToValueAtTime(v*.45,t+.35);g.gain.exponentialRampToValueAtTime(.0001,t+dur+.6);[c,mo].forEach(o=>{o.start(t);o.stop(t+dur+.7)})};
   const bass=(m,t,dur,v)=>{const o=AC.createOscillator(),g=AC.createGain(),x=AC.createBiquadFilter();x.type='lowpass';x.frequency.value=260;o.frequency.value=mtof(m);o.connect(x);x.connect(g);g.connect(bus);
     g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v,t+.02);g.gain.exponentialRampToValueAtTime(v*.6,t+dur*.6);g.gain.exponentialRampToValueAtTime(.0001,t+dur);o.start(t);o.stop(t+dur+.05)};
-  const kick=(t,v)=>{const o=AC.createOscillator(),g=AC.createGain();o.frequency.setValueAtTime(130,t);o.frequency.exponentialRampToValueAtTime(46,t+.12);g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+.38);o.connect(g);g.connect(bus);o.start(t);o.stop(t+.4)};
-  const snare=(t,v)=>{I.hit(t,'bandpass',1900,.7,v,.16)},rim=(t,v)=>I.hit(t,'bandpass',1700,9,v,.035),hat=(t,v)=>I.hit(t,'highpass',7500,.5,v,.035),shaker=(t,v)=>I.hit(t,'bandpass',5200,1.4,v,.07);
-  tim.push(setInterval(()=>{if(Math.random()<.4)I.hit(AC.currentTime+Math.random()*.2,'lowpass',3000,.5,rnd(.008,.025),.01)},200));
-  const comp=(ch,t,beat,sec)=>{const k=M.comp;
-    if(k=='ep')ch.n.forEach((m,i)=>ep(m,t+i*.012,beat*2.2,.055*(i?.8:1)));
-    else if(k=='bajan')I.bajan(ch.n.map(m=>M.low?m-12:m),t,beat*(sec=='pad'?4:1.8),.07,M.low);
-    else{const ms=ch.n.concat([ch.n[0]+12]);I.arp('gusli',ms,t,.09,.2)}};
+  const comp=(ch,t,beat,sec)=>{if(M.comp=='bajan')I.bajan(ch.n.map(m=>M.low?m-12:m),t,beat*(sec=='pad'?4:1.8),.07,M.low);
+    else I.arp('gusli',ch.n.concat([ch.n[0]+12]),t,.09,.2)};
   const bpm=rnd(M.bpm[0],M.bpm[1]),s16=60/bpm/4,sw=M.swing;let step=0,nextT=AC.currentTime+.4,prog=pick(M.progs),mel=pick(M.mel),melBar=false,lead=pick(M.lead.length?M.lead:['gusli']),hold=0;
   const section=bar=>{const b=bar%32;if(M.sparse)return b%2?'rest':'pad';if(b<4)return'intro';if(b<12)return'groove';if(b<14)return'break';if(b<28)return'groove';if(b<30)return'outro';return'rest'};
   const sched=(st,t)=>{const bar=st/16|0,pos=st%16,sec=section(bar),ch=prog[bar%prog.length],beat=s16*4;
     if(pos==0&&bar%prog.length==0){if(bar>0)prog=pick(M.progs);if(M.lead.length)lead=pick(M.lead)}
     if(pos==0)melBar=M.lead.length&&(sec=='groove'||sec=='break'||(sec=='intro'&&bar%4==3))&&Math.random()<.6;
     if(sec=='rest')return;
-    // Begleitung
     if(pos==0)comp(ch,t,beat,sec);
     if(pos==8&&M.comp=='gusli'&&sec!='pad'&&Math.random()<.6)I.arp('gusli',ch.n.concat([ch.n[0]+12]),t,.08,.16,true);
-    if(M.comp=='bajan'&&(pos==8)&&sec=='groove')I.bajan(ch.n.map(m=>M.low?m-12:m),t,beat*1.6,.06,M.low);
-    if(M.comp=='ep'&&pos==6&&Math.random()<.5)ch.n.forEach((m,i)=>ep(m,t+i*.012,beat*.8,.04));
-    // Bass
-    if(sec=='groove'||sec=='break'||sec=='outro'){if(pos==0)bass(ch.b,t,beat*1.6,.22);if(pos==8&&Math.random()<.7)bass(ch.b+(Math.random()<.5?7:0),t,beat*1.2,.18)}
-    // Beat
-    if(sec=='groove'&&M.kit!='none'){const full=M.kit=='full';
-      if(pos==0||(pos==10&&Math.random()<.6))kick(t,full?.5:.36);
-      if(pos==4||pos==12)M.kit=='shaker'?rim(t,.12):full?snare(t,.2):rim(t,.15);
-      if(pos%2==0)M.kit=='shaker'?shaker(t,rnd(.03,.06)):hat(t,(pos%4==0?.045:.028)*rnd(.7,1.1))}
-    // Volks-Percussion: Holzlöffel (Hi/Lo im Wechsel), Schellentrommel
-    if(M.loschki&&(sec=='groove'||sec=='break')&&[0,3,4,6,8,11,12,14].includes(pos)&&Math.random()<.85)I.loschki(t,pos%4==0?.13:.08,pos%8>=4);
-    if(M.buben&&sec=='groove'){if(pos==4||pos==12)I.buben(t,.06);else if(pos%2==1&&Math.random()<.4)I.buben(t,.02)}
-    // Melodie
+    if((sec=='groove'||sec=='break'||sec=='outro')&&pos==0)bass(ch.b,t,beat*1.6,.18);
     if(hold>0){hold--;return}
     if(melBar&&[0,2,3,6,8,10,12,14].includes(pos)&&Math.random()<.5){const i=M.mel.indexOf(mel);mel=M.mel[Math.max(0,Math.min(M.mel.length-1,i+pick([-2,-1,1,1,2,0,-1])))];
       const n16=pick([2,3,4,6]),dur=n16*s16;hold=n16-1;
       if(lead=='swirel')I.swirel(mel,t,dur,.1);else if(lead=='schaleika')I.schaleika(mel,t,dur,.07);
-      else if(lead=='domra'){n16>=4?I.trem('domra',mel,t,dur,.3):I.pluck('domra',mel,t,.38)}
-      else if(lead=='balalaika'){n16>=4?I.trem('balalaika',mel,t,dur,.28,13):I.pluck('balalaika',mel,t,.36)}
       else{I.pluck('gusli',mel+12,t,.3);hold=0}}};
   tim.push(setInterval(()=>{if(!alive())return;while(nextT<AC.currentTime+.3){sched(step,nextT);nextT+=s16*2*(step%2==0?sw:1-sw);step++}},60))}
 

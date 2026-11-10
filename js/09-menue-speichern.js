@@ -82,7 +82,7 @@ function loadState(d){closeO();if($('#start'))rm('start');
   Object.entries(d.ti||{}).forEach(([k,v])=>{if(T[k])T[k].i=v});if(FL.cut){const h=$('[data-id=sHolz]');if(h)h.style.display='none'}
   for(const k in cache)delete cache[k];renderInv();busy=false;box.style.display='none';enter(d.cur,[d.P.x,d.P.y])}
 // ===== Pausemenü =====
-const KEYS=[['Linksklick','Laufen, ansehen, benutzen, sprechen'],['Klick / Leertaste im Dialog','Text weiter'],['ESC / Rechtsklick im Dialog','Gespräch überspringen'],['➜ Schilder & Türen','Zu einem anderen Ort'],['Leertaste (halten)','Alles Klickbare zeigen'],['H','Tipp: Was soll ich als Nächstes tun?'],['I','Taschen'],['J','Aufträge'],['M','Karte'],['L','Gesprächsverlauf'],['V','Stimmen an/aus'],['ESC','Menü / schließen']];
+const KEYS=[['Linksklick','Laufen, ansehen, benutzen, sprechen'],['Klick / Leertaste im Dialog','Text weiter'],['ESC / Rechtsklick im Dialog','Gespräch überspringen'],['➜ Schilder & Türen','Zu einem anderen Ort'],['Leertaste (halten)','Alles Klickbare zeigen'],['H','Tipp: Was soll ich als Nächstes tun?'],['I','Taschen'],['J','Aufträge'],['M','Karte'],['L','Gesprächsverlauf'],['V','Stimmen an/aus'],['F','Vollbild'],['ESC','Menü / schließen']];
 const SPEEDS=[[45,'Langsam'],[28,'Normal'],[14,'Schnell'],[4,'Sofort']];
 function openMenu(view){view=view||'m';const a=slots(),inGame=cur&&!$('#start'),back=`<button class="mb back" data-v="m">← Zurück</button>`;
   const slot=(mode,n)=>{const d=a[n];return`<button class="slotc" data-${mode}="${n}" ${mode=='l'&&!d?'disabled':''}><b>Platz ${n+1}</b><span>${d?'📍 '+(LOCN[d.cur]||d.cur)+'<br><small>'+d.date+'</small>':'<i>leer</i>'}</span></button>`};
@@ -121,4 +121,7 @@ addEventListener('keydown',e=>{if($('#fg')||$('#cut')||e.repeat&&e.key!=' ')retu
   else if(ovl&&ovl.classList.contains('tutO'))return
   else if(k=='i'&&play)toggleBook('tasche');else if(k=='j'&&play)toggleBook('auftrag');else if(k=='m'&&play)toggleBook('karte');else if(k=='l'&&play)toggleBook('log');
   else if(k=='h'&&play&&!ovl)typeof tipp=='function'&&tipp();
-  else if(k=='v')toggleVoice()});
+  else if(k=='v')toggleVoice();
+  else if(k=='f'&&!/input|textarea/i.test(e.target.tagName))toggleFull()});
+// Vollbild (F)
+function toggleFull(){try{if(document.fullscreenElement)document.exitFullscreen();else document.documentElement.requestFullscreen()}catch(e){}}

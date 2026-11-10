@@ -41,14 +41,14 @@ Kostenlose Geräusche ohne Lizenzärger (CC0) gibt es z. B. auf freesound.org (F
 oder pixabay.com/sound-effects.
 
 Musik (optional, ersetzt die erzeugte Musik der jeweiligen Stimmung, läuft leise in Schleife):
-  mus-wald      Birkenwald, Weggabelung   (Gusli, Swirel, Domra, Holzlöffel)
-  mus-gnome     Gnomsiedlung              (Bajan, Balalaika, Schaleika, Löffel, Schellentrommel)
-  mus-dunkel    Hütte, dunkler Wald       (Bajan tief, Domra)
+  mus-wald      Birkenwald, Weggabelung   (Reigen im 6/8: Swirel, Domra, Gusli, Holzlöffel)
+  mus-gnome     Gnomsiedlung              (Zwergenmarsch: Kontrabass, Balalaika, Schaleika, Holzklötze)
+  mus-dunkel    Hütte, dunkler Wald       (Klagebass, Bajan tief, Domra, Rahmentrommel)
   mus-irrwald   Irrwald                   (Gusli im Hall, Schaleika von fern)
   mus-dorf      Dorf, Dorfstraße          (Dorffest: Balalaika, Bajan, Löffel)
   mus-kirche    Kirche                    (Gusli, Swirel)
-  mus-wasser    Mühle, See, Ufer, Steg    (E-Piano, Domra, Gusli)
-  mus-sumpf     Sumpf                     (Bajan, Schaleika, Shaker)
+  mus-wasser    Mühle, See, Ufer, Steg    (Walzer: Bajan, Domra, Gusli, Kontrabass)
+  mus-sumpf     Sumpf                     (Sumpf-Blues: Bajan, Schaleika, Shaker)
   mus-hoehle    Höhle                     (Gusli mit Hall)
-  mus-innen     Hütte innen               (Gusli, Schaleika, Balalaika, Löffel)
-  mus-titel     Startmenü                 (Bajan, Domra, Swirel)
+  mus-innen     Hütte innen               (wird immer schneller: Balalaika, Gusli, Schaleika, Löffel)
+  mus-titel     Startmenü                 (Straßenmusikant: Bajan, Swirel, Domra)
