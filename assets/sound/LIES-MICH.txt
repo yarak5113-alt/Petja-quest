@@ -43,7 +43,8 @@ oder pixabay.com/sound-effects.
 Musik (optional, ersetzt die erzeugte Ambient-Musik der jeweiligen Stimmung, läuft leise in Schleife):
   mus-wald      Birkenwald, Weggabelung, Gnome
   mus-dunkel    Hütte, Birkensperre, Irrwald
-  mus-dorf      Dorf, Dorfstraße, Kirche
+  mus-dorf      Dorf, Dorfstraße (Balalaika)
+  mus-kirche    Kirche (Balalaika von weitem)
   mus-wasser    Mühle, Fischerhaus, Ufer, Unter dem Steg
   mus-sumpf     Sumpf
   mus-hoehle    Höhle

@@ -1,6 +1,11 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.11',d:'10.11.2026',t:'Sonne, Krähen und Balalaika',n:[
+    'Birkenwald und Weggabelung klingen sonnig: Vogelgesang, zirpende Grashüpfer, summende Bienen',
+    'Baba Jagas Hütte: kalter Wind und Krähen – dunkler Wald und Irrwald mit Wolfsheulen in der Ferne',
+    'Im Dorf spielt jemand Balalaika, am Friedhof hört man sie von weitem',
+    'See, Ufer und Steg: mehr Wellen und Plätschern, weniger Wind']},
   {v:'1.10',d:'10.11.2026',t:'Ein bisschen Musik',n:[
     'Leise Hintergrundmusik, die sich der Stimmung anpasst – hell im Wald, düster im Irrwald, trüb im Sumpf, fast still in der Höhle',
     'Keine Lieder in Dauerschleife: Die Melodie entsteht immer wieder neu',
