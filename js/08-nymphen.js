@@ -156,7 +156,7 @@ function svgPt(e){const p=svg.createSVGPoint();p.x=e.clientX;p.y=e.clientY;retur
 game.addEventListener('click',e=>{if($('#fg'))return;if(busy)return advance();if(changing||!S0)return;const h=e.target.closest('.interactive');
   if(h){const id=h.dataset.id,o=T[id];if(!o)return;if(id=='petja'||!o.at)return use(id);return walkTo(o.at[0],o.at[1],()=>use(id))}
   if(e.target.closest('#scene')){const p=svgPt(e);walkTo(p.x,p.y)}});
-game.addEventListener('mousemove',e=>{const h=e.target.closest('.interactive');label.textContent=!busy&&h&&T[h.dataset.id]?T[h.dataset.id].n:''});
+game.addEventListener('mousemove',e=>hoverLabel(e));game.addEventListener('mouseleave',()=>label.style.opacity=0);
 
 setTimeout(()=>{enter('wald',[400,476]);setTimeout(()=>{const b=$('#bNew');if(b){b.disabled=false;b.textContent='Neues Spiel'}testerBoot()},500)},30);
 $('#bNew').onclick=e=>{e.stopPropagation();rm('start');cutscene()};$('#bLoad').onclick=e=>{e.stopPropagation();openMenu('l')};$('#bKeys').onclick=e=>{e.stopPropagation();openMenu('k')};

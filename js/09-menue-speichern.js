@@ -25,18 +25,41 @@ function quests(){const Q=[];
     {t:'Den Preis bezahlen',v:FL.leiterQ,ok:FL.leiter,s:[{t:'An die Flasche kommen',v:FL.schnapsQ,ok:FL.schnaps},{t:'Für Ablenkung sorgen',v:FL.schnapsQ,ok:FL.ablenk},{t:'Ein Köder für etwas Großes',v:FL.schnapsQ,ok:FL.tied||FL.ablenk,s:[{t:'Würmer sammeln – vor Baba Jagas Hütte ist die Erde feucht',v:FL.schnapsQ,ok:has('wuermer')||FL.tied||FL.ablenk},{t:'Die Würmer an Kusmitschs Schnur unterm Steg hängen',v:has('wuermer')||FL.tied,ok:FL.tied||FL.ablenk}]}]}]});
   Q.push({t:'Der Joint',d:'Baba Jaga will wissen, was drin war.',v:FL.drin,ok:FL.bjInfo,s:[{t:'Den Joint untersuchen',v:FL.drin,ok:FL.pilze},{t:'Das Ergebnis zeigen',v:FL.pilze,ok:FL.bjInfo}]});
   return Q.filter(q=>q.v)}
-function qHTML(list,lv){return list.filter(q=>q.v).map(q=>`<div class="q l${lv} ${q.ok?'done':''}"><span>${q.ok?'☑':'☐'} ${q.t}</span>${q.d?`<i>${q.d}</i>`:''}${q.s?qHTML(q.s,lv+1):''}</div>`).join('')}
+// Offene Blätter des Auftragsbaums; der tiefste (konkreteste) zuerst, bei Gleichstand der neuere Auftrag
+function nextSteps(Q){const out=[];const walk=(q,d,top)=>{if(!q.v||q.ok)return;const kids=(q.s||[]).filter(c=>c.v&&!c.ok);if(!kids.length)out.push({q,d,top});else kids.forEach(c=>walk(c,d+1,top))};
+  (Q||quests()).forEach((q,i)=>walk(q,0,i));return out.sort((a,b)=>b.d-a.d||b.top-a.top)}
+function qTree(list,lv,NEXT){return list.filter(q=>q.v).map(q=>`<div class="q l${lv} ${q.ok?'done':''} ${q===NEXT?'next':''}"><span>${q.ok?'✔':q===NEXT?'➤':'○'} ${q.t}</span>${q.d&&lv==0?`<i>${q.d}</i>`:''}${q.s&&!q.ok?qTree(q.s,lv+1,NEXT):''}</div>`).join('')}
 let ovl=null;function closeO(){if(ovl){ovl.remove();ovl=null}}
-function openO(html,cls){closeO();ovl=document.createElement('div');ovl.className='ovl '+(cls||'');ovl.innerHTML=html;ovl.onclick=e=>e.stopPropagation();$('#game').appendChild(ovl);return ovl}
-function openInv(){const o=openO(`<div class="pan inv2"><h3>Taschen</h3><div class="grid">${inv.length?inv.map(id=>{const it=ITEMS[id]||['❔',id,id];return`<div class="card" data-i="${id}"><b>${it[0]}</b><span>${it[1]}</span></div>`}).join(''):'<p class="em">Leer. Wie mein Kühlschrank.</p>'}</div><p class="desc">Klick auf einen Gegenstand.</p></div>
-  <div class="pan qs"><h3>Aufträge</h3>${qHTML(quests(),0)}</div><div class="hint">[I] oder [ESC] schließen</div>`,'two');
-  o.querySelectorAll('.card').forEach(c=>c.onclick=()=>{const it=ITEMS[c.dataset.i];o.querySelector('.desc').textContent=it?it[1]+': '+it[2]:''})}
+function openO(html,cls){closeO();ovl=document.createElement('div');ovl.className='ovl '+(cls||'');ovl.innerHTML=html;ovl.onclick=e=>{e.stopPropagation();if(e.target===ovl)closeO()};
+  ovl.querySelectorAll('.x').forEach(b=>b.onclick=closeO);$('#game').appendChild(ovl);return ovl}
+// ===== Tagebuch: Taschen | Aufträge | Karte =====
+const BOOKT=[['tasche','🎒','Taschen','I'],['auftrag','📜','Aufträge','J'],['karte','🗺️','Karte','M']];
+function openBook(tab){tab=tab||'tasche';let body='';
+  if(tab=='tasche')body=inv.length?`<div class="grid">${inv.map(id=>{const it=ITEMS[id]||['❔',id,id];return`<button class="card" data-i="${id}"><b>${it[0]}</b><span>${it[1]}</span></button>`}).join('')}</div>
+      <div class="detail"><span class="em">Klick auf einen Gegenstand, um ihn anzusehen.</span></div>`:'<p class="empty">🕸️<br>Leer. Wie mein Kühlschrank.<br><span class="em">Sammle Dinge ein, indem du sie in der Welt anklickst.</span></p>';
+  if(tab=='auftrag'){const Q=quests(),ns=nextSteps(Q),NEXT=ns[0]&&ns[0].q,open=Q.filter(q=>!q.ok),fin=Q.filter(q=>q.ok);
+    body=`${NEXT?`<div class="nextbox"><small>Nächster Schritt</small>➤ ${NEXT.t}</div>`:''}${qTree(open,0,NEXT)||'<p class="em">Gerade nichts offen.</p>'}
+      ${fin.length?`<details class="fin"><summary>Erledigt (${fin.length})</summary>${qTree(fin,0)}</details>`:''}`;if(typeof badge=='function')badge('auftrag',0)}
+  if(tab=='karte')body=mapSVG()+`<p class="legend"><span class="lg here"></span> Du bist hier <span class="lg"></span> Besucht <span class="lg unk">?</span> Noch unerkundet</p>`;
+  if(tab=='tasche'&&typeof badge=='function')badge('tasche',0);
+  const o=openO(`<div class="pan book"><div class="tabs">${BOOKT.map(([k,ic,t,key])=>`<button class="tab ${k==tab?'on':''}" data-tab="${k}">${ic} ${t} <kbd>${key}</kbd></button>`).join('')}<button class="x" title="Schließen (ESC)">✕</button></div>
+    <div class="bbody b-${tab}">${body}</div></div>`,'bookO');o.dataset.book=tab;
+  o.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>openBook(b.dataset.tab));
+  o.querySelectorAll('.card').forEach(c=>c.onclick=()=>{o.querySelectorAll('.card').forEach(k=>k.classList.toggle('sel',k===c));const it=ITEMS[c.dataset.i];
+    o.querySelector('.detail').innerHTML=it?`<b class="big">${it[0]}</b><div><h4>${it[1]}</h4><p>${it[2]}</p></div>`:''})}
+function openInv(){openBook('tasche')}function openMap(){openBook('karte')}
+function toggleBook(tab){if(ovl&&ovl.dataset.book==tab)closeO();else openBook(tab)}
 const MAPN={irrwald:[-22,10],banjaV:[-22,36],banja:[-22,62],muehle:[10,10],dorf:[42,10],dorfstr:[74,10],kirche:[106,10],huette:[42,36],innen:[74,36],wald:[10,62],gabel:[42,62],sperre:[74,62],sumpf:[106,62],fischer:[74,88],ufer:[106,88],unter:[106,112],gnome:[138,88],hoehle:[170,88]};
 const MAPE=[['muehle','irrwald'],['irrwald','banjaV'],['banjaV','banja'],['banjaV','muehle'],['wald','gabel'],['gabel','huette'],['gabel','sperre'],['huette','dorf'],['huette','innen'],['dorf','dorfstr'],['dorfstr','kirche'],['dorf','muehle'],['sperre','sumpf'],['sperre','fischer'],['fischer','ufer'],['ufer','unter'],['ufer','gnome'],['gnome','hoehle']];
-function openMap(){const P2=(id)=>MAPN[id];let svg=`<svg viewBox="-44 0 232 122" class="map">`;
-  MAPE.forEach(([a,b])=>{if(seen[a]&&seen[b])svg+=`<line x1="${P2(a)[0]}" y1="${P2(a)[1]}" x2="${P2(b)[0]}" y2="${P2(b)[1]}" stroke="#8a7050" stroke-width="1.2" stroke-dasharray="2 1.5"/>`});
-  Object.keys(MAPN).forEach(id=>{if(!seen[id])return;const[x,y]=P2(id),c=id==cur;svg+=`<circle cx="${x}" cy="${y}" r="${c?3.4:2.4}" fill="${c?'#e04020':'#c8a060'}" stroke="#2a1a0a" stroke-width=".6"/><text x="${x}" y="${y+6}" font-size="3.2" text-anchor="middle" fill="#f0e0c0">${LOCN[id]}</text>`});
-  openO(`<div class="pan mp"><h3>Karte</h3>${svg}</svg><p class="em">● Du bist hier · Nur besuchte Orte</p></div><div class="hint">[M] oder [ESC] schließen</div>`)}
+// Karte: besuchte Orte, Wege dazwischen, und angrenzende unerkundete Orte als „?“
+function mapSVG(){const P2=id=>MAPN[id],unk={};let s=`<svg viewBox="-44 -2 232 124" class="map">`;
+  MAPE.forEach(([a,b])=>{if(!seen[a]&&!seen[b])return;const both=seen[a]&&seen[b];if(!both)unk[seen[a]?b:a]=1;
+    s+=`<line x1="${P2(a)[0]}" y1="${P2(a)[1]}" x2="${P2(b)[0]}" y2="${P2(b)[1]}" stroke="${both?'#a8885a':'#5a4a34'}" stroke-width="${both?1.4:1}" stroke-dasharray="${both?'none':'1.5 1.5'}"/>`});
+  Object.keys(unk).forEach(id=>{const[x,y]=P2(id);s+=`<circle cx="${x}" cy="${y}" r="2.6" fill="#2a2016" stroke="#6a5a40" stroke-width=".5"/><text x="${x}" y="${y+1.2}" font-size="3.4" text-anchor="middle" fill="#8a7a5a">?</text>`});
+  Object.keys(MAPN).forEach(id=>{if(!seen[id])return;const[x,y]=P2(id),c=id==cur;
+    s+=`${c?`<circle class="pulse" cx="${x}" cy="${y}" r="4" fill="none" stroke="#ff6040" stroke-width=".8"/>`:''}<circle cx="${x}" cy="${y}" r="${c?3.2:2.4}" fill="${c?'#e04020':'#d8b070'}" stroke="#2a1a0a" stroke-width=".6"/>
+      <text x="${x}" y="${y+6.4}" font-size="${c?3.6:3.1}" font-weight="${c?'bold':'normal'}" text-anchor="middle" fill="${c?'#ffd890':'#f0e0c0'}" stroke="#1a1008" stroke-width=".6" paint-order="stroke">${LOCN[id]}</text>`});
+  return s+'</svg>'}
 const SKEY='petjaQuestSave';
 function slots(){try{return JSON.parse(localStorage.getItem(SKEY)||'[]')}catch(e){return[]}}
 function saveGame(n){if(!cur)return;const d={inv:[...inv],FL:{...FL},seen:{...seen},cur,P:{x:P.x,y:P.y},REM:[...REM],ti:Object.fromEntries(Object.entries(T).map(([k,o])=>[k,o.i||0])),date:new Date().toLocaleString('de-DE')};
@@ -48,16 +71,38 @@ function loadState(d){closeO();if($('#start'))rm('start');
   inv.length=0;inv.push(...d.inv);Object.keys(FL).forEach(k=>delete FL[k]);Object.assign(FL,d.FL);Object.assign(seen,d.seen);d.REM.forEach(rm);
   Object.entries(d.ti||{}).forEach(([k,v])=>{if(T[k])T[k].i=v});if(FL.cut){const h=$('[data-id=sHolz]');if(h)h.style.display='none'}
   for(const k in cache)delete cache[k];renderInv();busy=false;box.style.display='none';enter(d.cur,[d.P.x,d.P.y])}
-function openMenu(view){const a=slots(),sl=(mode)=>[0,1,2].map(n=>`<button data-${mode}="${n}" ${mode=='l'&&!a[n]?'disabled':''}>Slot ${n+1}: ${a[n]?LOCN[a[n].cur]+' – '+a[n].date:'leer'}</button>`).join('');
-  const body=view=='s'?`<h3>Speichern</h3>${cur&&!$('#start')?sl('s'):'<p class="em">Erst spielen, dann speichern.</p>'}<button data-v="m">Zurück</button>`:view=='l'?`<h3>Laden</h3>${sl('l')}<button data-v="m">Zurück</button>`:
-    view=='k'?`<h3>Steuerung</h3><table><tr><td>Linksklick</td><td>Laufen, ansehen, benutzen, sprechen</td></tr><tr><td>Klick in den Text</td><td>Dialog weiter</td></tr><tr><td>Schilder</td><td>Zum nächsten Ort</td></tr><tr><td>I</td><td>Taschen &amp; Aufträge</td></tr><tr><td>M</td><td>Karte</td></tr><tr><td>V</td><td>Petjas Stimme an/aus</td></tr><tr><td>ESC</td><td>Menü / schließen</td></tr></table><button data-v="m">Zurück</button>`:
-    `<h3>Menü</h3><button data-v="x">Weiterspielen</button><button data-v="s">Spiel speichern</button><button data-v="l">Spielstand laden</button><button data-v="i">Taschen &amp; Aufträge</button><button data-v="map">Karte</button><button data-v="k">Steuerung</button>`;
-  const o=openO(`<div class="pan menu">${body}</div><div class="hint">[ESC] schließen</div>`);
-  o.querySelectorAll('button').forEach(b=>b.onclick=()=>{const v=b.dataset.v;if(v=='x')return closeO();if(v=='i')return openInv();if(v=='map')return openMap();if(v)return openMenu(v);
-    if(b.dataset.s!=null){const ok=saveGame(+b.dataset.s);openMenu('s');const m=document.createElement('p');m.className='em';m.textContent=ok?'Gespeichert!':'Speichern nicht möglich (Browser blockiert Speicher).';ovl.querySelector('.pan').appendChild(m)}
-    if(b.dataset.l!=null)loadGame(+b.dataset.l)})}
-addEventListener('keydown',e=>{if($('#fg')||$('#cut'))return;const k=e.key.toLowerCase();
+// ===== Pausemenü =====
+const KEYS=[['Linksklick','Laufen, ansehen, benutzen, sprechen'],['Klick / Leertaste im Dialog','Text weiter'],['➜ Schilder & Türen','Zu einem anderen Ort'],['Leertaste (halten)','Alles Klickbare zeigen'],['H','Tipp: Was soll ich als Nächstes tun?'],['I','Taschen'],['J','Aufträge'],['M','Karte'],['V','Petjas Stimme an/aus'],['ESC','Menü / schließen']];
+const SPEEDS=[[45,'Langsam'],[28,'Normal'],[14,'Schnell'],[4,'Sofort']];
+function openMenu(view){view=view||'m';const a=slots(),inGame=cur&&!$('#start'),back=`<button class="mb back" data-v="m">← Zurück</button>`;
+  const slot=(mode,n)=>{const d=a[n];return`<button class="slotc" data-${mode}="${n}" ${mode=='l'&&!d?'disabled':''}><b>Platz ${n+1}</b><span>${d?'📍 '+(LOCN[d.cur]||d.cur)+'<br><small>'+d.date+'</small>':'<i>leer</i>'}</span></button>`};
+  const sp=SPEEDS.find(s=>s[0]==OPT.speed)||SPEEDS[1];
+  const body=view=='s'?`<h3>💾 Spiel speichern</h3>${inGame?`<div class="slots3">${[0,1,2].map(n=>slot('s',n)).join('')}</div><p class="msg em">Wähl einen Platz.</p>`:'<p class="em">Erst spielen, dann speichern.</p>'}${back}`
+    :view=='l'?`<h3>📂 Spielstand laden</h3><div class="slots3">${[0,1,2].map(n=>slot('l',n)).join('')}</div>${back}`
+    :view=='o'?`<h3>⚙️ Einstellungen</h3><div class="opts">
+        <button class="mb" data-o="voice">🔊 Petjas Stimme <b>${VOICE_ON?'An':'Aus'}</b></button>
+        <button class="mb" data-o="barks">💬 Sprüche beim Rumstehen <b>${OPT.barks?'An':'Aus'}</b></button>
+        <button class="mb" data-o="speed">⏩ Textgeschwindigkeit <b>${sp[1]}</b></button></div>${back}`
+    :view=='k'?`<h3>⌨️ Steuerung</h3><table>${KEYS.map(([k,t])=>`<tr><td>${k}</td><td>${t}</td></tr>`).join('')}</table><button class="mb" data-v="tut">❓ Anleitung nochmal zeigen</button>${back}`
+    :`<h3>${inGame?'⏸ Pause':'Menü'}</h3>
+      ${inGame?`<button class="mb big" data-v="x">▶ Weiterspielen</button>`:''}
+      <button class="mb" data-v="s" ${inGame?'':'disabled'}>💾 Spiel speichern</button><button class="mb" data-v="l">📂 Spielstand laden</button>
+      ${inGame?`<button class="mb" data-v="i">🎒 Taschen</button><button class="mb" data-v="j">📜 Aufträge</button><button class="mb" data-v="map">🗺️ Karte</button>`:''}
+      <button class="mb" data-v="o">⚙️ Einstellungen</button><button class="mb" data-v="k">⌨️ Steuerung</button>${inGame?`<button class="mb quit" data-v="home">🏠 Zum Titelbild</button>`:''}`;
+  const o=openO(`<div class="pan menu"><button class="x" title="Schließen (ESC)">✕</button>${body}</div>`,'menuO');o.dataset.menu=view;
+  o.querySelectorAll('button[data-v]').forEach(b=>b.onclick=()=>{const v=b.dataset.v;
+    if(v=='x')return closeO();if(v=='i')return openBook('tasche');if(v=='j')return openBook('auftrag');if(v=='map')return openBook('karte');if(v=='tut'){closeO();return typeof showTutorial=='function'&&showTutorial()}
+    if(v=='home'){if(b.dataset.armed)return location.reload();b.dataset.armed=1;b.innerHTML='⚠️ Wirklich? Nicht Gespeichertes geht verloren. <b>Nochmal klicken</b>';return}
+    openMenu(v)});
+  o.querySelectorAll('button[data-o]').forEach(b=>b.onclick=()=>{const k=b.dataset.o;
+    if(k=='voice')toggleVoice();if(k=='barks'){OPT.barks=!OPT.barks;saveOpt()}if(k=='speed'){const i=SPEEDS.findIndex(s=>s[0]==OPT.speed);OPT.speed=SPEEDS[(i+1)%SPEEDS.length][0];saveOpt()}openMenu('o')});
+  o.querySelectorAll('button[data-s]').forEach(b=>b.onclick=()=>{const n=+b.dataset.s;
+    if(a[n]&&!b.dataset.armed){o.querySelectorAll('[data-armed]').forEach(x=>delete x.dataset.armed);b.dataset.armed=1;b.classList.add('warn');o.querySelector('.msg').textContent='Platz '+(n+1)+' ist belegt. Nochmal klicken zum Überschreiben.';return}
+    const ok=saveGame(n);openMenu('s');ovl.querySelector('.msg').textContent=ok?'✔ Gespeichert auf Platz '+(n+1)+'!':'Speichern nicht möglich (Browser blockiert Speicher).';ovl.querySelector('.msg').classList.toggle('ok',!!ok)});
+  o.querySelectorAll('button[data-l]').forEach(b=>b.onclick=()=>loadGame(+b.dataset.l))}
+addEventListener('keydown',e=>{if($('#fg')||$('#cut')||e.repeat&&e.key!=' ')return;const k=e.key.toLowerCase(),play=!$('#start');
   if(k=='escape'){if(ovl)closeO();else openMenu()}
-  else if(k=='i'&&!$('#start')){if(ovl&&ovl.classList.contains('two'))closeO();else openInv()}
-  else if(k=='m'&&!$('#start')){if(ovl&&ovl.querySelector('.mp'))closeO();else openMap()}
+  else if(ovl&&ovl.classList.contains('tutO'))return
+  else if(k=='i'&&play)toggleBook('tasche');else if(k=='j'&&play)toggleBook('auftrag');else if(k=='m'&&play)toggleBook('karte');
+  else if(k=='h'&&play&&!ovl)typeof tipp=='function'&&tipp();
   else if(k=='v')toggleVoice()});

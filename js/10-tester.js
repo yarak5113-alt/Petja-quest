@@ -34,7 +34,7 @@ function tState(n){const d={inv:[],FL:{},seen:{wald:1},REM:[],cur:'wald',P:{x:40
     if(st.at){d.cur=st.at[0];d.P={x:st.at[1],y:st.at[2]};d.seen[st.at[0]]=1}});return d}
 function tJump(d){if(ss.set(TJUMP,JSON.stringify(d)))location.reload();else loadState(d)}
 function testerBoot(){const j=ss.get(TJUMP);if(!j)return;ss.del(TJUMP);try{loadState(JSON.parse(j));setTimeout(()=>testerToast('Tester: Sprung ausgeführt'),600)}catch(e){}}
-function testerToast(m){label.textContent=m;setTimeout(()=>{if(label.textContent===m)label.textContent=''},1800)}
+function testerToast(m){toast('🛠 '+m)}
 const TTELE={wald:[400,476],gabel:[320,488],huette:[640,488],innen:[250,470],dorf:[150,486],dorfstr:[420,488],kirche:[420,488],muehle:[700,470],irrwald:[420,486],banjaV:[420,486],banja:[300,480],sperre:[400,488],sumpf:[540,488],fischer:[90,476],ufer:[60,452],unter:[640,470],gnome:[60,472],hoehle:[400,486]};
 function openTester(tab){ss.set(TKEY,'1');tab=tab||'p';const B='style="text-align:left;width:100%"';
   const body=tab=='p'?`<p class="em">Springt zu einem Story-Punkt (Seite lädt neu).</p>${TSTEPS.map((s,i)=>`<button ${B} data-j="${i}">${i+1}. ${s.t}</button>`).join('')}`:
