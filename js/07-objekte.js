@@ -49,7 +49,8 @@ const T={
       return hint('wels',[
         [['F','Die Flasche bleibt hier. Außer der Wels beißt endlich mal an. Dann ist mir alles egal.'],['P','(Alles egal. Auch die Flasche. Interessant.)']],
         [['F','Mit Brot lockst du den nicht. Der will was Lebendiges. Aber ich hab nix anderes.'],['P','(Seine Schnur hängt unterm Steg runter. Da könnte man ja was dranhängen... Was Lebendiges.)']],
-        [['P','(Was Lebendiges, was ein Fisch frisst. Würmer. Und Würmer gibt’s, wo’s matschig ist.)'],['P','(Baba Jagas Hof ist der matschigste Ort, den ich kenne.)']]])}
+        FL.s_wuermer?[['P','(Was Lebendiges, was ein Fisch frisst... Würmer.)'],['P','(Vor Baba Jagas Hütte lag doch so ein Haufen. Die zappeln bestimmt noch.)']]
+          :[['P','(Was Lebendiges, was ein Fisch frisst. Würmer. Und Würmer gibt’s, wo’s matschig ist.)'],['P','(Baba Jagas Hof ist der matschigste Ort, den ich kenne.)']]])}
     if(FL.leiterQ&&!FL.schnapsQ){FL.schnapsQ=1;return say([['P','Herr Kusmitsch, könnten Sie mir Ihren Selbstgebrannten geben? Für den Opa.'],['F','Meinen Selbstgebrannten?! Für den Brandstifter? Eher fress ich mein Netz.'],['F','Die Flasche lass ich nicht aus den Augen. Nur wenn einer anbeißt. Und hier beißt seit 1987 nix Großes mehr an.'],['F','Außer dem Wels. Der wohnt unterm Steg. Aber der beißt nur auf Würmer. Fette Würmer. Mit meinem Brot lockst du den nicht.']])}
     if(FL.ks&&!FL.fisch&&!FL.kater){if(inv.includes('angel'))return say([['F','Na, eine Angel! Selbst gebaut? Sieht aus wie ein Unfall.'],['F','Dann zeig mal. Schwimmer in der Mitte halten, nicht vom Fisch wegziehen lassen!']],fishing);
     if(FL.angelQ){const st=[[['F','Stock und Schnur, Junge. Mehr braucht’s nicht. Und ein bisschen Geduld. Hast du nicht, ich weiß.']]];
@@ -239,19 +240,14 @@ const T={
   sLB:{n:'Schild: Zurück in den Club',at:[690,486],go:'banja',to:[300,480]},
   sZG2:{n:'Schild: Zum Waldweg',at:[150,484],go:'sperre',to:[505,350]},
   huette:{n:'Baba Jagas Hütte',at:[470,438],fn(){if(inv.includes('leiter'))return bjEnter();
-    if(FL.bjNo&&!FL.drin)return say([['P','Das Fenster ist da oben. Ich bin hier unten.'],['P','Mhh. Ohne Leiter komm ich hier nicht weiter.']]);this.i=(this.i||0);say(this.l[this.i++%this.l.length])},l:[
+    if(FL.bjNo&&!FL.drin)return leiterHint();this.i=(this.i||0);say(this.l[this.i++%this.l.length])},l:[
     [['P','Schief, alt, und ich schwör, sie atmet. Die Hütte atmet.']],
     [['P','Aus dem Schornstein riecht es nach Kohl. Und nach... etwas, das kein Kohl ist.']]]},
   tuer:{n:'Tür',at:[478,436],fn(){if(inv.includes('leiter'))return bjEnter();if(!FL.bjNo){FL.bjNo=1;return say([['P','Hallo? Frau Jaga? Darf ich reinkommen?'],['J','Durch die Tür kommt hier keiner rein! Die Tür ist Dekoration!'],['J','Wer was von mir will, kommt durchs Fenster. Wenn er hochkommt. Hihihi!'],['P','Das Fenster ist drei Meter hoch. Und die Hütte steht auf Hühnerbeinen.'],['P','Ich brauch eine Leiter.']])}
-    if(FL.leiterQ)return hint('tuerSchnaps',[[['J','Na, Bürschchen? Immer noch unten? Hihihi!'],['P','Opa Grischa will Schnaps für die Leiter. Natürlich. Umsonst gibt’s hier gar nichts.']],
-      [['P','Wer hat im Wald Schnaps? ...Der Fischer am See sah aus, als hätte er welchen. Und als bräuchte er welchen.']]]);
-    if(FL.s_leiter)return say([['P','Mhh. Ohne Leiter komm ich hier nicht weiter.'],['P','Bei Opa Grischa im Dorf stand doch eine am Ofen. Mal fragen. Mehr als Nein sagen kann er nicht.']]);
-    return hint('tuerLeiter',[[['J','Na, Bürschchen? Immer noch unten? Hihihi!'],['P','Mhh. Ohne Leiter komm ich hier nicht weiter.']],
-      [['P','Wo kriegt man im Märchenwald eine Leiter her? ...Da, wo Leute wohnen. Hinter der Hütte geht’s zu einem Dorf.']],
-      [['P','In so einem Dorf hat immer irgendwer Gerümpel rumstehen. Irgendwer hat immer eine Leiter. Außer mir.']]])},l:[
+    return leiterHint()},l:[
     [['P','Hallo? Ich wollte nur fragen, wie man hier wieder aufwacht.'],['J','Erst klopfen, dann reden! Und die Füße abputzen!']],
     [['P','*klopf klopf*'],['J','Jetzt nicht! Der Ofen ist heiß. Komm später wieder.']]]},
-  beine:{n:'Hühnerbeine',at:[492,438],fn(){if(FL.bjNo&&!FL.drin&&!has('leiter'))return say([['P','Hochklettern? An Hühnerbeinen? Die treten mich bis ins Dorf.'],['P','Ich brauch was Stabiles zum Anlehnen. Eine Leiter.']]);
+  beine:{n:'Hühnerbeine',at:[492,438],fn(){if(FL.bjNo&&!FL.drin&&!has('leiter'))return leiterHint();
     this.i=(this.i||0);say(this.l[this.i++%this.l.length])},l:[
     [['P','Die Beine zucken. Wie bei einem Huhn, das träumt.']],
     [['P','Ich fass da nichts an. Die treten bestimmt.']]]},
@@ -263,6 +259,18 @@ const T={
 // Sanfte Hinweise: Jedes erneute Ansprechen im selben Zustand gibt den nächsten, etwas deutlicheren Richtungshinweis.
 // Die Zählung steht in FL (h_<key>) und wird mitgespeichert. Nie die Lösung verraten, nur die Richtung.
 function hint(key,steps,cb){const k='h_'+key,n=FL[k]||0;FL[k]=n+1;say(steps[Math.min(n,steps.length-1)],cb)}
+// Vor Baba Jagas Hütte (Tür, Hütte, Hühnerbeine teilen sich den Zähler). Die Hütte hilft nicht – Petja denkt selbst nach,
+// und was ihm einfällt, hängt davon ab, was er schon gesehen hat.
+function leiterHint(){
+  if(FL.leiterQ)return hint('tuerSchnaps',[[['P','Opa Grischa will Schnaps für die Leiter. Natürlich. Umsonst gibt’s hier gar nichts.']],
+    seen.fischer?[['P','Wer hat hier Schnaps? ...Der Fischer am See sah aus, als hätte er welchen. Und als bräuchte er welchen.']]
+      :[['P','Irgendwer in diesem Wald brennt bestimmt Schnaps. So wie hier alle aussehen.'],['P','Muss ich wohl rumlaufen und suchen.']]]);
+  if(FL.s_leiter||seen.dorf)return hint('leiterGesehen',[[['P','Mhh. Ohne Leiter komm ich hier nicht weiter.']],
+    [['P','Eine Leiter... Moment. Ich hab doch irgendwo eine gesehen.']],
+    [['P','Im Dorf. Bei dem abgebrannten Haus, am Ofen. Ich sollte im Dorf nachfragen.']]]);
+  hint('leiter',[[['P','Mhh. Ohne Leiter komm ich hier nicht weiter.']],
+    [['P','Eine Leiter. Hab ich hier irgendwo eine gesehen? ...Nö. Muss ich wohl suchen.']],
+    [['P','Leitern gibt’s da, wo Leute wohnen. Und hinter der Hütte geht’s zu einem Dorf.']]])}
 // Gesehene Dinge merken (FL.s_<id>), damit Figuren später darauf eingehen können
 function use(id){const o=T[id];if(!o)return;FL['s_'+id]=1;if(/^slot\d$/.test(id)&&FL.clubQ&&!FL.rekrut)return interview(o);if(o.go)return enter(o.go,o.to);if(o.fn)return o.fn();o.i=o.i||0;const set=o.l[o.i%o.l.length];o.i++;say(set,o.after)}
 const ITEMS={kippe:['🚬','Joint-Stummel','Lieber nicht. Sonst wach ich in einem noch schlimmeren Märchen auf.'],saege:['🪚','Säge','Eine Säge vom Fischer. Damit könnte man Birken klein machen.'],apfel:['🍎','Apfel','Ein roter Apfel. Liegt gut in der Hand. Wurfgewicht: perfekt.'],stock:['🌿','Stock','Ein gerader Ast. Daraus wird was.'],seil:['🧶','Schnur','Schnur aus einem kaputten Fischernetz.'],angel:['🎣','Angel','Selbst gebaut. Stock, Schnur, Sicherheitsnadel. Hält bestimmt.'],pilze:['🍄','Blaue Pilze','Neun blau angelaufene Pilzstücke aus dem Joint. Traumschwamm?'],karte:['🗺️','Angekokelte Karte','Baba Jagas Wegkarte: „2× links, 1× rechts, 1× geradeaus“.'],liste:['📋','Madames Liste','Gesucht: schön, tanzt gern, frech, will raus. Keine Blubberer.'],gutschein:['🎟️','Gutschein','„Ein Abend im Banja mit Privattanz“. Geht aufs Haus.'],mehl:['🥡','3 Säcke „Mehl“','Riecht nicht nach Mehl. Riecht nach Ärger.'],laterne:['🏮','Laterne','Eine Gnomlaterne. Brennt mit irgendwas Grünem.'],wuermer:['🪱','Würmer','Eine Handvoll fetter Würmer von Baba Jagas Hof. Sie zappeln in der Tasche.'],schnaps:['🍶','Selbstgebrannter','Kusmitschs Selbstgebrannter. Schon der Geruch macht blind.'],leiter:['🪜','Leiter','Opas Leiter. Angekokelt, aber stabil.'],fisch:['🐟','Fisch','Ein kleiner Fisch. Guckt komisch.'],gebiss:['🦷','Omas Gebiss','Ein Gebiss. Riecht nach Kater und Friedhof.'],brett:['🪵','Brett','Ein Brett aus Opas Ruine. Nur ein bisschen angekokelt.'],teer:['🛢️','Birkenteer','Riecht nach Lagerfeuer und Omas Rheuma.']};

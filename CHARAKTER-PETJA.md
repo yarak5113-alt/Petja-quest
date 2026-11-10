@@ -35,4 +35,7 @@ Verbindliche Vorlage für alle Texte von Petja (Dialoge, Sprüche, Beschreibunge
   „Mhh. Ohne Leiter komm ich hier nicht weiter.“
 - Andere Figuren geben nur dann Tipps, wenn sie selbst etwas davon haben (Opa will Schnaps, Oma ihr Gebiss, der Fischer sein Boot).
 - Wer keinen Grund hat zu helfen (Baba Jaga, die Krähe, der Fischer beim eigenen Schnaps), hilft auch nicht. Dann redet die Figur nur – und Petja zieht seine Schlüsse daraus.
+- Petja kann nur wissen, was er schon gesehen hat. Hat er die Lösung schon irgendwo gesehen, erinnert er sich mit jedem Versuch genauer
+  („Eine Leiter… Moment. Ich hab doch irgendwo eine gesehen.“ → „Im Dorf, am Ofen. Ich sollte im Dorf nachfragen.“).
+  Hat er sie noch nicht gesehen, weiß er nur, was er braucht, und muss suchen.
 - Gedanken stehen in Klammern, wenn eine andere Figur danebensteht: „(Seine Schnur hängt unterm Steg runter…)“.
