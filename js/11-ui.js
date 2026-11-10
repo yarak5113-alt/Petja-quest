@@ -11,6 +11,8 @@ const HUDB=[['tipp','💡','Tipp','H'],['spot','👁','Zeigen','Leertaste'],['ta
   h.innerHTML=HUDB.map(([k,ic,t,key])=>`<button data-h="${k}" title="${t} (${key})"><i>${ic}</i><span>${t}</span><em class="badge"></em></button>`).join('');
   h.onclick=e=>{e.stopPropagation();const b=e.target.closest('button');if(!b)return;b.blur();const k=b.dataset.h;
     if(k=='tipp')tipp();else if(k=='spot')flashSpots();else if(k=='menu')openMenu();else toggleBook(k)};game.appendChild(h)})();
+// Leiste und Taschen während Dialogen ausblenden, damit sie nicht im Weg sind
+setInterval(()=>game.classList.toggle('busy',busy),100);
 function badge(k,on){const b=document.querySelector(`#hud [data-h="${k}"]`);if(b)b.classList.toggle('new',!!on)}
 
 // ----- Name am Mauszeiger; Ausgänge mit ➜ und eigenem Mauszeiger -----

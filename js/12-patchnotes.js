@@ -2,7 +2,7 @@
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
   {v:'1.4',d:'10.11.2026',t:'Bessere Bedienung & neue Menüs',n:[
-    'Knopfleiste unten rechts: Tipp, Zeigen, Taschen, Aufträge, Karte, Menü',
+    'Knopfleiste oben rechts: Tipp, Zeigen, Taschen, Aufträge, Karte, Menü – verschwindet während Gesprächen',
     'Leertaste halten zeigt alles, was man anklicken kann',
     '💡 Tipp-Knopf (H): Petja sagt, was als Nächstes dran ist',
     'Meldungen für neue Gegenstände und erledigte Aufträge',
@@ -10,7 +10,7 @@ const PATCH=[
     'Kurze Anleitung beim ersten Spielstart',
     'Neuigkeiten wie diese hier im Startmenü']},
   {v:'1.3',d:'10.11.2026',t:'Würmer für den Wels',n:[
-    'Kusmitschs Wels beißt jetzt auf Würmer – zu finden vor Baba Jagas Hütte',
+    'Kusmitschs Wels beißt jetzt auf Würmer – zu finden vor Baba Jagas Hütte, jederzeit einsammelbar',
     'Mehr Hinweise beim Fischer und an der Angelschnur']},
   {v:'1.2',d:'10.11.2026',t:'Vor dem Banja',n:[
     'Neuer Ort: das Blockhaus im dunklen Wald vor dem Banja',

@@ -107,8 +107,8 @@ const T={
     this.i=(this.i||0)+1;say(this.i%2?[['P','Die Angelschnur vom Fischer. Leerer Haken.'],['P','Wenn hier was richtig Großes dranziehen würde, wäre Kusmitsch eine Weile beschäftigt...'],['P','Der Wels! Kusmitsch hat gesagt, der beißt nur auf Würmer. Fette Würmer.']]
       :[['P','Brot lockt den Wels nicht. Ich brauch Würmer für den Haken.'],['P','Vor Baba Jagas Hütte ist die Erde so feucht und matschig... da wimmelt es bestimmt von Würmern.']])}},
   muell:{n:'Müll',at:[540,460],l:[[['P','Eine leere Flasche, ein Stiefel, ein Reifen. Kusmitschs Lebenslauf.']]]},
-  wuermer:{n:'Würmer',at:[540,474],fn(){if(!FL.schnapsQ)return say([['P','Ein Haufen Erde voller fetter Würmer. Die winden sich, als würden sie tanzen.'],['P','Igitt. Die lass ich lieber, wo sie sind.']]);
-    say([['P','Fette Würmer! Genau das Richtige für einen Wels.'],['P','*buddel* *glitsch* ...Eine Handvoll. Rein in die Tasche. Igitt.'],['J','Finger weg von meinen Würmern, Bürschchen! Die sind für die Suppe!'],['P','Ich leih sie nur aus!']],()=>{rm('wuermerG');inv.push('wuermer');renderInv()})}},
+  wuermer:{n:'Würmer',at:[540,474],fn(){
+    say([['P',FL.schnapsQ?'Fette Würmer! Genau das Richtige für einen Wels.':'Ein Haufen Erde voller fetter Würmer. Wer weiß, wofür die mal gut sind.'],['P','*buddel* *glitsch* ...Eine Handvoll. Rein in die Tasche. Igitt.'],['J','Finger weg von meinen Würmern, Bürschchen! Die sind für die Suppe!'],['P','Ich leih sie nur aus!']],()=>{rm('wuermerG');inv.push('wuermer');renderInv()})}},
   schnaps:{n:'Selbstgebrannter',at:[680,392],fn(){if(!FL.ablenk)return say([['F','FINGER WEG! Das ist mein Selbstgebrannter! Den hab ich im Auge, Junge!']]);
     say([['P','*schnapp*'],['F','(kämpfend) KOMM HER! KOMM HER, DU MISTVIEH!'],['P','Der merkt gar nichts. Dreißig Jahre Warten machen blind.']],()=>{FL.schnaps=1;rm('schnapsG');inv.push('schnaps');renderInv()})}},
   leiter:{n:'Leiter',at:[700,452],fn(){say(FL.leiterQ?[['G','Die Leiter gibt’s gegen Selbstgebrannten. Nicht gegen Bitte-Bitte.']]:[['P','Eine alte Leiter am Ofen. Angekokelt, aber stabil.'],['G','Finger weg! Das ist das Einzige, was mir geblieben ist. Außer dem Ofen.']])}},

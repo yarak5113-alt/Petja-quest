@@ -27,7 +27,7 @@ body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:c
   font:bold clamp(12px,1.7vw,15px) Arial;color:#fff;pointer-events:none;opacity:0;transition:opacity .12s;z-index:30;text-shadow:1px 1px 0 #000}
 #label.ex{color:var(--gold)}
 .interactive.exit{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Cpath d='M3 10h12V4l10 10-10 10v-6H3z' fill='%23ffd25a' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E") 14 14,pointer}
-#inv{position:absolute;left:8px;bottom:8px;display:flex;align-items:center;gap:6px;padding:4px 7px;border-radius:10px;background:rgba(20,14,8,.7);border:1px solid rgba(160,122,72,.6);color:#ddd;font-size:16px;z-index:12}
+#inv{position:absolute;left:8px;top:8px;display:flex;align-items:center;gap:6px;padding:4px 7px;border-radius:10px;background:rgba(20,14,8,.7);border:1px solid rgba(160,122,72,.6);color:#ddd;font-size:16px;z-index:12}
 #slots{display:flex;gap:4px}#slots:empty::after{content:'leer';font:italic 12px Georgia;color:var(--muted)}
 .slot{width:36px;height:36px;border-radius:7px;background:rgba(0,0,0,.45);border:1px solid #7a6040;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;transition:transform .1s,border-color .1s}
 .slot:hover{transform:translateY(-2px);border-color:var(--gold)}
@@ -35,13 +35,15 @@ body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:c
   color:#fff;font-size:clamp(12px,1.8vw,16px);line-height:1.35;cursor:pointer}
 #box.done::after{content:'▼';position:absolute;right:10px;bottom:4px;font-size:11px;color:var(--gold);animation:bob .8s ease-in-out infinite}
 @keyframes bob{50%{transform:translateY(3px)}}
-#hud{position:absolute;right:8px;bottom:8px;display:flex;gap:4px;z-index:12}
-#hud button{position:relative;display:flex;flex-direction:column;align-items:center;gap:1px;min-width:46px;padding:4px 5px 3px;border-radius:9px;cursor:pointer;
+#hud{position:absolute;right:8px;top:8px;display:flex;gap:4px;z-index:12}
+#hud button span{display:none}
+#game.busy #hud,#game.busy #inv{opacity:0;pointer-events:none}#hud,#inv{transition:opacity .2s}
+#hud button{position:relative;display:flex;flex-direction:column;align-items:center;gap:1px;min-width:34px;padding:5px 5px 4px;border-radius:9px;cursor:pointer;
   background:rgba(20,14,8,.72);border:1px solid rgba(160,122,72,.6);color:var(--ink);font:bold 10px Arial;transition:transform .1s,background .1s}
 #hud button i{font-style:normal;font-size:18px;line-height:1}#hud button:hover{transform:translateY(-2px);background:rgba(74,52,32,.92);border-color:var(--gold)}
 #hud .badge{display:none;position:absolute;top:-4px;right:-3px;width:11px;height:11px;border-radius:50%;background:#ff5a3a;border:2px solid #1a1008}
 #hud button.new .badge{display:block;animation:pop 1s ease-in-out infinite}@keyframes pop{50%{transform:scale(1.25)}}
-#toasts{position:absolute;top:10px;right:10px;display:flex;flex-direction:column;align-items:flex-end;gap:5px;z-index:35;pointer-events:none}
+#toasts{position:absolute;top:56px;right:10px;display:flex;flex-direction:column;align-items:flex-end;gap:5px;z-index:35;pointer-events:none}
 .toast{padding:6px 12px;border-radius:9px;background:rgba(20,14,8,.9);border:1px solid var(--rim);color:var(--ink);font:bold clamp(11px,1.5vw,14px) Arial;box-shadow:0 3px 0 rgba(0,0,0,.5);
   animation:tin .25s ease-out;transition:opacity .4s,transform .4s}.toast.out{opacity:0;transform:translateX(20px)}
 .toast.item{border-color:#7ad06a}.toast.done{border-color:var(--gold);color:var(--gold)}.toast.new{border-color:#80b0ff}
