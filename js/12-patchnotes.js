@@ -1,6 +1,10 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.15',d:'10.11.2026',t:'Da ist doch wer …',n:[
+    'Im Wald hört man ab und zu Schritte im Laub, die an dir vorbeiziehen',
+    'Äste knacken – im Birkenwald selten, im dunklen Wald und Irrwald deutlich öfter',
+    'Petja tritt beim Laufen draußen manchmal selbst auf einen Zweig']},
   {v:'1.14',d:'10.11.2026',t:'Größeres Bild, echte Stücke',n:[
     'Das Spiel füllt jetzt den ganzen Bildschirm aus – F schaltet Vollbild an/aus',
     'Schluss mit Fahrstuhlmusik: Jeder Ort hat ein eigenes Stück mit Melodie, die man wiedererkennt',
