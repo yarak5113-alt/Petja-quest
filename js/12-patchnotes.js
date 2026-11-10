@@ -3,6 +3,7 @@
 const PATCH=[
   {v:'1.6',d:'10.11.2026',t:'Wer fragt, kommt weiter',n:[
     'Figuren geben bei mehrmaligem Ansprechen immer deutlichere Hinweise – aber nie die Lösung',
+    'Petja denkt öfter selbst nach („Mhh. Ohne Leiter komm ich hier nicht weiter.“) – geholfen wird nur, wenn jemand was davon hat',
     'Neue Gespräche, nachdem man bestimmte Dinge gesehen oder gefunden hat',
     'Über doppelt so viele Sprüche, wenn Petja rumsteht',
     'Petja kommentiert jetzt auch, wenn er an einen bekannten Ort zurückkommt']},

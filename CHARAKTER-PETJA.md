@@ -29,3 +29,10 @@ Verbindliche Vorlage für alle Texte von Petja (Dialoge, Sprüche, Beschreibunge
 - Ehrliche Gefühle nur selten und nur angedeutet, meist sofort mit einem Spruch überspielt
   („Ob jemand merkt, dass ich weg bin? …Wahrscheinlich nicht. Ist auch egal. …Ist es.“).
 - Schmerz oder Schreck dürfen kurz durchkommen („Au.“), aber ohne Drama.
+
+## Hinweise im Spiel
+- Viele Hinweise kommen von Petja selbst. Er denkt laut nach und zieht eigene Schlüsse:
+  „Mhh. Ohne Leiter komm ich hier nicht weiter.“
+- Andere Figuren geben nur dann Tipps, wenn sie selbst etwas davon haben (Opa will Schnaps, Oma ihr Gebiss, der Fischer sein Boot).
+- Wer keinen Grund hat zu helfen (Baba Jaga, die Krähe, der Fischer beim eigenen Schnaps), hilft auch nicht. Dann redet die Figur nur – und Petja zieht seine Schlüsse daraus.
+- Gedanken stehen in Klammern, wenn eine andere Figur danebensteht: „(Seine Schnur hängt unterm Steg runter…)“.
