@@ -124,7 +124,7 @@ function stump(x,X,Y){
 function wood(x,x0,y0,w,h,vert){const g=vert?x.createLinearGradient(x0,0,x0+w,0):x.createLinearGradient(0,y0,0,y0+h);g.addColorStop(0,'#4a3218');g.addColorStop(.4,'#8a6a42');g.addColorStop(1,'#3a2410');x.fillStyle=g;x.fillRect(x0,y0,w,h);
   for(let i=0;i<(vert?h:w)/2;i++){x.strokeStyle=`rgba(30,18,6,${.2+R()*.4})`;x.lineWidth=.4+R()*.6;x.beginPath();if(vert){const px=x0+R()*w;x.moveTo(px,y0);x.lineTo(px+(R()-.5)*1.5,y0+h)}else{const py=y0+R()*h;x.moveTo(x0,py);x.lineTo(x0+w,py+(R()-.5)*1.5)}x.stroke()}}
 // Holzschild: Pfosten + Bretter [Richtung -1/1, Versatz y, Text, Hit-ID]; setzt die Klickflächen im SVG
-function sign(x,X,B,s,boards){
+function sign(x,X,B,s,boards){s*=1.35;
   x.save();x.translate(X+6*s,B);x.scale(1,.25);dab(x,0,0,22*s,[16,24,8],.6);x.restore();
   wood(x,X-3.5*s,B-95*s,7*s,95*s,1);x.strokeStyle='rgba(20,12,4,.7)';x.lineWidth=.7;x.strokeRect(X-3.5*s,B-95*s,7*s,95*s);
   boards.forEach(([dir,dy,t,id])=>{const y=B-91*s+dy*s,w=50*s,h=11*s,x0=dir<0?X-w+3*s:X-3*s,
@@ -953,8 +953,39 @@ function paintIrrwald(){const o=S0;sky(o);far(o);ground(o);
   x=lay();grass(x,4000,o.hz,500,1);details(x);leavesOnPath(x,60);put(x);
   x=lay();[[60,470],[160,400],[250,330],[600,330],[700,400],[790,470],[330,300],[540,300]].forEach(([X,b])=>{const t=(b-200)/300;R()<.5?trunk(x,X,b,8+t*40):deadTree(x,X,b,200+t*200,6+t*10,'#14120e');bush(x,X,b+4,10+t*30,1)});
   for(let i=0;i<7;i++){const X=60+R()*680,Y=240+R()*90;dab(x,X-4,Y,3,[255,220,60],.9);dab(x,X+4,Y,3,[255,220,60],.9)}
-  sign(x,420,376,1.15,[[-1,0,'Links','hIL'],[1,12,'Rechts','hIR']]);sign(x,446,300,.7,[[1,0,'Geradeaus','hIG']]);sign(x,110,486,1.6,[[-1,0,'Zurück zur Mühle','hIM']]);put(x);
+  sign(x,318,392,1.15,[[-1,0,'Links','hIL']]);sign(x,540,392,1.15,[[1,0,'Rechts','hIR']]);sign(x,470,318,.95,[[1,0,'Geradeaus','hIG']]);sign(x,110,486,1.6,[[-1,0,'Zurück zur Mühle','hIM']]);put(x);
   x=lay();for(let i=0;i<40;i++)dab(x,R()*800,280+R()*200,40+R()*50,[150,170,180],.18);put(x,8,'screen',.6);
+  grade(o)}
+// Vor dem Banja: Blockhaus mit Rotlicht, ringsum dunkler Wald
+function paintBanjaV(){const o=S0;sky(o);far(o);ground(o);
+  let x=lay();for(let i=0;i<60;i++){const X=R()*820-10,b=206+R()*50;R()<.65?fir(x,X,b,140+R()*170,44+R()*40,.05):trunk(x,X,b,5+R()*8)}put(x,.8);fog(290,.45);
+  x=lay();grass(x,3000,o.hz,500,1);details(x);leavesOnPath(x,40);put(x);
+  x=lay();const L=262,Rt=578,B=376,T=262;
+  // Haus: Blockwand, Giebel, Dach
+  shadowAt(x,420,390,300,.7);x.save();x.translate(420,384);x.scale(1.5,1.5);x.translate(-420,-B);x.save();x.beginPath();x.rect(L,T,Rt-L,B-T);x.clip();logWall(x,L,Rt,T,B);x.restore();
+  x.fillStyle='rgba(30,0,20,.45)';x.fillRect(L,T,Rt-L,B-T);
+  const gab=new Path2D(`M${L+10},${T}L420,182L${Rt-10},${T}Z`);x.save();x.clip(gab);logWall(x,L,Rt,170,T);x.fillStyle='rgba(30,0,20,.5)';x.fillRect(L,170,Rt-L,T-170);x.restore();
+  x.lineCap='round';x.strokeStyle='#120a06';x.lineWidth=12;x.beginPath();x.moveTo(L-26,T+14);x.lineTo(420,168);x.lineTo(Rt+26,T+14);x.stroke();x.strokeStyle='#3a2a1a';x.lineWidth=6;x.stroke();
+  wood(x,520,150,22,44,1);for(let i=0;i<14;i++)dab(x,531+(R()-.5)*20+i*2,140-i*9,10+i*2,[220,210,220],.18);
+  // Fenster mit Rotlicht
+  [[290,300],[506,300]].forEach(([X,Y])=>{x.save();x.globalCompositeOperation='lighter';dab(x,X+22,Y+16,60,[255,40,120],.35);x.restore();x.fillStyle='#ff5aa8';x.fillRect(X,Y,44,32);x.fillStyle='rgba(120,0,40,.5)';x.fillRect(X,Y+16,44,16);
+    x.strokeStyle='#2a1a10';x.lineWidth=4;x.strokeRect(X,Y,44,32);x.beginPath();x.moveTo(X+22,Y);x.lineTo(X+22,Y+32);x.stroke();x.fillStyle='rgba(20,0,10,.55)';x.beginPath();x.ellipse(X+30,Y+22,6,10,0,0,7);x.fill()});
+  // Tür, einen Spalt offen
+  x.fillStyle='#1a0a08';x.fillRect(398,294,48,82);x.save();x.globalCompositeOperation='lighter';dab(x,422,376,70,[255,60,140],.45);x.fillStyle='rgba(255,120,190,.9)';x.fillRect(436,296,8,80);x.restore();
+  for(let X=398;X<436;X+=9)wood(x,X,296,9,80,1);x.fillStyle='rgba(40,0,20,.35)';x.fillRect(398,296,38,80);x.fillStyle='#c8a040';x.beginPath();x.arc(430,338,2.5,0,7);x.fill();
+  wood(x,388,376,68,6,0);
+  // Leuchtschrift
+  x.save();x.globalCompositeOperation='lighter';dab(x,420,236,110,[255,40,140],.4);x.restore();x.fillStyle='#ff4fb0';x.font='bold 34px Georgia';x.textAlign='center';x.shadowColor='#ff3090';x.shadowBlur=18;x.fillText('BANJA',420,248);x.shadowBlur=0;
+  x.font='italic 11px Georgia';x.fillStyle='#ffd0e8';x.fillText('Dampf · Tanz · Wodka',420,264);
+  // Laternen
+  [[372,300],[470,300]].forEach(([X,Y])=>{x.strokeStyle='#1a1008';x.lineWidth=1.5;x.beginPath();x.moveTo(X,Y-14);x.lineTo(X,Y-4);x.stroke();x.save();x.globalCompositeOperation='lighter';dab(x,X,Y+6,40,[255,40,60],.55);x.restore();ell(x,X,Y+6,7,10,[220,30,40])});
+  x.restore();
+  // Waldrand vorne: dunkle Stämme und Tannen rahmen das Bild
+  [[30,500,40],[120,470,26],[172,410,14],[668,410,14],[720,470,26],[790,500,40]].forEach(([X,b,w])=>trunk(x,X,b,w));
+  [[-20,500,360,150],[90,440,300,120],[700,440,300,120],[830,500,360,150]].forEach(([X,b,h,w])=>fir(x,X,b,h,w,0));
+  for(let i=0;i<6;i++){const X=R()<.5?40+R()*170:610+R()*170,Y=250+R()*120;dab(x,X-4,Y,2.6,[255,220,60],.9);dab(x,X+4,Y,2.6,[255,220,60],.9)}
+  sign(x,120,488,1.5,[[-1,0,'Zur Mühle','hBM']]);put(x);
+  x=lay();for(let i=0;i<30;i++)dab(x,R()*800,300+R()*200,40+R()*50,[150,140,170],.16);put(x,8,'screen',.5);
   grade(o)}
 function paintBanja(){const o=S0;c.fillStyle='#120808';c.fillRect(0,0,W,H);
   let x=lay();logWall(x,0,800,-10,320);x.fillStyle='rgba(60,0,30,.45)';x.fillRect(0,0,800,320);
@@ -969,7 +1000,7 @@ function paintBanja(){const o=S0;c.fillStyle='#120808';c.fillRect(0,0,W,H);
   x.fillStyle='#6a1020';x.beginPath();x.moveTo(680,500);x.lineTo(700,410);x.lineTo(800,400);x.lineTo(800,500);x.fill();
   [[80,40],[300,40],[500,40],[720,40]].forEach(([X,Y])=>{x.strokeStyle='#2a1a10';x.beginPath();x.moveTo(X,0);x.lineTo(X,Y);x.stroke();x.save();x.globalCompositeOperation='lighter';dab(x,X,Y+10,50,[255,30,60],.5);x.restore();ell(x,X,Y+10,10,13,[220,30,40])});
   put(x);x=lay();for(let i=0;i<40;i++)dab(x,R()*800,200+R()*300,40+R()*60,[255,200,220],.12);put(x,10,'screen',.6);
-  x=lay();sign(x,700,486,1.4,[[1,0,'Abkürzung zur Mühle','hBM']]);put(x);
+  x=lay();sign(x,700,486,1.4,[[1,0,'Nach draußen','hBR']]);put(x);
   const vg=c.createRadialGradient(400,300,120,400,300,540);vg.addColorStop(0,'rgba(0,0,0,0)');vg.addColorStop(1,'rgba(0,0,0,.55)');c.fillStyle=vg;c.fillRect(0,0,W,H)}
 const ZINA=`<g stroke="#1a0a0a" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round">
 <path d="M-14,0L-12,-10L-4,-10L-4,0ZM4,0L4,-10L12,-10L14,0Z" fill="#111"/>
@@ -1168,6 +1199,9 @@ SCN.buehne={...BASE,seed:181,hz:200,pe:()=>null,gtop:()=>500,k:1.1/270,x0:60,x1:
 SCN.lounge={...BASE,seed:171,hz:200,pe:()=>null,gtop:()=>500,k:1.1/270,x0:60,x1:740,ymin:()=>440,ymax:494,paint:paintLounge,gr:['rgba(255,120,160,.3)','rgba(60,0,30,.5)'],vig:.4};
 SCN.irrwald={...SCN.sperre,seed:151,xr:null,vig:.5,top:[60,74,84],hor:[120,136,128],g:[[30,40,22],[56,70,34],[86,92,52]],pe:segPath([[420,512,150,420,380,40],[420,380,40,150,250,8],[420,380,40,450,214,5],[420,380,40,700,250,8]]),gtop:X=>201+Math.pow(Math.abs(X-440)/440,1.6)*14,ymin:()=>384,paint:paintIrrwald,
   intro:[['P','Der Irrwald. Drei Wege, alle sehen gleich aus. Und irgendwas glotzt mich aus dem Dunkeln an.']]};
+SCN.banjaV={...SCN.irrwald,seed:167,top:[18,14,30],hor:[60,40,62],sunc:[200,160,200],cl:[60,50,70],cs:[30,24,40],haze:[60,50,70],vig:.7,gr:['rgba(255,80,160,.28)','rgba(10,0,30,.6)'],
+  g:[[18,24,14],[34,44,22],[56,60,36]],pe:segPath([[420,512,150,422,388,60]]),gtop:X=>201+Math.pow(Math.abs(X-440)/440,1.6)*14,k:.8/286,x0:60,x1:760,ymin:()=>392,ymax:494,paint:paintBanjaV,
+  intro:[['P','Da! Mitten im finsteren Wald ein Blockhaus. Rotes Licht, Musik, Dampf aus dem Schornstein.'],['P','Das muss das Banja sein. Hier draußen ist es so dunkel, dass selbst die Eulen Angst haben.']]};
 SCN.banja={...BASE,seed:163,hz:200,pe:()=>null,gtop:()=>500,k:1.1/270,x0:60,x1:740,ymin:()=>424,ymax:494,paint:paintBanja,gr:['rgba(255,120,180,.3)','rgba(60,0,40,.45)'],vig:.4,
   intro:[['P','Das Banja. Dampf, rotes Licht, Wodka-Geruch. Und eine Bühne mit Vorhang.'],['Z','Neues Gesicht! Komm rein, Süßer. Füße abputzen, Hose zulassen, Geld locker machen. In der Reihenfolge.']]};
 SCN.muehle={...BASE,seed:139,hz:200,sun:[180,110],sunr:50,top:[70,100,150],hor:[236,214,170],sunc:[255,226,170],cs:[130,120,120],cl:[244,230,210],cov:.47,masses:[[-30,330,30,80],[480,830,30,80]],band:[250,560],
@@ -1286,7 +1320,7 @@ setInterval(()=>{if(!frames[2])return;ft=1-ft;petimg.setAttribute('href',frames[
 
 // ================= Laufen & Szenenwechsel =================
 const P={x:400,y:476,dir:1};let mv=null,cur=null,changing=false;const cache={},seen={wald:1};
-function scaleAt(y){const o=S0,sN=o.k*(494-o.hz),t=Math.max(.05,(y-o.hz)/(494-o.hz));return sN*Math.pow(t,o.pp||1.6)}
+function scaleAt(y){const o=S0,sN=o.k*(494-o.hz),t=Math.max(.05,(y-o.hz)/(494-o.hz));return sN*Math.pow(t,o.pp||1.15)}
 function render(){const sc=scaleAt(P.y);petG.setAttribute('transform',`translate(${P.x.toFixed(1)},${P.y.toFixed(1)}) scale(${(sc*P.dir).toFixed(3)},${sc.toFixed(3)})`)}
 function walkTo(tx,ty,cb){const o=S0;tx=Math.max(o.x0,Math.min(o.x1,tx));ty=Math.max(o.ymin(tx),Math.min(o.ymax,ty));if(o.xr){const[a,b]=o.xr(ty);tx=Math.max(a,Math.min(b,tx))}mv={tx,ty,cb}}
 let last=0;(function loop(t){const dt=Math.min(.05,(t-last)/1000||0);last=t;
@@ -1296,7 +1330,7 @@ let last=0;(function loop(t){const dt=Math.min(.05,(t-last)/1000||0);last=t;
 const fade=$('#fade');
 function enter(id,pos){if(cur&&cur!==id)onLocationLeave(cur);changing=true;mv=null;fade.style.opacity=1;setTimeout(()=>{S0=SCN[id];
   if(cache[id])c.drawImage(cache[id],0,0);else{s=S0.seed;S0.paint();const k=document.createElement('canvas');k.width=W;k.height=H;k.getContext('2d').drawImage(cv,0,0);cache[id]=k}
-  document.querySelectorAll('.room').forEach(r=>r.classList.toggle('on',r.id=='r-'+id));cur=id;document.getElementById('petimg').style.filter=id=='sperre'?'brightness(.6) saturate(.75)':'';if(id=='sumpf')applySwampNymphs();if(id=='banja'){const d=$('#dancerG');d.style.display=FL.rekrut?'':'none';d.setAttribute('transform','translate(640,330) scale(.62)');d.querySelector('g').classList.add('dance')}P.x=pos[0];P.y=pos[1];render();
+  document.querySelectorAll('.room').forEach(r=>r.classList.toggle('on',r.id=='r-'+id));cur=id;document.getElementById('petimg').style.filter=id=='sperre'?'brightness(.6) saturate(.75)':id=='banjaV'?'brightness(.7) saturate(.8)':'';if(id=='sumpf')applySwampNymphs();if(id=='banja'){const d=$('#dancerG');d.style.display=FL.rekrut?'':'none';d.setAttribute('transform','translate(640,330) scale(.62)');d.querySelector('g').classList.add('dance')}P.x=pos[0];P.y=pos[1];render();
   fade.style.opacity=0;changing=false;if(!seen[id]){seen[id]=1;S0.intro&&setTimeout(()=>say(S0.intro),450)}},420)}
 
 // ================= Dialog =================
@@ -1519,8 +1553,12 @@ const T={
   karren:{n:'Alter Karren',at:[600,470],l:[[['P','Ein Karren mit einem Rad. Das andere ist wohl auch abgehauen.']]]},
   sIW:{n:'Schild: In den Irrwald',at:[130,476],go:'irrwald',to:[420,486]},
   sIM:{n:'Schild: Zurück zur Mühle',at:[130,488],go:'muehle',to:[150,470]},
-  sIL:{n:'Weg links',at:[380,392],fn(){irrGo('L')}},sIR:{n:'Weg rechts',at:[470,392],fn(){irrGo('R')}},sIG:{n:'Weg geradeaus',at:[440,388],fn(){irrGo('G')}},
-  sBM:{n:'Schild: Abkürzung zur Mühle',at:[690,486],go:'muehle',to:[150,470]},
+  sIL:{n:'Weg links',at:[360,396],fn(){irrGo('L')}},sIR:{n:'Weg rechts',at:[500,396],fn(){irrGo('R')}},sIG:{n:'Weg geradeaus',at:[440,388],fn(){irrGo('G')}},
+  sBM:{n:'Schild: Abkürzung zur Mühle',at:[150,486],go:'muehle',to:[150,470]},
+  sBR:{n:'Ausgang',at:[690,486],go:'banjaV',to:[422,400]},
+  tuerB:{n:'Tür zum Banja',at:[422,396],go:'banja',to:[300,480]},
+  banjaHaus:{n:'Banja',at:[330,396],l:[[['P','Ein Blockhaus mit rosa Fenstern. Drinnen wummert Musik. Draußen wummert mein Herz.']],[['P','Aus dem Schornstein kommt Dampf. Oder Parfüm. Oder beides.']]]},
+  dunkelwald:{n:'Dunkler Wald',at:[200,470],l:[[['P','Da drin glühen Augen. Gelbe. Viele.'],['P','Ich bleib schön im Licht.']],[['P','Kein Weg, kein Pfad. Nur Bäume und Schwärze. Da geh ich nicht rein.']]]},
   madame:{n:'Madame Zinaida',at:[320,470],fn(){
     if(FL.rekrut&&!FL.gutschein)return say([['Z','Nastja ist da! Ein Knaller! Sie tanzt, sie flirtet, sie trinkt die Gäste unter den Tisch. Perfekt!'],['Z','Hier, Süßer. Ein Gutschein: Ein Abend im Banja mit Privattanz. Geht aufs Haus.'],['P','Der ist nicht für mich. Ich kenn da einen Müller...'],['Z','Mir egal, wer kommt. Hauptsache, er zahlt die Getränke.']],()=>{FL.gutschein=1;inv.push('gutschein');renderInv()});
     if(FL.gutschein)return say([['Z','Nastja ist der Star! Guck dir die Show an, Süßer.']]);
@@ -1553,7 +1591,7 @@ function use(id){const o=T[id];if(!o)return;if(/^slot\d$/.test(id)&&FL.clubQ&&!F
 const ITEMS={kippe:['🚬','Joint-Stummel','Lieber nicht. Sonst wach ich in einem noch schlimmeren Märchen auf.'],saege:['🪚','Säge','Eine Säge vom Fischer. Damit könnte man Birken klein machen.'],apfel:['🍎','Apfel','Ein roter Apfel. Liegt gut in der Hand. Wurfgewicht: perfekt.'],stock:['🌿','Stock','Ein gerader Ast. Daraus wird was.'],seil:['🧶','Schnur','Schnur aus einem kaputten Fischernetz.'],angel:['🎣','Angel','Selbst gebaut. Stock, Schnur, Sicherheitsnadel. Hält bestimmt.'],pilze:['🍄','Blaue Pilze','Neun blau angelaufene Pilzstücke aus dem Joint. Traumschwamm?'],karte:['🗺️','Angekokelte Karte','Baba Jagas Wegkarte: „2× links, 1× rechts, 1× geradeaus“.'],liste:['📋','Madames Liste','Gesucht: schön, tanzt gern, frech, will raus. Keine Blubberer.'],gutschein:['🎟️','Gutschein','„Ein Abend im Banja mit Privattanz“. Geht aufs Haus.'],mehl:['🥡','3 Säcke „Mehl“','Riecht nicht nach Mehl. Riecht nach Ärger.'],laterne:['🏮','Laterne','Eine Gnomlaterne. Brennt mit irgendwas Grünem.'],knochen:['🦴','Knochen','Ein Knochen von Baba Jagas Hof. Riecht nach Suppe.'],schnaps:['🍶','Selbstgebrannter','Kusmitschs Selbstgebrannter. Schon der Geruch macht blind.'],leiter:['🪜','Leiter','Opas Leiter. Angekokelt, aber stabil.'],fisch:['🐟','Fisch','Ein kleiner Fisch. Guckt komisch.'],gebiss:['🦷','Omas Gebiss','Ein Gebiss. Riecht nach Kater und Friedhof.'],brett:['🪵','Brett','Ein Brett aus Opas Ruine. Nur ein bisschen angekokelt.'],teer:['🛢️','Birkenteer','Riecht nach Lagerfeuer und Omas Rheuma.']};
 function irrGo(d){const SEQ='LLRG';FL.irrs=(FL.irrs||'')+d;
   if(!SEQ.startsWith(FL.irrs)){FL.irrs='';return say([['P','Moment... den Baum kenn ich doch. Und den. Und den da auch.'],['P','Ich hab mich verlaufen. Zurück, bevor mich die Bäume fressen.']],()=>enter('muehle',[150,470]))}
-  if(FL.irrs==SEQ){FL.irrs='';return enter('banja',[200,480])}
+  if(FL.irrs==SEQ){FL.irrs='';return enter('banjaV',[420,486])}
   enter('irrwald',[420,486]);setTimeout(()=>say([['P',['Bäume. Noch mehr Bäume.','War das ein Kichern?','Hier riecht es nach Parfüm... und Sauna.'][FL.irrs.length-1]]]),500)}
 function bjEnter(){if(FL.drin)return enter('innen',[250,470]);say([['P','So. Leiter ans Fenster... festhalten, liebe Hühnerbeine... nicht wackeln...'],['P','*kletter* *kletter* *knarz*']],()=>{FL.drin=1;enter('innen',[250,470])})}
 function repairBoat(){say([['P','Brett und Teer! Ich flick Ihnen das Boot.'],['P','*klopf* ... *schmier* ... *klopf* ... *Daumen* ... AUA!'],['F','Junge, du bist ein Held. Das Ding hält jetzt bestimmt eine Woche.'],['F','Hier, meine Säge. Pass auf die Finger auf, die hast du ja schon geübt.'],['P','*bekommt eine Säge*']],()=>{FL.boot=1;['brett','teer'].forEach(i=>inv.splice(inv.indexOf(i),1));inv.push('saege');renderInv()})};
@@ -1737,7 +1775,7 @@ $('#bNew').onclick=e=>{e.stopPropagation();rm('start');cutscene()};$('#bLoad').o
 
 // ================= Menü, Speichern, Inventar & Aufträge, Karte =================
 const REM=[];function rm(id){const e=document.getElementById(id);if(e)e.remove();if(!REM.includes(id))REM.push(id)}
-const LOCN={wald:'Birkenwald',gabel:'Weggabelung',huette:'Baba Jagas Hütte',innen:'Hütte (innen)',buehne:'Bühnenrand',lounge:'Private Lounge',irrwald:'Irrwald',banja:'Banja',dorf:'Dorfeingang',dorfstr:'Dorfstraße',kirche:'Kirche',muehle:'Alte Mühle',sperre:'Birkensperre',sumpf:'Sumpf',fischer:'Fischerhaus',ufer:'Ufer',unter:'Unter dem Pier',gnome:'Gnomsiedlung',hoehle:'Höhle'};
+const LOCN={wald:'Birkenwald',gabel:'Weggabelung',huette:'Baba Jagas Hütte',innen:'Hütte (innen)',buehne:'Bühnenrand',lounge:'Private Lounge',irrwald:'Irrwald',banjaV:'Vor dem Banja',banja:'Banja',dorf:'Dorfeingang',dorfstr:'Dorfstraße',kirche:'Kirche',muehle:'Alte Mühle',sperre:'Birkensperre',sumpf:'Sumpf',fischer:'Fischerhaus',ufer:'Ufer',unter:'Unter dem Pier',gnome:'Gnomsiedlung',hoehle:'Höhle'};
 const has=i=>inv.includes(i);
 function quests(){const Q=[];
   Q.push({t:'Raus aus dem Märchen',d:'Irgendwas stimmt nicht. Ich muss hier wieder aufwachen.',v:1,ok:0,s:[
@@ -1768,8 +1806,8 @@ function openO(html,cls){closeO();ovl=document.createElement('div');ovl.classNam
 function openInv(){const o=openO(`<div class="pan inv2"><h3>Taschen</h3><div class="grid">${inv.length?inv.map(id=>{const it=ITEMS[id]||['❔',id,id];return`<div class="card" data-i="${id}"><b>${it[0]}</b><span>${it[1]}</span></div>`}).join(''):'<p class="em">Leer. Wie mein Kühlschrank.</p>'}</div><p class="desc">Klick auf einen Gegenstand.</p></div>
   <div class="pan qs"><h3>Aufträge</h3>${qHTML(quests(),0)}</div><div class="hint">[I] oder [ESC] schließen</div>`,'two');
   o.querySelectorAll('.card').forEach(c=>c.onclick=()=>{const it=ITEMS[c.dataset.i];o.querySelector('.desc').textContent=it?it[1]+': '+it[2]:''})}
-const MAPN={irrwald:[-22,10],banja:[-22,36],muehle:[10,10],dorf:[42,10],dorfstr:[74,10],kirche:[106,10],huette:[42,36],innen:[74,36],wald:[10,62],gabel:[42,62],sperre:[74,62],sumpf:[106,62],fischer:[74,88],ufer:[106,88],unter:[106,112],gnome:[138,88],hoehle:[170,88]};
-const MAPE=[['muehle','irrwald'],['irrwald','banja'],['wald','gabel'],['gabel','huette'],['gabel','sperre'],['huette','dorf'],['huette','innen'],['dorf','dorfstr'],['dorfstr','kirche'],['dorf','muehle'],['sperre','sumpf'],['sperre','fischer'],['fischer','ufer'],['ufer','unter'],['ufer','gnome'],['gnome','hoehle']];
+const MAPN={irrwald:[-22,10],banjaV:[-22,36],banja:[-22,62],muehle:[10,10],dorf:[42,10],dorfstr:[74,10],kirche:[106,10],huette:[42,36],innen:[74,36],wald:[10,62],gabel:[42,62],sperre:[74,62],sumpf:[106,62],fischer:[74,88],ufer:[106,88],unter:[106,112],gnome:[138,88],hoehle:[170,88]};
+const MAPE=[['muehle','irrwald'],['irrwald','banjaV'],['banjaV','banja'],['banjaV','muehle'],['wald','gabel'],['gabel','huette'],['gabel','sperre'],['huette','dorf'],['huette','innen'],['dorf','dorfstr'],['dorfstr','kirche'],['dorf','muehle'],['sperre','sumpf'],['sperre','fischer'],['fischer','ufer'],['ufer','unter'],['ufer','gnome'],['gnome','hoehle']];
 function openMap(){const P2=(id)=>MAPN[id];let svg=`<svg viewBox="-44 0 232 122" class="map">`;
   MAPE.forEach(([a,b])=>{if(seen[a]&&seen[b])svg+=`<line x1="${P2(a)[0]}" y1="${P2(a)[1]}" x2="${P2(b)[0]}" y2="${P2(b)[1]}" stroke="#8a7050" stroke-width="1.2" stroke-dasharray="2 1.5"/>`});
   Object.keys(MAPN).forEach(id=>{if(!seen[id])return;const[x,y]=P2(id),c=id==cur;svg+=`<circle cx="${x}" cy="${y}" r="${c?3.4:2.4}" fill="${c?'#e04020':'#c8a060'}" stroke="#2a1a0a" stroke-width=".6"/><text x="${x}" y="${y+6}" font-size="3.2" text-anchor="middle" fill="#f0e0c0">${LOCN[id]}</text>`});
@@ -1816,7 +1854,7 @@ const TSTEPS=[
   {t:'Gnome wollen Mehl',f:['mehlQ'],s:['gnome'],at:['gnome',60,472]},
   {t:'Müller will eine Braut',f:['mullerQ'],s:['muehle'],at:['muehle',700,470]},
   {t:'Wegkarte von Baba Jaga',f:['karte'],add:['karte'],at:['innen',250,470]},
-  {t:'Banja gefunden, Madames Liste',f:['clubQ'],add:['liste'],s:['irrwald','banja'],at:['banja',300,480]},
+  {t:'Banja gefunden, Madames Liste',f:['clubQ'],add:['liste'],s:['irrwald','banjaV','banja'],at:['banja',300,480]},
   {t:'Fischer-Auftrag + Omas Gebiss',f:['auftrag','gq','ks'],s:['dorfstr','kirche'],at:['kirche',420,488]},
   {t:'Angel gebaut, Brett geholt',f:['angelQ','kraehe','ast'],add:['angel','brett'],rm:['apfelG','kraeheG','altnetzG','brett'],at:['fischer',90,476]},
   {t:'Fisch → Gebiss → Teer',f:['fisch','kater','teer'],add:['teer'],rm:['katerG','gebissG'],at:['fischer',90,476]},
@@ -1834,7 +1872,7 @@ function tState(n){const d={inv:[],FL:{},seen:{wald:1},REM:[],cur:'wald',P:{x:40
 function tJump(d){if(ss.set(TJUMP,JSON.stringify(d)))location.reload();else loadState(d)}
 function testerBoot(){const j=ss.get(TJUMP);if(!j)return;ss.del(TJUMP);try{loadState(JSON.parse(j));setTimeout(()=>testerToast('Tester: Sprung ausgeführt'),600)}catch(e){}}
 function testerToast(m){label.textContent=m;setTimeout(()=>{if(label.textContent===m)label.textContent=''},1800)}
-const TTELE={wald:[400,476],gabel:[320,488],huette:[640,488],innen:[250,470],dorf:[150,486],dorfstr:[420,488],kirche:[420,488],muehle:[700,470],irrwald:[420,486],banja:[300,480],sperre:[400,488],sumpf:[540,488],fischer:[90,476],ufer:[60,452],unter:[640,470],gnome:[60,472],hoehle:[400,486]};
+const TTELE={wald:[400,476],gabel:[320,488],huette:[640,488],innen:[250,470],dorf:[150,486],dorfstr:[420,488],kirche:[420,488],muehle:[700,470],irrwald:[420,486],banjaV:[420,486],banja:[300,480],sperre:[400,488],sumpf:[540,488],fischer:[90,476],ufer:[60,452],unter:[640,470],gnome:[60,472],hoehle:[400,486]};
 function openTester(tab){ss.set(TKEY,'1');tab=tab||'p';const B='style="text-align:left;width:100%"';
   const body=tab=='p'?`<p class="em">Springt zu einem Story-Punkt (Seite lädt neu).</p>${TSTEPS.map((s,i)=>`<button ${B} data-j="${i}">${i+1}. ${s.t}</button>`).join('')}`:
     tab=='o'?`<p class="em">Nur hinbeamen – am Fortschritt ändert sich nichts.</p>${Object.keys(TTELE).map(id=>`<button ${B} data-o="${id}">${LOCN[id]}</button>`).join('')}`:
