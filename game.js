@@ -613,23 +613,23 @@ function wels(){if($('#fg'))return;const cv2=document.createElement('canvas');cv
   cv2.onclick=e=>e.stopPropagation();const esc=e=>{if(e.key=='Escape')end(0,'Aufgegeben.')};addEventListener('keydown',esc);
   function onup(){down=false}
   function act(){if(mx>680&&my>455)return end(0,'Aufgegeben.');
-    if(ph==0){if(bite>0){ph=1;pt=performance.now();msg='ANGEBISSEN! Maustaste halten = ziehen, loslassen = Schnur geben. Folge dem Wels!'}else{miss++;msg='Zu früh! Das war nur Knabbern. ('+miss+'/3)';if(miss>=3)end(0,'Zu oft zu früh gezogen. Der Wels traut dem Knochen nicht mehr.')}}
+    if(ph==0){if(bite>0){ph=1;pt=performance.now();msg='ANGEBISSEN! Maustaste halten = ziehen, loslassen = Schnur geben. Folge dem Wels!'}else{miss++;msg='Zu früh! Das war nur Knabbern. ('+miss+'/3)';if(miss>=3)end(0,'Zu oft zu früh gezogen. Der Wels traut den Würmern nicht mehr.')}}
     else if(ph==2){if(Math.abs(ring-1)<.16){hits++;sta-=.2;msg='Treffer! Er wird müde…';ring=3;rs=Math.min(2.4,rs+.12)}else{bad++;sta=Math.min(1,sta+.15);msg='Falscher Moment! Er holt wieder Kraft. ('+bad+'/4)';ring=3;if(bad>=4)end(0,'Der Wels hat sich mit letzter Kraft losgerissen.')}}}
   function end(win,m){if(fin)return;fin=true;cv2.remove();removeEventListener('keydown',esc);removeEventListener('mouseup',onup);
     if(win){FL.ablenk=1;say([['F','(von oben) WAS?! Es zieht! ES ZIEHT! Das ist ER! DER WELS!'],['F','Komm her, du Mistvieh! Dreißig Jahre hab ich auf dich gewartet!'],['P','Perfekt. Der ist jetzt eine Weile beschäftigt.'],['P','Und seine Flasche steht ganz allein auf dem Steg…']])}
-    else say([['P',m],['P','Nochmal. Der Knochen hängt ja noch dran.']])}
+    else say([['P',m],['P','Nochmal. Ein paar Würmer zappeln ja noch dran.']])}
   function frame(){if(fin)return;const t=performance.now(),dt=Math.max(0,Math.min(.05,(t-last)/1000));last=t;const el=(t-T0)/1000,pe=(t-pt)/1000;
     let g=x.createLinearGradient(0,0,0,500);g.addColorStop(0,'#2a4446');g.addColorStop(1,'#060e10');x.fillStyle=g;x.fillRect(0,0,800,500);
     for(let i=0;i<5;i++){x.fillStyle='rgba(255,250,220,.05)';x.beginPath();x.moveTo(80+i*170,0);x.lineTo(110+i*170,0);x.lineTo(150+i*170,500);x.lineTo(60+i*170,500);x.fill()}
     let hx=400,hy=230;
     if(ph==0){nibT-=dt;if(nibT<=0){if(Math.random()<.45)bite=.5;else nib=.4;nibT=1+Math.random()*1.5}nib=Math.max(0,nib-dt);
-      if(bite>0){bite-=dt;if(bite<=0){bmiss++;msg='Verpasst! ('+bmiss+'/3)';if(bmiss>=3)return end(0,'Dreimal den Biss verpasst. Der Wels hat den Knochen abgenagt und ist weg.')}}
+      if(bite>0){bite-=dt;if(bite<=0){bmiss++;msg='Verpasst! ('+bmiss+'/3)';if(bmiss>=3)return end(0,'Dreimal den Biss verpasst. Der Wels hat die Würmer abgefressen und ist weg.')}}
       hy+=bite>0?60:nib>0?Math.sin(t/40)*7:Math.sin(el*2)*3;const wx=400+Math.cos(el*.8)*160,wy=330+Math.sin(el*.8)*40;x.fillStyle='rgba(0,0,0,.4)';x.beginPath();x.ellipse(wx,wy,90,24,Math.cos(el*.8)>0?.1:-.1,0,7);x.fill();
       if(bite>0)for(let k=1;k<4;k++){x.strokeStyle='rgba(220,240,230,.4)';x.beginPath();x.ellipse(hx,hy,k*18,k*6,0,0,7);x.stroke()}}
     if(ph==1){if(Math.random()<dt*.5)ftx=120+Math.random()*560;fx+=(ftx-fx)*dt*1.2;if(surge<=0&&Math.random()<dt*.35)surge=.8;surge=Math.max(0,surge-dt);
       const f=.3+.18*Math.sin(el*1.7)+.12*Math.sin(el*4.3)+(surge>0?.5:0);ten+=((down?.62:-.5)+(f-.35)*1.3+(Math.abs(mx-fx)>90?.45:0))*dt;ten=Math.max(0,ten);
       const bc=.55+.12*Math.sin(el*.7),bw=Math.max(.12,.17-pe*.004),B0=bc-bw,B1=bc+bw;if(ten>=1)return end(0,'RISS! Zu fest gezogen – die Schnur ist gerissen.');
-      if(ten<.08){low+=dt;if(low>1.5)return end(0,'Zu locker! Der Wels hat den Knochen ausgespuckt.')}else low=0;if(ten>B0&&ten<B1)hold+=dt;if(hold>=10){ph=2;msg='Er ermüdet! Klicke genau, wenn der Ring den Kreis berührt!'}
+      if(ten<.08){low+=dt;if(low>1.5)return end(0,'Zu locker! Der Wels hat die Würmer ausgespuckt.')}else low=0;if(ten>B0&&ten<B1)hold+=dt;if(hold>=10){ph=2;msg='Er ermüdet! Klicke genau, wenn der Ring den Kreis berührt!'}
       hx=fx;hy=320+Math.sin(el*3)*14;x.fillStyle='rgba(0,0,0,.55)';x.beginPath();x.ellipse(fx,330,95,26,(ftx-fx)/900,0,7);x.fill();
       x.fillStyle='rgba(0,0,0,.6)';x.fillRect(752,80,26,340);x.fillStyle='rgba(120,220,120,.6)';x.fillRect(754,80+340*(1-B1),22,340*(B1-B0));x.fillStyle=ten>.9?'#ff4030':'#f0e0a0';x.fillRect(748,80+340*(1-Math.min(1,ten))-3,34,6);
       x.fillStyle='#fff';x.font='12px Arial';x.textAlign='center';x.fillText('Spannung',765,72);if(surge>0){x.fillStyle='#ff8060';x.font='bold 18px Arial';x.fillText('ER ZIEHT!',fx,280)}
@@ -1431,9 +1431,9 @@ const T={
   sFisch:{n:'Schild: Zum Fischerhaus',at:[660,432],fn(){walkTo(760,404,()=>enter('fischer',[90,476]))}},
   sZD:{n:'Schild: Zum dunklen Wald',at:[130,484],go:'sperre',to:[730,412]},
   fischer:{n:'Fischer',at:[690,394],fn(){if(FL.ablenk&&!FL.schnaps)return say([['F','NICHT JETZT! DER WELS! Er zieht mich gleich vom Steg!'],['P','Lassen Sie sich Zeit.']]);
-    if(FL.schnapsQ&&!FL.ablenk&&R()<.6)return say(has('knochen')?[['F','Was riecht hier so nach Suppe? Hast du was in der Tasche?'],['P','Nichts! ...Nur ein Knochen. Für... später.'],['P','(Unter dem Steg hängt seine Schnur. Da passt der Knochen dran.)']]
-      :[['F','Seit 1987 wart ich auf den Wels. Der beißt nur auf Fleisch. Knochen. Was Ordentliches.'],['F','Meine Schnur hängt unterm Steg. Leer. Wie mein Kühlschrank.'],['P','(Ein Knochen an seinem Haken... dann hätte er mit dem Wels alle Hände voll zu tun.)']]);
-    if(FL.leiterQ&&!FL.schnapsQ){FL.schnapsQ=1;return say([['P','Herr Kusmitsch, könnten Sie mir Ihren Selbstgebrannten geben? Für den Opa.'],['F','Meinen Selbstgebrannten?! Für den Brandstifter? Eher fress ich mein Netz.'],['F','Die Flasche lass ich nicht aus den Augen. Nur wenn einer anbeißt. Und hier beißt seit 1987 nix Großes mehr an.'],['F','Außer dem Wels. Der wohnt unterm Steg. Aber der frisst nur Fleisch. Knochen und so. Mit meinem Brot lockst du den nicht.']])}
+    if(FL.schnapsQ&&!FL.ablenk&&R()<.6)return say(has('wuermer')?[['F','Was zappelt da in deiner Tasche?'],['P','Nichts! ...Nur ein paar Würmer. Für... später.'],['P','(Unter dem Steg hängt seine Schnur. Da kommen die Würmer dran.)']]
+      :[['F','Seit 1987 wart ich auf den Wels. Der beißt nur auf Würmer. Fette, glitschige. Mein Brot verschmäht er.'],['F','Meine Schnur hängt unterm Steg. Leer. Wie mein Kühlschrank.'],['P','(Würmer an seinem Haken... dann hätte er mit dem Wels alle Hände voll zu tun.)']]);
+    if(FL.leiterQ&&!FL.schnapsQ){FL.schnapsQ=1;return say([['P','Herr Kusmitsch, könnten Sie mir Ihren Selbstgebrannten geben? Für den Opa.'],['F','Meinen Selbstgebrannten?! Für den Brandstifter? Eher fress ich mein Netz.'],['F','Die Flasche lass ich nicht aus den Augen. Nur wenn einer anbeißt. Und hier beißt seit 1987 nix Großes mehr an.'],['F','Außer dem Wels. Der wohnt unterm Steg. Aber der beißt nur auf Würmer. Fette Würmer. Mit meinem Brot lockst du den nicht.']])}
     if(FL.ks&&!FL.fisch&&!FL.kater){if(inv.includes('angel'))return say([['F','Na, eine Angel! Selbst gebaut? Sieht aus wie ein Unfall.'],['F','Dann zeig mal. Schwimmer in der Mitte halten, nicht vom Fisch wegziehen lassen!']],fishing);
     FL.angelQ=1;return say([['P','Könnten Sie mir einen Fisch geben? Für einen Kater.'],['F','Für den Kater vom Popen? Der Satan hat mir mal den ganzen Fang geklaut. Von mir kriegt der nix.'],['F','Fang dir selber einen. Keine Angel? Dann bau dir eine.'],['F','Ein Stock und eine Schnur. Mehr braucht ein Mann nicht. Und Wodka.'],['P','Und wo krieg ich die her?'],['F','Stöcke wachsen an Bäumen, Junge. Und Schnur... frag nicht mich, ich sitz hier seit 1987.']])}if(!FL.boot){if(inv.includes('brett')&&inv.includes('teer'))return repairBoat();
     if(!FL.auftrag){FL.auftrag=1;return say([['P','Sie haben nicht zufällig eine Säge? Da liegen Birken auf dem Weg.'],['F','Hab ich. Aber umsonst gibt’s nix. Erst flickst du mein Boot. Da, wo der Wels durch ist.'],['F','Du brauchst ein ordentliches Brett und Teer. Beides gibt’s im Dorf hinter der Hütte von der Alten.'],['P','Hinter Baba Jagas Hütte?'],['F','Na, wo denn sonst. Ist ja nicht so, dass sie umziehen könnte. ...Obwohl. Mit den Beinen.']])}
@@ -1491,12 +1491,13 @@ const T={
   wrack:{n:'Bootswrack',at:[560,420],l:[[['P','Ein Boot, halb versunken. Das ist wohl das, was passiert, wenn man es NICHT flickt.']]]},
   steg:{n:'Steg',at:[200,404],l:[[['P','Der Steg vom Fischer. Unten drunter kann man gebückt durchkriechen.']],[['P','Ganz hinten sitzt Kusmitsch. Er hat mich nicht gesehen. Gut so.']]]},
   schnur:{n:'Angelschnur',at:[430,430],fn(){if(FL.ablenk)return say([['P','Die Schnur zappelt wie verrückt. Oben flucht Kusmitsch. Herrlich.']]);
-    if(FL.tied)return say([['P','Der Knochen hängt dran. Jetzt muss nur noch der Wels anbeißen.']],wels);
-    if(inv.includes('knochen'))return say([['P','Ich bind den Knochen an seinen Haken. Doppelter Knoten. Wie Opa es mir beigebracht hat. Also mein Opa, nicht der verbrannte.'],['P','Und jetzt halt ich die Schnur fest und warte. Der Wels muss richtig ziehen, damit Kusmitsch was merkt.']],()=>{FL.tied=1;inv.splice(inv.indexOf('knochen'),1);renderInv();wels()});
-    this.i=(this.i||0)+1;say(this.i%2?[['P','Die Angelschnur vom Fischer. Leerer Haken.'],['P','Wenn hier was richtig Großes dranziehen würde, wäre Kusmitsch eine Weile beschäftigt...'],['P','Der Wels! Kusmitsch hat gesagt, der frisst nur Fleisch. Knochen und so.']]
-      :[['P','Brot lockt den Wels nicht. Ich brauch einen Knochen für den Haken.'],['P','Vor Baba Jagas Hütte liegen doch überall Knochen im Dreck rum.']])}},
+    if(FL.tied)return say([['P','Die Würmer zappeln am Haken. Jetzt muss nur noch der Wels anbeißen.']],wels);
+    if(inv.includes('wuermer'))return say([['P','Ich spieß die Würmer auf seinen Haken. Einen nach dem anderen. Sorry, Jungs.'],['P','Und jetzt halt ich die Schnur fest und warte. Der Wels muss richtig ziehen, damit Kusmitsch was merkt.']],()=>{FL.tied=1;inv.splice(inv.indexOf('wuermer'),1);renderInv();wels()});
+    this.i=(this.i||0)+1;say(this.i%2?[['P','Die Angelschnur vom Fischer. Leerer Haken.'],['P','Wenn hier was richtig Großes dranziehen würde, wäre Kusmitsch eine Weile beschäftigt...'],['P','Der Wels! Kusmitsch hat gesagt, der beißt nur auf Würmer. Fette Würmer.']]
+      :[['P','Brot lockt den Wels nicht. Ich brauch Würmer für den Haken.'],['P','Vor Baba Jagas Hütte ist die Erde so feucht und matschig... da wimmelt es bestimmt von Würmern.']])}},
   muell:{n:'Müll',at:[540,460],l:[[['P','Eine leere Flasche, ein Stiefel, ein Reifen. Kusmitschs Lebenslauf.']]]},
-  knochen:{n:'Knochen',at:[540,474],fn(){say([['P',FL.schnapsQ?'Ein dicker Knochen. Genau das Richtige für einen Wels!':'Ein Knochen. Von wem, will ich gar nicht wissen.'],['J','Lass meine Knochen liegen, Bürschchen!'],['P','Ich leih ihn nur aus!']],()=>{rm('knochenG');inv.push('knochen');renderInv()})}},
+  wuermer:{n:'Würmer',at:[540,474],fn(){if(!FL.schnapsQ)return say([['P','Ein Haufen Erde voller fetter Würmer. Die winden sich, als würden sie tanzen.'],['P','Igitt. Die lass ich lieber, wo sie sind.']]);
+    say([['P','Fette Würmer! Genau das Richtige für einen Wels.'],['P','*buddel* *glitsch* ...Eine Handvoll. Rein in die Tasche. Igitt.'],['J','Finger weg von meinen Würmern, Bürschchen! Die sind für die Suppe!'],['P','Ich leih sie nur aus!']],()=>{rm('wuermerG');inv.push('wuermer');renderInv()})}},
   schnaps:{n:'Selbstgebrannter',at:[680,392],fn(){if(!FL.ablenk)return say([['F','FINGER WEG! Das ist mein Selbstgebrannter! Den hab ich im Auge, Junge!']]);
     say([['P','*schnapp*'],['F','(kämpfend) KOMM HER! KOMM HER, DU MISTVIEH!'],['P','Der merkt gar nichts. Dreißig Jahre Warten machen blind.']],()=>{FL.schnaps=1;rm('schnapsG');inv.push('schnaps');renderInv()})}},
   leiter:{n:'Leiter',at:[700,452],fn(){say(FL.leiterQ?[['G','Die Leiter gibt’s gegen Selbstgebrannten. Nicht gegen Bitte-Bitte.']]:[['P','Eine alte Leiter am Ofen. Angekokelt, aber stabil.'],['G','Finger weg! Das ist das Einzige, was mir geblieben ist. Außer dem Ofen.']])}},
@@ -1591,7 +1592,7 @@ const T={
   _:{}
 };
 function use(id){const o=T[id];if(!o)return;if(/^slot\d$/.test(id)&&FL.clubQ&&!FL.rekrut)return interview(o);if(o.go)return enter(o.go,o.to);if(o.fn)return o.fn();o.i=o.i||0;const set=o.l[o.i%o.l.length];o.i++;say(set,o.after)}
-const ITEMS={kippe:['🚬','Joint-Stummel','Lieber nicht. Sonst wach ich in einem noch schlimmeren Märchen auf.'],saege:['🪚','Säge','Eine Säge vom Fischer. Damit könnte man Birken klein machen.'],apfel:['🍎','Apfel','Ein roter Apfel. Liegt gut in der Hand. Wurfgewicht: perfekt.'],stock:['🌿','Stock','Ein gerader Ast. Daraus wird was.'],seil:['🧶','Schnur','Schnur aus einem kaputten Fischernetz.'],angel:['🎣','Angel','Selbst gebaut. Stock, Schnur, Sicherheitsnadel. Hält bestimmt.'],pilze:['🍄','Blaue Pilze','Neun blau angelaufene Pilzstücke aus dem Joint. Traumschwamm?'],karte:['🗺️','Angekokelte Karte','Baba Jagas Wegkarte: „2× links, 1× rechts, 1× geradeaus“.'],liste:['📋','Madames Liste','Gesucht: schön, tanzt gern, frech, will raus. Keine Blubberer.'],gutschein:['🎟️','Gutschein','„Ein Abend im Banja mit Privattanz“. Geht aufs Haus.'],mehl:['🥡','3 Säcke „Mehl“','Riecht nicht nach Mehl. Riecht nach Ärger.'],laterne:['🏮','Laterne','Eine Gnomlaterne. Brennt mit irgendwas Grünem.'],knochen:['🦴','Knochen','Ein Knochen von Baba Jagas Hof. Riecht nach Suppe.'],schnaps:['🍶','Selbstgebrannter','Kusmitschs Selbstgebrannter. Schon der Geruch macht blind.'],leiter:['🪜','Leiter','Opas Leiter. Angekokelt, aber stabil.'],fisch:['🐟','Fisch','Ein kleiner Fisch. Guckt komisch.'],gebiss:['🦷','Omas Gebiss','Ein Gebiss. Riecht nach Kater und Friedhof.'],brett:['🪵','Brett','Ein Brett aus Opas Ruine. Nur ein bisschen angekokelt.'],teer:['🛢️','Birkenteer','Riecht nach Lagerfeuer und Omas Rheuma.']};
+const ITEMS={kippe:['🚬','Joint-Stummel','Lieber nicht. Sonst wach ich in einem noch schlimmeren Märchen auf.'],saege:['🪚','Säge','Eine Säge vom Fischer. Damit könnte man Birken klein machen.'],apfel:['🍎','Apfel','Ein roter Apfel. Liegt gut in der Hand. Wurfgewicht: perfekt.'],stock:['🌿','Stock','Ein gerader Ast. Daraus wird was.'],seil:['🧶','Schnur','Schnur aus einem kaputten Fischernetz.'],angel:['🎣','Angel','Selbst gebaut. Stock, Schnur, Sicherheitsnadel. Hält bestimmt.'],pilze:['🍄','Blaue Pilze','Neun blau angelaufene Pilzstücke aus dem Joint. Traumschwamm?'],karte:['🗺️','Angekokelte Karte','Baba Jagas Wegkarte: „2× links, 1× rechts, 1× geradeaus“.'],liste:['📋','Madames Liste','Gesucht: schön, tanzt gern, frech, will raus. Keine Blubberer.'],gutschein:['🎟️','Gutschein','„Ein Abend im Banja mit Privattanz“. Geht aufs Haus.'],mehl:['🥡','3 Säcke „Mehl“','Riecht nicht nach Mehl. Riecht nach Ärger.'],laterne:['🏮','Laterne','Eine Gnomlaterne. Brennt mit irgendwas Grünem.'],wuermer:['🪱','Würmer','Eine Handvoll fetter Würmer von Baba Jagas Hof. Sie zappeln in der Tasche.'],schnaps:['🍶','Selbstgebrannter','Kusmitschs Selbstgebrannter. Schon der Geruch macht blind.'],leiter:['🪜','Leiter','Opas Leiter. Angekokelt, aber stabil.'],fisch:['🐟','Fisch','Ein kleiner Fisch. Guckt komisch.'],gebiss:['🦷','Omas Gebiss','Ein Gebiss. Riecht nach Kater und Friedhof.'],brett:['🪵','Brett','Ein Brett aus Opas Ruine. Nur ein bisschen angekokelt.'],teer:['🛢️','Birkenteer','Riecht nach Lagerfeuer und Omas Rheuma.']};
 function irrGo(d){const SEQ='LLRG';FL.irrs=(FL.irrs||'')+d;
   if(!SEQ.startsWith(FL.irrs)){FL.irrs='';return say([['P','Moment... den Baum kenn ich doch. Und den. Und den da auch.'],['P','Ich hab mich verlaufen. Zurück, bevor mich die Bäume fressen.']],()=>enter('muehle',[150,470]))}
   if(FL.irrs==SEQ){FL.irrs='';return enter('banjaV',[420,486])}
@@ -1800,7 +1801,7 @@ function quests(){const Q=[];
     {t:'Das Gebiss zurückbringen',v:has('gebiss')||FL.teer,ok:FL.teer}]});
   Q.push({t:'Hoch hinaus',d:'Durch die Tür kommt man bei Baba Jaga nicht rein.',v:FL.bjNo,ok:FL.leiter||FL.drin,s:[
     {t:'Jemanden mit einer Leiter finden',v:FL.bjNo,ok:FL.leiterQ},
-    {t:'Den Preis bezahlen',v:FL.leiterQ,ok:FL.leiter,s:[{t:'An die Flasche kommen',v:FL.schnapsQ,ok:FL.schnaps},{t:'Für Ablenkung sorgen',v:FL.schnapsQ,ok:FL.ablenk},{t:'Ein Köder für etwas Großes',v:FL.schnapsQ,ok:FL.tied||FL.ablenk,s:[{t:'Etwas Fleischiges finden – vielleicht bei Baba Jaga?',v:FL.schnapsQ,ok:has('knochen')||FL.tied||FL.ablenk},{t:'Den Köder an Kusmitschs Schnur unterm Steg hängen',v:has('knochen')||FL.tied,ok:FL.tied||FL.ablenk}]}]}]});
+    {t:'Den Preis bezahlen',v:FL.leiterQ,ok:FL.leiter,s:[{t:'An die Flasche kommen',v:FL.schnapsQ,ok:FL.schnaps},{t:'Für Ablenkung sorgen',v:FL.schnapsQ,ok:FL.ablenk},{t:'Ein Köder für etwas Großes',v:FL.schnapsQ,ok:FL.tied||FL.ablenk,s:[{t:'Würmer sammeln – vor Baba Jagas Hütte ist die Erde feucht',v:FL.schnapsQ,ok:has('wuermer')||FL.tied||FL.ablenk},{t:'Die Würmer an Kusmitschs Schnur unterm Steg hängen',v:has('wuermer')||FL.tied,ok:FL.tied||FL.ablenk}]}]}]});
   Q.push({t:'Der Joint',d:'Baba Jaga will wissen, was drin war.',v:FL.drin,ok:FL.bjInfo,s:[{t:'Den Joint untersuchen',v:FL.drin,ok:FL.pilze},{t:'Das Ergebnis zeigen',v:FL.pilze,ok:FL.bjInfo}]});
   return Q.filter(q=>q.v)}
 function qHTML(list,lv){return list.filter(q=>q.v).map(q=>`<div class="q l${lv} ${q.ok?'done':''}"><span>${q.ok?'☑':'☐'} ${q.t}</span>${q.d?`<i>${q.d}</i>`:''}${q.s?qHTML(q.s,lv+1):''}</div>`).join('')}
@@ -1821,6 +1822,8 @@ function saveGame(n){if(!cur)return;const d={inv:[...inv],FL:{...FL},seen:{...se
   const a=slots();a[n]=d;try{localStorage.setItem(SKEY,JSON.stringify(a));return true}catch(e){return false}}
 function loadGame(n){const d=slots()[n];if(d)loadState(d)}
 function loadState(d){closeO();if($('#start'))rm('start');
+  // alte Spielstände: Knochen wurde zu Würmern
+  d.inv=d.inv.map(i=>i=='knochen'?'wuermer':i);d.REM=d.REM.map(r=>r=='knochenG'?'wuermerG':r);
   inv.length=0;inv.push(...d.inv);Object.keys(FL).forEach(k=>delete FL[k]);Object.assign(FL,d.FL);Object.assign(seen,d.seen);d.REM.forEach(rm);
   Object.entries(d.ti||{}).forEach(([k,v])=>{if(T[k])T[k].i=v});if(FL.cut){const h=$('[data-id=sHolz]');if(h)h.style.display='none'}
   for(const k in cache)delete cache[k];renderInv();busy=false;box.style.display='none';enter(d.cur,[d.P.x,d.P.y])}
@@ -1849,7 +1852,7 @@ const TSTEPS=[
   {t:'Joint-Stummel eingesteckt',add:['kippe'],rm:['kippe'],s:['gabel','huette'],at:['huette',640,488]},
   {t:'Hütte: Tür zu, Leiter gesucht',f:['bjNo'],s:['dorf'],at:['dorf',150,486]},
   {t:'Opa will Selbstgebrannten',f:['leiterQ','schnapsQ'],s:['sperre','fischer'],at:['fischer',90,476]},
-  {t:'Wels lenkt Fischer ab',f:['tied','ablenk'],rm:['knochenG'],s:['ufer','unter'],at:['fischer',90,476]},
+  {t:'Wels lenkt Fischer ab',f:['tied','ablenk'],rm:['wuermerG'],s:['ufer','unter'],at:['fischer',90,476]},
   {t:'Leiter von Opa bekommen',f:['schnaps','leiter'],add:['leiter'],rm:['schnapsG','leiterG'],at:['huette',640,474]},
   {t:'In Baba Jagas Hütte',f:['drin'],s:['innen'],at:['innen',250,470]},
   {t:'Joint zerlegt (blaue Pilze)',f:['pilze'],del:['kippe'],add:['pilze'],at:['innen',250,470]},
