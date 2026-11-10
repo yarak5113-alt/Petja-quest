@@ -1431,6 +1431,8 @@ const T={
   sFisch:{n:'Schild: Zum Fischerhaus',at:[660,432],fn(){walkTo(760,404,()=>enter('fischer',[90,476]))}},
   sZD:{n:'Schild: Zum dunklen Wald',at:[130,484],go:'sperre',to:[730,412]},
   fischer:{n:'Fischer',at:[690,394],fn(){if(FL.ablenk&&!FL.schnaps)return say([['F','NICHT JETZT! DER WELS! Er zieht mich gleich vom Steg!'],['P','Lassen Sie sich Zeit.']]);
+    if(FL.schnapsQ&&!FL.ablenk&&R()<.6)return say(has('knochen')?[['F','Was riecht hier so nach Suppe? Hast du was in der Tasche?'],['P','Nichts! ...Nur ein Knochen. Für... später.'],['P','(Unter dem Steg hängt seine Schnur. Da passt der Knochen dran.)']]
+      :[['F','Seit 1987 wart ich auf den Wels. Der beißt nur auf Fleisch. Knochen. Was Ordentliches.'],['F','Meine Schnur hängt unterm Steg. Leer. Wie mein Kühlschrank.'],['P','(Ein Knochen an seinem Haken... dann hätte er mit dem Wels alle Hände voll zu tun.)']]);
     if(FL.leiterQ&&!FL.schnapsQ){FL.schnapsQ=1;return say([['P','Herr Kusmitsch, könnten Sie mir Ihren Selbstgebrannten geben? Für den Opa.'],['F','Meinen Selbstgebrannten?! Für den Brandstifter? Eher fress ich mein Netz.'],['F','Die Flasche lass ich nicht aus den Augen. Nur wenn einer anbeißt. Und hier beißt seit 1987 nix Großes mehr an.'],['F','Außer dem Wels. Der wohnt unterm Steg. Aber der frisst nur Fleisch. Knochen und so. Mit meinem Brot lockst du den nicht.']])}
     if(FL.ks&&!FL.fisch&&!FL.kater){if(inv.includes('angel'))return say([['F','Na, eine Angel! Selbst gebaut? Sieht aus wie ein Unfall.'],['F','Dann zeig mal. Schwimmer in der Mitte halten, nicht vom Fisch wegziehen lassen!']],fishing);
     FL.angelQ=1;return say([['P','Könnten Sie mir einen Fisch geben? Für einen Kater.'],['F','Für den Kater vom Popen? Der Satan hat mir mal den ganzen Fang geklaut. Von mir kriegt der nix.'],['F','Fang dir selber einen. Keine Angel? Dann bau dir eine.'],['F','Ein Stock und eine Schnur. Mehr braucht ein Mann nicht. Und Wodka.'],['P','Und wo krieg ich die her?'],['F','Stöcke wachsen an Bäumen, Junge. Und Schnur... frag nicht mich, ich sitz hier seit 1987.']])}if(!FL.boot){if(inv.includes('brett')&&inv.includes('teer'))return repairBoat();
@@ -1491,9 +1493,10 @@ const T={
   schnur:{n:'Angelschnur',at:[430,430],fn(){if(FL.ablenk)return say([['P','Die Schnur zappelt wie verrückt. Oben flucht Kusmitsch. Herrlich.']]);
     if(FL.tied)return say([['P','Der Knochen hängt dran. Jetzt muss nur noch der Wels anbeißen.']],wels);
     if(inv.includes('knochen'))return say([['P','Ich bind den Knochen an seinen Haken. Doppelter Knoten. Wie Opa es mir beigebracht hat. Also mein Opa, nicht der verbrannte.'],['P','Und jetzt halt ich die Schnur fest und warte. Der Wels muss richtig ziehen, damit Kusmitsch was merkt.']],()=>{FL.tied=1;inv.splice(inv.indexOf('knochen'),1);renderInv();wels()});
-    say([['P','Die Angelschnur vom Fischer. Leerer Haken.'],['P','Wenn hier was richtig Großes dranziehen würde, wäre Kusmitsch eine Weile beschäftigt...']])}},
+    this.i=(this.i||0)+1;say(this.i%2?[['P','Die Angelschnur vom Fischer. Leerer Haken.'],['P','Wenn hier was richtig Großes dranziehen würde, wäre Kusmitsch eine Weile beschäftigt...'],['P','Der Wels! Kusmitsch hat gesagt, der frisst nur Fleisch. Knochen und so.']]
+      :[['P','Brot lockt den Wels nicht. Ich brauch einen Knochen für den Haken.'],['P','Vor Baba Jagas Hütte liegen doch überall Knochen im Dreck rum.']])}},
   muell:{n:'Müll',at:[540,460],l:[[['P','Eine leere Flasche, ein Stiefel, ein Reifen. Kusmitschs Lebenslauf.']]]},
-  knochen:{n:'Knochen',at:[540,474],fn(){say([['P','Ein Knochen. Von wem, will ich gar nicht wissen.'],['J','Lass meine Knochen liegen, Bürschchen!'],['P','Ich leih ihn nur aus!']],()=>{rm('knochenG');inv.push('knochen');renderInv()})}},
+  knochen:{n:'Knochen',at:[540,474],fn(){say([['P',FL.schnapsQ?'Ein dicker Knochen. Genau das Richtige für einen Wels!':'Ein Knochen. Von wem, will ich gar nicht wissen.'],['J','Lass meine Knochen liegen, Bürschchen!'],['P','Ich leih ihn nur aus!']],()=>{rm('knochenG');inv.push('knochen');renderInv()})}},
   schnaps:{n:'Selbstgebrannter',at:[680,392],fn(){if(!FL.ablenk)return say([['F','FINGER WEG! Das ist mein Selbstgebrannter! Den hab ich im Auge, Junge!']]);
     say([['P','*schnapp*'],['F','(kämpfend) KOMM HER! KOMM HER, DU MISTVIEH!'],['P','Der merkt gar nichts. Dreißig Jahre Warten machen blind.']],()=>{FL.schnaps=1;rm('schnapsG');inv.push('schnaps');renderInv()})}},
   leiter:{n:'Leiter',at:[700,452],fn(){say(FL.leiterQ?[['G','Die Leiter gibt’s gegen Selbstgebrannten. Nicht gegen Bitte-Bitte.']]:[['P','Eine alte Leiter am Ofen. Angekokelt, aber stabil.'],['G','Finger weg! Das ist das Einzige, was mir geblieben ist. Außer dem Ofen.']])}},
@@ -1797,7 +1800,7 @@ function quests(){const Q=[];
     {t:'Das Gebiss zurückbringen',v:has('gebiss')||FL.teer,ok:FL.teer}]});
   Q.push({t:'Hoch hinaus',d:'Durch die Tür kommt man bei Baba Jaga nicht rein.',v:FL.bjNo,ok:FL.leiter||FL.drin,s:[
     {t:'Jemanden mit einer Leiter finden',v:FL.bjNo,ok:FL.leiterQ},
-    {t:'Den Preis bezahlen',v:FL.leiterQ,ok:FL.leiter,s:[{t:'An die Flasche kommen',v:FL.schnapsQ,ok:FL.schnaps},{t:'Für Ablenkung sorgen',v:FL.schnapsQ,ok:FL.ablenk},{t:'Ein Köder für etwas Großes',v:FL.schnapsQ,ok:FL.tied||FL.ablenk}]}]});
+    {t:'Den Preis bezahlen',v:FL.leiterQ,ok:FL.leiter,s:[{t:'An die Flasche kommen',v:FL.schnapsQ,ok:FL.schnaps},{t:'Für Ablenkung sorgen',v:FL.schnapsQ,ok:FL.ablenk},{t:'Ein Köder für etwas Großes',v:FL.schnapsQ,ok:FL.tied||FL.ablenk,s:[{t:'Etwas Fleischiges finden – vielleicht bei Baba Jaga?',v:FL.schnapsQ,ok:has('knochen')||FL.tied||FL.ablenk},{t:'Den Köder an Kusmitschs Schnur unterm Steg hängen',v:has('knochen')||FL.tied,ok:FL.tied||FL.ablenk}]}]}]});
   Q.push({t:'Der Joint',d:'Baba Jaga will wissen, was drin war.',v:FL.drin,ok:FL.bjInfo,s:[{t:'Den Joint untersuchen',v:FL.drin,ok:FL.pilze},{t:'Das Ergebnis zeigen',v:FL.pilze,ok:FL.bjInfo}]});
   return Q.filter(q=>q.v)}
 function qHTML(list,lv){return list.filter(q=>q.v).map(q=>`<div class="q l${lv} ${q.ok?'done':''}"><span>${q.ok?'☑':'☐'} ${q.t}</span>${q.d?`<i>${q.d}</i>`:''}${q.s?qHTML(q.s,lv+1):''}</div>`).join('')}
