@@ -1,0 +1,31 @@
+Echte Sound-Dateien für Petja Quest
+====================================
+
+Lege Dateien mit genau diesen Namen hier ab (.mp3 oder .ogg).
+Das Spiel benutzt sie automatisch statt des erzeugten Rauschens.
+Fehlt eine Datei, passiert nichts Schlimmes.
+
+Umgebung (läuft in Schleife, am besten 30-90 Sekunden, ohne harten Schnitt am Ende):
+  amb-forest    Birkenwald, Weggabelung, Gnome      (Wind, Vögel)
+  amb-dark      Hütte, Birkensperre, Irrwald        (Nachtwald, Eule, Grillen)
+  amb-village   Dorf, Dorfstraße, Kirche            (Wind, Hühner, ferner Hund)
+  amb-mill      Mühle                               (Wasserrad, Bach)
+  amb-lake      Fischerhaus, Ufer                   (Wellen, Schilf)
+  amb-under     Unter dem Steg                      (Wasser unter Holz, Tropfen)
+  amb-swamp     Sumpf                               (Frösche, Blubbern)
+  amb-cave      Höhle                               (Tropfen, Hall)
+  amb-indoor    Baba Jagas Hütte innen              (Ofenfeuer)
+  amb-clubOut   Vor dem Banja                       (gedämpfte Musik durch die Wand)
+  amb-clubIn    Im Banja, Bühne, Lounge             (Musik, Stimmen)
+  amb-title     Startmenü                           (Nachtwald)
+
+Effekte (kurz, unter 1 Sekunde):
+  step-grass    Schritt auf Gras/Erde
+  step-wood     Schritt auf Holz/Stein
+  click         Klick im Menü
+  item          Gegenstand eingesteckt
+  done          Auftrag erledigt
+  new           Neuer Auftrag
+
+Kostenlose Geräusche ohne Lizenzärger (CC0) gibt es z. B. auf freesound.org (Filter "Creative Commons 0")
+oder pixabay.com/sound-effects.

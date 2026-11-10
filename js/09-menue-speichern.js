@@ -108,7 +108,7 @@ function openMenu(view){view=view||'m';const a=slots(),inGame=cur&&!$('#start'),
     openMenu(v)});
   o.querySelectorAll('button[data-o]').forEach(b=>b.onclick=()=>{const k=b.dataset.o;
     if(k=='voice'){if(!VOICE_ON){VOICE_ON=true;OPT.voices='alle'}else if(OPT.voices!=='petja')OPT.voices='petja';else VOICE_ON=false;
-      try{localStorage.setItem('petjaVoice',VOICE_ON?'1':'0')}catch(e){}saveOpt();if(TTS)TTS.cancel();if(VOICE_ON)voice(OPT.voices==='petja'?'So klinge ich.':'So klingen wir alle.','P')}if(k=='barks'){OPT.barks=!OPT.barks;saveOpt()}if(k=='speed'){const i=SPEEDS.findIndex(s=>s[0]==OPT.speed);OPT.speed=SPEEDS[(i+1)%SPEEDS.length][0];saveOpt()}openMenu('o')});
+      try{localStorage.setItem('petjaVoice2',VOICE_ON?'1':'0')}catch(e){}saveOpt();if(TTS)TTS.cancel();if(VOICE_ON)voice(OPT.voices==='petja'?'So klinge ich.':'So klingen wir alle.','P')}if(k=='barks'){OPT.barks=!OPT.barks;saveOpt()}if(k=='speed'){const i=SPEEDS.findIndex(s=>s[0]==OPT.speed);OPT.speed=SPEEDS[(i+1)%SPEEDS.length][0];saveOpt()}openMenu('o')});
   o.querySelectorAll('button[data-s]').forEach(b=>b.onclick=()=>{const n=+b.dataset.s;
     if(a[n]&&!b.dataset.armed){o.querySelectorAll('[data-armed]').forEach(x=>delete x.dataset.armed);b.dataset.armed=1;b.classList.add('warn');o.querySelector('.msg').textContent='Platz '+(n+1)+' ist belegt. Nochmal klicken zum Überschreiben.';return}
     const ok=saveGame(n);openMenu('s');ovl.querySelector('.msg').textContent=ok?'✔ Gespeichert auf Platz '+(n+1)+'!':'Speichern nicht möglich (Browser blockiert Speicher).';ovl.querySelector('.msg').classList.toggle('ok',!!ok)});

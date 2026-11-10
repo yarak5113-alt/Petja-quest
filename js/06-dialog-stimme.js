@@ -23,7 +23,8 @@ const LOG=[];
 
 // ================= Stimmen & Sprüche =================
 // Sprachausgabe (Browser-TTS, Deutsch). Jede Figur hat eine eigene Stimmlage: [weiblich?, Tonhöhe, Tempo]. [V] schaltet an/aus.
-let VOICE_ON=true;try{VOICE_ON=localStorage.getItem('petjaVoice')!=='0'}catch(e){}
+// Standard: aus (Browser-Stimmen klingen zu sehr nach Roboter). Nur an, wenn man es selbst in den Einstellungen einschaltet.
+let VOICE_ON=false;try{VOICE_ON=localStorage.getItem('petjaVoice2')==='1'}catch(e){}
 let deVoice=null,deVoiceF=null;const TTS=window.speechSynthesis;
 const VOX={P:[0,.8,.95],F:[0,.6,.85],G:[0,.7,.82],N1:[0,.3,.9],N2:[0,.5,.75],MU:[0,.95,1.12],PK:[0,1.25,1.1],WO:[0,1.05,1.15],K:[0,1.8,1.3],M:[0,1.5,1.2],
   J:[1,1.7,1.0],J2:[1,1.7,1.0],O:[1,1.35,.82],Z:[1,1.0,.95],NA:[1,1.2,1.05],S:[1,1.15,.9],B:[1,.6,.78],alte:[1,.5,.7],fekla:[1,.8,.85],ustinja:[1,1.1,.9]};
@@ -34,7 +35,7 @@ function voice(t,w){if(!TTS)return;TTS.cancel();w=w||'P';if(!VOICE_ON||!t||(w!==
   t=t.replace(/\*[^*]*\*/g,' ').replace(/\.{2,}/g,', ').replace(/[()]/g,'').trim();if(!t||!/[a-zäöüß]/i.test(t))return;
   const s=VOX[w]||[1,1.1,.95],u=new SpeechSynthesisUtterance(t);u.lang='de-DE';const vo=s[0]?(deVoiceF||deVoice):deVoice;if(vo)u.voice=vo;
   u.pitch=s[1];u.rate=s[2];u.volume=Math.max(0,Math.min(1,OPT.vox));TTS.speak(u)}
-function toggleVoice(){VOICE_ON=!VOICE_ON;try{localStorage.setItem('petjaVoice',VOICE_ON?'1':'0')}catch(e){}if(!VOICE_ON&&TTS)TTS.cancel();
+function toggleVoice(){VOICE_ON=!VOICE_ON;try{localStorage.setItem('petjaVoice2',VOICE_ON?'1':'0')}catch(e){}if(!VOICE_ON&&TTS)TTS.cancel();
   toast('🔊 Stimmen: '+(VOICE_ON?'an':'aus'))}
 
 // Leerlauf-Sprüche: Steht Petja eine Weile rum, sagt er was zum aktuellen Ort.
