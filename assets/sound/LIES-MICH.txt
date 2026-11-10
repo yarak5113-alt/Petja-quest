@@ -40,13 +40,15 @@ Effekte (kurz, unter 1 Sekunde):
 Kostenlose Geräusche ohne Lizenzärger (CC0) gibt es z. B. auf freesound.org (Filter "Creative Commons 0")
 oder pixabay.com/sound-effects.
 
-Musik (optional, ersetzt die erzeugte Ambient-Musik der jeweiligen Stimmung, läuft leise in Schleife):
-  mus-wald      Birkenwald, Weggabelung, Gnome
-  mus-dunkel    Hütte, Birkensperre, Irrwald
-  mus-dorf      Dorf, Dorfstraße (Balalaika)
-  mus-kirche    Kirche (Balalaika von weitem)
-  mus-wasser    Mühle, Fischerhaus, Ufer, Unter dem Steg
-  mus-sumpf     Sumpf
-  mus-hoehle    Höhle
-  mus-innen     Hütte innen
-  mus-titel     Startmenü
+Musik (optional, ersetzt die erzeugte Musik der jeweiligen Stimmung, läuft leise in Schleife):
+  mus-wald      Birkenwald, Weggabelung   (Gusli, Swirel, Domra, Holzlöffel)
+  mus-gnome     Gnomsiedlung              (Bajan, Balalaika, Schaleika, Löffel, Schellentrommel)
+  mus-dunkel    Hütte, dunkler Wald       (Bajan tief, Domra)
+  mus-irrwald   Irrwald                   (Gusli im Hall, Schaleika von fern)
+  mus-dorf      Dorf, Dorfstraße          (Dorffest: Balalaika, Bajan, Löffel)
+  mus-kirche    Kirche                    (Gusli, Swirel)
+  mus-wasser    Mühle, See, Ufer, Steg    (E-Piano, Domra, Gusli)
+  mus-sumpf     Sumpf                     (Bajan, Schaleika, Shaker)
+  mus-hoehle    Höhle                     (Gusli mit Hall)
+  mus-innen     Hütte innen               (Gusli, Schaleika, Balalaika, Löffel)
+  mus-titel     Startmenü                 (Bajan, Domra, Swirel)
