@@ -85,5 +85,5 @@ function entryBark(id){const pool=ENTRY[id];if(!pool||Date.now()-entryT<20000||M
 const IDLE_MS=25000;let lastAct=Date.now(),barkBag={};
 function nextBark(id){const pool=(BARKS[id]||[]).concat(BARKS._);let b=barkBag[id];if(!b||!b.length){b=barkBag[id]=pool.slice().sort(()=>Math.random()-.5)}return b.pop()}
 ['click','keydown','mousemove'].forEach(ev=>addEventListener(ev,()=>lastAct=Date.now(),true));
-setInterval(()=>{if(!OPT.barks||busy||mv||ovl||changing||!cur||$('#start')||$('#fg')||$('#cut')||document.hidden){lastAct=Date.now();return}
+setInterval(()=>{if(typeof ovl=='undefined'||typeof entryBark!='function')return;if(!OPT.barks||busy||mv||ovl||changing||!cur||$('#start')||$('#fg')||$('#cut')||document.hidden){lastAct=Date.now();return}
   if(Date.now()-lastAct<IDLE_MS)return;lastAct=Date.now();say([['P',nextBark(cur)]])},1000);
