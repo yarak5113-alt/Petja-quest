@@ -1,6 +1,11 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.16',d:'10.11.2026',t:'Tiere überall',n:[
+    'Dorf: Hunde bellen, Katzen miauen, Kühe muhen, Schweine grunzen, und der Hahn kräht',
+    'Dunkle Orte: öfter Wolfsheulen und Eulenrufe',
+    'Helle Orte: Grillen zirpen, Schmetterlinge flattern vorbei, dazu die Vögel',
+    'Sumpf: Ochsenfrösche und Unken zu den quakenden Fröschen – auch am Ufer quakt es mal']},
   {v:'1.15',d:'10.11.2026',t:'Da ist doch wer …',n:[
     'Im Wald hört man ab und zu Schritte im Laub, die an dir vorbeiziehen',
     'Äste knacken – im Birkenwald selten, im dunklen Wald und Irrwald deutlich öfter',

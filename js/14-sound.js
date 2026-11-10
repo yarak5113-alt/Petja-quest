@@ -115,56 +115,80 @@ function makeAmb(loc){
       const c=dest(p),cx=filt('bandpass',rnd(2500,4500),1.2);nz(NOISE,at+.01,.1).connect(cx);cx.connect(c);env(c,at+.01,lv*.35,.01,rnd(.05,.1));
       if(Math.random()<.12)crack(lv*.9,p,at+.02)}
     if(Math.random()<.3)branch(v*1.1,p1,n*gap+rnd(.1,.6))};
+  // Tierstimmen-Baukasten: Stimmband (Säge, Tonhöhenverlauf) → Formantfilter (Mund/Maul, Verlauf) → Hüllkurve; optional rau, Vibrato, Hauch
+  const voc=(v,pan,at,dur,fs,fm,o)=>{o=o||{};const d=dest(pan),t=T0(at),src=AC.createOscillator();src.type=o.type||'sawtooth';
+    src.frequency.setValueAtTime(fs[0][1],t);fs.slice(1).forEach(([x,f])=>src.frequency.linearRampToValueAtTime(f,t+x*dur));
+    let n=src;if(o.rough){const ws=AC.createWaveShaper();ws.curve=shaper;src.connect(ws);n=ws}
+    if(o.vib){const vb=AC.createOscillator(),vg=AC.createGain();vb.frequency.value=o.vib[0];vg.gain.value=o.vib[1];vb.connect(vg);vg.connect(src.frequency);vb.start(t);vb.stop(t+dur+.05)}
+    fm.forEach(([q,pts,a])=>{const x=filt('bandpass',pts[0][1],q),g=AC.createGain();g.gain.value=a||1;x.frequency.setValueAtTime(pts[0][1],t);pts.slice(1).forEach(([xx,f])=>x.frequency.linearRampToValueAtTime(f,t+xx*dur));n.connect(x);x.connect(g);g.connect(d)});
+    if(o.noise){const nx=filt('bandpass',o.noise[1],1),ng=AC.createGain();ng.gain.value=o.noise[0];nz(NOISE,at,dur).connect(nx);nx.connect(ng);ng.connect(d)}
+    const a=o.att||.03;d.gain.setValueAtTime(.0001,t);d.gain.exponentialRampToValueAtTime(v,t+a);d.gain.setValueAtTime(v,t+Math.max(a,dur*.7));d.gain.exponentialRampToValueAtTime(.0001,t+dur);
+    src.start(t);src.stop(t+dur+.05)};
+  // Dorf-Tiere
+  const dog=(v,pan)=>{const n=rnd(2,5)|0,f=rnd(260,380),gap=rnd(.25,.45);for(let i=0;i<n;i++)voc(v*rnd(.8,1),pan,i*gap+rnd(0,.05),.16,[[0,f*1.1],[.3,f*1.25],[1,f*.75]],[[3,[[0,700],[1,500]]],[4,[[0,1500],[1,1100]],.6]],{rough:1,noise:[.4,1200],att:.01})};
+  const cat=(v,pan)=>{const f=rnd(450,650),dur=rnd(.6,1);voc(v,pan,0,dur,[[0,f],[.35,f*1.5],[1,f*.85]],[[5,[[0,800],[.4,1900],[1,700]]],[6,[[0,2400],[.4,3200],[1,1500]],.5]],{vib:[7,f*.02],att:.06})};
+  const cow=(v,pan)=>{const f=rnd(95,125),dur=rnd(1.3,2.2);voc(v,pan,0,dur,[[0,f],[.2,f*1.25],[.8,f*1.15],[1,f*.85]],[[3,[[0,250],[.25,700],[1,350]]],[5,[[0,900],[.3,1300],[1,700]],.4]],{vib:[4,2],att:.15,noise:[.15,500]})};
+  const pig=(v,pan)=>{const n=rnd(2,5)|0;let at=0;for(let i=0;i<n;i++){const f=rnd(70,110),du=rnd(.12,.22);voc(v*rnd(.7,1),pan,at,du,[[0,f],[1,f*.8]],[[4,[[0,450],[1,380]]],[6,[[0,1100],[1,900]],.5]],{rough:1,vib:[30,f*.4],noise:[.5,600],att:.01});at+=du+rnd(.05,.15)}};
+  const rooster=(v,pan)=>{const f=rnd(550,650);let at=0;[[.13,1,1.15],[.13,1.2,1.3],[.15,1.25,1.2],[.75,1.35,1]].forEach(([du,a,b],i)=>{voc(v,pan,at,du,[[0,f*a],[.3,f*a*1.05],[1,f*b]],[[4,[[0,1100],[1,1000]]],[6,[[0,2600],[1,2400]],.6]],{rough:1,noise:[.2,2500],att:.015,vib:i==3?[18,f*.03]:null});at+=du+.03})};
+  // Grille: kurze reine Zirp-Pulse in Dreiergruppen
+  const cricket=(v,pan)=>{const f=rnd(4200,5000),n=rnd(3,8)|0,gap=rnd(.45,.6);for(let c=0;c<n;c++)for(let i=0;i<3;i++){const t=T0(c*gap+i*.03),d=dest(pan),o=AC.createOscillator();o.frequency.value=f;o.connect(d);
+    d.gain.setValueAtTime(.0001,t);d.gain.exponentialRampToValueAtTime(v,t+.005);d.gain.exponentialRampToValueAtTime(.0001,t+.022);o.start(t);o.stop(t+.03)}};
+  // Schmetterling: ganz leises Flügelflattern, das vorbeizieht
+  const butterfly=v=>{const p0=rnd(-1,1),n=rnd(6,12)|0;let at=0;for(let i=0;i<n;i++){const d=dest(p0-1.2*p0*i/n),x=filt('bandpass',rnd(500,900),.8);nz(BROWN,at,.06).connect(x);x.connect(d);env(d,at,v*Math.sin(Math.PI*(i+.5)/n),.01,.05);at+=rnd(.09,.13)}};
+  // Sumpf: Ochsenfrosch (tiefes Brummen) und Unke (glockiges „uuh“)
+  const bullfrog=(v,pan)=>{const n=rnd(1,4)|0;for(let i=0;i<n;i++)voc(v,pan,i*rnd(.6,.9),rnd(.35,.5),[[0,rnd(90,120)],[1,rnd(80,95)]],[[3,[[0,300],[1,250]]],[5,[[0,700],[1,600]],.4]],{rough:1,vib:[25,15],att:.04})};
+  const unke=(v,pan)=>{const f=rnd(380,460);for(let i=0;i<(rnd(1,4)|0);i++){const at=i*rnd(.9,1.3),t=T0(at),d=dest(pan),o=AC.createOscillator();o.frequency.value=f;o.connect(d);env(d,at,v,.04,.3);o.start(t);o.stop(t+.4)}};
   const P=()=>rnd(-.9,.9);
-  RECIPE[loc]({bed,gusts,murmur,plop,splash,rustle,knock,croak,fly,creak,bell,clink,pickaxe,hoot,whisper,snap,flap,woodpecker,crackle,music,reverb,every,P,birds,grasshopper,bee,crow,wolf,steps,branch});
+  RECIPE[loc]({bed,gusts,murmur,plop,splash,rustle,knock,croak,fly,creak,bell,clink,pickaxe,hoot,whisper,snap,flap,woodpecker,crackle,music,reverb,every,P,birds,grasshopper,bee,crow,wolf,steps,branch,
+    dog,cat,cow,pig,rooster,cricket,butterfly,bullfrog,unke});
   return{stop(){tim.forEach(t=>{clearTimeout(t);clearInterval(t)});out.gain.setTargetAtTime(0,AC.currentTime,.5);setTimeout(()=>{src.forEach(s=>{try{s.stop()}catch(e){}});out.disconnect()},2500)}}}
 
 // ----- Rezepte: was man wo hört -----
 const RECIPE={
   // Birkenwald: sonnig – viele Vögel, Grashüpfer, Bienen, Blätter, ab und zu ein Specht, kaum Wind
-  wald(k){k.reverb(1.2,3,.18);k.every(25000,50000,()=>k.steps(.06,k.P()));k.every(12000,26000,()=>k.branch(.05,k.P()));k.bed(.025,'lowpass',900);k.birds(4,2500,7000);k.every(1500,4500,()=>k.grasshopper(.012,k.P()));
+  wald(k){k.reverb(1.2,3,.18);k.every(6000,14000,()=>k.cricket(.03,k.P()));k.every(15000,30000,()=>k.butterfly(.05));k.every(25000,50000,()=>k.steps(.06,k.P()));k.every(12000,26000,()=>k.branch(.05,k.P()));k.bed(.025,'lowpass',900);k.birds(4,2500,7000);k.every(1500,4500,()=>k.grasshopper(.012,k.P()));
     k.every(9000,18000,()=>k.bee(.03));k.every(900,3000,()=>k.rustle(rnd(.02,.04),k.P()));k.every(15000,30000,()=>k.woodpecker(.1,k.P()))},
   // Weggabelung: sonnige Wiese – Grashüpfer im Gras, Vögel, Bienen und Fliegen am Apfelbaum
-  gabel(k){k.reverb(1,3,.12);k.every(30000,60000,()=>k.steps(.05,k.P()));k.every(18000,35000,()=>k.branch(.04,k.P()));k.bed(.025,'lowpass',900);k.birds(3,3000,8000);k.every(800,2500,()=>k.grasshopper(.014,k.P()));
+  gabel(k){k.reverb(1,3,.12);k.every(4000,10000,()=>k.cricket(.032,k.P()));k.every(10000,22000,()=>k.butterfly(.06));k.every(30000,60000,()=>k.steps(.05,k.P()));k.every(18000,35000,()=>k.branch(.04,k.P()));k.bed(.025,'lowpass',900);k.birds(3,3000,8000);k.every(800,2500,()=>k.grasshopper(.014,k.P()));
     k.every(6000,12000,()=>k.bee(.035));k.every(12000,24000,()=>k.fly(.03));k.every(1200,3500,()=>k.rustle(.025,k.P()))},
   // Vor Baba Jagas Hütte: düster – kalter Wind, Krähen, die Hütte knarzt, der Kessel blubbert
-  huette(k){k.reverb(1.8,3,.25);k.every(20000,40000,()=>k.steps(.07,k.P()));k.every(9000,20000,()=>k.branch(.08,k.P()));k.bed(.08,'lowpass',380,.6,.08,.6);k.gusts(.06,500);k.every(5000,12000,()=>k.crow(.07,k.P()));
+  huette(k){k.reverb(1.8,3,.25);k.every(22000,45000,()=>k.wolf(.035,k.P()));k.every(14000,28000,()=>k.hoot(.05,k.P()));k.every(20000,40000,()=>k.steps(.07,k.P()));k.every(9000,20000,()=>k.branch(.08,k.P()));k.bed(.08,'lowpass',380,.6,.08,.6);k.gusts(.06,500);k.every(5000,12000,()=>k.crow(.07,k.P()));
     k.every(4000,9000,()=>k.creak(.08,rnd(-.2,.3)));k.every(300,900,()=>k.plop(.022,-.5,rnd(130,320)));k.every(18000,35000,()=>k.hoot(.05,k.P()))},
   // Hütte innen: Ofenfeuer knistert, Kessel brodelt, alte Dielen
   innen(k){k.reverb(.8,4,.18);k.bed(.06,'lowpass',260,.6,.3,.4);k.every(40,260,()=>k.crackle());k.every(150,600,()=>k.plop(.04,-.6,rnd(110,300)));k.every(7000,15000,()=>k.creak(.06,k.P()))},
   // Dunkler Wald: tiefes Dröhnen, Äste knarzen, Zweige knacken, Eule, ein Wolf in der Ferne
-  sperre(k){k.reverb(2.2,2.5,.3);k.every(15000,30000,()=>k.steps(.08,k.P()));k.every(8000,16000,()=>k.branch(.09,k.P()));k.bed(.1,'lowpass',160,.6,.04,.5);k.every(3500,8000,()=>k.creak(.07,k.P()));k.every(6000,14000,()=>k.snap(.11,k.P()));
+  sperre(k){k.reverb(2.2,2.5,.3);k.every(16000,32000,()=>k.wolf(.04,k.P()));k.every(10000,20000,()=>k.hoot(.05,k.P()));k.every(15000,30000,()=>k.steps(.08,k.P()));k.every(8000,16000,()=>k.branch(.09,k.P()));k.bed(.1,'lowpass',160,.6,.04,.5);k.every(3500,8000,()=>k.creak(.07,k.P()));k.every(6000,14000,()=>k.snap(.11,k.P()));
     k.every(14000,28000,()=>k.hoot(.06,k.P()));k.every(25000,50000,()=>k.wolf(.04,k.P()))},
   // Irrwald: noch düsterer – Flüstern, Knacken, Krähe, Wolf, Eule
-  irrwald(k){k.reverb(2.8,2.2,.35);k.every(14000,28000,()=>k.steps(.08,k.P()));k.every(7000,15000,()=>k.branch(.09,k.P()));k.bed(.1,'lowpass',140,.6,.03,.6);k.every(4000,10000,()=>k.whisper(.035,k.P()));k.every(5000,12000,()=>k.snap(.1,k.P()));
+  irrwald(k){k.reverb(2.8,2.2,.35);k.every(16000,32000,()=>k.wolf(.04,k.P()));k.every(10000,20000,()=>k.hoot(.05,k.P()));k.every(14000,28000,()=>k.steps(.08,k.P()));k.every(7000,15000,()=>k.branch(.09,k.P()));k.bed(.1,'lowpass',140,.6,.03,.6);k.every(4000,10000,()=>k.whisper(.035,k.P()));k.every(5000,12000,()=>k.snap(.1,k.P()));
     k.every(12000,24000,()=>k.crow(.05,k.P()));k.every(20000,40000,()=>k.wolf(.045,k.P()));k.every(15000,30000,()=>k.hoot(.05,k.P()))},
   // Dorfeingang: Spatzen, Wäsche flattert, Fliegen (Musik: Balalaika)
-  dorf(k){k.reverb(1,3,.12);k.bed(.02,'lowpass',800);k.birds(2,4000,10000);k.every(4000,9000,()=>k.flap(.05,k.P()));k.every(12000,25000,()=>k.fly(.04))},
+  dorf(k){k.reverb(1,3,.12);k.every(10000,22000,()=>k.dog(.07,k.P()));k.every(25000,50000,()=>k.cat(.08,k.P()));k.every(18000,36000,()=>k.cow(.08,k.P()));k.every(16000,32000,()=>k.pig(.08,k.P()));k.every(30000,60000,()=>k.rooster(.05,k.P()));k.bed(.02,'lowpass',800);k.birds(2,4000,10000);k.every(4000,9000,()=>k.flap(.05,k.P()));k.every(12000,25000,()=>k.fly(.04))},
   // Dorfstraße: Wäscheleine, Galjas Fernseher murmelt, Spatzen, Fliegen (Musik: Balalaika)
-  dorfstr(k){k.reverb(1,3,.12);k.bed(.02,'lowpass',800);k.murmur(.012,700);k.birds(2,5000,12000);k.every(3000,7000,()=>k.flap(.06,rnd(-.6,-.1)));k.every(9000,18000,()=>k.fly(.045))},
+  dorfstr(k){k.reverb(1,3,.12);k.every(12000,26000,()=>k.dog(.07,k.P()));k.every(18000,36000,()=>k.cat(.085,k.P()));k.every(22000,44000,()=>k.cow(.075,k.P()));k.every(14000,30000,()=>k.pig(.08,k.P()));k.every(35000,70000,()=>k.rooster(.05,k.P()));k.bed(.02,'lowpass',800);k.murmur(.012,700);k.birds(2,5000,12000);k.every(3000,7000,()=>k.flap(.06,rnd(-.6,-.1)));k.every(9000,18000,()=>k.fly(.045))},
   // Kirche & Friedhof: Krähen auf dem Friedhof, Glocke von weit weg, Blätter (Musik: Balalaika aus der Ferne)
-  kirche(k){k.reverb(3,2,.3);k.bed(.02,'lowpass',700);k.every(7000,15000,()=>k.crow(.05,k.P()));k.every(2000,5000,()=>k.rustle(.025,k.P()));k.every(30000,55000,()=>{for(let i=0;i<3;i++)k.bell(.05,-.3,i*2.2)})},
+  kirche(k){k.reverb(3,2,.3);k.every(20000,40000,()=>k.dog(.025,k.P()));k.every(40000,80000,()=>k.rooster(.025,k.P()));k.every(8000,16000,()=>k.cricket(.015,k.P()));k.bed(.02,'lowpass',700);k.every(7000,15000,()=>k.crow(.05,k.P()));k.every(2000,5000,()=>k.rustle(.025,k.P()));k.every(30000,55000,()=>{for(let i=0;i<3;i++)k.bell(.05,-.3,i*2.2)})},
   // Mühle: rauschender Bach, Wasserrad poltert im Takt, Spritzer, ein paar Vögel
   muehle(k){k.bed(.16,'lowpass',1500,.5,.4,.3,NOISE);k.bed(.08,'lowpass',300);k.every(2100,2400,()=>{k.knock(.18,.2,rnd(180,240),0,5);k.creak(.04,.2)});k.every(150,500,()=>k.plop(.025,rnd(0,.5),rnd(500,1400)));k.birds(1,6000,14000)},
   // Fischerhaus: Wellen, Glucksen am Ufer, Plätschern, ein Fisch springt, Schilf
-  fischer(k){k.bed(.13,'lowpass',600,.5,.13,.8);k.every(500,1600,()=>k.plop(.035,k.P(),rnd(300,800)));k.every(4000,9000,()=>{const p=k.P();for(let i=0;i<4;i++)k.plop(.03,p,rnd(500,1200),i*rnd(.06,.15))});
+  fischer(k){k.every(14000,28000,()=>k.croak(.045,k.P()));k.bed(.13,'lowpass',600,.5,.13,.8);k.every(500,1600,()=>k.plop(.035,k.P(),rnd(300,800)));k.every(4000,9000,()=>{const p=k.P();for(let i=0;i<4;i++)k.plop(.03,p,rnd(500,1200),i*rnd(.06,.15))});
     k.every(1500,4000,()=>k.rustle(.025,k.P()));k.every(14000,28000,()=>k.splash(.07,k.P()));k.birds(1,8000,16000)},
   // Ufer: Wellen schwappen, Plätschern, Schilf, der Steg knarzt
-  ufer(k){k.bed(.16,'lowpass',650,.5,.11,.8);k.every(400,1400,()=>k.plop(.035,k.P(),rnd(300,900)));k.every(3000,7000,()=>{const p=k.P();for(let i=0;i<5;i++)k.plop(.03,p,rnd(400,1100),i*rnd(.05,.12))});
+  ufer(k){k.every(10000,22000,()=>k.croak(.05,k.P()));k.bed(.16,'lowpass',650,.5,.11,.8);k.every(400,1400,()=>k.plop(.035,k.P(),rnd(300,900)));k.every(3000,7000,()=>{const p=k.P();for(let i=0;i<5;i++)k.plop(.03,p,rnd(400,1100),i*rnd(.05,.12))});
     k.every(1000,3000,()=>k.rustle(.035,k.P()));k.every(8000,16000,()=>k.creak(.05,-.6));k.every(16000,32000,()=>k.splash(.06,k.P()))},
   // Unter dem Steg: Wasser schwappt hohl, Tropfen mit Hall, über dir knarzt Kusmitsch
   unter(k){k.reverb(1.4,2.5,.45);k.bed(.13,'lowpass',420,.5,.15,.7);k.every(400,1500,()=>k.plop(.05,k.P(),rnd(900,1800)));k.every(2500,6000,()=>{const p=k.P();for(let i=0;i<3;i++)k.plop(.04,p,rnd(250,600),i*.1)});
     k.every(5000,11000,()=>k.creak(.08,rnd(-.3,.3)))},
   // Sumpf: muffig, Frösche quaken, Fliegen brummen vorbei, es blubbert, manchmal platscht was
-  sumpf(k){k.reverb(1.2,3,.15);k.every(20000,40000,()=>k.branch(.05,k.P()));k.bed(.13,'lowpass',170,.6,.05,.5);k.bed(.03,'lowpass',500,.6,.2,.6,NOISE);
+  sumpf(k){k.reverb(1.2,3,.15);k.every(5000,12000,()=>k.bullfrog(.07,k.P()));k.every(3000,8000,()=>k.unke(.035,k.P()));k.every(7000,15000,()=>k.cricket(.015,k.P()));k.every(20000,40000,()=>k.branch(.05,k.P()));k.bed(.13,'lowpass',170,.6,.05,.5);k.bed(.03,'lowpass',500,.6,.2,.6,NOISE);
     k.every(900,3500,()=>k.croak(.09,k.P()));k.every(3500,9000,()=>k.fly(.06));k.every(700,2500,()=>{const p=k.P();k.plop(.05,p,rnd(110,260));if(Math.random()<.5)k.plop(.04,p,rnd(130,300),.12)});
     k.every(10000,24000,()=>k.splash(.06,k.P()))},
   // Gnomsiedlung: Spitzhacken aus der Höhle, Vögel, Grashüpfer im Kohlbeet
-  gnome(k){k.reverb(1.5,3,.25);k.every(25000,50000,()=>k.steps(.05,k.P()));k.bed(.025,'lowpass',800);k.every(1500,4000,()=>k.pickaxe(.035,rnd(.4,.9)));k.birds(2,4000,9000);k.every(2000,5000,()=>k.grasshopper(.01,rnd(-.9,-.2)))},
+  gnome(k){k.reverb(1.5,3,.25);k.every(8000,16000,()=>k.cricket(.026,k.P()));k.every(18000,35000,()=>k.butterfly(.05));k.every(25000,50000,()=>k.steps(.05,k.P()));k.bed(.025,'lowpass',800);k.every(1500,4000,()=>k.pickaxe(.035,rnd(.4,.9)));k.birds(2,4000,9000);k.every(2000,5000,()=>k.grasshopper(.01,rnd(-.9,-.2)))},
   // Höhle: großer Hall, Tropfen, tiefes Grollen, ferne Spitzhacken
   hoehle(k){k.reverb(3.5,2,.55);k.bed(.1,'lowpass',120,.6,.04,.5);k.every(500,2000,()=>k.plop(.05,k.P(),rnd(1000,2000)));k.every(6000,12000,()=>k.pickaxe(.02,k.P()));k.every(9000,20000,()=>k.whisper(.015,k.P()))},
   // Vor dem Banja: Musik dumpf durch die Wand, dunkler Wald, Eule
-  banjaV(k){k.reverb(2,3,.2);k.every(18000,36000,()=>k.steps(.07,k.P()));k.every(10000,22000,()=>k.branch(.07,k.P()));k.music(220,.6,.01);k.bed(.05,'lowpass',300,.6,.07,.6);k.every(14000,28000,()=>k.hoot(.05,k.P()))},
+  banjaV(k){k.reverb(2,3,.2);k.every(20000,40000,()=>k.wolf(.035,k.P()));k.every(18000,36000,()=>k.steps(.07,k.P()));k.every(10000,22000,()=>k.branch(.07,k.P()));k.music(220,.6,.01);k.bed(.05,'lowpass',300,.6,.07,.6);k.every(14000,28000,()=>k.hoot(.05,k.P()))},
   // Im Banja: Musik, Gemurmel, Gläser klirren
   banja(k){k.reverb(.9,3,.2);k.music(1100,.45,.03);k.every(2000,6000,()=>k.clink(.05,k.P()))},
   // Bühnenrand: Musik laut und nah
@@ -172,7 +196,7 @@ const RECIPE={
   // Lounge: Musik hinter dem Vorhang
   lounge(k){k.reverb(.6,4,.15);k.music(500,.4)},
   // Startmenü: Nachtwald, Eule, ganz fern ein Wolf
-  titel(k){k.reverb(2,3,.25);k.every(20000,40000,()=>k.steps(.05,k.P()));k.every(10000,22000,()=>k.branch(.06,k.P()));k.bed(.06,'lowpass',300,.6,.06,.6);k.every(1500,5000,()=>k.rustle(.02,k.P()));k.every(10000,20000,()=>k.hoot(.05,k.P()));k.every(30000,60000,()=>k.wolf(.03,k.P()))}};
+  titel(k){k.reverb(2,3,.25);k.every(12000,24000,()=>k.hoot(.045,k.P()));k.every(20000,40000,()=>k.steps(.05,k.P()));k.every(10000,22000,()=>k.branch(.06,k.P()));k.bed(.06,'lowpass',300,.6,.06,.6);k.every(1500,5000,()=>k.rustle(.02,k.P()));k.every(10000,20000,()=>k.hoot(.05,k.P()));k.every(30000,60000,()=>k.wolf(.03,k.P()))}};
 setInterval(()=>{if(!AC||AC.state!=='running')return;const want=$('#start')?'titel':(cur||'');if(want===ambCur)return;ambCur=want;if(ambNow)ambNow.stop();ambNow=want?makeAmb(want):null},300);
 
 // ----- Schritte (weiches Rauschen), Effekte nur mit echten Dateien -----
