@@ -5,13 +5,25 @@ const T={
     [['P','Ich bin Petja. Glaub ich. Meine Beine fühlen sich an wie kalte Pelmeni.']],
     [['P','Kneif mich mal einer.'],['P','...Keiner da. Typisch.']],
     [['P','Ist nur ein Trip. Ein sehr, sehr langer Trip. Passiert. ...Mir zumindest.']]]},
-  sonne:{n:'Sonne',l:[
+  sonne:{n:'Sonne',fn(){if(!seen.huette)return hint('hexeSonne',[
+      [['S','Guten Morgen, Petja. Es ist schon Mittag.'],['P','Die Sonne redet mit mir. Na super. Jetzt auch noch die.']],
+      [['S','Du willst aufwachen? Frag die Alte im Wald. Baba Jaga weiß, wer hier schläft und warum.']],
+      [['S','Den Pfad entlang, Petja. An der Weggabelung zur Hexe. Ich scheine dir den Weg. ...Ausnahmsweise.']]]);
+    this.i=(this.i||0);say(this.l[this.i++%this.l.length])},l:[
     [['S','Guten Morgen, Petja. Es ist schon Mittag.'],['P','Die Sonne redet mit mir. Na super. Jetzt auch noch die.']],
     [['S','Wer in diesem Wald einschläft, wacht nicht so leicht wieder auf.'],['P','Danke. Sehr beruhigend.']]]},
-  pilz:{n:'Fliegenpilz',at:[250,470],l:[
+  pilz:{n:'Fliegenpilz',at:[250,470],fn(){if(!seen.huette)return hint('hexePilz',[
+      [['M','Psst. Iss mich, und du siehst Farben, die es gar nicht gibt.'],['P','Ich seh die schon, Kumpel. Alle.']],
+      [['M','Psst. Du gehörst nicht hierher. Das riecht sogar ein Pilz.'],['M','Geh zur Hexe. Die weiß, was in deinem Kopf rumwächst.']],
+      [['M','Baba Jaga, Kumpel. Hütte auf Hühnerbeinen. Hinter der Weggabelung. Und jetzt lass mich wachsen.']]]);
+    this.i=(this.i||0);say(this.l[this.i++%this.l.length])},l:[
     [['M','Psst. Iss mich, und du siehst Farben, die es gar nicht gibt.'],['P','Ich seh die schon, Kumpel. Alle.']],
     [['P','Nein, Petja. Du hast heute schon genug probiert.']]]},
-  birke:{n:'Alte Birke',at:[640,400],l:[
+  birke:{n:'Alte Birke',at:[640,400],fn(){if(!seen.huette)return hint('hexeBirke',[
+      [['P','Die Birke guckt mich an.'],['B','...'],['P','Sie guckt immer noch.']],
+      [['B','Geh weg, du riechst nach Stadt.'],['P','Gern. Wohin?'],['B','Zur Baba Jaga. Du bist ihr Problem, nicht unseres.']],
+      [['B','Die ganze Birkenschaft redet von nichts anderem. Ein Stadtmensch im Wald. Geh. Zur. Hexe.'],['P','Schon gut. Ich geh ja.']]]);
+    this.i=(this.i||0);say(this.l[this.i++%this.l.length])},l:[
     [['P','Die Birke guckt mich an.'],['B','...'],['P','Sie guckt immer noch.']],
     [['B','Geh weg, du riechst nach Stadt.'],['P','Und du nach Brennholz.']]]},
   kraehe:{n:'Krähe',at:[680,400],fn(){if(inv.includes('apfel'))return say([['P','Hey, Krähe. Fang.'],['P','*wirft den Apfel*'],['K','KRAH! Bist du irre?! Ich hab dir den Weg gezeigt, du Undankbarer!'],['K','Ich geh zur Baba Jaga petzen! Krah!'],['P','So. Der Ast ist frei.']],()=>{FL.kraehe=1;inv.splice(inv.indexOf('apfel'),1);renderInv();rm('kraeheG')});
@@ -19,6 +31,8 @@ const T={
       [['K','Krah! Was guckst du so auf meinen Ast?'],['P','Ist ein schöner Ast. Gerade. Angeltauglich.']],
       [['K','Den kriegst du nie! Ich geh hier nicht weg! Krah!'],['P','Freiwillig geht die da nicht runter. Vielleicht, wenn ich sie mit was bewerfe.']],
       [['P','Was zum Werfen... Was Rundes, nicht zu schwer.'],['P','An der Weggabelung stand doch ein Apfelbaum.']]]);
+    if(!seen.huette)return hint('hexeKraehe',[this.l[0],this.l[1],
+      [['K','Krah! Immer noch hier? Zur HEXE, du Schlafmütze! Den Pfad lang, an der Gabelung zur Hütte! Krah!']]]);
     this.i=(this.i||0);say(this.l[this.i++%this.l.length])},l:[
     [['K','Krah! Noch einer, der nicht aufwacht!'],['P','Noch einer? Wie viele gibt es denn?'],['K','Frag die Baba Jaga. Ihre Hütte steht tiefer im Wald. Krah!']],
     [['P','Die mit dem Haus auf Hühnerbeinen?'],['K','Krah! Und sie macht nichts umsonst.']]]},
@@ -44,7 +58,11 @@ const T={
     [['P','Dahinter riecht es nach Sumpf. Und nach Ärger.']]]},
   sFisch:{n:'Schild: Zum Fischerhaus',at:[660,432],fn(){walkTo(760,404,()=>enter('fischer',[90,476]))}},
   sZD:{n:'Schild: Zum dunklen Wald',at:[130,484],go:'sperre',to:[730,412]},
-  fischer:{n:'Fischer',at:[690,394],fn(){if(FL.ablenk&&!FL.schnaps)return say([['F','NICHT JETZT! DER WELS! Er zieht mich gleich vom Steg!'],['P','Lassen Sie sich Zeit.']]);
+  fischer:{n:'Fischer',at:[690,394],fn(){if(!seen.huette)return hint('hexeFischer',[
+      [['P','Tag. Beißen sie?'],['F','Die Fische? Nein. Die Weiber im Sumpf, ja.'],['F','Dreißig Jahre sitz ich hier. Gefangen hab ich: zwei Stiefel, ein Fahrrad und meine erste Frau.']],
+      [['P','Wissen Sie, wie ich hier rauskomme?'],['F','Raus? Ich wollte 1987 nur Zigaretten holen.'],['F','Frag die Alte in der Hütte auf Hühnerbeinen. Baba Jaga. Wer in diesem Wald festhängt, hängt wegen ihr.']],
+      [['F','Immer noch da? Zurück zur Weggabelung und dann zur Hexe, Junge.'],['F','Und nimm Wodka mit. Nüchtern ist sie unerträglich.']]]);
+    if(FL.ablenk&&!FL.schnaps)return say([['F','NICHT JETZT! DER WELS! Er zieht mich gleich vom Steg!'],['P','Lassen Sie sich Zeit.']]);
     if(FL.schnapsQ&&!FL.ablenk){if(has('wuermer'))return say([['F','Was zappelt da in deiner Tasche?'],['P','Nichts. ...Nur ein paar Würmer. Für später.'],['P','(Seine Schnur hängt unterm Steg. Da kommen die Würmer dran.)']]);
       return hint('wels',[
         [['F','Die Flasche bleibt hier. Außer der Wels beißt endlich mal an. Dann ist mir alles egal.'],['P','(Alles egal. Auch die Flasche. Interessant.)']],
@@ -167,7 +185,10 @@ const T={
   sZU:{n:'Schild: Zum Ufer',at:[130,488],go:'ufer',to:[740,456]},
   sHO:{n:'Schild: Zur Höhle',at:[640,428],fn(){if(!FL.stollen)return say([['N1','HALT, Langer! In die Höhle kommt keiner ohne Wegezoll.'],['N1','Die Höhle ist Gnomgebiet. Geschäftsgeheimnis. Sehr geheim. Sehr... geschäftlich.']],()=>{if(FL.labQ)FL.mehlQ=1});walkTo(712,418,()=>enter('hoehle',[400,486]))}},
   sAU:{n:'Schild: Zum Ausgang',at:[130,488],go:'gnome',to:[640,428]},
-  gnom1:{n:'Grobnik',at:[300,462],fn(){
+  gnom1:{n:'Grobnik',at:[300,462],fn(){if(!seen.huette)return hint('hexeGnom',[
+      [['N1','Ein Langer! Was willst du hier? Ohne Grund kommt keiner zu den Gnomen.'],['P','Ich will nach Hause.'],['N1','Dann bist du hier falsch, Langer.']],
+      [['N1','Nach Hause? Dann musst du zur Hexe. Baba Jaga. Die hat dich hergeträumt, die träumt dich auch wieder raus. *schnief*']],
+      [['N1','Baba Jaga! Hütte auf Hühnerbeinen! Zurück am See vorbei, an der Weggabelung abbiegen! Und jetzt weg, wir graben.']]]);
     if(inv.includes('mehl'))return say([['P','Drei Säcke Mehl. Wie bestellt.'],['N1','*schnüff* ...*SCHNÜFF* ...OH ja. Das ist gutes... Mehl.'],['N1','Der Stollen ist offen für dich, Langer. Der Pilzmeister wartet hinten im Dunkeln. Hier, nimm die Laterne.']],()=>{FL.stollen=1;inv.splice(inv.indexOf('mehl'),1);inv.push('laterne');renderInv()});
     if(FL.labQ&&!FL.mehlQ){FL.mehlQ=1;return say([['P','Ich muss zu eurem Pilzmeister. In den Stollen.'],['N1','In den Stollen? Ohne Wegezoll kommt da keiner rein. Drei Säcke Mehl.'],['P','Mehl? Ihr backt?'],['N1','...Ja. Wir backen. Sehr viel. Den ganzen Tag. *schnief*'],['N1','Der Müller hat das gute Zeug. Das ganz gute. Aber der rückt nix raus.']])}
     if(FL.mehlQ&&!FL.stollen)return hint('gnomMehl',[[['N1','Drei Säcke. Vom Müller. Vorher kein Stollen. *schnief*']],
@@ -177,7 +198,9 @@ const T={
     [['P','Hallo. Sind Sie... ein Gnom?'],['N1','GROSS-Gnom! Kleine Gnome gibt’s in Deutschland. In Vorgärten. Mit Angel. Peinlich.'],['N1','Wir sind die Nasigen vom See. Je größer die Nase, desto höher der Rang. Ich bin Vorarbeiter.']],
     [['P','Was machen Sie mit der Spitzhacke?'],['N1','Graben. In der Höhle. Seit dreihundert Jahren.'],['P','Und was suchen Sie?'],['N1','Weiß keiner mehr. Aber jetzt aufhören wäre unhöflich.']],
     [['N1','Geh nicht zu tief in die Höhle, Langer. Da hinten ist es dunkel. Und dunkel ist erst der Anfang.']]]},
-  gnom2:{n:'Opa Schnobbel',at:[300,420],fn(){
+  gnom2:{n:'Opa Schnobbel',at:[300,420],fn(){if(!seen.huette)return hint('hexeSchnobbel',[this.l[0],
+      [['N2','*paff* Du willst auch nach Hause? Geh zur Hexe, Junge. Alle gehen zur Hexe. *paff*']],
+      [['N2','Baba Jaga. Hühnerbeine. Weggabelung. Mehr sag ich nicht, sonst schuldet sie mir noch mehr. *paff*']]]);
     if(FL.mullerQ&&!FL.mehl)return hint('schnobbel',[[['N2','Der Müller will eine Frau? *paff* Seit vierzig Jahren. Und jede ist weggerannt.']],
       [['N2','Die Schönen sind alle im Banja. Hinterm Irrwald. Aber da findest du nie hin. *paff* Nur die Hexe.']]]);
     if(FL.mehlQ&&!FL.stollen)return hint('schnobbel0',[[['N2','Mehl vom Müller? *paff* Der gibt nix her. Der will was. Alle wollen was.']],

@@ -5,6 +5,7 @@ const PATCH=[
     'Figuren geben bei mehrmaligem Ansprechen immer deutlichere Hinweise – aber nie die Lösung',
     'Petja denkt öfter selbst nach („Mhh. Ohne Leiter komm ich hier nicht weiter.“) – geholfen wird nur, wenn jemand was davon hat',
     'Neue Gespräche, nachdem man bestimmte Dinge gesehen oder gefunden hat',
+    'Am Anfang schicken dich alle zur Hexe – Sonne, Pilz, Birke, Krähe, Fischer und Gnome',
     'Über doppelt so viele Sprüche, wenn Petja rumsteht',
     'Petja kommentiert jetzt auch, wenn er an einen bekannten Ort zurückkommt']},
   {v:'1.5',d:'10.11.2026',t:'Petja bleibt locker',n:[
