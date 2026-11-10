@@ -39,3 +39,13 @@ Effekte (kurz, unter 1 Sekunde):
 
 Kostenlose Geräusche ohne Lizenzärger (CC0) gibt es z. B. auf freesound.org (Filter "Creative Commons 0")
 oder pixabay.com/sound-effects.
+
+Musik (optional, ersetzt die erzeugte Ambient-Musik der jeweiligen Stimmung, läuft leise in Schleife):
+  mus-wald      Birkenwald, Weggabelung, Gnome
+  mus-dunkel    Hütte, Birkensperre, Irrwald
+  mus-dorf      Dorf, Dorfstraße, Kirche
+  mus-wasser    Mühle, Fischerhaus, Ufer, Unter dem Steg
+  mus-sumpf     Sumpf
+  mus-hoehle    Höhle
+  mus-innen     Hütte innen
+  mus-titel     Startmenü

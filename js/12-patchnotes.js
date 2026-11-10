@@ -1,6 +1,10 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.10',d:'10.11.2026',t:'Ein bisschen Musik',n:[
+    'Leise Hintergrundmusik, die sich der Stimmung anpasst – hell im Wald, düster im Irrwald, trüb im Sumpf, fast still in der Höhle',
+    'Keine Lieder in Dauerschleife: Die Melodie entsteht immer wieder neu',
+    'Eigener Regler für die Musik-Lautstärke']},
   {v:'1.9',d:'10.11.2026',t:'Jeder Ort klingt anders',n:[
     'Sumpf: Frösche quaken, Fliegen brummen vorbei, es blubbert und platscht',
     'Birkenwald mit Specht, Hütte die knarzt, Irrwald mit Flüstern, Mühle mit Wasserrad',

@@ -92,6 +92,7 @@ function openMenu(view){view=view||'m';const a=slots(),inGame=cur&&!$('#start'),
     :view=='o'?`<h3>⚙️ Einstellungen</h3><div class="opts">
         <button class="mb" data-o="voice">🔊 Stimmen <b>${!VOICE_ON?'Aus':OPT.voices==='petja'?'Nur Petja':'Alle Figuren'}</b></button>
         <label class="sl">🗣️ Lautstärke Stimmen <input type="range" min="0" max="100" value="${Math.round(OPT.vox*100)}" data-r="vox"></label>
+        <label class="sl">🎵 Lautstärke Musik <input type="range" min="0" max="100" value="${Math.round((OPT.mus==null?.35:OPT.mus)*100)}" data-r="mus"></label>
         <label class="sl">🌲 Lautstärke Geräusche <input type="range" min="0" max="100" value="${Math.round(OPT.sfx*100)}" data-r="sfx"></label>
         <button class="mb" data-o="barks">💬 Sprüche beim Rumstehen <b>${OPT.barks?'An':'Aus'}</b></button>
         <button class="mb" data-o="speed">⏩ Textgeschwindigkeit <b>${sp[1]}</b></button></div>${back}`
@@ -113,7 +114,7 @@ function openMenu(view){view=view||'m';const a=slots(),inGame=cur&&!$('#start'),
     if(a[n]&&!b.dataset.armed){o.querySelectorAll('[data-armed]').forEach(x=>delete x.dataset.armed);b.dataset.armed=1;b.classList.add('warn');o.querySelector('.msg').textContent='Platz '+(n+1)+' ist belegt. Nochmal klicken zum Überschreiben.';return}
     const ok=saveGame(n);openMenu('s');ovl.querySelector('.msg').textContent=ok?'✔ Gespeichert auf Platz '+(n+1)+'!':'Speichern nicht möglich (Browser blockiert Speicher).';ovl.querySelector('.msg').classList.toggle('ok',!!ok)});
   o.querySelectorAll('button[data-l]').forEach(b=>b.onclick=()=>loadGame(b.dataset.l==='auto'?'auto':+b.dataset.l));
-  o.querySelectorAll('input[data-r]').forEach(r=>{r.oninput=()=>{OPT[r.dataset.r]=r.value/100;saveOpt();if(r.dataset.r=='sfx'&&typeof sfxVolume=='function')sfxVolume()};
+  o.querySelectorAll('input[data-r]').forEach(r=>{r.oninput=()=>{OPT[r.dataset.r]=r.value/100;saveOpt();if(r.dataset.r=='sfx'&&typeof sfxVolume=='function')sfxVolume();if(r.dataset.r=='mus'&&typeof musVolume=='function')musVolume()};
     r.onchange=()=>{if(r.dataset.r=='vox')voice('So laut bin ich jetzt.','P');else if(typeof sfx=='function')sfx('click')}})}
 addEventListener('keydown',e=>{if($('#fg')||$('#cut')||e.repeat&&e.key!=' ')return;const k=e.key.toLowerCase(),play=!$('#start');
   if(k=='escape'){if(ovl)closeO();else if(busy)skipDialog();else openMenu()}
