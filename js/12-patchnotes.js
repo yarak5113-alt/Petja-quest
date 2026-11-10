@@ -1,6 +1,11 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.6',d:'10.11.2026',t:'Wer fragt, kommt weiter',n:[
+    'Figuren geben bei mehrmaligem Ansprechen immer deutlichere Hinweise – aber nie die Lösung',
+    'Neue Gespräche, nachdem man bestimmte Dinge gesehen oder gefunden hat',
+    'Über doppelt so viele Sprüche, wenn Petja rumsteht',
+    'Petja kommentiert jetzt auch, wenn er an einen bekannten Ort zurückkommt']},
   {v:'1.5',d:'10.11.2026',t:'Petja bleibt locker',n:[
     'Petja klingt jetzt durchgehend trocken und entspannt – weniger Geschrei, mehr „Na super…“',
     'Neue Sprüche, wenn Petja eine Weile rumsteht']},

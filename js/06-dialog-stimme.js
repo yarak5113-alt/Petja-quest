@@ -29,27 +29,60 @@ function toggleVoice(){VOICE_ON=!VOICE_ON;try{localStorage.setItem('petjaVoice',
 
 // Leerlauf-Sprüche: Steht Petja eine Weile rum, sagt er was zum aktuellen Ort.
 const BARKS={
-  _:['Wenn ich hier rauskomme, rauch ich nie wieder was. ...Fast nie.','Hallo? Spieler? Ich steh hier nur rum.','Meine Füße schlafen. Wenigstens die.','Ich hab Hunger. Auf Pelmeni. Oder auf irgendwas, das nicht redet.','Mama hat immer gesagt, aus mir wird nichts. Jetzt bin ich in einem Märchen. ...Na ja. Immerhin.','Wenn ich lang genug still stehe, wach ich vielleicht einfach auf.','Ich zähl bis drei, dann ist alles normal. Eins... zwei... Nein. Immer noch Märchen.','Irgendwo da draußen liegt mein Körper auf einem Sofa. Hoffentlich mit Decke.','Na super. Ich steh im Wald und warte auf ein Wunder. Wie jeden Samstag.','Natürlich passiert mir das. Wem auch sonst.','Ob jemand merkt, dass ich weg bin? ...Wahrscheinlich nicht. Ist auch egal. ...Ist es.','Mama ruft sonntags immer an. ...Hoffentlich geht da jemand ran. Egal. Weiter.'],
-  wald:['Diese Birken flüstern über mich. Ich hör das genau.','Gestern war das hier noch mein Wohnzimmer. Glaub ich.','Ich schwör, der Fliegenpilz hat mir gerade zugezwinkert.'],
-  gabel:['Links, rechts, geradeaus. Alles fühlt sich nach falsch an.','Ein Wegweiser wäre nett. Einer, der nicht lügt.'],
-  huette:['Ein Haus auf Hühnerbeinen. Ganz normal. Total normal.','Wenn die Hütte gleich wegrennt, renn ich mit.'],
-  innen:['Hier riecht alles nach Kräutern und schlechten Entscheidungen.','Ich fass hier besser nichts an. Außer vielleicht die Piroggen.'],
-  buehne:['Laute Musik, rotes Licht. Fast wie zu Hause am Freitag.','Ganz ruhig, Petja. Hände in die Taschen.'],
+  _:['Wenn ich hier rauskomme, rauch ich nie wieder was. ...Fast nie.','Hallo? Spieler? Ich steh hier nur rum.','Meine Füße schlafen. Wenigstens die.','Ich hab Hunger. Auf Pelmeni. Oder auf irgendwas, das nicht redet.',
+    'Mama hat immer gesagt, aus mir wird nichts. Jetzt bin ich in einem Märchen. ...Na ja. Immerhin.','Wenn ich lang genug still stehe, wach ich vielleicht einfach auf.','Ich zähl bis drei, dann ist alles normal. Eins... zwei... Nein. Immer noch Märchen.',
+    'Irgendwo da draußen liegt mein Körper auf einem Sofa. Hoffentlich mit Decke.','Na super. Ich steh im Wald und warte auf ein Wunder. Wie jeden Samstag.','Natürlich passiert mir das. Wem auch sonst.',
+    'Ob jemand merkt, dass ich weg bin? ...Wahrscheinlich nicht. Ist auch egal. ...Ist es.','Mama ruft sonntags immer an. ...Hoffentlich geht da jemand ran. Egal. Weiter.',
+    'Wenn das hier ein Traum ist, ist er schlecht geschrieben.','Ich könnte jetzt was Sinnvolles tun. Könnte.','Ich hab meine Schlüssel noch. Bringt mir hier nur nichts.',
+    'Wowa schuldet mir was. Mindestens ein Bier. Eher ein Leben.','Kurze Pause. Hab ich mir verdient. Glaub ich.','Mein Handy hat keinen Empfang. Im Märchen. Wer hätte das gedacht.',
+    'Wenn ich das irgendwem erzähle, glaubt mir das keiner. Gut so eigentlich.','Ich warte. Bin gut im Warten. Hab ich lange geübt.','Ein bisschen vermiss ich mein Sofa. Und den Kühlschrank. Den leeren.',
+    'Wenn mir jetzt noch ein Pilz zuzwinkert, geh ich.','Meine Oma hätte hier ihren Spaß gehabt. Die mochte schräge Leute.'],
+  wald:['Diese Birken flüstern über mich. Ich hör das genau.','Gestern war das hier noch mein Wohnzimmer. Glaub ich.','Ich schwör, der Fliegenpilz hat mir gerade zugezwinkert.',
+    'Viel Wald. Wenig Ausgang.','Die Krähe guckt, als hätte sie Wetten auf mich laufen.','Hier hat alles angefangen. Und ich hab nicht mal ein Foto.'],
+  gabel:['Links, rechts, geradeaus. Alles fühlt sich nach falsch an.','Ein Wegweiser wäre nett. Einer, der nicht lügt.','Drei Wege. Und alle wollen was von mir.','Wenn ich mich nicht entscheide, kann ich mich auch nicht falsch entscheiden. Stark.'],
+  huette:['Ein Haus auf Hühnerbeinen. Ganz normal. Total normal.','Wenn die Hütte gleich wegrennt, renn ich mit.','Die Schädel am Zaun grinsen. Wenigstens hat hier wer gute Laune.',
+    'Die Hütte hat gerade gegähnt. Ich bild mir das ein. ...Bestimmt.','Riecht nach Kohl und Magie. Hauptsächlich Kohl.'],
+  innen:['Hier riecht alles nach Kräutern und schlechten Entscheidungen.','Ich fass hier besser nichts an. Außer vielleicht die Piroggen.','Im Regal hat sich was bewegt. Ich guck nicht hin.','Gemütlich. Für eine Hexe. Für mich eher nicht.'],
+  buehne:['Laute Musik, rotes Licht. Fast wie zu Hause am Freitag.','Ganz entspannt, Petja. Hände in die Taschen.','Ich guck nur. Rein kulturell.'],
   lounge:['Ich... sollte vielleicht einfach gehen. Gleich. Bald.'],
-  irrwald:['Ich bin hier schon zum dritten Mal. Oder zum ersten Mal. Dreimal.','Die Bäume stehen anders als vorhin. Ich schwör.'],
-  banja:['Dampf, Birkenzweige, Wodka. Endlich ein Ort, den ich verstehe.','Ich krieg Durst vom Zuschauen.'],
-  dorf:['Ein Dorf. Mit Menschen. ...Hoffentlich mit Menschen.','Irgendwer hier hat bestimmt Kwas. Ich muss nur fragen.'],
-  dorfstr:['Die Leute gucken mich an, als wär ich der Komische hier.','Riecht nach Rauch und Kohlsuppe. Wie bei Oma.'],
-  kirche:['Pssst, Petja. Hier drin nicht fluchen.','Wenn hier einer ein Wunder braucht, dann ich.'],
-  muehle:['Die Mühle knarzt. Oder ist das mein Rücken?','Mehl überall. Ich seh aus wie ein Gespenst. Ein hungriges.'],
-  sperre:['Wer hat die Birken umgeschubst? Ich war das nicht. Glaub ich.','Mit bloßen Händen krieg ich das nie weg.'],
-  sumpf:['Nicht hinstarren. Nicht hinstarren. ...Mist.','Wenn ich hier einsinke, sucht mich keiner.'],
-  fischer:['Fischgeruch. Ich glaub, der wohnt jetzt in meiner Jacke.','Ein Fischer ohne Boot. Ein Petja ohne Plan. Wir passen zusammen.'],
-  ufer:['Das Wasser ist so ruhig. Viel zu ruhig.','Wenn ich jetzt reinspringe, bin ich wenigstens wach.'],
-  unter:['Dunkel, nass, und irgendwas tropft mir in den Kragen.','Hier unten hört mich keiner schreien. Gut zu wissen.'],
-  gnome:['Alles so klein hier. Ich fühl mich wie ein Riese. Ein müder Riese.','Ich hoffe, die Gnome beißen nicht. Die gucken so.'],
-  hoehle:['Pilze an den Wänden. Na super. Genau mein Problem.','Echo. ...Echo? Keine Antwort. Nicht mal das Echo mag mich.']};
-const IDLE_MS=35000;let lastAct=Date.now(),barkBag={};
+  irrwald:['Ich bin hier schon zum dritten Mal. Oder zum ersten Mal. Dreimal.','Die Bäume stehen anders als vorhin. Ich schwör.','Wenn ich hier verhungere, bitte keine Grabrede.','Ich hätte eine Brotkrümel-Spur legen sollen. Hätte die Krähe eh gefressen.'],
+  banjaV:['Rotes Licht im Wald. Sieht man auch nicht alle Tage.','Drinnen wummert der Bass. Draußen wummern die Augen im Wald. Ich geh mal lieber rein.','Ich steh vor einem Club im Märchenwald. Mein Leben hat eine sehr seltsame Richtung genommen.'],
+  banja:['Dampf, Birkenzweige, Wodka. Endlich ein Ort, den ich verstehe.','Ich krieg Durst vom Zuschauen.','Die Musik ist schlecht. Aber laut. Das gleicht sich aus.','Wenn Wowa das hier sehen könnte. Er wär sofort Stammgast.'],
+  dorf:['Ein Dorf. Mit Menschen. ...Hoffentlich mit Menschen.','Irgendwer hier hat bestimmt Kwas. Ich muss nur fragen.','Hier ist seit 1991 nichts passiert. Und dann kam ich.','Strommasten ohne Strom. Kenn ich. Ich wohne in so einer Wohnung.'],
+  dorfstr:['Die Leute gucken mich an, als wär ich der Komische hier.','Riecht nach Rauch und Kohlsuppe. Wie bei Oma.','Eine Unterhose als Segel. Hier wird nichts verschwendet.','Die Hühner hier haben mehr Selbstbewusstsein als ich.'],
+  kirche:['Pssst, Petja. Hier drin nicht fluchen.','Wenn hier einer ein Wunder braucht, dann ich.','Der Kater guckt mich an. Ich guck zurück. Er gewinnt. Wieder.','Friedhöfe sind eigentlich ganz entspannt. Keiner redet. Meistens.'],
+  muehle:['Die Mühle knarzt. Oder ist das mein Rücken?','Mehl überall. Ich seh aus wie ein Gespenst. Ein hungriges.','Das Wasserrad dreht sich. Ich dreh mich auch gleich. Vom Zugucken.','Hinter der Tür atmet jemand. Schwer. Und schüchtern.'],
+  sperre:['Wer hat die Birken umgeschubst? Ich war das nicht. Glaub ich.','Mit bloßen Händen krieg ich das nie weg.','Dunkel hier. So dunkel, dass ich meine eigene Faulheit nicht sehe.','Irgendwas raschelt im Unterholz. Ich nenn es Kevin. Dann ist es weniger gruselig.'],
+  sumpf:['Nicht hinstarren. Nicht hinstarren. ...Mist.','Wenn ich hier einsinke, sucht mich keiner.','Es blubbert. Ich hoffe, das war der Sumpf.','Ich hab nasse Socken. Und das ist noch das Normalste hier.'],
+  fischer:['Fischgeruch. Ich glaub, der wohnt jetzt in meiner Jacke.','Ein Fischer ohne Boot. Ein Petja ohne Plan. Wir passen zusammen.','Kusmitsch hat seit 1987 nichts gefangen. Ich fühl mich verstanden.','Der See glitzert. Der einzige hier, der sich Mühe gibt.'],
+  ufer:['Das Wasser ist so ruhig. Viel zu ruhig.','Wenn ich jetzt reinspringe, bin ich wenigstens wach.','Schilf, Schlamm, Stille. Klingt wie ein schlechter Wellness-Urlaub.'],
+  unter:['Dunkel, nass, und irgendwas tropft mir in den Kragen.','Hier unten hört mich keiner schreien. Gut zu wissen.','Über mir knarzt Kusmitsch. Unter mir knarzt der Steg. Ich knarz gleich mit.'],
+  gnome:['Alles so klein hier. Ich fühl mich wie ein Riese. Ein müder Riese.','Ich hoffe, die Gnome beißen nicht. Die gucken so.','Riesenkohl und Riesennasen. Hier ist alles eine Nummer zu groß. Außer den Leuten.','Pfeifenrauch und Kohl. Fast wie bei meinem Onkel.'],
+  hoehle:['Pilze an den Wänden. Na super. Genau mein Problem.','Echo. ...Echo? Keine Antwort. Nicht mal das Echo mag mich.','Die Kristalle summen. Hoffentlich nicht Radio Moskau.','Kalt hier. Und irgendwo kichert was. Ganz normale Höhle.']};
+// Sprüche beim erneuten Betreten eines Ortes (beim ersten Besuch gibt es die Ortsbeschreibung)
+const ENTRY={
+  wald:['Zurück am Anfang. Fühlt sich nicht nach Fortschritt an.','Der Birkenwald. Riecht immer noch nach meinem Fehler.','Hallo, Krähe. Hast mich vermisst? Nein? Dachte ich mir.'],
+  gabel:['Die Weggabelung. Ich kenn mich langsam aus. Schlimm eigentlich.','Wieder hier. Die Schilder lügen hoffentlich immer noch gleich.'],
+  huette:['Die Hütte steht noch. Schade eigentlich.','Hühnerbeine, Schädelzaun, Kohlgeruch. Wie heimkommen. Nur schlimmer.','Hallo, Hütte. Bitte nicht weglaufen.'],
+  innen:['Wieder drin. Nichts anfassen, Petja. Vor allem nicht das, was zwinkert.','Es riecht immer noch nach Socken und Magie.'],
+  banjaV:['Das rote Licht. Fühlt sich schon fast vertraut an. Bedenklich.','Wieder vor dem Banja. Mein Leben ist eine Abfolge von schlechten Ideen.'],
+  banja:['Zurück im Banja. Ich bin hier fast schon Stammgast. Das sollte mir zu denken geben.','Dampf, Bass, Madame. Alles wie immer.'],
+  dorf:['Das Dorf. Immer noch kein Strom. Immer noch keine Überraschung.','Wieder hier. Opa Grischa riecht man schon vom Dorfeingang.'],
+  dorfstr:['Die Dorfstraße. Die Oma am Gartentor guckt schon wieder.','Hühnerdreck und Sonnenblumen. Klassiker.'],
+  kirche:['Der Friedhof. Der Kater ist auch noch da. Natürlich.','Zurück bei den Toten. Ruhigste Nachbarschaft im ganzen Wald.'],
+  muehle:['Die Mühle. Die Tür ist immer noch zugenagelt. Von innen. Immer noch komisch.','Das Wasserrad dreht sich. Ich hätte es enttäuschend gefunden, wenn nicht.'],
+  sperre:['Der dunkle Weg. Mein Lieblingsort. Nicht.','Wieder hier. Ich nehme an, die Birken haben mich vermisst.'],
+  sumpf:['Der Sumpf. Ich hab die Socken noch nicht trocken von letztem Mal.','Hallo, Damen. Ich bin nur auf der Durchreise. Wie immer.'],
+  fischer:['Kusmitsch sitzt da wie immer. Ich glaub, der ist festgewachsen.','Der See. Riecht nach Fisch und Resignation.'],
+  ufer:['Das Ufer. Das Boot hat immer noch aufgegeben. Respekt.','Wieder am Wasser. Ich spring trotzdem nicht rein.'],
+  unter:['Unterm Steg. Zieht immer noch. Tropft immer noch.','Zurück im Dunkeln. Hier sieht mich wenigstens keiner.'],
+  gnome:['Die Gnome. Die Nasen sind seit letztem Mal nicht kleiner geworden.','Wieder bei den Gnomen. Ich duck mich mal lieber. Aus Respekt.'],
+  hoehle:['Die Höhle. Das Kichern hinten ist auch noch da. Schön.','Kalt, feucht, Pilze. Fühlt sich an wie meine alte WG.']};
+let entryT=Date.now(),entryBag={};
+function entryBark(id){const pool=ENTRY[id];if(!pool||Date.now()-entryT<20000||Math.random()>.45)return;entryT=Date.now();
+  let b=entryBag[id];if(!b||!b.length)b=entryBag[id]=pool.slice().sort(()=>Math.random()-.5);const line=b.pop();
+  setTimeout(()=>{if(!busy&&!ovl&&!changing&&cur===id&&!$('#fg')&&!$('#cut'))say([['P',line]])},550)}
+const IDLE_MS=25000;let lastAct=Date.now(),barkBag={};
 function nextBark(id){const pool=(BARKS[id]||[]).concat(BARKS._);let b=barkBag[id];if(!b||!b.length){b=barkBag[id]=pool.slice().sort(()=>Math.random()-.5)}return b.pop()}
 ['click','keydown','mousemove'].forEach(ev=>addEventListener(ev,()=>lastAct=Date.now(),true));
 setInterval(()=>{if(!OPT.barks||busy||mv||ovl||changing||!cur||$('#start')||$('#fg')||$('#cut')||document.hidden){lastAct=Date.now();return}

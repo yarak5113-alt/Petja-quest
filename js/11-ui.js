@@ -48,7 +48,7 @@ function tipp(){if(busy||ovl||changing||!cur||$('#start')||$('#fg')||$('#cut'))r
 let invSeen=null,quiet=0,qBase=null;
 const _renderInv=renderInv;renderInv=function(){_renderInv();
   if(invSeen&&!quiet)inv.filter(i=>!invSeen.includes(i)).forEach(i=>{const it=ITEMS[i];if(it){toast(it[0]+' Eingesteckt: '+it[1],'item');badge('tasche',1)}});invSeen=[...inv]};
-const _loadState=loadState;loadState=function(d){quiet=1;try{_loadState(d)}finally{quiet=0;invSeen=[...inv];qBase=null}};
+const _loadState=loadState;loadState=function(d){quiet=1;try{_loadState(d)}finally{quiet=0;invSeen=[...inv];qBase=null;entryT=Date.now()}};
 function qSnap(){const m={};const walk=(q,lv,p)=>{if(!q.v)return;const k=p+'/'+q.t;m[k]={ok:!!q.ok,lv,t:q.t};(q.s||[]).forEach(c=>walk(c,lv+1,k))};quests().forEach(q=>walk(q,0,''));return m}
 setInterval(()=>{if(!cur||$('#start')||$('#cut')){qBase=null;return}const s=qSnap();
   if(qBase){let n=0,upd=0;for(const k in s){const a=s[k],b=qBase[k];
