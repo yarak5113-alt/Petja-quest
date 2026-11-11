@@ -176,26 +176,31 @@ const INKF='<defs><filter id="v" x="-20%" y="-20%" width="140%" height="140%" co
   '<feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="11"/>'+
   '<feColorMatrix type="matrix" values="0 0 0 0 .16  0 0 0 0 .08  0 0 0 0 .03  .25 0 0 0 -.13"/><feComposite in2="SourceAlpha" operator="in" result="gr"/>'+
   '<feMerge><feMergeNode in="ol"/><feMergeNode in="s"/><feMergeNode in="gr"/></feMerge></filter></defs>';
-// PIXELSTYLE: Figuren als echte Pixel-Sprites, 250 Pixel hoch (gleiches Verfahren wie die Arrays in pixel/).
+// PIXELSTYLE: Figuren als Pixel-Sprites, 500 Pixel hoch (≈ Bildschirmgröße -> Linien wirken gezeichnet). Die Arrays in pixel/ werden aus genau diesen Sprites exportiert.
+// Cel-Shading: jede Fläche wird von links oben beleuchtet (Filter #v) und dann auf Grundton + Schattenton (PIX_SHADE) reduziert -> harte Schattenkante wie im Zeichentrick.
 // Tiere (Kiste < 150 Einheiten hoch) bekommen dieselbe Pixeldichte wie Petja. PIXELSTYLE=false -> handgezeichneter Stil (INKSTYLE).
-const PIXELSTYLE=true,PIX_ROWS=250;
+const PIXELSTYLE=true,PIX_ROWS=500,PIX_LINE=.55,PIX_SHADE=[.74,.77,.84];
 if(INKSTYLE&&!PIXELSTYLE)document.documentElement.classList.add('ink');
-function pixSprite(inner,[x,y,w,h]){const H=h>=150?PIX_ROWS:Math.round(h*PIX_ROWS/258),W=Math.round(w*H/h),SS=4;
-  return new Promise(res=>{const im=new Image();im.onload=()=>{
-    const c=document.createElement('canvas');c.width=W*SS;c.height=H*SS;const g=c.getContext('2d');g.drawImage(im,0,0);const d=g.getImageData(0,0,c.width,c.height).data;
-    // Palette = Konturfarbe + alle Füll- und Linienfarben der Figur
+function pixSprite(inner,[x,y,w,h]){const H=h>=150?PIX_ROWS:Math.round(h*PIX_ROWS/258),W=Math.round(w*H/h),SS=3;
+  // feine Konturen: Tusche- und Detailstriche (<=1.6) dünner zeichnen; dicke farbige Striche (Haarsträhnen, Stab) bleiben
+  const thin=inner.replace(/stroke-width="([\d.]+)"/g,(m,v)=>+v<=1.6?`stroke-width="${(+v*PIX_LINE).toFixed(2)}"`:m);
+  const svg=s=>'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="${W*SS}" height="${H*SS}" viewBox="${x} ${y} ${w} ${h}" preserveAspectRatio="none">${s}</svg>`);
+  const load=src=>new Promise(r=>{const im=new Image();im.onload=()=>{const c=document.createElement('canvas');c.width=W*SS;c.height=H*SS;const g=c.getContext('2d');g.drawImage(im,0,0);r(g.getImageData(0,0,c.width,c.height).data)};im.src=src});
+  // zweimal rendern: flach (welche Farbe?) und beleuchtet (Licht oder Schatten?)
+  return Promise.all([load(svg(thin)),load(svg(INKF+volumize(thin)))]).then(([d,dl])=>{const cw=W*SS;
+    // Palette = Konturfarbe + alle Füll- und Linienfarben der Figur; dahinter je ein Schattenton
     const rgb=s=>{s=s.slice(1);if(s.length==3)s=[...s].map(q=>q+q).join('');return [0,2,4].map(i=>parseInt(s.substr(i,2),16))};
-    const pal=[[16,10,8],...[...new Set((inner.match(/(fill|stroke)="#[0-9a-fA-F]{3,6}"/g)||[]).map(s=>s.slice(s.indexOf("#"),-1).toLowerCase()))].map(rgb).filter(q=>Math.hypot(q[0]-30,q[1]-16,q[2]-8)>40)];
-    const memo=new Map(),near=(r,gg,b)=>{const key=r<<16|gg<<8|b;let v=memo.get(key);if(v!==undefined)return v;let bd=1e9;v=0;for(let i=0;i<pal.length;i++){const p=pal[i],dd=(p[0]-r)**2+(p[1]-gg)**2+(p[2]-b)**2;if(dd<bd){bd=dd;v=i}}memo.set(key,v);return v};
-    // pro Zielpixel: häufigste Palettenfarbe aus SS×SS Unterpixeln; ab 25 % Tinte -> Kontur
-    const grid=new Int16Array(W*H).fill(-1),cnt=new Uint16Array(pal.length);
-    for(let Y=0;Y<H;Y++)for(let X=0;X<W;X++){cnt.fill(0);let op=0;for(let j=0;j<SS;j++)for(let i=0;i<SS;i++){const q=((Y*SS+j)*c.width+X*SS+i)*4;if(d[q+3]<128)continue;op++;cnt[near(d[q],d[q+1],d[q+2])]++}
-      if(op<SS*SS/2)continue;if(cnt[0]>=SS*SS*.25){grid[Y*W+X]=0;continue}let b=0;for(let n=1;n<pal.length;n++)if(cnt[n]>cnt[b])b=n;grid[Y*W+X]=b}
+    const base=[[16,10,8],...[...new Set((inner.match(/(fill|stroke)="#[0-9a-fA-F]{3,6}"/g)||[]).map(s=>s.slice(s.indexOf("#"),-1).toLowerCase()))].map(rgb).filter(q=>Math.hypot(q[0]-30,q[1]-16,q[2]-8)>40)],NB=base.length;
+    const pal=[...base,...base.map(q=>q.map((v,i)=>Math.round(v*PIX_SHADE[i])))];
+    const memo=new Map(),near=(r,gg,b)=>{const key=r<<16|gg<<8|b;let v=memo.get(key);if(v!==undefined)return v;let bd=1e9;v=0;for(let i=0;i<NB;i++){const p=base[i],dd=(p[0]-r)**2+(p[1]-gg)**2+(p[2]-b)**2;if(dd<bd){bd=dd;v=i}}memo.set(key,v);return v};
+    // pro Zielpixel: häufigste Grundfarbe aus SS×SS Unterpixeln (ab 25 % Tinte -> Kontur); liegt das Licht dort unter 86 % -> Schattenton derselben Farbe
+    const grid=new Int16Array(W*H).fill(-1),cnt=new Uint16Array(NB);
+    for(let Y=0;Y<H;Y++)for(let X=0;X<W;X++){cnt.fill(0);let op=0,lf=0,ul=0;for(let j=0;j<SS;j++)for(let i=0;i<SS;i++){const q=((Y*SS+j)*cw+X*SS+i)*4;if(d[q+3]<128)continue;op++;cnt[near(d[q],d[q+1],d[q+2])]++;lf+=dl[q]+dl[q+1]+dl[q+2];ul+=d[q]+d[q+1]+d[q+2]}
+      if(op<SS*SS/2)continue;if(cnt[0]>=SS*SS*.25){grid[Y*W+X]=0;continue}let b=1;for(let n=2;n<NB;n++)if(cnt[n]>cnt[b])b=n;grid[Y*W+X]=ul>0&&lf/ul<.86?b+NB:b}
     // Außenkontur nur dort, wo die Figur am Rand noch keine Linie hat (sonst doppelt dicke Linien)
     const o=document.createElement('canvas');o.width=W;o.height=H;const og=o.getContext('2d'),id=og.createImageData(W,H),od=id.data,ink=(X,Y)=>X>=0&&Y>=0&&X<W&&Y<H&&grid[Y*W+X]>0;
     for(let Y=0;Y<H;Y++)for(let X=0;X<W;X++){let v=grid[Y*W+X];if(v<0){if(ink(X-1,Y)||ink(X+1,Y)||ink(X,Y-1)||ink(X,Y+1))v=0;else continue}const p=pal[v],q=(Y*W+X)*4;od[q]=p[0];od[q+1]=p[1];od[q+2]=p[2];od[q+3]=255}
-    og.putImageData(id,0,0);res(o.toDataURL())};
-  im.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="${W*SS}" height="${H*SS}" viewBox="${x} ${y} ${w} ${h}" preserveAspectRatio="none">${inner}</svg>`)})}
+    og.putImageData(id,0,0);return o.toDataURL()})}
 // hängt den Volumen-Filter an jede Form mit Farbfüllung
 const volumize=s=>s.replace(/<(path|ellipse|circle|rect|polygon)\b([^>]*)>/g,(m,t,a)=>/\bfill="#/.test(a)&&!/\bfilter=/.test(a)?`<${t} filter="url(#v)"${a}>`:m);
 function sprite(inner,[x,y,w,h],k){if(PIXELSTYLE)return pixSprite(inner,[x,y,w,h]);if(INKSTYLE){k*=2.5;inner=volumize(inner)}return new Promise(res=>{const cw=Math.round(w*k),ch=Math.round(h*k),im=new Image();

@@ -1,7 +1,7 @@
 """Wandelt alle Figuren-Arrays (pixel/*.json) in PNG-Bilder um.
 
 Aufruf:  pip install pillow
-         python pixel/render.py            -> PNGs in Originalgröße (250 px hoch)
+         python pixel/render.py            -> PNGs in Originalgröße (500 px hoch)
          python pixel/render.py 4          -> 4-fach vergrößert (scharfe Pixel)
 """
 import json
