@@ -1,6 +1,8 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.18',d:'11.11.2026',t:'Updates kommen sofort an',n:[
+    'Nach einem Update lädt der Browser die neuen Spieldateien direkt, statt alte aus dem Zwischenspeicher zu zeigen']},
   {v:'1.17',d:'11.11.2026',t:'Neuer Zeichenstil',n:[
     'Figuren wie handgezeichnet: dünne Tuschelinien und weiche Airbrush-Schatten statt Pixel',
     'Petja komplett neu gezeichnet: schlaksig, müde Augen, Bartstoppeln, Falten im Hemd',
