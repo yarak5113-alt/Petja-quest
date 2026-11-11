@@ -1,6 +1,8 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.31',d:'11.11.2026',t:'Arme nachjustiert',n:[
+    'Ellbogen und Unterarme sitzen wieder etwas näher am Körper – breite Haltung bleibt, aber weniger abgespreizt'] },
   {v:'1.30',d:'11.11.2026',t:'Petja macht sich breit',n:[
     'Breite Haltung: Schultern zurück, Brust raus – in der Seitenansicht sind die Arme jetzt hinter dem Brustkorb',
     'Oberarme stehen etwas vom Körper ab, die Ellbogen deutlich weiter nach außen',
