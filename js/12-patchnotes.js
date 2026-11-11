@@ -1,6 +1,11 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.27',d:'11.11.2026',t:'Petja dreht sich um',n:[
+    'Petja hat jetzt 8 Blickrichtungen: vorne, hinten, beide Seiten und alle Schrägen – er schaut immer dahin, wohin er läuft',
+    'Beim Reden dreht er sich zu dir nach vorne',
+    'Kürzere, geformte Arme; die Hände liegen mit der Innenfläche am Oberschenkel; klobige Schuhe zeigen nach vorne',
+    'Neuer Maus-Hover: dezentes, blassgelbes Leuchten statt dicker schwarzer Kontur']},
   {v:'1.26',d:'11.11.2026',t:'Petja schaut dich an',n:[
     'Petja blickt jetzt frontal in die Kamera – neuer Kopf mit kantigem Kiefer, schweren Brauen, schmalen Augen und langer Nase',
     'Wärmere, goldene Hautfarbe',

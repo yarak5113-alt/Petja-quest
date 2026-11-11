@@ -8,7 +8,7 @@ body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:c
 .interactive.painted:hover{filter:none}
 .hit{fill:#000;fill-opacity:0;stroke:none}
 html:not(.ink) .spr{image-rendering:pixelated;image-rendering:crisp-edges}
-.interactive:hover .hit{stroke:#000;stroke-width:2.5px}
+.interactive:hover .hit{stroke:#fff2b0;stroke-opacity:.55;stroke-width:1.2px;filter:drop-shadow(0 0 2.5px rgba(255,236,150,.85))}
 #start button:disabled{opacity:.7;cursor:wait}
 
 
