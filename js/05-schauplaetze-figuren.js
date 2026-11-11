@@ -214,19 +214,19 @@ function PETV(th,open,step){const r=th*Math.PI/180,c=Math.cos(r),s=Math.sin(r),X
       `<path d="M${P(Xe-o*2.4,-140)}C${P(Xe-o*.8,-139)} ${P(Xe+o*1.2,-139)} ${P(Xe+o*2.8,-140)}" fill="none" stroke="${PSKL}" stroke-width=".45"/>`;
     const svg=fore+sleeve+roll+`<g transform="translate(${f1(Xw)},-107) rotate(${tilt}) scale(${f1(kx*sg)},1)">${hand}</g>`;
     return{d,svg}};
-  const L=[leg(-1),leg(1)].sort((a,b)=>a.d-b.d),A=[arm(-1),arm(1)],Xn=1.6*s;
+  const L=[leg(-1),leg(1)].sort((a,b)=>a.d-b.d),A=[arm(-1),arm(1)],ch=Math.tan(-2.4*s*Math.PI/180),Xn=1.6*s-96*ch;
   out.push(L[0].svg,L[1].svg);A.filter(a=>a.d<-4).forEach(a=>out.push(a.svg));
   out.push(`<path d="M${f1(Xn-5)},-218L${f1(Xn-6)},-202C${f1(Xn-2)},-199 ${f1(Xn+3)},-199 ${f1(Xn+6)},-202L${f1(Xn+5)},-218Z" fill="${PSK}"/><path d="M${f1(Xn-5.4)},-212C${f1(Xn-1)},-208 ${f1(Xn+3)},-208 ${f1(Xn+5.6)},-211L${f1(Xn+5)},-218L${f1(Xn-5)},-218Z" fill="#b07c4c" stroke="none"/>`);
   // Brust raus: Oberkörper oben leicht nach vorn geneigt (nur sichtbar in Seiten-/Schrägansicht)
-  const ch=Math.tan(-2.4*s*Math.PI/180);out.push(`<g transform="translate(${f1(112*ch)},0) skewX(${f1(-2.4*s)})">`);
+  out.push(`<g transform="translate(${f1(112*ch)},0) skewX(${f1(-2.4*s)})">`);
   out.push(`<g transform="scale(${f1(.9*Math.hypot(c,.5*s))},1)">${PTORSO}</g>`);
-  if(c>.15)out.push(`<g transform="translate(${f1(10.8*s)},0) scale(${f1(.9*c)},1)">${PFRONT}</g>`);
-  else if(c<-.15)out.push(`<g transform="translate(${f1(-10.8*s)},0) scale(${f1(.9*c)},1)">${PBACK}</g>`);
+  if(c>.15)out.push(`<g transform="translate(${f1(6.4*s)},0) scale(${f1(.9*c)},1)">${PFRONT}</g>`);
+  else if(c<-.15)out.push(`<g transform="translate(${f1(-6.4*s)},0) scale(${f1(.9*c)},1)">${PBACK}</g>`);
   else out.push(`<path d="M${f1(Xn-6)},-206C${f1(Xn-3)},-208 ${f1(Xn+3)},-208 ${f1(Xn+6)},-206L${f1(Xn+5.4)},-201.6C${f1(Xn+2)},-203.4 ${f1(Xn-2)},-203.4 ${f1(Xn-5.4)},-201.6Z" fill="${PTE3}"/>`);
   out.push('</g>');
   A.filter(a=>a.d>=-4).forEach(a=>out.push(a.svg));
   const hk=th<23?'f':th<68?'q':th<113?'s':th<158?'bq':'b';
-  out.push(`<g transform="translate(${f1(1.6*s)},2)">${PHEAD[hk](open)}</g>`);
+  out.push(`<g transform="translate(${f1(Xn)},2)">${PHEAD[hk](open)}</g>`);
   return `<g stroke="${INK}" stroke-width="1" stroke-linejoin="round" stroke-linecap="round">${out.join('')}</g>`}
 const PET=(open,step)=>PETV(0,open,step);
 const CROW=`<g stroke="#0c0c10" stroke-width="1" stroke-linejoin="round">
