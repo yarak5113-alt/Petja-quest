@@ -1,6 +1,13 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.35',d:'11.11.2026',t:'Petja hat jetzt Mimik',n:[
+    'Sechs Gesichtsausdrücke: neutral, erschrocken, erstaunt, fragend/interessiert, froh und genervt',
+    'Die Gesichtsmuskeln arbeiten mit: Brauen heben und senken sich, Lider öffnen und schließen, Pupillen werden klein vor Schreck, Wangen und Nasolabialfalten ziehen sich beim Lächeln hoch, der Kiefer geht beim Reden mit',
+    'Beim Reden wechselt er zwischen mehreren Mundformen (zu, halb offen, offen mit Zähnen, O-Mund), passend zur Stimmung',
+    'Fragend zieht er eine Braue hoch und legt den Kopf schief, erschrocken bekommt er eine Schweißperle',
+    'Die Stimmung ergibt sich aus dem, was er sagt; erschrickt oder staunt jemand anderes, reagiert Petja mit',
+    'Er blinzelt jetzt ab und zu'] },
   {v:'1.34',d:'11.11.2026',t:'Seitenansicht sauber',n:[
     'Kragen in der Seitenansicht liegt jetzt als schräges Band um den Hals (hinten hoch, vorne tiefer) statt davor zu schweben',
     'Arm in der Seitenansicht mit durchgehender Kontur hinten bis zur Schulter, zerstückelte Falten entfernt'] },

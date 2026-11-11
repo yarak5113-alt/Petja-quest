@@ -61,7 +61,7 @@ const MORE={
   hsee:[['P','Das weiße Ding ist näher gekommen. Ich tu so, als hätte ich nichts gesehen.']],
   mrad:[['P','Rauschen, knarzen, drehen. Wie mein Kopf nach Wowas Party.']],
   rinne:[['P','Ein Blatt fährt die Rinne runter. Es hat mehr Ziel im Leben als ich.']],
-  mteich:[['P','Ein Frosch guckt mich an. Ich guck zurück. Unentschieden.']],
+  mteich:[['P','Ein Frosch guckt mich an. Ich guck zurück. Unentschieden.','frage']],
   mstein:[['P','Einer hat einen Riss. Wie mein Rücken nach dem Banja.']],
   saecke:[['P','Auf einem Sack steht „MEHL“. Mit drei Ausrufezeichen. Sehr überzeugend.']],
   karren:[['P','Mit einem Rad kommt der nicht weit. Kenn ich.']]};

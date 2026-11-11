@@ -88,7 +88,7 @@ const T={
   fhaus:{n:'Fischerhütte',at:[160,362],l:[[['P','Die Hütte vom Fischer. Riecht nach Rauch, Fisch und Einsamkeit.']],[['P','Abgeschlossen.'],['F','Da ist nur Wodka drin! Und Fisch! Und Wodka!']]]},
   boot:{n:'Altes Boot',at:[400,394],fn(){if(!FL.boot&&inv.includes('brett')&&inv.includes('teer'))return repairBoat();say(FL.boot?[['P','Geflickt. Hält bestimmt. Eine Woche. Oder bis zum ersten Wels.']]:this.l[0])},l:[[['P','Ein umgedrehtes Boot. Unten hat es mehr Löcher als Boden.'],['F','Das schwimmt noch! Nur nicht nach oben.']]]},
   see:{n:'See',at:[480,356],fn(){if(inv.includes('angel')&&!FL.fisch&&!FL.kater)return say([['P','Dann wollen wir mal. Auswerfen... und warten...'],['P','Oh. Es zieht. Tatsächlich.']],fishing);
-    if(FL.angelQ&&!FL.fisch&&!FL.kater)return say([['P','Da drin schwimmen Fische. Ich seh sie. Sie sehen mich.'],['P','Mit bloßen Händen wird das nix. Ohne Angel bleib ich hier nur der Typ am Ufer.']]);this.i=(this.i||0);say(this.l[this.i++%this.l.length])},l:[[['P','Der See ist so still, als würde er die Luft anhalten.']],[['P','Da unten hat sich was bewegt. Groß. Ich geh nicht schwimmen.']]]},
+    if(FL.angelQ&&!FL.fisch&&!FL.kater)return say([['P','Da drin schwimmen Fische. Ich seh sie. Sie sehen mich.'],['P','Mit bloßen Händen wird das nix. Ohne Angel bleib ich hier nur der Typ am Ufer.']]);this.i=(this.i||0);say(this.l[this.i++%this.l.length])},l:[[['P','Der See ist so still, als würde er die Luft anhalten.']],[['P','Da unten hat sich was bewegt. Groß. Ich geh nicht schwimmen.','schreck']]]},
   netz:{n:'Fischernetze',at:[300,382],l:[[['P','Fischernetze zum Trocknen. Oder moderne Kunst. Schwer zu sagen.']]]},
   sDorf:{n:'Schild: Zum Dorf',at:[650,480],go:'dorf',to:[150,486]},
   sZB:{n:'Schild: Zu Baba Jaga',at:[130,488],go:'huette',to:[640,474]},
@@ -178,7 +178,7 @@ const T={
     if(inv.includes('kippe'))return say([['P','Ich leg den Joint auf den Tisch.'],['J2','Vorsichtig! Erst den Filter ab, dann aufrollen, dann sortieren.']],tableGame);
     say([['P','Ein schwerer Holztisch. Voller Kerben und Flecken. Ich frag nicht, wovon.']])}},
   ofen:{n:'Ofen',at:[260,440],l:[[['P','Ein russischer Ofen. Warm. Zu warm. Und groß genug für einen Petja.'],['J2','Der ist für Piroggen! ...Meistens.']],[['P','Im Topf blubbert was. Es riecht nach Pilzen und Socken.']]]},
-  regal:{n:'Regal',at:[640,420],l:[[['P','Gläser mit Kräutern, Augen und etwas, das mir zuwinkt.'],['P','Und zwei Schädel. Hoffentlich keine Stadtkinder.']]]},
+  regal:{n:'Regal',at:[640,420],l:[[['P','Gläser mit Kräutern, Augen und etwas, das mir zuwinkt.'],['P','Und zwei Schädel. Hoffentlich keine Stadtkinder.','schreck']]]},
   besen:{n:'Besen',at:[700,450],l:[[['P','Ihr Besen. Ich glaub, der fliegt. Ich setz mich lieber nicht drauf.']]]},
   fenster:{n:'Fenster (raus)',at:[300,430],go:'huette',to:[600,474]},
   sGN:{n:'Schild: Zur Gnomsiedlung',at:[700,474],fn(){walkTo(770,458,()=>enter('gnome',[60,472]))}},
@@ -275,7 +275,7 @@ const T={
     [['P','Die Beine zucken. Wie bei einem Huhn, das träumt.']],
     [['P','Ich fass da nichts an. Die treten bestimmt.']]]},
   zaun:{n:'Schädelzaun',at:[300,445],l:[
-    [['P','Ein Zaun aus Schädeln. Und die Augen leuchten.']],
+    [['P','Ein Zaun aus Schädeln. Und die Augen leuchten.','schreck']],
     [['P','Ist das Deko oder eine Warnung?'],['P','...Beides. Ganz sicher beides.']]]},
   _:{}
 };
@@ -301,7 +301,7 @@ function irrGo(d){const SEQ='LLRG';FL.irrs=(FL.irrs||'')+d;
   if(!SEQ.startsWith(FL.irrs)){FL.irrs='';return say([['P','Moment... den Baum kenn ich doch. Und den. Und den da auch.'],['P','Na super. Verlaufen. Zurück, bevor mich die Bäume fressen.']],()=>enter('muehle',[150,470]))}
   if(FL.irrs==SEQ){FL.irrs='';return enter('banjaV',[420,486])}
   enter('irrwald',[420,486]);setTimeout(()=>say([['P',['Bäume. Noch mehr Bäume.','War das ein Kichern?','Hier riecht es nach Parfüm... und Sauna.'][FL.irrs.length-1]]]),500)}
-function bjEnter(){if(FL.drin)return enter('innen',[250,470]);say([['P','So. Leiter ans Fenster... festhalten, liebe Hühnerbeine... nicht wackeln...'],['P','*kletter* *kletter* *knarz*']],()=>{FL.drin=1;enter('innen',[250,470])})}
+function bjEnter(){if(FL.drin)return enter('innen',[250,470]);say([['P','So. Leiter ans Fenster... festhalten, liebe Hühnerbeine... nicht wackeln...','schreck'],['P','*kletter* *kletter* *knarz*']],()=>{FL.drin=1;enter('innen',[250,470])})}
 function repairBoat(){say([['P','Brett und Teer. Ich flick Ihnen das Boot. Erwarten Sie nicht zu viel.'],['P','*klopf* ... *schmier* ... *klopf* ... *Daumen* ... Au. Natürlich.'],['F','Junge, du bist ein Held. Das Ding hält jetzt bestimmt eine Woche.'],['F','Hier, meine Säge. Pass auf die Finger auf, die hast du ja schon geübt.'],['P','*bekommt eine Säge*']],()=>{FL.boot=1;['brett','teer'].forEach(i=>inv.splice(inv.indexOf(i),1));inv.push('saege');renderInv()})};
 function renderInv(){$('#slots').innerHTML='';inv.forEach(id=>{const it=ITEMS[id]||['❔',id,id],d=document.createElement('div');d.className='slot';d.textContent=it[0];d.title=it[1];
   d.onclick=e=>{e.stopPropagation();if(!busy)say([['P',it[2]]])};$('#slots').appendChild(d)})}

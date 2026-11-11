@@ -7,11 +7,21 @@ let queue=[],typing=null,full='',busy=false,done=null;
 const OPT={speed:28,barks:true,voices:'alle',sfx:.6,vox:1};try{Object.assign(OPT,JSON.parse(localStorage.getItem('petjaOpts')||'{}'))}catch(e){}
 function saveOpt(){try{localStorage.setItem('petjaOpts',JSON.stringify(OPT))}catch(e){}}
 function say(lines,cb){queue=lines.slice();done=cb;busy=true;box.style.display='block';next()}
+// Mimik aus dem Text erraten (eine Zeile darf als 3. Element auch fest eine Emotion mitgeben: ['P','Text','schreck'])
+function emoOf(t){
+  if(/\b(hilfe|huch|igitt|oh nein|nein, nein|ua+h+|a{2,}h*|lauf|renn|gespenst|monster|verdammt|schei(ß|ss)e|was war das|oh gott|ach du|erschreck\w*|um gottes)\b/i.test(t))return 'schreck';
+  if(/\?!|!\?|\b(wow|whoa|boah|oha|krass|unglaublich|wahnsinn|echt jetzt|tatsächlich|was zum (teufel|henker|geier)|drei nasen)\b|\b(wirklich|echt)\?/i.test(t))return 'staunen';
+  if(/\b(na super|natürlich passiert|wie immer|schon wieder|keine lust|ugh|uhh+|meh|mist)\b|^\s*(\.\.\.|…)|\b(toll|super|perfekt|klasse)\.\s*$/i.test(t))return 'genervt';
+  if(/\b(haha|hehe|juhu|geil|endlich)\b|\bdanke!|\b(super|klasse|toll|perfekt|cool)!/i.test(t))return 'froh';
+  if(/\?|\b(hm+|warum|wieso|weshalb|seltsam|komisch|merkwürdig|interessant)\b/i.test(t))return 'frage';
+  return 'n'}
 function next(){
   clearInterval(typing);typing=null;talking=false;box.classList.remove('done');
-  if(!queue.length){box.style.display='none';busy=false;const d=done;done=null;d&&d();return}
-  const [w,t]=queue.shift();who.textContent=N[w][0]+':';who.style.color=N[w][1];full=t;txt.textContent='';
+  if(!queue.length){box.style.display='none';busy=false;setEmo(PEMO,1200);const d=done;done=null;d&&d();return}
+  const [w,t,em]=queue.shift();who.textContent=N[w][0]+':';who.style.color=N[w][1];full=t;txt.textContent='';
   LOG.push([w,t]);if(LOG.length>120)LOG.shift();
+  // Petja zeigt beim Reden seine Emotion; bei anderen reagiert er nur auf Schreck/Staunen, sonst hört er neutral zu
+  const e=em||emoOf(t);if(w==='P')setEmo(e);else setEmo(e==='schreck'||e==='staunen'?e:'n',e==='n'?0:2500);
   if(w==='P')talking=true;voice(t,w);
   let i=0;typing=setInterval(()=>{txt.textContent=t.slice(0,++i);if(i>=t.length){clearInterval(typing);typing=null;talking=false;box.classList.add('done')}},OPT.speed);
 }
