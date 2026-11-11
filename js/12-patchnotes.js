@@ -1,6 +1,9 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.32',d:'11.11.2026',t:'Schlankere Taille',n:[
+    'Unterer Brustkorb schmaler – der Oberkörper verjüngt sich jetzt gleichmäßig von der Brust zur Hüfte',
+    'Ellbogen und Unterarme rücken entsprechend näher an den Körper'] },
   {v:'1.31',d:'11.11.2026',t:'Arme nachjustiert',n:[
     'Ellbogen und Unterarme sitzen wieder etwas näher am Körper – breite Haltung bleibt, aber weniger abgespreizt'] },
   {v:'1.30',d:'11.11.2026',t:'Petja macht sich breit',n:[

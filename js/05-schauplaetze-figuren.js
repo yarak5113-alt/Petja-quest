@@ -114,7 +114,7 @@ function tube(x1,y1,r1,x2,y2,r2){const dx=x2-x1,dy=y2-y1,L=Math.hypot(dx,dy)||1,
 // Hand von der Seite (Innenfläche zum Oberschenkel): u = nach vorne, v = nach unten ab Handgelenk
 const PHAND=col=>`<path d="M-4.2,0C-5,5 -5.2,10 -4.6,13.4C-4,16.6 -2.6,19.4 -.4,20.6C1.2,21.4 2.8,20.6 3.6,19C4.2,17.6 3.8,16.4 3,15.6C4,13 4.6,10 4.6,7L4.4,0Z" fill="${col}"/><path d="M-2.2,13.4C-1.6,16.4 -.4,18.8 1.2,20.2M.6,12.6C1.4,14.6 2.2,16 3,16.8M-4.4,12.6C-3.6,12.2 -2.6,12 -1.8,12.2" fill="none" stroke="${PSKL}" stroke-width=".5"/>`;
 const PTHUMB=col=>`<path d="M3.8,3C6.4,5 7,9 6,12.4C5.4,13.6 4.4,13.4 4.2,12.4C4.6,10 4.4,7 3.4,5.4Z" fill="${col}"/>`;
-const PTORSO=`<path d="M-22,-197C-27,-188 -28,-170 -27,-150C-27,-136 -26,-124 -25,-112C-16,-109 -6,-110 0,-112C8,-110 18,-109 25,-112C26,-126 27,-140 27,-152C28,-172 27,-188 22,-197C14,-204 6,-206 0,-204C-8,-206 -16,-204 -22,-197Z" fill="${PTE}"/><path d="M10,-204C16,-202 20,-200 22,-197C27,-188 28,-172 27,-152C27,-140 26,-126 25,-112C21,-111 17,-110 13,-110C16,-124 15,-140 17,-154C19,-170 15,-186 10,-204Z" fill="${PTE2}" stroke="none"/>`;
+const PTORSO=`<path d="M-22,-197C-27,-188 -27.6,-176 -26.6,-164C-25.6,-152 -23.6,-142 -23.2,-132C-23,-124 -23.6,-118 -24,-112C-15,-109 -6,-110 0,-112C8,-110 18,-109 24,-112C23.6,-118 23,-124 23.2,-132C23.6,-142 25.6,-152 26.6,-164C27.6,-176 27,-188 22,-197C14,-204 6,-206 0,-204C-8,-206 -16,-204 -22,-197Z" fill="${PTE}"/><path d="M10,-204C16,-202 20,-200 22,-197C27,-188 27.6,-176 26.6,-164C25.6,-152 23.6,-142 23.2,-132C23,-124 23.6,-118 24,-112C21,-111 17,-110 13,-110C15,-124 14.6,-140 16,-154C18.6,-170 15,-186 10,-204Z" fill="${PTE2}" stroke="none"/>`;
 const PFRONT=`<path d="M-5.6,-208L5.6,-208L6.4,-203L0,-186L-6.4,-203Z" fill="#c8925c" stroke="none"/><path d="M-3,-203L0,-193L3,-203Z" fill="#b07c4c" stroke="none"/><path d="M-6,-204L0,-186L6,-204" fill="none" stroke-width=".8"/>`+
   `<path d="M-9,-205L-1,-186L-13,-194C-12,-199 -11,-202 -9,-205ZM9,-205L1,-186L13,-194C12,-199 11,-202 9,-205Z" fill="${PTE3}" stroke-width=".8"/><path d="M0,-186C0,-160 -.5,-136 0,-112" fill="none" stroke-width=".8"/>`+
   [-174,-158,-142,-126].map(y=>`<circle cx="-1.6" cy="${y}" r=".9" fill="#e8f4f0" stroke-width=".4"/>`).join('')+
@@ -195,7 +195,7 @@ function PETV(th,open,step){const r=th*Math.PI/180,c=Math.cos(r),s=Math.sin(r),X
     return{d:D(10.5*side,zf*.5),svg:c>.3?pants+shoe:shoe+pants}};
   // Arm einer Seite – breite Haltung: Schultern zurück, Oberarm vom Rumpf weg, Ellbogen nach außen,
   // Unterarm locker hängend mit Abstand zum Körper; Ärmelende als weiche Stoffwulst, Hand mit Innenfläche zum Oberschenkel
-  const arm=side=>{const sw=(side<0?-st:st)*.7,zs=-2,ze=sw*.5-5.5,zw=sw-4,Xs=X(21*side,zs),Xe=X(30.6*side,ze),Xw=X(33*side,zw),d=D(21*side,ze+2);
+  const arm=side=>{const sw=(side<0?-st:st)*.7,zs=-2,ze=sw*.5-5.5,zw=sw-4,Xs=X(21*side,zs),Xe=X(28.6*side,ze),Xw=X(31*side,zw),d=D(21*side,ze+2);
     const near=d>4,shade=!near&&Xs>0,sl=shade?PTE2:PTE,sk=shade?PSK2:PSK,o=Math.abs(c)>.3?side*Math.sign(c):1;
     const kx=Math.max(.6,Math.abs(s)),sg=Math.abs(s)>.3?Math.sign(s):-side,hand=c<0?PTHUMB(sk)+PHAND(sk):PHAND(sk)+PTHUMB(sk),P=(x,y)=>f1(x)+','+y;
     const tilt=f1(-5*o*(Math.abs(c)>.3?1:0));
