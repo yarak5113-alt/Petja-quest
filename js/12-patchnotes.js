@@ -1,6 +1,10 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.28',d:'11.11.2026',t:'Lockerer Petja',n:[
+    'Oberkörper ist in der Schräg- und Seitenansicht nicht mehr zu breit',
+    'Arme hängen locker vom Körper weg, die Hände liegen nicht mehr am Oberschenkel an',
+    'Entspanntere Hände mit leicht gekrümmten Fingern']},
   {v:'1.27',d:'11.11.2026',t:'Petja dreht sich um',n:[
     'Petja hat jetzt 8 Blickrichtungen: vorne, hinten, beide Seiten und alle Schrägen – er schaut immer dahin, wohin er läuft',
     'Beim Reden dreht er sich zu dir nach vorne',

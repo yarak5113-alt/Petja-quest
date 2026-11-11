@@ -112,7 +112,7 @@ const f1=v=>Math.round(v*100)/100;
 function tube(x1,y1,r1,x2,y2,r2){const dx=x2-x1,dy=y2-y1,L=Math.hypot(dx,dy)||1,nx=-dy/L,ny=dx/L;
   return `M${f1(x1+nx*r1)},${f1(y1+ny*r1)}L${f1(x2+nx*r2)},${f1(y2+ny*r2)}A${r2},${r2} 0 0 0 ${f1(x2-nx*r2)},${f1(y2-ny*r2)}L${f1(x1-nx*r1)},${f1(y1-ny*r1)}A${r1},${r1} 0 0 0 ${f1(x1+nx*r1)},${f1(y1+ny*r1)}Z`}
 // Hand von der Seite (Innenfläche zum Oberschenkel): u = nach vorne, v = nach unten ab Handgelenk
-const PHAND=col=>`<path d="M-4.2,0C-5,5 -5,10 -4.6,13C-4.4,16 -3.6,19 -2,20.5C-.6,21.4 1,21 2,19.6C3.4,17 4.4,13 4.6,9L4.4,0Z" fill="${col}"/><path d="M-2,13C-1.8,16 -1.2,18.6 -.4,20.4M1,12C1.4,15 1.8,17 2.2,18.6M-4.4,12.4C-3.6,12 -2.6,11.8 -1.8,12" fill="none" stroke="${PSKL}" stroke-width=".5"/>`;
+const PHAND=col=>`<path d="M-4.2,0C-5,5 -5.2,10 -4.6,13.4C-4,16.6 -2.6,19.4 -.4,20.6C1.2,21.4 2.8,20.6 3.6,19C4.2,17.6 3.8,16.4 3,15.6C4,13 4.6,10 4.6,7L4.4,0Z" fill="${col}"/><path d="M-2.2,13.4C-1.6,16.4 -.4,18.8 1.2,20.2M.6,12.6C1.4,14.6 2.2,16 3,16.8M-4.4,12.6C-3.6,12.2 -2.6,12 -1.8,12.2" fill="none" stroke="${PSKL}" stroke-width=".5"/>`;
 const PTHUMB=col=>`<path d="M3.8,3C6.4,5 7,9 6,12.4C5.4,13.6 4.4,13.4 4.2,12.4C4.6,10 4.4,7 3.4,5.4Z" fill="${col}"/>`;
 const PTORSO=`<path d="M-22,-200C-27,-190 -28,-170 -27,-150C-27,-136 -26,-124 -25,-112C-16,-109 -6,-110 0,-112C8,-110 18,-109 25,-112C26,-126 27,-140 27,-152C28,-172 27,-190 22,-200C14,-205 6,-206 0,-204C-8,-206 -16,-205 -22,-200Z" fill="${PTE}"/><path d="M10,-204C16,-203 20,-202 22,-200C27,-190 28,-172 27,-152C27,-140 26,-126 25,-112C21,-111 17,-110 13,-110C16,-124 15,-140 17,-154C19,-170 15,-186 10,-204Z" fill="${PTE2}" stroke="none"/>`;
 const PFRONT=`<path d="M-5.6,-208L5.6,-208L6.4,-203L0,-186L-6.4,-203Z" fill="#c8925c" stroke="none"/><path d="M-3,-203L0,-193L3,-203Z" fill="#b07c4c" stroke="none"/><path d="M-6,-204L0,-186L6,-204" fill="none" stroke-width=".8"/>`+
@@ -194,9 +194,9 @@ function PETV(th,open,step){const r=th*Math.PI/180,c=Math.cos(r),s=Math.sin(r),X
       `<path d="M${f1(Xk-4)},-62C${f1(Xk-1)},-59.5 ${f1(Xk+2)},-59.5 ${f1(Xk+4)},-62M${f1(Xm-7)},-22C${f1(Xm-3)},-18 ${f1(Xm+3)},-18 ${f1(Xm+7)},-22" fill="none" stroke="${PJEL}" stroke-width=".8"/>`;
     return{d:D(10.5*side,zf*.5),svg:c>.3?pants+shoe:shoe+pants}};
   // Arm einer Seite: Ärmel, Krempel, geformter Unterarm, Hand mit Innenfläche zum Oberschenkel
-  const arm=side=>{const zw=(side<0?-st:st)*.7,ze=zw*.5,Xs=X(20.5*side,0),Xe=X(23.5*side,ze),Xw=X(24.5*side,zw),d=D(20.5*side,ze);
+  const arm=side=>{const zw=(side<0?-st:st)*.7,ze=zw*.5,Xs=X(20.5*side,0),Xe=X(25.4*side,ze),Xw=X(30.2*side,zw+1.5),d=D(20.5*side,ze);
     const near=d>4,shade=!near&&Xs>0,sl=shade?PTE2:PTE,sk=shade?PSK2:PSK;
-    const kx=Math.max(.4,Math.abs(s)),sg=Math.abs(s)>.3?Math.sign(s):-side,hand=c<0?PTHUMB(sk)+PHAND(sk):PHAND(sk)+PTHUMB(sk);
+    const kx=Math.max(.6,Math.abs(s)),sg=Math.abs(s)>.3?Math.sign(s):-side,hand=c<0?PTHUMB(sk)+PHAND(sk):PHAND(sk)+PTHUMB(sk);
     const svg=`<path d="${tube(Xs,-190,7.2,Xe,-153,6)}" fill="${sl}"/>`+
       `<path d="M${f1(Xe-4.6)},-146Q${f1(Xe-6.6)},-132 ${f1(Xw-3.1)},-106L${f1(Xw+3.1)},-106Q${f1(Xe+5.8)},-132 ${f1(Xe+4.6)},-146Z" fill="${sk}"/>`+
       `<path d="M${f1(Xe-2.6)},-140C${f1(Xe-1)},-139 ${f1(Xe+1)},-139 ${f1(Xe+2.6)},-140" fill="none" stroke="${PSKL}" stroke-width=".45"/>`+
@@ -206,9 +206,9 @@ function PETV(th,open,step){const r=th*Math.PI/180,c=Math.cos(r),s=Math.sin(r),X
   const L=[leg(-1),leg(1)].sort((a,b)=>a.d-b.d),A=[arm(-1),arm(1)],Xn=1.6*s;
   out.push(L[0].svg,L[1].svg);A.filter(a=>a.d<-4).forEach(a=>out.push(a.svg));
   out.push(`<path d="M${f1(Xn-5)},-218L${f1(Xn-6)},-202C${f1(Xn-2)},-199 ${f1(Xn+3)},-199 ${f1(Xn+6)},-202L${f1(Xn+5)},-218Z" fill="${PSK}"/><path d="M${f1(Xn-5.4)},-212C${f1(Xn-1)},-208 ${f1(Xn+3)},-208 ${f1(Xn+5.6)},-211L${f1(Xn+5)},-218L${f1(Xn-5)},-218Z" fill="#b07c4c" stroke="none"/>`);
-  out.push(`<g transform="scale(${f1(.9*(Math.abs(c)+.54*Math.abs(s)))},1)">${PTORSO}</g>`);
-  if(c>.15)out.push(`<g transform="translate(${f1(11.7*s)},0) scale(${f1(.9*c)},1)">${PFRONT}</g>`);
-  else if(c<-.15)out.push(`<g transform="translate(${f1(-11.7*s)},0) scale(${f1(.9*c)},1)">${PBACK}</g>`);
+  out.push(`<g transform="scale(${f1(.9*Math.hypot(c,.5*s))},1)">${PTORSO}</g>`);
+  if(c>.15)out.push(`<g transform="translate(${f1(10.8*s)},0) scale(${f1(.9*c)},1)">${PFRONT}</g>`);
+  else if(c<-.15)out.push(`<g transform="translate(${f1(-10.8*s)},0) scale(${f1(.9*c)},1)">${PBACK}</g>`);
   else out.push(`<path d="M${f1(Xn-6)},-206C${f1(Xn-3)},-208 ${f1(Xn+3)},-208 ${f1(Xn+6)},-206L${f1(Xn+5.4)},-201.6C${f1(Xn+2)},-203.4 ${f1(Xn-2)},-203.4 ${f1(Xn-5.4)},-201.6Z" fill="${PTE3}"/>`);
   A.filter(a=>a.d>=-4).forEach(a=>out.push(a.svg));
   const hk=th<23?'f':th<68?'q':th<113?'s':th<158?'bq':'b';
