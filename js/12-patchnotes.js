@@ -1,6 +1,10 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.21',d:'11.11.2026',t:'Freundlicher Petja',n:[
+    'Figuren jetzt 250 Pixel hoch mit dünnen schwarzen Linien statt dicker Doppelkontur',
+    'Petja sieht nicht mehr gruselig aus: offene Augen, kurze Nase, leichtes Lächeln, schmaleres Hemd',
+    'Farben stimmen besser: z. B. Baba Jagas Haare grau statt gelb, Stab braun']},
   {v:'1.20',d:'11.11.2026',t:'Pixel-Figuren',n:[
     'Alle Figuren sind jetzt echte Pixel-Sprites: 200 Pixel hoch, scharfe Pixel, feste Farbpalette und schwarze Pixel-Kontur',
     'Auch in den Zwischensequenzen bleiben die Pixel scharf']},

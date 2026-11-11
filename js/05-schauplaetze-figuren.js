@@ -115,6 +115,7 @@ const PET=(open,step)=>`<g stroke="${INK}" stroke-width="1" stroke-linejoin="rou
 <path d="M-19.5,-110C-19,-90 -19,-72 -18.6,-58" fill="none" stroke="#9aaed4" stroke-width=".6"/>
 <path d="M-21,-126C-8,-129 8,-129 21,-126L21,-121C8,-124 -8,-124 -21,-121Z" fill="#a0b2d6"/>
 </g>
+<g transform="scale(.9,1)">
 <path d="M-22,-200C-31,-196 -35,-182 -36,-164L-37,-150L-25,-148C-25,-160 -24,-176 -21,-186Z" fill="#26aaa2"/>
 <path d="M-37,-145C-38,-128 -38,-114 -36,-100L-28,-100C-28,-114 -27,-128 -25,-143Z" fill="#ecb890"/><path d="M-30,-143C-30,-128 -30,-114 -29.5,-100L-28,-100C-28,-114 -27,-128 -25,-143Z" fill="#cc946c" stroke="none"/>
 <path d="M-35,-136L-33,-134M-35,-128L-33,-126M-35.5,-120L-33.5,-118M-35,-112L-33,-110" fill="none" stroke="#a86e48" stroke-width=".5"/>
@@ -134,24 +135,20 @@ const PET=(open,step)=>`<g stroke="${INK}" stroke-width="1" stroke-linejoin="rou
 <path d="M0,-186C0,-160 -.5,-136 0,-112" fill="none" stroke-width=".8"/><circle cx="-1.6" cy="-174" r=".9" fill="#e8f4f0" stroke-width=".4"/><circle cx="-1.8" cy="-158" r=".9" fill="#e8f4f0" stroke-width=".4"/><circle cx="-1.8" cy="-142" r=".9" fill="#e8f4f0" stroke-width=".4"/><circle cx="-1.6" cy="-126" r=".9" fill="#e8f4f0" stroke-width=".4"/>
 <path d="M-17,-184L-8,-184L-8,-174C-11,-172 -14,-172 -17,-174Z" fill="none" stroke="#147470" stroke-width=".8"/>
 <path d="M-18,-170C-13,-162 -12,-152 -14,-144M-22,-138C-16,-135 -10,-134 -4,-136M-20,-122C-14,-125 -8,-125 -3,-122M6,-172C10,-164 10,-154 8,-146M4,-128C8,-126 11,-121 12,-116M-24,-114C-20,-117 -16,-117 -13,-114M14,-114C17,-117 21,-117 24,-114M-24,-194C-20,-190 -18,-186 -18,-182M20,-192C17,-188 16,-184 16,-180" fill="none" stroke="#147470" stroke-width=".8"/>
-<g transform="translate(0,3) rotate(-5 0 -212)">
+</g>
+<g transform="translate(0,2) rotate(-2 0 -212)">
 <path d="M-12,-238C-15,-244 -10,-254 -1,-255C9,-256 15,-249 14,-240C15,-232 14,-224 12,-218C10,-222 10,-228 9,-232Z" fill="#603c1a"/>
-<path d="M9,-236C14,-238 15,-231 13,-227C12,-224 10,-224 9,-225Z" fill="#ecb890"/><path d="M11,-234C12.5,-232 12.5,-229 11,-227" fill="none" stroke="#b47a54" stroke-width=".6"/>
+<path d="M9,-236C14,-238 15,-231 13,-227C12,-224 10,-224 9,-225Z" fill="#ecb890"/><path d="M11,-234C12.5,-232 12.5,-229 11,-227" fill="none" stroke="#c08860" stroke-width=".6"/>
 <path d="M-11,-244C-13,-236 -13,-228 -12,-222C-11,-217 -7,-213 -2,-212C3,-212 7,-215 9,-220C11,-226 11,-236 10,-243C5,-250 -6,-250 -11,-244Z" fill="#ecb890"/>
-<path d="M4,-248C9,-244 11,-236 10,-228C9,-220 7,-215 2,-212C6,-218 7,-226 7,-234C7,-240 6,-245 4,-248Z" fill="#cc946c" stroke="none"/>
-<path d="M-10,-222l.6,1M-8,-219l.6,1M-6,-216l.6,1M-3,-214l.6,1M0,-214l.6,1M3,-215l.6,1M6,-217l.6,1M-9,-225l.6,1M7,-221l.6,1M-4,-217l.6,1M1,-217l.6,1M4,-219l.6,1M-7,-221l.6,1M-11,-226l.6,1M8,-224l.6,1M-1,-216l.6,1" fill="none" stroke="#7a5438" stroke-width=".45"/>
-<path d="M-6,-224C-7,-221 -7,-219 -5,-217M5,-225C6,-222 5.6,-220 4,-218" fill="none" stroke="#b47a54" stroke-width=".6"/>
-<path d="M-9,-232C-7.6,-233.6 -4.6,-233.6 -3.2,-232C-4.6,-230.8 -7.6,-230.8 -9,-232Z" fill="#f4e2d8" stroke-width=".5"/><path d="M1,-232.2C2.6,-233.8 5.4,-233.8 6.8,-232C5.4,-230.8 2.6,-230.8 1,-232.2Z" fill="#f4e2d8" stroke-width=".5"/>
-<circle cx="-6.4" cy="-231.8" r="1.1" fill="#3a2410" stroke="none"/><circle cx="3.6" cy="-231.9" r="1.1" fill="#3a2410" stroke="none"/>
-<path d="M-9.4,-232C-7.6,-234.4 -4.4,-234.4 -2.8,-232.2C-4.6,-232.6 -7.6,-232.6 -9.4,-232Z" fill="#d8a07a" stroke-width=".8"/><path d="M.6,-232.2C2.4,-234.6 5.6,-234.6 7.2,-232C5.6,-232.6 2.4,-232.8 .6,-232.2Z" fill="#d8a07a" stroke-width=".8"/>
-<path d="M-8.6,-230C-7,-229 -5,-229 -3.4,-230M1.4,-230.2C3,-229.2 5,-229.2 6.6,-230.2" fill="none" stroke="#b47a54" stroke-width=".55"/><path d="M-8,-228.6C-6.6,-228 -5,-228 -4,-228.6M2,-228.8C3.4,-228.2 5,-228.2 6,-228.8" fill="none" stroke="#c08860" stroke-width=".4"/>
-<path d="M-10,-236.5C-8,-238 -5,-238.2 -3,-237M1,-237.6C3,-239.2 6,-239 8,-237.2" fill="none" stroke="#5a3418" stroke-width="1.2"/>
-<path d="M-7,-221C-7.6,-219.6 -6.4,-218.4 -4.6,-218.8C-3.4,-218 -1.6,-218.2 -.8,-219.4C-2,-220.6 -4,-221.4 -7,-221Z" fill="#e8a888" stroke="none"/>
-<path d="M-2,-232C-3,-228 -5,-224 -7,-221C-7.6,-219.6 -6.4,-218.4 -4.6,-218.8C-3.4,-218 -1.6,-218.2 -.8,-219.4" fill="none" stroke-width=".9"/><path d="M-4.4,-219.4c.4,.4 .8,.4 1,0" fill="none" stroke-width=".5"/><path d="M-1,-229C-1,-226 -1.4,-223 -2,-221" fill="none" stroke="#c08860" stroke-width=".6"/>
-${open?'<path d="M-6,-216C-3.4,-215.2 -.4,-215.2 2.6,-216.4C2,-213.8 -.4,-212.6 -2,-212.6C-4,-212.6 -5.4,-214 -6,-216Z" fill="#6a2416" stroke-width=".8"/><path d="M-4.8,-215.5L1.4,-215.8L1.2,-215C-1,-214.7 -3,-214.7 -4.4,-214.8Z" fill="#f0e8d8" stroke="none"/>':'<path d="M-6,-215.6C-3.6,-214.6 -.6,-214.6 2.4,-216" fill="none" stroke-width=".9"/><path d="M-4,-213.6C-2.4,-213 -.8,-213 .6,-213.6" fill="none" stroke="#b47a54" stroke-width=".6"/>'}
+<path d="M6,-246C10,-240 11,-232 10,-226C9,-220 7,-216 3,-213C6,-219 7,-226 7.5,-233C8,-239 7.5,-243 6,-246Z" fill="#dca47c" stroke="none"/>
+<ellipse cx="-5.4" cy="-231.4" rx="2.4" ry="1.7" fill="#fbf6ee" stroke-width=".5"/><ellipse cx="3.6" cy="-231.4" rx="2.3" ry="1.7" fill="#fbf6ee" stroke-width=".5"/>
+<circle cx="-5.8" cy="-231.3" r="1.1" fill="#3a2410" stroke="none"/><circle cx="3.2" cy="-231.3" r="1.1" fill="#3a2410" stroke="none"/>
+<path d="M-8.6,-235.6C-6.6,-236.8 -4,-236.8 -2.4,-236M.8,-236.1C2.8,-236.9 5.4,-236.8 7,-235.6" fill="none" stroke="#5a3418" stroke-width="1.1"/>
+<path d="M-.8,-230C-1.2,-227 -2.4,-224.6 -3,-223.2C-1.8,-222.4 -.4,-222.5 .6,-223" fill="none" stroke-width=".8"/>
+${open?'<path d="M-4.4,-218.4C-2.4,-217.6 0,-217.6 2.2,-218.6C1.6,-216.2 -.2,-215.2 -1.2,-215.2C-2.6,-215.2 -3.9,-216.4 -4.4,-218.4Z" fill="#7a2a1a" stroke-width=".7"/>':'<path d="M-4.6,-218.2C-2.6,-217 0,-217 2.4,-218.4" fill="none" stroke-width=".8"/>'}
 <path d="M-13,-236C-15,-246 -9,-254 0,-254C9,-255 14,-248 13,-238C13,-234 12,-231 11,-228C10,-234 9,-238 7,-240C6,-237 4,-236 2,-238C1,-235 -2,-234 -4,-237C-5,-234 -7,-233 -9,-235C-10,-233 -11,-232 -12,-230C-13,-232 -13,-234 -13,-236Z" fill="#8a5a2a"/>
-<path d="M5,-254C11,-252 14,-246 13,-238C13,-234 12,-231 11,-228C10,-234 9,-238 7,-240C9,-245 8,-250 5,-254Z" fill="#603c1a" stroke="none"/>
-<path d="M-9,-249C-5,-252 0,-252 4,-250M-11,-243C-8,-247 -4,-249 -1,-249M-6,-245C-4,-242 -3,-240 -3,-238M1,-247C3,-244 4,-242 4,-240M-12,-238C-11,-241 -9,-243 -7,-244" fill="none" stroke="#b07c44" stroke-width=".7"/>
+<path d="M5,-254C11,-252 14,-246 13,-238C13,-234 12,-231 11,-228C10,-234 9,-238 7,-240C9,-245 8,-250 5,-254Z" fill="#6e4620" stroke="none"/>
+<path d="M-9,-249C-5,-252 0,-252 4,-250M-11,-243C-8,-247 -4,-249 -1,-249" fill="none" stroke="#a87440" stroke-width=".7"/>
 </g></g>`;
 const CROW=`<g stroke="#0c0c10" stroke-width="1" stroke-linejoin="round">
 <path d="M-26,10L-12,3C-20,-8 -12,-12 -5,-13C10,-16 15,-9 14,-5C13,6 6,8 0,8L-22,15Z" fill="#20242e"/><path d="M-14,2C-6,-6 2,-6 8,-4C4,4 -2,5 -8,6Z" fill="#3c4458" stroke="none"/>
@@ -179,24 +176,24 @@ const INKF='<defs><filter id="v" x="-20%" y="-20%" width="140%" height="140%" co
   '<feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="11"/>'+
   '<feColorMatrix type="matrix" values="0 0 0 0 .16  0 0 0 0 .08  0 0 0 0 .03  .25 0 0 0 -.13"/><feComposite in2="SourceAlpha" operator="in" result="gr"/>'+
   '<feMerge><feMergeNode in="ol"/><feMergeNode in="s"/><feMergeNode in="gr"/></feMerge></filter></defs>';
-// PIXELSTYLE: Figuren als echte Pixel-Sprites, 200 Pixel hoch (gleiches Verfahren wie die Arrays in pixel/).
+// PIXELSTYLE: Figuren als echte Pixel-Sprites, 250 Pixel hoch (gleiches Verfahren wie die Arrays in pixel/).
 // Tiere (Kiste < 150 Einheiten hoch) bekommen dieselbe Pixeldichte wie Petja. PIXELSTYLE=false -> handgezeichneter Stil (INKSTYLE).
-const PIXELSTYLE=true,PIX_ROWS=200;
+const PIXELSTYLE=true,PIX_ROWS=250;
 if(INKSTYLE&&!PIXELSTYLE)document.documentElement.classList.add('ink');
 function pixSprite(inner,[x,y,w,h]){const H=h>=150?PIX_ROWS:Math.round(h*PIX_ROWS/258),W=Math.round(w*H/h),SS=4;
   return new Promise(res=>{const im=new Image();im.onload=()=>{
     const c=document.createElement('canvas');c.width=W*SS;c.height=H*SS;const g=c.getContext('2d');g.drawImage(im,0,0);const d=g.getImageData(0,0,c.width,c.height).data;
-    // Palette = Konturfarbe + alle Füllfarben der Figur
+    // Palette = Konturfarbe + alle Füll- und Linienfarben der Figur
     const rgb=s=>{s=s.slice(1);if(s.length==3)s=[...s].map(q=>q+q).join('');return [0,2,4].map(i=>parseInt(s.substr(i,2),16))};
-    const pal=[[30,16,8],...[...new Set((inner.match(/fill="#[0-9a-fA-F]{3,6}"/g)||[]).map(s=>s.slice(6,-1).toLowerCase()))].map(rgb).filter(q=>Math.hypot(q[0]-30,q[1]-16,q[2]-8)>40)];
+    const pal=[[16,10,8],...[...new Set((inner.match(/(fill|stroke)="#[0-9a-fA-F]{3,6}"/g)||[]).map(s=>s.slice(s.indexOf("#"),-1).toLowerCase()))].map(rgb).filter(q=>Math.hypot(q[0]-30,q[1]-16,q[2]-8)>40)];
     const memo=new Map(),near=(r,gg,b)=>{const key=r<<16|gg<<8|b;let v=memo.get(key);if(v!==undefined)return v;let bd=1e9;v=0;for(let i=0;i<pal.length;i++){const p=pal[i],dd=(p[0]-r)**2+(p[1]-gg)**2+(p[2]-b)**2;if(dd<bd){bd=dd;v=i}}memo.set(key,v);return v};
     // pro Zielpixel: häufigste Palettenfarbe aus SS×SS Unterpixeln; ab 25 % Tinte -> Kontur
     const grid=new Int16Array(W*H).fill(-1),cnt=new Uint16Array(pal.length);
     for(let Y=0;Y<H;Y++)for(let X=0;X<W;X++){cnt.fill(0);let op=0;for(let j=0;j<SS;j++)for(let i=0;i<SS;i++){const q=((Y*SS+j)*c.width+X*SS+i)*4;if(d[q+3]<128)continue;op++;cnt[near(d[q],d[q+1],d[q+2])]++}
       if(op<SS*SS/2)continue;if(cnt[0]>=SS*SS*.25){grid[Y*W+X]=0;continue}let b=0;for(let n=1;n<pal.length;n++)if(cnt[n]>cnt[b])b=n;grid[Y*W+X]=b}
-    // Außenkontur: leere Pixel direkt neben der Figur werden Kontur
-    const o=document.createElement('canvas');o.width=W;o.height=H;const og=o.getContext('2d'),id=og.createImageData(W,H),od=id.data,at=(X,Y)=>X>=0&&Y>=0&&X<W&&Y<H&&grid[Y*W+X]>=0;
-    for(let Y=0;Y<H;Y++)for(let X=0;X<W;X++){let v=grid[Y*W+X];if(v<0){if(at(X-1,Y)||at(X+1,Y)||at(X,Y-1)||at(X,Y+1))v=0;else continue}const p=pal[v],q=(Y*W+X)*4;od[q]=p[0];od[q+1]=p[1];od[q+2]=p[2];od[q+3]=255}
+    // Außenkontur nur dort, wo die Figur am Rand noch keine Linie hat (sonst doppelt dicke Linien)
+    const o=document.createElement('canvas');o.width=W;o.height=H;const og=o.getContext('2d'),id=og.createImageData(W,H),od=id.data,ink=(X,Y)=>X>=0&&Y>=0&&X<W&&Y<H&&grid[Y*W+X]>0;
+    for(let Y=0;Y<H;Y++)for(let X=0;X<W;X++){let v=grid[Y*W+X];if(v<0){if(ink(X-1,Y)||ink(X+1,Y)||ink(X,Y-1)||ink(X,Y+1))v=0;else continue}const p=pal[v],q=(Y*W+X)*4;od[q]=p[0];od[q+1]=p[1];od[q+2]=p[2];od[q+3]=255}
     og.putImageData(id,0,0);res(o.toDataURL())};
   im.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="${W*SS}" height="${H*SS}" viewBox="${x} ${y} ${w} ${h}" preserveAspectRatio="none">${inner}</svg>`)})}
 // hängt den Volumen-Filter an jede Form mit Farbfüllung
