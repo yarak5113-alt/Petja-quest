@@ -1,6 +1,11 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.26',d:'11.11.2026',t:'Petja schaut dich an',n:[
+    'Petja blickt jetzt frontal in die Kamera – neuer Kopf mit kantigem Kiefer, schweren Brauen, schmalen Augen und langer Nase',
+    'Wärmere, goldene Hautfarbe',
+    'Comic-Anatomie: längere Arme, größere Hände und Schuhe',
+    'Ruhigere Kleidung: weniger Nähte und Falten, die wichtigsten bleiben']},
   {v:'1.25',d:'11.11.2026',t:'Gemalt statt glatt',n:[
     'Alle Figuren sehen jetzt aus wie handgemalte Zeichentrick-Folien: weiche Airbrush-Schatten statt harter Kanten',
     'Warm-braune Federkontur, außen kräftiger und auf der Schattenseite dicker – wie mit der Hand gezogen',
