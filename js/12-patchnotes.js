@@ -1,6 +1,9 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.19',d:'11.11.2026',t:'Figuren als Pixel-Arrays',n:[
+    'Alle 10 Figuren gibt es jetzt auch als 200 Pixel hohe Pixel-Grafik zum Weiterverwenden (Ordner pixel/, mit Farb-Legende)',
+    'Mit python pixel/render.py werden daraus PNG-Bilder']},
   {v:'1.18',d:'11.11.2026',t:'Updates kommen sofort an',n:[
     'Nach einem Update lädt der Browser die neuen Spieldateien direkt, statt alte aus dem Zwischenspeicher zu zeigen']},
   {v:'1.17',d:'11.11.2026',t:'Neuer Zeichenstil',n:[
