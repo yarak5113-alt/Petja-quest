@@ -7,7 +7,7 @@
 //   Hütte/dunkler Wald   Hexenhaus – absteigender Klagebass, Bajan-Brummen, Herzschlag-Trommel, spärliche Melodie
 //   Sumpf                Sumpf-Blues – träge, geschleppt, Schaleika rutscht ab, Bajan seufzt
 //   Hütte innen          Hexenküche – orientalische Tonleiter, wird immer schneller (wie ein Volkstanz), dann Stopp
-//   Startmenü            Straßenmusikant – Bajan mit Bass-und-Akkord-Begleitung, Swirel/Domra
+//   Startmenü            Folk-Banger (titelBanger) – 128 BPM, Balalaika-/Bajan-Hook über Kick, Offbeat-Bass, Klatschen; Intro → Drop → Break → Drop
 //   Dorf                 Dorffest (schnelle Balalaika)
 //   Irrwald, Höhle, Kirche bleiben Klangflächen (band)
 // Lautstärke: Menü → Einstellungen (OPT.mus). Liegt assets/sound/mus-<stimmung>.mp3 vor, wird stattdessen die Datei leise geloopt.
@@ -136,11 +136,12 @@ function instruments(dest){
   const drum=(t,v)=>{const o=AC.createOscillator(),g=AC.createGain();o.frequency.setValueAtTime(95,t);o.frequency.exponentialRampToValueAtTime(52,t+.15);g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+.45);o.connect(g);g.connect(dest);o.start(t);o.stop(t+.5);hit(t,'lowpass',400,.7,v*.3,.08)};
   return{pluck,trem,arp,bajan,swirel,schaleika,loschki,buben,hit,drum}}
 
-function makeMusic(name){const M=MUSIK[name],F=FOLK[name];if(!M&&!F)return null;
+function makeMusic(name){const M=MUSIK[name],F=FOLK[name];if(!M&&!F&&name!='titel')return null;
   if(SNDOK['mus-'+name]){const el=new Audio(SNDOK['mus-'+name]);el.loop=true;el.volume=0;el.play().catch(()=>{});let v=0;const fi=setInterval(()=>{v=Math.min(1,v+.03);el.volume=v*Math.min(1,OPT.mus);if(v>=1)clearInterval(fi)},100);
     return{el,stop(){clearInterval(fi);const fo=setInterval(()=>{el.volume=Math.max(0,el.volume-.03);if(el.volume<=0){clearInterval(fo);el.pause()}},100)}}}
   const out=AC.createGain();out.gain.value=0;out.connect(MUS);out.gain.setTargetAtTime(1,AC.currentTime,2.5);const tim=[];let alive=true;
   const stop=()=>{alive=false;tim.forEach(t=>{clearTimeout(t);clearInterval(t)});out.gain.setTargetAtTime(0,AC.currentTime,2);setTimeout(()=>out.disconnect(),9000)};
+  if(name=='titel'){titelBanger(out,tim,()=>alive);return{stop}}
   if(F){folk(F,out,tim,()=>alive);return{stop}}
   if(M.balalaika){out.connect(MREV);dorffest(out,tim,()=>alive);return{stop}}
   band(M,out,tim,()=>alive);return{stop}}
@@ -209,6 +210,69 @@ function band(M,out,tim,alive){
       if(lead=='swirel')I.swirel(mel,t,dur,.1);else if(lead=='schaleika')I.schaleika(mel,t,dur,.07);
       else{I.pluck('gusli',mel+12,t,.3);hold=0}}};
   tim.push(setInterval(()=>{if(!alive())return;while(nextT<AC.currentTime+.3){sched(step,nextT);nextT+=s16*2*(step%2==0?sw:1-sw);step++}},60))}
+
+// ----- Startmenü: Folk-Banger – eigenes Stück, A-Moll (harmonisch), 128 BPM, 52 Takte, dann von vorn -----
+// Intro (Filter öffnet sich, Riser, Trommelwirbel) → Drop 1 (Kick, Klatschen, Offbeat-Bass, Bajan-Stöße, Balalaika-Hook + Schaleika)
+// → Break (Swirel, Bajan, Herzschlag) → Build → Drop 2 (Hook + Domra-Gegenstimme, Schellen) → Outro
+function titelBanger(out,tim,alive){
+  const BPM=128,S=60/BPM/4,BAR=16*S,BARS=52,A=57;
+  const bus=AC.createGain();bus.gain.value=.55;
+  const lp=AC.createBiquadFilter();lp.type='lowpass';lp.frequency.value=18000;lp.Q.value=.8;
+  const cmp=AC.createDynamicsCompressor();cmp.threshold.value=-18;cmp.ratio.value=4;cmp.attack.value=.004;cmp.release.value=.16;
+  bus.connect(lp);lp.connect(cmp);cmp.connect(out);const send=AC.createGain();send.gain.value=.16;lp.connect(send);send.connect(MREV);
+  // alles außer der Kick wird bei jedem Kick kurz leiser -> Pumpen
+  const duck=AC.createGain();duck.connect(bus);const I=instruments(duck);
+  const CH={Am:[0,3,7],F:[-4,0,3],Dm:[5,8,12],E:[7,11,14]},PROG=['Am','F','Dm','E'];
+  // Hook: [MIDI-Ton, Länge in Sechzehnteln], 8 Takte
+  const HOOK=[[[76,2],[76,1],[74,1],[72,2],[71,2],[69,2],[72,2],[76,2],[81,2]],[[77,3],[76,1],[74,2],[72,2],[74,2],[76,2],[72,4]],
+    [[74,2],[74,1],[76,1],[77,2],[74,2],[72,2],[71,2],[69,2],[71,2]],[[80,2],[81,1],[80,1],[76,2],[71,2],[80,4],[76,4]],
+    [[76,2],[76,1],[74,1],[72,2],[71,2],[69,2],[72,2],[76,2],[81,2]],[[77,2],[81,2],[77,2],[76,2],[74,4],[72,4]],
+    [[74,2],[77,2],[81,2],[77,2],[76,2],[74,2],[72,2],[71,2]],[[80,2],[76,2],[80,2],[83,2],[81,8]]];
+  // ruhige Melodie für Break und Gegenstimme
+  const SLOW=[[[76,8],[72,8]],[[77,8],[81,8]],[[77,6],[76,2],[74,8]],[[80,8],[76,8]]];
+  const kick=(t,v)=>{const o=AC.createOscillator(),g=AC.createGain();o.frequency.setValueAtTime(170,t);o.frequency.exponentialRampToValueAtTime(44,t+.11);
+    g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+.34);o.connect(g);g.connect(bus);o.start(t);o.stop(t+.36);
+    duck.gain.setValueAtTime(.35,t);duck.gain.linearRampToValueAtTime(1,t+.19)};
+  const clap=(t,v)=>[0,.011,.023].forEach((d,i)=>I.hit(t+d,'bandpass',1250,1.1,v*(i==2?1:.55),i==2?.17:.018));
+  const hat=(t,v,open)=>I.hit(t,'highpass',8200,.6,v,open?.13:.03);
+  const roll=(t,step,n,v0,v1)=>{for(let i=0;i<n;i++)clap(t+i*step,v0+(v1-v0)*i/n)};
+  // Offbeat-Bass: Säge + Rechteck, Filter schließt schnell -> „Wobb“ zwischen den Kicks
+  const bass=(m,t,dur,v)=>{const o=AC.createOscillator(),o2=AC.createOscillator(),f=AC.createBiquadFilter(),g=AC.createGain();o.type='sawtooth';o2.type='square';o2.detune.value=-8;
+    o.frequency.value=o2.frequency.value=mtof(m);f.type='lowpass';f.Q.value=5;f.frequency.setValueAtTime(1600,t);f.frequency.exponentialRampToValueAtTime(200,t+dur);
+    g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v,t+.006);g.gain.exponentialRampToValueAtTime(.0001,t+dur);o.connect(f);o2.connect(f);f.connect(g);g.connect(duck);[o,o2].forEach(x=>{x.start(t);x.stop(t+dur+.02)})};
+  const riser=(t,dur,v)=>{const s=AC.createBufferSource(),x=AC.createBiquadFilter(),g=AC.createGain();s.buffer=NOISE;s.loop=true;x.type='bandpass';x.Q.value=1.8;
+    x.frequency.setValueAtTime(250,t);x.frequency.exponentialRampToValueAtTime(7500,t+dur);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v,t+dur);g.gain.setValueAtTime(.0001,t+dur+.01);
+    s.connect(x);x.connect(g);g.connect(bus);s.start(t);s.stop(t+dur+.05)};
+  const play=(mel,t,inst,v,oct)=>{let p=0;mel.forEach(([m,d])=>{const st=t+p*S,du=d*S;m+=oct||0;
+    if(inst=='balalaika')d>=3?I.trem('balalaika',m,st,du,.32*v,14):I.pluck('balalaika',m,st,.42*v);
+    else if(inst=='domra')I.trem('domra',m,st,du,.22*v,12);
+    else if(inst=='schaleika')I.schaleika(m,st,du*.85,.045*v);
+    else if(inst=='swirel')I.swirel(m,st,du*.95,.1*v);
+    else I.pluck('gusli',m,st,.3*v);p+=d})};
+  const bar=(b,t)=>{const ch=CH[PROG[b%4]],chord=ch.map(c=>A+c),root=A+ch[0],drop=(b>=8&&b<24)||(b>=32&&b<48);
+    if(b<8){// Intro: Filter öffnet sich, Hook erst Gusli dann Balalaika, ab Takt 5 Hi-Hats + Riser, Wirbel in 7/8
+      if(b==0){lp.frequency.setValueAtTime(420,t);lp.frequency.setTargetAtTime(9000,t,5)}
+      I.bajan(chord,t,BAR*.97,.045);I.pluck('kbass',root-24,t,.42);play(HOOK[b],t,b<4?'gusli':'balalaika',b<4?.8:.9);
+      if(b>=4){[2,6,10,14].forEach(i=>hat(t+i*S,.05,true));[0,8].forEach(i=>kick(t+i*S,.5))}
+      if(b==4)riser(t,4*BAR-4*S,.1);if(b==6)roll(t,2*S,8,.06,.14);if(b==7)roll(t,S,12,.14,.34)}
+    else if(drop){const d2=b>=32;if(b==8||b==32)lp.frequency.setValueAtTime(18000,t);
+      [0,4,8,12].forEach(i=>kick(t+i*S,.95));[4,12].forEach(i=>clap(t+i*S,.3));
+      for(let i=0;i<16;i++)hat(t+i*S,i%4==2?.065:.028,i%4==2);
+      [2,6,10,14].forEach(i=>{bass(root-12,t+i*S,S*1.7,.2);I.bajan(chord,t+i*S,S*.85,.028)});
+      play(HOOK[(b-8)%8],t,'balalaika',1);play(HOOK[(b-8)%8],t,'schaleika',d2?.9:.7,-12);
+      if(d2){play(SLOW[b%4],t,'domra',.8,-12);[2,6,10,14].forEach(i=>I.buben(t+i*S,.035))}
+      if(b==23||b==47)roll(t+12*S,S,4,.2,.32)}
+    else if(b<32){// Break: Swirel + Bajan, Herzschlag; ab Takt 29 Build mit Riser, Filterfahrt, Wirbel
+      if(b==24)lp.frequency.setValueAtTime(18000,t);
+      I.bajan(chord,t,BAR*.97,.05);I.pluck('kbass',root-24,t,.45);play(SLOW[b%4],t,'swirel',1);I.arp('gusli',chord.map(m=>m+12),t+8*S,.07,.14);
+      if(b<28){I.drum(t,.26);I.drum(t+3*S,.16)}
+      else{if(b==28){lp.frequency.setValueAtTime(700,t);lp.frequency.setTargetAtTime(15000,t,3.2);riser(t,4*BAR-4*S,.12)}
+        [0,4,8,12].forEach(i=>kick(t+i*S,.55));if(b==29)roll(t,4*S,4,.08,.12);if(b==30)roll(t,2*S,8,.12,.2);if(b==31)roll(t,S,12,.2,.36)}}
+    else{// Outro: Filter schließt, Hook leise auf der Gusli
+      if(b==48){lp.frequency.setValueAtTime(18000,t);lp.frequency.setTargetAtTime(600,t,3)}
+      I.bajan(chord,t,BAR*.97,.045);I.pluck('kbass',root-24,t,.4);play(HOOK[b%8],t,'gusli',.7);if(b<50)[0,8].forEach(i=>kick(t+i*S,.45))}};
+  let b=0,next=AC.currentTime+.4;
+  tim.push(setInterval(()=>{if(!alive())return;while(next<AC.currentTime+.6){bar(b,next);next+=BAR;b=(b+1)%BARS}},100))}
 
 // ----- Dorffest: schnelle Balalaika-Phrasen, Bajan-Begleitung, Holzlöffel, Schellentrommel; dazwischen Pausen -----
 function dorffest(out,tim,alive){

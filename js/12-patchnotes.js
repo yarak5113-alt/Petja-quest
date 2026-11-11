@@ -1,6 +1,10 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.24',d:'11.11.2026',t:'Folk-Banger im Startmenü',n:[
+    'Neue Titelmusik: ein eigener Folk-Banger mit 128 BPM – Balalaika und Bajan spielen eine Ohrwurm-Melodie über Kick, hüpfendem Bass und Klatschen',
+    'Mit Intro, Trommelwirbel und Drop, ruhigem Flöten-Teil und zweitem Drop mit Domra-Gegenstimme',
+    'Läuft in Schleife, solange das Startmenü offen ist']},
   {v:'1.23',d:'11.11.2026',t:'Petja im Detail',n:[
     'Petja hat jetzt richtige Hände mit Fingern, Daumen und Fingergliedern',
     'Turnschuhe mit Schnürung, Kappe, Ferse und Sohlennaht',
