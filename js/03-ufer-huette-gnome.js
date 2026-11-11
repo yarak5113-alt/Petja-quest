@@ -169,25 +169,41 @@ const BJ=`<g stroke="#141a0c" stroke-width="1.3" stroke-linejoin="round" stroke-
 <path d="M-20,-232C-30,-220 -32,-180 -34,-130C-30,-118 -24,-114 -18,-112L22,-114C28,-140 26,-190 14,-228C6,-240 -12,-240 -20,-232Z" fill="#9a9a90"/>
 <path d="M-44,-150C-44,-100 -44,-50 -40,4" fill="none" stroke="#4a3018" stroke-width="4.5"/><path d="M-44,-150C-50,-158 -48,-168 -40,-166C-36,-162 -40,-156 -44,-154" fill="none" stroke="#4a3018" stroke-width="4"/>
 <path d="M-17,-42L-16,-4M5,-42L7,-4" stroke="#7e8e5e" stroke-width="5"/>
-<path d="M-16,-4L-28,0L-30,2L-14,2ZM-26,0L-30,-2M7,-4L-4,0L-6,2L10,2ZM-2,0L-6,-2" fill="#7e8e5e"/>
+<path d="M-14,-40L-13,-6M7.5,-40L9,-6" stroke="#5e6e44" stroke-width="1.5"/><path d="M-19,-26C-21,-23 -21,-20 -19,-17M3.5,-26C1.5,-23 1.5,-20 3.5,-17" fill="#7e8e5e" stroke-width=".8"/><path d="M-17.5,-22.5C-16.5,-21.5 -15.5,-21.5 -14.5,-22.5M5,-22.5C6,-21.5 7,-21.5 8,-22.5" fill="none" stroke="#4a5634" stroke-width=".6"/>
+<path d="M-12,-6C-14,-2 -12,2 -14,3L-36,3C-40,2 -40,-2 -36,-3C-30,-5 -22,-7 -12,-6Z" fill="#7e8e5e"/><path d="M-39,-1L-43,0M-39,2L-42,3.5" fill="none" stroke="#d8d0a0" stroke-width="1.3"/><path d="M-30,1L-29,-2M-24,1L-23,-3M-18,1L-17,-3" fill="none" stroke-width=".6"/>
+<path d="M10,-6C12,-2 10,2 12,3L-12,3C-16,2 -16,-2 -12,-3C-6,-5 0,-7 10,-6Z" fill="#7e8e5e"/><path d="M-15,-1L-19,0M-15,2L-18,3.5" fill="none" stroke="#d8d0a0" stroke-width="1.3"/><path d="M-6,1L-5,-2M0,1L1,-3M6,1L7,-3" fill="none" stroke-width=".6"/>
 <path d="M-12,-176C-24,-172 -30,-156 -30,-130C-32,-100 -34,-70 -38,-44L-32,-38L-28,-46L-22,-36L-16,-46L-10,-36L-4,-46L2,-36L8,-46L14,-38L20,-46L26,-40C24,-70 22,-100 22,-130C22,-156 18,-170 8,-176Z" fill="#55504a"/>
-<path d="M-20,-140L14,-140L18,-52L-26,-52Z" fill="#b8ad8c"/><path d="M-12,-110L-2,-110L-2,-98L-12,-98Z" fill="#8a7a5a"/><ellipse cx="6" cy="-80" rx="6" ry="4" fill="#6a7040" stroke="none" opacity=".6"/><ellipse cx="-14" cy="-66" rx="4" ry="3" fill="#7a3a2a" stroke="none" opacity=".5"/>
+<path d="M8,-176C18,-170 22,-156 22,-130C22,-100 24,-70 26,-40L20,-46L14,-38C12,-70 12,-110 12,-140C12,-156 12,-168 8,-176Z" fill="#45413b" stroke="none"/>
+<path d="M-31,-50L-27,-43M-25,-50L-21,-42M-19,-50L-15,-43M6,-50L10,-43M12,-50L16,-42M18,-50L21,-44" fill="none" stroke="#2e2a26" stroke-width=".8"/>
+<path d="M-33,-88L-25,-88L-25,-76L-34,-76Z" fill="#6a5e4a"/><path d="M-33,-86L-31,-87M-33,-82L-31,-83M-33,-78L-31,-79M-27,-87L-25,-86M-27,-83L-25,-82" fill="none" stroke="#c8b890" stroke-width=".7"/>
+<path d="M-20,-140L14,-140L18,-52L-26,-52Z" fill="#b8ad8c"/><path d="M6,-140L14,-140L18,-52L9,-52Z" fill="#a29878" stroke="none"/><path d="M-10,-130C-12,-110 -14,-80 -16,-56M0,-128C0,-104 2,-80 2,-58" fill="none" stroke="#8e8466" stroke-width=".9"/>
+<path d="M-12,-110L-2,-110L-2,-98L-12,-98Z" fill="#8a7a5a"/><path d="M-11,-108L-10,-111M-7,-108L-6,-111M-3,-108L-2,-111M-11,-100L-10,-97M-7,-100L-6,-97" fill="none" stroke-width=".6"/><ellipse cx="6" cy="-80" rx="6" ry="4" fill="#6a7040" stroke="none" opacity=".6"/><ellipse cx="-14" cy="-66" rx="4" ry="3" fill="#7a3a2a" stroke="none" opacity=".5"/>
+<path d="M10,-120L14,-114M10,-110L15,-103M11,-98L15,-92M11,-88L16,-81M12,-76L16,-70" fill="none" stroke="#7a705a" stroke-width=".7"/>
 <path d="M-24,-142C-10,-138 6,-138 20,-142" fill="none" stroke="#8a6a3a" stroke-width="2.4"/><path d="M-4,-140L-6,-126M-2,-140L2,-128" stroke="#8a6a3a" stroke-width="1.6"/>
 <path d="M10,-172C22,-168 28,-160 30,-150L24,-146C20,-154 14,-160 8,-162Z" fill="#55504a"/><path d="M27,-149C32,-162 34,-180 32,-194" fill="none" stroke="#8a9a70" stroke-width="5"/>
+<path d="M22,-166C26,-162 28,-158 29,-152" fill="none" stroke="#3a3632" stroke-width="1"/><path d="M29,-160L32,-170M30,-166L33,-178" fill="none" stroke="#6a7848" stroke-width=".7"/>
+<ellipse cx="32" cy="-196" rx="4.2" ry="3.6" fill="#8a9a70"/>
 <path d="M32,-194L28,-206M32,-194L33,-208M32,-194L37,-205M32,-194L40,-198M30,-196L24,-200" fill="none" stroke="#8a9a70" stroke-width="2.2"/>
+<path d="M28,-206L26,-211M33,-208L33,-214M37,-205L40,-210M40,-198L45,-200M24,-200L19,-201" fill="none" stroke="#d8d0a0" stroke-width="1.5"/><path d="M30,-201L31,-203M34,-202L35,-204" fill="none" stroke-width=".6"/>
 <path d="M-22,-170C-32,-154 -38,-136 -40,-120L-34,-118C-30,-132 -24,-146 -16,-158Z" fill="#55504a"/><path d="M-38,-120L-42,-110" stroke="#8a9a70" stroke-width="5"/><ellipse cx="-43" cy="-112" rx="4.5" ry="5" fill="#8a9a70"/>
 <path d="M-6,-176L-6,-184L4,-184L4,-176Z" fill="#8a9a70"/>
 <path d="M-20,-214C-22,-226 -10,-232 0,-230C10,-228 14,-218 12,-206C11,-196 8,-186 2,-180C-4,-176 -14,-176 -18,-182C-22,-190 -22,-204 -20,-214Z" fill="#8a9a70"/>
+<path d="M5,-228C11,-224 14,-214 12,-206C11,-196 8,-186 2,-180C5,-190 6,-200 6,-210C6,-218 6,-224 5,-228Z" fill="#75855c" stroke="none"/>
 <path d="M10,-212C16,-216 18,-206 12,-200Z" fill="#7e8e64"/>
+<path d="M-17,-223C-12,-225 -6,-225 -2,-223M-15,-227C-11,-229 -5,-229 -1,-227M-12,-220C-9,-221 -6,-221 -4,-220" fill="none" stroke="#4a5634" stroke-width=".8"/>
+<path d="M-19,-209L-23,-211M-19,-207L-23,-206M-18,-211L-21,-214M-17,-205C-14,-202 -11,-202 -9,-204M-4,-206C-2,-203 1,-203 3,-205M-16,-203C-13,-200 -10,-200 -8,-202" fill="none" stroke="#4a5634" stroke-width=".7"/>
+<path d="M-4,-198C-6,-194 -6,-190 -4,-187M8,-206L10,-200M7,-200L9,-195" fill="none" stroke="#4a5634" stroke-width=".7"/>
 <ellipse cx="-13" cy="-210" rx="5" ry="4" fill="#4a5634" stroke="none"/><ellipse cx="-1" cy="-211" rx="4.5" ry="4" fill="#4a5634" stroke="none"/>
 <circle cx="-14" cy="-210" r="2.2" fill="#f0d030"/><circle cx="-2" cy="-211" r="2" fill="#f0d030"/><circle cx="-14.6" cy="-210" r=".9" fill="#000" stroke="none"/><circle cx="-2.6" cy="-211" r=".9" fill="#000" stroke="none"/>
 <path d="M-20,-218L-9,-213M-6,-214L4,-218" stroke="#b8b8b0" stroke-width="2.4"/>
-<path d="M-8,-208C-14,-204 -24,-198 -34,-186C-36,-182 -32,-182 -28,-184C-24,-188 -18,-192 -12,-196C-10,-198 -8,-202 -6,-204Z" fill="#7e8e64"/><circle cx="-24" cy="-192" r="1.8" fill="#5e6e48"/>
+<path d="M-8,-208C-14,-204 -24,-198 -34,-186C-36,-182 -32,-182 -28,-184C-24,-188 -18,-192 -12,-196C-10,-198 -8,-202 -6,-204Z" fill="#7e8e64"/><path d="M-33,-184C-26,-187 -18,-192 -10,-198" fill="none" stroke="#5e6e48" stroke-width="1.2"/><circle cx="-24" cy="-192" r="2.2" fill="#5e6e48"/><path d="M-24,-194L-26,-199M-23,-194L-21,-198M-25,-193L-29,-195" fill="none" stroke-width=".5"/><path d="M-20,-200C-17,-198 -14,-198 -12,-200" fill="none" stroke="#5e6e48" stroke-width=".6"/>
 <path d="M-22,-186C-14,-180 -4,-182 4,-190" fill="none" stroke-width="1.2"/><path d="M-16,-184L-15,-180L-13,-184ZM-6,-185L-5,-181L-3,-186Z" fill="#e8e0a0" stroke-width=".6"/>
-<path d="M-20,-182C-24,-178 -22,-172 -16,-172C-12,-174 -12,-178 -14,-182" fill="#8a9a70"/>
+<path d="M-20,-182C-24,-178 -22,-172 -16,-172C-12,-174 -12,-178 -14,-182" fill="#8a9a70"/><path d="M-21,-177L-23,-175M-19,-174L-20,-171M-16,-173L-16,-170M-14,-175L-12,-173" fill="none" stroke-width=".6"/>
 <path d="M4,-202C2,-196 2,-192 4,-188M-18,-200C-20,-196 -20,-192 -19,-189" fill="none" stroke="#6a7848" stroke-width=".8"/>
 <path d="M-20,-220C-28,-200 -32,-170 -30,-130M-16,-226C-26,-210 -24,-180 -26,-150M8,-224C18,-200 20,-170 18,-130M12,-218C22,-196 24,-160 22,-140M2,-230C10,-226 14,-216 16,-200" fill="none" stroke="#c8c8c0" stroke-width="2.2"/>
-<path d="M-14,-230L-20,-242M-4,-232L-2,-246M6,-230L14,-240M-20,-226L-30,-232" fill="none" stroke="#b8b8b0" stroke-width="1.8"/></g>`;
+<path d="M-22,-210C-30,-190 -33,-160 -32,-134M14,-210C22,-190 24,-160 24,-136M4,-228C14,-220 18,-200 20,-170" fill="none" stroke="#7a7a72" stroke-width=".9"/>
+<path d="M-14,-230L-20,-242M-4,-232L-2,-246M6,-230L14,-240M-20,-226L-30,-232M-10,-232L-14,-246M10,-226L20,-232" fill="none" stroke="#b8b8b0" stroke-width="1.8"/>
+<path d="M-46,-118C-48,-114 -48,-108 -45,-106M-40,-116L-38,-113M-40,-111L-38,-108" fill="none" stroke-width=".7"/><path d="M-47,-114L-50,-113M-47,-110L-50,-109" fill="none" stroke="#d8d0a0" stroke-width="1.3"/></g>`;
 // ================= Tisch-Minispiel: Joint zerlegen & sortieren =================
 function tableGame(){if($('#fg'))return;const cv2=document.createElement('canvas');cv2.id='fg';cv2.width=800;cv2.height=500;cv2.style.cssText='position:absolute;inset:0;width:100%;height:100%;z-index:20;cursor:grab';$('#game').appendChild(cv2);
   const x=cv2.getContext('2d');let fin=false,ph=0,mx=0,my=0,drag=null,un=0,unA=false,miss=0,msg='Zieh den Filter vom Joint ab und leg ihn ins Feld „Filter“.';

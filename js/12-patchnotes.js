@@ -1,6 +1,10 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.17',d:'11.11.2026',t:'Neuer Zeichenstil',n:[
+    'Figuren wie handgezeichnet: dünne Tuschelinien und weiche Airbrush-Schatten statt Pixel',
+    'Petja komplett neu gezeichnet: schlaksig, müde Augen, Bartstoppeln, Falten im Hemd',
+    'Baba Jaga mit Runzeln, Warze, Krallen und geflickter Schürze']},
   {v:'1.16',d:'10.11.2026',t:'Tiere überall',n:[
     'Dorf: Hunde bellen, Katzen miauen, Kühe muhen, Schweine grunzen, und der Hahn kräht',
     'Dunkle Orte: öfter Wolfsheulen und Eulenrufe',
