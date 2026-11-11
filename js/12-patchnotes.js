@@ -1,6 +1,10 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.25',d:'11.11.2026',t:'Gemalt statt glatt',n:[
+    'Alle Figuren sehen jetzt aus wie handgemalte Zeichentrick-Folien: weiche Airbrush-Schatten statt harter Kanten',
+    'Warm-braune Federkontur, außen kräftiger und auf der Schattenseite dicker – wie mit der Hand gezogen',
+    'Etwas gedämpftere Farben, Falten und gemalte Schatten verlaufen weich ineinander']},
   {v:'1.24',d:'11.11.2026',t:'Folk-Banger im Startmenü',n:[
     'Neue Titelmusik: ein eigener Folk-Banger mit 128 BPM – Balalaika und Bajan spielen eine Ohrwurm-Melodie über Kick, hüpfendem Bass und Klatschen',
     'Mit Intro, Trommelwirbel und Drop, ruhigem Flöten-Teil und zweitem Drop mit Domra-Gegenstimme',

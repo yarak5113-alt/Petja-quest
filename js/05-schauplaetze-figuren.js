@@ -174,30 +174,46 @@ const INKF='<defs><filter id="v" x="-20%" y="-20%" width="140%" height="140%" co
   '<feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="11"/>'+
   '<feColorMatrix type="matrix" values="0 0 0 0 .16  0 0 0 0 .08  0 0 0 0 .03  .25 0 0 0 -.13"/><feComposite in2="SourceAlpha" operator="in" result="gr"/>'+
   '<feMerge><feMergeNode in="ol"/><feMergeNode in="s"/><feMergeNode in="gr"/></feMerge></filter></defs>';
-// PIXELSTYLE: Figuren als Pixel-Sprites, 500 Pixel hoch (≈ Bildschirmgröße -> Linien wirken gezeichnet). Die Arrays in pixel/ werden aus genau diesen Sprites exportiert.
-// Cel-Shading: jede Fläche wird von links oben beleuchtet (Filter #v) und dann auf Grundton + Schattenton (PIX_SHADE) reduziert -> harte Schattenkante wie im Zeichentrick.
-// Tiere (Kiste < 150 Einheiten hoch) bekommen dieselbe Pixeldichte wie Petja. PIXELSTYLE=false -> handgezeichneter Stil (INKSTYLE).
-const PIXELSTYLE=true,PIX_ROWS=500,PIX_LINE=.55,PIX_SHADE=[.74,.77,.84];
+// PIXELSTYLE: Figuren als Zeichentrick-Sprites, 500 Pixel hoch (≈ Bildschirmgröße). Die Arrays in pixel/ werden aus genau diesen Sprites exportiert.
+// Stil wie ein handgemalter Zeichentrick-Cel: braune Federkontur (außen ~2 px, auf der Schattenseite rechts/unten dicker),
+// weiche Airbrush-Schattierung (Licht von links oben, Filter #v, innerhalb jeder Farbfläche verwischt), leicht gedämpfte Farben.
+// Stellschrauben: PIX_INK Linienfarbe, PIX_SOFT Schattentiefe, PIX_BLUR Weichheit, PIX_SAT Sättigung, PIX_LINE Stärke der Innenlinien,
+// PIX_MIX/PIX_NEAR: Durchgänge/Farbabstand für das Verwischen ähnlicher Farben (gezeichnete Schattenflächen, Falten) – verschiedene Materialien bleiben scharf getrennt.
+// Tiere (Kiste < 150 Einheiten hoch) bekommen dieselbe Pixeldichte wie Petja. PIXELSTYLE=false -> alter handgezeichneter Stil (INKSTYLE).
+const PIXELSTYLE=true,PIX_ROWS=500,PIX_LINE=.55,PIX_INK=[46,28,16],PIX_SOFT=.8,PIX_BLUR=2,PIX_SAT=.8,PIX_MIX=2,PIX_NEAR=62;
 if(INKSTYLE&&!PIXELSTYLE)document.documentElement.classList.add('ink');
 function pixSprite(inner,[x,y,w,h]){const H=h>=150?PIX_ROWS:Math.round(h*PIX_ROWS/258),W=Math.round(w*H/h),SS=3;
-  // feine Konturen: Tusche- und Detailstriche (<=1.6) dünner zeichnen; dicke farbige Striche (Haarsträhnen, Stab) bleiben
+  // feine Innenlinien: Tusche- und Detailstriche (<=1.6) dünner zeichnen; dicke farbige Striche (Haarsträhnen, Stab) bleiben
   const thin=inner.replace(/stroke-width="([\d.]+)"/g,(m,v)=>+v<=1.6?`stroke-width="${(+v*PIX_LINE).toFixed(2)}"`:m);
   const svg=s=>'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="${W*SS}" height="${H*SS}" viewBox="${x} ${y} ${w} ${h}" preserveAspectRatio="none">${s}</svg>`);
   const load=src=>new Promise(r=>{const im=new Image();im.onload=()=>{const c=document.createElement('canvas');c.width=W*SS;c.height=H*SS;const g=c.getContext('2d');g.drawImage(im,0,0);r(g.getImageData(0,0,c.width,c.height).data)};im.src=src});
-  // zweimal rendern: flach (welche Farbe?) und beleuchtet (Licht oder Schatten?)
+  // zweimal rendern: flach (welche Farbe?) und beleuchtet (wie hell?)
   return Promise.all([load(svg(thin)),load(svg(INKF+volumize(thin)))]).then(([d,dl])=>{const cw=W*SS;
-    // Palette = Konturfarbe + alle Füll- und Linienfarben der Figur; dahinter je ein Schattenton
     const rgb=s=>{s=s.slice(1);if(s.length==3)s=[...s].map(q=>q+q).join('');return [0,2,4].map(i=>parseInt(s.substr(i,2),16))};
-    const base=[[16,10,8],...[...new Set((inner.match(/(fill|stroke)="#[0-9a-fA-F]{3,6}"/g)||[]).map(s=>s.slice(s.indexOf("#"),-1).toLowerCase()))].map(rgb).filter(q=>Math.hypot(q[0]-30,q[1]-16,q[2]-8)>40)],NB=base.length;
-    const pal=[...base,...base.map(q=>q.map((v,i)=>Math.round(v*PIX_SHADE[i])))];
-    const memo=new Map(),near=(r,gg,b)=>{const key=r<<16|gg<<8|b;let v=memo.get(key);if(v!==undefined)return v;let bd=1e9;v=0;for(let i=0;i<NB;i++){const p=base[i],dd=(p[0]-r)**2+(p[1]-gg)**2+(p[2]-b)**2;if(dd<bd){bd=dd;v=i}}memo.set(key,v);return v};
-    // pro Zielpixel: häufigste Grundfarbe aus SS×SS Unterpixeln (ab 25 % Tinte -> Kontur); liegt das Licht dort unter 86 % -> Schattenton derselben Farbe
-    const grid=new Int16Array(W*H).fill(-1),cnt=new Uint16Array(NB);
+    const base=[PIX_INK,...[...new Set((inner.match(/(fill|stroke)="#[0-9a-fA-F]{3,6}"/g)||[]).map(s=>s.slice(s.indexOf("#"),-1).toLowerCase()))].map(rgb).filter(q=>Math.hypot(q[0]-30,q[1]-16,q[2]-8)>40)],NB=base.length;
+    const memo=new Map(),near=(r,gg,b)=>{const key=r<<16|gg<<8|b;let v=memo.get(key);if(v!==undefined)return v;let bd=1e9;v=0;for(let i=0;i<NB;i++){const p=i?base[i]:[16,10,8],dd=(p[0]-r)**2+(p[1]-gg)**2+(p[2]-b)**2;if(dd<bd){bd=dd;v=i}}memo.set(key,v);return v};
+    // pro Zielpixel: häufigste Grundfarbe aus SS×SS Unterpixeln (ab 25 % Tinte -> Linie) + Lichtwert (beleuchtet / flach)
+    const N=W*H,grid=new Int16Array(N).fill(-1),RT=new Float32Array(N).fill(1),cnt=new Uint16Array(NB);
     for(let Y=0;Y<H;Y++)for(let X=0;X<W;X++){cnt.fill(0);let op=0,lf=0,ul=0;for(let j=0;j<SS;j++)for(let i=0;i<SS;i++){const q=((Y*SS+j)*cw+X*SS+i)*4;if(d[q+3]<128)continue;op++;cnt[near(d[q],d[q+1],d[q+2])]++;lf+=dl[q]+dl[q+1]+dl[q+2];ul+=d[q]+d[q+1]+d[q+2]}
-      if(op<SS*SS/2)continue;if(cnt[0]>=SS*SS*.25){grid[Y*W+X]=0;continue}let b=1;for(let n=2;n<NB;n++)if(cnt[n]>cnt[b])b=n;grid[Y*W+X]=ul>0&&lf/ul<.86?b+NB:b}
-    // Außenkontur nur dort, wo die Figur am Rand noch keine Linie hat (sonst doppelt dicke Linien)
-    const o=document.createElement('canvas');o.width=W;o.height=H;const og=o.getContext('2d'),id=og.createImageData(W,H),od=id.data,ink=(X,Y)=>X>=0&&Y>=0&&X<W&&Y<H&&grid[Y*W+X]>0;
-    for(let Y=0;Y<H;Y++)for(let X=0;X<W;X++){let v=grid[Y*W+X];if(v<0){if(ink(X-1,Y)||ink(X+1,Y)||ink(X,Y-1)||ink(X,Y+1))v=0;else continue}const p=pal[v],q=(Y*W+X)*4;od[q]=p[0];od[q+1]=p[1];od[q+2]=p[2];od[q+3]=255}
+      if(op<SS*SS/2)continue;const k=Y*W+X;if(cnt[0]>=SS*SS*.25){grid[k]=0;continue}let b=1;for(let n=2;n<NB;n++)if(cnt[n]>cnt[b])b=n;grid[k]=b;RT[k]=ul>0?lf/ul/.93:1}
+    // Airbrush: Lichtwerte innerhalb derselben Farbfläche verwischen
+    for(let p=0;p<PIX_BLUR;p++){const T=RT.slice();for(let Y=0;Y<H;Y++)for(let X=0;X<W;X++){const k=Y*W+X,g0=grid[k];if(g0<=0)continue;let s=0,n=0;
+      for(let dy=-2;dy<=2;dy++)for(let dx=-2;dx<=2;dx++){const xx=X+dx,yy=Y+dy;if(xx<0||yy<0||xx>=W||yy>=H)continue;const j=yy*W+xx;if(grid[j]!==g0)continue;s+=T[j];n++}RT[k]=s/n}}
+    // Federkontur: ein Ring um die ganze Figur, auf der Schattenseite (rechts/unten) ein zweiter -> ungleichmäßig dick
+    const fig=(X,Y)=>X>=0&&Y>=0&&X<W&&Y<H&&grid[Y*W+X]>=0,G=grid.slice();
+    for(let Y=0;Y<H;Y++)for(let X=0;X<W;X++){const k=Y*W+X;if(grid[k]<0&&(fig(X-1,Y)||fig(X+1,Y)||fig(X,Y-1)||fig(X,Y+1)))G[k]=0}
+    const G2=G.slice();for(let Y=0;Y<H;Y++)for(let X=0;X<W;X++){const k=Y*W+X;if(G[k]>=0)continue;if((X>1&&G[k-1]==0&&grid[k-1]<0&&fig(X-2,Y))||(Y>1&&G[k-W]==0&&grid[k-W]<0&&fig(X,Y-2)))G2[k]=0}
+    const C=new Float32Array(N*3);
+    for(let k=0;k<N;k++){const v=G2[k];if(v<0)continue;let c;
+      if(v==0)c=PIX_INK;else{const f=1-(1-Math.min(1.08,Math.max(.68,RT[k])))*PIX_SOFT,p=base[v],r=p[0]*f,g=p[1]*f,b=p[2]*f,L=.299*r+.587*g+.114*b;c=[L+(r-L)*PIX_SAT,L+(g-L)*PIX_SAT,L+(b-L)*PIX_SAT]}
+      C[k*3]=c[0];C[k*3+1]=c[1];C[k*3+2]=c[2]}
+    // ähnliche Farben weich ineinander verlaufen lassen (kantenerhaltend), Tusche bleibt scharf
+    for(let p=0;p<PIX_MIX;p++){const T=C.slice();for(let Y=0;Y<H;Y++)for(let X=0;X<W;X++){const k=Y*W+X;if(G2[k]<=0)continue;let r=0,g=0,b=0,n=0;
+      for(let dy=-2;dy<=2;dy++)for(let dx=-2;dx<=2;dx++){const xx=X+dx,yy=Y+dy;if(xx<0||yy<0||xx>=W||yy>=H)continue;const j=yy*W+xx;if(G2[j]<=0)continue;
+        if(Math.abs(T[j*3]-T[k*3])+Math.abs(T[j*3+1]-T[k*3+1])+Math.abs(T[j*3+2]-T[k*3+2])>PIX_NEAR*1.7)continue;r+=T[j*3];g+=T[j*3+1];b+=T[j*3+2];n++}
+      C[k*3]=r/n;C[k*3+1]=g/n;C[k*3+2]=b/n}}
+    const o=document.createElement('canvas');o.width=W;o.height=H;const og=o.getContext('2d'),id=og.createImageData(W,H),od=id.data;
+    for(let k=0;k<N;k++){if(G2[k]<0)continue;const q=k*4;od[q]=Math.max(0,Math.min(255,C[k*3]));od[q+1]=Math.max(0,Math.min(255,C[k*3+1]));od[q+2]=Math.max(0,Math.min(255,C[k*3+2]));od[q+3]=255}
     og.putImageData(id,0,0);return o.toDataURL()})}
 // hängt den Volumen-Filter an jede Form mit Farbfüllung
 const volumize=s=>s.replace(/<(path|ellipse|circle|rect|polygon)\b([^>]*)>/g,(m,t,a)=>/\bfill="#/.test(a)&&!/\bfilter=/.test(a)?`<${t} filter="url(#v)"${a}>`:m);
