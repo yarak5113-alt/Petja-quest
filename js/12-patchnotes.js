@@ -1,6 +1,11 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.23',d:'11.11.2026',t:'Petja im Detail',n:[
+    'Petja hat jetzt richtige Hände mit Fingern, Daumen und Fingergliedern',
+    'Turnschuhe mit Schnürung, Kappe, Ferse und Sohlennaht',
+    'Mehr Details: Nähte und Falten am Hemd, gekrempelte Ärmel, Gürtelschlaufen, Lidfalten, Lippen, Haarsträhnen',
+    'Fehler behoben: keine schwarze Linie mehr quer über Hals und Handgelenke']},
   {v:'1.22',d:'11.11.2026',t:'Wie gezeichnet',n:[
     'Figuren in doppelter Auflösung (500 Pixel hoch): die Linien sind jetzt so fein, dass sie gezeichnet statt gepixelt wirken',
     'Zeichentrick-Schatten: jede Fläche hat eine Licht- und eine Schattenseite mit harter Kante, im Farbton der Fläche',
