@@ -198,14 +198,15 @@ function PETV(th,open,step){const r=th*Math.PI/180,c=Math.cos(r),s=Math.sin(r),X
   const arm=side=>{const sw=(side<0?-st:st)*.7,zs=-2,ze=sw*.5-5.5,zw=sw-4,Xs=X(21*side,zs),Xe=X(28.6*side,ze),Xw=X(31*side,zw),d=D(21*side,ze+2);
     const near=d>4,shade=!near&&Xs>0,sl=shade?PTE2:PTE,sk=shade?PSK2:PSK,o=Math.abs(c)>.3?side*Math.sign(c):1;
     const kx=Math.max(.6,Math.abs(s)),sg=Math.abs(s)>.3?Math.sign(s):-side,hand=c<0?PTHUMB(sk)+PHAND(sk):PHAND(sk)+PTHUMB(sk),P=(x,y)=>f1(x)+','+y;
-    const tilt=f1(-5*o*(Math.abs(c)>.3?1:0));
+    const sv=Math.abs(c)<.3,tilt=f1(-5*o*(Math.abs(c)>.3?1:0));
     // Ärmel: Schulterlinie geht weich in den Oberarm über; innen eigene Kontur, weil der Arm jetzt frei steht
     const top=P(Xs-o*1,-198),del=P(Xs+o*7,-185),eo=P(Xe+o*6.4,-152),ei=P(Xe-o*5.6,-152),pit=P(Xs-o*4.4,-180),inn=P(Xs-o*5,-195);
     const outer=`M${top}C${P(Xs+o*4.6,-198.4)} ${P(Xs+o*7.6,-193)} ${del}C${P(Xs+o*8.2,-176)} ${P(Xe+o*7.4,-164)} ${eo}`;
-    const inner=`M${ei}C${P(Xe-o*6,-160)} ${P(Xs-o*2.6,-170)} ${pit}`;
-    const sleeve=`<path d="${outer}L${ei}C${P(Xe-o*6,-160)} ${P(Xs-o*2.6,-170)} ${pit}L${inn}Z" fill="${sl}" stroke="none"/>`+
+    // Seitenansicht: Arm liegt vor dem Rumpf, also auch hinten durchgehende Kontur bis zur Schulter
+    const inner=sv?`M${ei}C${P(Xe-o*6,-162)} ${P(Xs-o*5.6,-172)} ${P(Xs-o*5.6,-184)}C${P(Xs-o*5.6,-192)} ${P(Xs-o*3.6,-197.6)} ${top}`:`M${ei}C${P(Xe-o*6,-160)} ${P(Xs-o*2.6,-170)} ${pit}`;
+    const sleeve=(sv?`<path d="${outer}L${ei}C${P(Xe-o*6,-162)} ${P(Xs-o*5.6,-172)} ${P(Xs-o*5.6,-184)}C${P(Xs-o*5.6,-192)} ${P(Xs-o*3.6,-197.6)} ${top}Z" fill="${sl}" stroke="none"/>`:`<path d="${outer}L${ei}C${P(Xe-o*6,-160)} ${P(Xs-o*2.6,-170)} ${pit}L${inn}Z" fill="${sl}" stroke="none"/>`)+
       `<path d="${outer}" fill="none"/><path d="${inner}" fill="none" stroke-width=".85"/>`+
-      `<path d="M${P(Xs+o*3.6,-190)}C${P(Xs+o*3.2,-183)} ${P(Xs+o*3.8,-177)} ${P(Xs+o*5.4,-171)}M${P(Xe-o*3.4,-166)}C${P(Xe-o*1.4,-161)} ${P(Xe+o*1.6,-158)} ${P(Xe+o*4.2,-156.6)}" fill="none" stroke="#147470" stroke-width=".6"/>`;
+      `<path d="${sv?'':`M${P(Xs+o*3.6,-190)}C${P(Xs+o*3.2,-183)} ${P(Xs+o*3.8,-177)} ${P(Xs+o*5.4,-171)}`}M${P(Xe-o*3.4,-166)}C${P(Xe-o*1.4,-161)} ${P(Xe+o*1.6,-158)} ${P(Xe+o*4.2,-156.6)}" fill="none" stroke="#147470" stroke-width=".6"/>`;
     // Ärmelende: weiche Wulst mit organisch gewellter Unterkante
     const roll=`<path d="M${P(Xe-o*5.8,-153.4)}C${P(Xe-o*7,-150)} ${P(Xe-o*6.6,-146.6)} ${P(Xe-o*5.2,-145.4)}C${P(Xe-o*3,-144)} ${P(Xe-o*.6,-145.2)} ${P(Xe+o*1.6,-144.4)}C${P(Xe+o*3.8,-143.8)} ${P(Xe+o*6.4,-144.6)} ${P(Xe+o*7,-146.6)}C${P(Xe+o*7.6,-149)} ${P(Xe+o*7.2,-151.6)} ${P(Xe+o*6.4,-153.4)}C${P(Xe+o*2,-152.2)} ${P(Xe-o*2,-152.4)} ${P(Xe-o*5.8,-153.4)}Z" fill="${shade?PTE:'#30b4ab'}"/>`+
       `<path d="M${P(Xe-o*5,-149)}C${P(Xe-o*1.4,-148.2)} ${P(Xe+o*2.6,-148.6)} ${P(Xe+o*6.4,-149.8)}" fill="none" stroke="#147470" stroke-width=".55"/>`;
@@ -222,7 +223,8 @@ function PETV(th,open,step){const r=th*Math.PI/180,c=Math.cos(r),s=Math.sin(r),X
   out.push(`<g transform="scale(${f1(.9*Math.hypot(c,.5*s))},1)">${PTORSO}</g>`);
   if(c>.15)out.push(`<g transform="translate(${f1(6.4*s)},0) scale(${f1(.9*c)},1)">${PFRONT}</g>`);
   else if(c<-.15)out.push(`<g transform="translate(${f1(-6.4*s)},0) scale(${f1(.9*c)},1)">${PBACK}</g>`);
-  else out.push(`<path d="M${f1(Xn-6)},-206C${f1(Xn-3)},-208 ${f1(Xn+3)},-208 ${f1(Xn+6)},-206L${f1(Xn+5.4)},-201.6C${f1(Xn+2)},-203.4 ${f1(Xn-2)},-203.4 ${f1(Xn-5.4)},-201.6Z" fill="${PTE3}"/>`);
+  // Seitenansicht: Kragen als schräges Band um den Hals (hinten hoch, vorne tiefer) – liegt in der Brust-Neigung, daher Basis ohne Neigungs-Versatz
+  else{const k=1.6*s,f=Math.sign(s)||1,Q=(x,y)=>f1(k+f*x)+','+y;out.push(`<path d="M${Q(-6.6,-210.4)}C${Q(-3,-210.6)} ${Q(2,-208.4)} ${Q(5,-205)}L${Q(4.2,-200.6)}C${Q(1.6,-202.4)} ${Q(-2.4,-202.8)} ${Q(-6.8,-202.6)}Z" fill="${PTE3}"/><path d="M${Q(-4.4,-206.4)}C${Q(-1.4,-206.6)} ${Q(1.6,-205.4)} ${Q(3.6,-203.4)}" fill="none" stroke="#147470" stroke-width=".5"/>`)}
   out.push('</g>');
   A.filter(a=>a.d>=-4).forEach(a=>out.push(a.svg));
   const hk=th<23?'f':th<68?'q':th<113?'s':th<158?'bq':'b';

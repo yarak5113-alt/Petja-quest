@@ -1,6 +1,9 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.34',d:'11.11.2026',t:'Seitenansicht sauber',n:[
+    'Kragen in der Seitenansicht liegt jetzt als schräges Band um den Hals (hinten hoch, vorne tiefer) statt davor zu schweben',
+    'Arm in der Seitenansicht mit durchgehender Kontur hinten bis zur Schulter, zerstückelte Falten entfernt'] },
   {v:'1.33',d:'11.11.2026',t:'Kragen-Fix',n:[
     'Schrägansicht: Der V-Ausschnitt saß neben dem Hals und ein Hautstück ragte über die Schulter – Kragen, Knopfleiste und Hals sind jetzt sauber ausgerichtet'] },
   {v:'1.32',d:'11.11.2026',t:'Schlankere Taille',n:[
