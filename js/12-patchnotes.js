@@ -1,6 +1,10 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.29',d:'11.11.2026',t:'Arme wie gezeichnet',n:[
+    'Petjas Oberarme liegen jetzt am Körper an – geschlossene Silhouette, getrennt nur durch eine geschwungene Linie und Stofffalten',
+    'Leicht hängende Schultern, der Ärmel wächst weich aus der Schulterlinie (keine Kugelgelenke mehr)',
+    'Ärmelenden als weiche Stoffwulst statt harter Kante']},
   {v:'1.28',d:'11.11.2026',t:'Lockerer Petja',n:[
     'Oberkörper ist in der Schräg- und Seitenansicht nicht mehr zu breit',
     'Arme hängen locker vom Körper weg, die Hände liegen nicht mehr am Oberschenkel an',

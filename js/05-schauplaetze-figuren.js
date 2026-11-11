@@ -114,7 +114,7 @@ function tube(x1,y1,r1,x2,y2,r2){const dx=x2-x1,dy=y2-y1,L=Math.hypot(dx,dy)||1,
 // Hand von der Seite (Innenfläche zum Oberschenkel): u = nach vorne, v = nach unten ab Handgelenk
 const PHAND=col=>`<path d="M-4.2,0C-5,5 -5.2,10 -4.6,13.4C-4,16.6 -2.6,19.4 -.4,20.6C1.2,21.4 2.8,20.6 3.6,19C4.2,17.6 3.8,16.4 3,15.6C4,13 4.6,10 4.6,7L4.4,0Z" fill="${col}"/><path d="M-2.2,13.4C-1.6,16.4 -.4,18.8 1.2,20.2M.6,12.6C1.4,14.6 2.2,16 3,16.8M-4.4,12.6C-3.6,12.2 -2.6,12 -1.8,12.2" fill="none" stroke="${PSKL}" stroke-width=".5"/>`;
 const PTHUMB=col=>`<path d="M3.8,3C6.4,5 7,9 6,12.4C5.4,13.6 4.4,13.4 4.2,12.4C4.6,10 4.4,7 3.4,5.4Z" fill="${col}"/>`;
-const PTORSO=`<path d="M-22,-200C-27,-190 -28,-170 -27,-150C-27,-136 -26,-124 -25,-112C-16,-109 -6,-110 0,-112C8,-110 18,-109 25,-112C26,-126 27,-140 27,-152C28,-172 27,-190 22,-200C14,-205 6,-206 0,-204C-8,-206 -16,-205 -22,-200Z" fill="${PTE}"/><path d="M10,-204C16,-203 20,-202 22,-200C27,-190 28,-172 27,-152C27,-140 26,-126 25,-112C21,-111 17,-110 13,-110C16,-124 15,-140 17,-154C19,-170 15,-186 10,-204Z" fill="${PTE2}" stroke="none"/>`;
+const PTORSO=`<path d="M-22,-197C-27,-188 -28,-170 -27,-150C-27,-136 -26,-124 -25,-112C-16,-109 -6,-110 0,-112C8,-110 18,-109 25,-112C26,-126 27,-140 27,-152C28,-172 27,-188 22,-197C14,-204 6,-206 0,-204C-8,-206 -16,-204 -22,-197Z" fill="${PTE}"/><path d="M10,-204C16,-202 20,-200 22,-197C27,-188 28,-172 27,-152C27,-140 26,-126 25,-112C21,-111 17,-110 13,-110C16,-124 15,-140 17,-154C19,-170 15,-186 10,-204Z" fill="${PTE2}" stroke="none"/>`;
 const PFRONT=`<path d="M-5.6,-208L5.6,-208L6.4,-203L0,-186L-6.4,-203Z" fill="#c8925c" stroke="none"/><path d="M-3,-203L0,-193L3,-203Z" fill="#b07c4c" stroke="none"/><path d="M-6,-204L0,-186L6,-204" fill="none" stroke-width=".8"/>`+
   `<path d="M-9,-205L-1,-186L-13,-194C-12,-199 -11,-202 -9,-205ZM9,-205L1,-186L13,-194C12,-199 11,-202 9,-205Z" fill="${PTE3}" stroke-width=".8"/><path d="M0,-186C0,-160 -.5,-136 0,-112" fill="none" stroke-width=".8"/>`+
   [-174,-158,-142,-126].map(y=>`<circle cx="-1.6" cy="${y}" r=".9" fill="#e8f4f0" stroke-width=".4"/>`).join('')+
@@ -193,15 +193,24 @@ function PETV(th,open,step){const r=th*Math.PI/180,c=Math.cos(r),s=Math.sin(r),X
     const pants=`<path d="M${f1(Xh-10.5)},-124Q${f1(Xk-5.6)},-60 ${f1(Xm-9.8)},-8.4L${f1(Xm+9.8)},-8.4Q${f1(Xk+5.6)},-60 ${f1(Xh+10.5)},-124Z" fill="${PJE}"/>`+
       `<path d="M${f1(Xk-4)},-62C${f1(Xk-1)},-59.5 ${f1(Xk+2)},-59.5 ${f1(Xk+4)},-62M${f1(Xm-7)},-22C${f1(Xm-3)},-18 ${f1(Xm+3)},-18 ${f1(Xm+7)},-22" fill="none" stroke="${PJEL}" stroke-width=".8"/>`;
     return{d:D(10.5*side,zf*.5),svg:c>.3?pants+shoe:shoe+pants}};
-  // Arm einer Seite: Ärmel, Krempel, geformter Unterarm, Hand mit Innenfläche zum Oberschenkel
-  const arm=side=>{const zw=(side<0?-st:st)*.7,ze=zw*.5,Xs=X(20.5*side,0),Xe=X(25.4*side,ze),Xw=X(30.2*side,zw+1.5),d=D(20.5*side,ze);
-    const near=d>4,shade=!near&&Xs>0,sl=shade?PTE2:PTE,sk=shade?PSK2:PSK;
-    const kx=Math.max(.6,Math.abs(s)),sg=Math.abs(s)>.3?Math.sign(s):-side,hand=c<0?PTHUMB(sk)+PHAND(sk):PHAND(sk)+PTHUMB(sk);
-    const svg=`<path d="${tube(Xs,-190,7.2,Xe,-153,6)}" fill="${sl}"/>`+
-      `<path d="M${f1(Xe-4.6)},-146Q${f1(Xe-6.6)},-132 ${f1(Xw-3.1)},-106L${f1(Xw+3.1)},-106Q${f1(Xe+5.8)},-132 ${f1(Xe+4.6)},-146Z" fill="${sk}"/>`+
-      `<path d="M${f1(Xe-2.6)},-140C${f1(Xe-1)},-139 ${f1(Xe+1)},-139 ${f1(Xe+2.6)},-140" fill="none" stroke="${PSKL}" stroke-width=".45"/>`+
-      `<path d="M${f1(Xe-6.5)},-151.6C${f1(Xe-2)},-152.6 ${f1(Xe+2)},-152.6 ${f1(Xe+6.5)},-151.6L${f1(Xe+6.1)},-144.8C${f1(Xe+2)},-144 ${f1(Xe-2)},-144 ${f1(Xe-6.1)},-144.8Z" fill="${shade?PTE:PTE3}"/><path d="M${f1(Xe-6.3)},-148.2C${f1(Xe-2)},-148.9 ${f1(Xe+2)},-148.9 ${f1(Xe+6.3)},-148.2" fill="none" stroke="#1a908a" stroke-width=".5"/>`+
-      `<g transform="translate(${f1(Xw)},-107) scale(${f1(kx*sg)},1)">${hand}</g>`;
+  // Arm einer Seite – liegt am Rumpf an (geschlossene Silhouette), Schulter hängt leicht; Trennung Arm/Rumpf nur durch Linie + Falten,
+  // Ärmelende als weiche Stoffwulst statt harter Kante, keine Kugel an der Schulter; Hand mit Innenfläche zum Oberschenkel
+  const arm=side=>{const zw=(side<0?-st:st)*.7-1,ze=zw*.5,Xs=X(19*side,0),Xe=X(22.6*side,ze),Xw=X(26.4*side,zw),d=D(19*side,ze);
+    const near=d>4,shade=!near&&Xs>0,sl=shade?PTE2:PTE,sk=shade?PSK2:PSK,o=Math.abs(c)>.3?side*Math.sign(c):1;
+    const kx=Math.max(.6,Math.abs(s)),sg=Math.abs(s)>.3?Math.sign(s):-side,hand=c<0?PTHUMB(sk)+PHAND(sk):PHAND(sk)+PTHUMB(sk),P=(x,y)=>f1(x)+','+y;
+    // Ärmel: außen geht die Schulterlinie weich in den Oberarm über, innen liegt er auf dem Rumpf (Füllung ohne Kontur)
+    const top=P(Xs+o*1,-197.5),del=P(Xs+o*7.6,-184),eo=P(Xe+o*6.6,-152),ei=P(Xe-o*5,-152),pit=P(Xs-o*3.6,-176),inn=P(Xs-o*4.2,-195);
+    const outer=`M${top}C${P(Xs+o*5.4,-197.5)} ${P(Xs+o*7.8,-192)} ${del}C${P(Xs+o*7.8,-174)} ${P(Xe+o*7.2,-163)} ${eo}`;
+    const sleeve=`<path d="${outer}L${ei}C${P(Xe-o*5,-160)} ${P(Xs-o*3.6,-168)} ${pit}L${inn}Z" fill="${sl}" stroke="none"/>`+
+      `<path d="${outer}" fill="none"/>`+
+      `<path d="M${P(Xs-o*3.2,-184)}C${P(Xs-o*4,-172)} ${P(Xe-o*5.4,-162)} ${ei}" fill="none" stroke-width=".75"/>`+
+      `<path d="M${P(Xs+o*4.4,-189)}C${P(Xs+o*3.2,-182)} ${P(Xs+o*3.4,-176)} ${P(Xs+o*4.6,-170)}M${P(Xe-o*2.6,-166)}C${P(Xe-o*1,-161)} ${P(Xe+o*1.6,-158)} ${P(Xe+o*4,-156.6)}" fill="none" stroke="#147470" stroke-width=".6"/>`;
+    // Ärmelende: weiche Wulst mit organisch gewellter Unterkante
+    const roll=`<path d="M${P(Xe-o*5.4,-153.4)}C${P(Xe-o*6.6,-150)} ${P(Xe-o*6.2,-146.6)} ${P(Xe-o*5,-145.4)}C${P(Xe-o*3,-144)} ${P(Xe-o*.6,-145.2)} ${P(Xe+o*1.6,-144.4)}C${P(Xe+o*3.8,-143.8)} ${P(Xe+o*6.4,-144.6)} ${P(Xe+o*7,-146.6)}C${P(Xe+o*7.6,-149)} ${P(Xe+o*7.2,-151.6)} ${P(Xe+o*6.4,-153.4)}C${P(Xe+o*2,-152.2)} ${P(Xe-o*2,-152.4)} ${P(Xe-o*5.4,-153.4)}Z" fill="${shade?PTE:'#30b4ab'}"/>`+
+      `<path d="M${P(Xe-o*4.8,-149)}C${P(Xe-o*1.4,-148.2)} ${P(Xe+o*2.6,-148.6)} ${P(Xe+o*6.4,-149.8)}" fill="none" stroke="#147470" stroke-width=".55"/>`;
+    const fore=`<path d="M${P(Xe-o*4.4,-147)}Q${P(Xe-o*5.6,-132)} ${P(Xw-o*3,-106)}L${P(Xw+o*3,-106)}Q${P(Xe+o*6.4,-132)} ${P(Xe+o*4.8,-147)}Z" fill="${sk}"/>`+
+      `<path d="M${P(Xe-o*2.4,-140)}C${P(Xe-o*.8,-139)} ${P(Xe+o*1.2,-139)} ${P(Xe+o*2.8,-140)}" fill="none" stroke="${PSKL}" stroke-width=".45"/>`;
+    const svg=fore+sleeve+roll+`<g transform="translate(${f1(Xw)},-107) scale(${f1(kx*sg)},1)">${hand}</g>`;
     return{d,svg}};
   const L=[leg(-1),leg(1)].sort((a,b)=>a.d-b.d),A=[arm(-1),arm(1)],Xn=1.6*s;
   out.push(L[0].svg,L[1].svg);A.filter(a=>a.d<-4).forEach(a=>out.push(a.svg));
