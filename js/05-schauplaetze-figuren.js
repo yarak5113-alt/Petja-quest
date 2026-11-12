@@ -137,25 +137,29 @@ const PBACK=`<path d="M-9,-206C-4,-208 4,-208 9,-206L8.4,-201C3,-203 -3,-203 -8.
 // Pro Emotion: Brauen bL/bR=[außen-y, innen-y, Bogen], Augen eL/eR=[Oberlid-Öffnung, Unterlid, Lächel-Unterlid], Pupille r + Blick px/py,
 // ck=Wangen hoch, nl=Nasolabial-Spreizung, tilt=Kopfneigung; m=[Ruhe-Mund, 3 Sprech-Münder] als [Breite, Öffnung, Winkel links, Winkel rechts, Versatz, O-Form, Zähne]
 const PEMOS={
-  n:{bL:[-234.4,-233.8,0],bR:[-234.4,-233.8,0],eL:[1.4,.8],eR:[1.4,.8],r:1.05,px:0,py:0,ck:0,nl:0,
+  n:{bL:[-234.4,-233.8,0],bR:[-234.4,-233.8,0],eL:[1.4,.8],eR:[1.4,.8],lid:.55,r:1.05,px:0,py:0,ck:0,nl:0,
      m:[[3.6,0,.1,.1],[3,1.3,.1,.1],[3.4,2.2,.1,.1,0,0,1],[2,2.2,0,0,0,1]]},
-  schreck:{bL:[-235,-237.8,-.5],bR:[-235,-237.8,-.5],eL:[2.4,1.5],eR:[2.4,1.5],r:.72,px:0,py:0,ck:-.4,nl:.8,worry:1,sweat:1,
+  schreck:{bL:[-235,-237.8,-.5],bR:[-235,-237.8,-.5],eL:[2.4,1.5],eR:[2.4,1.5],lid:0,r:.72,px:0,py:0,ck:-.4,nl:.8,worry:1,sweat:1,
      m:[[3.4,1,-.7,-.7,0,0,1],[3.8,1.8,-.8,-.8,0,0,1],[4.2,2.6,-.9,-.9,0,0,1],[2.4,2.6,0,0,0,1]]},
-  staunen:{bL:[-236,-235.6,1.3],bR:[-236,-235.6,1.3],eL:[2.2,1.3],eR:[2.2,1.3],r:.95,px:0,py:0,ck:0,nl:.3,
+  staunen:{bL:[-236,-235.6,1.3],bR:[-236,-235.6,1.3],eL:[2.2,1.3],eR:[2.2,1.3],lid:.12,r:.95,px:0,py:0,ck:0,nl:.3,
      m:[[1.3,1.4,0,0,0,1],[1.8,2.2,0,0,0,1],[2.4,2.8,0,0,0,1],[3,2.2,.1,.1,0,0,1]]},
-  frage:{bL:[-236,-235.8,.9],bR:[-233.8,-232.6,-.2],eL:[1.7,.9],eR:[.9,.6],r:1.05,px:.7,py:-.25,ck:0,nl:0,tilt:-4,furrow:1,
+  frage:{bL:[-236,-235.8,.9],bR:[-233.8,-232.6,-.2],eL:[1.7,.9],eR:[.9,.6],lid:.35,r:1.05,px:.7,py:-.25,ck:0,nl:0,tilt:-4,furrow:1,
      m:[[3,0,.1,.9,.6],[2.8,1.2,.1,.8,.6],[3.2,2,.1,.8,.5,0,1],[1.8,1.8,0,.3,.5,1]]},
-  froh:{bL:[-235,-234.8,.7],bR:[-235,-234.8,.7],eL:[1.2,.15,1],eR:[1.2,.15,1],r:1.05,px:0,py:0,ck:1.3,nl:1,
+  froh:{bL:[-235,-234.8,.7],bR:[-235,-234.8,.7],eL:[1.2,.15,1],eR:[1.2,.15,1],lid:.4,r:1.05,px:0,py:0,ck:1.3,nl:1,
      m:[[4,0,1.3,1.3],[4,1.6,1.2,1.2,0,0,1],[4.3,2.4,1.3,1.3,0,0,1],[3.4,2.8,1,1,0,0,1]]},
-  genervt:{bL:[-233.7,-233.3,.1],bR:[-233.9,-233.1,.1],eL:[.55,.7],eR:[.6,.7],heavy:1,r:1.05,px:0,py:.3,ck:0,nl:0,
+  genervt:{bL:[-233.7,-233.3,.1],bR:[-233.9,-233.1,.1],eL:[.55,.7],eR:[.6,.7],lid:.25,heavy:1,r:1.05,px:0,py:.3,ck:0,nl:0,
      m:[[3.2,0,-.4,.3,.5],[3,1,-.4,.3,.5],[3.2,1.7,-.3,.3,.4,0,1],[2.2,1.5,-.2,.2,.4]]}};
-// Auge einer Seite (sg -1 links, +1 rechts): Weiß, Pupille (auf das Weiß geclippt), Oberlid, Unterlid; bl = Blinzeln
+// Auge einer Seite (sg -1 links, +1 rechts): Weiß, Pupille (auf das Weiß geclippt), schweres Oberlid (hängt je nach E.lid über der Pupille,
+// typischer verschlafener Zeichentrick-Blick), Lidfalte darüber, Unterlid; bl = Blinzeln
 const PEYE=(sg,[T,B,sm],E,bl)=>{const x=v=>f1(sg*v),y=-231;
   if(bl)return `<path d="M${x(1.6)},${y}C${x(3)},${f1(y+1)} ${x(6.2)},${f1(y+1)} ${x(7.6)},${f1(y-.2)}" fill="none" stroke-width="1"/><path d="M${x(2.6)},${f1(y+1.6)}C${x(3.8)},${f1(y+2.1)} ${x(5.4)},${f1(y+2.1)} ${x(6.6)},${f1(y+1.6)}" fill="none" stroke="${PSKL}" stroke-width=".4"/>`;
   const w=`M${x(2)},${y}C${x(3.2)},${f1(y-T)} ${x(6)},${f1(y-T)} ${x(7.2)},${y}C${x(6)},${f1(y+B)} ${x(3.2)},${f1(y+B)} ${x(2)},${y}Z`,id='pe'+(sg<0?'l':'r'),px=f1(sg*4.5+E.px),py=f1(y-.1+E.py);
   return `<clipPath id="${id}"><path d="${w}"/></clipPath><path d="${w}" fill="#f4ead8" stroke-width=".4"/>`+
     `<circle cx="${px}" cy="${py}" r="${E.r}" fill="#3a2410" stroke="none" clip-path="url(#${id})"/>`+
-    `<path d="M${x(1.6)},${f1(y-.2)}C${x(3)},${f1(y-T-.45)} ${x(6.2)},${f1(y-T-.45)} ${x(7.6)},${y}" fill="none" stroke-width="${E.heavy?1.25:.9}"/>`+
+    (()=>{const lh=f1(y-.2-(T+.25)*(1-(E.lid??.5))),top=f1(y-T-1.4);
+      return `<path d="M${x(1.4)},${f1(y-.2)}C${x(3)},${lh} ${x(6.2)},${lh} ${x(7.8)},${y}L${x(7.8)},${top}L${x(1.4)},${top}Z" fill="${PSK}" stroke="none" clip-path="url(#${id})"/>`+
+        `<path d="M${x(1.4)},${f1(y-.2)}C${x(3)},${lh} ${x(6.2)},${lh} ${x(7.8)},${y}" fill="none" stroke-width="${E.heavy?1.5:1.3}"/>`+
+        `<path d="M${x(2)},${f1(y-.6)}C${x(3.2)},${f1(y-T-.9)} ${x(6)},${f1(y-T-.9)} ${x(7.4)},${f1(y-.5)}" fill="none" stroke="${PSKL}" stroke-width=".45"/>`})()+
     `<path d="M${x(2.8)},${f1(y+B+.6)}C${x(3.8)},${f1(y+B+(sm?.05:1.2))} ${x(5.4)},${f1(y+B+(sm?.05:1.2))} ${x(6.6)},${f1(y+B+.6)}" fill="none" stroke="${PSKL}" stroke-width=".4"/>`};
 const PBROW=(sg,[o,i,a])=>`M${f1(sg*8.6)},${o}Q${f1(sg*5.3)},${f1((o+i)/2-a)} ${f1(sg*2)},${i}`;
 // Mund: Linie (geschlossen), offene Form mit Zähnen/Zunge oder O-Form; Unterlippe und Kinn gehen mit dem Kiefer runter
@@ -197,7 +201,7 @@ q:open=>`<path d="M-12.4,-238C-14,-247 -7,-255.6 1,-255.6C8.6,-255.4 13,-248 12,
 <path d="M-6,-226C-5.4,-223 -4.6,-221 -3.6,-219.6" fill="none" stroke="${PSKL}" stroke-width=".85"/><path d="M.4,-221.4C-.6,-219.8 -.8,-218.4 -.2,-217.2" fill="none" stroke="${PSKL}" stroke-width=".75"/>
 <path d="M-5.6,-231C-4.4,-232.4 -1.6,-232.4 -.4,-231C-1.6,-230.2 -4.4,-230.2 -5.6,-231Z" fill="#f4ead8" stroke-width=".4"/><path d="M4.4,-231C5.2,-232.2 7,-232.2 7.8,-231C7,-230.3 5.2,-230.3 4.4,-231Z" fill="#f4ead8" stroke-width=".4"/>
 <circle cx="-2.4" cy="-231.1" r="1.05" fill="#3a2410" stroke="none"/><circle cx="6.5" cy="-231.1" r=".95" fill="#3a2410" stroke="none"/>
-<path d="M-6,-231C-4.6,-232.8 -1.4,-232.8 0,-231.2M4.2,-231C5,-232.6 7,-232.6 8.2,-231.2" fill="none" stroke-width=".9"/>
+<path d="M-5.6,-231C-4.4,-232.4 -1.6,-232.4 -.4,-231C-1.4,-231.8 -4.6,-231.8 -5.6,-231ZM4.4,-231C5.2,-232.2 7,-232.2 7.8,-231C7,-231.7 5,-231.7 4.4,-231Z" fill="${PSK}" stroke="none"/><path d="M-6,-231C-4.6,-231.9 -1.4,-231.9 0,-231.1M4.2,-231C5,-231.8 7,-231.8 8.2,-231.1" fill="none" stroke-width="1.3"/><path d="M-5.4,-231.9C-4,-233.3 -1.8,-233.3 -.6,-232M4.6,-231.8C5.4,-232.9 6.8,-232.9 7.6,-231.9" fill="none" stroke="${PSKL}" stroke-width=".45"/>
 <path d="M-6.8,-234.4L-.4,-233.8M3.8,-233.8L8.8,-234.4" fill="none" stroke="#4a2a10" stroke-width="1.35"/>
 <path d="M2.2,-232C2.8,-228.6 4.4,-225 6.2,-222.6C6.4,-221.6 5.4,-221 4.2,-221.4C3.4,-220.8 2.2,-221 1.4,-221.6" fill="none" stroke-width=".7"/><path d="M3,-231C3.8,-227.6 4.8,-225 6,-223L4.6,-222.4C3.8,-225 3.2,-228 3,-231Z" fill="${PSK2}" stroke="none"/>
 ${open?'<path d="M-1.8,-216.8C.4,-216.2 2.6,-216.2 4.6,-217C3.8,-214.8 2.4,-214 1.4,-214C.4,-214 -1.2,-214.8 -1.8,-216.8Z" fill="#6a2416" stroke-width=".7"/>':'<path d="M-1.8,-216.6C.4,-216 2.6,-216 4.8,-216.9" fill="none" stroke-width=".8"/>'}
@@ -209,7 +213,7 @@ ${open?'<path d="M-1.8,-216.8C.4,-216.2 2.6,-216.2 4.6,-217C3.8,-214.8 2.4,-214 
 s:open=>`<path d="M-6,-246C-1,-251 6,-250 9,-245C10.4,-242 10.6,-238 10.2,-235.4C10.8,-234.4 10.8,-233.4 10.2,-232.4C11.4,-229.6 12.8,-226 13.6,-223.2C13.8,-222.2 12.8,-221.6 11.2,-221.8C11,-221 10.8,-220.2 10.6,-219.4C10.9,-218.6 10.8,-217.8 10.2,-217.4C10.6,-216.6 10.4,-215.8 9.8,-215.2C9.9,-213.6 9.6,-212.2 8.4,-211.4C6,-210.6 2,-211 -1,-212.6C-3,-214 -5,-216.6 -6.4,-219C-9,-222 -11.4,-228 -11.2,-234C-11,-240 -9,-244 -6,-246Z" fill="${PSK}"/>
 <path d="M-1,-212.6C2,-211 6,-210.6 8.4,-211.4C6,-213.4 2,-214 -1.6,-215.4Z" fill="${PSK2}" stroke="none"/>
 <path d="M7,-231.6C7.8,-232.2 8.8,-231.9 9.2,-231.2C8.6,-230.6 7.6,-230.6 7,-231.6Z" fill="#f4ead8" stroke-width=".4"/><circle cx="8.5" cy="-231.3" r=".8" fill="#3a2410" stroke="none"/>
-<path d="M6.8,-231.8C7.8,-232.8 8.8,-232.6 9.4,-231.4" fill="none" stroke-width=".9"/><path d="M5.6,-234.4L10,-234.2" fill="none" stroke="#4a2a10" stroke-width="1.35"/>
+<path d="M7,-231.6C7.8,-232.2 8.8,-231.9 9.2,-231.2C8.6,-231.5 7.8,-231.7 7,-231.6Z" fill="${PSK}" stroke="none"/><path d="M6.8,-231.6C7.8,-232 8.8,-231.9 9.4,-231.2" fill="none" stroke-width="1.3"/><path d="M7,-232.4C7.8,-233.1 8.6,-233 9.2,-232.2" fill="none" stroke="${PSKL}" stroke-width=".45"/><path d="M5.6,-234.4L10,-234.2" fill="none" stroke="#4a2a10" stroke-width="1.35"/>
 <path d="M11.2,-222C11.6,-222.6 12.2,-222.6 12.4,-222.2M6.6,-224C6.2,-221 5.6,-219 4.6,-217.6" fill="none" stroke="${PSKL}" stroke-width=".6"/>
 ${open?'<path d="M8.6,-217.2L10.6,-217.6L10.2,-215.6Z" fill="#6a2416" stroke-width=".6"/>':'<path d="M8.6,-216.8L10.4,-217" fill="none" stroke-width=".7"/>'}
 <path d="M-12,-236C-13,-247 -6,-255 2,-255C8.6,-255 12,-250 11.6,-243C11.2,-241 10.4,-239.6 9.6,-239.6C8.6,-241 7.4,-241.6 6,-241.2C5.6,-239.6 4.6,-238.8 3.4,-238.8C2.6,-240 1.4,-240.6 0,-240.4C-.6,-237 -1.4,-235 -2.8,-234C-3,-230 -3.6,-226 -5.4,-222.6C-7.4,-219.8 -9.4,-219.6 -10.6,-221C-12,-225 -12.4,-230 -12,-236Z" fill="#8a5a2a"/>
@@ -241,7 +245,7 @@ function PETV(th,open,step,em,bl){const r=th*Math.PI/180,c=Math.cos(r),s=Math.si
     return{d:D(10.5*side,zf*.5),svg:c>.3?pants+shoe:shoe+pants}};
   // Arm einer Seite – breite Haltung: Schultern zurück, Oberarm vom Rumpf weg, Ellbogen nach außen,
   // Unterarm locker hängend mit Abstand zum Körper; Ärmelende als weiche Stoffwulst, Hand mit Innenfläche zum Oberschenkel
-  const arm=side=>{const sw=(side<0?-st:st)*.7,zs=-2,ze=sw*.5-5.5,zw=sw-4,Xs=X(16.5*side,zs),Xe=X(21.5*side,ze),Xw=X(24.5*side,zw),d=D(21*side,ze+2);
+  const arm=side=>{const sw=(side<0?-st:st)*.7,zs=-2,ze=sw*.5-5.5,zw=sw-4,Xs=X(16.5*side,zs),Xe=X(21.5*side,ze),Xw=X(27.5*side,zw),d=D(21*side,ze+2);
     const near=d>4,shade=!near&&Xs>0,sl=shade?PTE2:PTE,sk=shade?PSK2:PSK,o=Math.abs(c)>.3?side*Math.sign(c):1;
     const kx=Math.max(.78,Math.abs(s)),sg=Math.abs(s)>.3?Math.sign(s):-side,hand=c<0?PTHUMB(sk)+PHAND(sk):PHAND(sk)+PTHUMB(sk),P=(x,y)=>f1(x)+','+y;
     const sv=Math.abs(c)<.3,tilt=f1(-5*o*(Math.abs(c)>.3?1:0));
