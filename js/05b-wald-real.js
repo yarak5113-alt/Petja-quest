@@ -110,7 +110,7 @@ leavesOnPath=function(x,n){if(!isReal())return _leaves(x,n);rseed(n*3.1);
 const _apple=appleTree;
 appleTree=function(x,X,B){if(!isReal())return _apple(x,X,B);rseed(X+B);shadowAt(x,X,B+2,64,.6);x.lineCap='round';
   // Stamm: leicht gedreht, rissige graubraune Borke
-  const tw=11,th=46,tp=new Path2D(`M${X-tw*.75},${B+1}C${X-tw*.55},${B-th*.4} ${X-tw*.6},${B-th*.75} ${X-tw*.35},${B-th}L${X+tw*.4},${B-th}C${X+tw*.55},${B-th*.7} ${X+tw*.45},${B-th*.35} ${X+tw*.8},${B+1}Z`);
+  const tw=16,th=165,tp=new Path2D(`M${X-tw*.75},${B+1}C${X-tw*.55},${B-th*.4} ${X-tw*.6},${B-th*.75} ${X-tw*.35},${B-th}L${X+tw*.4},${B-th}C${X+tw*.55},${B-th*.7} ${X+tw*.45},${B-th*.35} ${X+tw*.8},${B+1}Z`);
   let g=x.createLinearGradient(X-tw,0,X+tw,0);g.addColorStop(0,'#241a12');g.addColorStop(.45,'#5a4a3a');g.addColorStop(.72,'#7e6c58');g.addColorStop(1,'#2e241a');x.fillStyle=g;x.fill(tp);
   x.save();x.clip(tp);for(let i=0;i<40;i++){const xx=X-tw+rr()*tw*2,y1=B+2,y2=B-th*(.3+rr()*.8);x.strokeStyle=rr()<.55?`rgba(14,10,6,${.4+rr()*.4})`:`rgba(150,134,112,${.25+rr()*.3})`;x.lineWidth=.5+rr()*1.1;x.beginPath();x.moveTo(xx,y1);x.bezierCurveTo(xx+(rr()-.5)*4,B-th*.3,xx+(rr()-.5)*4,B-th*.6,xx+(rr()-.5)*3,y2);x.stroke()}
   for(let i=0;i<14;i++)dab(x,X-tw*.6+rr()*tw*.5,B-rr()*th*.6,2+rr()*3,mix([60,90,30],[120,150,50],rr()),.5);x.restore();
@@ -119,16 +119,16 @@ appleTree=function(x,X,B){if(!isReal())return _apple(x,X,B);rseed(X+B);shadowAt(
     x.strokeStyle='#33261a';x.lineWidth=w;x.beginPath();x.moveTo(x0,y0);x.quadraticCurveTo(mx,my,x1,y1);x.stroke();
     x.strokeStyle='rgba(150,130,104,.55)';x.lineWidth=w*.35;x.beginPath();x.moveTo(x0+w*.2,y0-w*.25);x.quadraticCurveTo(mx+w*.2,my-w*.25,x1,y1-w*.15);x.stroke();
     for(let i=0;i<2+(dd>1);i++)br(x1,y1,a+(rr()-.5)*1.3,l*.66,w*.6,dd+1)};
-  [-2.1,-1.6,-1.05].forEach(a=>br(X+(a+1.6)*4,B-th+2,a,26+rr()*8,6.5,0));
+  [-2.4,-2.0,-1.7,-1.4,-1.1,-0.75].forEach(a=>br(X+(a+1.6)*6,B-th+4,a,30+rr()*8,10,0));br(X-4,B-th*.9,-2.5,18,6,2);br(X+4,B-th*.86,-0.6,18,6,2);
   // Krone: dunkle Tiefe, dann ovale, glänzende Apfelblätter (Licht rechts oben)
-  const CY=B-th-30;for(let i=0;i<10;i++)dab(x,X+(rr()-.5)*96,CY+(rr()-.5)*46,26,[18,40,12],.55);
-  for(let i=0;i<1300;i++){const a=rr()*6.283,dd=Math.pow(rr(),.55),ox=Math.cos(a)*dd*54,oy=Math.sin(a)*dd*34,lt=cl((ox/54*.6-oy/34*.8)*.5+.5+(rr()-.5)*.45),
+  const CY=B-th-44;for(let i=0;i<20;i++)dab(x,X+(rr()-.5)*170,CY+(rr()-.5)*96,40,[18,40,12],.55);
+  for(let i=0;i<3600;i++){const a=rr()*6.283,dd=Math.pow(rr(),.55),ox=Math.cos(a)*dd*92,oy=Math.sin(a)*dd*64,lt=cl((ox/92*.6-oy/64*.8)*.5+.5+(rr()-.5)*.45),
     k=lt<.5?mix([22,52,16],[58,104,28],lt*2):mix([58,104,28],[150,184,70],(lt-.5)*2);leaf(x,X+ox,CY+oy,1.8+rr()*1.6,rr()*6.28,k,.95);if(lt>.8&&rr()<.3)leaf(x,X+ox+.3,CY+oy-.3,.9,rr()*6.28,[230,240,190],.45)}
   // Äpfel: Kugel mit Rotbacke, gelbgrüner Grundfarbe unten, Stiel und Glanzpunkt
   const apple=(ax,ay,r)=>{ell(x,ax-r*.25,ay+r*.85,r*1.05,r*.4,[10,20,6],.35);const ag=x.createRadialGradient(ax+r*.35,ay-r*.35,0,ax,ay,r*1.05);
     ag.addColorStop(0,'#ff7a52');ag.addColorStop(.35,'#d42a16');ag.addColorStop(.75,'#8e140a');ag.addColorStop(1,'#4a0804');x.fillStyle=ag;x.beginPath();x.ellipse(ax,ay,r,r*.92,0,0,7);x.fill();
     dab(x,ax-r*.35,ay+r*.45,r*.6,[200,170,50],.45);x.strokeStyle='#3a2a14';x.lineWidth=.5;x.beginPath();x.moveTo(ax,ay-r*.8);x.quadraticCurveTo(ax+.4,ay-r*1.3,ax+1,ay-r*1.6);x.stroke();
     ell(x,ax+r*.38,ay-r*.4,r*.28,r*.18,[255,250,240],.85,-.6)};
-  for(let i=0;i<20;i++){const a=rr()*6.283,dd=Math.sqrt(rr())*.9,ax=X+Math.cos(a)*dd*50,ay=CY+Math.sin(a)*dd*30+4;apple(ax,ay,2.6+rr()*.9);if(rr()<.4)leaf(x,ax-2,ay-3,2.4,rr()*6.28,[50,96,26],.95)}
+  for(let i=0;i<40;i++){const a=rr()*6.283,dd=Math.sqrt(rr())*.9,ax=X+Math.cos(a)*dd*84,ay=CY+Math.sin(a)*dd*56+4;apple(ax,ay,2.6+rr()*.9);if(rr()<.4)leaf(x,ax-2,ay-3,2.4,rr()*6.28,[50,96,26],.95)}
   // Fallobst im Gras
   for(let i=0;i<4;i++){const ax=X-34+rr()*68,ay=B+3+rr()*6;apple(ax,ay,2.4+rr()*.5);dab(x,ax,ay+1.4,3,[40,30,10],.25)}};

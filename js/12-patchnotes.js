@@ -1,6 +1,9 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.63',d:'12.11.2026',t:'Großer Apfelbaum',n:[
+    'Der Apfelbaum an der Weggabelung ist jetzt fast doppelt so hoch und überragt Petja: höherer Stamm, mehr Äste, breite Krone mit mehr Äpfeln',
+    'Der Apfel hängt jetzt unten in der Krone – Petja springt danach'] },
   {v:'1.62',d:'12.11.2026',t:'Aufträge mit Notizen',n:[
     'Jeder offene Schritt in den Aufträgen hat jetzt eine Notiz: was genau zu tun ist, wo und bei wem',
     'Der „Nächster Schritt“-Kasten zeigt die Notiz direkt mit, und der Tipp-Knopf (H) sagt sie beim zweiten Drücken laut',
