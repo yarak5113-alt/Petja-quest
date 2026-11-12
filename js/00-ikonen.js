@@ -112,19 +112,13 @@ const CURSORS=(()=>{const bev=(id,bl,sc,ks,ex,k1=1.3)=>`<filter id="${id}" x="-2
   const arrow=U(`<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 64 64"><defs>${GD}${SH}${bev('a',1.6,3.2,1,26)}</defs><g filter="url(#sh)">`+
     `<path d="M4,3L4,48L15,38L23,57L32,53L24,35L39,35Z" fill="url(#g)" filter="url(#a)" stroke="#1e1004" stroke-width="2.2" stroke-linejoin="round"/>`+
     `<path d="M8,11L8,38" stroke="#fff" stroke-opacity=".6" stroke-width="1.6" stroke-linecap="round"/></g></svg>`);
-  // Klick-Zeiger: kräftige Zeichentrick-Hand – helles Pfirsich, warme braune Kontur, Zeigefinger nach oben,
-  // Daumen seitlich abgespreizt, drei eingeklappte Finger als runde Knöchel, breites Handgelenk
-  const HP='M22.5,5C25.8,5 28,7.2 28,10.6L28,25.4C29.4,23.6 33,23.8 34,26.4C35.4,24.8 39,25.2 39.8,28C41.2,26.8 44.6,27.4 45,30.4L45,40C45,46.6 41.6,51.6 37,53.4L37,61L20,61L20,54C16.6,52.2 14,49 12.6,45.4L6.4,36.6C4.6,34 6.6,30.8 9.8,31.8C12.4,32.6 15,35.6 17,38L17,10.6C17,7.2 19.2,5 22.5,5Z';
-  const hand=U(`<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 64 64"><defs>${SH}<clipPath id="k"><path d="${HP}"/></clipPath></defs><g filter="url(#sh)">`+
-    `<path d="${HP}" fill="#f7d4a2"/><g clip-path="url(#k)"><path d="M26,4C29.6,8 29.4,22 31,34C33,46 34,54 31,62L48,62L48,24Z" fill="#e6b07a"/><path d="M36,50C40,48 44,44 46,38L48,62L34,62Z" fill="#d49660"/><path d="M18.6,8C19.4,6.6 20.6,6 22,5.8L21,34L19,40Z" fill="#fff0d8"/></g>`+
-    `<path d="M28,25.4C28.6,28 28.8,30.6 28.4,33M34,26.4C34.6,29 34.8,31.6 34.4,34M39.8,28C40.4,30.4 40.4,32.8 40,35M17,38C18.6,40.6 21,42 24,42.6M21,55C25,56.2 30,56.2 35,55" fill="none" stroke="#b0703c" stroke-width="1.5" stroke-linecap="round"/>`+
-    `<path d="M19.6,10.2C20,7.6 25,7.6 25.4,10.2L25.2,13.4C23.6,14.4 21.4,14.4 19.8,13.4Z" fill="#fde6c8" stroke="#c08048" stroke-width="1"/>`+
-    `<path d="${HP}" fill="none" stroke="#6a3c16" stroke-width="2.6" stroke-linejoin="round"/></g></svg>`);
+  // Klick-Zeiger: das vom Spieler vorgegebene Hand-Design (assets/zeiger-hand.png, 24x40, Fingerspitze bei 11,1)
+  const hand='assets/zeiger-hand.png';
   return{arrow,hand}})();
 document.head.insertAdjacentHTML('beforeend',`<style>
 *{cursor:url("${CURSORS.arrow}") 2 1,default !important}
 ${(()=>{const L=['button','a','summary','label','select','input[type=range]','input[type=checkbox]','.interactive','.slot','.card','.tab','.x','.mb','.slotc','#box','#newsCard','[onclick]'];
   // auch alle Innenteile (Klickfläche, Figurenbild, Symbol im Knopf), sonst würde die Grundregel „*“ sie wieder zum Pfeil machen
-  return L.join(',')+','+L.map(s=>s+' *').join(',')})()}{cursor:url("${CURSORS.hand}") 11 2,pointer !important}
+  return L.join(',')+','+L.map(s=>s+' *').join(',')})()}{cursor:url("${CURSORS.hand}") 11 1,pointer !important}
 button:disabled,button:disabled *,.mb:disabled,.slotc:disabled{cursor:url("${CURSORS.arrow}") 2 1,default !important}
 .interactive.exit,.interactive.exit *{cursor:url("${ARROW(32)}") 16 16,pointer !important}</style>`);

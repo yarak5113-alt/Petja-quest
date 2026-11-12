@@ -1,6 +1,8 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.52',d:'12.11.2026',t:'Neuer Hand-Zeiger',n:[
+    'Über allem Anklickbaren erscheint jetzt das eigene Hand-Design als Mauszeiger – im Menü und im Spiel'] },
   {v:'1.51',d:'12.11.2026',t:'Der Sumpf wird realistisch',n:[
     'Tiefes, dunkles Wasser, das Ufer, Schilf und Bäume echt spiegelt – mit Wellen, Glanzstreifen und Funkeln, ohne harte Umrandung; Ufergras hängt über die Kante',
     'Dichte goldene Schilfwände mit Rohrkolben, im Gegenlicht leuchtend – auch am See und beim Fischer',
