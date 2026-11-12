@@ -1,6 +1,14 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.55',d:'12.11.2026',t:'Alle Figuren neu gezeichnet',n:[
+    'Jede Figur hat jetzt eine eigene Haltung, Falten, Schatten auf der Kleidung und ein Gesicht mit Ausdruck – im Stil der handgezeichneten Zeichentrick-Figuren',
+    'Fischer Kusmitsch: hager, Uschanka, langer grauer Bart, flickt das Netz mit Papirossa im Mund',
+    'Opa Grischa: gebeugt mit O-Beinen, Kepka, Telnjaschka unter der Steppjacke, Flicken am Knie, Schnapsflasche',
+    'Oma Dusja: gebückt, rotes Punkte-Kopftuch, Strickjacke, bestickte Schürze, Filzstiefel',
+    'Baba Jaga: Hakennase mit Warze, ein Zahn, wildes graues Haar, Knotenstock, Lockfinger, Bastschuhe mit Fußlappen',
+    'Gnome: Grobnik als massiger Raufbold mit Spitzhacke, Schnobbel mit Hängenase, Brille, Pfeife und Ringelstrümpfen',
+    'Wowa im Trainingsanzug mit Kepka, Goldkette, Goldzahn und Sonnenblumenkernen; Madame Zinaida mit Hochsteckfrisur, Federboa und Zigarettenspitze; die Tänzerin im Glitzer-Korsett; der Kater mit gelben Schlitzaugen'] },
   {v:'1.54',d:'12.11.2026',t:'Petja von hinten, echte Gegenstände',n:[
     'Petja von hinten: Haare reichen bis in den Nacken (ausgefranster Haaransatz, Wirbel), kein kahles „Kinn“ mehr; Gesäßtaschen an der Jeans',
     'Alle Gegenstände realistisch: Apfel mit Glanz und Blatt, zappelnde Regenwürmer mit Ringen im krümeligen Erdhaufen, Netz mit Korkschwimmern, Schnapsflasche aus Glas mit Etikett, angekohlte Leiter und Brett, Gebiss, Joint mit Glut',
