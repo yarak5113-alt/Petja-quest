@@ -26,7 +26,7 @@ const T={
     this.i=(this.i||0);say(this.l[this.i++%this.l.length])},l:[
     [['P','Die Birke guckt mich an.'],['B','...'],['P','Sie guckt immer noch.']],
     [['B','Geh weg, du riechst nach Stadt.'],['P','Und du nach Brennholz.']]]},
-  kraehe:{n:'Krähe',at:[680,400],fn(){if(inv.includes('apfel'))return say([['P','Hey, Krähe. Fang.'],['P','*wirft den Apfel*'],['K','KRAH! Bist du irre?! Ich hab dir den Weg gezeigt, du Undankbarer!'],['K','Ich geh zur Baba Jaga petzen! Krah!'],['P','So. Der Ast ist frei.']],()=>{FL.kraehe=1;inv.splice(inv.indexOf('apfel'),1);renderInv();rm('kraeheG')});
+  kraehe:{n:'Krähe',at:[680,400],fn(){if(inv.includes('apfel'))return say([['P','Hey, Krähe. Fang.']],()=>throwAt('kraeheG','apfel',()=>say([['K','KRAH! Bist du irre?! Ich hab dir den Weg gezeigt, du Undankbarer!'],['K','Ich geh zur Baba Jaga petzen! Krah!'],['P','So. Der Ast ist frei.']],()=>{FL.kraehe=1;inv.splice(inv.indexOf('apfel'),1);renderInv();rm('kraeheG')})));
     if(FL.angelQ&&!FL.kraehe)return hint('kraehe',[
       [['K','Krah! Was guckst du so auf meinen Ast?'],['P','Ist ein schöner Ast. Gerade. Angeltauglich.']],
       [['K','Den kriegst du nie! Ich geh hier nicht weg! Krah!'],['P','Freiwillig geht die da nicht runter. Vielleicht, wenn ich sie mit was bewerfe.']],
@@ -41,7 +41,7 @@ const T={
     [['P','Ich setz mich lieber nicht drauf. Wer weiß, ob der auch redet.']]]},
   kippe:{n:'Joint-Stummel',at:[565,470],l:[
     [['P','Da ist er. Der Rest von meinem Joint. Der Schuldige.'],['P','Den nehm ich mit. Als Beweismittel.']]],
-    after(){rm('kippe');inv.push('kippe');renderInv()}},
+    after(){grab('kippe','kippe',()=>{rm('kippe');inv.push('kippe');renderInv()})}},
   sPfad:{n:'Schild: Zum Pfad',at:[330,425],go:'gabel',to:[320,488]},
   sBaba:{n:'Schild: Zu Baba Jaga',at:[404,350],go:'huette',to:[640,488]},
   sUnbek:{n:'Schild: Zum Sumpf',at:[462,350],go:'sperre',to:[400,488]},
@@ -116,7 +116,7 @@ const T={
     [['P','Was ist denn mit Ihrem Haus passiert?'],['G','Der Samowar. Oder der Selbstgebrannte. Oder ich. Die Untersuchung läuft noch.'],['G','Die Feuerwehr kam aus der Stadt. Drei Tage später. Haben Fotos gemacht.']],
     [['P','Kann ich hier was mitnehmen?'],['G','Nimm, was nicht verbrannt ist. Also nix.'],['G','Höchstens das Brett da. Das lag unterm Ofen. Ofen brennt nicht, Brett brennt nicht. Physik.']],
     [['G','Die Dusja aus dem Dorf hat mich angezeigt. Eine Woche bevor’s gebrannt hat.'],['G','Hexe. Die zweite im Wald. Die eine hat Hühnerbeine, die andre ’ne Gartenschere.']]]},
-  brett:{n:'Brett',at:[664,458],l:[[['P','Ein Brett. Nur ein bisschen angekokelt.'],['G','Nimm’s mit! Ist eh versichert. ...War. War versichert.']]],after(){rm('brett');inv.push('brett');renderInv()}},
+  brett:{n:'Brett',at:[664,458],l:[[['P','Ein Brett. Nur ein bisschen angekokelt.'],['G','Nimm’s mit! Ist eh versichert. ...War. War versichert.']]],after(){grab('brett','brett',()=>{rm('brett');inv.push('brett');renderInv()})}},
   haus1:{n:'Leeres Haus',at:[300,446],l:[[['P','Ein leeres Haus. Die Gardinen sind noch da, die Leute nicht.']]]},
   omahaus:{n:'Omas Haus',at:[300,452],l:[[['P','Omas Haus. Sonnenblumen, Gardinen, frisch gestrichen. Das einzige Haus hier, das nicht stirbt.']]]},
   ruine:{n:'Opas abgebranntes Haus',at:[600,452],l:[[['P','Opas Haus. Übrig ist nur der Ofen.'],['G','Der Ofen ist das Wichtigste! Der Rest war eh nur Dekoration.']]]},
@@ -135,12 +135,12 @@ const T={
   graeber:{n:'Gräber',at:[250,450],l:[[['P','„Fjodor, 1931–2024. Hat nie gewonnen.“ Wobei, was?'],['P','Plastikblumen. Die halten länger als die Leute.']]]},
   kater:{n:'Kater',at:[560,452],fn(){FL.ks=1;if(inv.includes('fisch'))return say([['P','Hier, Mieze. Ein Fisch. Frisch aus dem See.'],['P','*der Kater schnappt sich den Fisch und verschwindet hinter der Kirche*'],['P','Und da liegt... Omas Gebiss. Na lecker.']],()=>{FL.kater=1;inv.splice(inv.indexOf('fisch'),1);renderInv();rm('katerG')});
     this.i=(this.i||0)+1;say(this.i%2?[['P','Na, Mieze? Gehst du mal kurz runter da?'],['P','*FAUCH*'],['P','Okay. Verstanden. Er sitzt auf irgendwas. Das glitzert.']]:[['P','Der geht da nicht weg. Vielleicht mit Futter.'],['P','Was fressen Kater? Fisch. Und wer hat Fisch? ...Genau.']])}},
-  gebiss:{n:'Gebiss',at:[580,452],fn(){if(!FL.kater)return say([['P','Da komm ich nicht ran. Der Kater sitzt drauf und guckt böse.']]);say([['P','Omas Gebiss. Ich fass das nur mit zwei Fingern an.']],()=>{rm('gebissG');inv.push('gebiss');renderInv()})}},
-  apfel:{n:'Apfel',at:[300,400],fn(){say([['P','Ein Apfel. Schön rot. Zum Essen zu schade...'],['P','...zum Werfen genau richtig.']],()=>{rm('apfelG');inv.push('apfel');renderInv()})}},
+  gebiss:{n:'Gebiss',at:[580,452],fn(){if(!FL.kater)return say([['P','Da komm ich nicht ran. Der Kater sitzt drauf und guckt böse.']]);say([['P','Omas Gebiss. Ich fass das nur mit zwei Fingern an.']],()=>grab('gebissG','gebiss',()=>{rm('gebissG');inv.push('gebiss');renderInv()}))}},
+  apfel:{n:'Apfel',at:[300,400],fn(){say([['P','Ein Apfel. Schön rot. Zum Essen zu schade...'],['P','...zum Werfen genau richtig.']],()=>grab('apfelG','apfel',()=>{rm('apfelG');inv.push('apfel');renderInv()}))}},
   apfelbaum:{n:'Apfelbaum',at:[300,400],l:[[['P','Ein Apfelbaum mitten im Birkenwald. Den hat bestimmt jemand gepflanzt. Oder verloren.']],[['P','Die anderen Äpfel hängen zu hoch.']]]},
   ast:{n:'Ast',at:[690,400],fn(){if(!FL.kraehe)return say([['P','Ein schöner gerader Ast. Aber da sitzt die Krähe drauf.'],['K','Krah! Finger weg, das ist meiner!']]);
-    say([['P','*spring* ... *spring* ... *SPRING*'],['P','*KNACK*'],['P','Ein Stock. Wird eine Angel. Ich bin heute so produktiv, das macht mir fast Sorgen.']],()=>{FL.ast=1;delete cache.wald;inv.push('stock');renderInv();enter('wald',[P.x,P.y]);craft()})}},
-  altnetz:{n:'Kaputtes Netz',at:[262,372],fn(){say([['P','Ein kaputtes Fischernetz, versteckt neben der Hütte.'],['F','He! Das ist... ach, nimm. Das hat der Wels zerfetzt.'],['P','Da zieh ich mir eine lange Schnur raus.']],()=>{rm('altnetzG');inv.push('seil');renderInv();craft()})}},
+    say([['P','*spring* ... *spring* ... *SPRING*'],['P','*KNACK*'],['P','Ein Stock. Wird eine Angel. Ich bin heute so produktiv, das macht mir fast Sorgen.']],()=>grab('ast','stock',()=>{FL.ast=1;delete cache.wald;inv.push('stock');renderInv();enter('wald',[P.x,P.y]);craft()},{kind:'sprung',gy:P.y}))}},
+  altnetz:{n:'Kaputtes Netz',at:[262,372],fn(){say([['P','Ein kaputtes Fischernetz, versteckt neben der Hütte.'],['F','He! Das ist... ach, nimm. Das hat der Wels zerfetzt.'],['P','Da zieh ich mir eine lange Schnur raus.']],()=>grab('altnetzG','seil',()=>{rm('altnetzG');inv.push('seil');renderInv();craft()}))}},
   sUfer:{n:'Schild: Zum Ufer',at:[716,480],fn(){walkTo(770,470,()=>enter('ufer',[60,452]))}},
   sFH:{n:'Schild: Zum Fischerhaus',at:[130,486],go:'fischer',to:[740,470]},
   sUP:{n:'Schild: Unter den Pier',at:[176,404],go:'unter',to:[640,470]},
@@ -154,9 +154,9 @@ const T={
       :[['P','Brot lockt den Wels nicht. Ich brauch Würmer für den Haken.'],['P','Vor Baba Jagas Hütte ist die Erde so feucht und matschig... da wimmelt es bestimmt von Würmern.']])}},
   muell:{n:'Müll',at:[540,460],l:[[['P','Eine leere Flasche, ein Stiefel, ein Reifen. Kusmitschs Lebenslauf.']]]},
   wuermer:{n:'Würmer',at:[540,474],fn(){
-    say([['P',FL.schnapsQ?'Fette Würmer. Genau das Richtige für einen Wels. Und für niemanden sonst.':'Ein Haufen Erde voller fetter Würmer. Wer weiß, wofür die mal gut sind.'],['P','*buddel* *glitsch* ...Eine Handvoll. Rein in die Tasche. Igitt.'],['J','Finger weg von meinen Würmern, Bürschchen! Die sind für die Suppe!'],['P','Ich leih sie nur aus.']],()=>{rm('wuermerG');inv.push('wuermer');renderInv()})}},
+    say([['P',FL.schnapsQ?'Fette Würmer. Genau das Richtige für einen Wels. Und für niemanden sonst.':'Ein Haufen Erde voller fetter Würmer. Wer weiß, wofür die mal gut sind.'],['P','*buddel* *glitsch* ...Eine Handvoll. Rein in die Tasche. Igitt.'],['J','Finger weg von meinen Würmern, Bürschchen! Die sind für die Suppe!'],['P','Ich leih sie nur aus.']],()=>grab('wuermerG','wuermer',()=>{rm('wuermerG');inv.push('wuermer');renderInv()},{kind:'boden'}))}},
   schnaps:{n:'Selbstgebrannter',at:[680,392],fn(){if(!FL.ablenk)return say([['F','FINGER WEG! Das ist mein Selbstgebrannter! Den hab ich im Auge, Junge!']]);
-    say([['P','*schnapp*'],['F','(kämpfend) KOMM HER! KOMM HER, DU MISTVIEH!'],['P','Der merkt gar nichts. Dreißig Jahre Warten machen blind.']],()=>{FL.schnaps=1;rm('schnapsG');inv.push('schnaps');renderInv()})}},
+    say([['P','*schnapp*'],['F','(kämpfend) KOMM HER! KOMM HER, DU MISTVIEH!'],['P','Der merkt gar nichts. Dreißig Jahre Warten machen blind.']],()=>grab('schnapsG','schnaps',()=>{FL.schnaps=1;rm('schnapsG');inv.push('schnaps');renderInv()}))}},
   leiter:{n:'Leiter',at:[700,452],fn(){say(FL.leiterQ?[['G','Die Leiter gibt’s gegen Selbstgebrannten. Nicht gegen Bitte-Bitte.']]:[['P','Eine alte Leiter am Ofen. Angekokelt, aber stabil.'],['G','Finger weg! Das ist das Einzige, was mir geblieben ist. Außer dem Ofen.']])}},
   baba:{n:'Baba Jaga',at:[540,460],fn(){
     if(inv.includes('pilze')&&!FL.bjInfo)return say([['P','Hier. Die waren in dem Joint. Blau angelaufen.'],['J2','*schnüffel* ...*schnüffel*... HA! Traumschwamm. Aber welche Sorte? Da gibt es hundert.'],

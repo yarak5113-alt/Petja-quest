@@ -1,6 +1,12 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.56',d:'12.11.2026',t:'Petja packt mit an',n:[
+    'Aufheben ist jetzt eine echte Bewegung: Petja dreht sich zum Gegenstand, geht in die Knie und bückt sich, greift auf Brusthöhe zu oder streckt sich nach oben',
+    'Liegt etwas hinter ihm, hebt er es mit dem Rücken zur Kamera auf – er schaut immer in die Richtung, in der er gerade etwas tut',
+    'Der Gegenstand verschwindet im Moment des Zugreifens aus der Szene, liegt kurz in seiner Hand und wandert dann in die Hosentasche',
+    'Werfen: Petja holt den Apfel aus der Hosentasche, holt weit aus und wirft – der Apfel fliegt im Bogen zur Krähe',
+    'Am Ast springt er dreimal hoch, bis er ihn zu fassen kriegt'] },
   {v:'1.55',d:'12.11.2026',t:'Alle Figuren neu gezeichnet',n:[
     'Jede Figur hat jetzt eine eigene Haltung, Falten, Schatten auf der Kleidung und ein Gesicht mit Ausdruck – im Stil der handgezeichneten Zeichentrick-Figuren',
     'Fischer Kusmitsch: hager, Uschanka, langer grauer Bart, flickt das Netz mit Papirossa im Mund',

@@ -153,7 +153,7 @@ function onLocationLeave(from){if(from==='sumpf')updateSwampNymphs()}
 updateSwampNymphs();
 const game=$('#game'),label=$('#label'),svg=$('#scene');
 function svgPt(e){const p=svg.createSVGPoint();p.x=e.clientX;p.y=e.clientY;return p.matrixTransform(svg.getScreenCTM().inverse())}
-game.addEventListener('click',e=>{if($('#fg'))return;if(busy)return advance();if(changing||!S0)return;const h=e.target.closest('.interactive');
+game.addEventListener('click',e=>{if($('#fg')||ACT)return;if(busy)return advance();if(changing||!S0)return;const h=e.target.closest('.interactive');
   if(h){const id=h.dataset.id,o=T[id];if(!o)return;if(id=='petja'||!o.at)return use(id);return walkTo(o.at[0],o.at[1],()=>use(id))}
   if(e.target.closest('#scene')){const p=svgPt(e);walkTo(p.x,p.y)}});
 game.addEventListener('mousemove',e=>{if(typeof hoverLabel=='function')hoverLabel(e)});game.addEventListener('mouseleave',()=>label.style.opacity=0);

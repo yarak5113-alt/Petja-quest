@@ -237,17 +237,25 @@ b:()=>`<path d="M-6.4,-224C-6.6,-218 -6,-213 -5.2,-209L5.2,-209C6,-213 6.6,-218 
 <path d="M-1.6,-248.6C-.2,-250 2,-249.6 2.2,-247.8C2.4,-246 .4,-245.2 -.8,-246.2C-1.8,-247 -1.2,-248.4 0,-248.2" fill="none" stroke="#5a3818" stroke-width=".55"/>
 <path d="M-.8,-246.2C-4,-243 -6.4,-236 -7.4,-226M.6,-245.4C1,-240 1.2,-232 .4,-219M2.2,-247.4C5.6,-244 7.6,-236 7.6,-226M-1.6,-248.6C-6,-247.6 -9.6,-242 -10.6,-232M2,-249C7,-250 10.4,-246 11.2,-238M-3.6,-238C-4.2,-232 -4.6,-226 -3.8,-220M4.4,-238C4.8,-232 4.6,-226 3.8,-221" fill="none" stroke="#5a3818" stroke-width=".45"/>
 <path d="M-5,-252C-2,-253.6 2,-253.6 5,-252.4M-9,-247C-7,-250 -4,-251.6 -1.6,-251.6" fill="none" stroke="#a87440" stroke-width=".55"/>`};
-function PETV(th,open,step,em,bl){const r=th*Math.PI/180,c=Math.cos(r),s=Math.sin(r),X=(x,z)=>x*c+z*s,D=(x,z)=>-x*s+z*c,st=step?8:0,out=[];
+function PETV(th,open,step,em,bl,po){const r=th*Math.PI/180,c=Math.cos(r),s=Math.sin(r),X=(x,z)=>x*c+z*s,D=(x,z)=>-x*s+z*c,st=step?8:0,out=[];
+  // Pose (Aufheben, Werfen): po={crouch 0..1 (in die Knie), lean Grad (Oberkörper vor), arm Grad (aktiver Arm nach vorn/oben)}; po.hand bekommt die Handposition
+  const cr=po&&po.crouch||0,drop=cr*52,hy=-124+drop,lean=po&&po.lean||0,AS=s>.1?-1:1;
+  // Knie per Zweigelenk-Kette (Oberschenkel 64, Unterschenkel 56): je tiefer die Hüfte, desto weiter schiebt sich das Knie nach vorn
+  const kd=-8-hy,ka=(64*64-56*56+kd*kd)/(2*kd),kz=cr?Math.sqrt(Math.max(0,4096-ka*ka))-15.5:0,ky=cr?hy+ka:-60;
   // Bein + Schuh einer Seite (side -1 = links im Bild, +1 = rechts); linkes Bein vorn, wenn Schritt
-  const leg=side=>{const zf=side<0?st:-st,Xh=X(10.5*side,0),Xk=X(11*side,zf*.5),Xm=X(13.5*side,zf);
+  const leg=side=>{const zf=side<0?st:-st,Xh=X(10.5*side,0),Xk=X((11+cr*6)*side,zf*.5+kz),Xm=X(13.5*side,zf);
     const xf=12.5*side,Xhe=X(xf,zf-3),Xto=X(xf+2.8*side,zf+10.6),mn=Math.min(Xhe-5,Xto-6.4),mx=Math.max(Xhe+5,Xto+6.4),Xl=Xhe+(Xto-Xhe)*.62;
     let shoe=`<path d="${tube(Xhe,-5.8,5,Xto,-5.4,6.4)}" fill="#f2efe6"/><path d="M${f1(mn+1)},-2.4L${f1(mx-1)},-2.4Q${f1(mx+.6)},-2.4 ${f1(mx+.4)},0L${f1(mn-.4)},0Q${f1(mn-.6)},-2.4 ${f1(mn+1)},-2.4Z" fill="#c9c4b8"/>`;
     if(c>.25)shoe+=`<path d="M${f1(Xto-4.8)},-3.4C${f1(Xto-2)},-1.8 ${f1(Xto+2)},-1.8 ${f1(Xto+4.8)},-3.4" fill="none" stroke-width=".5"/>`;
     if(c>-.2)shoe+=`<path d="M${f1(Xl-2)},-9.4L${f1(Xl+2)},-8M${f1(Xl-2)},-8L${f1(Xl+2)},-9.4" fill="none" stroke="#8a867c" stroke-width=".5"/>`;
     else shoe+=`<path d="M${f1(Xhe)},-9.6L${f1(Xhe)},-5" fill="none" stroke-width=".5"/>`;
-    const pants=`<path d="M${f1(Xh-10.5)},-124Q${f1(Xk-5.6)},-60 ${f1(Xm-9.8)},-8.4L${f1(Xm+9.8)},-8.4Q${f1(Xk+5.6)},-60 ${f1(Xh+10.5)},-124Z" fill="${PJE}"/>`+
-      `<path d="M${f1(Xk-4)},-62C${f1(Xk-1)},-59.5 ${f1(Xk+2)},-59.5 ${f1(Xk+4)},-62M${f1(Xm-7)},-22C${f1(Xm-3)},-18 ${f1(Xm+3)},-18 ${f1(Xm+7)},-22" fill="none" stroke="${PJEL}" stroke-width=".8"/>`;
-    const back=c<-.3?`<path d="M${f1(Xh-6.6)},-112L${f1(Xh+6.6)},-112L${f1(Xh+6)},-97C${f1(Xh+3)},-95 ${f1(Xh-3)},-95 ${f1(Xh-6)},-97Z" fill="#a2b4d8" stroke="${PJEL}" stroke-width=".7"/><path d="M${f1(Xh-5.6)},-110.6L${f1(Xh+5.6)},-110.6M${f1(Xh-5)},-98.4C${f1(Xh-2.4)},-96.8 ${f1(Xh+2.4)},-96.8 ${f1(Xh+5)},-98.4" fill="none" stroke="#e0c890" stroke-width=".4" stroke-dasharray="1 .8"/><path d="M${f1(Xk-4)},-66C${f1(Xk-1.4)},-67.4 ${f1(Xk+1.4)},-67.4 ${f1(Xk+4)},-66M${f1(Xk-3.4)},-62.6C${f1(Xk-1)},-63.6 ${f1(Xk+1)},-63.6 ${f1(Xk+3.4)},-62.6" fill="none" stroke="${PJEL}" stroke-width=".6"/>`:'';
+    // Hocke: Hosenbein als geknickte Röhre (Hüfte -> Knie -> Knöchel), Breite senkrecht zur jeweiligen Beinrichtung
+    const nrm=(ax,ay,bx,by)=>{const L=Math.hypot(bx-ax,by-ay)||1;return[(by-ay)/L,-(bx-ax)/L]},n1=nrm(Xh,hy,Xk,ky),n2=nrm(Xk,ky,Xm,-8.4),nk=[(n1[0]+n2[0])/2,(n1[1]+n2[1])/2],
+      Q=(x,y,n,w)=>f1(x+n[0]*w)+','+f1(y+n[1]*w);
+    const pants=(cr?`<path d="M${Q(Xh,hy,n1,10.5)}L${Q(Xk,ky,nk,9)}L${Q(Xm,-8.4,n2,9.8)}L${Q(Xm,-8.4,n2,-9.8)}L${Q(Xk,ky,nk,-8.4)}L${Q(Xh,hy,n1,-10.5)}Z" fill="${PJE}"/>`
+      :`<path d="M${f1(Xh-10.5)},${f1(hy)}Q${f1(Xk-5.6)},${f1(ky)} ${f1(Xm-9.8)},-8.4L${f1(Xm+9.8)},-8.4Q${f1(Xk+5.6)},${f1(ky)} ${f1(Xh+10.5)},${f1(hy)}Z" fill="${PJE}"/>`)+
+      `<path d="M${f1(Xk-4)},${f1(ky-2)}C${f1(Xk-1)},${f1(ky+.5)} ${f1(Xk+2)},${f1(ky+.5)} ${f1(Xk+4)},${f1(ky-2)}M${f1(Xm-7)},-22C${f1(Xm-3)},-18 ${f1(Xm+3)},-18 ${f1(Xm+7)},-22" fill="none" stroke="${PJEL}" stroke-width=".8"/>`;
+    const back=c<-.3?`<g transform="translate(0,${f1(drop)})"><path d="M${f1(Xh-6.6)},-112L${f1(Xh+6.6)},-112L${f1(Xh+6)},-97C${f1(Xh+3)},-95 ${f1(Xh-3)},-95 ${f1(Xh-6)},-97Z" fill="#a2b4d8" stroke="${PJEL}" stroke-width=".7"/><path d="M${f1(Xh-5.6)},-110.6L${f1(Xh+5.6)},-110.6M${f1(Xh-5)},-98.4C${f1(Xh-2.4)},-96.8 ${f1(Xh+2.4)},-96.8 ${f1(Xh+5)},-98.4" fill="none" stroke="#e0c890" stroke-width=".4" stroke-dasharray="1 .8"/><path d="M${f1(Xk-4)},-66C${f1(Xk-1.4)},-67.4 ${f1(Xk+1.4)},-67.4 ${f1(Xk+4)},-66M${f1(Xk-3.4)},-62.6C${f1(Xk-1)},-63.6 ${f1(Xk+1)},-63.6 ${f1(Xk+3.4)},-62.6" fill="none" stroke="${PJEL}" stroke-width=".6"/></g>`:'';
     return{d:D(10.5*side,zf*.5),svg:c>.3?pants+shoe:shoe+pants+back}};
   // Arm einer Seite – breite Haltung: Schultern zurück, Oberarm vom Rumpf weg, Ellbogen nach außen,
   // Unterarm locker hängend mit Abstand zum Körper; Ärmelende als weiche Stoffwulst, Hand mit Innenfläche zum Oberschenkel
@@ -270,10 +278,19 @@ function PETV(th,open,step,em,bl){const r=th*Math.PI/180,c=Math.cos(r),s=Math.si
     // Unterarm: locker, leicht nach außen fallend, Muskelbauch oben außen
     const fore=`<path d="M${P(Xe-o*4.4,-147+EY)}C${P(Xe-o*5,-138+EY)} ${P(Xw-o*4.2,WY-11)} ${P(Xw-o*3,WY)}L${P(Xw+o*3,WY)}C${P(Xw+o*4,WY-13)} ${P(Xe+o*7.4,-136+EY)} ${P(Xe+o*4.8,-147+EY)}Z" fill="${sk}"/>`+
       `<path d="M${P(Xe-o*2.4,-141+EY)}C${P(Xe-o*.8,-140+EY)} ${P(Xe+o*1.2,-140+EY)} ${P(Xe+o*2.8,-141+EY)}" fill="none" stroke="${PSKL}" stroke-width=".45"/>`;
-    const svg=fore+sleeve+roll+`<g transform="translate(${f1(Xw)},${WY-1}) rotate(${tilt}) scale(${f1(kx*sg*PHANDS)},${PHANDS})">${hand}</g>`;
-    return{d,svg}};
+    let svg=fore+sleeve+roll+`<g transform="translate(${f1(Xw)},${WY-1}) rotate(${tilt}) scale(${f1(kx*sg*PHANDS)},${PHANDS})">${hand}</g>`,dd=d;
+    // aktiver Arm in Pose: um die Schulter geschwenkt (Seitenansicht = Drehung, von vorn/hinten = Verkürzung zur Kamera hin)
+    // von vorn/hinten: Armlänge so, dass er nach dem Vorbeugen des Oberkörpers (Stauchung fy) wieder richtig lang nach unten reicht
+    if(po&&side===AS&&po.arm!=null){const a=po.arm*Math.PI/180,lr=lean*Math.PI/180,fy=1-(1-Math.cos(lr))*Math.abs(c),
+        wx=s*Math.sin(a),wy=Math.cos(a)*(1-Math.abs(c))+Math.abs(c)*Math.cos(a-lr)/fy,Ln=Math.max(.3,Math.hypot(wx,wy)),
+        M=MM(MT(Xs,-192),MM(MR(Math.atan2(-wx,wy)*180/Math.PI),MM(MS(1,Ln),MT(-Xs,192))));
+      svg=`<g transform="matrix(${M.map(f1)})">${svg}</g>`;dd=D(27.5*side,zw+70*Math.sin(a-lr));AM=M;AP=[Xw,WY+16];AD=dd}
+    return{d:dd,svg}};
+  let AM=null,AP=null,AD=0;
   const L=[leg(-1),leg(1)].sort((a,b)=>a.d-b.d),A=[arm(-1),arm(1)],ch=Math.tan(-2.4*s*Math.PI/180),Xn=1.6*s-96*ch;
-  out.push(`<g transform="scale(1,${PBODY})">`,L[0].svg,L[1].svg);A.filter(a=>a.d<-4).forEach(a=>out.push(a.svg));
+  // Oberkörper (mit Armen) kippt um die Hüfte nach vorn und sinkt beim In-die-Knie-Gehen mit ab
+  const UP=MM(MT(0,drop-124),MM(MR(lean*s),MM(MS(1,1-(1-Math.cos(lean*Math.PI/180))*Math.abs(c)),MT(0,124))));
+  out.push(`<g transform="scale(1,${PBODY})">`,L[0].svg,L[1].svg,'</g>',`<g transform="matrix(${UP.map(f1)})">`,`<g transform="scale(1,${PBODY})">`);A.filter(a=>a.d<-4).forEach(a=>out.push(a.svg));
   out.push(`<path d="M${f1(Xn-5)},-218L${f1(Xn-6)},-202C${f1(Xn-2)},-199 ${f1(Xn+3)},-199 ${f1(Xn+6)},-202L${f1(Xn+5)},-218Z" fill="${PSK}"/><path d="M${f1(Xn-5.4)},-212C${f1(Xn-1)},-208 ${f1(Xn+3)},-208 ${f1(Xn+5.6)},-211L${f1(Xn+5)},-218L${f1(Xn-5)},-218Z" fill="#b07c4c" stroke="none"/>`);
   // Brust raus: Oberkörper oben leicht nach vorn geneigt (nur sichtbar in Seiten-/Schrägansicht)
   out.push(`<g transform="translate(${f1(112*ch)},0) skewX(${f1(-2.4*s)})">`);
@@ -285,9 +302,14 @@ function PETV(th,open,step,em,bl){const r=th*Math.PI/180,c=Math.cos(r),s=Math.si
   out.push('</g>');
   A.filter(a=>a.d>=-4).forEach(a=>out.push(a.svg));
   const hk=th<23?'f':th<68?'q':th<113?'s':th<158?'bq':'b';
-  out.push('</g>',`<g transform="translate(${f1(Xn)},${f1(-209*PBODY)}) scale(${PHEADX},${PHEADS}) translate(0,211)">${PHEAD[hk](open,em,bl)}</g>`);
+  const HN=MP(UP,[Xn,-209*PBODY]);
+  out.push('</g></g>',`<g transform="translate(${f1(HN[0])},${f1(HN[1])}) rotate(${f1(lean*s*.8)}) scale(${PHEADX},${PHEADS}) translate(0,211)">${PHEAD[hk](open,em,bl)}</g>`);
+  if(po){po.hand=AM?MP(UP,MP(AM,AP)):null;po.behind=AD<-4&&c<-.3}
   return `<g stroke="${INK}" stroke-width="1" stroke-linejoin="round" stroke-linecap="round">${out.join('')}</g>`}
 const PET=(open,step)=>PETV(0,open,step);
+// 2D-Matrizen wie SVG matrix(a,b,c,d,e,f): MM(A,B) = erst B, dann A
+function MM(A,B){return[A[0]*B[0]+A[2]*B[1],A[1]*B[0]+A[3]*B[1],A[0]*B[2]+A[2]*B[3],A[1]*B[2]+A[3]*B[3],A[0]*B[4]+A[2]*B[5]+A[4],A[1]*B[4]+A[3]*B[5]+A[5]]}
+const MT=(x,y)=>[1,0,0,1,x,y],MS=(x,y)=>[x,0,0,y,0,0],MR=g=>{const q=g*Math.PI/180;return[Math.cos(q),Math.sin(q),-Math.sin(q),Math.cos(q),0,0]},MP=(M,[x,y])=>[M[0]*x+M[2]*y+M[4],M[1]*x+M[3]*y+M[5]];
 const CROW=`<g stroke="#0c0c10" stroke-width="1" stroke-linejoin="round">
 <path d="M-26,10L-12,3C-20,-8 -12,-12 -5,-13C10,-16 15,-9 14,-5C13,6 6,8 0,8L-22,15Z" fill="#20242e"/><path d="M-14,2C-6,-6 2,-6 8,-4C4,4 -2,5 -8,6Z" fill="#3c4458" stroke="none"/>
 <path d="M-16,4L-6,2M-18,8L-4,5" fill="none" stroke="#4c5468" stroke-width=".7"/>
@@ -322,7 +344,7 @@ const INKF='<defs><filter id="v" x="-20%" y="-20%" width="140%" height="140%" co
 // Tiere (Kiste < 150 Einheiten hoch) bekommen dieselbe Pixeldichte wie Petja. PIXELSTYLE=false -> alter handgezeichneter Stil (INKSTYLE).
 const PIXELSTYLE=true,PIX_ROWS=500,PIX_LINE=.55,PIX_INK=[46,28,16],PIX_SOFT=.8,PIX_BLUR=2,PIX_SAT=.8,PIX_MIX=2,PIX_NEAR=62;
 if(INKSTYLE&&!PIXELSTYLE)document.documentElement.classList.add('ink');
-function pixSprite(inner,[x,y,w,h]){const H=h>=150?PIX_ROWS:Math.round(h*PIX_ROWS/258),W=Math.round(w*H/h),SS=3;
+function pixSprite(inner,[x,y,w,h],rows){const H=rows?rows:h>=150?PIX_ROWS:Math.round(h*PIX_ROWS/258),W=Math.round(w*H/h),SS=3;
   // feine Innenlinien: Tusche- und Detailstriche (<=1.6) dünner zeichnen; dicke farbige Striche (Haarsträhnen, Stab) bleiben
   const thin=inner.replace(/stroke-width="([\d.]+)"/g,(m,v)=>+v<=1.6?`stroke-width="${(+v*PIX_LINE).toFixed(2)}"`:m);
   const svg=s=>'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="${W*SS}" height="${H*SS}" viewBox="${x} ${y} ${w} ${h}" preserveAspectRatio="none">${s}</svg>`);
@@ -357,14 +379,14 @@ function pixSprite(inner,[x,y,w,h]){const H=h>=150?PIX_ROWS:Math.round(h*PIX_ROW
     og.putImageData(id,0,0);return o.toDataURL()})}
 // hängt den Volumen-Filter an jede Form mit Farbfüllung
 const volumize=s=>s.replace(/<(path|ellipse|circle|rect|polygon)\b([^>]*)>/g,(m,t,a)=>/\bfill="#/.test(a)&&!/\bfilter=/.test(a)?`<${t} filter="url(#v)"${a}>`:m);
-function sprite(inner,[x,y,w,h],k){if(PIXELSTYLE)return pixSprite(inner,[x,y,w,h]);if(INKSTYLE){k*=2.5;inner=volumize(inner)}return new Promise(res=>{const cw=Math.round(w*k),ch=Math.round(h*k),im=new Image();
+function sprite(inner,[x,y,w,h],k,rows){if(PIXELSTYLE)return pixSprite(inner,[x,y,w,h],rows);if(INKSTYLE){k*=2.5;inner=volumize(inner)}return new Promise(res=>{const cw=Math.round(w*k),ch=Math.round(h*k),im=new Image();
   im.onload=()=>{const o=document.createElement('canvas');o.width=cw;o.height=ch;const g=o.getContext('2d');g.drawImage(im,0,0,cw,ch);
     if(!INKSTYLE){const id=g.getImageData(0,0,cw,ch),d=id.data;for(let i=0;i<d.length;i+=4){if(d[i+3]<100){d[i+3]=0;continue}d[i+3]=255;for(let j=0;j<3;j++)d[i+j]=d[i+j]&0xF8}
     g.putImageData(id,0,0)}res(o.toDataURL())};
   im.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="${cw}" height="${ch}" viewBox="${x} ${y} ${w} ${h}">${INKSTYLE?INKF:ROUGH}<g filter="url(#r)">${inner}</g></svg>`)})}
 const petimg=$('#petimg'),petG=$('#petja'),PB=[-48,-254,96,258],K=1.15;let frames=[],talking=false,ft=0;
 // Petjas Ansichten: PFR[Winkel] = [Stehen, Reden, Schritt]; PVIEW wird beim Laufen aus der Richtung gewählt, beim Reden schaut er nach vorn
-const PFR={};let PVIEW=0;
+const PFR={};let PVIEW=0,ACT=null,PJY=0;
 const NB=[-30,-100,60,104];
 Promise.all([sprite(PET(0,0),PB,K),sprite(PET(1,0),PB,K),sprite(PET(0,1),PB,K),sprite(CROW,[-30,-26,64,44],K),sprite(FISHER,[-64,-142,134,224],K),sprite(OMA,[-46,-200,92,204],K),sprite(OPA,[-44,-184,88,188],K)]).then(([a,b,st,cr,fi,om,op])=>{$('#omaimg').setAttribute('href',om);$('#opaimg').setAttribute('href',op);sprite(GNOM1,[-80,-296,166,300],K).then(k=>$('#gnom1img').setAttribute('href',k));sprite(GNOM2,[-52,-232,106,236],K).then(k=>$('#gnom2img').setAttribute('href',k));sprite(WOWA,[-52,-276,104,280],K).then(u=>{WOWAIMG=new Image();WOWAIMG.src=u});sprite(DANCER,[-50,-262,104,266],K).then(k=>{$('#dancerimg').setAttribute('href',k);$('#poleimg').setAttribute('href',k);DANCERIMG.src=k;$('#dancer2img').setAttribute('href',k)});sprite(ZINA,[-60,-282,140,286],K).then(k=>$('#zinaimg').setAttribute('href',k));sprite(BJ,[-64,-250,128,256],K).then(k=>$('#bjimg').setAttribute('href',k));sprite(KATER,[-22,-58,52,62],K).then(k=>$('#katerimg').setAttribute('href',k));document.querySelectorAll('.fishimg').forEach(e=>e.setAttribute('href',fi));frames=[a,b,st];PFR[0]=frames;(async()=>{for(const th of [45,90,135,180])PFR[th]=await Promise.all([sprite(PETV(th,0,0),PB,K),sprite(PETV(th,1,0),PB,K),sprite(PETV(th,0,1),PB,K)])})();PETIMG.src=a;petimg.setAttribute('href',a);$('#crowimg').setAttribute('href',cr)});
 // ===== Mimik im Spiel =====
@@ -374,7 +396,7 @@ let PEMO='n',PEMO_T=0,blinkN=25;const FACE={};
 function setEmo(e,ms){PEMO=PEMOS[e]?e:'n';PEMO_T=ms?Date.now()+ms:0}
 function face(e,m,b){const k=e+m+(b?'b':'');if(!(k in FACE)){FACE[k]=null;sprite(PETV(0,m,0,e,b),PB,K).then(u=>FACE[k]=u)}return FACE[k]}
 setTimeout(async function pre(){if(!frames[2])return setTimeout(pre,500);for(const e of Object.keys(PEMOS))for(const m of [0,1,2,3,'b']){const k=e+(m==='b'?'0b':m);if(!(k in FACE)){FACE[k]=null;FACE[k]=await sprite(PETV(0,m==='b'?0:m,0,e,m==='b'),PB,K)}}},1500);
-setInterval(()=>{if(!frames[2])return;ft=1-ft;
+setInterval(()=>{if(!frames[2])return;ft=1-ft;if(ACT)return;
   if(PEMO_T&&Date.now()>PEMO_T){PEMO='n';PEMO_T=0}
   if(mv){petimg.setAttribute('href',(PFR[PVIEW]||frames)[ft?2:0]);return}
   // seitlich/hinten stehend ohne Gefühlsregung: normale Ansicht; sonst dreht er sich zum Spieler und zeigt Mimik
@@ -387,7 +409,7 @@ setInterval(()=>{if(!frames[2])return;ft=1-ft;
 // ================= Laufen & Szenenwechsel =================
 const P={x:400,y:476,dir:1};let mv=null,cur=null,changing=false;const cache={},seen={wald:1};
 function scaleAt(y){const o=S0,sN=o.k*(494-o.hz),t=Math.max(.05,(y-o.hz)/(494-o.hz));return sN*Math.pow(t,o.pp||1.15)}
-function render(){const sc=scaleAt(P.y);petG.setAttribute('transform',`translate(${P.x.toFixed(1)},${P.y.toFixed(1)}) scale(${(sc*P.dir).toFixed(3)},${sc.toFixed(3)})`)}
+function render(){const sc=scaleAt(P.y);petG.setAttribute('transform',`translate(${P.x.toFixed(1)},${(P.y+PJY).toFixed(1)}) scale(${(sc*P.dir).toFixed(3)},${sc.toFixed(3)})`)}
 function walkTo(tx,ty,cb){const o=S0;tx=Math.max(o.x0,Math.min(o.x1,tx));ty=Math.max(o.ymin(tx),Math.min(o.ymax,ty));if(o.xr){const[a,b]=o.xr(ty);tx=Math.max(a,Math.min(b,tx))}mv={tx,ty,cb}}
 let last=0;(function loop(t){const dt=Math.min(.05,(t-last)/1000||0);last=t;
   if(mv&&S0){const dx=mv.tx-P.x,dy=mv.ty-P.y,d=Math.hypot(dx,dy),sp=140*scaleAt(P.y)*dt+.3;
