@@ -1,6 +1,11 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.42',d:'12.11.2026',t:'Birkenwald als Gouache-Gemälde',n:[
+    'Der Birkenwald sieht jetzt aus wie mit Pinsel und Gouache auf Leinwand gemalt: deckende Farbflächen, sichtbare Pinselstriche, Leinwandstruktur',
+    'Dunkler und kontrastreicher, mit sattereren, leicht gedeckten Farben und tieferen Schatten im Unterholz',
+    'Die Birkenstämme haben unregelmäßige, handgezeichnete Tuschekonturen und dunklere Schattenseiten',
+    'Alles steht an derselben Stelle wie vorher – Weg, Bäume, Stumpf, Fliegenpilz und Schild bleiben gut erkennbar'] },
   {v:'1.40',d:'12.11.2026',t:'Feinschliff Ellbogen',n:[
     'Petjas Ellbogen sitzen ein kleines Stück weiter außen'] },
   {v:'1.39',d:'12.11.2026',t:'Petjas Augen',n:[

@@ -66,7 +66,7 @@ function birchPath(X,base,w,L,top=-12){const h=base-top,n=Math.ceil(h/10),lp=[],
   lp[0][0]-=w*.2;rp[0][0]+=w*.2;
   return'M'+lp.concat(rp.reverse()).map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join('L')+'Z'}
 function birch(x,X,base,w,L,top=-12,ps){ps=ps||birchPath(X,base,w,L,top);const p=new Path2D(ps),h=base-top,g=x.createLinearGradient(X-w/2,0,X+w/2,0);
-  [[0,'#5a5850'],[.22,'#a8a598'],[.58,'#f4f2ea'],[.8,'#e0dcd0'],[1,'#767268']].forEach(([o,k])=>g.addColorStop(o,k));
+  (S0.ink?[[0,'#2e2a24'],[.2,'#7e786a'],[.5,'#e8e2d2'],[.7,'#c4bca8'],[.88,'#5e5648'],[1,'#26201a']]:[[0,'#5a5850'],[.22,'#a8a598'],[.58,'#f4f2ea'],[.8,'#e0dcd0'],[1,'#767268']]).forEach(([o,k])=>g.addColorStop(o,k));
   x.fillStyle=g;x.fill(p);x.save();x.clip(p);
   for(let i=0;i<h/2;i++){const Y=base-R()*h,k=(base-Y)/h,cx=X+L*k*k,ww=w*(1-k*.42),l=ww*(.15+R()*.4),x0=cx-ww/2+R()*(ww-l);
     x.strokeStyle=`rgba(96,90,78,${.12+R()*.25})`;x.lineWidth=.35+R()*.5;x.beginPath();x.moveTo(x0,Y);x.lineTo(x0+l,Y+(R()-.5)*.6);x.stroke()}
@@ -74,7 +74,17 @@ function birch(x,X,base,w,L,top=-12,ps){ps=ps||birchPath(X,base,w,L,top);const p
     x.fillStyle=`rgba(24,22,18,${.7+R()*.3})`;x.beginPath();x.moveTo(x0,Y);x.quadraticCurveTo(x0+l*.5,Y-th*1.6,x0+l,Y+(R()-.5)*1.5);x.quadraticCurveTo(x0+l*.5,Y+th*.7,x0,Y);x.fill()}
   const bh=h*(.08+R()*.06),bg=x.createLinearGradient(0,base-bh,0,base);bg.addColorStop(0,'rgba(46,40,30,0)');bg.addColorStop(.5,'rgba(46,40,30,.6)');bg.addColorStop(1,'rgba(34,30,22,.95)');x.fillStyle=bg;x.fillRect(X-w*2,base-bh,w*4,bh);
   if(top<100){const tg=x.createLinearGradient(0,top,0,top+130);tg.addColorStop(0,'rgba(28,44,18,.6)');tg.addColorStop(1,'rgba(28,44,18,0)');x.fillStyle=tg;x.fillRect(X-w*2+L,top,w*4,130)}
-  x.restore();x.strokeStyle='rgba(40,38,30,.35)';x.lineWidth=.7;x.stroke(p)}
+  x.restore();x.strokeStyle='rgba(40,38,30,.35)';x.lineWidth=.7;x.stroke(p);
+  if(S0.ink)inkOutline(x,ps,w)}
+// Handgezeichnete Tuschekontur: Segment für Segment mit schwankender Strichstärke, auf der Schattenseite (rechts) kräftiger,
+// dazu ein zweiter, leicht versetzter Strich – wie mit der Feder nachgezogen
+function inkOutline(x,ps,w){const pts=ps.slice(1,-1).split('L').map(q=>q.split(',').map(Number)),n=pts.length,half=n/2,sc=Math.min(1.6,.5+w/16);
+  x.save();x.lineCap='round';x.lineJoin='round';
+  for(let pass=0;pass<2;pass++){const jx=(R()-.5)*.7,jy=(R()-.5)*.7;
+    for(let i=0;i<n-1;i++){if(i==Math.floor(half)-1)continue;const a=pts[i],b=pts[i+1],right=i>=half,v=vn(i*.45+pass*7,a[1]*.02);
+      x.strokeStyle=`rgba(22,14,8,${pass?.5:.88})`;x.lineWidth=(pass?.5:1)*sc*(right?1.5:.9)*(.55+v*1.1);
+      x.beginPath();x.moveTo(a[0]+jx,a[1]+jy);x.lineTo(b[0]+jx+(R()-.5)*.4,b[1]+jy);x.stroke()}}
+  x.restore()}
 function foliage(x,X,Y,r,dk,nh){const f=S0.fol;
   for(let i=0;i<5;i++)dab(x,X+(R()-.5)*r,Y+(R()-.5)*r*.6,r*.75,dk?[8,24,8]:mix(f[0],[0,0,0],.2),.45);
   for(let i=0;i<r*r*.32;i++){const a=R()*6.283,dd=Math.pow(R(),.6)*r,ox=Math.cos(a)*dd,oy=Math.sin(a)*dd*.72,lt=cl((ox*SD[0]+oy*SD[1])/r*.6+.45+(R()-.5)*.5);
@@ -100,7 +110,48 @@ function shadows(list,a=.38){const x=lay();x.fillStyle='rgba(20,40,10,1)';list.f
 function rays(o,list){const x=lay();x.fillStyle=rgba(o.rayc,.5);list.forEach(([a,wd])=>{x.beginPath();x.moveTo(o.sun[0],o.sun[1]);x.lineTo(o.sun[0]+Math.sin(a-wd)*800,o.sun[1]+Math.cos(a-wd)*800);x.lineTo(o.sun[0]+Math.sin(a+wd)*800,o.sun[1]+Math.cos(a+wd)*800);x.fill()});put(x,14,'screen',o.raya)}
 function grade(o){c.save();c.globalCompositeOperation='soft-light';let g=c.createLinearGradient(W,0,0,H);g.addColorStop(0,o.gr[0]);g.addColorStop(1,o.gr[1]);c.fillStyle=g;c.fillRect(0,0,W,H);c.restore();
   g=c.createRadialGradient(W/2,H*.55,W*.3,W/2,H*.55,W*.75);g.addColorStop(0,'rgba(10,16,4,0)');g.addColorStop(1,`rgba(10,12,4,${o.vig})`);c.fillStyle=g;c.fillRect(0,0,W,H);
-  const im=c.getImageData(0,0,W,H),d=im.data;for(let i=0;i<d.length;i+=4){const n=(Math.random()-.5)*9;d[i]+=n;d[i+1]+=n;d[i+2]+=n}c.putImageData(im,0,0)}
+  const im=c.getImageData(0,0,W,H),d=im.data;for(let i=0;i<d.length;i+=4){const n=(Math.random()-.5)*9;d[i]+=n;d[i+1]+=n;d[i+2]+=n}c.putImageData(im,0,0);
+  if(o.gouache)gouache(o.gouache,o.keep)}
+// ================= Gouache-Look =================
+// Macht aus dem fertig gemalten Bild eine handgemalte Gouache-Kulisse, ohne etwas zu verschieben:
+// 1) dunkler, kontrastreicher, sattere aber leicht gedeckte Farben  2) Kuwahara-Filter -> flache, deckende Farbflächen mit erhaltenen Kanten
+// 3) kurze, deckende Pinselstriche entlang der Formen (an harten Kanten/Schrift ausgespart)  4) Leinwandstruktur
+// p: {dk Abdunkeln (Gamma), ct Kontrast, sat Sättigung, mute Richtung Erdton, r Kuwahara-Radius, n Pinselstriche}
+// keep: Rechtecke [x,y,b,h] (Szenen-Einheiten), die nur die Tonwerte bekommen, aber scharf bleiben (z. B. Schilder mit Schrift);
+// {e:[cx,cy,rx,ry]} = weich auslaufende Ellipse (für Objekte im Gras, damit keine Kante entsteht)
+function gouache(p,keep=[]){const w=W,h=H,im=c.getImageData(0,0,w,h),d=im.data,N=w*h;
+  // 1) Tonwerte
+  const M=[96,84,70];for(let i=0;i<d.length;i+=4){let r=d[i]/255,g=d[i+1]/255,b=d[i+2]/255;
+    r=Math.pow(r,p.dk);g=Math.pow(g,p.dk);b=Math.pow(b,p.dk);
+    const L=.299*r+.587*g+.114*b,sL=cl((L-.42)*p.ct+.42)/(L||1e-3);r*=sL;g*=sL;b*=sL;
+    const L2=.299*r+.587*g+.114*b;r=L2+(r-L2)*p.sat;g=L2+(g-L2)*p.sat;b=L2+(b-L2)*p.sat;
+    d[i]=(r*(1-p.mute)+M[0]/255*p.mute*L2*2)*255;d[i+1]=(g*(1-p.mute)+M[1]/255*p.mute*L2*2)*255;d[i+2]=(b*(1-p.mute)+M[2]/255*p.mute*L2*2)*255}
+  c.putImageData(im,0,0);const tone=d.slice(),ells=keep.filter(k=>k.e).map(k=>k.e);keep=keep.filter(k=>!k.e);const kept=keep.map(([x,y,b,hh])=>[x*SC|0,y*SC|0,c.getImageData(x*SC|0,y*SC|0,b*SC|0,hh*SC|0)]);
+  // 2) Kuwahara über Summentabellen
+  const W1=w+1,S=[0,1,2,3].map(()=>new Float64Array(W1*(h+1)));
+  for(let y=0;y<h;y++){let a0=0,a1=0,a2=0,a3=0;for(let x=0;x<w;x++){const i=(y*w+x)*4,L=.299*d[i]+.587*d[i+1]+.114*d[i+2];a0+=d[i];a1+=d[i+1];a2+=d[i+2];a3+=L*L;
+    const k=(y+1)*W1+x+1,u=y*W1+x+1;S[0][k]=S[0][u]+a0;S[1][k]=S[1][u]+a1;S[2][k]=S[2][u]+a2;S[3][k]=S[3][u]+a3}}
+  const box=(t,x0,y0,x1,y1)=>t[y1*W1+x1]-t[y0*W1+x1]-t[y1*W1+x0]+t[y0*W1+x0],out=new Uint8ClampedArray(d.length),r=p.r;
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++){let best=1e18,br=0,bg=0,bb=0;
+    for(let q=0;q<4;q++){const x0=Math.max(0,q&1?x:x-r),x1=Math.min(w,(q&1?x+r:x)+1),y0=Math.max(0,q&2?y:y-r),y1=Math.min(h,(q&2?y+r:y)+1),n=(x1-x0)*(y1-y0);
+      const sr=box(S[0],x0,y0,x1,y1),sg=box(S[1],x0,y0,x1,y1),sb=box(S[2],x0,y0,x1,y1),ml=(.299*sr+.587*sg+.114*sb)/n,v=box(S[3],x0,y0,x1,y1)/n-ml*ml;
+      if(v<best){best=v;br=sr/n;bg=sg/n;bb=sb/n}}
+    const i=(y*w+x)*4;out[i]=br;out[i+1]=bg;out[i+2]=bb;out[i+3]=255}
+  im.data.set(out);c.putImageData(im,0,0);
+  // 3) Pinselstriche: Farbe vom Bild, Richtung quer zum Helligkeitsgefälle; an starken Kanten (Konturen, Schrift) keine Striche
+  const lum=i=>.299*out[i]+.587*out[i+1]+.114*out[i+2];
+  c.save();c.lineCap='round';
+  for(let k=0;k<p.n;k++){const x=2+R()*(w-4)|0,y=2+R()*(h-4)|0,i=(y*w+x)*4,gx=lum(i+4)-lum(i-4),gy=lum(i+w*4)-lum(i-w*4),gm=Math.hypot(gx,gy);
+    if(gm>40)continue;const a=(gm>4?Math.atan2(gy,gx)+Math.PI/2:Math.PI/2+(R()-.5)*1.2)+(R()-.5)*.5,len=(y/h*10+5)*(.6+R()*.8),j=(R()-.5)*22;
+    c.strokeStyle=`rgba(${out[i]+j|0},${out[i+1]+j|0},${out[i+2]+j*.8|0},${.35+R()*.4})`;c.lineWidth=1.5+R()*2.6+y/h*2;
+    c.beginPath();c.moveTo(x-Math.cos(a)*len/2,y-Math.sin(a)*len/2);c.quadraticCurveTo(x+(R()-.5)*3,y+(R()-.5)*3,x+Math.cos(a)*len/2,y+Math.sin(a)*len/2);c.stroke()}
+  c.restore();kept.forEach(([x,y,k])=>c.putImageData(k,x,y));
+  if(ells.length){const im3=c.getImageData(0,0,w,h),q=im3.data;ells.forEach(([cx,cy,rx,ry])=>{cx*=SC;cy*=SC;rx*=SC;ry*=SC;
+    for(let y=Math.max(0,cy-ry|0);y<Math.min(h,cy+ry+1);y++)for(let x=Math.max(0,cx-rx|0);x<Math.min(w,cx+rx+1);x++){const dd=Math.hypot((x-cx)/rx,(y-cy)/ry);if(dd>=1)continue;
+      const f=1-sst(.6,1,dd),i=(y*w+x)*4;for(let j=0;j<3;j++)q[i+j]=q[i+j]+(tone[i+j]-q[i+j])*f}});c.putImageData(im3,0,0)}
+  // 4) Leinwand: feines Gewebe + Pigmentkorn
+  const im2=c.getImageData(0,0,w,h),e=im2.data;for(let y=0;y<h;y++)for(let x=0;x<w;x++){const i=(y*w+x)*4,f=1+.035*(Math.sin(x*1.9)*Math.sin(y*1.9))+(Math.random()-.5)*.05;e[i]*=f;e[i+1]*=f;e[i+2]*=f}
+  c.putImageData(im2,0,0)}
 
 // ================= Gemalte Objekte =================
 function mushroom(x,X,Y){
