@@ -1,6 +1,11 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.45',d:'12.11.2026',t:'Realistischere Gegenstände & Materialien',n:[
+    'Gegenstände echt gerendert: Holzmaserung, gebürstetes Metall, Papier, Sackleinen, Glas – mit 3D-Licht und Glanzlichtern statt Comic-Konturen',
+    'Knöpfe aus gebürstetem Messing, Fenster in gewölbten Messingrahmen mit Eckrosetten',
+    'Gemasertes Holz an Leiste, Taschen und Reitern, erhabenes Gold-Ornament',
+    'Gegenstände im Tagebuch und in den Taschen größer'] },
   {v:'1.44',d:'12.11.2026',t:'Neue Oberfläche: Holz & Messing',n:[
     'Alle Gegenstände sind jetzt gemalte Bilder statt Emojis – mit Glanzlichtern, Schatten und Kontur',
     'Knöpfe überall als gewölbte Messingplatten, Hauptknöpfe in rotem Lack mit Goldrand',
