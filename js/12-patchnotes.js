@@ -1,6 +1,11 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.61',d:'12.11.2026',t:'Saubere Klickflächen',n:[
+    'Petja steht nicht mehr im Weg: Man klickt durch ihn hindurch auf alles, was hinter ihm liegt (z. B. den Apfel)',
+    'Keine wilden gelben Umrisse mehr beim Drüberfahren – der Name am Mauszeiger zeigt, was man anklickt',
+    'Klickflächen korrigiert: Der See verdeckt den Fischer und den Steg nicht mehr, Ziehbrunnen im Dorf, Steg am Ufer und Apfelbaum passen jetzt zur Grafik',
+    'Irrwald erst nach Baba Jaga: Vorher weigert sich Petja und sagt, dass er erst zur Hexe muss'] },
   {v:'1.60',d:'12.11.2026',t:'Echte Hand & Autosave',n:[
     'Im Intro hält Petja den Joint jetzt mit einer richtigen Hand: Daumen und Zeigefinger klemmen ihn, die anderen Finger sind eingerollt, dazu Fingernägel, Knöchel und der Ärmel vom Pulli',
     'Autosave speichert jetzt nicht nur beim Ortswechsel, sondern bei jedem Fortschritt (Gegenstand, Auftrag, Gespräch), alle 20 Sekunden und beim Schließen des Tabs',

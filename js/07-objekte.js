@@ -236,7 +236,11 @@ const T={
   mstein:{n:'Mühlsteine',at:[200,430],l:[[['P','Alte Mühlsteine. Schwer wie Omas Kuchen.']]]},
   saecke:{n:'Mehlsäcke',at:[400,462],l:[[['P','Mehlsäcke. Einer ist aufgeplatzt. Hier war jemand. Vor Kurzem.'],['P','Fußspuren im Mehl. Barfuß. Mit... sechs Zehen.']]]},
   karren:{n:'Alter Karren',at:[600,470],l:[[['P','Ein Karren mit einem Rad. Das andere ist wohl auch abgehauen.']]]},
-  sIW:{n:'Schild: In den Irrwald',at:[130,476],go:'irrwald',to:[420,486]},
+  sIW:{n:'Schild: In den Irrwald',at:[130,476],fn(){if(FL.drin||inv.includes('karte'))return enter('irrwald',[420,486]);
+    this.i=(this.i||0);say([
+      [['P','Irrwald. Schon der Name. Da geh ich nicht einfach so rein.'],['P','Ich verlauf mich ja schon im Supermarkt. Erst mal rausfinden, wer hier den Weg kennt.'],['P','Die Alte in der Hütte auf Hühnerbeinen sieht aus, als wüsste sie so was. Zuerst zu Baba Jaga.']],
+      [['P','Nee. Ohne Plan rein, als Pilzdünger wieder raus. Erst zu Baba Jaga.']],
+      [['P','*späht in den Wald* ...Der Wald späht zurück. Nein danke. Erst Baba Jaga fragen.']]][this.i++%3])}},
   sIM:{n:'Schild: Zurück zur Mühle',at:[130,488],go:'muehle',to:[150,470]},
   sIL:{n:'Weg links',at:[360,396],fn(){irrGo('L')}},sIR:{n:'Weg rechts',at:[500,396],fn(){irrGo('R')}},sIG:{n:'Weg geradeaus',at:[440,388],fn(){irrGo('G')}},
   sBM:{n:'Schild: Abkürzung zur Mühle',at:[150,486],go:'muehle',to:[150,470]},
