@@ -1,6 +1,11 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.64',d:'12.11.2026',t:'Nymphen im neuen Stil',n:[
+    'Die sechs Sumpf-Nymphen sind jetzt Cel-Sprites wie alle anderen Figuren: braune Federkontur, weiche Airbrush-Schatten, gleiche Pixeldichte wie Petja',
+    'Aussehen 1:1 wie vorher: gleiche Posen, Haare, Augen, Lippen, Wunden, Algen, Perlen, Blasen und Schädel',
+    'Unter Wasser werden sie in Stufen trüb, an der Wasserlinie glänzt ein heller Saum',
+    'Neu als Arrays in pixel/: nymphe_nastja, _marfa, _ustinja, _fekla, _glafira, _alte (Pixel für Pixel wie im Spiel)'] },
   {v:'1.63',d:'12.11.2026',t:'Großer Apfelbaum',n:[
     'Der Apfelbaum an der Weggabelung ist jetzt fast doppelt so hoch und überragt Petja: höherer Stamm, mehr Äste, breite Krone mit mehr Äpfeln',
     'Der Apfel hängt jetzt unten in der Krone – Petja springt danach'] },
