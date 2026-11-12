@@ -61,6 +61,36 @@ function aptPaint(){const o=document.createElement('canvas');o.width=W;o.height=
   [[330,400],[350,410],[600,396]].forEach(([X,Y],i)=>{x.fillStyle=i==2?'#6a8a5a':'#3a6a3a';x.fillRect(X,Y-26,10,26);x.fillRect(X+3,Y-34,4,8)});ell(x,430,404,16,5,[60,60,60]);ell(x,430,402,12,3,[30,30,30]);
   x.fillStyle='#2a5a8a';x.beginPath();x.ellipse(520,420,18,7,0,0,7);x.fill();x.beginPath();x.ellipse(556,424,18,7,0,0,7);x.fill();
   const vg=x.createRadialGradient(440,240,100,440,240,520);vg.addColorStop(0,'rgba(0,0,0,0)');vg.addColorStop(1,'rgba(0,0,0,.55)');x.fillStyle=vg;x.fillRect(0,0,800,500);return o}
+// Rechte Hand in Ego-Sicht, Joint zwischen Daumen und Zeigefinger. Ursprung = Griffpunkt, Hand liegt rechts unten davon.
+function fpHand(x,part){const OUT='#5a3420',SK='#e2b08a',SH='#b9805c',HI='#f4cfa8';x.lineCap=x.lineJoin='round';
+  const tube=(pts,w,col,hl)=>{const path=()=>{x.beginPath();x.moveTo(pts[0][0],pts[0][1]);if(pts.length==3)x.quadraticCurveTo(pts[1][0],pts[1][1],pts[2][0],pts[2][1]);else if(pts.length==4)x.bezierCurveTo(pts[1][0],pts[1][1],pts[2][0],pts[2][1],pts[3][0],pts[3][1]);else x.lineTo(pts[1][0],pts[1][1])};
+    path();x.strokeStyle=OUT;x.lineWidth=w+3;x.stroke();path();x.strokeStyle=col||SK;x.lineWidth=w;x.stroke();
+    if(hl){x.save();x.translate(hl[0],hl[1]);path();x.strokeStyle=HI;x.globalAlpha=.55;x.lineWidth=w*.3;x.stroke();x.restore()}};
+  const crease=(a,b,c,d,e,f)=>{x.strokeStyle='rgba(120,70,40,.7)';x.lineWidth=1.1;x.beginPath();x.moveTo(a,b);x.quadraticCurveTo(c,d,e,f);x.stroke()};
+  const nail=(X,Y,r,w,h)=>{x.save();x.translate(X,Y);x.rotate(r);x.fillStyle='#f0d2c0';x.strokeStyle='#a87058';x.lineWidth=.9;x.beginPath();x.ellipse(0,0,w,h,0,0,7);x.fill();x.stroke();
+    x.fillStyle='rgba(255,255,255,.5)';x.beginPath();x.ellipse(-w*.3,-h*.2,w*.35,h*.3,0,0,7);x.fill();x.restore()};
+  if(part=='back'){
+    // Ärmel (Kapuzenpulli) mit Bündchen
+    x.fillStyle='#2a3a7a';x.strokeStyle='#141c40';x.lineWidth=2;x.beginPath();x.moveTo(118,58);x.bezierCurveTo(150,50,200,60,260,90);x.lineTo(260,240);x.lineTo(110,240);x.bezierCurveTo(100,180,104,110,118,58);x.fill();x.stroke();
+    x.strokeStyle='rgba(10,16,40,.6)';x.lineWidth=1.5;[[150,90,140,150],[190,90,180,170],[225,110,215,190]].forEach(([a,b,c,d])=>{x.beginPath();x.moveTo(a,b);x.quadraticCurveTo(c+12,(b+d)/2,c,d);x.stroke()});
+    x.fillStyle='#24326a';x.beginPath();x.moveTo(112,62);x.bezierCurveTo(124,54,140,54,150,60);x.lineTo(138,130);x.bezierCurveTo(124,128,110,124,100,118);x.closePath();x.fill();x.stroke();
+    for(let i=0;i<6;i++){x.strokeStyle='rgba(10,16,40,.5)';x.lineWidth=1;x.beginPath();x.moveTo(114+i*6,60);x.lineTo(104+i*6,122);x.stroke()}
+    // Handgelenk + Handrücken
+    const g=x.createLinearGradient(30,0,110,90);g.addColorStop(0,HI);g.addColorStop(.5,SK);g.addColorStop(1,SH);
+    x.fillStyle=g;x.strokeStyle=OUT;x.lineWidth=2;x.beginPath();x.moveTo(44,2);x.bezierCurveTo(62,-6,84,0,100,14);x.bezierCurveTo(112,26,120,44,118,66);
+    x.bezierCurveTo(116,86,108,108,96,116);x.bezierCurveTo(84,112,70,100,60,86);x.bezierCurveTo(48,66,38,34,44,2);x.fill();x.stroke();
+    // Sehnen/Knöchel auf dem Handrücken
+    x.strokeStyle='rgba(150,95,60,.45)';x.lineWidth=1.4;[[60,6,98,40],[62,20,96,58],[64,34,94,74]].forEach(([a,b,c,d])=>{x.beginPath();x.moveTo(a,b);x.quadraticCurveTo((a+c)/2+6,(b+d)/2-6,c,d);x.stroke()});
+    // eingerollte Finger (Mittel-, Ring-, kleiner Finger)
+    tube([[62,16],[38,12],[28,24],[36,34]],17,SK,[-1,-3]);crease(40,10,36,18,40,24);
+    tube([[64,34],[42,30],[34,42],[42,50]],16,SK,[-1,-3]);crease(44,28,40,36,44,42);
+    tube([[66,52],[50,48],[44,58],[50,64]],13,SH,[-1,-2]);crease(50,46,46,52,50,58);
+    // Daumen (unter dem Joint)
+    tube([[80,82],[54,64],[30,38],[6,10]],17,SK,[-2,-3]);crease(44,52,40,46,36,44);nail(10,12,-.9,5,3.5)}
+  else{
+    // Zeigefinger über dem Joint, Spitze drückt von oben
+    tube([[68,10],[48,-12],[22,-16],[3,-5]],16,SK,[-1,-3]);crease(44,-6,38,-12,32,-13);crease(20,-14,16,-10,14,-6);
+    nail(5,-10,.5,5.5,4)}}
 function cutscene(){changing=true;const cv3=document.createElement('canvas');cv3.id='cut';cv3.width=W;cv3.height=H;cv3.style.cssText='position:absolute;inset:0;width:100%;height:100%;z-index:15';$('#game').appendChild(cv3);
   const x=cv3.getContext('2d'),APT=aptPaint(),PI=PETIMG;const FOR=cache.wald||cv;
   let st='room',wx=860,door=0,blur=0,dark=1,lid=0,fin=false,tilt=0;
@@ -75,8 +105,12 @@ function cutscene(){changing=true;const cv3=document.createElement('canvas');cv3
     if(st=='fp'){x.setTransform(1,0,0,1,0,0);x.filter=`blur(${blur*SC}px) saturate(${1+blur*.2}) hue-rotate(${blur*14}deg)`;x.translate(W/2,H/2);x.rotate(Math.sin(T*1.3)*.012*blur);const z=1.6+Math.sin(T*.9)*.015*blur;x.scale(z,z);x.translate(-W/2,-H/2-30*SC);x.drawImage(APT,0,0);
       x.setTransform(SC,0,0,SC,0,0);if(blur>1){x.globalAlpha=Math.min(.5,blur*.06);x.drawImage(APT,-60,-100,1280,800);x.globalAlpha=1}
       x.filter=`blur(${blur*SC*.8}px)`;wowa(430+Math.sin(T)*blur*4,640,2.3);if(blur>1.5){x.globalAlpha=.35;wowa(430+blur*6,640,2.3);wowa(430-blur*6,640,2.3);x.globalAlpha=1}
-      x.filter='none';x.fillStyle='#f4f0e2';x.save();x.translate(606,462);x.rotate(-.85);x.fillRect(-6,-70,12,74);x.restore();x.strokeStyle='#5a3a24';x.lineWidth=2;x.fillStyle='#e0b090';x.beginPath();x.ellipse(680,520,70,46,-.55,0,7);x.fill();x.stroke();[[618,470,16,10,-.6],[634,458,16,10,-.6],[652,450,15,9,-.6],[668,446,13,8,-.6],[598,494,18,10,-1.2]].forEach(([a,b,c,d,r])=>{x.beginPath();x.ellipse(a,b,c,d,r,0,7);x.fill();x.stroke()});x.fillStyle='#2a3a7a';x.fillRect(700,470,120,40);
-      x.save();x.globalCompositeOperation='lighter';dab(x,550,420,10+Math.sin(T*4)*3,[255,110,30],.95);x.restore();for(let i=0;i<5;i++){const p=(T*.3+i/5)%1;dab(x,550+Math.sin(p*5+i)*20,420-p*200,10+p*40,[220,220,230],.3*(1-p))}}
+      x.filter='none';const hy=Math.sin(T*1.1)*3;
+      const jnt=()=>{x.save();x.translate(580,350+hy);x.rotate(-.85);x.fillStyle='#f4f0e2';x.strokeStyle='#b8b0a0';x.lineWidth=1;x.beginPath();x.moveTo(-5,4);x.lineTo(-7,-68);x.lineTo(7,-68);x.lineTo(5,4);x.closePath();x.fill();x.stroke();
+        x.fillStyle='#d8c8a0';x.fillRect(-5,-6,10,10);x.fillStyle='#3a3a3a';x.fillRect(-7,-72,14,5);x.restore()};
+      const hand=p=>{x.save();x.translate(580,350+hy);x.scale(1.4,1.4);fpHand(x,p);x.restore()};
+      hand('back');jnt();hand('front');
+      x.save();x.globalCompositeOperation='lighter';dab(x,527,306+hy,10+Math.sin(T*4)*3,[255,110,30],.95);x.restore();for(let i=0;i<5;i++){const p=(T*.3+i/5)%1;dab(x,527+Math.sin(p*5+i)*20,306-p*200,10+p*40,[220,220,230],.3*(1-p))}}
     if(st=='wake'){x.setTransform(1,0,0,1,0,0);x.filter=`blur(${blur*SC}px)`;x.translate(W/2,H/2);x.rotate(tilt);x.scale(1.12,1.12);x.translate(-W/2,-H/2);x.drawImage(FOR,0,0,W,H);x.setTransform(1,0,0,1,0,0);x.filter='none';
       if(lid>0){x.fillStyle='#000';const h=H/2*lid;x.beginPath();x.moveTo(0,0);x.lineTo(W,0);x.lineTo(W,h);x.quadraticCurveTo(W/2,h+H*.22*lid,0,h);x.fill();x.beginPath();x.moveTo(0,H);x.lineTo(W,H);x.lineTo(W,H-h);x.quadraticCurveTo(W/2,H-h-H*.22*lid,0,H-h);x.fill()}}
     x.setTransform(1,0,0,1,0,0);if(dark>0){x.fillStyle=`rgba(0,0,0,${dark})`;x.fillRect(0,0,W,H)}requestAnimationFrame(draw)}

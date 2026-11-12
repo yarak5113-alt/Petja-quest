@@ -1,6 +1,10 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.60',d:'12.11.2026',t:'Echte Hand & Autosave',n:[
+    'Im Intro hält Petja den Joint jetzt mit einer richtigen Hand: Daumen und Zeigefinger klemmen ihn, die anderen Finger sind eingerollt, dazu Fingernägel, Knöchel und der Ärmel vom Pulli',
+    'Autosave speichert jetzt nicht nur beim Ortswechsel, sondern bei jedem Fortschritt (Gegenstand, Auftrag, Gespräch), alle 20 Sekunden und beim Schließen des Tabs',
+    'Unten rechts erscheint kurz „💾 gespeichert“'] },
   {v:'1.59',d:'12.11.2026',t:'Intro mit Geräuschen',n:[
     'Keine Musik mehr in der Anfangs-Zwischensequenz – stattdessen Wohnungs-Geräusche: Kühlschrank brummt, Uhr tickt, draußen fahren Autos',
     'Wowa stapft durch den Flur und reißt die Tür auf – sie knallt gegen die Wand und zittert nach',

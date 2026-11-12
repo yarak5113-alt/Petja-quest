@@ -1,8 +1,17 @@
 // ================= Komfort: Autosave, Weiterspielen, Überspringen, Minispiel-Hilfe, Nymphen-Hinweis, zweite Sprüche =================
 
-// ----- Automatisch speichern bei jedem Ortswechsel -----
-let autoCur=null;
-setInterval(()=>{if(!cur||cur===autoCur||busy||changing||$('#start')||$('#fg')||$('#cut'))return;if(autoSave())autoCur=cur},1000);
+// ----- Automatisch speichern: bei jedem Ortswechsel, bei jedem Fortschritt (Gegenstand, Auftrag, Gespräch), alle 20 s und beim Schließen -----
+let autoSig=null,autoT=0;
+const autoOk=()=>cur&&!busy&&!changing&&!$('#start')&&!$('#fg')&&!$('#cut');
+function autoBadge(){let b=$('#autoS');if(!b){b=document.createElement('div');b.id='autoS';b.textContent='💾 gespeichert';
+    b.style.cssText='position:absolute;right:12px;bottom:12px;z-index:40;padding:4px 10px;border-radius:12px;background:rgba(20,14,8,.75);color:#f0e0c0;font:13px Georgia,serif;opacity:0;transition:opacity .4s;pointer-events:none';
+    ($('#game')||document.body).appendChild(b)}
+  b.style.opacity=1;clearTimeout(b._t);b._t=setTimeout(()=>b.style.opacity=0,1400)}
+setInterval(()=>{if(!autoOk())return;const s=snapState(),sig=JSON.stringify([s.cur,s.inv,s.FL,s.REM,s.ti]),now=Date.now();
+  if(sig!==autoSig){if(autoSave()){const first=autoSig===null;autoSig=sig;autoT=now;if(!first)autoBadge()}}
+  else if(now-autoT>20000){if(autoSave())autoT=now}},1000);
+addEventListener('pagehide',()=>{if(cur&&!$('#start')&&!$('#cut'))autoSave()});
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&cur&&!$('#start')&&!$('#cut'))autoSave()});
 
 // ----- „Weiterspielen“ im Startmenü: lädt den neuesten Spielstand (automatisch oder manuell) -----
 function latestSave(){const c=[];const a=autoSlot();if(a)c.push(['auto',a]);slots().forEach((d,i)=>{if(d)c.push([i,d])});
