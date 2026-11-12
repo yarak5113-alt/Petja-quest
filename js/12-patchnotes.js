@@ -1,6 +1,11 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.37',d:'12.11.2026',t:'Petjas Figur überarbeitet',n:[
+    'Schmale, abfallende Schultern direkt am Hals statt runder Kugelgelenke',
+    'Oberarme liegen eng am Rumpf, die Unterarme spreizen nach unten leicht ab',
+    'Riesige, klobige Klauenhände mit dicken Fingern',
+    'Kopf wieder klein und schmal'] },
   {v:'1.36',d:'12.11.2026',t:'Petja als Karikatur',n:[
     'Richtige Cartoon-Hände: vier einzelne, leicht gekrümmte Finger, Daumen und Knöchelreihe statt Bananen-Fäustling',
     'Karikatur-Proportionen: größerer Kopf, etwas gedrungenerer Körper, größere Hände'] },
