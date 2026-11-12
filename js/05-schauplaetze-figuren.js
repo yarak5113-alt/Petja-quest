@@ -112,8 +112,17 @@ const f1=v=>Math.round(v*100)/100;
 function tube(x1,y1,r1,x2,y2,r2){const dx=x2-x1,dy=y2-y1,L=Math.hypot(dx,dy)||1,nx=-dy/L,ny=dx/L;
   return `M${f1(x1+nx*r1)},${f1(y1+ny*r1)}L${f1(x2+nx*r2)},${f1(y2+ny*r2)}A${r2},${r2} 0 0 0 ${f1(x2-nx*r2)},${f1(y2-ny*r2)}L${f1(x1-nx*r1)},${f1(y1-ny*r1)}A${r1},${r1} 0 0 0 ${f1(x1+nx*r1)},${f1(y1+ny*r1)}Z`}
 // Hand von der Seite (Innenfläche zum Oberschenkel): u = nach vorne, v = nach unten ab Handgelenk
-const PHAND=col=>`<path d="M-4.2,0C-5,5 -5.2,10 -4.6,13.4C-4,16.6 -2.6,19.4 -.4,20.6C1.2,21.4 2.8,20.6 3.6,19C4.2,17.6 3.8,16.4 3,15.6C4,13 4.6,10 4.6,7L4.4,0Z" fill="${col}"/><path d="M-2.2,13.4C-1.6,16.4 -.4,18.8 1.2,20.2M.6,12.6C1.4,14.6 2.2,16 3,16.8M-4.4,12.6C-3.6,12.2 -2.6,12 -1.8,12.2" fill="none" stroke="${PSKL}" stroke-width=".5"/>`;
-const PTHUMB=col=>`<path d="M3.8,3C6.4,5 7,9 6,12.4C5.4,13.6 4.4,13.4 4.2,12.4C4.6,10 4.4,7 3.4,5.4Z" fill="${col}"/>`;
+// Cartoon-Hand: Handrücken mit Knöchelreihe, vier einzelne, leicht nach vorn gekrümmte Finger (kleiner Finger hinten, Zeigefinger vorn)
+// Finger: [Mitte u, Breite, Spitze v, Krümmung nach vorn]
+const PFING=[[-4,2.5,16.2,1],[-1.5,2.7,18.6,1.4],[1.1,2.8,19.4,1.8],[3.7,2.7,18,2.2]];
+const PHAND=col=>{let s='';PFING.forEach(([cx,w,t,k],i)=>{const L=cx-w/2,R=cx+w/2,e=t-w/2,P=(a,b)=>f1(a)+','+f1(b);
+    s+=`<path d="M${P(L,7)}Q${P(L-.3,e*.7)} ${P(L+k,e)}C${P(L+k,t+.3)} ${P(R+k,t+.3)} ${P(R+k,e)}Q${P(R+.2,e*.7)} ${P(R,7)}Z" fill="${i?col:PSK2}"/>`+
+      `<path d="M${P(L+k*.55+.3,e-3.6)}Q${P(cx+k*.55,e-3.1)} ${P(R+k*.55-.3,e-3.6)}" fill="none" stroke="${PSKL}" stroke-width=".4"/>`});
+  return s+`<path d="M-2.8,0C-3.6,3 -5,6 -5.4,9.4Q-4,10.6 -2.8,9.8Q-1.5,10.9 -.2,9.8Q1.1,11.2 2.4,9.8Q3.7,11 5.2,9.6C5,6 4,3 2.8,0Z" fill="${col}"/>`+
+    `<path d="M-2.4,-1.4L2.4,-1.4L2.5,1.2L-2.5,1.2Z" fill="${col}" stroke="none"/><path d="M-1.8,3.4C-2.4,5 -2.8,6.6 -2.9,8M1.4,3.6C1.6,5.2 1.6,6.8 1.2,8.2" fill="none" stroke="${PSKL}" stroke-width=".4"/>`};
+const PTHUMB=col=>`<path d="M2.2,2.4C5,3.4 6.8,6.6 7,10C7.1,11.8 6,12.6 5,11.8C4.4,9.8 3.6,7.4 1.8,6Z" fill="${col}"/><path d="M4.4,7.6C5,8 5.4,8.4 5.6,9" fill="none" stroke="${PSKL}" stroke-width=".4"/>`;
+// Karikatur-Proportionen: Kopf größer, Körper etwas gedrungener, Hände größer
+const PHEADS=1.38,PBODY=.9,PHANDS=1.42;
 const PTORSO=`<path d="M-22,-197C-27,-188 -27.6,-176 -26.6,-164C-25.6,-152 -23.6,-142 -23.2,-132C-23,-124 -23.6,-118 -24,-112C-15,-109 -6,-110 0,-112C8,-110 18,-109 24,-112C23.6,-118 23,-124 23.2,-132C23.6,-142 25.6,-152 26.6,-164C27.6,-176 27,-188 22,-197C14,-204 6,-206 0,-204C-8,-206 -16,-204 -22,-197Z" fill="${PTE}"/><path d="M10,-204C16,-202 20,-200 22,-197C27,-188 27.6,-176 26.6,-164C25.6,-152 23.6,-142 23.2,-132C23,-124 23.6,-118 24,-112C21,-111 17,-110 13,-110C15,-124 14.6,-140 16,-154C18.6,-170 15,-186 10,-204Z" fill="${PTE2}" stroke="none"/>`;
 const PFRONT=`<path d="M-5.6,-208L5.6,-208L6.4,-203L0,-186L-6.4,-203Z" fill="#c8925c" stroke="none"/><path d="M-3,-203L0,-193L3,-203Z" fill="#b07c4c" stroke="none"/><path d="M-6,-204L0,-186L6,-204" fill="none" stroke-width=".8"/>`+
   `<path d="M-9,-205L-1,-186L-13,-194C-12,-199 -11,-202 -9,-205ZM9,-205L1,-186L13,-194C12,-199 11,-202 9,-205Z" fill="${PTE3}" stroke-width=".8"/><path d="M0,-186C0,-160 -.5,-136 0,-112" fill="none" stroke-width=".8"/>`+
@@ -231,7 +240,7 @@ function PETV(th,open,step,em,bl){const r=th*Math.PI/180,c=Math.cos(r),s=Math.si
   // Unterarm locker hängend mit Abstand zum Körper; Ärmelende als weiche Stoffwulst, Hand mit Innenfläche zum Oberschenkel
   const arm=side=>{const sw=(side<0?-st:st)*.7,zs=-2,ze=sw*.5-5.5,zw=sw-4,Xs=X(21*side,zs),Xe=X(28.6*side,ze),Xw=X(31*side,zw),d=D(21*side,ze+2);
     const near=d>4,shade=!near&&Xs>0,sl=shade?PTE2:PTE,sk=shade?PSK2:PSK,o=Math.abs(c)>.3?side*Math.sign(c):1;
-    const kx=Math.max(.6,Math.abs(s)),sg=Math.abs(s)>.3?Math.sign(s):-side,hand=c<0?PTHUMB(sk)+PHAND(sk):PHAND(sk)+PTHUMB(sk),P=(x,y)=>f1(x)+','+y;
+    const kx=Math.max(.78,Math.abs(s)),sg=Math.abs(s)>.3?Math.sign(s):-side,hand=c<0?PTHUMB(sk)+PHAND(sk):PHAND(sk)+PTHUMB(sk),P=(x,y)=>f1(x)+','+y;
     const sv=Math.abs(c)<.3,tilt=f1(-5*o*(Math.abs(c)>.3?1:0));
     // Ärmel: Schulterlinie geht weich in den Oberarm über; innen eigene Kontur, weil der Arm jetzt frei steht
     const top=P(Xs-o*1,-198),del=P(Xs+o*7,-185),eo=P(Xe+o*6.4,-152),ei=P(Xe-o*5.6,-152),pit=P(Xs-o*4.4,-180),inn=P(Xs-o*5,-195);
@@ -247,10 +256,10 @@ function PETV(th,open,step,em,bl){const r=th*Math.PI/180,c=Math.cos(r),s=Math.si
     // Unterarm: locker, leicht nach außen fallend, Muskelbauch oben außen
     const fore=`<path d="M${P(Xe-o*4.4,-147)}C${P(Xe-o*5,-136)} ${P(Xw-o*4.2,-120)} ${P(Xw-o*3,-106)}L${P(Xw+o*3,-106)}C${P(Xw+o*4,-122)} ${P(Xe+o*7.4,-134)} ${P(Xe+o*4.8,-147)}Z" fill="${sk}"/>`+
       `<path d="M${P(Xe-o*2.4,-140)}C${P(Xe-o*.8,-139)} ${P(Xe+o*1.2,-139)} ${P(Xe+o*2.8,-140)}" fill="none" stroke="${PSKL}" stroke-width=".45"/>`;
-    const svg=fore+sleeve+roll+`<g transform="translate(${f1(Xw)},-107) rotate(${tilt}) scale(${f1(kx*sg)},1)">${hand}</g>`;
+    const svg=fore+sleeve+roll+`<g transform="translate(${f1(Xw)},-107) rotate(${tilt}) scale(${f1(kx*sg*PHANDS)},${PHANDS})">${hand}</g>`;
     return{d,svg}};
   const L=[leg(-1),leg(1)].sort((a,b)=>a.d-b.d),A=[arm(-1),arm(1)],ch=Math.tan(-2.4*s*Math.PI/180),Xn=1.6*s-96*ch;
-  out.push(L[0].svg,L[1].svg);A.filter(a=>a.d<-4).forEach(a=>out.push(a.svg));
+  out.push(`<g transform="scale(1,${PBODY})">`,L[0].svg,L[1].svg);A.filter(a=>a.d<-4).forEach(a=>out.push(a.svg));
   out.push(`<path d="M${f1(Xn-5)},-218L${f1(Xn-6)},-202C${f1(Xn-2)},-199 ${f1(Xn+3)},-199 ${f1(Xn+6)},-202L${f1(Xn+5)},-218Z" fill="${PSK}"/><path d="M${f1(Xn-5.4)},-212C${f1(Xn-1)},-208 ${f1(Xn+3)},-208 ${f1(Xn+5.6)},-211L${f1(Xn+5)},-218L${f1(Xn-5)},-218Z" fill="#b07c4c" stroke="none"/>`);
   // Brust raus: Oberkörper oben leicht nach vorn geneigt (nur sichtbar in Seiten-/Schrägansicht)
   out.push(`<g transform="translate(${f1(112*ch)},0) skewX(${f1(-2.4*s)})">`);
@@ -262,7 +271,7 @@ function PETV(th,open,step,em,bl){const r=th*Math.PI/180,c=Math.cos(r),s=Math.si
   out.push('</g>');
   A.filter(a=>a.d>=-4).forEach(a=>out.push(a.svg));
   const hk=th<23?'f':th<68?'q':th<113?'s':th<158?'bq':'b';
-  out.push(`<g transform="translate(${f1(Xn)},2)">${PHEAD[hk](open,em,bl)}</g>`);
+  out.push('</g>',`<g transform="translate(${f1(Xn)},${f1(-209*PBODY)}) scale(${PHEADS}) translate(0,211)">${PHEAD[hk](open,em,bl)}</g>`);
   return `<g stroke="${INK}" stroke-width="1" stroke-linejoin="round" stroke-linecap="round">${out.join('')}</g>`}
 const PET=(open,step)=>PETV(0,open,step);
 const CROW=`<g stroke="#0c0c10" stroke-width="1" stroke-linejoin="round">
