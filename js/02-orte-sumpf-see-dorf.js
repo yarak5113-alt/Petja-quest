@@ -264,6 +264,7 @@ function paintDorfstr(){const o=S0;sky(o);far(o);ground(o);
   x=lay();for(let i=0;i<7;i++)sunflower(x,46+i*30+R()*8,412,40+R()*20);izba(x,140,420,.95,0,{trim:'#4a8a5a'});fence2(x,-10,272,436,[240,266]);
   izba(x,690,410,.9,1,{trim:'#8a4a4a'});fence2(x,560,810,428,null);bush(x,540,428,16,0);bucket(x,300,440);
   sign(x,110,486,1.7,[[-1,0,'Zum Dorfeingang','hDE']]);put(x);
+  x=lay();sign(x,488,360,1.1,[[-1,14,'Zum Schmiedehof','hSm']]);put(x); // zweites Brett am Kirchenschild: neuer Ort
   x=lay();grass(x,700,470,515,2.4,1);bush(x,770,500,40,1);put(x,1);rays(o,[[.3,.05]]);grade(o)}
 function onion(x,X,Y,r,c0,c1){const g=x.createRadialGradient(X-r*.4,Y-r*1.1,1,X,Y-r,r*1.4);g.addColorStop(0,c0);g.addColorStop(1,c1);x.fillStyle=g;x.beginPath();x.moveTo(X-r*.55,Y);
   x.bezierCurveTo(X-r*1.5,Y-r*.6,X-r*.7,Y-r*1.5,X,Y-r*2.3);x.bezierCurveTo(X+r*.7,Y-r*1.5,X+r*1.5,Y-r*.6,X+r*.55,Y);x.fill();x.strokeStyle='rgba(20,14,6,.7)';x.lineWidth=.8;x.stroke();orthCross(x,X,Y-r*2.3,r*1.3,'#c8a850',1.4)}

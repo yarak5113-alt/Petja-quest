@@ -1,6 +1,11 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.49',d:'12.11.2026',t:'Neuer Ort: der Schmiedehof',n:[
+    'Hinter der Dorfstraße liegt jetzt ein Schmiedehof – das Kirchenschild hat ein neues Brett „Zum Schmiedehof“',
+    'Schmiede aus Rundholz mit geschnitztem Giebelpferd, glühender Esse und Rauchfang, Amboss, Hufeisen über der Tür',
+    'Strohdach-Unterstand mit Heuhaufen, Fass, Brunnen mit Dach, Holzstapel und Flechtzaun unter blauem Himmel',
+    'Alles lässt sich ansehen; eigene Sprüche, Ambiente mit Hammerschlägen, Eintrag auf der Karte'] },
   {v:'1.48',d:'12.11.2026',t:'Petjas Hand als Klick-Zeiger',n:[
     'Über allem Anklickbaren zeigt jetzt Petjas eigene Hand mit dem Zeigefinger – in seinen Hautfarben, mit Tuschekontur wie die Figur'] },
   {v:'1.47',d:'12.11.2026',t:'Eigene Mauszeiger',n:[
