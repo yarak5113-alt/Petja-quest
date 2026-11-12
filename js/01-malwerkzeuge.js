@@ -100,8 +100,6 @@ function shadows(list,a=.38){const x=lay();x.fillStyle='rgba(20,40,10,1)';list.f
 function rays(o,list){const x=lay();x.fillStyle=rgba(o.rayc,.5);list.forEach(([a,wd])=>{x.beginPath();x.moveTo(o.sun[0],o.sun[1]);x.lineTo(o.sun[0]+Math.sin(a-wd)*800,o.sun[1]+Math.cos(a-wd)*800);x.lineTo(o.sun[0]+Math.sin(a+wd)*800,o.sun[1]+Math.cos(a+wd)*800);x.fill()});put(x,14,'screen',o.raya)}
 function grade(o){c.save();c.globalCompositeOperation='soft-light';let g=c.createLinearGradient(W,0,0,H);g.addColorStop(0,o.gr[0]);g.addColorStop(1,o.gr[1]);c.fillStyle=g;c.fillRect(0,0,W,H);c.restore();
   g=c.createRadialGradient(W/2,H*.55,W*.3,W/2,H*.55,W*.75);g.addColorStop(0,'rgba(10,16,4,0)');g.addColorStop(1,`rgba(10,12,4,${o.vig})`);c.fillStyle=g;c.fillRect(0,0,W,H);
-  // optional farbiger Rand (o.vigc), z. B. bläulich-violetter Schimmer wie auf alten gemalten Kulissen
-  if(o.vigc){g=c.createRadialGradient(W/2,H/2,W*.28,W/2,H/2,W*.6);g.addColorStop(0,rgba(o.vigc,0));g.addColorStop(.75,rgba(o.vigc,o.viga*.5));g.addColorStop(1,rgba(o.vigc,o.viga));c.fillStyle=g;c.fillRect(0,0,W,H)}
   const im=c.getImageData(0,0,W,H),d=im.data;for(let i=0;i<d.length;i+=4){const n=(Math.random()-.5)*9;d[i]+=n;d[i+1]+=n;d[i+2]+=n}c.putImageData(im,0,0)}
 
 // ================= Gemalte Objekte =================
@@ -224,37 +222,6 @@ function hutDecoFront(x){puddle(x,524,466,22);puddle(x,610,486,26);puddle(x,456,
   bush(x,392,448,20,0);bush(x,688,458,26,0);fern(x,170,470,1.6);grass(x,300,430,470,1.6)}
 function gabelDeco(x){bush(x,240,318,34,0);bush(x,478,290,24,0);bush(x,646,322,30,0);bush(x,60,420,30,0);rock(x,524,428,18,1);rock(x,96,398,14,1);rock(x,668,474,22,1);rock(x,326,368,11,1);
   fern(x,322,432,1.8);fern(x,570,448,1.9);fern(x,118,452,1.8);fern(x,700,414,1.6);shrooms(x,118,302,6);shrooms(x,716,300,5);shrooms(x,384,472,4);leavesOnPath(x,160)}
-// ================= Gemalter Gegenlicht-Wald =================
-// Stamm-Kulisse: mehrere Reihen hoher Stämme hintereinander; je weiter hinten, desto heller und dunstiger (Luftperspektive).
-// layers: [Anzahl, Breite min, Breite max, Dunkelheit 0..1, Weichzeichnen]. Oben Laub-Silhouetten mit Himmelslöchern, unten Bodennebel.
-function trunkWall(o,layers){const hz=o.hz,haze=o.mist||mix(o.hor,[255,250,236],.35),dk=o.tk||[36,26,40];
-  layers.forEach(([n,w0,w1,t,bl])=>{const x=lay(),col=mix(haze,dk,t),base=hz+6+t*14;
-    for(let i=0;i<n;i++){const X=R()*860-30,w=w0+R()*(w1-w0),lean=(R()-.5)*w*1.4,lp=[],rp=[];
-      for(let k=0;k<=12;k++){const v=k/12,Y=base-v*(base+30),cx=X+lean*v*v+(vn(k*.6,X)-.5)*w*.25,ww=w*(1-v*.35)/2;lp.push([cx-ww,Y]);rp.push([cx+ww,Y])}
-      lp[0][0]-=w*.35;rp[0][0]+=w*.35;
-      const p=new Path2D('M'+lp.concat(rp.reverse()).map(q=>q[0].toFixed(1)+','+q[1].toFixed(1)).join('L')+'Z'),g=x.createLinearGradient(X-w/2,0,X+w/2,0),sl=X<o.sun[0]?1:-1;
-      g.addColorStop(0,rgba(mix(col,[0,0,0],sl>0?.25:.05)));g.addColorStop(.5,rgba(mix(col,haze,.12)));g.addColorStop(1,rgba(mix(col,[0,0,0],sl>0?.05:.25)));x.fillStyle=g;x.fill(p);
-      // Rinde: ein paar dunkle Längsrisse, Lichtkante auf der Sonnenseite
-      if(t>.45){x.save();x.clip(p);for(let k=0;k<w*1.2;k++){const sx=X-w/2+R()*w;x.strokeStyle=rgba(mix(col,[0,0,0],.4),.35+R()*.3);x.lineWidth=.4+R()*.8;x.beginPath();x.moveTo(sx,base-R()*base);x.lineTo(sx+(R()-.5)*2,base-R()*base);x.stroke()}
-        x.fillStyle=rgba(mix(col,o.sunc,.45),.35);x.fillRect(sl>0?X+w*.22:X-w*.42,-30,w*.2,base+30);x.restore()}
-      // ein, zwei Äste
-      if(t>.25)for(let b=0;b<1+(R()<.5);b++){const by=30+R()*(hz-130),d=R()<.5?-1:1,bl2=w*(.9+R()*1.1)+6;x.strokeStyle=rgba(mix(col,[0,0,0],.15));x.lineCap='round';x.lineWidth=Math.max(.8,w*.16);
-        x.beginPath();x.moveTo(X+d*w*.3,by);x.quadraticCurveTo(X+d*bl2*.6,by-bl2*.05,X+d*bl2,by-bl2*.6);x.stroke();x.lineWidth*=.5;x.beginPath();x.moveTo(X+d*bl2*.6,by-bl2*.2);x.lineTo(X+d*bl2*.9,by-bl2*.1);x.stroke()}}
-    // Laub-Silhouetten oben (mit Löchern, durch die der Himmel scheint)
-    // Kronendach: grün-dunkel, in der Bildmitte (um die Sonne) lichter, damit das Gegenlicht durchkommt
-    const cc=mix(col,o.can||[40,56,26],.45+t*.45),open=X=>Math.abs(X-o.sun[0]+60)<170&&R()<.7;
-    for(let i=0;i<110;i++){const X=R()*840-20,Y=-30+Math.pow(R(),1.8)*(110+t*40);if(open(X))continue;dab(x,X,Y,14+R()*24,mix(cc,[0,0,0],R()*.15),.3+t*.3)}
-    for(let i=0;i<900*(t+.15);i++){const X=R()*840-20,Y=-20+Math.pow(R(),2)*(110+t*40);if(open(X))continue;ell(x,X,Y,1.5+R()*2.5,1+R()*1.6,mix(cc,mix(o.sunc,[120,150,60],.5),R()*.45),.85,R()*3)}
-    put(x,bl);
-    // Dunst zwischen den Reihen: unten dichter (Bodennebel), um die Sonne heller
-    const m=lay(),mg=m.createLinearGradient(0,30,0,hz+10);mg.addColorStop(0,rgba(haze,0));mg.addColorStop(1,rgba(haze,.38*(1-t*.6)));m.fillStyle=mg;m.fillRect(0,0,800,hz+14);
-    dab(m,o.sun[0],o.sun[1]+90,260,o.sunc,.22*(1-t*.5));put(m,4)})}
-// Herbstbusch: rot-orange-ockerfarbenes Laub (nutzt foliage mit vorübergehend getauschter Palette)
-function autumnBush(x,X,Y,r,pal){const f=S0.fol;S0.fol=pal||P2([[[96,22,14],[188,64,24],[238,150,64]],[[110,40,16],[200,104,36],[240,190,90]],[[80,20,24],[160,40,40],[226,110,70]]]);bush(x,X,Y,r,0);S0.fol=f}
-// Wiesenblumen: kleine weiße Margeriten und lila Rispen im Gras (nicht auf dem Weg)
-function meadow(x,n){const o=S0;for(let i=0,k=0;i<n*4&&k<n;i++){const Y=o.hz+10+Math.pow(R(),.7)*(492-o.hz),X=R()*800,t=(Y-o.hz)/(500-o.hz);if(inP(X,Y)||Y<o.gtop(X)+4)continue;k++;const s=.6+t*2.6;
-  if(R()<.55){for(let a=0;a<6;a++){const an=a*1.047+R()*.3;ell(x,X+Math.cos(an)*s*1.1,Y+Math.sin(an)*s*.6,s*.75,s*.32,[250,250,240],.95,an)}ell(x,X,Y,s*.45,s*.32,[240,200,40])}
-  else{x.strokeStyle='rgba(60,90,30,.8)';x.lineWidth=.4+t*.5;x.beginPath();x.moveTo(X,Y);x.lineTo(X+(R()-.5)*2,Y-s*5);x.stroke();for(let j=0;j<5;j++)ell(x,X+(R()-.5)*s*.8,Y-s*(2.4+j*.6),s*.45,s*.3,mix([150,70,200],[200,120,230],R()),.95)}}}
 function hutDetails(x){
   x.strokeStyle='rgba(235,235,235,.45)';x.lineWidth=.35;for(let a=0;a<6;a++){x.beginPath();x.moveTo(397,233);x.lineTo(397+Math.cos(a*.3)*16,233+Math.sin(a*.3)*16);x.stroke()}
   for(let r=4;r<16;r+=3){x.beginPath();x.arc(397,233,r,0,1.5);x.stroke()}

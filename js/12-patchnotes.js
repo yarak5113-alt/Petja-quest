@@ -1,12 +1,6 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
-  {v:'1.41',d:'12.11.2026',t:'Birkenwald neu gemalt',n:[
-    'Hinter den Birken steht jetzt ein tiefer Wald aus hohen Stämmen, die im Gegenlicht und Dunst nach hinten immer heller werden',
-    'Dunkles, grünes Kronendach, in der Mitte offen, damit das Licht durchfällt; Bodennebel am Waldrand',
-    'Rot-orange Herbstbüsche am Waldrand',
-    'Sattes Gras mit weißen Margeriten und lila Blüten',
-    'Bläulich schimmernder Bildrand wie auf alten gemalten Kulissen'] },
   {v:'1.40',d:'12.11.2026',t:'Feinschliff Ellbogen',n:[
     'Petjas Ellbogen sitzen ein kleines Stück weiter außen'] },
   {v:'1.39',d:'12.11.2026',t:'Petjas Augen',n:[
