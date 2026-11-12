@@ -42,16 +42,13 @@ birch=function(x,X,base,w,L,top=-12,ps){if(!isReal())return _birch(x,X,base,w,L,
     ell(x,xm,Y,rx,ry,[150+rr()*30,112+rr()*20,88+rr()*14],.5);ell(x,xm,Y+ry*.6,rx*.9,ry*.35,[60,40,30],.45);
     x.strokeStyle='rgba(255,253,246,.95)';x.lineWidth=(.5+rr()*.6)*s;x.beginPath();x.ellipse(xm,Y-ry*.8,rx*1.05,ry*.7,0,Math.PI*1.05,Math.PI*1.95);x.stroke();
     x.strokeStyle='rgba(60,50,40,.4)';x.lineWidth=.35*s;x.beginPath();x.ellipse(xm,Y-ry*.45,rx,ry*.5,0,Math.PI*1.1,Math.PI*1.9);x.stroke()}
-  // Stammfuß: dunkle, tief zerfurchte Borke mit gezacktem Übergang, helle Grate, Moos auf der Schattenseite
-  if(base>top+20){const bh=Math.min(h*.32,h*(.07+w/140)),wb=w*1.25,n=Math.max(6,Math.round(wb/(1.6*s)));
-    // gezackter Übergang: Borkenzungen ziehen unterschiedlich weit hoch, darüber ausfransende dunkle Inseln
-    x.beginPath();x.moveTo(X-wb/2,base+2);for(let i=0;i<=n;i++){const t=i/n,xx=X-wb/2+wb*t,tg=rr()<.3?rr()*.9:0;x.lineTo(xx,base-bh*(.3+fbm(xx*.9,base*.1,3)*.6+tg))}x.lineTo(X+wb/2,base+2);x.closePath();
-    const bg=x.createLinearGradient(0,base-bh*1.4,0,base);bg.addColorStop(0,'rgba(80,76,68,.88)');bg.addColorStop(.5,'rgba(52,48,42,.94)');bg.addColorStop(1,'rgba(26,24,20,.98)');x.fillStyle=bg;x.fill();
-    for(let i=0;i<wb*.5;i++){const xx=X-wb/2+rr()*wb,yy=base-bh*(.8+rr()*.9),l=(1+rr()*3)*s;jag(xx-l,xx+l,yy,(.5+rr()*1.4)*s);x.fillStyle=`rgba(40,36,32,${.5+rr()*.4})`;x.fill()}
-    for(let i=0;i<wb*1.6;i++){const xx=X-wb/2+rr()*wb,hh=bh*(.3+rr()*.9),wd=(.4+rr()*1.2)*s;
-      x.strokeStyle=`rgba(${120+rr()*40},${114+rr()*36},${100+rr()*30},${.35+rr()*.35})`;x.lineWidth=wd;x.beginPath();x.moveTo(xx,base+1);x.bezierCurveTo(xx+(rr()-.5)*2*s,base-hh*.4,xx+(rr()-.5)*3*s,base-hh*.7,xx+(rr()-.5)*2*s,base-hh);x.stroke();
-      x.strokeStyle='rgba(8,7,6,.7)';x.lineWidth=wd*.7;x.beginPath();x.moveTo(xx+wd,base+1);x.lineTo(xx+wd+(rr()-.5)*2*s,base-hh*.8);x.stroke()}
-    for(let i=0;i<wb*.9;i++){const xx=X-wb/2+Math.pow(rr(),1.6)*wb*.75,yy=base-rr()*bh*.55;dab(x,xx,yy,(1.2+rr()*2.4)*s,mix([40,70,22],[112,144,44],rr()),.55)}}
+  // Stammfuß: unten graue, quer aufgerissene Borkenplatten; nach oben immer lückiger, bis nur noch weiße Rinde bleibt (kein harter Rand)
+  if(base>top+20){const bh=Math.min(h*.22,h*(.05+w/220)),wb=w*1.25,N=Math.min(1400,wb*bh/(1.6*s*s));
+    for(let i=0;i<N;i++){const u=Math.pow(rr(),1.5),yy=base+1-bh*1.8*u,keep=1-u;if(rr()>keep*1.15)continue;
+      const xx=X-wb/2+rr()*wb,l=(1.2+rr()*3.4)*s*(.6+keep*.8),th=(.6+rr()*1.6)*s*(.6+keep*.6),v=26+rr()*30;
+      jag(xx-l,xx+l,yy,th);x.fillStyle=`rgba(${v+6},${v+2},${v-2},${.55+keep*.4})`;x.fill();
+      if(keep>.35&&rr()<.6){x.strokeStyle=`rgba(${112+rr()*40},${106+rr()*36},${94+rr()*30},${.3+rr()*.3})`;x.lineWidth=(.3+rr()*.5)*s;x.beginPath();x.moveTo(xx-l*.7,yy-th*.3);x.quadraticCurveTo(xx,yy-th*.9,xx+l*.7,yy-th*.2);x.stroke()}}
+    for(let i=0;i<wb*.6;i++){const xx=X-wb/2+Math.pow(rr(),1.6)*wb*.7,yy=base-rr()*bh*.4;dab(x,xx,yy,(1+rr()*2)*s,mix([40,70,22],[104,136,42],rr()),.45)}}
   // Rundung über alles: Texturen folgen dem Stamm (Schattenseite links dunkler, Glanzkante rechts)
   const sh=x.createLinearGradient(X-w/2,0,X+w/2,0);sh.addColorStop(0,'rgba(10,12,8,.55)');sh.addColorStop(.32,'rgba(10,12,8,.12)');sh.addColorStop(.6,'rgba(10,12,8,0)');sh.addColorStop(.9,'rgba(10,12,8,.08)');sh.addColorStop(1,'rgba(10,12,8,.45)');
   x.fillStyle=sh;x.fillRect(X-w,top-4,w*2+Math.abs(L),h+8);
@@ -59,7 +56,9 @@ birch=function(x,X,base,w,L,top=-12,ps){if(!isReal())return _birch(x,X,base,w,L,
   // Bodenschatten am Fuß, Kronenschatten oben
   const ao=x.createLinearGradient(0,base-h*.05,0,base);ao.addColorStop(0,'rgba(10,14,6,0)');ao.addColorStop(1,'rgba(10,14,6,.55)');x.fillStyle=ao;x.fillRect(X-w*2,base-h*.05,w*4,h*.05+2);
   if(top<100){const tg=x.createLinearGradient(0,top,0,top+150);tg.addColorStop(0,'rgba(24,40,14,.65)');tg.addColorStop(1,'rgba(24,40,14,0)');x.fillStyle=tg;x.fillRect(X-w*2+L,top,w*4,150)}
-  x.restore();x.strokeStyle='rgba(30,28,22,.4)';x.lineWidth=.6;x.stroke(p)};
+  x.restore();x.strokeStyle='rgba(30,28,22,.4)';x.lineWidth=.6;x.stroke(p);
+  // Grashalme vor dem Stammfuß: der Baum steht im Gras statt darauf
+  if(base>top+20&&base>S0.hz+10){x.lineCap='round';const n=Math.min(60,w*2.2);for(let i=0;i<n;i++){const gx=X-w*.8+rr()*w*1.6,gy=base+1+rr()*2,ln=(2+rr()*5)*s+2,b=(rr()-.5)*ln*.7;x.strokeStyle=rgba(mix(S0.b0[0],S0.b1[1],rr()),.9);x.lineWidth=(.4+rr()*.5)*Math.max(.8,s*.7);x.beginPath();x.moveTo(gx,gy);x.quadraticCurveTo(gx+b*.2,gy-ln*.6,gx+b,gy-ln);x.stroke()}}};
 
 // ---------- Laub: einzelne Birkenblätter ----------
 // spitz-eiförmiges Blatt (Birke: dreieckig mit Spitze), Oberseite heller, Mittelrippe bei großen Blättern

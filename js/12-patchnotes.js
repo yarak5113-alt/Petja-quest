@@ -1,6 +1,9 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.58',d:'12.11.2026',t:'Birkenfüße',n:[
+    'Der Fuß der Birken sieht nicht mehr aus wie eine dunkle Socke: grau-schwarze, quer aufgerissene Borkenplatten, die nach oben fleckig in die weiße Rinde übergehen',
+    'Grashalme wachsen vor den Stämmen – die Bäume stehen im Gras statt darauf'] },
   {v:'1.57',d:'12.11.2026',t:'Echter Birkenwald',n:[
     'Birkenwald und Weggabelung im selben realistischen Stil wie Apfel und Fischernetz: Licht von rechts oben, echtes Material, Kontaktschatten',
     'Birken: runder Stamm mit Licht- und Schattenseite, papierne Rinde mit feinen Querstrichen, schwarze rissige Borkenbänder, Astnarben, abblätternde Rindenlocken und ein dunkler, zerfurchter Stammfuß mit Moos',
