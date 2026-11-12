@@ -122,7 +122,9 @@ const PHAND=col=>{let s='';PFING.forEach(([cx,w,t,k],i)=>{const L=cx-w/2,R=cx+w/
     `<path d="M-2.6,-1.4L2.6,-1.4L2.7,1.2L-2.7,1.2Z" fill="${col}" stroke="none"/><path d="M-2,3.4C-2.6,5 -3,6.6 -3.1,8M1.6,3.6C1.8,5.2 1.8,6.8 1.4,8.2" fill="none" stroke="${PSKL}" stroke-width=".4"/>`};
 const PTHUMB=col=>`<path d="M2.4,2.4C5.8,3.2 8,6.6 8.2,10.4C8.3,12.4 7,13.4 5.8,12.6C5,10.4 4,7.8 2,6.2Z" fill="${col}"/><path d="M5.2,8C5.8,8.4 6.2,8.8 6.4,9.4" fill="none" stroke="${PSKL}" stroke-width=".4"/>`;
 // Proportionen: kleiner, schmaler Kopf (PHEADX = Breite), riesige klobige Hände
-const PHEADS=1,PHEADX=.9,PBODY=1,PHANDS=1.6;
+const PHEADS=1,PHEADX=.9,PBODY=1,PHANDS=1.3;
+// kurze Arme: Ellbogen EY höher als früher, Handgelenk auf Höhe WY (Hände enden etwa auf halber Oberschenkelhöhe)
+const EY=-8,WY=-121;
 // Rumpf: schmale, abfallende Schultern direkt am Hals, darunter Kasten-Schnitt
 const PTORSO=`<path d="M-16,-199C-22,-194 -25.6,-184 -26.4,-168C-26,-152 -23.6,-142 -23.2,-132C-23,-124 -23.6,-118 -24,-112C-15,-109 -6,-110 0,-112C8,-110 18,-109 24,-112C23.6,-118 23,-124 23.2,-132C23.6,-142 26,-152 26.4,-168C25.6,-184 22,-194 16,-199C11,-203 6,-205.4 0,-205C-6,-205.4 -11,-203 -16,-199Z" fill="${PTE}"/><path d="M8,-203.6C12,-202 14.4,-200.6 16,-199C22,-194 25.6,-184 26.4,-168C26,-152 23.6,-142 23.2,-132C23,-124 23.6,-118 24,-112C21,-111 17,-110 13,-110C15,-124 14.6,-140 16,-154C18,-170 14,-186 8,-203.6Z" fill="${PTE2}" stroke="none"/>`;
 const PFRONT=`<path d="M-5.6,-208L5.6,-208L6.4,-203L0,-186L-6.4,-203Z" fill="#c8925c" stroke="none"/><path d="M-3,-203L0,-193L3,-203Z" fill="#b07c4c" stroke="none"/><path d="M-6,-204L0,-186L6,-204" fill="none" stroke-width=".8"/>`+
@@ -239,26 +241,26 @@ function PETV(th,open,step,em,bl){const r=th*Math.PI/180,c=Math.cos(r),s=Math.si
     return{d:D(10.5*side,zf*.5),svg:c>.3?pants+shoe:shoe+pants}};
   // Arm einer Seite – breite Haltung: Schultern zurück, Oberarm vom Rumpf weg, Ellbogen nach außen,
   // Unterarm locker hängend mit Abstand zum Körper; Ärmelende als weiche Stoffwulst, Hand mit Innenfläche zum Oberschenkel
-  const arm=side=>{const sw=(side<0?-st:st)*.7,zs=-2,ze=sw*.5-5.5,zw=sw-4,Xs=X(16.5*side,zs),Xe=X(22*side,ze),Xw=X(28.5*side,zw),d=D(21*side,ze+2);
+  const arm=side=>{const sw=(side<0?-st:st)*.7,zs=-2,ze=sw*.5-5.5,zw=sw-4,Xs=X(16.5*side,zs),Xe=X(21.5*side,ze),Xw=X(24.5*side,zw),d=D(21*side,ze+2);
     const near=d>4,shade=!near&&Xs>0,sl=shade?PTE2:PTE,sk=shade?PSK2:PSK,o=Math.abs(c)>.3?side*Math.sign(c):1;
     const kx=Math.max(.78,Math.abs(s)),sg=Math.abs(s)>.3?Math.sign(s):-side,hand=c<0?PTHUMB(sk)+PHAND(sk):PHAND(sk)+PTHUMB(sk),P=(x,y)=>f1(x)+','+y;
     const sv=Math.abs(c)<.3,tilt=f1(-5*o*(Math.abs(c)>.3?1:0));
     // Ärmel: Schulterlinie geht weich in den Oberarm über; innen eigene Kontur, weil der Arm jetzt frei steht
     // schmale, abfallende Schulter ohne Kugel; Oberarm liegt eng am Rumpf
-    const top=P(Xs-o*2.4,-199),del=P(Xs+o*5.4,-184),eo=P(Xe+o*6.2,-152),ei=P(Xe-o*5.6,-152),pit=P(Xs-o*4.4,-180),inn=P(Xs-o*5,-195);
-    const outer=`M${top}C${P(Xs+o*1.6,-197.6)} ${P(Xs+o*4.4,-193)} ${del}C${P(Xs+o*6.2,-174)} ${P(Xe+o*6.6,-164)} ${eo}`;
+    const top=P(Xs-o*2.4,-199),del=P(Xs+o*5.4,-184),eo=P(Xe+o*6.2,-152+EY),ei=P(Xe-o*5.6,-152+EY),pit=P(Xs-o*4.4,-180),inn=P(Xs-o*5,-195);
+    const outer=`M${top}C${P(Xs+o*1.4,-196.6)} ${P(Xs+o*3.8,-190.6)} ${del}C${P(Xs+o*5.8,-176)} ${P(Xe+o*6.6,-164+EY)} ${eo}`;
     // Seitenansicht: Arm liegt vor dem Rumpf, also auch hinten durchgehende Kontur bis zur Schulter
-    const inner=sv?`M${ei}C${P(Xe-o*6,-162)} ${P(Xs-o*5.6,-172)} ${P(Xs-o*5.6,-184)}C${P(Xs-o*5.6,-192)} ${P(Xs-o*3.6,-197.6)} ${top}`:`M${ei}C${P(Xe-o*6,-160)} ${P(Xs-o*2.6,-170)} ${pit}`;
-    const sleeve=(sv?`<path d="${outer}L${ei}C${P(Xe-o*6,-162)} ${P(Xs-o*5.6,-172)} ${P(Xs-o*5.6,-184)}C${P(Xs-o*5.6,-192)} ${P(Xs-o*3.6,-197.6)} ${top}Z" fill="${sl}" stroke="none"/>`:`<path d="${outer}L${ei}C${P(Xe-o*6,-160)} ${P(Xs-o*2.6,-170)} ${pit}L${inn}Z" fill="${sl}" stroke="none"/>`)+
+    const inner=sv?`M${ei}C${P(Xe-o*6,-162+EY)} ${P(Xs-o*5.6,-172)} ${P(Xs-o*5.6,-184)}C${P(Xs-o*5.6,-192)} ${P(Xs-o*3.6,-197.6)} ${top}`:`M${ei}C${P(Xe-o*6,-160+EY)} ${P(Xs-o*2.6,-170)} ${pit}`;
+    const sleeve=(sv?`<path d="${outer}L${ei}C${P(Xe-o*6,-162+EY)} ${P(Xs-o*5.6,-172)} ${P(Xs-o*5.6,-184)}C${P(Xs-o*5.6,-192)} ${P(Xs-o*3.6,-197.6)} ${top}Z" fill="${sl}" stroke="none"/>`:`<path d="${outer}L${ei}C${P(Xe-o*6,-160+EY)} ${P(Xs-o*2.6,-170)} ${pit}L${inn}Z" fill="${sl}" stroke="none"/>`)+
       `<path d="${outer}" fill="none"/><path d="${inner}" fill="none" stroke-width=".85"/>`+
-      `<path d="${sv?'':`M${P(Xs+o*3.6,-190)}C${P(Xs+o*3.2,-183)} ${P(Xs+o*3.8,-177)} ${P(Xs+o*5.4,-171)}`}M${P(Xe-o*3.4,-166)}C${P(Xe-o*1.4,-161)} ${P(Xe+o*1.6,-158)} ${P(Xe+o*4.2,-156.6)}" fill="none" stroke="#147470" stroke-width=".6"/>`;
+      `<path d="M${P(Xe-o*1.4,-163+EY)}C${P(Xe-o*.4,-160+EY)} ${P(Xe+o*1.6,-158+EY)} ${P(Xe+o*4.2,-156.6+EY)}" fill="none" stroke="#147470" stroke-width=".6"/>`;
     // Ärmelende: weiche Wulst mit organisch gewellter Unterkante
-    const roll=`<path d="M${P(Xe-o*5.8,-153.4)}C${P(Xe-o*7,-150)} ${P(Xe-o*6.6,-146.6)} ${P(Xe-o*5.2,-145.4)}C${P(Xe-o*3,-144)} ${P(Xe-o*.6,-145.2)} ${P(Xe+o*1.6,-144.4)}C${P(Xe+o*3.8,-143.8)} ${P(Xe+o*6.4,-144.6)} ${P(Xe+o*7,-146.6)}C${P(Xe+o*7.6,-149)} ${P(Xe+o*7.2,-151.6)} ${P(Xe+o*6.4,-153.4)}C${P(Xe+o*2,-152.2)} ${P(Xe-o*2,-152.4)} ${P(Xe-o*5.8,-153.4)}Z" fill="${shade?PTE:'#30b4ab'}"/>`+
-      `<path d="M${P(Xe-o*5,-149)}C${P(Xe-o*1.4,-148.2)} ${P(Xe+o*2.6,-148.6)} ${P(Xe+o*6.4,-149.8)}" fill="none" stroke="#147470" stroke-width=".55"/>`;
+    const roll=`<path d="M${P(Xe-o*5.8,-153.4+EY)}C${P(Xe-o*7,-150+EY)} ${P(Xe-o*6.6,-146.6+EY)} ${P(Xe-o*5.2,-145.4+EY)}C${P(Xe-o*3,-144+EY)} ${P(Xe-o*.6,-145.2+EY)} ${P(Xe+o*1.6,-144.4+EY)}C${P(Xe+o*3.8,-143.8+EY)} ${P(Xe+o*6.4,-144.6+EY)} ${P(Xe+o*7,-146.6+EY)}C${P(Xe+o*7.6,-149+EY)} ${P(Xe+o*7.2,-151.6+EY)} ${P(Xe+o*6.4,-153.4+EY)}C${P(Xe+o*2,-152.2+EY)} ${P(Xe-o*2,-152.4+EY)} ${P(Xe-o*5.8,-153.4+EY)}Z" fill="${shade?PTE:'#30b4ab'}"/>`+
+      `<path d="M${P(Xe-o*5,-149+EY)}C${P(Xe-o*1.4,-148.2+EY)} ${P(Xe+o*2.6,-148.6+EY)} ${P(Xe+o*6.4,-149.8+EY)}" fill="none" stroke="#147470" stroke-width=".55"/>`;
     // Unterarm: locker, leicht nach außen fallend, Muskelbauch oben außen
-    const fore=`<path d="M${P(Xe-o*4.4,-147)}C${P(Xe-o*5,-136)} ${P(Xw-o*4.2,-120)} ${P(Xw-o*3,-106)}L${P(Xw+o*3,-106)}C${P(Xw+o*4,-122)} ${P(Xe+o*7.4,-134)} ${P(Xe+o*4.8,-147)}Z" fill="${sk}"/>`+
-      `<path d="M${P(Xe-o*2.4,-140)}C${P(Xe-o*.8,-139)} ${P(Xe+o*1.2,-139)} ${P(Xe+o*2.8,-140)}" fill="none" stroke="${PSKL}" stroke-width=".45"/>`;
-    const svg=fore+sleeve+roll+`<g transform="translate(${f1(Xw)},-107) rotate(${tilt}) scale(${f1(kx*sg*PHANDS)},${PHANDS})">${hand}</g>`;
+    const fore=`<path d="M${P(Xe-o*4.4,-147+EY)}C${P(Xe-o*5,-138+EY)} ${P(Xw-o*4.2,WY-11)} ${P(Xw-o*3,WY)}L${P(Xw+o*3,WY)}C${P(Xw+o*4,WY-13)} ${P(Xe+o*7.4,-136+EY)} ${P(Xe+o*4.8,-147+EY)}Z" fill="${sk}"/>`+
+      `<path d="M${P(Xe-o*2.4,-141+EY)}C${P(Xe-o*.8,-140+EY)} ${P(Xe+o*1.2,-140+EY)} ${P(Xe+o*2.8,-141+EY)}" fill="none" stroke="${PSKL}" stroke-width=".45"/>`;
+    const svg=fore+sleeve+roll+`<g transform="translate(${f1(Xw)},${WY-1}) rotate(${tilt}) scale(${f1(kx*sg*PHANDS)},${PHANDS})">${hand}</g>`;
     return{d,svg}};
   const L=[leg(-1),leg(1)].sort((a,b)=>a.d-b.d),A=[arm(-1),arm(1)],ch=Math.tan(-2.4*s*Math.PI/180),Xn=1.6*s-96*ch;
   out.push(`<g transform="scale(1,${PBODY})">`,L[0].svg,L[1].svg);A.filter(a=>a.d<-4).forEach(a=>out.push(a.svg));

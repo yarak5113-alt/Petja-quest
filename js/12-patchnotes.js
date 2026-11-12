@@ -1,6 +1,11 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.38',d:'12.11.2026',t:'Petja: kürzere Arme',n:[
+    'Ober- und Unterarme deutlich kürzer – die Hände enden etwa auf halber Oberschenkelhöhe',
+    'Hände etwas kleiner, aber weiter klobig und eckig',
+    'Schultern laufen glatt und abfallend in den Rumpf, keine Wölbung mehr',
+    'Arme liegen ohne Lücke eng am Körper'] },
   {v:'1.37',d:'12.11.2026',t:'Petjas Figur überarbeitet',n:[
     'Schmale, abfallende Schultern direkt am Hals statt runder Kugelgelenke',
     'Oberarme liegen eng am Rumpf, die Unterarme spreizen nach unten leicht ab',
