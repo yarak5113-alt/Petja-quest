@@ -1,6 +1,10 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.47',d:'12.11.2026',t:'Eigene Mauszeiger',n:[
+    'Normaler Mauszeiger: ein Pfeil aus gewölbtem Gold mit Glanzlicht',
+    'Über allem Anklickbaren (Personen, Gegenstände, Knöpfe, Taschen …): eine zeigende Hand im weißen Handschuh mit Goldmanschette',
+    'Über Ausgängen weiterhin der rote Lackpfeil'] },
   {v:'1.46',d:'12.11.2026',t:'Realistische Pfeile',n:[
     'Neuer Ausgangs-Mauszeiger: ein gerenderter Pfeil in rotem Lack mit gewölbtem Goldrand und Glanzlicht',
     'Derselbe Pfeil im Namensschild an Ausgängen, beim Zeigen (Leertaste), auf „Weiterspielen“, in der Anleitung und als „weiter“-Zeichen in der Dialogbox'] },

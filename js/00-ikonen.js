@@ -101,3 +101,26 @@ const ARR=(cls='arr')=>`<img class="${cls}" src="${ARROW(64)}" alt="" draggable=
 document.head.insertAdjacentHTML('beforeend',`<style>.interactive.exit{cursor:url("${ARROW(32)}") 16 16,pointer}</style>`);
 // Pfeil auch als „weiter“-Zeichen in der Dialogbox (nach unten)
 document.head.insertAdjacentHTML('beforeend',`<style>#box.done::after{content:'';border:none;width:20px;height:20px;right:10px;bottom:4px;filter:none;background:url("${ARROW(40,90)}") center/contain no-repeat}</style>`);
+// ===== Eigene Mauszeiger (im ganzen Spiel) =====
+// Normal: klassischer Mauspfeil aus gewölbtem Gold; Klick: zeigende Hand im weißen Handschuh mit Goldmanschette; Ausgänge: roter Lackpfeil (oben)
+const CURSORS=(()=>{const bev=(id,bl,sc,ks,ex,k1=1.3)=>`<filter id="${id}" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="${bl}" result="b"/>`+
+    `<feDiffuseLighting in="b" surfaceScale="${sc}" diffuseConstant="1" result="d"><feDistantLight azimuth="225" elevation="45"/></feDiffuseLighting><feSpecularLighting in="b" surfaceScale="${sc}" specularConstant="1.1" specularExponent="${ex}" result="s"><feDistantLight azimuth="225" elevation="58"/></feSpecularLighting>`+
+    `<feComposite in="SourceGraphic" in2="d" operator="arithmetic" k1="${k1}" result="l"/><feComposite in="s" in2="SourceAlpha" operator="in" result="s2"/><feComposite in="l" in2="s2" operator="arithmetic" k2="1" k3="${ks}" result="o"/><feComposite in="o" in2="SourceAlpha" operator="in"/></filter>`;
+  const SH='<filter id="sh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="1.4" dy="2" stdDeviation="1.1" flood-opacity=".65"/></filter>';
+  const GD='<linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff4c0"/><stop offset=".45" stop-color="#e0aa48"/><stop offset="1" stop-color="#8a5a18"/></linearGradient>';
+  const U=s=>'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(s);
+  const arrow=U(`<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 64 64"><defs>${GD}${SH}${bev('a',1.6,3.2,1,26)}</defs><g filter="url(#sh)">`+
+    `<path d="M4,3L4,48L15,38L23,57L32,53L24,35L39,35Z" fill="url(#g)" filter="url(#a)" stroke="#1e1004" stroke-width="2.2" stroke-linejoin="round"/>`+
+    `<path d="M8,11L8,38" stroke="#fff" stroke-opacity=".6" stroke-width="1.6" stroke-linecap="round"/></g></svg>`);
+  const hand=U(`<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 64 64"><defs>${GD}${SH}${bev('h',2,3.6,.55,18,1.22)}${bev('c',1.2,2.6,1,26)}`+
+    `<linearGradient id="w" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".6" stop-color="#ece6da"/><stop offset="1" stop-color="#b8ae9c"/></linearGradient></defs><g filter="url(#sh)">`+
+    `<path d="M22,3C25.2,3 27.2,5 27.2,8.4L27.2,25.6C28.4,23.8 31.6,23.8 32.6,26C33.8,24.4 37,24.4 38,26.8C39.4,25.4 42.6,25.8 43,28.6L43,41C43,49.6 38.6,55 31,55L25.6,55C19.6,55 16,51.6 13.6,46.4L7.6,36.6C6.4,34 9,31.6 11.8,33L16.8,38L16.8,8.4C16.8,5 18.8,3 22,3Z" fill="url(#w)" filter="url(#h)" stroke="#1e1408" stroke-width="2" stroke-linejoin="round"/>`+
+    `<path d="M32.6,26L32.6,33M38,26.8L38,33.6M27.2,25.6L27.2,32M19,44C21,46 24,46.6 27,46" fill="none" stroke="#6a5a48" stroke-width="1.3" stroke-linecap="round"/>`+
+    `<path d="M19.4,6.4C20.6,5 23.4,5 24.6,6.4" fill="none" stroke="#a89880" stroke-width="1.1" stroke-linecap="round"/>`+
+    `<path d="M15,52L42,52L42,61L15,61Z" fill="url(#g)" filter="url(#c)" stroke="#1e1004" stroke-width="1.8" stroke-linejoin="round"/><path d="M18,56.5L39,56.5" stroke="#7a4a10" stroke-width="1.2"/></g></svg>`);
+  return{arrow,hand}})();
+document.head.insertAdjacentHTML('beforeend',`<style>
+*{cursor:url("${CURSORS.arrow}") 2 1,default !important}
+button,a,summary,label,select,input[type=range],input[type=checkbox],.interactive,.slot,.card,.tab,.x,.mb,.slotc,#box,#newsCard,#hud button,[onclick]{cursor:url("${CURSORS.hand}") 11 1,pointer !important}
+button:disabled,.mb:disabled,.slotc:disabled{cursor:url("${CURSORS.arrow}") 2 1,default !important}
+.interactive.exit,.interactive.exit *{cursor:url("${ARROW(32)}") 16 16,pointer !important}</style>`);
