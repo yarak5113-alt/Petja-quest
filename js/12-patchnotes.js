@@ -1,6 +1,12 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.57',d:'12.11.2026',t:'Echter Birkenwald',n:[
+    'Birkenwald und Weggabelung im selben realistischen Stil wie Apfel und Fischernetz: Licht von rechts oben, echtes Material, Kontaktschatten',
+    'Birken: runder Stamm mit Licht- und Schattenseite, papierne Rinde mit feinen Querstrichen, schwarze rissige Borkenbänder, Astnarben, abblätternde Rindenlocken und ein dunkler, zerfurchter Stammfuß mit Moos',
+    'Laub aus einzelnen spitzen Birkenblättern, im Gegenlicht leuchtend; hängende Zweige mit Blättern',
+    'Der Weg ist jetzt festgetretene Erde mit Fahrspuren, feuchten Stellen und Körnung, Kiesel mit Glanz und Schatten, echte gelbe Birkenblätter',
+    'Apfelbaum mit rissiger Borke, glänzenden Blättern, Äpfeln mit Rotbacke und Stiel und Fallobst im Gras'] },
   {v:'1.56',d:'12.11.2026',t:'Petja packt mit an',n:[
     'Aufheben ist jetzt eine echte Bewegung: Petja dreht sich zum Gegenstand, geht in die Knie und bückt sich, greift auf Brusthöhe zu oder streckt sich nach oben',
     'Liegt etwas hinter ihm, hebt er es mit dem Rücken zur Kamera auf – er schaut immer in die Richtung, in der er gerade etwas tut',
