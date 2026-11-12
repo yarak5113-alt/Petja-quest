@@ -1,6 +1,12 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.44',d:'12.11.2026',t:'Neue Oberfläche: Holz & Messing',n:[
+    'Alle Gegenstände sind jetzt gemalte Bilder statt Emojis – mit Glanzlichtern, Schatten und Kontur',
+    'Knöpfe überall als gewölbte Messingplatten, Hauptknöpfe in rotem Lack mit Goldrand',
+    'Fenster, Dialogbox und Tagebuch: dunkles Lackfach in Goldrahmen mit geschnitztem Holzrand und Ornamentband',
+    'Leiste oben rechts mit gravierten Messing-Symbolen, Taschen als geschnitzte Leiste mit Samtfächern',
+    'Titelbild mit goldener Schrift'] },
   {v:'1.40',d:'12.11.2026',t:'Feinschliff Ellbogen',n:[
     'Petjas Ellbogen sitzen ein kleines Stück weiter außen'] },
   {v:'1.39',d:'12.11.2026',t:'Petjas Augen',n:[

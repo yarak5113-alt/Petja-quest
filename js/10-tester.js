@@ -39,7 +39,7 @@ const TTELE={wald:[400,476],gabel:[320,488],huette:[640,488],innen:[250,470],dor
 function openTester(tab){ss.set(TKEY,'1');tab=tab||'p';const B='style="text-align:left;width:100%"';
   const body=tab=='p'?`<p class="em">Springt zu einem Story-Punkt (Seite lädt neu).</p>${TSTEPS.map((s,i)=>`<button ${B} data-j="${i}">${i+1}. ${s.t}</button>`).join('')}`:
     tab=='o'?`<p class="em">Nur hinbeamen – am Fortschritt ändert sich nichts.</p>${Object.keys(TTELE).map(id=>`<button ${B} data-o="${id}">${LOCN[id]}</button>`).join('')}`:
-    `<p class="em">Gegenstand in die Taschen legen.</p>${Object.keys(ITEMS).map(id=>`<button ${B} data-g="${id}" ${has(id)?'disabled':''}>${ITEMS[id][0]} ${ITEMS[id][1]}</button>`).join('')}`;
+    `<p class="em">Gegenstand in die Taschen legen.</p>${Object.keys(ITEMS).map(id=>`<button ${B} data-g="${id}" ${has(id)?'disabled':''}>${IMG(id,'ico sm')} ${ITEMS[id][1]}</button>`).join('')}`;
   const o=openO(`<div class="pan menu" style="max-height:82vh;overflow:auto"><h3>🛠 Tester-Modus</h3><div class="row"><button data-t="p">Fortschritt</button><button data-t="o">Orte</button><button data-t="g">Gegenstände</button></div>${body}</div><div class="hint">[F9] oder [ESC] schließen</div>`);
   o.querySelectorAll('button').forEach(b=>b.onclick=()=>{const v=b.dataset;
     if(v.t)return openTester(v.t);

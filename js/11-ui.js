@@ -1,16 +1,16 @@
 // ================= Bedienung: Leiste, Maus-Label, Zeigen, Tipp, Meldungen, Anleitung =================
 
 // ----- Meldungen oben rechts (neuer Gegenstand, Auftrag erledigt, Einstellungen …) -----
-function toast(msg,cls){let w=$('#toasts');if(!w){w=document.createElement('div');w.id='toasts';game.appendChild(w)}
-  const t=document.createElement('div');t.className='toast '+(cls||'');t.textContent=msg;w.appendChild(t);
+function toast(msg,cls,ic){let w=$('#toasts');if(!w){w=document.createElement('div');w.id='toasts';game.appendChild(w)}
+  const t=document.createElement('div');t.className='toast '+(cls||'');t.textContent=msg;if(ic)t.insertAdjacentHTML('afterbegin',IMG(ic,'ico sm'));w.appendChild(t);
   while(w.children.length>4)w.firstChild.remove();setTimeout(()=>t.classList.add('out'),3200);setTimeout(()=>t.remove(),3700)}
 
 // ----- Leiste unten rechts -----
 const HUDB=[['tipp','💡','Tipp','H'],['spot','👁','Zeigen','Leertaste'],['tasche','🎒','Taschen','I'],['auftrag','📜','Aufträge','J'],['karte','🗺️','Karte','M'],['menu','☰','Menü','ESC']];
 (function(){const old=$('#keys');if(old)old.remove();const h=document.createElement('div');h.id='hud';
-  h.innerHTML=HUDB.map(([k,ic,t,key])=>`<button data-h="${k}" title="${t} (${key})"><i>${ic}</i><span>${t}</span><em class="badge"></em></button>`).join('');
+  h.innerHTML=HUDB.map(([k,ic,t,key])=>`<button data-h="${k}" title="${t} (${key})"><i><img src="${HUDICONS[k]}" alt="" draggable="false"></i><span>${t}</span><em class="badge"></em></button>`).join('');
   h.onclick=e=>{e.stopPropagation();const b=e.target.closest('button');if(!b)return;b.blur();const k=b.dataset.h;
-    if(k=='tipp')tipp();else if(k=='spot')flashSpots();else if(k=='menu')openMenu();else toggleBook(k)};game.appendChild(h)})();
+    if(k=='tipp')tipp();else if(k=='spot')flashSpots();else if(k=='menu')openMenu();else toggleBook(k)};game.appendChild(h);const ib=$('#inv>span');if(ib)ib.innerHTML=`<img src="${HUDICONS.tasche}" alt="">`})();
 // Leiste und Taschen während Dialogen ausblenden, damit sie nicht im Weg sind
 setInterval(()=>game.classList.toggle('busy',busy),100);
 function badge(k,on){const b=document.querySelector(`#hud [data-h="${k}"]`);if(b)b.classList.toggle('new',!!on)}
@@ -56,7 +56,7 @@ function tipp(){if(busy||ovl||changing||!cur||$('#start')||$('#fg')||$('#cut'))r
 // ----- Meldungen bei neuen Gegenständen und Auftragsfortschritt -----
 let invSeen=null,quiet=0,qBase=null;
 const _renderInv=renderInv;renderInv=function(){_renderInv();
-  if(invSeen&&!quiet)inv.filter(i=>!invSeen.includes(i)).forEach(i=>{const it=ITEMS[i];if(it){toast(it[0]+' Eingesteckt: '+it[1],'item');badge('tasche',1)}});invSeen=[...inv]};
+  if(invSeen&&!quiet)inv.filter(i=>!invSeen.includes(i)).forEach(i=>{const it=ITEMS[i];if(it){toast('Eingesteckt: '+it[1],'item',i);badge('tasche',1)}});invSeen=[...inv]};
 const _loadState=loadState;loadState=function(d){quiet=1;try{_loadState(d)}finally{quiet=0;invSeen=[...inv];qBase=null;entryT=Date.now()}};
 function qSnap(){const m={};const walk=(q,lv,p)=>{if(!q.v)return;const k=p+'/'+q.t;m[k]={ok:!!q.ok,lv,t:q.t};(q.s||[]).forEach(c=>walk(c,lv+1,k))};quests().forEach(q=>walk(q,0,''));return m}
 setInterval(()=>{if(!cur||$('#start')||$('#cut')){qBase=null;return}const s=qSnap();

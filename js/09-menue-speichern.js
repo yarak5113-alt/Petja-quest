@@ -39,7 +39,7 @@ function logHTML(){if(!LOG.length)return'<p class="empty">💬<br><span class="e
   const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])).replace(/\*([^*]+)\*/g,'<i>$1</i>');
   return'<div class="log">'+LOG.map(([w,t])=>`<p><b style="color:${(N[w]||['?','#ccc'])[1]}">${(N[w]||[w])[0]}:</b> ${esc(t)}</p>`).join('')+'</div>'}
 function openBook(tab){tab=tab||'tasche';let body='';
-  if(tab=='tasche')body=inv.length?`<div class="grid">${inv.map(id=>{const it=ITEMS[id]||['❔',id,id];return`<button class="card" data-i="${id}"><b>${it[0]}</b><span>${it[1]}</span></button>`}).join('')}</div>
+  if(tab=='tasche')body=inv.length?`<div class="grid">${inv.map(id=>{const it=ITEMS[id]||['❔',id,id];return`<button class="card" data-i="${id}"><b>${IMG(id)}</b><span>${it[1]}</span></button>`}).join('')}</div>
       <div class="detail"><span class="em">Klick auf einen Gegenstand, um ihn anzusehen.</span></div>`:'<p class="empty">🕸️<br>Leer. Wie mein Kühlschrank.<br><span class="em">Sammle Dinge ein, indem du sie in der Welt anklickst.</span></p>';
   if(tab=='auftrag'){const Q=quests(),ns=nextSteps(Q),NEXT=ns[0]&&ns[0].q,open=Q.filter(q=>!q.ok),fin=Q.filter(q=>q.ok);
     body=`${NEXT?`<div class="nextbox"><small>Nächster Schritt</small>➤ ${NEXT.t}</div>`:''}${qTree(open,0,NEXT)||'<p class="em">Gerade nichts offen.</p>'}
@@ -51,7 +51,7 @@ function openBook(tab){tab=tab||'tasche';let body='';
     <div class="bbody b-${tab}">${body}</div></div>`,'bookO');o.dataset.book=tab;if(tab=='log'){const bb=o.querySelector('.bbody');bb.scrollTop=bb.scrollHeight}
   o.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>openBook(b.dataset.tab));
   o.querySelectorAll('.card').forEach(c=>c.onclick=()=>{o.querySelectorAll('.card').forEach(k=>k.classList.toggle('sel',k===c));const it=ITEMS[c.dataset.i];
-    o.querySelector('.detail').innerHTML=it?`<b class="big">${it[0]}</b><div><h4>${it[1]}</h4><p>${it[2]}</p></div>`:''})}
+    o.querySelector('.detail').innerHTML=it?`<b class="big">${IMG(c.dataset.i)}</b><div><h4>${it[1]}</h4><p>${it[2]}</p></div>`:''})}
 function openInv(){openBook('tasche')}function openMap(){openBook('karte')}
 function toggleBook(tab){if(ovl&&ovl.dataset.book==tab)closeO();else openBook(tab)}
 const MAPN={irrwald:[-22,10],banjaV:[-22,36],banja:[-22,62],muehle:[10,10],dorf:[42,10],dorfstr:[74,10],kirche:[106,10],huette:[42,36],innen:[74,36],wald:[10,62],gabel:[42,62],sperre:[74,62],sumpf:[106,62],fischer:[74,88],ufer:[106,88],unter:[106,112],gnome:[138,88],hoehle:[170,88]};

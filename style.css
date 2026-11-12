@@ -140,3 +140,85 @@ html:not(.ink) .spr{image-rendering:pixelated;image-rendering:crisp-edges}
 @keyframes pole{0%{transform:translate(-26px,0px) scaleX(1) rotate(0deg)}8%{transform:translate(-26px,0px) scaleX(1) rotate(-7deg)}16%{transform:translate(-6px,0px) scaleX(-1) rotate(5deg)}24%{transform:translate(22px,-6px) scaleX(-1) rotate(9deg)}32%{transform:translate(18px,-46px) scaleX(-1) rotate(12deg)}40%{transform:translate(6px,-58px) scaleX(1) rotate(-14deg)}48%{transform:translate(-8px,-58px) scaleX(1) rotate(-26deg)}56%{transform:translate(-14px,-30px) scaleX(1) rotate(-8deg)}64%{transform:translate(-22px,0px) scaleX(1) rotate(4deg)}72%{transform:translate(-30px,-6px) scaleX(1) rotate(-5deg)}80%{transform:translate(-14px,0px) scaleX(-1) rotate(3deg)}88%{transform:translate(-24px,-4px) scaleX(-1) rotate(-3deg)}100%{transform:translate(-26px,0px) scaleX(1) rotate(0deg)}}
 
 #tcv{position:absolute;inset:0;width:100%;height:100%}.tbox{position:relative;display:flex;flex-direction:column;align-items:center;gap:8px}#start .tbox button{min-width:220px}.tsub{margin:14px 0 0;font:italic 13px Georgia;color:#a8b0a0;text-shadow:1px 1px 0 #000}
+
+/* ===================== UI-Stil: geschnitztes Holz & Messing =====================
+   Fenster: dunkles Lackfach in Goldrahmen mit geschnitztem Holzring und Ornamentband; Knöpfe: gewölbte Messingplatten,
+   Hauptknöpfe roter Lack mit Goldrand; Gegenstände als gemalte Bilder auf schwarzem Samt. Überschreibt die Regeln oben. */
+:root{--orn:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2264%22%20height%3D%2218%22%20viewBox%3D%220%200%2064%2018%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23fff0b0%22%2F%3E%3Cstop%20offset%3D%22.5%22%20stop-color%3D%22%23d8a440%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%238a5a1a%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%2264%22%20height%3D%2218%22%20fill%3D%22%232a1608%22%2F%3E%3Cpath%20d%3D%22M0%2C1H64M0%2C17H64%22%20stroke%3D%22url(%23g)%22%20stroke-width%3D%221.6%22%2F%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22url(%23g)%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M0%2C9C6%2C9%208%2C4%2013%2C4C17%2C4%2018%2C8%2015%2C9C13%2C10%2011%2C8%2013%2C7M32%2C9C26%2C9%2024%2C4%2019%2C4C15%2C4%2014%2C8%2017%2C9C19%2C10%2021%2C8%2019%2C7M32%2C9C38%2C9%2040%2C14%2045%2C14C49%2C14%2050%2C10%2047%2C9C45%2C8%2043%2C10%2045%2C11M64%2C9C58%2C9%2056%2C14%2051%2C14C47%2C14%2046%2C10%2049%2C9C51%2C8%2053%2C10%2051%2C11%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22url(%23g)%22%3E%3Cpath%20d%3D%22M32%2C4L35%2C9L32%2C14L29%2C9Z%22%2F%3E%3Ccircle%20cx%3D%220%22%20cy%3D%229%22%20r%3D%222%22%2F%3E%3Ccircle%20cx%3D%2264%22%20cy%3D%229%22%20r%3D%222%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2214%22%20r%3D%221.2%22%2F%3E%3Ccircle%20cx%3D%2248%22%20cy%3D%224%22%20r%3D%221.2%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+  --brass:linear-gradient(#fff3b8 0%,#ecc46a 22%,#c08a32 50%,#93601c 53%,#c9963e 80%,#f4d88a 100%);
+  --brassH:linear-gradient(#fffad0 0%,#f6d27a 22%,#d29a3a 50%,#a46c22 53%,#dba84a 80%,#fbe49a 100%);
+  --lacq:linear-gradient(#e0563a 0%,#b52c18 48%,#8a1a0c 52%,#b8321c 100%);
+  --wood:repeating-linear-gradient(92deg,rgba(0,0,0,.13) 0 2px,transparent 2px 7px),linear-gradient(#6a3e1c,#3c220e);
+  --velvet:radial-gradient(ellipse at 50% 30%,#1c1410,#050302 75%);
+  --frame:0 0 0 2px #1a0e04,0 0 0 3px #f2d488,0 0 0 8px #6a3e1c,0 0 0 10px #1a0e04,0 10px 22px 10px rgba(0,0,0,.55);
+  --ink:#f6e8c4;--gold:#f4cc62;--muted:#b8a27a;--rim:#c8943a}
+/* --- Messingknopf (alle Knöpfe) --- */
+.menu button,.mb,#start button,.slotc,.qb,.ivq .row button{font:bold 14px Georgia,serif;color:#2a1606;text-shadow:0 1px 0 rgba(255,244,200,.75);background:var(--brass);
+  border:2px solid #4a2a0a;border-radius:5px;box-shadow:inset 0 1px 0 rgba(255,255,255,.75),inset 0 -2px 0 rgba(90,50,10,.55),0 3px 0 #2a1606,0 5px 7px rgba(0,0,0,.55)}
+.menu button:hover:not(:disabled),.mb:hover:not(:disabled),#start button:hover:not(:disabled),.slotc:hover:not(:disabled),.qb:hover{background:var(--brassH);filter:none;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.85),inset 0 -2px 0 rgba(90,50,10,.55),0 3px 0 #2a1606,0 0 10px 2px rgba(255,210,90,.55)}
+.menu button:active:not(:disabled),.mb:active:not(:disabled),#start button:active:not(:disabled){transform:translateY(2px);box-shadow:inset 0 2px 3px rgba(60,30,0,.6),0 1px 0 #2a1606}
+.menu button:disabled,.mb:disabled,#start button:disabled,.slotc:disabled{filter:grayscale(.7) brightness(.75);opacity:.7}
+/* Hauptknöpfe: roter Lack mit Goldrand */
+.mb.big,#start #bNew,#start #bCont{background:var(--lacq);color:#ffeab0;text-shadow:0 1px 0 #4a0a00,0 0 6px rgba(255,200,90,.35);border:2px solid #f2c862;
+  box-shadow:0 0 0 2px #3a0a02,inset 0 1px 0 rgba(255,200,170,.6),0 3px 0 #2a0602,0 5px 8px rgba(0,0,0,.6)}
+.mb.big:hover:not(:disabled),#start #bNew:hover:not(:disabled),#start #bCont:hover:not(:disabled){background:linear-gradient(#f06a48,#c83820 48%,#9a2410 52%,#cc4024);box-shadow:0 0 0 2px #3a0a02,0 0 12px 3px rgba(255,190,80,.6)}
+#start.hascont #bNew{background:var(--brass);color:#2a1606;text-shadow:0 1px 0 rgba(255,244,200,.75);border-color:#4a2a0a}
+.mb.quit{background:linear-gradient(#5a3a28,#3a2214);color:var(--ink);text-shadow:0 1px 0 #000;border-color:#c8943a}
+.slotc.warn{background:var(--lacq) !important;color:#ffeab0;text-shadow:0 1px 0 #4a0a00}.slotc small{color:#5a3a14}.slotc.warn small{color:#ffd8a0}
+.opts b{color:#7a1a08}
+/* --- Fenster --- */
+.ovl{background:rgba(6,4,2,.72)}
+.pan{background:var(--velvet);border:none;border-radius:3px;box-shadow:var(--frame);padding:30px 22px 18px}
+.pan::before{content:'';position:absolute;left:0;right:0;top:0;height:18px;background:var(--orn) repeat-x center/auto 18px;border-bottom:1px solid #1a0e04}
+.pan h3{margin:4px 0 12px;font:bold clamp(16px,2.4vw,22px) Georgia,serif;font-variant:small-caps;letter-spacing:.04em;color:var(--gold);text-shadow:0 2px 0 #000,0 0 10px rgba(255,190,80,.25);
+  border-bottom:none;padding-bottom:8px;background:linear-gradient(90deg,transparent,#c8943a 20%,#f4d88a 50%,#c8943a 80%,transparent) bottom/100% 2px no-repeat}
+.pan .x{top:24px;right:10px;width:30px;height:30px;border-radius:50%;background:var(--lacq);border:2px solid #f2c862;color:#ffeab0;box-shadow:0 0 0 2px #3a0a02,0 3px 5px rgba(0,0,0,.6);font:bold 14px Georgia}
+.pan .x:hover{background:linear-gradient(#f06a48,#9a2410);box-shadow:0 0 0 2px #3a0a02,0 0 10px 2px rgba(255,190,80,.6)}
+.book{padding:18px 0 0}.book .x{top:26px}
+.tabs{padding:10px 52px 0 14px;border-bottom:3px solid #c8943a;background:var(--wood)}
+.tab{font:bold 14px Georgia,serif;color:#2a1606;text-shadow:0 1px 0 rgba(255,244,200,.6);background:linear-gradient(#c8a060,#8a6430);border:2px solid #4a2a0a;border-bottom:none;border-radius:6px 6px 0 0;opacity:.85}
+.tab:hover{opacity:1;color:#2a1606}.tab.on{background:var(--brassH);color:#2a1606;border-color:#4a2a0a;opacity:1;margin-bottom:-3px;padding-bottom:11px}
+.grid{grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:10px}
+.card{background:var(--velvet);border:2px solid #6a4418;border-radius:4px;box-shadow:inset 0 0 0 1px #f2d48855,0 3px 6px rgba(0,0,0,.6);color:var(--ink);font:12px Georgia;padding:8px 4px 6px}
+.card:hover{border-color:var(--gold);box-shadow:inset 0 0 0 1px #f2d488,0 0 10px rgba(255,200,90,.45)}.card.sel{border-color:var(--gold);background:radial-gradient(ellipse at 50% 30%,#3a2814,#0c0806 75%)}
+.card b{font-size:0;margin-bottom:4px;display:flex;justify-content:center}.card b img{width:52px;height:52px}
+.detail{background:var(--velvet);border:1px solid #6a4418;border-radius:4px;box-shadow:inset 0 0 0 1px #f2d48840}.detail .big{font-size:0}.detail .big img{width:72px;height:72px}
+.detail h4{font:bold 17px Georgia,serif;color:var(--gold)}
+.nextbox{background:linear-gradient(rgba(255,210,90,.14),rgba(255,210,90,.05));border:1px solid var(--gold);border-radius:4px;font:bold 15px Georgia,serif}
+.map{border:2px solid #6a4418;border-radius:3px}
+.sl{background:rgba(0,0,0,.35);border:1px solid #6a441880;border-radius:4px;font:bold 13px Georgia,serif}.sl input{accent-color:#d8a440}
+.tips b{background:var(--brass);border:2px solid #4a2a0a;color:#2a1606}
+.menu td{border-bottom-color:#6a441866}
+#newsCard,.toast{background:var(--velvet);border:2px solid #c8943a;border-radius:4px;box-shadow:0 0 0 2px #1a0e04,0 4px 8px rgba(0,0,0,.6)}
+#newsCard b{font:bold 14px Georgia,serif}.pn{background:rgba(255,220,140,.05);border:1px solid #6a441880;border-radius:4px}.pn.latest{border-color:var(--gold)}
+.pnh b{font:bold 15px Georgia,serif}
+/* --- Startbildschirm --- */
+#start h1{font:900 clamp(52px,11vw,110px) Georgia,serif;letter-spacing:.06em;-webkit-text-stroke:0;text-shadow:none;
+  background:linear-gradient(#fff3b8,#ecc46a 40%,#a46c22 60%,#f4d88a);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(3px 4px 0 #6a1a08) drop-shadow(0 0 1px #000)}
+#start h2{font:italic bold clamp(14px,2.4vw,22px) Georgia,serif;color:#f6e8c4}
+#start button{font:bold 17px Georgia,serif;padding:10px 26px}
+/* --- Dialogbox: Lackfach im Goldrahmen mit Ornamentband --- */
+#box{left:12%;right:12%;top:12px;padding:24px 18px 12px;border:none;border-radius:3px;background:var(--velvet);box-shadow:var(--frame);font-family:Georgia,serif;color:#f6ead0}
+#box::before{content:'';position:absolute;left:0;right:0;top:0;height:14px;background:var(--orn) repeat-x center/auto 14px}
+#box #who{color:var(--gold);font-variant:small-caps;letter-spacing:.03em}
+#box.done::after{content:'';right:12px;bottom:6px;width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-top:9px solid var(--gold);filter:drop-shadow(0 1px 0 #000)}
+/* --- Maus-Label --- */
+#label{border-radius:3px;background:linear-gradient(#2a1a0c,#120a04);border:1px solid #c8943a;box-shadow:0 0 0 1px #1a0e04,0 2px 4px rgba(0,0,0,.6);font:bold clamp(12px,1.7vw,15px) Georgia,serif;color:#f6e8c4}
+/* --- Leiste: Messingplaketten mit gravierten Symbolen --- */
+#hud{gap:5px;padding:5px;background:var(--wood);border-radius:3px;box-shadow:0 0 0 2px #1a0e04,0 0 0 3px #c8943a,0 0 0 4px #1a0e04,0 4px 8px rgba(0,0,0,.6)}
+#hud button{min-width:0;width:38px;height:38px;padding:0;justify-content:center;border-radius:4px;background:var(--brass);border:2px solid #4a2a0a;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.75),inset 0 -2px 0 rgba(90,50,10,.55),0 2px 0 #1a0e04}
+#hud button:hover{transform:translateY(-1px);background:var(--brassH);border-color:#4a2a0a;box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 2px 0 #1a0e04,0 0 10px 2px rgba(255,210,90,.6)}
+#hud button:active{transform:translateY(1px)}
+#hud button i{display:flex}#hud button i img{width:26px;height:26px}
+#hud .badge{background:radial-gradient(circle at 35% 35%,#ff8a6a,#c81a08);border:2px solid #f2c862;top:-5px;right:-5px}
+/* --- Taschen: geschnitzte Leiste, Fächer aus schwarzem Samt --- */
+#inv{top:62px;gap:7px;padding:5px 8px 5px 6px;border:none;border-radius:3px;background:var(--wood);box-shadow:0 0 0 2px #1a0e04,0 0 0 3px #c8943a,0 0 0 4px #1a0e04,0 4px 8px rgba(0,0,0,.6)}
+#inv>span{display:flex;width:30px;height:30px;padding:2px;border-radius:4px;background:var(--brass);border:1px solid #4a2a0a}#inv>span img{width:100%;height:100%}
+#slots{gap:5px}#slots:empty::after{font:italic 12px Georgia;color:#e8d4a8}
+.slot{width:42px;height:42px;border-radius:3px;background:var(--velvet);border:1px solid #1a0e04;box-shadow:inset 0 0 0 1px #c8943a,inset 0 2px 6px rgba(0,0,0,.9);font-size:0}
+.slot img{width:36px;height:36px}.slot:hover{transform:translateY(-2px);box-shadow:inset 0 0 0 1px #f4d88a,0 0 8px 2px rgba(255,210,90,.5)}
+.ico{display:block;pointer-events:none}.ico.sm{display:inline-block;width:20px;height:20px;vertical-align:middle;margin-right:5px}
+.toast{display:flex;align-items:center;font:bold clamp(11px,1.5vw,14px) Georgia,serif}.toast.item{border-color:#8ad06a}.toast.done{border-color:var(--gold)}.toast.new{border-color:#80b0ff}
+.spot span{background:linear-gradient(#2a1a0c,#120a04);border:1px solid #c8943a;border-radius:3px;font:bold 11px Georgia,serif}
