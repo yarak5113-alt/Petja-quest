@@ -42,7 +42,8 @@ function anvil(x,X,B){shadowAt(x,X,B+2,26,.6);wood(x,X-11,B-20,22,20,1);ell(x,X,
 function horseshoe(x,X,Y,s){x.strokeStyle='#26282a';x.lineWidth=3.4*s;x.lineCap='butt';x.beginPath();x.arc(X,Y,6*s,Math.PI*.15,Math.PI*.85,true);x.stroke();x.strokeStyle='rgba(200,200,200,.5)';x.lineWidth=.8*s;x.beginPath();x.arc(X,Y,7*s,Math.PI*1.15,Math.PI*1.6);x.stroke();
   for(let a=-.7;a<=3.9;a+=.92){x.fillStyle='#8a8a86';x.beginPath();x.arc(X+Math.cos(a)*6*s,Y-Math.sin(a)*6*s,.6*s,0,7);x.fill()}}
 function forge(x,X,B){// Esse: Steinsockel, glühende Kohle, schwarzer Rauchfang mit Rohr
-  for(let r=0;r<4;r++)for(let i=0;i<6;i++){const sx=X-44+i*15+(r%2)*7,sy=B-6-r*10;const g=x.createRadialGradient(sx-2,sy-3,1,sx,sy,10);g.addColorStop(0,'#8e887c');g.addColorStop(.7,'#55514a');g.addColorStop(1,'#1e1c18');x.fillStyle=g;x.beginPath();x.ellipse(sx,sy,8,5.4,0,0,7);x.fill()}
+  x.fillStyle='#1a1612';x.fillRect(X-48,B-42,96,42);for(let r=0;r<4;r++)for(let i=0;i<7;i++){const sx=X-44+i*14.5+(r%2)*6+(rn(i,r)-.5)*3,sy=B-6-r*10,rw=6+rn(i+3,r)*3,rh=4.2+rn(i,r+5)*1.4,c=mix([92,86,76],[150,142,128],rn(i*3,r*7)),g=x.createRadialGradient(sx-rw*.35,sy-rh*.5,0,sx,sy,rw*1.1);g.addColorStop(0,rgba(mix(c,[230,222,204],.35)));g.addColorStop(.6,rgba(c));g.addColorStop(1,rgba(mix(c,[10,8,6],.7)));x.fillStyle=g;x.beginPath();for(let a=0;a<6.28;a+=.7){const q=.82+rn(i*7+(a*10|0),r)*.3;x.lineTo(sx+Math.cos(a)*rw*q,sy+Math.sin(a)*rh*q)}x.fill();if(rn(i,r*3)<.3)ell(x,sx,sy-rh*.6,rw*.5,rh*.25,[30,26,22],.5)}
+  {const sg=x.createLinearGradient(0,B-42,0,B);sg.addColorStop(0,'rgba(255,120,40,.18)');sg.addColorStop(.4,'rgba(0,0,0,0)');sg.addColorStop(1,'rgba(0,0,0,.45)');x.fillStyle=sg;x.fillRect(X-48,B-42,96,42)}
   for(let i=0;i<60;i++){const cx=X-34+R()*68,cy=B-44+R()*6;ell(x,cx,cy,2+R()*2,1.4+R(),R()<.5?[20,16,14]:[50,30,20])}
   x.save();x.globalCompositeOperation='lighter';for(let i=0;i<26;i++)dab(x,X-28+R()*56,B-44+R()*4,4+R()*6,R()<.5?[255,120,30]:[255,200,80],.5);dab(x,X,B-46,60,[255,120,40],.22);x.restore();
   const h=new Path2D(`M${X-40},${B-58}L${X+40},${B-58}L${X+14},${B-104}L${X-14},${B-104}Z`),g=x.createLinearGradient(X-40,0,X+40,0);g.addColorStop(0,'#3a3e40');g.addColorStop(.35,'#5a6064');g.addColorStop(1,'#141618');x.fillStyle=g;x.fill(h);x.strokeStyle='#0a0a0a';x.lineWidth=1;x.stroke(h);
@@ -59,16 +60,15 @@ function smithy(x,X,B){shadowAt(x,X,B+6,190,.55);
   // Querbalken über der Öffnung
   wood(x,X-140,B-122,280,12,0);x.strokeStyle='rgba(16,10,4,.9)';x.lineWidth=1;x.strokeRect(X-140,B-122,280,12);
   // Giebel aus senkrechten Brettern
-  const gab=new Path2D(`M${X-140},${B-122}L${X},${B-200}L${X+140},${B-122}Z`);x.save();x.clip(gab);for(let gx=X-140;gx<X+140;gx+=9){wood(x,gx,B-202,9,82,1);x.fillStyle='rgba(16,10,4,.75)';x.fillRect(gx,B-202,.9,82)}
-  x.fillStyle='rgba(0,0,0,.18)';x.fill(gab);x.restore();x.fillStyle='#120a04';x.fillRect(X-12,B-168,24,16);x.strokeStyle='#6a4a26';x.lineWidth=2;x.strokeRect(X-12,B-168,24,16);
+  const gab=new Path2D(`M${X-140},${B-122}L${X},${B-200}L${X+140},${B-122}Z`);boards(x,gab,X-140,X+140,B-202,B-120,{bw:9,grey:.3});wallFX(x,gab,X-140,X+140,B-200,B-122,{eave:22,side:.2});winR(x,X-12,B-168,24,16,{trim:'#6a5a48',kok:false,curtain:false});
   // Dachbretter (Ortgang) mit Zierschnitt
   [[-1],[1]].forEach(([d])=>{x.save();x.translate(X,B-204);x.rotate(d*Math.atan2(82,150));x.scale(d,1);wood(x,0,-6,170,12,0);x.strokeStyle='rgba(16,10,4,.9)';x.lineWidth=1;x.strokeRect(0,-6,170,12);
     for(let t=20;t<165;t+=14){x.fillStyle='#2a1a0a';x.beginPath();x.arc(t,6,3.4,0,Math.PI);x.fill()}x.restore()});
   konek(x,X-2,B-204,.78,1);horseshoe(x,X-112,B-100,1.3);
   // Dachfläche nach hinten (Bretter) sichtbar über dem Giebel
-  x.save();x.globalCompositeOperation='destination-over';const rf=new Path2D(`M${X-150},${B-118}L${X},${B-206}L${X+40},${B-214}L${X+190},${B-124}Z`);planks(x,[X+6,B-210],[X+40,B-216],[X+150,B-122],[X+190,B-126],9,.3);x.restore()}
+  {const t=lay();t.setTransform(x.getTransform());shingleRoof(t,[X+6,B-210],[X+40,B-216],[X+190,B-126],[X+150,B-122],{rows:12,sw:6,grey:.5,moss:.35,seed:131});x.save();x.setTransform(1,0,0,1,0,0);x.globalCompositeOperation='destination-over';x.drawImage(t.canvas,0,0);x.restore()}}
 // Brunnen mit kleinem Dach und Kurbel
-function well(x,X,B){shadowAt(x,X,B+3,46,.6);for(let r=0;r<4;r++){wood(x,X-30,B-10-r*9,60,9,0);x.strokeStyle='rgba(16,10,4,.85)';x.lineWidth=1;x.strokeRect(X-30,B-10-r*9,60,9)}
+function well(x,X,B){shadowAt(x,X,B+3,46,.6);x.save();x.beginPath();x.rect(X-40,B-47,80,47);x.clip();roundLogs(x,X-30,X+30,B-1,B-46,9,{ends:[1,1],grey:.4});x.restore();wallFX(x,new Path2D(`M${X-30},${B-46}H${X+30}V${B}H${X-30}Z`),X-30,X+30,B-46,B,{eave:0});
   ell(x,X,B-46,30,6,[40,28,16]);ell(x,X,B-45,24,4,[8,10,14]);post(x,X-26,B-104,B-40,6);post(x,X+26,B-104,B-40,6);
   wood(x,X-30,B-84,60,7,0);x.fillStyle='#2a2a28';x.fillRect(X-2,B-80,4,30);x.strokeStyle='#2e2e2c';x.lineWidth=2;x.beginPath();x.moveTo(X+30,B-80);x.lineTo(X+40,B-80);x.lineTo(X+40,B-70);x.stroke();
   const rf=new Path2D(`M${X-44},${B-98}L${X},${B-132}L${X+44},${B-98}L${X+40},${B-94}L${X},${B-124}L${X-40},${B-94}Z`);x.save();x.clip(rf);for(let rx=X-44;rx<X+44;rx+=7){wood(x,rx,B-134,7,42,1);x.fillStyle='rgba(16,10,4,.7)';x.fillRect(rx,B-134,.8,42)}x.restore();x.strokeStyle='rgba(16,10,4,.9)';x.lineWidth=1;x.stroke(rf);

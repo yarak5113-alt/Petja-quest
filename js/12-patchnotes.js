@@ -1,6 +1,12 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.53',d:'12.11.2026',t:'Echte Häuser',n:[
+    'Alle Gebäude neu gemalt: runde Blockbalken mit Werg in den Fugen, Rissen, Ästen und Hirnholz-Köpfen an den Ecken; Steinfundament',
+    'Schindeldächer mit Überlappung, Schatten und Moos; Baba Jagas Hütte mit dichtem Strohdach, Steinschornstein und echten Hühnerbeinen (Federn, Hornschuppen, Krallen)',
+    'Kirche: vergoldete Hauptkuppel mit Spiegelung, Nebenkuppeln aus Espenschindeln, Glocke aus Bronze, Ikone über dem Portal',
+    'Fenster mit Tiefe, Himmelsspiegelung, Sprossen und geschnitzten, abblätternden Rahmen; Licht von der Sonne der Szene, Regenschlieren und Spritzwasser an den Wänden',
+    'Banja, Dorf, Fischerhütte, Schmiede und Brandruine im selben Stil; Holzwände in den Innenräumen sind wieder da'] },
   {v:'1.52',d:'12.11.2026',t:'Neuer Hand-Zeiger',n:[
     'Über allem Anklickbaren erscheint jetzt das eigene Hand-Design als Mauszeiger – im Menü und im Spiel'] },
   {v:'1.51',d:'12.11.2026',t:'Der Sumpf wird realistisch',n:[
