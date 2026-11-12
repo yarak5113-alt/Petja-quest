@@ -77,7 +77,7 @@ const BARKS={
   sumpf:['Nicht hinstarren. Nicht hinstarren. ...Mist.','Wenn ich hier einsinke, sucht mich keiner.','Es blubbert. Ich hoffe, das war der Sumpf.','Ich hab nasse Socken. Und das ist noch das Normalste hier.'],
   fischer:['Fischgeruch. Ich glaub, der wohnt jetzt in meiner Jacke.','Ein Fischer ohne Boot. Ein Petja ohne Plan. Wir passen zusammen.','Kusmitsch hat seit 1987 nichts gefangen. Ich fühl mich verstanden.','Der See glitzert. Der einzige hier, der sich Mühe gibt.'],
   ufer:['Das Wasser ist so ruhig. Viel zu ruhig.','Wenn ich jetzt reinspringe, bin ich wenigstens wach.','Schilf, Schlamm, Stille. Klingt wie ein schlechter Wellness-Urlaub.'],
-  unter:['Dunkel, nass, und irgendwas tropft mir in den Kragen.','Hier unten hört mich keiner schreien. Gut zu wissen.','Über mir knarzt Kusmitsch. Unter mir knarzt der Steg. Ich knarz gleich mit.'],
+  unter:['Dunkel, nass, und irgendwas tropft mir in den Kragen.','Hier unten hört mich keiner schreien. Gut zu wissen.','Über mir knarzt Kusmitsch. Unter mir knarzt der Pier. Ich knarz gleich mit.'],
   gnome:['Alles so klein hier. Ich fühl mich wie ein Riese. Ein müder Riese.','Ich hoffe, die Gnome beißen nicht. Die gucken so.','Riesenkohl und Riesennasen. Hier ist alles eine Nummer zu groß. Außer den Leuten.','Pfeifenrauch und Kohl. Fast wie bei meinem Onkel.'],
   hoehle:['Pilze an den Wänden. Na super. Genau mein Problem.','Echo. ...Echo? Keine Antwort. Nicht mal das Echo mag mich.','Die Kristalle summen. Hoffentlich nicht Radio Moskau.','Kalt hier. Und irgendwo kichert was. Ganz normale Höhle.']};
 // Sprüche beim erneuten Betreten eines Ortes (beim ersten Besuch gibt es die Ortsbeschreibung)
@@ -96,7 +96,7 @@ const ENTRY={
   sumpf:['Der Sumpf. Ich hab die Socken noch nicht trocken von letztem Mal.','Hallo, Damen. Ich bin nur auf der Durchreise. Wie immer.'],
   fischer:['Kusmitsch sitzt da wie immer. Ich glaub, der ist festgewachsen.','Der See. Riecht nach Fisch und Resignation.'],
   ufer:['Das Ufer. Das Boot hat immer noch aufgegeben. Respekt.','Wieder am Wasser. Ich spring trotzdem nicht rein.'],
-  unter:['Unterm Steg. Zieht immer noch. Tropft immer noch.','Zurück im Dunkeln. Hier sieht mich wenigstens keiner.'],
+  unter:['Unterm Pier. Zieht immer noch. Tropft immer noch.','Zurück im Dunkeln. Hier sieht mich wenigstens keiner.'],
   gnome:['Die Gnome. Die Nasen sind seit letztem Mal nicht kleiner geworden.','Wieder bei den Gnomen. Ich duck mich mal lieber. Aus Respekt.'],
   hoehle:['Die Höhle. Das Kichern hinten ist auch noch da. Schön.','Kalt, feucht, Pilze. Fühlt sich an wie meine alte WG.']};
 let entryT=Date.now(),entryBag={};

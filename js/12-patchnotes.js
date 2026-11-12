@@ -1,6 +1,12 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.62',d:'12.11.2026',t:'Aufträge mit Notizen',n:[
+    'Jeder offene Schritt in den Aufträgen hat jetzt eine Notiz: was genau zu tun ist, wo und bei wem',
+    'Der „Nächster Schritt“-Kasten zeigt die Notiz direkt mit, und der Tipp-Knopf (H) sagt sie beim zweiten Drücken laut',
+    'Notizen passen sich an: z. B. „Krähe mit dem Apfel bewerfen“, sobald man einen Apfel hat',
+    '„Den Wegezoll besorgen“ heißt jetzt „Mehl vom Müller besorgen“',
+    'Der Steg heißt jetzt überall Pier'] },
   {v:'1.61',d:'12.11.2026',t:'Saubere Klickflächen',n:[
     'Petja steht nicht mehr im Weg: Man klickt durch ihn hindurch auf alles, was hinter ihm liegt (z. B. den Apfel)',
     'Keine wilden gelben Umrisse mehr beim Drüberfahren – der Name am Mauszeiger zeigt, was man anklickt',

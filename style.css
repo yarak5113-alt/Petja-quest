@@ -242,3 +242,6 @@ html:not(.ink) .spr{image-rendering:pixelated;image-rendering:crisp-edges}
 .grid{grid-template-columns:repeat(auto-fill,minmax(104px,1fr))}.card b img{width:66px;height:66px}.detail .big img{width:90px;height:90px}.slot{width:46px;height:46px}.slot img{width:40px;height:40px}
 .arr{display:inline-block;width:1.35em;height:1.35em;vertical-align:-.32em;margin-right:5px;pointer-events:none}.tips b .arr{width:26px;height:26px;margin:0}.tips b:has(.arr){background:var(--velvet)}
 .arr{width:1.75em;height:1.75em;vertical-align:-.5em;margin:-.2em 4px -.2em -2px}
+/* Auftrags-Notizen: was genau zu tun ist und wo */
+.q em.qh{display:block;font-style:normal;font-size:.92em;line-height:1.4;color:#e4d4b4;margin:2px 0 5px 20px;padding:4px 8px;border-left:2px solid rgba(255,210,90,.45);background:rgba(255,210,90,.06);border-radius:0 4px 4px 0}
+.nextbox .nh{margin:5px 0 0;font:normal 13px/1.4 Georgia,serif;color:#f0e2c4}

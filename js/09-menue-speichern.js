@@ -2,33 +2,57 @@
 const REM=[];function rm(id){const e=document.getElementById(id);if(e)e.remove();if(!REM.includes(id))REM.push(id)}
 const LOCN={wald:'Birkenwald',gabel:'Weggabelung',huette:'Baba Jagas Hütte',innen:'Hütte (innen)',buehne:'Bühnenrand',lounge:'Private Lounge',irrwald:'Irrwald',banjaV:'Vor dem Banja',banja:'Banja',dorf:'Dorfeingang',dorfstr:'Dorfstraße',kirche:'Kirche',muehle:'Alte Mühle',sperre:'Birkensperre',sumpf:'Sumpf',fischer:'Fischerhaus',ufer:'Ufer',unter:'Unter dem Pier',gnome:'Gnomsiedlung',hoehle:'Höhle'};
 const has=i=>inv.includes(i);
+// h = Notiz: was genau zu tun ist und wo (wird bei offenen Schritten in der Auftragsansicht und beim Tipp gezeigt)
 function quests(){const Q=[];
   Q.push({t:'Raus aus dem Märchen',d:'Irgendwas stimmt nicht. Ich muss hier wieder aufwachen.',v:1,ok:0,s:[
-    {t:'Jemanden finden, der sich hier auskennt',v:1,ok:seen.huette},
-    {t:'In Baba Jagas Hütte kommen',v:FL.bjNo,ok:FL.drin},
-    {t:'Herausfinden, was mit mir los ist',v:FL.drin,ok:FL.recipe},
-    {t:'Zutaten für das Gegengift besorgen',v:FL.recipe,ok:0,s:[{t:'Eine Träne',v:FL.recipe,ok:0},{t:'Eine Feder',v:FL.recipe,ok:0},{t:'Ein besonderer Saft',v:FL.recipe,ok:0}]}]});
-  Q.push({t:'Das Pilzlabor',d:'Jemand in der Höhle kennt sich mit Pilzen aus. Aber umsonst ist nichts.',v:FL.labQ,ok:FL.recipe,s:[{t:'In den Stollen kommen',v:FL.labQ,ok:FL.stollen,s:[
-    {t:'Den Wegezoll besorgen',v:FL.mehlQ,ok:FL.mehl,s:[{t:'Ein Wunsch des Müllers',v:FL.mullerQ,ok:FL.gutschein||FL.mehl,s:[{t:'Den Weg nicht verlieren',v:FL.mullerQ,ok:FL.karte},{t:'Das Banja finden',v:FL.mullerQ,ok:seen.banja},{t:'Eine Neue für Madame',v:FL.clubQ,ok:FL.rekrut}]}]}]},
-    {t:'Die Pilze untersuchen lassen',v:FL.stollen,ok:FL.recipe}]});
+    {t:'Jemanden finden, der sich hier auskennt',v:1,ok:seen.huette,h:'Vom Birkenwald zur Weggabelung, dann dem Schild „Zu Baba Jaga“ folgen. Eine Hexe weiß bestimmt, wie man hier rauskommt.'},
+    {t:'In Baba Jagas Hütte kommen',v:FL.bjNo,ok:FL.drin,h:has('leiter')?'Mit der Leiter zur Hütte und auf die Tür oder die Hühnerbeine klicken – dann geht’s durchs Fenster rein.':'Die Tür ist nur Deko, rein geht’s nur durchs Fenster. Dafür brauch ich eine Leiter (siehe „Hoch hinaus“).'},
+    {t:'Herausfinden, was mit mir los ist',v:FL.drin,ok:FL.recipe,h:FL.bjInfo?'Baba Jaga sagt, nur der Pilzmeister der Gnome weiß, welcher Pilz in meinem Joint war (siehe „Das Pilzlabor“).':'Baba Jaga in ihrer Hütte fragen. Sie will wissen, was in meinem Joint war (siehe „Der Joint“).'},
+    {t:'Zutaten für das Gegengift besorgen',v:FL.recipe,ok:0,s:[
+      {t:'Eine Träne',v:FL.recipe,ok:0,h:'Die Träne einer wirklich schönen Nymphe. Die Nymphen sitzen im Sumpf.'},
+      {t:'Eine Feder',v:FL.recipe,ok:0,h:'Eine schwarze Krähenfeder. Im Birkenwald sitzt doch eine Krähe …'},
+      {t:'Ein besonderer Saft',v:FL.recipe,ok:0,h:'Saft aus der ältesten Birke im Wald.'}]}]});
+  Q.push({t:'Das Pilzlabor',d:'Der Pilzmeister der Gnome soll sagen, was in meinem Joint war. Aber umsonst ist nichts.',v:FL.labQ,ok:FL.recipe,s:[
+    {t:'In den Stollen kommen',v:FL.labQ,ok:FL.stollen,h:'Zur Gnomsiedlung (vom Fischerhaus am Ufer entlang) und auf das Schild „Zur Höhle“ klicken. Grobnik will dafür etwas.',s:[
+      {t:'Mehl vom Müller besorgen',v:FL.mehlQ,ok:FL.mehl,h:has('gutschein')?'Den Gutschein zum Müller bringen: an der Alten Mühle auf die Mühle klicken.':!FL.mullerQ?'Die Gnome wollen das „Mehl“ vom Müller. Vom Dorfeingang aufs Schild „Zur alten Mühle“ und dort an die Tür klopfen (auf die Mühle klicken).':'Der Müller rückt das Mehl nur gegen etwas aus dem Banja raus.',s:[
+        {t:'Ein Wunsch des Müllers',v:FL.mullerQ,ok:FL.gutschein||FL.mehl,h:FL.rekrut?'Nastja ist unterwegs. Zurück ins Banja zu Madame Zinaida – sie schuldet mir einen Gutschein für den Müller.':'Der Müller will eine Braut aus dem Banja hinterm Irrwald – oder wenigstens einen Tanz.',s:[
+          {t:'Den Weg nicht verlieren',v:FL.mullerQ,ok:FL.karte,h:'Nur Baba Jaga kennt den Weg durch den Irrwald. In ihrer Hütte mit ihr reden und nach dem Banja fragen.'},
+          {t:'Das Banja finden',v:FL.mullerQ,ok:seen.banja,h:'An der Alten Mühle aufs Schild „In den Irrwald“. Dann die Wege laut Karte nehmen: links, links, rechts, geradeaus. Falsch abgebogen = zurück zur Mühle.'},
+          {t:'Eine Neue für Madame',v:FL.clubQ,ok:FL.rekrut,h:'Madames Liste in den Taschen lesen. Dann im Sumpf (hinter der Birkensperre) die Nymphen anklicken, mit ihnen reden und die finden, die genau auf die Liste passt.'}]}]}]},
+    {t:'Die Pilze untersuchen lassen',v:FL.stollen,ok:FL.recipe,h:'Mit der Laterne in die Höhle und auf den dunklen Gang klicken. Der Pilzmeister wartet hinten.'}]});
   Q.push({t:'Der versperrte Weg',d:'Umgestürzte Birken versperren den Weg zum Sumpf.',v:seen.sperre,ok:FL.cut,s:[
-    {t:'Etwas zum Zerkleinern finden',v:seen.sperre,ok:has('saege')||FL.cut},
-    {t:'Dem Fischer einen Gefallen tun',v:FL.auftrag,ok:FL.boot,s:[{t:'Ein Brett',v:FL.auftrag,ok:has('brett')||FL.boot},{t:'Etwas zum Abdichten',v:FL.auftrag,ok:has('teer')||FL.boot}]},
-    {t:'Den Weg freiräumen',v:has('saege')||FL.cut,ok:FL.cut}]});
-  Q.push({t:'Omas Gebiss',d:'Oma hat etwas verloren. Ohne das gibt’s keinen Teer.',v:FL.gq,ok:FL.teer,s:[
-    {t:'Das Gebiss finden',v:FL.gq,ok:FL.ks},
-    {t:'Den Wächter loswerden',v:FL.ks,ok:FL.kater,s:[{t:'Etwas, das er nicht ablehnen kann',v:FL.ks,ok:FL.fisch||FL.kater},
-      {t:'Selbst ist der Mann',v:FL.angelQ,ok:has('angel')||FL.fisch||FL.kater,s:[{t:'Ein Stock',v:FL.angelQ,ok:FL.ast},{t:'Eine Schnur',v:FL.angelQ,ok:REM.includes('altnetzG')}]}]},
-    {t:'Das Gebiss zurückbringen',v:has('gebiss')||FL.teer,ok:FL.teer}]});
-  Q.push({t:'Hoch hinaus',d:'Durch die Tür kommt man bei Baba Jaga nicht rein.',v:FL.bjNo,ok:FL.leiter||FL.drin,s:[
-    {t:'Jemanden mit einer Leiter finden',v:FL.bjNo,ok:FL.leiterQ},
-    {t:'Den Preis bezahlen',v:FL.leiterQ,ok:FL.leiter,s:[{t:'An die Flasche kommen',v:FL.schnapsQ,ok:FL.schnaps},{t:'Für Ablenkung sorgen',v:FL.schnapsQ,ok:FL.ablenk},{t:'Ein Köder für etwas Großes',v:FL.schnapsQ,ok:FL.tied||FL.ablenk,s:[{t:'Würmer sammeln – vor Baba Jagas Hütte ist die Erde feucht',v:FL.schnapsQ,ok:has('wuermer')||FL.tied||FL.ablenk},{t:'Die Würmer an Kusmitschs Schnur unterm Steg hängen',v:has('wuermer')||FL.tied,ok:FL.tied||FL.ablenk}]}]}]});
-  Q.push({t:'Der Joint',d:'Baba Jaga will wissen, was drin war.',v:FL.drin,ok:FL.bjInfo,s:[{t:'Den Joint untersuchen',v:FL.drin,ok:FL.pilze},{t:'Das Ergebnis zeigen',v:FL.pilze,ok:FL.bjInfo}]});
+    {t:'Etwas zum Zerkleinern finden',v:seen.sperre,ok:has('saege')||FL.cut,h:'Eine Säge wäre gut. Von der Birkensperre geht’s rechts zum Fischerhaus – Kusmitsch auf dem Pier fragen.',s:[
+      {t:'Dem Fischer einen Gefallen tun',v:FL.auftrag,ok:FL.boot,h:'Brett und Teer zusammen? Dann zum Fischer oder aufs alte Boot klicken und es flicken.',s:[
+        {t:'Ein Brett',v:FL.auftrag,ok:has('brett')||FL.boot,h:'Im Dorf (hinter Baba Jagas Hütte) liegt bei Opa Grischas abgebrannter Ruine ein Brett.'},
+        {t:'Etwas zum Abdichten',v:FL.auftrag,ok:has('teer')||FL.boot,h:'Oma auf der Dorfstraße hat Birkenteer. Mit ihr reden (siehe „Omas Gebiss“).'}]}]},
+    {t:'Den Weg freiräumen',v:has('saege')||FL.cut,ok:FL.cut,h:'Mit der Säge zurück zur Birkensperre und auf die umgestürzten Birken klicken.'}]});
+  Q.push({t:'Omas Gebiss',d:'Oma hat ihr Gebiss verloren. Ohne das gibt’s keinen Teer.',v:FL.gq,ok:FL.teer,s:[
+    {t:'Das Gebiss finden',v:FL.gq,ok:FL.ks,h:'Oma sagt, der Kater vom Popen hockt drauf. Also: Friedhof an der Kirche (Dorfstraße → „Zur Kirche“).'},
+    {t:'Den Wächter loswerden',v:FL.ks,ok:FL.kater,s:[
+      {t:'Etwas, das er nicht ablehnen kann',v:FL.ks,ok:FL.fisch||FL.kater,h:has('angel')?'Mit der Angel zum Fischerhaus und auf den See klicken. Beim Drill dagegenhalten!':'Ein Kater will Fisch. Kusmitsch am Fischerhaus fragen – wenn er nichts rausrückt, selbst angeln.',s:[
+        {t:'Selbst ist der Mann',v:FL.angelQ,ok:has('angel')||FL.fisch||FL.kater,h:'Stock + Schnur = Angel. Die baut Petja von selbst zusammen, sobald er beides hat.',s:[
+          {t:'Ein Stock',v:FL.angelQ,ok:FL.ast,h:FL.kraehe?'Der Ast im Birkenwald ist frei. Anklicken – Petja springt danach.':has('apfel')?'Die Krähe im Birkenwald mit dem Apfel bewerfen (auf die Krähe klicken), dann ist der Ast frei.':'Im Birkenwald hängt ein gerader Ast – aber die Krähe sitzt drauf. Mit etwas bewerfen? An der Weggabelung wachsen Äpfel.'},
+          {t:'Eine Schnur',v:FL.angelQ,ok:has('seil')||has('angel')||FL.fisch||FL.kater,h:'Neben dem Fischerhaus liegt ein kaputtes Fischernetz.'}]}]},
+      {t:'Dem Kater den Fisch geben',v:FL.fisch&&!FL.kater,ok:FL.kater,h:'Mit dem Fisch zum Friedhof an der Kirche und auf den Kater klicken.'}]},
+    {t:'Das Gebiss zurückbringen',v:has('gebiss')||FL.teer,ok:FL.teer,h:'Zu Oma auf die Dorfstraße.'}]});
+  Q.push({t:'Hoch hinaus',d:'Durch die Tür kommt man bei Baba Jaga nicht rein – nur durchs Fenster.',v:FL.bjNo,ok:FL.leiter||FL.drin,s:[
+    {t:'Jemanden mit einer Leiter finden',v:FL.bjNo,ok:FL.leiterQ,h:'Hinter Baba Jagas Hütte geht’s zum Dorf. Am Ofen der abgebrannten Ruine lehnt eine Leiter – Opa Grischa davor fragen.'},
+    {t:'Den Preis bezahlen',v:FL.leiterQ,ok:FL.leiter,h:'Den Selbstgebrannten zu Opa Grischa am Dorfeingang bringen.',s:[
+      {t:'An die Flasche kommen',v:FL.schnapsQ,ok:FL.schnaps,h:FL.ablenk?'Kusmitsch kämpft mit dem Wels! Jetzt am Fischerhaus die Flasche auf dem Pier schnappen.':'Kusmitschs Flasche steht neben ihm auf dem Pier am Fischerhaus. Solange er hinschaut, keine Chance.'},
+      {t:'Für Ablenkung sorgen',v:FL.schnapsQ,ok:FL.ablenk,h:'Wenn der Wels unterm Pier an Kusmitschs Schnur anbeißt, vergisst der alles andere.',s:[
+        {t:'Ein Köder für etwas Großes',v:FL.schnapsQ,ok:FL.tied||FL.ablenk,s:[
+          {t:'Würmer sammeln',v:FL.schnapsQ,ok:has('wuermer')||FL.tied||FL.ablenk,h:'Vor Baba Jagas Hütte ist die Erde feucht – dort liegen fette Würmer.'},
+          {t:'Die Würmer an Kusmitschs Schnur hängen',v:has('wuermer')||FL.tied,ok:FL.tied||FL.ablenk,h:'Vom Ufer aufs Schild „Unter den Pier“. Dort auf die Angelschnur klicken, die durch die Bretter hängt.'}]}]}]}]});
+  Q.push({t:'Der Joint',d:'Baba Jaga will wissen, was drin war.',v:FL.drin,ok:FL.bjInfo,s:[
+    {t:'Den Joint untersuchen',v:FL.drin,ok:FL.pilze,h:has('kippe')?'In Baba Jagas Hütte auf den Tisch klicken und den Joint dort zerlegen.':'Der Joint-Stummel liegt im Birkenwald auf dem Baumstumpf. Mitnehmen und in Baba Jagas Hütte auf den Tisch legen.'},
+    {t:'Das Ergebnis zeigen',v:FL.pilze,ok:FL.bjInfo,h:'Die blauen Pilzstücke Baba Jaga zeigen (auf sie klicken).'}]});
   return Q.filter(q=>q.v)}
 // Offene Blätter des Auftragsbaums; der tiefste (konkreteste) zuerst, bei Gleichstand der neuere Auftrag
 function nextSteps(Q){const out=[];const walk=(q,d,top)=>{if(!q.v||q.ok)return;const kids=(q.s||[]).filter(c=>c.v&&!c.ok);if(!kids.length)out.push({q,d,top});else kids.forEach(c=>walk(c,d+1,top))};
   (Q||quests()).forEach((q,i)=>walk(q,0,i));return out.sort((a,b)=>b.d-a.d||b.top-a.top)}
-function qTree(list,lv,NEXT){return list.filter(q=>q.v).map(q=>`<div class="q l${lv} ${q.ok?'done':''} ${q===NEXT?'next':''}"><span>${q.ok?'✔':q===NEXT?'➤':'○'} ${q.t}</span>${q.d&&lv==0?`<i>${q.d}</i>`:''}${q.s&&!q.ok?qTree(q.s,lv+1,NEXT):''}</div>`).join('')}
+function qTree(list,lv,NEXT){return list.filter(q=>q.v).map(q=>`<div class="q l${lv} ${q.ok?'done':''} ${q===NEXT?'next':''}"><span>${q.ok?'✔':q===NEXT?'➤':'○'} ${q.t}</span>${q.d&&lv==0?`<i>${q.d}</i>`:''}${q!==NEXT&&qNote(q)?`<em class="qh">📝 ${qNote(q)}</em>`:''}${q.s&&!q.ok?qTree(q.s,lv+1,NEXT):''}</div>`).join('')}
+// Notiz nur bei offenen Schritten, die gerade selbst dran sind (keine offenen Unterschritte mehr)
+function qNote(q){return!q.ok&&q.h&&!(q.s||[]).some(c=>c.v&&!c.ok)?q.h:''}
 let ovl=null;function closeO(){if(ovl){ovl.remove();ovl=null}}
 function openO(html,cls){closeO();ovl=document.createElement('div');ovl.className='ovl '+(cls||'');ovl.innerHTML=html;ovl.onclick=e=>{e.stopPropagation();if(e.target===ovl)closeO()};
   ovl.querySelectorAll('.x').forEach(b=>b.onclick=closeO);$('#game').appendChild(ovl);return ovl}
@@ -42,7 +66,7 @@ function openBook(tab){tab=tab||'tasche';let body='';
   if(tab=='tasche')body=inv.length?`<div class="grid">${inv.map(id=>{const it=ITEMS[id]||['❔',id,id];return`<button class="card" data-i="${id}"><b>${IMG(id)}</b><span>${it[1]}</span></button>`}).join('')}</div>
       <div class="detail"><span class="em">Klick auf einen Gegenstand, um ihn anzusehen.</span></div>`:'<p class="empty">🕸️<br>Leer. Wie mein Kühlschrank.<br><span class="em">Sammle Dinge ein, indem du sie in der Welt anklickst.</span></p>';
   if(tab=='auftrag'){const Q=quests(),ns=nextSteps(Q),NEXT=ns[0]&&ns[0].q,open=Q.filter(q=>!q.ok),fin=Q.filter(q=>q.ok);
-    body=`${NEXT?`<div class="nextbox"><small>Nächster Schritt</small>➤ ${NEXT.t}</div>`:''}${qTree(open,0,NEXT)||'<p class="em">Gerade nichts offen.</p>'}
+    body=`${NEXT?`<div class="nextbox"><small>Nächster Schritt</small>➤ ${NEXT.t}${NEXT.h?`<p class="nh">${NEXT.h}</p>`:''}</div>`:''}${qTree(open,0,NEXT)||'<p class="em">Gerade nichts offen.</p>'}
       ${fin.length?`<details class="fin"><summary>Erledigt (${fin.length})</summary>${qTree(fin,0)}</details>`:''}`;if(typeof badge=='function')badge('auftrag',0)}
   if(tab=='log')body=logHTML();
   if(tab=='karte')body=mapSVG()+`<p class="legend"><span class="lg here"></span> Du bist hier <span class="lg"></span> Besucht <span class="lg unk">?</span> Noch unerkundet</p>`;

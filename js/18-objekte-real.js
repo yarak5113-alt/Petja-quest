@@ -144,7 +144,7 @@ function mrad(){const g=document.querySelector('[data-id="mrad"] .wheel');if(!g)
   const ag=x.createRadialGradient(428.5,298.5,0,...C,4.5);ag.addColorStop(0,'#c8c8c4');ag.addColorStop(.5,'#6a6a68');ag.addColorStop(1,'#1e1e1e');x.fillStyle=ag;x.beginPath();x.arc(...C,4.2,0,7);x.fill();
   x.fillStyle='rgba(120,60,20,.5)';x.beginPath();x.arc(431,301,2,0,7);x.fill()},5)}
 
-// ---------- Angelschnur unter dem Steg ----------
+// ---------- Angelschnur unter dem Pier ----------
 function schnur(){const g=document.querySelector('[data-id="schnur"] .sway');if(!g)return;
   g.innerHTML='<path d="M430.4,0V300" stroke="#2a2a24" stroke-opacity=".35" stroke-width="1.1" fill="none"/><path d="M430,0V300" stroke="#d8d2bc" stroke-width=".7" fill="none"/><path d="M430,0V300" stroke="#fff" stroke-opacity=".4" stroke-width=".25" stroke-dasharray="3 5" fill="none"/>'+
     '<path d="M430,296v2.6" stroke="#5a5048" stroke-width="1.6" stroke-linecap="round"/>'+

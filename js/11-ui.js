@@ -49,7 +49,7 @@ function tipp(){if(busy||ovl||changing||!cur||$('#start')||$('#fg')||$('#cut'))r
   const k=ns[0].q.t;if(k!==tippKey){tippKey=k;tippLvl=0}const lvl=tippLvl++,top=Q[ns[0].top];
   const L=[['P',['Mal überlegen...','Na gut. Denken. Muss ja.','Was war nochmal der Plan? Ach ja.'][Math.random()*3|0]]];
   if(lvl==0)L.push(['P','Es geht gerade um: '+top.t+'.'+(top.d?' '+top.d:'')]);
-  else{L.push(['P','Als Nächstes: '+k+'.']);
+  else{L.push(['P','Als Nächstes: '+k+'.']);if(ns[0].q.h)L.push(['P',ns[0].q.h]);
     if(lvl>=2){if(ns[1]&&ns[1].top!==ns[0].top)L.push(['P','Oder ich kümmere mich erst um: '+ns[1].q.t+'.']);L.push(['P','Und wenn ich nicht weiterkomme: Leute fragen. Mehrmals. Irgendwer quatscht immer.'])}}
   say(L)}
 

@@ -62,14 +62,14 @@ const T={
       [['P','Tag. Beißen sie?'],['F','Die Fische? Nein. Die Weiber im Sumpf, ja.'],['F','Dreißig Jahre sitz ich hier. Gefangen hab ich: zwei Stiefel, ein Fahrrad und meine erste Frau.']],
       [['P','Wissen Sie, wie ich hier rauskomme?'],['F','Raus? Ich wollte 1987 nur Zigaretten holen.'],['F','Frag die Alte in der Hütte auf Hühnerbeinen. Baba Jaga. Wer in diesem Wald festhängt, hängt wegen ihr.']],
       [['F','Immer noch da? Zurück zur Weggabelung und dann zur Hexe, Junge.'],['F','Und nimm Wodka mit. Nüchtern ist sie unerträglich.']]]);
-    if(FL.ablenk&&!FL.schnaps)return say([['F','NICHT JETZT! DER WELS! Er zieht mich gleich vom Steg!'],['P','Lassen Sie sich Zeit.']]);
-    if(FL.schnapsQ&&!FL.ablenk){if(has('wuermer'))return say([['F','Was zappelt da in deiner Tasche?'],['P','Nichts. ...Nur ein paar Würmer. Für später.'],['P','(Seine Schnur hängt unterm Steg. Da kommen die Würmer dran.)']]);
+    if(FL.ablenk&&!FL.schnaps)return say([['F','NICHT JETZT! DER WELS! Er zieht mich gleich vom Pier!'],['P','Lassen Sie sich Zeit.']]);
+    if(FL.schnapsQ&&!FL.ablenk){if(has('wuermer'))return say([['F','Was zappelt da in deiner Tasche?'],['P','Nichts. ...Nur ein paar Würmer. Für später.'],['P','(Seine Schnur hängt unterm Pier. Da kommen die Würmer dran.)']]);
       return hint('wels',[
         [['F','Die Flasche bleibt hier. Außer der Wels beißt endlich mal an. Dann ist mir alles egal.'],['P','(Alles egal. Auch die Flasche. Interessant.)']],
-        [['F','Mit Brot lockst du den nicht. Der will was Lebendiges. Aber ich hab nix anderes.'],['P','(Seine Schnur hängt unterm Steg runter. Da könnte man ja was dranhängen... Was Lebendiges.)']],
+        [['F','Mit Brot lockst du den nicht. Der will was Lebendiges. Aber ich hab nix anderes.'],['P','(Seine Schnur hängt unterm Pier runter. Da könnte man ja was dranhängen... Was Lebendiges.)']],
         FL.s_wuermer?[['P','(Was Lebendiges, was ein Fisch frisst... Würmer.)'],['P','(Vor Baba Jagas Hütte lag doch so ein Haufen. Die zappeln bestimmt noch.)']]
           :[['P','(Was Lebendiges, was ein Fisch frisst. Würmer. Und Würmer gibt’s, wo’s matschig ist.)'],['P','(Baba Jagas Hof ist der matschigste Ort, den ich kenne.)']]])}
-    if(FL.leiterQ&&!FL.schnapsQ){FL.schnapsQ=1;return say([['P','Herr Kusmitsch, könnten Sie mir Ihren Selbstgebrannten geben? Für den Opa.'],['F','Meinen Selbstgebrannten?! Für den Brandstifter? Eher fress ich mein Netz.'],['F','Die Flasche lass ich nicht aus den Augen. Nur wenn einer anbeißt. Und hier beißt seit 1987 nix Großes mehr an.'],['F','Außer dem Wels. Der wohnt unterm Steg. Aber der beißt nur auf Würmer. Fette Würmer. Mit meinem Brot lockst du den nicht.']])}
+    if(FL.leiterQ&&!FL.schnapsQ){FL.schnapsQ=1;return say([['P','Herr Kusmitsch, könnten Sie mir Ihren Selbstgebrannten geben? Für den Opa.'],['F','Meinen Selbstgebrannten?! Für den Brandstifter? Eher fress ich mein Netz.'],['F','Die Flasche lass ich nicht aus den Augen. Nur wenn einer anbeißt. Und hier beißt seit 1987 nix Großes mehr an.'],['F','Außer dem Wels. Der wohnt unterm Pier. Aber der beißt nur auf Würmer. Fette Würmer. Mit meinem Brot lockst du den nicht.']])}
     if(FL.ks&&!FL.fisch&&!FL.kater){if(inv.includes('angel'))return say([['F','Na, eine Angel! Selbst gebaut? Sieht aus wie ein Unfall.'],['F','Dann zeig mal. Schwimmer in der Mitte halten, nicht vom Fisch wegziehen lassen!']],fishing);
     if(FL.angelQ){const st=[[['F','Stock und Schnur, Junge. Mehr braucht’s nicht. Und ein bisschen Geduld. Hast du nicht, ich weiß.']]];
       if(!has('seil')&&!REM.includes('altnetzG'))st.push([['F','Schnur? Neben meiner Hütte liegt ein altes Netz. Hat der Wels zerfetzt. Mir egal, was damit passiert.']]);
@@ -146,7 +146,7 @@ const T={
   sUP:{n:'Schild: Unter den Pier',at:[176,404],go:'unter',to:[640,470]},
   sUZ:{n:'Schild: Zurück zum Ufer',at:[690,486],go:'ufer',to:[180,406]},
   wrack:{n:'Bootswrack',at:[560,420],l:[[['P','Ein Boot, halb versunken. Das ist wohl das, was passiert, wenn man es NICHT flickt.']]]},
-  steg:{n:'Steg',at:[200,404],l:[[['P','Der Steg vom Fischer. Unten drunter kann man gebückt durchkriechen.']],[['P','Ganz hinten sitzt Kusmitsch. Er hat mich nicht gesehen. Gut so.']]]},
+  steg:{n:'Pier',at:[200,404],l:[[['P','Der Pier vom Fischer. Unten drunter kann man gebückt durchkriechen.']],[['P','Ganz hinten sitzt Kusmitsch. Er hat mich nicht gesehen. Gut so.']]]},
   schnur:{n:'Angelschnur',at:[430,430],fn(){if(FL.ablenk)return say([['P','Die Schnur zappelt wie verrückt. Oben flucht Kusmitsch. Herrlich.']]);
     if(FL.tied)return say([['P','Die Würmer zappeln am Haken. Jetzt muss nur noch der Wels anbeißen.']],wels);
     if(inv.includes('wuermer'))return say([['P','Ich spieß die Würmer auf seinen Haken. Einen nach dem anderen. Sorry, Jungs.'],['P','Und jetzt halt ich die Schnur fest und warte. Der Wels muss richtig ziehen, damit Kusmitsch was merkt.']],()=>{FL.tied=1;inv.splice(inv.indexOf('wuermer'),1);renderInv();wels()});

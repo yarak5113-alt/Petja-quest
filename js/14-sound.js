@@ -173,10 +173,10 @@ const RECIPE={
   // Fischerhaus: Wellen, Glucksen am Ufer, Plätschern, ein Fisch springt, Schilf
   fischer(k){k.every(14000,28000,()=>k.croak(.045,k.P()));k.bed(.13,'lowpass',600,.5,.13,.8);k.every(500,1600,()=>k.plop(.035,k.P(),rnd(300,800)));k.every(4000,9000,()=>{const p=k.P();for(let i=0;i<4;i++)k.plop(.03,p,rnd(500,1200),i*rnd(.06,.15))});
     k.every(1500,4000,()=>k.rustle(.025,k.P()));k.every(14000,28000,()=>k.splash(.07,k.P()));k.birds(1,8000,16000)},
-  // Ufer: Wellen schwappen, Plätschern, Schilf, der Steg knarzt
+  // Ufer: Wellen schwappen, Plätschern, Schilf, der Pier knarzt
   ufer(k){k.every(10000,22000,()=>k.croak(.05,k.P()));k.bed(.16,'lowpass',650,.5,.11,.8);k.every(400,1400,()=>k.plop(.035,k.P(),rnd(300,900)));k.every(3000,7000,()=>{const p=k.P();for(let i=0;i<5;i++)k.plop(.03,p,rnd(400,1100),i*rnd(.05,.12))});
     k.every(1000,3000,()=>k.rustle(.035,k.P()));k.every(8000,16000,()=>k.creak(.05,-.6));k.every(16000,32000,()=>k.splash(.06,k.P()))},
-  // Unter dem Steg: Wasser schwappt hohl, Tropfen mit Hall, über dir knarzt Kusmitsch
+  // Unter dem Pier: Wasser schwappt hohl, Tropfen mit Hall, über dir knarzt Kusmitsch
   unter(k){k.reverb(1.4,2.5,.45);k.bed(.13,'lowpass',420,.5,.15,.7);k.every(400,1500,()=>k.plop(.05,k.P(),rnd(900,1800)));k.every(2500,6000,()=>{const p=k.P();for(let i=0;i<3;i++)k.plop(.04,p,rnd(250,600),i*.1)});
     k.every(5000,11000,()=>k.creak(.08,rnd(-.3,.3)))},
   // Sumpf: muffig, Frösche quaken, Fliegen brummen vorbei, es blubbert, manchmal platscht was
