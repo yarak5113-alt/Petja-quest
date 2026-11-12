@@ -66,7 +66,7 @@ function smithy(x,X,B){shadowAt(x,X,B+6,190,.55);
     for(let t=20;t<165;t+=14){x.fillStyle='#2a1a0a';x.beginPath();x.arc(t,6,3.4,0,Math.PI);x.fill()}x.restore()});
   konek(x,X-2,B-204,.78,1);horseshoe(x,X-112,B-100,1.3);
   // Dachfläche nach hinten (Bretter) sichtbar über dem Giebel
-  x.save();x.globalCompositeOperation='destination-over';const rf=new Path2D(`M${X-150},${B-118}L${X},${B-206}L${X+40},${B-214}L${X+190},${B-124}Z`);x.fillStyle='#4a3a26';x.fill(rf);x.restore()}
+  x.save();x.globalCompositeOperation='destination-over';const rf=new Path2D(`M${X-150},${B-118}L${X},${B-206}L${X+40},${B-214}L${X+190},${B-124}Z`);planks(x,[X+6,B-210],[X+40,B-216],[X+150,B-122],[X+190,B-126],9,.3);x.restore()}
 // Brunnen mit kleinem Dach und Kurbel
 function well(x,X,B){shadowAt(x,X,B+3,46,.6);for(let r=0;r<4;r++){wood(x,X-30,B-10-r*9,60,9,0);x.strokeStyle='rgba(16,10,4,.85)';x.lineWidth=1;x.strokeRect(X-30,B-10-r*9,60,9)}
   ell(x,X,B-46,30,6,[40,28,16]);ell(x,X,B-45,24,4,[8,10,14]);post(x,X-26,B-104,B-40,6);post(x,X+26,B-104,B-40,6);

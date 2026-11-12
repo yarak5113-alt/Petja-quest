@@ -121,8 +121,35 @@ function stump(x,X,Y){
   for(let i=0;i<60;i++)ell(x,X-36+R()*22,Y-6+R()*16,1+R()*2.5,.8+R()*1.5,mix([50,90,20],[130,170,50],R()),.85,R()*3);x.restore();
   g=x.createRadialGradient(X+4,Y-28,2,X,Y-26,30);g.addColorStop(0,'#ecd0a0');g.addColorStop(.75,'#c8a06a');g.addColorStop(1,'#6a4a28');x.fillStyle=g;x.beginPath();x.ellipse(X,Y-26,30,9,0,0,7);x.fill();
   x.strokeStyle='rgba(120,84,44,.55)';x.lineWidth=.6;for(let r=4;r<28;r+=2.5+R()*2){x.beginPath();x.ellipse(X+(R()-.5),Y-26,r,r*.3,0,0,7);x.stroke()}}
-function wood(x,x0,y0,w,h,vert){const g=vert?x.createLinearGradient(x0,0,x0+w,0):x.createLinearGradient(0,y0,0,y0+h);g.addColorStop(0,'#4a3218');g.addColorStop(.4,'#8a6a42');g.addColorStop(1,'#3a2410');x.fillStyle=g;x.fillRect(x0,y0,w,h);
-  for(let i=0;i<(vert?h:w)/2;i++){x.strokeStyle=`rgba(30,18,6,${.2+R()*.4})`;x.lineWidth=.4+R()*.6;x.beginPath();if(vert){const px=x0+R()*w;x.moveTo(px,y0);x.lineTo(px+(R()-.5)*1.5,y0+h)}else{const py=y0+R()*h;x.moveTo(x0,py);x.lineTo(x0+w,py+(R()-.5)*1.5)}x.stroke()}}
+// Realistische Holzmaserung: einmal berechnete Texturen (Jahresringe, Fasern, Äste, leichte Verwitterung) als Muster;
+// darüber die Rundung des Bretts/Balkens (Licht von oben bzw. links) und feine Risse. Die Zufallsfolge R() bleibt wie früher.
+const WOODTEX={};
+function woodTex(vert){const k=vert?'v':'h';if(WOODTEX[k])return WOODTEX[k];const TW=384,TH=96,c0=document.createElement('canvas');c0.width=TW;c0.height=TH;const g0=c0.getContext('2d'),im=g0.createImageData(TW,TH),d=im.data;
+  const knots=[[60,30,9],[170,70,7],[290,22,11],[340,64,6],[120,84,5]];
+  for(let py=0;py<TH;py++)for(let px=0;px<TW;px++){let ph=py*.62+fbm(px/70,py/9,4)*16+Math.sin(px/37)*1.5,dk=0;
+    for(const[kx,ky,kr]of knots){const dx=(px-kx)/(kr*2.6),dy=(py-ky)/kr,dd=dx*dx+dy*dy;ph+=7*Math.exp(-dd*.8)*Math.sign(py-ky||1);if(dd<1.1)dk=Math.max(dk,1-dd/1.1)}
+    const ring=.5+.5*Math.sin(ph),late=Math.pow(ring,6),fib=vn(px/1.3,py*2.6),blot=fbm(px/40+5,py/14,3);
+    let r=96+60*ring-34*late+22*(fib-.5)+30*(blot-.5),gg=r*.68+4,b=r*.4+2;const gr=(r+gg+b)/3,wt=.18*sst(.55,.8,blot);r+=(gr-r)*wt;gg+=(gr-gg)*wt;b+=(gr-b)*wt;
+    r*=1-dk*.62;gg*=1-dk*.66;b*=1-dk*.7;const i=(py*TW+px)*4;d[i]=r;d[i+1]=gg;d[i+2]=b;d[i+3]=255}
+  g0.putImageData(im,0,0);let c1=c0;if(vert){c1=document.createElement('canvas');c1.width=TH;c1.height=TW;const g1=c1.getContext('2d');g1.translate(TH,0);g1.rotate(Math.PI/2);g1.drawImage(c0,0,0)}
+  return WOODTEX[k]=c1}
+// Bretterfläche (Dach): Viereck A-B oben, D-C unten; n Bretter von oben nach unten, jedes mit Maserung, eigener Helligkeit,
+// dunkler Fuge und heller Kante; gr = Verwitterung (vergraut). Keine Zufallszahlen aus R() -> Szenen bleiben unverändert.
+function planks(x,A,B,D,C,n,gr=.35){const L=(p,q,t)=>[p[0]+(q[0]-p[0])*t,p[1]+(q[1]-p[1])*t],ang=Math.atan2(D[1]-A[1],D[0]-A[0])-Math.PI/2,pat=x.createPattern(woodTex(true),'repeat');
+  pat.setTransform(new DOMMatrix().translate(A[0],A[1]).rotate(ang*180/Math.PI).scale(.5));
+  for(let i=0;i<n;i++){const t0=i/n,t1=(i+1)/n,a=L(A,B,t0),b=L(A,B,t1),c=L(D,C,t1),d=L(D,C,t0),p=new Path2D('M'+[a,b,c,d].map(q=>q.join(',')).join('L')+'Z'),v=rn(i*13+(A[0]|0),i*7+(A[1]|0));
+    x.fillStyle=pat;x.fill(p);x.fillStyle=`rgba(${120+v*30|0},${118+v*26|0},${112+v*20|0},${gr})`;x.fill(p);x.fillStyle=`rgba(0,0,0,${.08+v*.22})`;x.fill(p);
+    x.strokeStyle='rgba(8,5,2,.85)';x.lineWidth=1.1;x.beginPath();x.moveTo(...a);x.lineTo(...d);x.stroke();x.strokeStyle='rgba(255,236,200,.18)';x.lineWidth=.7;const e=L(a,b,.12),f=L(d,c,.12);x.beginPath();x.moveTo(...e);x.lineTo(...f);x.stroke()}
+  const g=x.createLinearGradient(...A,...D);g.addColorStop(0,'rgba(0,0,0,.25)');g.addColorStop(.2,'rgba(0,0,0,0)');g.addColorStop(.85,'rgba(0,0,0,0)');g.addColorStop(1,'rgba(0,0,0,.4)');x.fillStyle=g;x.fill(new Path2D('M'+[A,B,C,D].map(q=>q.join(',')).join('L')+'Z'))}
+function wood(x,x0,y0,w,h,vert){x.save();x.beginPath();x.rect(x0,y0,w,h);x.clip();
+  const pat=x.createPattern(woodTex(vert),'repeat'),ox=rn(x0*7|0,y0*3|0)*384,oy=rn(y0*5|0,x0*11|0)*96;pat.setTransform(new DOMMatrix().translate(vert?x0-oy:x0-ox,vert?y0-ox:y0-oy).scale(.55));
+  x.fillStyle=pat;x.fillRect(x0,y0,w,h);
+  // Rundung: Licht oben/links, Schatten unten/rechts, dunkle Kanten
+  const g=vert?x.createLinearGradient(x0,0,x0+w,0):x.createLinearGradient(0,y0,0,y0+h);
+  g.addColorStop(0,'rgba(18,10,2,.62)');g.addColorStop(.18,'rgba(255,226,176,.2)');g.addColorStop(.42,'rgba(255,226,176,.06)');g.addColorStop(.7,'rgba(10,6,0,.12)');g.addColorStop(.92,'rgba(10,6,0,.45)');g.addColorStop(1,'rgba(6,3,0,.75)');
+  x.fillStyle=g;x.fillRect(x0,y0,w,h);
+  for(let i=0;i<(vert?h:w)/2;i++){x.strokeStyle=`rgba(30,18,6,${(.2+R()*.4)*.45})`;x.lineWidth=.3+R()*.4;x.beginPath();if(vert){const px=x0+R()*w;x.moveTo(px,y0);x.lineTo(px+(R()-.5)*1.5,y0+h)}else{const py=y0+R()*h;x.moveTo(x0,py);x.lineTo(x0+w,py+(R()-.5)*1.5)}x.stroke()}
+  x.restore()}
 // Holzschild: Pfosten + Bretter [Richtung -1/1, Versatz y, Text, Hit-ID]; setzt die Klickflächen im SVG
 function sign(x,X,B,s,boards){s*=1.35;
   x.save();x.translate(X+6*s,B);x.scale(1,.25);dab(x,0,0,22*s,[16,24,8],.6);x.restore();

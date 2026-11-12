@@ -1,6 +1,11 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.50',d:'12.11.2026',t:'Realistischeres Holz & Häuser, Hand-Zeiger repariert',n:[
+    'Die Hand erscheint jetzt auch im Spiel über Personen und Gegenständen – nicht nur im Menü',
+    'Neue Hand: hell, kräftige Finger, abgespreizter Daumen, warme braune Kontur',
+    'Alles Holz im Spiel hat echte Maserung mit Jahresringen, Fasern und Ästen; Balken sind plastisch gerundet',
+    'Hausdächer aus einzelnen verwitterten Brettern mit Fugen; Schatten unter Dachüberstand und Giebelbrettern; Fenster mit Tiefe und Spiegelung'] },
   {v:'1.49',d:'12.11.2026',t:'Neuer Ort: der Schmiedehof',n:[
     'Hinter der Dorfstraße liegt jetzt ein Schmiedehof – das Kirchenschild hat ein neues Brett „Zum Schmiedehof“',
     'Schmiede aus Rundholz mit geschnitztem Giebelpferd, glühender Esse und Rauchfang, Amboss, Hufeisen über der Tür',
