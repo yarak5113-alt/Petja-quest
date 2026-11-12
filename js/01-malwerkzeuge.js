@@ -66,7 +66,7 @@ function birchPath(X,base,w,L,top=-12){const h=base-top,n=Math.ceil(h/10),lp=[],
   lp[0][0]-=w*.2;rp[0][0]+=w*.2;
   return'M'+lp.concat(rp.reverse()).map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join('L')+'Z'}
 function birch(x,X,base,w,L,top=-12,ps){ps=ps||birchPath(X,base,w,L,top);const p=new Path2D(ps),h=base-top,g=x.createLinearGradient(X-w/2,0,X+w/2,0);
-  (S0.ink?[[0,'#2e2a24'],[.2,'#7e786a'],[.5,'#e8e2d2'],[.7,'#c4bca8'],[.88,'#5e5648'],[1,'#26201a']]:[[0,'#5a5850'],[.22,'#a8a598'],[.58,'#f4f2ea'],[.8,'#e0dcd0'],[1,'#767268']]).forEach(([o,k])=>g.addColorStop(o,k));
+  [[0,'#5a5850'],[.22,'#a8a598'],[.58,'#f4f2ea'],[.8,'#e0dcd0'],[1,'#767268']].forEach(([o,k])=>g.addColorStop(o,k));
   x.fillStyle=g;x.fill(p);x.save();x.clip(p);
   for(let i=0;i<h/2;i++){const Y=base-R()*h,k=(base-Y)/h,cx=X+L*k*k,ww=w*(1-k*.42),l=ww*(.15+R()*.4),x0=cx-ww/2+R()*(ww-l);
     x.strokeStyle=`rgba(96,90,78,${.12+R()*.25})`;x.lineWidth=.35+R()*.5;x.beginPath();x.moveTo(x0,Y);x.lineTo(x0+l,Y+(R()-.5)*.6);x.stroke()}
@@ -74,17 +74,7 @@ function birch(x,X,base,w,L,top=-12,ps){ps=ps||birchPath(X,base,w,L,top);const p
     x.fillStyle=`rgba(24,22,18,${.7+R()*.3})`;x.beginPath();x.moveTo(x0,Y);x.quadraticCurveTo(x0+l*.5,Y-th*1.6,x0+l,Y+(R()-.5)*1.5);x.quadraticCurveTo(x0+l*.5,Y+th*.7,x0,Y);x.fill()}
   const bh=h*(.08+R()*.06),bg=x.createLinearGradient(0,base-bh,0,base);bg.addColorStop(0,'rgba(46,40,30,0)');bg.addColorStop(.5,'rgba(46,40,30,.6)');bg.addColorStop(1,'rgba(34,30,22,.95)');x.fillStyle=bg;x.fillRect(X-w*2,base-bh,w*4,bh);
   if(top<100){const tg=x.createLinearGradient(0,top,0,top+130);tg.addColorStop(0,'rgba(28,44,18,.6)');tg.addColorStop(1,'rgba(28,44,18,0)');x.fillStyle=tg;x.fillRect(X-w*2+L,top,w*4,130)}
-  x.restore();x.strokeStyle='rgba(40,38,30,.35)';x.lineWidth=.7;x.stroke(p);
-  if(S0.ink)inkOutline(x,ps,w)}
-// Handgezeichnete Tuschekontur: Segment für Segment mit schwankender Strichstärke, auf der Schattenseite (rechts) kräftiger,
-// dazu ein zweiter, leicht versetzter Strich – wie mit der Feder nachgezogen
-function inkOutline(x,ps,w){const pts=ps.slice(1,-1).split('L').map(q=>q.split(',').map(Number)),n=pts.length,half=n/2,sc=Math.min(1.6,.5+w/16);
-  x.save();x.lineCap='round';x.lineJoin='round';
-  for(let pass=0;pass<2;pass++){const jx=(R()-.5)*.7,jy=(R()-.5)*.7;
-    for(let i=0;i<n-1;i++){if(i==Math.floor(half)-1)continue;const a=pts[i],b=pts[i+1],right=i>=half,v=vn(i*.45+pass*7,a[1]*.02);
-      x.strokeStyle=`rgba(22,14,8,${pass?.5:.88})`;x.lineWidth=(pass?.5:1)*sc*(right?1.5:.9)*(.55+v*1.1);
-      x.beginPath();x.moveTo(a[0]+jx,a[1]+jy);x.lineTo(b[0]+jx+(R()-.5)*.4,b[1]+jy);x.stroke()}}
-  x.restore()}
+  x.restore();x.strokeStyle='rgba(40,38,30,.35)';x.lineWidth=.7;x.stroke(p)}
 function foliage(x,X,Y,r,dk,nh){const f=S0.fol;
   for(let i=0;i<5;i++)dab(x,X+(R()-.5)*r,Y+(R()-.5)*r*.6,r*.75,dk?[8,24,8]:mix(f[0],[0,0,0],.2),.45);
   for(let i=0;i<r*r*.32;i++){const a=R()*6.283,dd=Math.pow(R(),.6)*r,ox=Math.cos(a)*dd,oy=Math.sin(a)*dd*.72,lt=cl((ox*SD[0]+oy*SD[1])/r*.6+.45+(R()-.5)*.5);
@@ -110,37 +100,7 @@ function shadows(list,a=.38){const x=lay();x.fillStyle='rgba(20,40,10,1)';list.f
 function rays(o,list){const x=lay();x.fillStyle=rgba(o.rayc,.5);list.forEach(([a,wd])=>{x.beginPath();x.moveTo(o.sun[0],o.sun[1]);x.lineTo(o.sun[0]+Math.sin(a-wd)*800,o.sun[1]+Math.cos(a-wd)*800);x.lineTo(o.sun[0]+Math.sin(a+wd)*800,o.sun[1]+Math.cos(a+wd)*800);x.fill()});put(x,14,'screen',o.raya)}
 function grade(o){c.save();c.globalCompositeOperation='soft-light';let g=c.createLinearGradient(W,0,0,H);g.addColorStop(0,o.gr[0]);g.addColorStop(1,o.gr[1]);c.fillStyle=g;c.fillRect(0,0,W,H);c.restore();
   g=c.createRadialGradient(W/2,H*.55,W*.3,W/2,H*.55,W*.75);g.addColorStop(0,'rgba(10,16,4,0)');g.addColorStop(1,`rgba(10,12,4,${o.vig})`);c.fillStyle=g;c.fillRect(0,0,W,H);
-  if(o.clean)return;
   const im=c.getImageData(0,0,W,H),d=im.data;for(let i=0;i<d.length;i+=4){const n=(Math.random()-.5)*9;d[i]+=n;d[i+1]+=n;d[i+2]+=n}c.putImageData(im,0,0)}
-// ================= Zeichentrick-Look (Cel) =================
-// Macht ein gemaltes Bild (oder eine einzelne Ebene) zu einem klassischen, sauber gezeichneten 2D-Trickfilm-Hintergrund, ohne etwas zu verschieben:
-// 1) Tonwerte (Kontrast, Sättigung)  2) Glätten -> Gras-/Himmels-/Laubrauschen verschwindet  3) Helligkeit in wenige Stufen (Cel-Shading), Farbton bleibt
-// 4) kräftige dunkle Konturen: an starken Stufensprüngen, um dunkle Schattenformen (Unterholz) und – bei Ebenen – um die Silhouette (Laubkronen)
-// p: {dk Gamma, ct Kontrast, sat Sättigung, b Glättungsradius, lv Helligkeitsstufen, e Mindestsprung für Kontur, dl bis zu welcher Stufe jede Kante eine Linie bekommt, ink Konturfarbe, lw Linienstärke px}
-// ctx: Ziel (Standard: das Szenenbild); bei einer Ebene wird auch die Deckkraft geglättet und hart geschnitten -> saubere Silhouette mit Kontur
-function cel(p,ctx=c){const w=W,h=H,N=w*h,im=ctx.getImageData(0,0,w,h),d=im.data,layer=ctx!==c;
-  for(let i=0;i<d.length;i+=4){if(!d[i+3])continue;let r=d[i]/255,g=d[i+1]/255,b=d[i+2]/255;r=Math.pow(r,p.dk);g=Math.pow(g,p.dk);b=Math.pow(b,p.dk);
-    const L=.299*r+.587*g+.114*b,sL=cl((L-.45)*p.ct+.45)/(L||1e-3);r*=sL;g*=sL;b*=sL;const L2=.299*r+.587*g+.114*b;
-    d[i]=(L2+(r-L2)*p.sat)*255;d[i+1]=(L2+(g-L2)*p.sat)*255;d[i+2]=(L2+(b-L2)*p.sat)*255}
-  // Glätten (deckkraftgewichtet): zweimal Box-Weichzeichner über Gleitsummen, 4 Kanäle (r·a, g·a, b·a, a)
-  const f=new Float32Array(N*4);for(let k=0;k<N;k++){const a=d[k*4+3]/255;f[k*4]=d[k*4]*a;f[k*4+1]=d[k*4+1]*a;f[k*4+2]=d[k*4+2]*a;f[k*4+3]=a}
-  const blur=(src,r)=>{const t=new Float32Array(N*4),o=new Float32Array(N*4),n=2*r+1;
-    for(let y=0;y<h;y++)for(let ch=0;ch<4;ch++){let acc=0;for(let x=-r;x<=r;x++)acc+=src[(y*w+Math.min(w-1,Math.max(0,x)))*4+ch];
-      for(let x=0;x<w;x++){t[(y*w+x)*4+ch]=acc/n;acc+=src[(y*w+Math.min(w-1,x+r+1))*4+ch]-src[(y*w+Math.max(0,x-r))*4+ch]}}
-    for(let x=0;x<w;x++)for(let ch=0;ch<4;ch++){let acc=0;for(let y=-r;y<=r;y++)acc+=t[(Math.min(h-1,Math.max(0,y))*w+x)*4+ch];
-      for(let y=0;y<h;y++){o[(y*w+x)*4+ch]=acc/n;acc+=t[(Math.min(h-1,y+r+1)*w+x)*4+ch]-t[(Math.max(0,y-r)*w+x)*4+ch]}}
-    return o};
-  const sm=blur(blur(f,p.b),p.b),band=new Int8Array(N).fill(-1);
-  // Cel-Stufen: Helligkeit quantisieren, Farbton/Sättigung vom geglätteten Bild; Ebenen: Deckkraft hart (Silhouette)
-  for(let k=0;k<N;k++){const A=sm[k*4+3],i=k*4;if(layer&&A<.42){d[i+3]=0;continue}if(A<1e-4)continue;const r=sm[k*4]/A,g=sm[k*4+1]/A,b=sm[k*4+2]/A,L=.299*r+.587*g+.114*b,q=Math.round(L/255*(p.lv-1));band[k]=q;
-    const Lq=(q+.15)/(p.lv-.7)*255,m=L>1?Lq/L:1;d[i]=r*m;d[i+1]=g*m;d[i+2]=b*m;d[i+3]=255}
-  // Konturen auf der dunkleren Seite (bzw. innen an der Silhouette), Stärke lw
-  const ink=p.ink,lw=p.lw||2,mark=new Uint8Array(N);
-  for(let y=0;y<h-1;y++)for(let x=0;x<w-1;x++){const k=y*w+x;for(const n of[k+1,k+w]){const a=band[k],b=band[n];if(a<0&&b<0)continue;let t;
-    if(a<0||b<0){if(!layer)continue;t=a<0?n:k}else{const dd=a-b;if(!(Math.abs(dd)>=p.e||(dd&&Math.min(a,b)<=p.dl)))continue;t=dd<0?k:n}
-    const st=n-k,dir=(t===k?-1:1);for(let j=0;j<lw;j++){const u=t+st*dir*j;if(u>=0&&u<N&&band[u]>=0)mark[u]=1}}}
-  for(let k=0;k<N;k++)if(mark[k]){const i=k*4;d[i]=ink[0];d[i+1]=ink[1];d[i+2]=ink[2];d[i+3]=255}
-  ctx.putImageData(im,0,0)}
 
 // ================= Gemalte Objekte =================
 function mushroom(x,X,Y){
