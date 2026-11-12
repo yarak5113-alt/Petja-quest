@@ -299,4 +299,4 @@ function dorffest(out,tim,alive){
     tim.push(setTimeout(loop,(t-AC.currentTime)*1000+rnd(8000,18000)))};
   tim.push(setTimeout(loop,rnd(1500,4000)))}
 
-setInterval(()=>{if(!AC||AC.state!=='running')return;musInit();const want=$('#start')?'titel':(MOOD[cur]||'');if(want===musCur)return;musCur=want;if(musNow)musNow.stop();musNow=want?makeMusic(want):null},400);
+setInterval(()=>{if(!AC||AC.state!=='running')return;musInit();const want=$('#start')?'titel':$('#cut')?'':(MOOD[cur]||'');if(want===musCur)return;musCur=want;if(musNow)musNow.stop();musNow=want?makeMusic(want):null},400);

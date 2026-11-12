@@ -197,7 +197,72 @@ const RECIPE={
   lounge(k){k.reverb(.6,4,.15);k.music(500,.4)},
   // Startmenü: Nachtwald, Eule, ganz fern ein Wolf
   titel(k){k.reverb(2,3,.25);k.every(12000,24000,()=>k.hoot(.045,k.P()));k.every(20000,40000,()=>k.steps(.05,k.P()));k.every(10000,22000,()=>k.branch(.06,k.P()));k.bed(.06,'lowpass',300,.6,.06,.6);k.every(1500,5000,()=>k.rustle(.02,k.P()));k.every(10000,20000,()=>k.hoot(.05,k.P()));k.every(30000,60000,()=>k.wolf(.03,k.P()))}};
-setInterval(()=>{if(!AC||AC.state!=='running')return;const want=$('#start')?'titel':(cur||'');if(want===ambCur)return;ambCur=want;if(ambNow)ambNow.stop();ambNow=want?makeAmb(want):null},300);
+// ----- Anfangs-Zwischensequenz: eigene Geräusche (Wohnung, Tür, Joint, Husten, Rausch, Aufwachen) -----
+let CUTAMB=null;// während der Zwischensequenz: welche Kulisse läuft ('' = keine, 'wald' beim Aufwachen)
+const CS=(()=>{const T=at=>AC.currentTime+(at||0);
+  const out=()=>{const g=AC.createGain();g.connect(MASTER);return g};
+  const filt=(type,f,q)=>{const x=AC.createBiquadFilter();x.type=type;x.frequency.value=f;if(q)x.Q.value=q;return x};
+  const nz=(buf,at,dur)=>{const s=AC.createBufferSource();s.buffer=buf||NOISE;s.start(T(at),Math.random()*1.5);s.stop(T(at)+dur+.05);return s};
+  const env=(g,at,v,a,d)=>{const t=T(at);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(Math.max(.0002,v),t+a);g.gain.exponentialRampToValueAtTime(.0001,t+a+d)};
+  const hit=(v,f,at,dur,q,buf)=>{const g=out(),x=filt('bandpass',f,q||1.5);nz(buf||NOISE,at,dur+.05).connect(x);x.connect(g);env(g,at,v,.003,dur)};
+  const thump=(v,f,at,dur)=>{const g=out(),o=AC.createOscillator(),t=T(at);o.frequency.setValueAtTime(f*1.8,t);o.frequency.exponentialRampToValueAtTime(f,t+.06);o.connect(g);env(g,at,v,.003,dur);o.start(t);o.stop(t+dur+.05)};
+  const creak=(v,at,dur,f0,f1)=>{const g=out(),o=AC.createOscillator(),l=AC.createOscillator(),lg=AC.createGain(),x=filt('bandpass',900,6),t=T(at);
+    o.type='sawtooth';o.frequency.setValueAtTime(f0,t);o.frequency.linearRampToValueAtTime(f1,t+dur);l.frequency.value=9;lg.gain.value=12;l.connect(lg);lg.connect(o.frequency);o.connect(x);x.connect(g);
+    g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v,t+.05);g.gain.setValueAtTime(v,t+dur*.8);g.gain.exponentialRampToValueAtTime(.0001,t+dur);o.start(t);l.start(t);o.stop(t+dur+.05);l.stop(t+dur+.05)};
+  const step=(v,at,hard)=>{hit(v,hard?260:180,at,.09,1.2,BROWN);hit(v*.4,hard?1800:1200,at+.005,.04,2)};
+  let room=null,trip=null;
+  const api={
+    // Wohnungs-Kulisse: Kühlschrank-Brummen, Uhr tickt, Stadt draußen leise, ab und zu ein Auto
+    roomOn(){if(!AC||room)return;const g=out();g.gain.value=0;g.gain.setTargetAtTime(1,T(),.8);const src=[],tim=[];
+      const hum=AC.createOscillator(),hg=AC.createGain(),hx=filt('lowpass',180);hum.type='sawtooth';hum.frequency.value=50;hg.gain.value=.012;hum.connect(hx);hx.connect(hg);hg.connect(g);hum.start();src.push(hum);
+      const city=AC.createBufferSource(),cx=filt('lowpass',400),cg=AC.createGain();city.buffer=BROWN;city.loop=true;cg.gain.value=.03;city.connect(cx);cx.connect(cg);cg.connect(g);city.start();src.push(city);
+      let k=0;tim.push(setInterval(()=>{const t=AC.currentTime+.02,s=AC.createBufferSource(),x=filt('bandpass',k++%2?3200:2600,8),tg=AC.createGain();s.buffer=NOISE;s.connect(x);x.connect(tg);tg.connect(g);
+        tg.gain.setValueAtTime(.06,t);tg.gain.exponentialRampToValueAtTime(.0001,t+.03);s.start(t,Math.random());s.stop(t+.05)},1000));
+      const car=()=>{const t=AC.currentTime,s=AC.createBufferSource(),x=filt('lowpass',300),cg2=AC.createGain(),d=rnd(3,5);s.buffer=BROWN;s.connect(x);x.connect(cg2);cg2.connect(g);
+        x.frequency.setValueAtTime(250,t);x.frequency.linearRampToValueAtTime(700,t+d/2);x.frequency.linearRampToValueAtTime(250,t+d);
+        cg2.gain.setValueAtTime(.0001,t);cg2.gain.exponentialRampToValueAtTime(.08,t+d/2);cg2.gain.exponentialRampToValueAtTime(.0001,t+d);s.start(t);s.stop(t+d+.1);tim.push(setTimeout(car,rnd(7000,14000)))};
+      tim.push(setTimeout(car,2500));
+      room={stop(){tim.forEach(t=>{clearTimeout(t);clearInterval(t)});g.gain.setTargetAtTime(0,T(),.4);setTimeout(()=>{src.forEach(s=>{try{s.stop()}catch(e){}});g.disconnect()},2000)}}},
+    roomOff(){if(room){room.stop();room=null}},
+    // Am Joint ziehen: Glut knistert, Luft wird eingesogen
+    drag(at){if(!AC)return;at=at||0;const g=out(),x=filt('bandpass',900,1.2),d=1.3;nz(NOISE,at,d).connect(x);x.connect(g);x.frequency.setValueAtTime(600,T(at));x.frequency.linearRampToValueAtTime(1400,T(at+d));
+      g.gain.setValueAtTime(.0001,T(at));g.gain.exponentialRampToValueAtTime(.05,T(at+.3));g.gain.setValueAtTime(.05,T(at+d*.8));g.gain.exponentialRampToValueAtTime(.0001,T(at+d));
+      for(let i=0;i<14;i++)hit(rnd(.04,.12),rnd(2500,5000),at+rnd(.1,d),.015,3)},
+    // Ausatmen
+    exhale(at){if(!AC)return;at=at||0;const g=out(),x=filt('bandpass',700,.8),d=1.6;nz(NOISE,at,d).connect(x);x.connect(g);x.frequency.setValueAtTime(1100,T(at));x.frequency.linearRampToValueAtTime(400,T(at+d));env(g,at,.04,.15,d-.15)},
+    // Schritte im Flur, kommen näher
+    hallSteps(n){if(!AC)return;for(let i=0;i<n;i++)step(.06+.12*i/n,i*.38,1)},
+    // Wowa reißt die Tür auf: Klinke, Tür fliegt auf, knallt gegen die Wand, zittert nach
+    doorBurst(){if(!AC)return;hit(.35,2200,0,.04,4);hit(.25,1500,.03,.05,5);
+      creak(.06,.06,.22,90,140);
+      thump(.6,70,.24,.35);hit(.5,400,.24,.25,1,BROWN);hit(.25,1800,.24,.08,2);
+      for(let i=0;i<5;i++)hit(.12*(1-i/5),rnd(300,500),.36+i*.07,.05,4,BROWN);
+      hit(.08,3000,.28,.25,6)},
+    // Schritte auf Dielen (Wowa kommt rein)
+    steps(n,v){if(!AC)return;for(let i=0;i<n;i++)step((v||.25)*rnd(.8,1),i*.33+rnd(-.02,.02),1)},
+    // Husten
+    cough(n,v){if(!AC)return;let at=0;for(let i=0;i<n;i++){const g=out(),x=filt('bandpass',rnd(500,800),1.5),x2=filt('bandpass',rnd(1600,2200),3),d=rnd(.14,.22);const s=nz(NOISE,at,d);s.connect(x);s.connect(x2);x.connect(g);x2.connect(g);
+      env(g,at,(v||.25)*rnd(.8,1),.008,d);thump((v||.25)*.4,110,at,.1);at+=d+rnd(.08,.18)}},
+    // Rausch: tiefes Dröhnen + flirrender Ton, Herzschlag, wird immer stärker
+    tripOn(){if(!AC||trip)return;const g=out();g.gain.value=.0001;const src=[],tim=[];
+      const drone=AC.createBufferSource(),dx=filt('lowpass',200,4),dg=AC.createGain();drone.buffer=BROWN;drone.loop=true;dg.gain.value=.25;drone.connect(dx);dx.connect(dg);dg.connect(g);drone.start();src.push(drone);
+      dx.frequency.setTargetAtTime(700,T(),3);
+      [110,110*1.498,220*1.01].forEach(f=>{const o=AC.createOscillator(),og=AC.createGain(),l=AC.createOscillator(),lg=AC.createGain();o.type='sine';o.frequency.value=f;l.frequency.value=rnd(.2,.6);lg.gain.value=f*.03;l.connect(lg);lg.connect(o.frequency);og.gain.value=.04;o.connect(og);og.connect(g);o.start();l.start();src.push(o,l)});
+      const beat=()=>{thump(.25,48,0,.18);thump(.18,44,.22,.2);tim.push(setTimeout(beat,rnd(820,900)))};beat();
+      g.gain.exponentialRampToValueAtTime(.6,T(4));g.gain.exponentialRampToValueAtTime(1,T(9));
+      trip={src,tim,g}},
+    // Absturz in die Ohnmacht: Rauschen fällt, dann Stille
+    fall(){if(!AC)return;const g=out(),x=filt('bandpass',2400,1.5),d=2.6;nz(NOISE,0,d).connect(x);x.connect(g);x.frequency.setValueAtTime(2400,T());x.frequency.exponentialRampToValueAtTime(120,T(d));env(g,0,.18,.4,d-.4);
+      thump(.5,40,d-.3,.8);
+      if(trip){const t=trip;trip=null;t.tim.forEach(clearTimeout);t.g.gain.setTargetAtTime(.0001,T(1),.6);setTimeout(()=>{t.src.forEach(s=>{try{s.stop()}catch(e){}});t.g.disconnect()},5000)}},
+    // Aufwachen: dumpfes Ohrenklingeln, das abklingt
+    ring(){if(!AC)return;const g=out(),o=AC.createOscillator(),t=T();o.frequency.value=3900;o.connect(g);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.02,t+.4);g.gain.exponentialRampToValueAtTime(.0001,t+4.5);o.start(t);o.stop(t+4.6)},
+    // Stöhnen beim Aufwachen
+    groan(at){if(!AC)return;at=at||0;const g=out(),o=AC.createOscillator(),x=filt('bandpass',550,3),x2=filt('bandpass',1100,5),t=T(at),d=1.1;o.type='sawtooth';o.frequency.setValueAtTime(120,t);o.frequency.linearRampToValueAtTime(135,t+.3);o.frequency.linearRampToValueAtTime(95,t+d);
+      o.connect(x);o.connect(x2);x.connect(g);x2.connect(g);env(g,at,.08,.15,d-.15);o.start(t);o.stop(t+d+.05)},
+    end(){api.roomOff();if(trip)api.fall();CUTAMB=null}};
+  return api})();
+setInterval(()=>{if(!AC||AC.state!=='running')return;const want=$('#start')?'titel':$('#cut')&&CUTAMB!=null?CUTAMB:(cur||'');if(want===ambCur)return;ambCur=want;if(ambNow)ambNow.stop();ambNow=want?makeAmb(want):null},300);
 
 // ----- Schritte (weiches Rauschen), Effekte nur mit echten Dateien -----
 const HARD={innen:1,banja:1,buehne:1,lounge:1,unter:1,hoehle:1};let stepT=0;

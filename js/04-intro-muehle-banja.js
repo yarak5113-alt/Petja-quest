@@ -81,19 +81,20 @@ function cutscene(){changing=true;const cv3=document.createElement('canvas');cv3
       if(lid>0){x.fillStyle='#000';const h=H/2*lid;x.beginPath();x.moveTo(0,0);x.lineTo(W,0);x.lineTo(W,h);x.quadraticCurveTo(W/2,h+H*.22*lid,0,h);x.fill();x.beginPath();x.moveTo(0,H);x.lineTo(W,H);x.lineTo(W,H-h);x.quadraticCurveTo(W/2,H-h-H*.22*lid,0,H-h);x.fill()}}
     x.setTransform(1,0,0,1,0,0);if(dark>0){x.fillStyle=`rgba(0,0,0,${dark})`;x.fillRect(0,0,W,H)}requestAnimationFrame(draw)}
   requestAnimationFrame(draw);
-  (async()=>{await tween(1500,p=>dark=1-p);
-    await talk([['P','Samstag. Kein Geld, kein Job, kein Plan. Perfekt.'],['P','*zieht am Joint* ...Das Zeug war auch schon mal besser.']]);
-    await tween(700,p=>door=p);await tween(1500,p=>wx=860-260*p);
+  (async()=>{CUTAMB='';CS.roomOn();await tween(1500,p=>dark=1-p);
+    await talk([['P','Samstag. Kein Geld, kein Job, kein Plan. Perfekt.']]);CS.drag();await wait(1300);CS.exhale();
+    await talk([['P','*zieht am Joint* ...Das Zeug war auch schon mal besser.']]);
+    CS.hallSteps(5);await wait(1950);CS.doorBurst();await tween(200,p=>door=p);await wait(250);CS.steps(5);await tween(1500,p=>wx=860-260*p);
     await talk([['WO','Petja! Bruder! Rauchst du immer noch diesen Gartenabfall?'],['P','Wowa. Wie bist du reingekommen?'],['WO','Tür war offen. Wie immer. Hör zu: Ich hab was Neues. Ganz neu. Ganz krass.'],
       ['WO','Kräuter von Oma, Bruder! Hab ich von so ’nem Typen am Markt. Der hatte komische Augen. Und Schwimmhäute. Egal!'],['WO','Er sagt: Ein Zug, und du bist in einer anderen Welt. Märchenwelt!'],['P','Klingt nach Ärger.'],['WO','Klingt nach Samstag!'],['P','...Na gut. Gib her.']]);
     await tween(700,p=>dark=p);st='fp';await tween(700,p=>dark=1-p);
-    await talk([['P','*zieht*'],['P','*hust* ...*HUST*']]);await tween(2500,p=>blur=p*3);
+    CS.drag();await talk([['P','*zieht*']]);CS.cough(5,.3);await talk([['P','*hust* ...*HUST*']]);CS.tripOn();await tween(2500,p=>blur=p*3);
     await talk([['WO','Und? Und? Merkst du was?'],['P','Wowa... warum... hast du drei Nasen?'],['WO','Bruder? ...BRUDER?!']]);
-    await tween(3500,p=>{blur=3+p*10;dark=p});await wait(1500);
-    st='wake';blur=12;lid=1;tilt=-.12;dark=0;await wait(800);await tween(700,p=>lid=1-p*.55);await tween(350,p=>lid=.45+p*.55);await wait(500);
+    CS.roomOff();CS.fall();await tween(3500,p=>{blur=3+p*10;dark=p});await wait(1500);
+    st='wake';blur=12;lid=1;tilt=-.12;dark=0;CS.ring();CUTAMB='wald';await wait(800);await tween(700,p=>lid=1-p*.55);await tween(350,p=>lid=.45+p*.55);await wait(500);
     await tween(2200,p=>{lid=1-p;blur=12*(1-p)+1.5;tilt=-.12*(1-p)});await tween(800,p=>blur=1.5*(1-p));
-    await talk([['P','Uhhh... mein Kopf...'],['P','Wo bin ich? Das ist nicht meine Wohnung. Meine Wohnung hat weniger... Birken.'],['P','Der Joint von Wowa. Er hat gesagt, da sind „Kräuter von Oma" drin. Was für eine Oma? ...Natürlich passiert mir das.'],['P','Na super. Dann muss ich wohl irgendwie wieder aufwachen.']]);
-    fade.style.opacity=1;await wait(450);fin=true;cv3.remove();changing=false;fade.style.opacity=0})()}
+    CS.groan();await talk([['P','Uhhh... mein Kopf...'],['P','Wo bin ich? Das ist nicht meine Wohnung. Meine Wohnung hat weniger... Birken.'],['P','Der Joint von Wowa. Er hat gesagt, da sind „Kräuter von Oma" drin. Was für eine Oma? ...Natürlich passiert mir das.'],['P','Na super. Dann muss ich wohl irgendwie wieder aufwachen.']]);
+    fade.style.opacity=1;await wait(450);CS.end();fin=true;cv3.remove();changing=false;fade.style.opacity=0})()}
 // ================= Die alte Mühle =================
 function millHouse(x){shadowAt(x,250,376,170,.6);
   for(let X=120;X<380;X+=18)for(let Y=340;Y<378;Y+=12){const g=x.createRadialGradient(X+6,Y+3,1,X+9,Y+6,14);g.addColorStop(0,'#9a968a');g.addColorStop(1,'#4a4740');x.fillStyle=g;x.beginPath();x.ellipse(X+9+((Y/12)%2)*6,Y+6,9.5,6.5,0,0,7);x.fill()}

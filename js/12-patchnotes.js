@@ -1,6 +1,11 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.59',d:'12.11.2026',t:'Intro mit Geräuschen',n:[
+    'Keine Musik mehr in der Anfangs-Zwischensequenz – stattdessen Wohnungs-Geräusche: Kühlschrank brummt, Uhr tickt, draußen fahren Autos',
+    'Wowa stapft durch den Flur und reißt die Tür auf – sie knallt gegen die Wand und zittert nach',
+    'Man hört Petja am Joint ziehen (Glut knistert), ausatmen und husten',
+    'Der Rausch dröhnt und pocht wie ein Herzschlag, dann stürzt alles ins Schwarze; beim Aufwachen klingeln die Ohren und der Wald wird hörbar'] },
   {v:'1.58',d:'12.11.2026',t:'Birkenfüße',n:[
     'Der Fuß der Birken sieht nicht mehr aus wie eine dunkle Socke: grau-schwarze, quer aufgerissene Borkenplatten, die nach oben fleckig in die weiße Rinde übergehen',
     'Grashalme wachsen vor den Stämmen – die Bäume stehen im Gras statt darauf'] },
