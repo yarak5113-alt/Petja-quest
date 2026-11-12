@@ -1,6 +1,8 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.40',d:'12.11.2026',t:'Feinschliff Ellbogen',n:[
+    'Petjas Ellbogen sitzen ein kleines Stück weiter außen'] },
   {v:'1.39',d:'12.11.2026',t:'Petjas Augen',n:[
     'Augen im Zeichentrick-Stil: schweres Oberlid hängt über der Pupille, dicke Lidlinie und Lidfalte – der typische verschlafene Blick',
     'Bei Schreck und Staunen reißt er die Augen weit auf, genervt sind sie fast zu',

@@ -245,7 +245,7 @@ function PETV(th,open,step,em,bl){const r=th*Math.PI/180,c=Math.cos(r),s=Math.si
     return{d:D(10.5*side,zf*.5),svg:c>.3?pants+shoe:shoe+pants}};
   // Arm einer Seite – breite Haltung: Schultern zurück, Oberarm vom Rumpf weg, Ellbogen nach außen,
   // Unterarm locker hängend mit Abstand zum Körper; Ärmelende als weiche Stoffwulst, Hand mit Innenfläche zum Oberschenkel
-  const arm=side=>{const sw=(side<0?-st:st)*.7,zs=-2,ze=sw*.5-5.5,zw=sw-4,Xs=X(16.5*side,zs),Xe=X(21.5*side,ze),Xw=X(27.5*side,zw),d=D(21*side,ze+2);
+  const arm=side=>{const sw=(side<0?-st:st)*.7,zs=-2,ze=sw*.5-5.5,zw=sw-4,Xs=X(16.5*side,zs),Xe=X(23*side,ze),Xw=X(27.5*side,zw),d=D(21*side,ze+2);
     const near=d>4,shade=!near&&Xs>0,sl=shade?PTE2:PTE,sk=shade?PSK2:PSK,o=Math.abs(c)>.3?side*Math.sign(c):1;
     const kx=Math.max(.78,Math.abs(s)),sg=Math.abs(s)>.3?Math.sign(s):-side,hand=c<0?PTHUMB(sk)+PHAND(sk):PHAND(sk)+PTHUMB(sk),P=(x,y)=>f1(x)+','+y;
     const sv=Math.abs(c)<.3,tilt=f1(-5*o*(Math.abs(c)>.3?1:0));
