@@ -1,6 +1,11 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.54',d:'12.11.2026',t:'Petja von hinten, echte Gegenstände',n:[
+    'Petja von hinten: Haare reichen bis in den Nacken (ausgefranster Haaransatz, Wirbel), kein kahles „Kinn“ mehr; Gesäßtaschen an der Jeans',
+    'Alle Gegenstände realistisch: Apfel mit Glanz und Blatt, zappelnde Regenwürmer mit Ringen im krümeligen Erdhaufen, Netz mit Korkschwimmern, Schnapsflasche aus Glas mit Etikett, angekohlte Leiter und Brett, Gebiss, Joint mit Glut',
+    'Mühlrad aus Holz mit Eisennabe und Moos, Angelschnur mit Metallhaken, Netzgestell beim Fischer mit geknoteten Maschen',
+    'Fliegenpilz mit Lamellen, Manschette und plastischen Flocken; Baumstumpf mit Borke, Jahresringen und Rissen; Mühle mit Feldsteinsockel, Schindeldach und echten Fenstern'] },
   {v:'1.53',d:'12.11.2026',t:'Echte Häuser',n:[
     'Alle Gebäude neu gemalt: runde Blockbalken mit Werg in den Fugen, Rissen, Ästen und Hirnholz-Köpfen an den Ecken; Steinfundament',
     'Schindeldächer mit Überlappung, Schatten und Moos; Baba Jagas Hütte mit dichtem Strohdach, Steinschornstein und echten Hühnerbeinen (Federn, Hornschuppen, Krallen)',
