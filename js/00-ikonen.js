@@ -84,3 +84,20 @@ const HUDICONS=(()=>{const G='#2a1806',W='#fff3c8';
   menu:S('<path d="M6,9L26,9M6,16L26,16M6,23L26,23"/><circle cx="6" cy="9" r=".6"/><circle cx="6" cy="16" r=".6"/><circle cx="6" cy="23" r=".6"/>')}})();
 const ICON=id=>ICONS[id]||ICONS._;
 const IMG=(id,cls='ico')=>`<img class="${cls}" src="${ICON(id)}" alt="" draggable="false">`;
+// Realistischer Pfeil: roter Lack mit gewölbtem Goldrand, Glanzlicht und Schatten. ARROW(px,grad) -> data-URL (Richtung in Grad, 0 = nach rechts)
+const ARROW=(px=64,deg=0)=>{const bev=(id,bl,sc,ks,ex)=>`<filter id="${id}" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="${bl}" result="b"/>`+
+    `<feDiffuseLighting in="b" surfaceScale="${sc}" diffuseConstant="1" result="d"><feDistantLight azimuth="225" elevation="42"/></feDiffuseLighting><feSpecularLighting in="b" surfaceScale="${sc}" specularConstant="1.2" specularExponent="${ex}" result="s"><feDistantLight azimuth="225" elevation="55"/></feSpecularLighting>`+
+    `<feComposite in="SourceGraphic" in2="d" operator="arithmetic" k1="1.3" result="l"/><feComposite in="s" in2="SourceAlpha" operator="in" result="s2"/><feComposite in="l" in2="s2" operator="arithmetic" k2="1" k3="${ks}" result="o"/><feComposite in="o" in2="SourceAlpha" operator="in"/></filter>`;
+  const P='M5,23H33V8L60,32L33,56V41H5Z',Pi='M10,27.5H37.5V18L53,32L37.5,46V36.5H10Z';
+  return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="${px}" height="${px}" viewBox="0 0 64 64"><defs>`+
+    `<linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff0b0"/><stop offset=".45" stop-color="#d09a3a"/><stop offset="1" stop-color="#8a5a18"/></linearGradient>`+
+    `<linearGradient id="r" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff7a5a"/><stop offset=".5" stop-color="#c8200e"/><stop offset="1" stop-color="#6a0804"/></linearGradient>`+
+    bev('a',2,4,.9,24)+bev('c',1.6,3,1.3,36)+`<filter id="sh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="1.6" dy="2.4" stdDeviation="1.3" flood-opacity=".7"/></filter></defs>`+
+    `<g transform="rotate(${deg} 32 32)" filter="url(#sh)"><path d="${P}" fill="url(#g)" filter="url(#a)" stroke="#2a1404" stroke-width="1.2" stroke-linejoin="round"/>`+
+    `<path d="${Pi}" fill="url(#r)" filter="url(#c)" stroke="#3a0802" stroke-width=".8" stroke-linejoin="round"/>`+
+    `<path d="M12,29.5H38.5V22.5L47,30" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="1.4" stroke-linecap="round"/></g></svg>`)};
+const ARR=(cls='arr')=>`<img class="${cls}" src="${ARROW(64)}" alt="" draggable="false">`;
+// Ausgangs-Mauszeiger: derselbe Pfeil (32 px, Hotspot in der Mitte)
+document.head.insertAdjacentHTML('beforeend',`<style>.interactive.exit{cursor:url("${ARROW(32)}") 16 16,pointer}</style>`);
+// Pfeil auch als „weiter“-Zeichen in der Dialogbox (nach unten)
+document.head.insertAdjacentHTML('beforeend',`<style>#box.done::after{content:'';border:none;width:20px;height:20px;right:10px;bottom:4px;filter:none;background:url("${ARROW(40,90)}") center/contain no-repeat}</style>`);

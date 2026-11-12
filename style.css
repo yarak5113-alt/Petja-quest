@@ -239,3 +239,5 @@ html:not(.ink) .spr{image-rendering:pixelated;image-rendering:crisp-edges}
 .pan::before{height:22px;background-size:auto 22px}#box::before{height:18px;background-size:auto 18px}
 .pan{padding:28px 18px 14px}.pan .x{top:28px}.book .x{top:30px}#box{padding:24px 16px 10px}
 .grid{grid-template-columns:repeat(auto-fill,minmax(104px,1fr))}.card b img{width:66px;height:66px}.detail .big img{width:90px;height:90px}.slot{width:46px;height:46px}.slot img{width:40px;height:40px}
+.arr{display:inline-block;width:1.35em;height:1.35em;vertical-align:-.32em;margin-right:5px;pointer-events:none}.tips b .arr{width:26px;height:26px;margin:0}.tips b:has(.arr){background:var(--velvet)}
+.arr{width:1.75em;height:1.75em;vertical-align:-.5em;margin:-.2em 4px -.2em -2px}

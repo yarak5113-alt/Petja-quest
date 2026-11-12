@@ -20,7 +20,7 @@ const isExit=o=>!!o&&(!!o.go||/^(Schild|Ausgang|Tür zum|Fenster)/.test(o.n));
 document.querySelectorAll('.interactive[data-id]').forEach(el=>{if(isExit(T[el.dataset.id]))el.classList.add('exit')});
 function hoverLabel(e){const h=e.target.closest('.interactive'),o=h&&T[h.dataset.id];
   if(busy||ovl||!o||$('#start')||$('#fg')||$('#cut')){label.style.opacity=0;return}
-  label.textContent=isExit(o)?'➜ '+o.n.replace(/^Schild: /,''):o.n;label.classList.toggle('ex',isExit(o));
+  label.textContent=isExit(o)?o.n.replace(/^Schild: /,''):o.n;if(isExit(o))label.insertAdjacentHTML('afterbegin',ARR());label.classList.toggle('ex',isExit(o));
   const r=game.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top,w=label.offsetWidth/2+4;
   label.style.left=Math.max(w,Math.min(r.width-w,x))+'px';label.style.top=(y<60?y+28:y-36)+'px';label.style.opacity=1}
 
@@ -30,7 +30,7 @@ function showSpots(on){let d=$('#spots');if(!on){if(d)d.remove();return}
   if(d||busy||ovl||changing||!cur||$('#start')||$('#fg')||$('#cut'))return;d=document.createElement('div');d.id='spots';const r=game.getBoundingClientRect();
   document.querySelectorAll('.interactive[data-id]').forEach(el=>{const id=el.dataset.id,o=T[id];if(!o||id=='petja')return;const room=el.closest('.room');if(room&&!room.classList.contains('on'))return;
     const b=el.getBoundingClientRect();if(b.width<2||b.height<2)return;const s=document.createElement('div');s.className='spot'+(isExit(o)?' ex':'');
-    s.style.left=(b.left+b.width/2-r.left)+'px';s.style.top=(b.top+b.height/2-r.top)+'px';s.innerHTML=`<i></i><span>${isExit(o)?'➜ '+o.n.replace(/^Schild: /,''):o.n}</span>`;d.appendChild(s)});
+    s.style.left=(b.left+b.width/2-r.left)+'px';s.style.top=(b.top+b.height/2-r.top)+'px';s.innerHTML=`<i></i><span>${isExit(o)?ARR()+o.n.replace(/^Schild: /,''):o.n}</span>`;d.appendChild(s)});
   game.appendChild(d)}
 function flashSpots(){showSpots(true);clearTimeout(spotT);spotT=setTimeout(()=>showSpots(false),2600)}
 addEventListener('keydown',e=>{if(e.key!==' '||/input|textarea|button/i.test(e.target.tagName))return;e.preventDefault();
@@ -69,7 +69,7 @@ setInterval(()=>{if(!cur||$('#start')||$('#cut')){qBase=null;return}const s=qSna
 // ----- Anleitung beim ersten Spielen (und über Menü → Steuerung) -----
 function showTutorial(){const o=openO(`<div class="pan tut"><h3>So spielst du</h3>
   <div class="tips"><div><b>🖱️</b><p><strong>Klick in die Welt</strong>, um Petja laufen zu lassen. Klick auf Dinge und Leute, um sie anzusehen, zu nehmen oder mit ihnen zu reden.</p></div>
-  <div><b>➜</b><p><strong>Schilder und Türen</strong> führen zu neuen Orten. Der Mauszeiger wird dort zum Pfeil.</p></div>
+  <div><b>${ARR()}</b><p><strong>Schilder und Türen</strong> führen zu neuen Orten. Der Mauszeiger wird dort zum Pfeil.</p></div>
   <div><b>👁</b><p><strong>Leertaste halten</strong> zeigt alles, was man in der Szene anklicken kann.</p></div>
   <div><b>💡</b><p><strong>Kommst du nicht weiter?</strong> Der Tipp-Knopf (H) sagt dir, was als Nächstes dran ist. Alle Aufträge stehen unter 📜 (J).</p></div></div>
   <button class="mb big go">Los geht's!</button></div>`,'tutO');o.querySelector('.go').onclick=()=>{closeO();try{localStorage.setItem('petjaTut','1')}catch(e){}}}

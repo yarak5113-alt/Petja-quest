@@ -1,6 +1,9 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.46',d:'12.11.2026',t:'Realistische Pfeile',n:[
+    'Neuer Ausgangs-Mauszeiger: ein gerenderter Pfeil in rotem Lack mit gewölbtem Goldrand und Glanzlicht',
+    'Derselbe Pfeil im Namensschild an Ausgängen, beim Zeigen (Leertaste), auf „Weiterspielen“, in der Anleitung und als „weiter“-Zeichen in der Dialogbox'] },
   {v:'1.45',d:'12.11.2026',t:'Realistischere Gegenstände & Materialien',n:[
     'Gegenstände echt gerendert: Holzmaserung, gebürstetes Metall, Papier, Sackleinen, Glas – mit 3D-Licht und Glanzlichtern statt Comic-Konturen',
     'Knöpfe aus gebürstetem Messing, Fenster in gewölbten Messingrahmen mit Eckrosetten',

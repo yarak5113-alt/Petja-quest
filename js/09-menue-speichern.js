@@ -98,7 +98,7 @@ function openMenu(view){view=view||'m';const a=slots(),inGame=cur&&!$('#start'),
         <button class="mb" data-o="speed">⏩ Textgeschwindigkeit <b>${sp[1]}</b></button></div>${back}`
     :view=='k'?`<h3>⌨️ Steuerung</h3><table>${KEYS.map(([k,t])=>`<tr><td>${k}</td><td>${t}</td></tr>`).join('')}</table><button class="mb" data-v="tut">❓ Anleitung nochmal zeigen</button>${back}`
     :`<h3>${inGame?'⏸ Pause':'Menü'}</h3>
-      ${inGame?`<button class="mb big" data-v="x">▶ Weiterspielen</button>`:''}
+      ${inGame?`<button class="mb big" data-v="x">${ARR()}Weiterspielen</button>`:''}
       <button class="mb" data-v="s" ${inGame?'':'disabled'}>💾 Spiel speichern</button><button class="mb" data-v="l">📂 Spielstand laden</button>
       ${inGame?`<button class="mb" data-v="i">🎒 Taschen</button><button class="mb" data-v="j">📜 Aufträge</button><button class="mb" data-v="map">🗺️ Karte</button>`:''}
       <button class="mb" data-v="o">⚙️ Einstellungen</button><button class="mb" data-v="k">⌨️ Steuerung</button>${inGame?`<button class="mb quit" data-v="home">🏠 Zum Titelbild</button>`:''}`;

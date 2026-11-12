@@ -8,7 +8,7 @@ setInterval(()=>{if(!cur||cur===autoCur||busy||changing||$('#start')||$('#fg')||
 function latestSave(){const c=[];const a=autoSlot();if(a)c.push(['auto',a]);slots().forEach((d,i)=>{if(d)c.push([i,d])});
   if(!c.length)return null;c.sort((x,y)=>(y[1].ts||0)-(x[1].ts||0));return c[0][0]}
 (function(){const st=$('#start');if(!st||latestSave()===null)return;const tb=st.querySelector('.tbox'),b=document.createElement('button');
-  b.id='bCont';b.textContent='▶ Weiterspielen';b.disabled=true;tb.insertBefore(b,$('#bNew'));st.classList.add('hascont');
+  b.id='bCont';b.innerHTML=ARR()+'Weiterspielen';b.disabled=true;tb.insertBefore(b,$('#bNew'));st.classList.add('hascont');
   const ready=setInterval(()=>{const n=$('#bNew');if(!n||!n.disabled){b.disabled=false;clearInterval(ready)}},200);
   b.onclick=e=>{e.stopPropagation();const k=latestSave();if(k!==null)loadGame(k)}})();
 
