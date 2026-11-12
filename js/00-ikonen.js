@@ -112,15 +112,16 @@ const CURSORS=(()=>{const bev=(id,bl,sc,ks,ex,k1=1.3)=>`<filter id="${id}" x="-2
   const arrow=U(`<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 64 64"><defs>${GD}${SH}${bev('a',1.6,3.2,1,26)}</defs><g filter="url(#sh)">`+
     `<path d="M4,3L4,48L15,38L23,57L32,53L24,35L39,35Z" fill="url(#g)" filter="url(#a)" stroke="#1e1004" stroke-width="2.2" stroke-linejoin="round"/>`+
     `<path d="M8,11L8,38" stroke="#fff" stroke-opacity=".6" stroke-width="1.6" stroke-linecap="round"/></g></svg>`);
-  const hand=U(`<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 64 64"><defs>${GD}${SH}${bev('h',2,3.6,.55,18,1.22)}${bev('c',1.2,2.6,1,26)}`+
-    `<linearGradient id="w" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".6" stop-color="#ece6da"/><stop offset="1" stop-color="#b8ae9c"/></linearGradient></defs><g filter="url(#sh)">`+
-    `<path d="M22,3C25.2,3 27.2,5 27.2,8.4L27.2,25.6C28.4,23.8 31.6,23.8 32.6,26C33.8,24.4 37,24.4 38,26.8C39.4,25.4 42.6,25.8 43,28.6L43,41C43,49.6 38.6,55 31,55L25.6,55C19.6,55 16,51.6 13.6,46.4L7.6,36.6C6.4,34 9,31.6 11.8,33L16.8,38L16.8,8.4C16.8,5 18.8,3 22,3Z" fill="url(#w)" filter="url(#h)" stroke="#1e1408" stroke-width="2" stroke-linejoin="round"/>`+
-    `<path d="M32.6,26L32.6,33M38,26.8L38,33.6M27.2,25.6L27.2,32M19,44C21,46 24,46.6 27,46" fill="none" stroke="#6a5a48" stroke-width="1.3" stroke-linecap="round"/>`+
-    `<path d="M19.4,6.4C20.6,5 23.4,5 24.6,6.4" fill="none" stroke="#a89880" stroke-width="1.1" stroke-linecap="round"/>`+
-    `<path d="M15,52L42,52L42,61L15,61Z" fill="url(#g)" filter="url(#c)" stroke="#1e1004" stroke-width="1.8" stroke-linejoin="round"/><path d="M18,56.5L39,56.5" stroke="#7a4a10" stroke-width="1.2"/></g></svg>`);
+  // Klick-Zeiger: Petjas eigene Hand – seine Hautfarben, Tuschekontur, Zeichentrick-Schattierung, Zeigefinger nach oben
+  const HP='M23,3C26,3 28,5.2 28,8.6L28.4,27C29.6,25 32.8,25.2 33.6,27.6C35,25.8 38.2,26.2 38.8,28.8C40.4,27.4 43.6,28.2 43.8,31L43.4,41.4C43.2,48.6 39.6,54.4 33,55.4L33.4,61L19.4,61L19.6,54.6C16.2,52.4 14.6,49.6 13.2,46.6L8.8,38.2C7.4,35.4 10.2,33 13,34.6L18,39.4L18,8.8C18,5.2 20,3 23,3Z';
+  const hand=U(`<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 64 64"><defs>${SH}<clipPath id="k"><path d="${HP}"/></clipPath></defs><g filter="url(#sh)">`+
+    `<path d="${HP}" fill="#dca46c"/><g clip-path="url(#k)"><path d="M25,4C29,6 29,24 30,40C31,48 30,54 26,62L46,62L46,30L28,4Z" fill="#c08a56"/><path d="M19,6C20,5 21,4.6 22.6,4.4L21.4,30L19.6,40Z" fill="#ecc08a"/></g>`+
+    `<path d="M28.4,27L28.4,34M33.6,27.6L33.6,35M38.8,28.8L38.8,35.4M18.6,44C21,46.4 24.4,47 27.6,46.2M20.6,57.4C24,58.4 28,58.4 31.4,57.4" fill="none" stroke="#a87444" stroke-width="1.4" stroke-linecap="round"/>`+
+    `<path d="M20.4,8.6C20.8,6.2 25.2,6.2 25.6,8.6L25.4,11.6C24,12.6 22,12.6 20.6,11.6Z" fill="#ecc8a0" stroke="#a87444" stroke-width=".9"/>`+
+    `<path d="${HP}" fill="none" stroke="#2a1a0e" stroke-width="2.4" stroke-linejoin="round"/></g></svg>`);
   return{arrow,hand}})();
 document.head.insertAdjacentHTML('beforeend',`<style>
 *{cursor:url("${CURSORS.arrow}") 2 1,default !important}
-button,a,summary,label,select,input[type=range],input[type=checkbox],.interactive,.slot,.card,.tab,.x,.mb,.slotc,#box,#newsCard,#hud button,[onclick]{cursor:url("${CURSORS.hand}") 11 1,pointer !important}
+button,a,summary,label,select,input[type=range],input[type=checkbox],.interactive,.slot,.card,.tab,.x,.mb,.slotc,#box,#newsCard,#hud button,[onclick]{cursor:url("${CURSORS.hand}") 11 2,pointer !important}
 button:disabled,.mb:disabled,.slotc:disabled{cursor:url("${CURSORS.arrow}") 2 1,default !important}
 .interactive.exit,.interactive.exit *{cursor:url("${ARROW(32)}") 16 16,pointer !important}</style>`);

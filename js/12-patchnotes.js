@@ -1,6 +1,8 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.48',d:'12.11.2026',t:'Petjas Hand als Klick-Zeiger',n:[
+    'Über allem Anklickbaren zeigt jetzt Petjas eigene Hand mit dem Zeigefinger – in seinen Hautfarben, mit Tuschekontur wie die Figur'] },
   {v:'1.47',d:'12.11.2026',t:'Eigene Mauszeiger',n:[
     'Normaler Mauszeiger: ein Pfeil aus gewölbtem Gold mit Glanzlicht',
     'Über allem Anklickbaren (Personen, Gegenstände, Knöpfe, Taschen …): eine zeigende Hand im weißen Handschuh mit Goldmanschette',
