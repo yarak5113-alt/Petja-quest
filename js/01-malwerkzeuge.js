@@ -210,10 +210,19 @@ function bgRow(x,n,y1,y2,r0,r1,dk){for(let i=0;i<n;i++){const X=R()*820-10,Y=y1+
 function fern(x,X,Y,s){const f=S0.fol;for(let i=0;i<7;i++){const a=-Math.PI*(.12+i*.125)+(R()-.5)*.1,L=(26+R()*12)*s,tx=X+Math.cos(a)*L,ty=Y+Math.sin(a)*L*.7,qx=X+Math.cos(a)*L*.45,qy=Y-L*.5;
   for(let k=1;k<14;k++){const t=k/14,u=1-t,px=u*u*X+2*u*t*qx+t*t*tx,py=u*u*Y+2*u*t*qy+t*t*ty,rr=u*4.5*s+1,an=Math.atan2(2*u*(qy-Y)+2*t*(ty-qy),2*u*(qx-X)+2*t*(tx-qx));
     for(const g of[-1,1])ell(x,px+Math.cos(an+g*1.2)*rr*.7,py+Math.sin(an+g*1.2)*rr*.7,rr,rr*.32,mix(f[0],f[2],.2+t*.5+(R()-.5)*.2),.95,an+g*1.2)}}}
-function rock(x,X,Y,r,moss){shadowAt(x,X-r*.3,Y+r*.1,r*1.4,.55);
-  const g=x.createRadialGradient(X+r*.3,Y-r*.6,r*.1,X,Y-r*.2,r*1.1);g.addColorStop(0,'#aaa69a');g.addColorStop(.6,'#6a675e');g.addColorStop(1,'#302e28');x.fillStyle=g;
-  x.beginPath();x.moveTo(X-r,Y);x.bezierCurveTo(X-r*1.05,Y-r*.7,X-r*.4,Y-r*1.05,X+r*.1,Y-r);x.bezierCurveTo(X+r*.8,Y-r*.95,X+r*1.05,Y-r*.4,X+r,Y);x.closePath();x.fill();
-  if(moss)for(let i=0;i<r*3;i++)ell(x,X+(R()-.5)*r*1.3,Y-r*.65-R()*r*.35,1+R()*2,.8+R()*1.2,mix([50,80,24],[110,140,40],R()),.85,R()*3)}
+// Stein: unregelmäßiger Umriss, Licht von links oben, Körnung, Facetten, Risse, dunkler Fuß; mit moss: Moospolster oben
+function rock(x,X,Y,r,moss){shadowAt(x,X-r*.3,Y+r*.1,r*1.5,.6);
+  const pts=[];for(let i=0;i<=24;i++){const a=Math.PI+i/24*Math.PI,k=1+(fbm(i*.5+X*.07,Y*.05,3)-.5)*.34;pts.push([X+Math.cos(a)*r*1.02*k,Y+Math.sin(a)*r*.98*k])}pts.push([X+r,Y+r*.08],[X-r,Y+r*.08]);
+  const p=new Path2D('M'+pts.map(q=>q[0].toFixed(1)+','+q[1].toFixed(1)).join('L')+'Z');
+  const g=x.createRadialGradient(X-r*.35,Y-r*.75,r*.05,X,Y-r*.3,r*1.25);g.addColorStop(0,'#c8c2b2');g.addColorStop(.45,'#857f72');g.addColorStop(.8,'#4a463e');g.addColorStop(1,'#24221e');x.fillStyle=g;x.fill(p);
+  x.save();x.clip(p);
+  for(let i=0;i<5;i++){const a=R()*6.28,d=R()*r*.6,cx=X+Math.cos(a)*d,cy=Y-r*.45+Math.sin(a)*d*.6,s=r*(.25+R()*.3);x.fillStyle=R()<.5?'rgba(255,250,235,.1)':'rgba(0,0,0,.14)';x.beginPath();x.moveTo(cx-s,cy);x.lineTo(cx-s*.2,cy-s*.7);x.lineTo(cx+s,cy-s*.2);x.lineTo(cx+s*.3,cy+s*.6);x.fill()}
+  for(let i=0;i<r*r*.5;i++){const px=X+(R()-.5)*r*2,py=Y-R()*r*1.05;ell(x,px,py,.4+R()*.9,.3+R()*.6,R()<.5?[210,204,190]:[40,38,32],.25+R()*.3)}
+  x.lineCap='round';for(let i=0;i<3;i++){let cx=X+(R()-.5)*r,cy=Y-r*(.3+R()*.5);x.strokeStyle='rgba(20,18,14,.55)';x.lineWidth=.6+r*.02;x.beginPath();x.moveTo(cx,cy);for(let k=0;k<4;k++){cx+=(R()-.5)*r*.3;cy+=R()*r*.18;x.lineTo(cx,cy)}x.stroke()}
+  const ao=x.createLinearGradient(0,Y-r*.5,0,Y+r*.1);ao.addColorStop(0,'rgba(0,0,0,0)');ao.addColorStop(1,'rgba(0,0,0,.55)');x.fillStyle=ao;x.fillRect(X-r*1.3,Y-r*.5,r*2.6,r*.7);
+  if(moss){for(let i=0;i<r*1.4;i++){const a=Math.PI*(1.1+R()*.8),d=r*(.7+R()*.35),mx=X+Math.cos(a)*d*.9,my=Y+Math.sin(a)*d;dab(x,mx,my+r*.12,r*(.12+R()*.16),mix([44,74,20],[110,140,36],R()),.7)}
+    for(let i=0;i<r*3;i++){const a=Math.PI*(1.05+R()*.9),d=r*(.75+R()*.3);ell(x,X+Math.cos(a)*d*.95,Y+Math.sin(a)*d+r*.1,.7+R()*1.4,.5+R()*.9,mix([70,104,30],[170,190,70],R()),.85,R()*3)}}
+  x.restore()}
 function shrooms(x,X,Y,n){for(let i=0;i<n;i++){const px=X+(R()-.5)*18,py=Y+(R()-.5)*5,h=3+R()*5,r=2+R()*2.5;x.strokeStyle='#e8e0cc';x.lineWidth=1.2;x.beginPath();x.moveTo(px,py);x.lineTo(px,py-h);x.stroke();
   x.fillStyle=R()<.5?'#a8501c':'#c89a52';x.beginPath();x.ellipse(px,py-h,r,r*.6,0,Math.PI,0);x.fill();ell(x,px-r*.3,py-h-r*.3,r*.3,r*.15,[255,230,200],.6)}}
 function leavesOnPath(x,n){for(let i=0,k=0;i<n*6&&k<n;i++){const X=R()*800,Y=S0.hz+40+R()*(495-S0.hz-40);if(!inP(X,Y))continue;k++;const t=(Y-S0.hz)/(500-S0.hz);ell(x,X,Y,1+t*2.4,.5+t*1.1,P2([[200,140,40],[170,90,30],[220,180,70],[120,80,30]]),.9,R()*3)}}

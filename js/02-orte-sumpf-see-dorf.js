@@ -1,32 +1,65 @@
 // ================= Sumpf =================
+// Realismus nach Vorbild gemalter Kulissen: tiefes, dunkles Wasser mit echter Spiegelung des schon gemalten Ufers (aus dem Bild gelesen,
+// gestaucht und gewellt), Fresnel (vorn dunkler, hinten mehr Spiegelung), Glanzstreifen statt Umrandung; dichtes Gegenlicht-Schilf
+// (unten grün, oben golden), herbstliche Farne, sonniges Lichtband am anderen Ufer vor dunklem Wald.
 const WC=[440,318],inWater=(X,Y)=>((X-WC[0])/292)**2+((Y-WC[1])/64)**2<1;
-function water(x){const pts=[];for(let i=0;i<56;i++){const a=i/56*6.283;pts.push([WC[0]+Math.cos(a)*(282+fbm(i*.35,3,2)*30),WC[1]+Math.sin(a)*(60+fbm(i*.35,9,2)*12)])}
-  const p=new Path2D('M'+pts.map(q=>q[0].toFixed(1)+','+q[1].toFixed(1)).join('L')+'Z');
-  x.lineWidth=12;x.strokeStyle='rgba(36,28,16,.85)';x.stroke(p);x.lineWidth=5;x.strokeStyle='rgba(96,84,52,.6)';x.stroke(p);
-  const g=x.createLinearGradient(0,250,0,392);g.addColorStop(0,'#8c9c86');g.addColorStop(.3,'#4a5e4c');g.addColorStop(1,'#13201a');x.fillStyle=g;x.fill(p);
-  x.save();x.clip(p);for(let X=130;X<760;X+=6)dab(x,X,258,8+R()*9,[22,32,26],.35);
-  for(let i=0;i<140;i++){const Y=252+Math.pow(R(),1.5)*140,X=140+R()*620,l=10+R()*50;x.strokeStyle=`rgba(205,215,185,${.05+R()*.12})`;x.lineWidth=.6+R();x.beginPath();x.moveTo(X,Y);x.lineTo(X+l,Y);x.stroke()}
-  for(let i=0;i<260;i++)ell(x,140+R()*620,252+R()*140,1+R()*4,.5+R()*1.5,mix([40,70,30],[96,126,50],R()),.35);x.restore()}
-function lily(x,X,Y,r){ell(x,X+.6,Y+.6,r,r*.42,[10,20,12],.5);ell(x,X,Y,r,r*.42,mix([50,96,36],[96,140,56],R()));x.strokeStyle='rgba(20,40,16,.8)';x.lineWidth=.6;x.beginPath();x.moveTo(X,Y);x.lineTo(X+r*.9,Y-r*.15);x.stroke();
-  if(R()<.3){dab(x,X-r*.2,Y-r*.3,r*.8,[255,240,250],.6);ell(x,X-r*.2,Y-r*.35,r*.35,r*.22,[250,236,244]);ell(x,X-r*.2,Y-r*.4,r*.12,r*.08,[240,200,60])}}
-function reeds(x,X,Y,n,h,dk){for(let i=0;i<n;i++){const px=X+(R()-.5)*n*2.2,hh=h*(.6+R()*.6),b=(R()-.5)*hh*.3;
-  x.strokeStyle=rgba(dk?mix([12,20,10],[30,44,20],R()):mix([50,70,26],[132,142,62],R()));x.lineWidth=.8+R()*1.1*(h/40);x.lineCap='round';x.beginPath();x.moveTo(px,Y);x.quadraticCurveTo(px+b*.3,Y-hh*.6,px+b,Y-hh);x.stroke();
-  if(R()<.22)ell(x,px+b*.9,Y-hh*.88,1.5*(h/40)+.6,4.4*(h/40)+1,dk?[30,20,10]:[96,58,28],1,b/hh)}}
-function ripple(x,X,Y,r){x.strokeStyle='rgba(210,220,190,.35)';x.lineWidth=.6;for(let k=1;k<4;k++){x.beginPath();x.ellipse(X,Y,r*k*.6,r*k*.16,0,0,7);x.stroke()}}
+function waterPath(){const pts=[];for(let i=0;i<56;i++){const a=i/56*6.283;pts.push([WC[0]+Math.cos(a)*(282+fbm(i*.35,3,2)*30),WC[1]+Math.sin(a)*(60+fbm(i*.35,9,2)*12)])}
+  return new Path2D('M'+pts.map(q=>q[0].toFixed(1)+','+q[1].toFixed(1)).join('L')+'Z')}
+function water(x){const p=waterPath(),top=WC[1]-66,bot=WC[1]+76,axis=top+2;x.save();x.clip(p);
+  const g=x.createLinearGradient(0,top,0,bot);g.addColorStop(0,'#2a4a50');g.addColorStop(.35,'#123038');g.addColorStop(1,'#04100f');x.fillStyle=g;x.fillRect(0,top,800,bot-top);
+  // Spiegelung: Bildzeilen oberhalb des Ufers gespiegelt, nach unten gestreckt und leicht gewellt
+  for(let y=top;y<bot;y+=1.5){const d=y-axis,sy=axis-d*1.45-4,wob=Math.sin(y*.9+fbm(y*.05,2,2)*6)*(.6+d*.03);if(sy<0)continue;
+    x.globalAlpha=Math.max(0,.92-d/220);x.drawImage(cv,0,sy*SC,W,2*SC,wob,y,800,1.6)}
+  x.globalAlpha=1;
+  // Fresnel: vorne sieht man mehr Tiefe (dunkel), hinten mehr Himmel/Ufer
+  const fr=x.createLinearGradient(0,top,0,bot);fr.addColorStop(0,'rgba(8,30,36,.08)');fr.addColorStop(.5,'rgba(6,24,30,.32)');fr.addColorStop(1,'rgba(2,10,12,.7)');x.fillStyle=fr;x.fillRect(0,top,800,bot-top);
+  // Glanzstreifen und Funkeln (Licht vom anderen Ufer)
+  for(let i=0;i<120;i++){const Y=top+6+Math.pow(R(),1.6)*(bot-top-10),X=150+R()*600,l=6+R()*40*(1-(Y-top)/(bot-top)*.5);x.strokeStyle=`rgba(${R()<.5?'255,236,190':'190,220,230'},${.05+R()*.16})`;x.lineWidth=.5+R()*.8;x.beginPath();x.moveTo(X,Y);x.lineTo(X+l,Y);x.stroke()}
+  x.save();x.globalCompositeOperation='lighter';for(let i=0;i<40;i++)dab(x,200+R()*500,top+8+R()*40,1.5+R()*3,[255,240,200],.5);x.restore();
+  // Uferschatten innen (das Ufer wirft Schatten aufs Wasser) statt einer Umrandung
+  x.lineWidth=16;x.strokeStyle='rgba(2,8,6,.55)';x.filter='blur(4px)';x.stroke(p);x.filter='none';x.restore();
+  // Ufergras hängt über die Wasserkante
+  for(let i=0;i<220;i++){const a=R()*6.283,rx=282+fbm(a*8.9,3,2)*30,ry=60+fbm(a*8.9,9,2)*12,X=WC[0]+Math.cos(a)*rx,Y=WC[1]+Math.sin(a)*ry,l=4+R()*9,dx=-Math.cos(a)*l*.5+(R()-.5)*3,dy=-Math.sin(a)*l*.3-l*.6;
+    x.strokeStyle=rgba(mix([40,70,22],[150,150,60],R()),.9);x.lineWidth=.7+R()*.6;x.lineCap='round';x.beginPath();x.moveTo(X-dx*.3,Y-dy*.3+2);x.quadraticCurveTo(X,Y-l*.4,X+dx,Y+dy);x.stroke()}}
+function lily(x,X,Y,r){const ry=r*.42,n=.32,rot=R()*6.28;ell(x,X+.8,Y+.8,r,ry,[2,8,6],.55);x.save();x.translate(X,Y);x.scale(1,ry/r);x.rotate(rot);
+  const g=x.createRadialGradient(-r*.3,-r*.3,0,0,0,r);g.addColorStop(0,'#8ac050');g.addColorStop(.7,'#3e7a2a');g.addColorStop(1,'#1e4416');x.fillStyle=g;x.beginPath();x.moveTo(0,0);x.arc(0,0,r,n,6.283-n*.4);x.closePath();x.fill();
+  x.strokeStyle='rgba(200,230,140,.55)';x.lineWidth=.8*r/6;x.beginPath();x.arc(0,0,r*.92,3.6,5.6);x.stroke();x.strokeStyle='rgba(20,50,16,.7)';x.lineWidth=.5;for(let k=0;k<5;k++){const a=n+k*1.1;x.beginPath();x.moveTo(0,0);x.lineTo(Math.cos(a)*r*.85,Math.sin(a)*r*.85);x.stroke()}x.restore();
+  if(R()<.3){dab(x,X-r*.2,Y-r*.3,r*.9,[255,240,250],.45);for(let k=0;k<7;k++){const a=k/7*6.28;ell(x,X-r*.2+Math.cos(a)*r*.22,Y-r*.42+Math.sin(a)*r*.08,r*.24,r*.11,k%2?[255,250,252]:[240,214,226],1,a)}ell(x,X-r*.2,Y-r*.48,r*.12,r*.08,[250,206,60])}}
+// Schilf: dichte, sich verjüngende Halme mit Farbverlauf (unten grün, oben golden/orange), Lichtkante im Gegenlicht, ab und zu Rohrkolben
+function reeds(x,X,Y,n,h,dk){n=Math.round(n*1.6);for(let i=0;i<n;i++){const px=X+(R()-.5)*n*1.5,hh=h*(.55+R()*.65),b=(R()-.5)*hh*.32,w=(.9+R()*1.2)*(h/40)+.5,
+    g=x.createLinearGradient(px,Y,px+b,Y-hh),warm=R();
+  if(dk){g.addColorStop(0,'#060a04');g.addColorStop(.7,rgba(mix([14,22,10],[40,46,18],R())));g.addColorStop(1,rgba(mix([60,50,20],[110,80,30],warm)))}
+  else{g.addColorStop(0,rgba(mix([28,48,16],[50,74,24],R())));g.addColorStop(.45,rgba(mix([96,118,40],[140,140,50],R())));g.addColorStop(1,rgba(mix([214,180,80],[226,128,44],warm)))}
+  x.fillStyle=g;x.beginPath();x.moveTo(px-w/2,Y);x.quadraticCurveTo(px+b*.3-w*.35,Y-hh*.6,px+b,Y-hh);x.quadraticCurveTo(px+b*.3+w*.35,Y-hh*.6,px+w/2,Y);x.closePath();x.fill();
+  x.strokeStyle=dk?'rgba(255,200,120,.18)':'rgba(255,236,170,.4)';x.lineWidth=Math.max(.3,w*.25);x.beginPath();x.moveTo(px+w*.3,Y-hh*.15);x.quadraticCurveTo(px+b*.3+w*.2,Y-hh*.6,px+b,Y-hh);x.stroke();
+  if(R()<.16){const cx=px+b*.9,cy=Y-hh*.86,s=h/40,cg=x.createLinearGradient(cx-2*s,0,cx+2*s,0);cg.addColorStop(0,dk?'#1a0e04':'#5a2e10');cg.addColorStop(.4,dk?'#3a2210':'#a8622a');cg.addColorStop(1,'#2a1406');x.fillStyle=cg;x.beginPath();x.ellipse(cx,cy,1.7*s+.6,4.6*s+1,b/hh,0,7);x.fill()}}}
+function ripple(x,X,Y,r){x.strokeStyle='rgba(220,236,230,.28)';x.lineWidth=.6;for(let k=1;k<4;k++){x.beginPath();x.ellipse(X,Y,r*k*.6,r*k*.16,0,0,7);x.stroke()}}
 function swampLog(x,X,Y){shadowAt(x,X,Y+6,50,.5);x.save();x.translate(X,Y);x.rotate(-.06);wood(x,-44,-10,88,15,0);x.strokeStyle='rgba(15,8,2,.8)';x.lineWidth=.8;x.strokeRect(-44,-10,88,15);
   const g=x.createRadialGradient(-45,-3,0,-45,-3,8);g.addColorStop(0,'#b08a5a');g.addColorStop(1,'#3a2410');x.fillStyle=g;x.beginPath();x.ellipse(-45,-2.5,4.5,7.5,0,0,7);x.fill();
   for(let i=0;i<50;i++)ell(x,-40+R()*80,-10+R()*4,1+R()*2,.8+R(),mix([50,80,24],[110,140,40],R()),.85);x.restore()}
+function autumnFern(x,X,Y,s){const f=S0.fol;S0.fol=[[80,30,10],[196,104,34],[244,196,90]];fern(x,X,Y,s);S0.fol=f}
 function paintSumpf(){const o=S0;sky(o);far(o);ground(o);
-  let x=lay();for(let i=0;i<16;i++){const X=R()*800,Y=o.hz+4+R()*40;if(R()<.4){const sh=50+R()*60;for(let k=0;k<sh;k+=3)ell(x,X,Y-sh+k,(k/sh)*15+1,2.4,[22,34,28],.9)}else deadTree(x,X,Y,80+R()*90,2.5+R()*2,'rgba(30,40,34,.92)')}
+  let x=lay();for(let i=0;i<16;i++){const X=R()*800,Y=o.hz+4+R()*40;if(R()<.4){const sh=50+R()*60;for(let k=0;k<sh;k+=3)ell(x,X,Y-sh+k,(k/sh)*15+1,2.4,[16,26,20],.9)}else deadTree(x,X,Y,80+R()*90,2.5+R()*2,'rgba(22,30,26,.94)')}
   bgRow(x,30,206,250,12,22,0);put(x,.8);
+  // dunkler Wald oben, sonniges Lichtband am anderen Ufer
+  x=lay();const gg=x.createLinearGradient(0,0,0,230);gg.addColorStop(0,'rgba(6,12,10,.7)');gg.addColorStop(1,'rgba(6,12,10,0)');x.fillStyle=gg;x.fillRect(0,0,800,230);put(x);
   x=lay();grass(x,6000,o.hz,500,1);details(x);dirt(x,30);put(x);
-  x=lay();water(x);[[180,300,190,7],[730,292,230,8],[120,334,160,6]].forEach(([X,Y,h,w])=>deadTree(x,X,Y,h,w,'#1a1a14'));
+  x=lay();for(let i=0;i<26;i++)dab(x,120+R()*620,226+R()*30,40+R()*50,[255,214,120],.22);put(x,10,'screen',.9);
+  // Schilf am anderen Ufer (wird im Wasser gespiegelt)
+  x=lay();for(let X=150;X<740;X+=38+R()*40)reeds(x,X,262+R()*4,8+R()*8,24+R()*16);put(x);
+  // Wasser mit Spiegelung, Seerosen, Steine, Stamm
+  x=lay();water(x);[[180,300,190,7],[730,292,230,8],[120,334,160,6]].forEach(([X,Y,h,w])=>deadTree(x,X,Y,h,w,'#120e0a'));
   for(let i=0;i<34;i++){const X=170+R()*560,Y=262+R()*124;if(inWater(X,Y))lily(x,X,Y,(2.5+R()*4)*(.5+(Y-250)/120))}
-  ell(x,290,384,34,7,[8,14,10],.5);rock(x,290,380,30,1);ripple(x,290,384,30);ell(x,460,334,22,5,[8,14,10],.5);rock(x,460,330,19,1);ripple(x,460,334,20);swampLog(x,600,384);ripple(x,600,390,40);
-  reeds(x,150,262,14,30);reeds(x,720,262,14,32);reeds(x,140,330,18,46);reeds(x,746,320,16,44);reeds(x,200,392,14,40);reeds(x,690,392,16,44);reeds(x,420,392,10,30);
+  ell(x,290,384,34,7,[2,8,6],.6);rock(x,290,380,30,1);ripple(x,290,384,30);ell(x,460,334,22,5,[2,8,6],.6);rock(x,460,330,19,1);ripple(x,460,334,20);swampLog(x,600,384);ripple(x,600,390,40);
+  reeds(x,140,330,18,52);reeds(x,746,320,16,50);reeds(x,200,392,14,44);reeds(x,690,392,16,48);reeds(x,420,394,10,34);
+  // dichte goldene Schilfwände am nahen Ufer (links und rechts, der Blick auf den Weg bleibt frei)
+  for(let X=150;X<246;X+=14)reeds(x,X,392+R()*6,6,62+R()*28);for(let X=672;X<760;X+=14)reeds(x,X,394+R()*6,6,66+R()*28);for(let Y=300;Y<380;Y+=14){reeds(x,152+(Y-300)*.1,Y,5,40+R()*20);reeds(x,736-(Y-300)*.1,Y,5,40+R()*20)}
+  autumnFern(x,110,402,1.6);autumnFern(x,780,398,1.7);autumnFern(x,250,410,1.2);autumnFern(x,640,412,1.3);
   sign(x,176,398,1.4,[[1,0,'Sumpf der',null],[1,12,'ertrunkenen Huren',null]]);bush(x,70,420,30,0);bush(x,760,416,30,0);put(x);
-  x=lay();for(let i=0;i<30;i++)dab(x,140+R()*620,270+R()*110,30+R()*40,[200,220,200],.22);put(x,8,'screen',.5);
-  x=lay();sign(x,110,476,1.7,[[-1,0,'Zum Waldweg','hZG2']]);reeds(x,30,500,26,90,1);reeds(x,770,500,26,96,1);grass(x,500,470,515,2.4,1);put(x,1);
+  x=lay();for(let i=0;i<30;i++)dab(x,140+R()*620,270+R()*110,30+R()*40,[210,230,220],.16);put(x,8,'screen',.4);
+  x=lay();sign(x,110,476,1.7,[[-1,0,'Zum Waldweg','hZG2']]);reeds(x,30,500,26,96,1);reeds(x,770,500,26,100,1);grass(x,500,470,515,2.4,1);put(x,1);
+  // Leuchten: helle Stellen bekommen einen weichen Schein (Bloom)
+  x=lay();x.drawImage(cv,0,0,W,H,0,0,800,500);x.globalCompositeOperation='multiply';x.drawImage(cv,0,0,W,H,0,0,800,500);x.drawImage(cv,0,0,W,H,0,0,800,500);put(x,6,'screen',.32);
   rays(o,[[-.3,.06],[0,.08]]);grade(o)}
 const NYM=(hair,sk,sh,fl)=>`<g stroke="${INK}" stroke-width="1" stroke-linejoin="round" stroke-linecap="round">
 <path d="M-10,-90C-19,-86 -21,-62 -23,-30C-18,-33 -14,-38 -12,-46L12,-46C14,-38 18,-33 23,-30C21,-62 19,-86 10,-90Z" fill="${hair}"/>

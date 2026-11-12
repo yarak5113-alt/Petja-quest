@@ -1,6 +1,12 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.51',d:'12.11.2026',t:'Der Sumpf wird realistisch',n:[
+    'Tiefes, dunkles Wasser, das Ufer, Schilf und Bäume echt spiegelt – mit Wellen, Glanzstreifen und Funkeln, ohne harte Umrandung; Ufergras hängt über die Kante',
+    'Dichte goldene Schilfwände mit Rohrkolben, im Gegenlicht leuchtend – auch am See und beim Fischer',
+    'Sonniges Lichtband am anderen Ufer vor dunklem Wald, warmes Gegenlicht und weicher Schein auf hellen Stellen',
+    'Herbstliche Farne, Seerosenblätter mit Kerbe und Glanzrand, Seerosen mit vielen Blütenblättern',
+    'Steine überall realistischer: unregelmäßige Form, Körnung, Risse, Facetten, Moospolster'] },
   {v:'1.50',d:'12.11.2026',t:'Realistischeres Holz & Häuser, Hand-Zeiger repariert',n:[
     'Die Hand erscheint jetzt auch im Spiel über Personen und Gegenständen – nicht nur im Menü',
     'Neue Hand: hell, kräftige Finger, abgespreizter Daumen, warme braune Kontur',
