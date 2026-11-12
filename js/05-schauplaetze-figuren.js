@@ -4,8 +4,8 @@ const BASE={seed:3,cov:.52,cs:[156,160,175],cl:[258,262,268],sunc:[255,252,228],
   fol:[[20,50,16],[68,118,30],[198,222,98]],fl:[[70,120,230],[110,160,245],[245,226,60],[250,250,245],[230,150,210]],nfl:320,rayc:[255,246,210],raya:.35,gr:['rgba(255,220,150,.45)','rgba(40,70,120,.3)'],vig:.42};
 const SCN={
  wald:{...BASE,hz:258,sun:[560,42],top:[16,74,206],hor:[180,216,242],masses:[[-30,310],[540,830]],hutSil:1,
-   // Gouache-Kulisse: Tuschekonturen an den Stämmen, dunkler/kontrastreicher, Pinselstriche + Leinwand (Layout unverändert)
-   ink:1,gouache:{dk:1.25,ct:1.3,sat:1.18,mute:.1,r:3,n:110000},keep:[[290,250,108,30],{e:[213,430,44,40]},{e:[613,440,52,30]}],pe:pWald,gtop:X=>259+Math.pow(Math.abs(X-430)/430,1.6)*22,
+   // Zeichentrick-Kulisse: Tuschekonturen an den Stämmen, glatte Cel-Flächen, kräftige Konturen (Layout unverändert)
+   ink:1,clean:1,dapple:.06,cel:{dk:1.12,ct:1.2,sat:1.2,b:12,lv:6,e:2,dl:0,ink:[28,18,12],lw:2},celG:{dk:.78,ct:1.1,sat:1.2,b:1,lv:5,e:2,dl:0,ink:[28,18,12],lw:2},celF:{dk:1.1,ct:1.2,sat:1.15,b:3,lv:5,e:2,dl:1,ink:[28,18,12],lw:2},pe:pWald,gtop:X=>259+Math.pow(Math.abs(X-430)/430,1.6)*22,
    k:1.05/218,x0:70,x1:740,ymin:x=>395-57*Math.max(0,1-Math.abs(x-468)/45),ymax:492,paint:paintWald},
  gabel:{...BASE,seed:11,hz:200,sun:[250,70],nfl:170,sunr:70,top:[38,92,196],hor:[238,214,170],sunc:[255,236,190],cl:[262,246,226],cs:[170,150,150],masses:[[-30,330],[520,830],[290,560,95,70]],spruce:1,band:[300,520],
    lit:[[96,130,44],[170,180,70]],haze:[220,210,190],gh:[200,196,160],fol:[[24,48,14],[86,116,30],[216,206,96]],rayc:[255,226,170],raya:.4,gr:['rgba(255,200,120,.5)','rgba(60,60,110,.3)'],
@@ -73,16 +73,18 @@ function paintWald(){const o=S0;sky(o);far(o);ground(o);
   // tiefe Schatten im Unterholz am Waldrand (nur Abdunkeln, nichts verschoben)
   x=lay();for(let i=0;i<260;i++){const X=R()*820-10;if(Math.abs(X-470)<70)continue;dab(x,X,o.hz+R()*22,8+R()*16,[6,14,6],.16)}put(x,4);
   x=lay();grass(x,9000,o.hz,500,1);details(x);put(x);
+  cel(o.cel); // Hintergrund (Himmel, Ferne, Boden, Gras) als glatte Cel-Flächen mit Konturen; Bäume und Objekte kommen danach scharf darüber
   x=lay();const eb=birchPath(650,322,20,-4);$('#ebhit').setAttribute('d',eb);
   MB.forEach(b=>b[0]==650?birch(x,650,322,20,-4,-12,eb):birch(x,...b));
   x.fillStyle='rgba(18,14,8,.92)';x.beginPath();x.ellipse(643,231,5.5,2.4,.05,0,7);x.ellipse(656.5,230,5,2.2,-.1,0,7);x.fill();
   x.strokeStyle='rgba(18,14,8,.85)';x.lineWidth=1.8;x.beginPath();x.moveTo(642,246);x.quadraticCurveTo(649,250,656,245);x.stroke();
   if(!FL.ast){x.lineCap='round';x.strokeStyle='#3e3428';x.lineWidth=4.5;x.beginPath();x.moveTo(652,206);x.quadraticCurveTo(690,193,732,190);x.moveTo(700,197);x.lineTo(713,185);x.moveTo(722,191);x.lineTo(740,180);x.stroke()}else{x.strokeStyle='#d8c8a0';x.lineWidth=3;x.beginPath();x.moveTo(650,203);x.lineTo(658,208);x.stroke()}
+  put(x);x=lay(); // Laub auf eigener Ebene -> Cel-Flächen mit Kontur um die Kronen
   MB.forEach(([X,,w,L])=>{for(let i=0;i<3;i++)foliage(x,X+L*.8+(R()-.5)*60,10+R()*150,22+R()*18)});
-  for(let X=-10;X<820;X+=32){if(X>290&&X<560)continue;foliage(x,X,R()*40-6,30+R()*14)}put(x);
+  for(let X=-10;X<820;X+=32){if(X>290&&X<560)continue;foliage(x,X,R()*40-6,30+R()*14)}cel(o.celF,x);put(x);
   x=lay();sign(x,300,415,1.3,[[1,0,'Zum Pfad','hPfad']]);mushroom(x,212,460);stump(x,612,452);grass(x,160,440,470,1);put(x);
-  x=lay();birch(x,22,520,48,5);for(let i=0;i<500;i++){const X=R()<.5?R()*230-20:600+R()*220;dab(x,X,440+R()*70,6+R()*8,mix([10,30,8],[40,84,24],R()),.6)}
-  grass(x,700,470,515,2.4,1);foliage(x,-10,22,58,1);foliage(x,812,12,62,1);put(x,1.1);
+  x=lay();birch(x,22,520,48,5);put(x,1.1);x=lay();for(let i=0;i<500;i++){const X=R()<.5?R()*230-20:600+R()*220;dab(x,X,440+R()*70,6+R()*8,mix([10,30,8],[40,84,24],R()),.6)}
+  grass(x,700,470,515,2.4,1);foliage(x,-10,22,58,1);foliage(x,812,12,62,1);cel(o.celG,x);put(x,.4);
   rays(o,[[-.5,.12],[-.15,.07],[.25,.1],[.55,.06]]);grade(o)}
 function paintGabel(){const o=S0;sky(o);far(o);ground(o);
   let x=lay();bgRow(x,30,206,236,10,18,0);const FB=[[300,222,4,1,110],[520,224,5,-1,105],[372,214,3,0,125],[590,220,4,1,112],[340,230,5,0,100],[470,212,3,1,130],[410,226,4,-1,112],[560,232,5,1,104],[250,234,6,0,96],[640,230,5,-1,100],[200,240,6,1,92],[690,238,6,0,94]];FB.forEach(b=>birch(x,...b));FB.slice(4).forEach(([a,,,,t])=>foliage(x,a,t,12+R()*5));bgRow(x,24,232,262,12,22,0);

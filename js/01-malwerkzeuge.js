@@ -110,48 +110,37 @@ function shadows(list,a=.38){const x=lay();x.fillStyle='rgba(20,40,10,1)';list.f
 function rays(o,list){const x=lay();x.fillStyle=rgba(o.rayc,.5);list.forEach(([a,wd])=>{x.beginPath();x.moveTo(o.sun[0],o.sun[1]);x.lineTo(o.sun[0]+Math.sin(a-wd)*800,o.sun[1]+Math.cos(a-wd)*800);x.lineTo(o.sun[0]+Math.sin(a+wd)*800,o.sun[1]+Math.cos(a+wd)*800);x.fill()});put(x,14,'screen',o.raya)}
 function grade(o){c.save();c.globalCompositeOperation='soft-light';let g=c.createLinearGradient(W,0,0,H);g.addColorStop(0,o.gr[0]);g.addColorStop(1,o.gr[1]);c.fillStyle=g;c.fillRect(0,0,W,H);c.restore();
   g=c.createRadialGradient(W/2,H*.55,W*.3,W/2,H*.55,W*.75);g.addColorStop(0,'rgba(10,16,4,0)');g.addColorStop(1,`rgba(10,12,4,${o.vig})`);c.fillStyle=g;c.fillRect(0,0,W,H);
-  const im=c.getImageData(0,0,W,H),d=im.data;for(let i=0;i<d.length;i+=4){const n=(Math.random()-.5)*9;d[i]+=n;d[i+1]+=n;d[i+2]+=n}c.putImageData(im,0,0);
-  if(o.gouache)gouache(o.gouache,o.keep)}
-// ================= Gouache-Look =================
-// Macht aus dem fertig gemalten Bild eine handgemalte Gouache-Kulisse, ohne etwas zu verschieben:
-// 1) dunkler, kontrastreicher, sattere aber leicht gedeckte Farben  2) Kuwahara-Filter -> flache, deckende Farbflächen mit erhaltenen Kanten
-// 3) kurze, deckende Pinselstriche entlang der Formen (an harten Kanten/Schrift ausgespart)  4) Leinwandstruktur
-// p: {dk Abdunkeln (Gamma), ct Kontrast, sat Sättigung, mute Richtung Erdton, r Kuwahara-Radius, n Pinselstriche}
-// keep: Rechtecke [x,y,b,h] (Szenen-Einheiten), die nur die Tonwerte bekommen, aber scharf bleiben (z. B. Schilder mit Schrift);
-// {e:[cx,cy,rx,ry]} = weich auslaufende Ellipse (für Objekte im Gras, damit keine Kante entsteht)
-function gouache(p,keep=[]){const w=W,h=H,im=c.getImageData(0,0,w,h),d=im.data,N=w*h;
-  // 1) Tonwerte
-  const M=[96,84,70];for(let i=0;i<d.length;i+=4){let r=d[i]/255,g=d[i+1]/255,b=d[i+2]/255;
-    r=Math.pow(r,p.dk);g=Math.pow(g,p.dk);b=Math.pow(b,p.dk);
-    const L=.299*r+.587*g+.114*b,sL=cl((L-.42)*p.ct+.42)/(L||1e-3);r*=sL;g*=sL;b*=sL;
-    const L2=.299*r+.587*g+.114*b;r=L2+(r-L2)*p.sat;g=L2+(g-L2)*p.sat;b=L2+(b-L2)*p.sat;
-    d[i]=(r*(1-p.mute)+M[0]/255*p.mute*L2*2)*255;d[i+1]=(g*(1-p.mute)+M[1]/255*p.mute*L2*2)*255;d[i+2]=(b*(1-p.mute)+M[2]/255*p.mute*L2*2)*255}
-  c.putImageData(im,0,0);const tone=d.slice(),ells=keep.filter(k=>k.e).map(k=>k.e);keep=keep.filter(k=>!k.e);const kept=keep.map(([x,y,b,hh])=>[x*SC|0,y*SC|0,c.getImageData(x*SC|0,y*SC|0,b*SC|0,hh*SC|0)]);
-  // 2) Kuwahara über Summentabellen
-  const W1=w+1,S=[0,1,2,3].map(()=>new Float64Array(W1*(h+1)));
-  for(let y=0;y<h;y++){let a0=0,a1=0,a2=0,a3=0;for(let x=0;x<w;x++){const i=(y*w+x)*4,L=.299*d[i]+.587*d[i+1]+.114*d[i+2];a0+=d[i];a1+=d[i+1];a2+=d[i+2];a3+=L*L;
-    const k=(y+1)*W1+x+1,u=y*W1+x+1;S[0][k]=S[0][u]+a0;S[1][k]=S[1][u]+a1;S[2][k]=S[2][u]+a2;S[3][k]=S[3][u]+a3}}
-  const box=(t,x0,y0,x1,y1)=>t[y1*W1+x1]-t[y0*W1+x1]-t[y1*W1+x0]+t[y0*W1+x0],out=new Uint8ClampedArray(d.length),r=p.r;
-  for(let y=0;y<h;y++)for(let x=0;x<w;x++){let best=1e18,br=0,bg=0,bb=0;
-    for(let q=0;q<4;q++){const x0=Math.max(0,q&1?x:x-r),x1=Math.min(w,(q&1?x+r:x)+1),y0=Math.max(0,q&2?y:y-r),y1=Math.min(h,(q&2?y+r:y)+1),n=(x1-x0)*(y1-y0);
-      const sr=box(S[0],x0,y0,x1,y1),sg=box(S[1],x0,y0,x1,y1),sb=box(S[2],x0,y0,x1,y1),ml=(.299*sr+.587*sg+.114*sb)/n,v=box(S[3],x0,y0,x1,y1)/n-ml*ml;
-      if(v<best){best=v;br=sr/n;bg=sg/n;bb=sb/n}}
-    const i=(y*w+x)*4;out[i]=br;out[i+1]=bg;out[i+2]=bb;out[i+3]=255}
-  im.data.set(out);c.putImageData(im,0,0);
-  // 3) Pinselstriche: Farbe vom Bild, Richtung quer zum Helligkeitsgefälle; an starken Kanten (Konturen, Schrift) keine Striche
-  const lum=i=>.299*out[i]+.587*out[i+1]+.114*out[i+2];
-  c.save();c.lineCap='round';
-  for(let k=0;k<p.n;k++){const x=2+R()*(w-4)|0,y=2+R()*(h-4)|0,i=(y*w+x)*4,gx=lum(i+4)-lum(i-4),gy=lum(i+w*4)-lum(i-w*4),gm=Math.hypot(gx,gy);
-    if(gm>40)continue;const a=(gm>4?Math.atan2(gy,gx)+Math.PI/2:Math.PI/2+(R()-.5)*1.2)+(R()-.5)*.5,len=(y/h*10+5)*(.6+R()*.8),j=(R()-.5)*22;
-    c.strokeStyle=`rgba(${out[i]+j|0},${out[i+1]+j|0},${out[i+2]+j*.8|0},${.35+R()*.4})`;c.lineWidth=1.5+R()*2.6+y/h*2;
-    c.beginPath();c.moveTo(x-Math.cos(a)*len/2,y-Math.sin(a)*len/2);c.quadraticCurveTo(x+(R()-.5)*3,y+(R()-.5)*3,x+Math.cos(a)*len/2,y+Math.sin(a)*len/2);c.stroke()}
-  c.restore();kept.forEach(([x,y,k])=>c.putImageData(k,x,y));
-  if(ells.length){const im3=c.getImageData(0,0,w,h),q=im3.data;ells.forEach(([cx,cy,rx,ry])=>{cx*=SC;cy*=SC;rx*=SC;ry*=SC;
-    for(let y=Math.max(0,cy-ry|0);y<Math.min(h,cy+ry+1);y++)for(let x=Math.max(0,cx-rx|0);x<Math.min(w,cx+rx+1);x++){const dd=Math.hypot((x-cx)/rx,(y-cy)/ry);if(dd>=1)continue;
-      const f=1-sst(.6,1,dd),i=(y*w+x)*4;for(let j=0;j<3;j++)q[i+j]=q[i+j]+(tone[i+j]-q[i+j])*f}});c.putImageData(im3,0,0)}
-  // 4) Leinwand: feines Gewebe + Pigmentkorn
-  const im2=c.getImageData(0,0,w,h),e=im2.data;for(let y=0;y<h;y++)for(let x=0;x<w;x++){const i=(y*w+x)*4,f=1+.035*(Math.sin(x*1.9)*Math.sin(y*1.9))+(Math.random()-.5)*.05;e[i]*=f;e[i+1]*=f;e[i+2]*=f}
-  c.putImageData(im2,0,0)}
+  if(o.clean)return;
+  const im=c.getImageData(0,0,W,H),d=im.data;for(let i=0;i<d.length;i+=4){const n=(Math.random()-.5)*9;d[i]+=n;d[i+1]+=n;d[i+2]+=n}c.putImageData(im,0,0)}
+// ================= Zeichentrick-Look (Cel) =================
+// Macht ein gemaltes Bild (oder eine einzelne Ebene) zu einem klassischen, sauber gezeichneten 2D-Trickfilm-Hintergrund, ohne etwas zu verschieben:
+// 1) Tonwerte (Kontrast, Sättigung)  2) Glätten -> Gras-/Himmels-/Laubrauschen verschwindet  3) Helligkeit in wenige Stufen (Cel-Shading), Farbton bleibt
+// 4) kräftige dunkle Konturen: an starken Stufensprüngen, um dunkle Schattenformen (Unterholz) und – bei Ebenen – um die Silhouette (Laubkronen)
+// p: {dk Gamma, ct Kontrast, sat Sättigung, b Glättungsradius, lv Helligkeitsstufen, e Mindestsprung für Kontur, dl bis zu welcher Stufe jede Kante eine Linie bekommt, ink Konturfarbe, lw Linienstärke px}
+// ctx: Ziel (Standard: das Szenenbild); bei einer Ebene wird auch die Deckkraft geglättet und hart geschnitten -> saubere Silhouette mit Kontur
+function cel(p,ctx=c){const w=W,h=H,N=w*h,im=ctx.getImageData(0,0,w,h),d=im.data,layer=ctx!==c;
+  for(let i=0;i<d.length;i+=4){if(!d[i+3])continue;let r=d[i]/255,g=d[i+1]/255,b=d[i+2]/255;r=Math.pow(r,p.dk);g=Math.pow(g,p.dk);b=Math.pow(b,p.dk);
+    const L=.299*r+.587*g+.114*b,sL=cl((L-.45)*p.ct+.45)/(L||1e-3);r*=sL;g*=sL;b*=sL;const L2=.299*r+.587*g+.114*b;
+    d[i]=(L2+(r-L2)*p.sat)*255;d[i+1]=(L2+(g-L2)*p.sat)*255;d[i+2]=(L2+(b-L2)*p.sat)*255}
+  // Glätten (deckkraftgewichtet): zweimal Box-Weichzeichner über Gleitsummen, 4 Kanäle (r·a, g·a, b·a, a)
+  const f=new Float32Array(N*4);for(let k=0;k<N;k++){const a=d[k*4+3]/255;f[k*4]=d[k*4]*a;f[k*4+1]=d[k*4+1]*a;f[k*4+2]=d[k*4+2]*a;f[k*4+3]=a}
+  const blur=(src,r)=>{const t=new Float32Array(N*4),o=new Float32Array(N*4),n=2*r+1;
+    for(let y=0;y<h;y++)for(let ch=0;ch<4;ch++){let acc=0;for(let x=-r;x<=r;x++)acc+=src[(y*w+Math.min(w-1,Math.max(0,x)))*4+ch];
+      for(let x=0;x<w;x++){t[(y*w+x)*4+ch]=acc/n;acc+=src[(y*w+Math.min(w-1,x+r+1))*4+ch]-src[(y*w+Math.max(0,x-r))*4+ch]}}
+    for(let x=0;x<w;x++)for(let ch=0;ch<4;ch++){let acc=0;for(let y=-r;y<=r;y++)acc+=t[(Math.min(h-1,Math.max(0,y))*w+x)*4+ch];
+      for(let y=0;y<h;y++){o[(y*w+x)*4+ch]=acc/n;acc+=t[(Math.min(h-1,y+r+1)*w+x)*4+ch]-t[(Math.max(0,y-r)*w+x)*4+ch]}}
+    return o};
+  const sm=blur(blur(f,p.b),p.b),band=new Int8Array(N).fill(-1);
+  // Cel-Stufen: Helligkeit quantisieren, Farbton/Sättigung vom geglätteten Bild; Ebenen: Deckkraft hart (Silhouette)
+  for(let k=0;k<N;k++){const A=sm[k*4+3],i=k*4;if(layer&&A<.42){d[i+3]=0;continue}if(A<1e-4)continue;const r=sm[k*4]/A,g=sm[k*4+1]/A,b=sm[k*4+2]/A,L=.299*r+.587*g+.114*b,q=Math.round(L/255*(p.lv-1));band[k]=q;
+    const Lq=(q+.15)/(p.lv-.7)*255,m=L>1?Lq/L:1;d[i]=r*m;d[i+1]=g*m;d[i+2]=b*m;d[i+3]=255}
+  // Konturen auf der dunkleren Seite (bzw. innen an der Silhouette), Stärke lw
+  const ink=p.ink,lw=p.lw||2,mark=new Uint8Array(N);
+  for(let y=0;y<h-1;y++)for(let x=0;x<w-1;x++){const k=y*w+x;for(const n of[k+1,k+w]){const a=band[k],b=band[n];if(a<0&&b<0)continue;let t;
+    if(a<0||b<0){if(!layer)continue;t=a<0?n:k}else{const dd=a-b;if(!(Math.abs(dd)>=p.e||(dd&&Math.min(a,b)<=p.dl)))continue;t=dd<0?k:n}
+    const st=n-k,dir=(t===k?-1:1);for(let j=0;j<lw;j++){const u=t+st*dir*j;if(u>=0&&u<N&&band[u]>=0)mark[u]=1}}}
+  for(let k=0;k<N;k++)if(mark[k]){const i=k*4;d[i]=ink[0];d[i+1]=ink[1];d[i+2]=ink[2];d[i+3]=255}
+  ctx.putImageData(im,0,0)}
 
 // ================= Gemalte Objekte =================
 function mushroom(x,X,Y){
