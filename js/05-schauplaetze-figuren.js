@@ -127,7 +127,7 @@ const PHEADS=1,PHEADX=.9,PBODY=1,PHANDS=1.3;
 const EY=-8,WY=-121;
 // Rumpf: schmale, abfallende Schultern direkt am Hals, darunter Kasten-Schnitt
 const PTORSO=`<path d="M-16,-199C-22,-194 -25.6,-184 -26.4,-168C-26,-152 -23.6,-142 -23.2,-132C-23,-124 -23.6,-118 -24,-112C-15,-109 -6,-110 0,-112C8,-110 18,-109 24,-112C23.6,-118 23,-124 23.2,-132C23.6,-142 26,-152 26.4,-168C25.6,-184 22,-194 16,-199C11,-203 6,-205.4 0,-205C-6,-205.4 -11,-203 -16,-199Z" fill="${PTE}"/><path d="M8,-203.6C12,-202 14.4,-200.6 16,-199C22,-194 25.6,-184 26.4,-168C26,-152 23.6,-142 23.2,-132C23,-124 23.6,-118 24,-112C21,-111 17,-110 13,-110C15,-124 14.6,-140 16,-154C18,-170 14,-186 8,-203.6Z" fill="${PTE2}" stroke="none"/>`;
-const PFRONT=`<path d="M-5.6,-208L5.6,-208L6.4,-203L0,-186L-6.4,-203Z" fill="#c8925c" stroke="none"/><path d="M-3,-203L0,-193L3,-203Z" fill="#b07c4c" stroke="none"/><path d="M-6,-204L0,-186L6,-204" fill="none" stroke-width=".8"/>`+
+const PFRONT=`<path d="M-5.6,-208L5.6,-208L6.4,-203L0,-186L-6.4,-203Z" fill="${PSK}" stroke="none"/><path d="M-6,-204L0,-186L6,-204" fill="none" stroke-width=".8"/>`+
   `<path d="M-9,-205L-1,-186L-13,-194C-12,-199 -11,-202 -9,-205ZM9,-205L1,-186L13,-194C12,-199 11,-202 9,-205Z" fill="${PTE3}" stroke-width=".8"/><path d="M0,-186C0,-160 -.5,-136 0,-112" fill="none" stroke-width=".8"/>`+
   [-174,-158,-142,-126].map(y=>`<circle cx="-1.6" cy="${y}" r=".9" fill="#e8f4f0" stroke-width=".4"/>`).join('')+
   `<path d="M-17,-184L-8,-184L-8,-174C-11,-172 -14,-172 -17,-174Z" fill="none" stroke="#147470" stroke-width=".8"/><path d="M-18,-170C-13,-162 -12,-152 -14,-144M6,-172C10,-164 10,-154 8,-146M-24,-114C-20,-117 -16,-117 -13,-114M14,-114C17,-117 21,-117 24,-114" fill="none" stroke="#147470" stroke-width=".8"/>`;
@@ -265,8 +265,9 @@ function PETV(th,open,step,em,bl,po){const r=th*Math.PI/180,c=Math.cos(r),s=Math
     const sv=Math.abs(c)<.3,tilt=f1(-5*o*(Math.abs(c)>.3?1:0));
     // Ärmel: Schulterlinie geht weich in den Oberarm über; innen eigene Kontur, weil der Arm jetzt frei steht
     // schmale, abfallende Schulter ohne Kugel; Oberarm liegt eng am Rumpf
-    const top=P(Xs-o*2.4,-199),del=P(Xs+o*5.4,-184),eo=P(Xe+o*6.2,-152+EY),ei=P(Xe-o*5.6,-152+EY),pit=P(Xs-o*4.4,-180),inn=P(Xs-o*5,-195);
-    const outer=`M${top}C${P(Xs+o*1.4,-196.6)} ${P(Xs+o*3.8,-190.6)} ${del}C${P(Xs+o*5.8,-176)} ${P(Xe+o*6.6,-164+EY)} ${eo}`;
+    // Schulterlinie setzt die Rumpfkante fort (gleiche Neigung), keine Kugel
+    const top=sv?P(Xs-o*2.4,-199):P(Xs-o*4.6,-201.8),del=P(Xs+o*6,-184),eo=P(Xe+o*6.2,-152+EY),ei=P(Xe-o*5.6,-152+EY),pit=P(Xs-o*4.4,-180),inn=P(Xs-o*5,-195);
+    const outer=`M${top}C${P(Xs+o*1,-197.6)} ${P(Xs+o*4.6,-192.4)} ${del}C${P(Xs+o*6.6,-176)} ${P(Xe+o*6.6,-164+EY)} ${eo}`;
     // Seitenansicht: Arm liegt vor dem Rumpf, also auch hinten durchgehende Kontur bis zur Schulter
     const inner=sv?`M${ei}C${P(Xe-o*6,-162+EY)} ${P(Xs-o*5.6,-172)} ${P(Xs-o*5.6,-184)}C${P(Xs-o*5.6,-192)} ${P(Xs-o*3.6,-197.6)} ${top}`:`M${ei}C${P(Xe-o*6,-160+EY)} ${P(Xs-o*2.6,-170)} ${pit}`;
     const sleeve=(sv?`<path d="${outer}L${ei}C${P(Xe-o*6,-162+EY)} ${P(Xs-o*5.6,-172)} ${P(Xs-o*5.6,-184)}C${P(Xs-o*5.6,-192)} ${P(Xs-o*3.6,-197.6)} ${top}Z" fill="${sl}" stroke="none"/>`:`<path d="${outer}L${ei}C${P(Xe-o*6,-160+EY)} ${P(Xs-o*2.6,-170)} ${pit}L${inn}Z" fill="${sl}" stroke="none"/>`)+
@@ -291,7 +292,7 @@ function PETV(th,open,step,em,bl,po){const r=th*Math.PI/180,c=Math.cos(r),s=Math
   // Oberkörper (mit Armen) kippt um die Hüfte nach vorn und sinkt beim In-die-Knie-Gehen mit ab
   const UP=MM(MT(0,drop-124),MM(MR(lean*s),MM(MS(1,1-(1-Math.cos(lean*Math.PI/180))*Math.abs(c)),MT(0,124))));
   out.push(`<g transform="scale(1,${PBODY})">`,L[0].svg,L[1].svg,'</g>',`<g transform="matrix(${UP.map(f1)})">`,`<g transform="scale(1,${PBODY})">`);A.filter(a=>a.d<-4).forEach(a=>out.push(a.svg));
-  out.push(`<path d="M${f1(Xn-5)},-218L${f1(Xn-6)},-202C${f1(Xn-2)},-199 ${f1(Xn+3)},-199 ${f1(Xn+6)},-202L${f1(Xn+5)},-218Z" fill="${PSK}"/><path d="M${f1(Xn-5.4)},-212C${f1(Xn-1)},-208 ${f1(Xn+3)},-208 ${f1(Xn+5.6)},-211L${f1(Xn+5)},-218L${f1(Xn-5)},-218Z" fill="#b07c4c" stroke="none"/>`);
+  out.push(`<path d="M${f1(Xn-5)},-218L${f1(Xn-6)},-202C${f1(Xn-2)},-199 ${f1(Xn+3)},-199 ${f1(Xn+6)},-202L${f1(Xn+5)},-218Z" fill="${PSK}"/>`);
   // Brust raus: Oberkörper oben leicht nach vorn geneigt (nur sichtbar in Seiten-/Schrägansicht)
   out.push(`<g transform="translate(${f1(112*ch)},0) skewX(${f1(-2.4*s)})">`);
   out.push(`<g transform="scale(${f1(.9*Math.hypot(c,.5*s))},1)">${PTORSO}</g>`);

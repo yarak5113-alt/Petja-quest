@@ -1,6 +1,10 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.65',d:'13.11.2026',t:'Petja: Schultern und Hals',n:[
+    'Petjas Schultern fallen jetzt glatt ab – keine runden Schulterkugeln mehr am Ärmelansatz',
+    'Hals und V-Ausschnitt haben dieselbe Hautfarbe wie die Hände (kein dunkler Streifen mehr)',
+    'pixel/petja.json im neuen Kompaktformat: 24 Farben + Lauflängen, ~20 KB statt 160 KB (pixel/kompakt.js wandelt die anderen Figuren um)'] },
   {v:'1.64',d:'12.11.2026',t:'Nymphen im neuen Stil',n:[
     'Die sechs Sumpf-Nymphen sind jetzt Cel-Sprites wie alle anderen Figuren: braune Federkontur, weiche Airbrush-Schatten, gleiche Pixeldichte wie Petja',
     'Aussehen 1:1 wie vorher: gleiche Posen, Haare, Augen, Lippen, Wunden, Algen, Perlen, Blasen und Schädel',
