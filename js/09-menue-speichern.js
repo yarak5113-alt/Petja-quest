@@ -4,14 +4,22 @@ const LOCN={wald:'Birkenwald',gabel:'Weggabelung',huette:'Baba Jagas Hütte',inn
 const has=i=>inv.includes(i);
 // h = Notiz: was genau zu tun ist und wo (wird bei offenen Schritten in der Auftragsansicht und beim Tipp gezeigt)
 function quests(){const Q=[];
-  Q.push({t:'Raus aus dem Märchen',d:'Irgendwas stimmt nicht. Ich muss hier wieder aufwachen.',v:1,ok:0,s:[
+  Q.push({t:'Raus aus dem Märchen',d:'Irgendwas stimmt nicht. Ich muss hier wieder aufwachen.',v:1,ok:FL.ende,s:[
     {t:'Jemanden finden, der sich hier auskennt',v:1,ok:seen.huette,h:'Vom Birkenwald zur Weggabelung, dann dem Schild „Zu Baba Jaga“ folgen. Eine Hexe weiß bestimmt, wie man hier rauskommt.'},
     {t:'In Baba Jagas Hütte kommen',v:FL.bjNo,ok:FL.drin,h:has('leiter')?'Mit der Leiter zur Hütte und auf die Tür oder die Hühnerbeine klicken – dann geht’s durchs Fenster rein.':'Die Tür ist nur Deko, rein geht’s nur durchs Fenster. Dafür brauch ich eine Leiter (siehe „Hoch hinaus“).'},
     {t:'Herausfinden, was mit mir los ist',v:FL.drin,ok:FL.recipe,h:FL.bjInfo?'Baba Jaga sagt, nur der Pilzmeister der Gnome weiß, welcher Pilz in meinem Joint war (siehe „Das Pilzlabor“).':'Baba Jaga in ihrer Hütte fragen. Sie will wissen, was in meinem Joint war (siehe „Der Joint“).'},
-    {t:'Zutaten für das Gegengift besorgen',v:FL.recipe,ok:0,s:[
-      {t:'Eine Träne',v:FL.recipe,ok:0,h:'Die Träne einer wirklich schönen Nymphe. Die Nymphen sitzen im Sumpf.'},
-      {t:'Eine Feder',v:FL.recipe,ok:0,h:'Eine schwarze Krähenfeder. Im Birkenwald sitzt doch eine Krähe …'},
-      {t:'Ein besonderer Saft',v:FL.recipe,ok:0,h:'Saft aus der ältesten Birke im Wald.'}]}]});
+    {t:'Den Ausweg-Joint bauen',v:FL.recipe,ok:FL.ende,s:[
+      {t:'Die Ur-Spore',v:FL.recipe,ok:has('spore')||FL.ende,h:'In der Gnomsiedlung auf das Pilzbeet klicken und fünf goldene Pilze pflücken.'},
+      {t:'Glut, die nicht ausgeht',v:FL.recipe,ok:has('glut')||FL.ende,s:[
+        {t:'Den Popen finden',v:FL.recipe,ok:FL.popeBack,h:'An der Kirche hängt ein Zettel: „Pope in der Stadt“, seit 1993. Wo würde ein Pope dreißig Jahre hängenbleiben? Irgendwo mit Wodka … im Banja?'},
+        {t:'Weihwasser holen',v:FL.popeBack,ok:FL.weih,h:'Vater Ignati ist zurück an der Kirche (Dorfstraße → „Zur Kirche“). Mit ihm reden.'},
+        {t:'Den Schmied überzeugen',v:FL.recipe,ok:FL.glut,h:has('weihwasser')?'Das Weihwasser zu Schmied Fjodor in den Schmiedehof bringen.':'Schmied Fjodor im Schmiedehof (Dorfstraße → „Zum Schmiedehof“) fragen.'}]},
+      {t:'Eine echte Träne',v:FL.recipe,ok:has('traene')||FL.ende,s:[
+        {t:'Etwas, das jeden zum Heulen bringt',v:FL.recipe,ok:FL.zwiebel,h:'Nastja im Banja weint nie. Eine scharfe Zwiebel? Oma Dusja auf der Dorfstraße hat einen Garten.'},
+        {t:'Einen Privattanz buchen',v:FL.zwiebel,ok:FL.booked,h:'Mit der Zwiebel zu Madame Zinaida ins Banja.'},
+        {t:'Die Zwiebel in die Lüftung',v:FL.booked,ok:FL.zwIn,h:'In der Lounge auf die Lüftung über dem Sofa klicken.'},
+        {t:'Die Träne auffangen',v:FL.zwIn,ok:FL.traene,h:'Einfach sitzen bleiben und die Phiole bereithalten.'}]},
+      {t:'Alles zu Baba Jaga',v:['filter','spore','glut','traene'].every(has),ok:FL.ende,h:'In Baba Jagas Hütte auf den Tisch klicken und den Ausweg-Joint bauen.'}]}]});
   Q.push({t:'Das Pilzlabor',d:'Der Pilzmeister der Gnome soll sagen, was in meinem Joint war. Aber umsonst ist nichts.',v:FL.labQ,ok:FL.recipe,s:[
     {t:'In den Stollen kommen',v:FL.labQ,ok:FL.stollen,h:'Zur Gnomsiedlung (vom Fischerhaus am Ufer entlang) und auf das Schild „Zur Höhle“ klicken. Grobnik will dafür etwas.',s:[
       {t:'Mehl vom Müller besorgen',v:FL.mehlQ,ok:FL.mehl,h:has('gutschein')?'Den Gutschein zum Müller bringen: an der Alten Mühle auf die Mühle klicken.':!FL.mullerQ?'Die Gnome wollen das „Mehl“ vom Müller. Vom Dorfeingang aufs Schild „Zur alten Mühle“ und dort an die Tür klopfen (auf die Mühle klicken).':'Der Müller rückt das Mehl nur gegen etwas aus dem Banja raus.',s:[

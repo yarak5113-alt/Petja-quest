@@ -366,5 +366,8 @@ async function lapDance(){changing=true;fade.style.opacity=1;await new Promise(r
     if(t>D){fin=true;return end()}requestAnimationFrame(frame)}
   requestAnimationFrame(frame);
   setTimeout(()=>say([['NA','Hände aufs Sofa, Süßer. Hausregel.']]),2600);setTimeout(()=>{if(busy)advance();say([['P','*schluck*']])},9000);
+  if(FL.zwIn&&!FL.traene)setTimeout(()=>{if(busy)advance();say([['NA','*schnief* … Was … was ist das? Meine Augen!']])},12500); // Akt 3: Zwiebel in der Lüftung
   async function end(){if(busy)advance();fade.style.opacity=1;await new Promise(r=>setTimeout(r,500));cv3.remove();changing=false;
+    if(FL.zwIn&&!FL.traene){say([['NA','*SCHNIEF* Ich weine! Ich weine doch nie! Dreihundert Jahre nicht!'],['P','Halt still. *hält die Phiole unters Kinn*'],['P','*plopp* Eine echte Träne. Danke.'],
+      ['NA','Raus hier, du Zwiebel! Und lass dich nie wieder in meiner Lounge blicken!'],['P','Fair.']],()=>{FL.traene=1;FL.lounge=1;const k=inv.indexOf('phiole');if(k>=0)inv.splice(k,1);inv.push('traene');renderInv();enter('buehne',[260,486])});fade.style.opacity=0;return}
     say([['P','*Drei Minuten später*'],['P','...Ich glaube, ich brauche einen Wodka. Oder zwei. Oder eine kalte Dusche im Sumpf.'],['NA','Komm wieder, Petja. Aber nächstes Mal mit Trinkgeld.']],()=>{FL.lounge=1;enter('buehne',[260,486])});fade.style.opacity=0}}

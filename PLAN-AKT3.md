@@ -60,3 +60,20 @@ Was schon da ist und wo der Plan vom Spiel abweicht. Vor dem Umsetzen klären.
 | Banja / Tänzerin | Banja und Tänzerin vorhanden | Fehlt noch: Zwiebel, Lüftung, Privatkabine, Fläschchen |
 | Finale | Kein Crafting-Finale, kein Loop, kein Abspann | Alles neu |
 | Opa ruft zurück | Nicht gefunden | Neu |
+
+## Umsetzungsstand (Version 1.70)
+
+Umgesetzt in `js/20-akt3.js` (plus Anpassungen in `07-objekte.js`, `09-menue-speichern.js`, `04-intro-muehle-banja.js`):
+
+- [x] Rezept vom Pilzmeister umgestellt (Ur-Spore, geweihte Glut, echte Träne + Papierfilter); Phiole und Filter kommen automatisch, auch bei alten Spielständen
+- [x] Ur-Spore: Pilzbeet bei den Gnomen mit Minispiel (5 goldene Pilze in 40 s, max. 3 falsche; nach 3 Fehlversuchen überspringbar)
+- [x] Kirche → Pope: Vater Ignati sitzt seit 1993 an der Bar im Banja, kommt zurück zur Kirche, gibt Weihwasser
+- [x] Schmiede: Schmied Fjodor (neue Figur) – die Weihe seiner Esse war die alte Schuld des Popen; Weihwasser → Glut in der Dose
+- [x] Zwiebel-Träne: Omas Zwiebel → Privattanz bei Madame buchen → Zwiebel in die Lounge-Lüftung → Nastja weint → Träne in die Phiole
+- [x] Finale: Crafting-Minispiel am Tisch (Filter → Ur-Spore → Träne → rollen → mit der Glut anzünden), Lichtblitz, Loop zurück auf Wowas Sofa, Abspann
+- [x] Aufträge mit allen neuen Schritten und Hinweisen
+
+Offen:
+
+- [ ] Opa ruft zurück („Ey, wo willst du hin?!“) – passt nicht zum heutigen Spiel: Opa hat keinen Hausbau, die Säge gehört Kusmitsch. Erst klären, was gemeint ist.
+- [ ] Optionale Charakter-Biografien im Journal

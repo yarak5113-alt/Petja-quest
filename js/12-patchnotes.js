@@ -1,6 +1,13 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.70',d:'13.11.2026',t:'Akt 3: Der Ausweg-Joint',n:[
+    'Neues Rezept vom Pilzmeister: Ur-Spore, geweihte Glut und eine echte Nymphenträne – dazu der Filter vom alten Joint',
+    'Ur-Spore: Pilzbeet bei den Gnomen – goldene Pilze pflücken, bevor sie verschwinden (Minispiel)',
+    'Neue Figuren: Vater Ignati, der Pope (seit 1993 „in der Stadt“ …), und Schmied Fjodor mit seiner ungeweihten Esse',
+    'Die Träne: Omas schärfste Zwiebel, die Lüftung der Lounge und ein Privattanz, bei dem Nastja zum ersten Mal seit dreihundert Jahren weint',
+    'Finale: Ausweg-Joint am Tisch der Hexe bauen (Minispiel), anzünden – und dann … Abspann',
+    'Aufträge zeigen die neuen Schritte mit Hinweisen; alte Spielstände bekommen Phiole und Filter automatisch'] },
   {v:'1.69',d:'13.11.2026',t:'Seitenwege gerade',n:[
     'Die Seitenwege laufen jetzt gerade quer ab, hinter den vorderen Häusern statt durch sie hindurch',
     'Dorfstraße: Kirche links, Schmiedehof rechts – passend dazu, wo man ankommt'] },
