@@ -426,8 +426,8 @@ function paintDorfstr(){const o=S0;sky(o);far(o);ground(o);
   bushAt(x,4.3,17,1.1);bushAt(x,-4.6,28,1.2);bushAt(x,4.8,42,1);put(x);
   // vorn: Omas Haus (links) und Tante Galjas Haus (rechts)
   x=lay();house(x,-7.6,11,{trim:'#4a8a5a'},'omahaus');house(x,8.4,13.5,{trim:'#8a4a4a'},'galja',1.08);
-  // Wäscheleine in Omas Hof (Pfosten ≈ 1,8 m)
-  const[l1,ly]=sp(-6.6,7.5),[l2]=sp(-4,7.5),lk=(l2-l1)/68;at(x,l1,ly,lk,()=>{x.translate(-300,-362);laundry(x)});setHit('waesche',[[-4,-66],[72,-66],[72,-32],[-4,-32]],l1,ly,lk);
+  // Wäscheleine in Tante Galjas Vorgarten rechts vorn (Pfosten ≈ 1,8 m) – gut sichtbar, da kommt die Angelschnur her
+  const[l1,ly]=sp(3.7,11),[l2]=sp(6.9,11),lk=(l2-l1)/68;at(x,l1,ly,lk,()=>{x.translate(-300,-362);laundry(x)});setHit('waesche',[[-4,-66],[72,-66],[72,-32],[-4,-32]],l1,ly,lk);
   // Omas Vorgarten mit Sonnenblumen, Zaun mit offenem Gartentor; Wegweiser an der Abzweigung
   for(let i=0;i<6;i++)sunAt(x,-3.5-R()*.6,4.4+i*.8,84+R()*20);fenceLine(x,-2.9,2.6,18.5,[[3.3,4.4]]);
   fenceLine(x,2.9,2.6,21,[[9,10.2]]);bushAt(x,4.2,8,1.1);

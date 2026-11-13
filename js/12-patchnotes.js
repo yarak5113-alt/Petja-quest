@@ -1,6 +1,11 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.72',d:'13.11.2026',t:'Opas Birken',n:[
+    'Opas Säge gibt es erst nach dem Banja: An der Birkensperre fällt Petja ein, dass Opa eine haben könnte',
+    'Die Birken am Sumpfweg sind Opas Bauholz. Erst bekommt Opa den Teer (Oma, Gebiss, Kater …), dann darf gesägt werden – sonst pfeift er Petja zurück',
+    'Sägen, Stämme schleppen, Haus bauen: Opas neues Haus besteht aus den Birkenstämmen, das Brett ist weg',
+    'Die Angelschnur kommt jetzt von Tante Galjas Wäscheleine, die gut sichtbar rechts auf der Dorfstraße hängt (statt vom Fischernetz)'] },
   {v:'1.71',d:'13.11.2026',t:'Opas Säge',n:[
     'Die Säge kommt jetzt von Opa Grischa: rostig, aus dem Ofen seiner Brandruine – gegen das Versprechen, ihm das Haus wieder aufzubauen',
     'Schmied Fjodor schärft die Säge auf Pump. Die offene Rechnung wird in Akt 3 fällig',

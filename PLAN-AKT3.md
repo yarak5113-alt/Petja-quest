@@ -75,5 +75,5 @@ Umgesetzt in `js/20-akt3.js` (plus Anpassungen in `07-objekte.js`, `09-menue-spe
 
 Offen:
 
-- [x] Opas Säge und Opas Haus (1.71, `js/21-opa-haus.js`): Die Säge kommt jetzt von Opa Grischa (rostig, aus dem Ofen der Ruine) gegen das Versprechen, ihm das Haus aufzubauen. Schmied Fjodor schärft sie auf Pump, diese Schuld wird in Akt 3 mit dem Weihwasser beglichen. Wer nach dem Sägen ohne Hausbau zum Sumpf will, wird von Opa zurückgepfiffen („Ey, wo willst du hin?!“). Hausbau: Bauholz von den Birken + Brett vom Ofen + Omas Teer. Der Fischer hat keine Säge mehr, der Boot-Auftrag ist weg.
+- [x] Opas Säge und Opas Haus (1.72, `js/21-opa-haus.js`): Erst nach dem Banja denkt Petja an der Birkensperre an Opa. Opa leiht die rostige Säge, aber die Birken am Sumpfweg sind sein Bauholz. Schmied Fjodor schärft die Säge auf Pump (Schuld wird in Akt 3 mit dem Weihwasser beglichen). Opa will erst Teer (Oma, Gebiss, Kater, Fisch, Angel mit Schnur von Tante Galjas Wäscheleine). Sägt Petja vorher, pfeift Opa ihn zurück („Ey, wo willst du hin?!“). Mit dem Teer gibt Opa die Birken frei: Sägen macht den Weg frei, aus den Stämmen wird Opas Haus. Kein Brett, kein Fischernetz, kein Boot-Auftrag mehr.
 - [ ] Optionale Charakter-Biografien im Journal

@@ -29,14 +29,10 @@ function quests(){const Q=[];
           {t:'Eine Neue für Madame',v:FL.clubQ,ok:FL.rekrut,h:'Madames Liste in den Taschen lesen. Dann im Sumpf (hinter der Birkensperre) die Nymphen anklicken, mit ihnen reden und die finden, die genau auf die Liste passt.'}]}]}]},
     {t:'Die Pilze untersuchen lassen',v:FL.stollen,ok:FL.recipe,h:'Mit der Laterne in die Höhle und auf den dunklen Gang klicken. Der Pilzmeister wartet hinten.'}]});
   Q.push({t:'Der versperrte Weg',d:'Umgestürzte Birken versperren den Weg zum Sumpf.',v:seen.sperre,ok:FL.cut,s:[
-    {t:'Eine Säge finden',v:seen.sperre,ok:FL.sawQ||FL.cut,h:'Wer hat hier Werkzeug? Opa Grischa im Dorf (hinter Baba Jagas Hütte) hat sein Haus selbst gebaut – ihn fragen.'},
+    {t:'Eine Säge finden',v:seen.sperre&&FL.clubQ,ok:FL.sawQ||FL.cut,h:'Vielleicht hat Opa Grischa eine Säge? Er steht im Dorf (hinter Baba Jagas Hütte) vor seiner Brandruine.'},
     {t:'Die Säge schärfen lassen',v:FL.sawQ,ok:has('saege')||FL.cut,h:'Opas Säge ist verrostet. Dorfstraße → „Zum Schmiedehof“, Schmied Fjodor fragen.'},
-    {t:'Den Weg freiräumen',v:has('saege')||FL.cut,ok:FL.cut,h:'Mit der geschärften Säge zurück zur Birkensperre und auf die umgestürzten Birken klicken.'}]});
-  Q.push({t:'Opas neues Haus',d:'Opa Grischa hat mir seine Säge geliehen. Dafür bau ich ihm das Haus wieder auf. Abgemacht ist abgemacht.',v:FL.sawQ,ok:FL.haus,s:[
-    {t:'Bauholz',v:FL.sawQ,ok:has('holz')||FL.haus,h:'Das Holz kommt von den Birken an der Sperre – erst die Säge schärfen lassen, dann sägen.'},
-    {t:'Ein Brett für die Tür',v:FL.sawQ,ok:has('brett')||FL.haus,h:'Am Ofen von Opas Ruine im Dorf liegt ein Brett.'},
-    {t:'Teer fürs Dach',v:FL.sawQ,ok:has('teer')||FL.haus,h:'Oma Dusja auf der Dorfstraße hat Birkenteer (siehe „Omas Gebiss“).'},
-    {t:'Mit Opa das Haus bauen',v:['holz','brett','teer'].every(has),ok:FL.haus,h:'Alles beisammen? Zu Opa Grischa ins Dorf.'}]});
+    {t:'Opas Haus vorbereiten',v:FL.sawQ,ok:FL.deal||FL.cut,h:'Die Birken am Sumpfweg sind Opas Bauholz. Erst will er Teer – Oma Dusja auf der Dorfstraße hat welchen (siehe „Omas Gebiss“). Den Teer dann zu Opa bringen.'},
+    {t:'Opas Birken zersägen',v:FL.deal||FL.cut,ok:FL.cut,h:'Mit der geschärften Säge zur Birkensperre und auf die umgestürzten Birken klicken. Aus den Stämmen wird Opas Haus.'}]});
   Q.push({t:'Eine offene Rechnung',d:'Schmied Fjodor hat Opas Säge auf Pump geschärft. „Ich vergess nix, Junge.“',v:FL.schuld,ok:FL.glut,h:'Irgendwann will der Schmied was von mir. Wenn er’s sagt, weiß ich’s.'});
   Q.push({t:'Omas Gebiss',d:'Oma hat ihr Gebiss verloren. Ohne das gibt’s keinen Teer.',v:FL.gq,ok:FL.teer,s:[
     {t:'Das Gebiss finden',v:FL.gq,ok:FL.ks,h:'Oma sagt, der Kater vom Popen hockt drauf. Also: Friedhof an der Kirche (Dorfstraße → „Zur Kirche“).'},
@@ -44,7 +40,7 @@ function quests(){const Q=[];
       {t:'Etwas, das er nicht ablehnen kann',v:FL.ks,ok:FL.fisch||FL.kater,h:has('angel')?'Mit der Angel zum Fischerhaus und auf den See klicken. Beim Drill dagegenhalten!':'Ein Kater will Fisch. Kusmitsch am Fischerhaus fragen – wenn er nichts rausrückt, selbst angeln.',s:[
         {t:'Selbst ist der Mann',v:FL.angelQ,ok:has('angel')||FL.fisch||FL.kater,h:'Stock + Schnur = Angel. Die baut Petja von selbst zusammen, sobald er beides hat.',s:[
           {t:'Ein Stock',v:FL.angelQ,ok:FL.ast,h:FL.kraehe?'Der Ast im Birkenwald ist frei. Anklicken – Petja springt danach.':has('apfel')?'Die Krähe im Birkenwald mit dem Apfel bewerfen (auf die Krähe klicken), dann ist der Ast frei.':'Im Birkenwald hängt ein gerader Ast – aber die Krähe sitzt drauf. Mit etwas bewerfen? An der Weggabelung wachsen Äpfel.'},
-          {t:'Eine Schnur',v:FL.angelQ,ok:has('seil')||has('angel')||FL.fisch||FL.kater,h:'Neben dem Fischerhaus liegt ein kaputtes Fischernetz.'}]}]},
+          {t:'Eine Schnur',v:FL.angelQ,ok:has('seil')||has('angel')||FL.fisch||FL.kater,h:'Auf der Dorfstraße hängt bei Tante Galja (rechts) eine Wäscheleine.'}]}]},
       {t:'Dem Kater den Fisch geben',v:FL.fisch&&!FL.kater,ok:FL.kater,h:'Mit dem Fisch zum Friedhof an der Kirche und auf den Kater klicken.'}]},
     {t:'Das Gebiss zurückbringen',v:has('gebiss')||FL.teer,ok:FL.teer,h:'Zu Oma auf die Dorfstraße.'}]});
   Q.push({t:'Hoch hinaus',d:'Durch die Tür kommt man bei Baba Jaga nicht rein – nur durchs Fenster.',v:FL.bjNo,ok:FL.leiter||FL.drin,s:[
