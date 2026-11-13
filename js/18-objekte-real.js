@@ -164,7 +164,7 @@ window.netRack=function(x){[[268,372],[338,366]].forEach(([X,Y])=>{shadowAt(x,X,
   for(let i=0;i<6;i++){const [X,Y]=pts[i*3>N?N:i*3][0],f=x.createRadialGradient(X+3-1,Y-1,0,X+3,Y,2.6);f.addColorStop(0,'#f0a060');f.addColorStop(.6,'#c05a24');f.addColorStop(1,'#5a2410');x.fillStyle=f;x.beginPath();x.ellipse(X+3,Y-.6,2.4,1.5,0,0,7);x.fill()}
   for(let i=0;i<8;i++){const [X,Y]=pts[2+r()*12|0][3+r()*6|0];x.strokeStyle='rgba(60,80,30,.7)';x.lineWidth=.6;x.beginPath();x.moveTo(X,Y);x.quadraticCurveTo(X+1,Y+3,X-.5,Y+5);x.stroke()}};
 
-[kippe,apfel,wuermer,altnetz,schnaps,leiter,brett,gebiss,mrad,schnur].forEach(f=>{try{f()}catch(e){console.error('Objekt',f.name,e)}});
+[kippe,apfel,wuermer,schnaps,leiter,brett,gebiss,mrad,schnur].forEach(f=>{try{f()}catch(e){console.error('Objekt',f.name,e)}});
 })();
 
 // ================= gemalte Objekte im Hintergrund (Fliegenpilz, Baumstumpf, Mühle, Mühlsteine) =================

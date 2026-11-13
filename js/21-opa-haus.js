@@ -15,7 +15,7 @@
     saege:['','Säge','Opas Säge, vom Schmied geschärft. Ausgeliehen. Gegen ein ganzes Haus.'],
     seil:['','Wäscheleine','Tante Galjas alte Wäscheleine. Riecht nach Kernseife. Hält bestimmt einen Fisch.']})})();
 // das Brett gibt es nicht mehr – das Haus wird aus Birkenstämmen gebaut
-{const b=document.getElementById('brett');if(b)b.remove();const n=document.getElementById('altnetzG');if(n)n.remove()}
+{const b=document.getElementById('brett');if(b)b.remove();}
 
 // ----- Birkensperre: Opas Bauholz -----
 const opaRuf=()=>{if(!FL.opaRuf){FL.opaRuf=1;return say([['P','So. Dann wollen wir mal. *setzt die Säge an*'],['G','*ganz weit hinten* *PFIIIIFF* EEEY! WO WILLST DU HIN?!'],['P','…Opa? Das Dorf ist auf der anderen Seite vom Wald!'],
@@ -67,7 +67,7 @@ if(T.ruine)Object.defineProperty(T.ruine,'n',{get:()=>FL.haus?'Opas neues Haus':
 
 // ----- Wäscheleine bei Tante Galja: die Schnur für die Angel -----
 wrapFn('waesche',function(orig){
-  if(FL.angelQ&&!FL.leine&&!has('seil')&&!has('angel')&&!FL.fisch&&!FL.kater)return say([['P','Eine Wäscheleine. Lang, dünn, reißfest. Perfekte Angelschnur.'],['P','*knotet die Leine ab* … Die Unterhose lass ich hängen. Aus Respekt.'],
+  if(!FL.leine&&!has('seil')&&!has('angel')&&!FL.fisch&&!FL.kater)return say([['P','Eine Wäscheleine. Lang, dünn, reißfest. Perfekte Angelschnur.'],['P','*knotet die Leine ab* … Die Unterhose lass ich hängen. Aus Respekt.'],
     ['O','*von drüben* Nimm ruhig, Junge! Die Galja hat mir meine Leine auch nie zurückgegeben!']],()=>{FL.leine=1;inv.push('seil');renderInv()});
   if(FL.leine)return say([['P','Die Wäsche liegt jetzt im Gras. Galja wird sich freuen.']]);
   return orig()});
