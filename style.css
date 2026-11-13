@@ -245,3 +245,33 @@ html:not(.ink) .spr{image-rendering:pixelated;image-rendering:crisp-edges}
 /* Auftrags-Notizen: was genau zu tun ist und wo */
 .q em.qh{display:block;font-style:normal;font-size:.92em;line-height:1.4;color:#e4d4b4;margin:2px 0 5px 20px;padding:4px 8px;border-left:2px solid rgba(255,210,90,.45);background:rgba(255,210,90,.06);border-radius:0 4px 4px 0}
 .nextbox .nh{margin:5px 0 0;font:normal 13px/1.4 Georgia,serif;color:#f0e2c4}
+
+/* ===================== Symbole (statt Emojis) – gravierte Linien, Farbe folgt der Schrift ===================== */
+.ic{display:inline-block;width:1.15em;height:1.15em;vertical-align:-.24em;flex:none;overflow:visible}
+.ic.sm{width:1em;height:1em;vertical-align:-.16em}.ic.big{width:46px;height:46px;opacity:.75}.ic.q{width:.95em;height:.95em;margin-right:2px}
+.menu button .ic,.mb .ic,#start button .ic,.tab .ic,.slotc .ic,.tips b .ic{filter:drop-shadow(0 1px 0 rgba(255,244,200,.75))}
+.mb.big .ic,#start #bNew .ic,#start #bCont .ic,.pan .x .ic{filter:drop-shadow(0 1px 0 #4a0a00)}
+.pan h3 .ic,.toast .ic,.nextbox .ic,.q .ic,.empty .ic,#autoS .ic,.qh .ic{color:var(--gold);filter:drop-shadow(0 1px 0 #000)}
+.q.done .ic{color:#9ad07a}.q.next>span .ic{color:#ffd25a}
+.tips b .ic{width:22px;height:22px}.pan .x .ic{width:15px;height:15px;vertical-align:middle}
+.opts .mb span{display:inline-flex;align-items:center;gap:6px}.sl .ic{margin-right:4px}
+#bNews .ic{margin-right:4px}
+/* ===================== Augenansicht: alles Klickbare leuchtet, Messing-Medaillons mit Symbol ===================== */
+#spots{background:radial-gradient(ellipse at 50% 55%,rgba(10,6,2,.05) 30%,rgba(10,6,2,.55) 100%)}
+#game.spotlit .room.on .interactive{filter:url(#outline)}
+.spot i{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--brass);color:#2a1606;
+  border:2px solid #4a2a0a;box-shadow:0 0 0 2px #f2d488aa,0 0 14px 5px rgba(255,200,90,.55),0 3px 5px rgba(0,0,0,.6);animation:spotpulse 1.4s ease-in-out infinite}
+.spot i .ic{width:18px;height:18px;filter:drop-shadow(0 1px 0 rgba(255,244,200,.75))}
+.spot.exit i{background:linear-gradient(rgba(255,235,220,.42),rgba(255,255,255,.06) 46%,transparent 52%),var(--lacq);color:#ffeab0;border-color:#f2c862}
+.spot.exit i .ic{filter:drop-shadow(0 1px 0 #4a0a00)}
+.spot.talk i{box-shadow:0 0 0 2px #f2d488aa,0 0 14px 5px rgba(140,200,255,.45),0 3px 5px rgba(0,0,0,.6)}
+.spot span{margin-top:4px;padding:2px 8px;color:#f6e8c4;font:bold 12px Georgia,serif;text-shadow:0 1px 0 #000;white-space:nowrap}
+.spot.exit span{color:#ffd25a}
+@keyframes spotpulse{50%{transform:scale(1.12);box-shadow:0 0 0 2px #f2d488,0 0 20px 8px rgba(255,200,90,.7),0 3px 5px rgba(0,0,0,.6)}}
+
+/* --- Titelbild: Knöpfe auf einer dunklen Lacktafel im Goldrahmen, Ornamentband unter dem Titel --- */
+#start .tbox{padding:26px 34px 18px;background:radial-gradient(ellipse at 50% 40%,rgba(10,6,2,.55),rgba(10,6,2,0) 72%)}
+#start h2{margin-bottom:6px}
+#start h2::after{content:"";display:block;height:18px;margin:10px auto 14px;width:min(360px,70vw);background:var(--orn) center/64px 18px repeat-x;opacity:.9}
+#start .tbox button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-width:240px}
+#start .tbox button .ic{width:20px;height:20px}

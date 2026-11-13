@@ -82,6 +82,48 @@ const HUDICONS=(()=>{const G='#2a1806',W='#fff3c8';
   auftrag:S('<path d="M9,5L25,5C27,5 27,9 25,9L25,25C25,28 22,28 22,28L7,28C4,28 4,24 7,24L9,24Z"/><path d="M12,12L21,12M12,16L21,16M12,20L18,20"/>'),
   karte:S('<path d="M4,8L11,5L21,8L28,5L28,24L21,27L11,24L4,27Z"/><path d="M11,5L11,24M21,8L21,27"/><path d="M14,15L18,19M18,15L14,19"/>'),
   menu:S('<path d="M6,9L26,9M6,16L26,16M6,23L26,23"/><circle cx="6" cy="9" r=".6"/><circle cx="6" cy="16" r=".6"/><circle cx="6" cy="23" r=".6"/>')}})();
+// ----- Einheitliche Bedien-Symbole (statt Emojis): gravierte Linien wie die Leiste, Farbe = Schriftfarbe (currentColor) -----
+// ic('save') liefert ein <svg class="ic">; auf Messingknöpfen dunkel, auf dunklem Samt golden.
+const UIC={
+  tipp:'<path d="M16,4C10,4 7,9 8,14C9,18 12,19 12,23L20,23C20,19 23,18 24,14C25,9 22,4 16,4Z"/><path d="M12.5,26.5L19.5,26.5M14,29.5L18,29.5"/><path d="M16,23L16,16M13.5,14.5L16,16L18.5,14.5"/>',
+  spot:'<path d="M3,16C8,8 24,8 29,16C24,24 8,24 3,16Z"/><circle cx="16" cy="16" r="4.5"/><circle cx="16" cy="16" r="1"/>',
+  tasche:'<path d="M8,12C6,18 6,26 9,29L23,29C26,26 26,18 24,12Z"/><path d="M10,12L22,12M12,12C12,6 20,6 20,12"/><path d="M12,19L20,19"/>',
+  auftrag:'<path d="M9,5L25,5C27,5 27,9 25,9L25,25C25,28 22,28 22,28L7,28C4,28 4,24 7,24L9,24Z"/><path d="M12,12L21,12M12,16L21,16M12,20L18,20"/>',
+  karte:'<path d="M4,8L11,5L21,8L28,5L28,24L21,27L11,24L4,27Z"/><path d="M11,5L11,24M21,8L21,27"/><path d="M14,15L18,19M18,15L14,19"/>',
+  menu:'<path d="M6,9L26,9M6,16L26,16M6,23L26,23"/>',
+  log:'<path d="M5,7L27,7L27,21L15,21L9,26L9,21L5,21Z"/><path d="M10,12L22,12M10,16L18,16"/>',
+  save:'<path d="M6,5L22,5L27,10L27,27L6,27Z"/><path d="M10,5L10,12L21,12L21,5"/><path d="M10,27L10,18L23,18L23,27"/>',
+  load:'<path d="M4,26L4,7L12,7L14,10L23,10L23,14"/><path d="M4,26L9,14L28,14L23,26Z"/>',
+  gear:'<circle cx="16" cy="16" r="4"/><path d="M16,4L16,8M16,24L16,28M4,16L8,16M24,16L28,16M7.5,7.5L10.3,10.3M21.7,21.7L24.5,24.5M7.5,24.5L10.3,21.7M21.7,10.3L24.5,7.5"/><circle cx="16" cy="16" r="8.5"/>',
+  keys:'<rect x="3" y="9" width="26" height="15" rx="2"/><path d="M7,14L9,14M12,14L14,14M17,14L19,14M22,14L24,14M9,19L23,19"/>',
+  home:'<path d="M4,15L16,5L28,15"/><path d="M8,12L8,27L24,27L24,12"/><path d="M13,27L13,20L19,20L19,27"/><path d="M14,12L18,12"/>',
+  pause:'<path d="M12,8L12,24M20,8L20,24"/>',
+  play:'<path d="M10,6L25,16L10,26Z"/>',
+  back:'<path d="M26,16L7,16M14,9L7,16L14,23"/>',
+  next:'<path d="M6,16L25,16M18,9L25,16L18,23"/>',
+  close:'<path d="M9,9L23,23M23,9L9,23"/>',
+  check:'<path d="M6,17L13,24L26,8"/>',
+  todo:'<circle cx="16" cy="16" r="6"/>',
+  trophy:'<path d="M10,5L22,5L22,12C22,17 19,19 16,19C13,19 10,17 10,12Z"/><path d="M10,8L6,8C6,12 8,14 10,14M22,8L26,8C26,12 24,14 22,14"/><path d="M16,19L16,24M11,28L21,28M13,24L19,24L19,28L13,28"/>',
+  pin:'<path d="M16,28C16,28 7,19 7,12C7,7 11,4 16,4C21,4 25,7 25,12C25,19 16,28 16,28Z"/><circle cx="16" cy="12" r="3.5"/>',
+  warn:'<path d="M16,4L29,27L3,27Z"/><path d="M16,12L16,19M16,23L16,23.4"/>',
+  voice:'<path d="M5,12L10,12L17,6L17,26L10,20L5,20Z"/><path d="M21,11C23,13 23,19 21,21M24.5,7.5C29,12 29,20 24.5,24.5"/>',
+  talk:'<circle cx="12" cy="11" r="5"/><path d="M3,28C3,21 7,18 12,18C17,18 21,21 21,28"/><path d="M24,9C26,11 26,15 24,17M27,6C31,10 31,16 27,20"/>',
+  music:'<path d="M12,23L12,7L26,4L26,20"/><circle cx="8.5" cy="23" r="3.5"/><circle cx="22.5" cy="20" r="3.5"/><path d="M12,12L26,9"/>',
+  tree:'<path d="M16,3L8,14L12,14L6,23L26,23L20,14L24,14Z"/><path d="M16,23L16,29"/>',
+  speed:'<path d="M4,8L15,16L4,24Z"/><path d="M16,8L27,16L16,24Z"/>',
+  retry:'<path d="M25,17A9,9 0 1 1 22,9.5"/><path d="M23,3L23,10L16,10"/>',
+  skip:'<path d="M6,7L19,16L6,25Z"/><path d="M24,7L24,25"/>',
+  dice:'<rect x="5" y="5" width="22" height="22" rx="4"/><circle cx="11" cy="11" r="1.4"/><circle cx="21" cy="21" r="1.4"/><circle cx="16" cy="16" r="1.4"/><circle cx="21" cy="11" r="1.4"/><circle cx="11" cy="21" r="1.4"/>',
+  tool:'<path d="M5,27L17,15"/><path d="M14,9L20,4L28,12L23,17L19,13L17,15L13,11Z"/>',
+  mouse:'<rect x="8" y="3" width="16" height="26" rx="8"/><path d="M16,3L16,12M8,12L24,12"/>',
+  hand:'<path d="M11,27C8,24 6,20 6,17C6,15 8,14 10,16L11,17L11,6C11,4 14,4 14,6L14,14L14,4C14,2 17,2 17,4L17,14L17,5C17,3 20,3 20,5L20,15L20,8C20,6 23,6 23,8L23,19C23,23 21,26 19,27Z"/>',
+  web:'<path d="M16,16L16,3M16,16L28,9M16,16L28,23M16,16L16,29M16,16L4,23M16,16L4,9"/><path d="M16,8L22,12L22,20L16,24L10,20L10,12Z"/><path d="M16,12L19,14L19,18L16,20L13,18L13,14Z"/>',
+  news:'<path d="M5,6L23,6L23,26L8,26C6,26 5,25 5,23Z"/><path d="M23,11L27,11L27,23C27,25 25,26 23,26"/><path d="M9,11L19,11M9,15L19,15M9,19L15,19"/>',
+  help:'<circle cx="16" cy="16" r="12.5"/><path d="M12,12.5C12,8.5 20,8.5 20,12.5C20,15.5 16,15.5 16,19M16,23L16,23.4"/>',
+  exit:'<path d="M6,16L24,16M17,9L24,16L17,23"/><path d="M4,6L4,26"/>'};
+const ic=(n,cls='')=>`<svg class="ic ${cls}" viewBox="0 0 32 32" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">${UIC[n]||UIC.help}</g></svg>`;
+
 const ICON=id=>ICONS[id]||ICONS._;
 const IMG=(id,cls='ico')=>`<img class="${cls}" src="${ICON(id)}" alt="" draggable="false">`;
 // Realistischer Pfeil: roter Lack mit gewölbtem Goldrand, Glanzlicht und Schatten. ARROW(px,grad) -> data-URL (Richtung in Grad, 0 = nach rechts)

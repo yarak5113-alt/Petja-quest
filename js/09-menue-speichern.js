@@ -50,28 +50,28 @@ function quests(){const Q=[];
 // Offene Blätter des Auftragsbaums; der tiefste (konkreteste) zuerst, bei Gleichstand der neuere Auftrag
 function nextSteps(Q){const out=[];const walk=(q,d,top)=>{if(!q.v||q.ok)return;const kids=(q.s||[]).filter(c=>c.v&&!c.ok);if(!kids.length)out.push({q,d,top});else kids.forEach(c=>walk(c,d+1,top))};
   (Q||quests()).forEach((q,i)=>walk(q,0,i));return out.sort((a,b)=>b.d-a.d||b.top-a.top)}
-function qTree(list,lv,NEXT){return list.filter(q=>q.v).map(q=>`<div class="q l${lv} ${q.ok?'done':''} ${q===NEXT?'next':''}"><span>${q.ok?'✔':q===NEXT?'➤':'○'} ${q.t}</span>${q.d&&lv==0?`<i>${q.d}</i>`:''}${q!==NEXT&&qNote(q)?`<em class="qh">📝 ${qNote(q)}</em>`:''}${q.s&&!q.ok?qTree(q.s,lv+1,NEXT):''}</div>`).join('')}
+function qTree(list,lv,NEXT){return list.filter(q=>q.v).map(q=>`<div class="q l${lv} ${q.ok?'done':''} ${q===NEXT?'next':''}"><span>${ic(q.ok?'check':q===NEXT?'next':'todo','q')} ${q.t}</span>${q.d&&lv==0?`<i>${q.d}</i>`:''}${q!==NEXT&&qNote(q)?`<em class="qh">${ic('auftrag','sm')} ${qNote(q)}</em>`:''}${q.s&&!q.ok?qTree(q.s,lv+1,NEXT):''}</div>`).join('')}
 // Notiz nur bei offenen Schritten, die gerade selbst dran sind (keine offenen Unterschritte mehr)
 function qNote(q){return!q.ok&&q.h&&!(q.s||[]).some(c=>c.v&&!c.ok)?q.h:''}
 let ovl=null;function closeO(){if(ovl){ovl.remove();ovl=null}}
 function openO(html,cls){closeO();ovl=document.createElement('div');ovl.className='ovl '+(cls||'');ovl.innerHTML=html;ovl.onclick=e=>{e.stopPropagation();if(e.target===ovl)closeO()};
   ovl.querySelectorAll('.x').forEach(b=>b.onclick=closeO);$('#game').appendChild(ovl);return ovl}
 // ===== Tagebuch: Taschen | Aufträge | Karte =====
-const BOOKT=[['tasche','🎒','Taschen','I'],['auftrag','📜','Aufträge','J'],['karte','🗺️','Karte','M'],['log','💬','Gespräche','L']];
+const BOOKT=[['tasche','Taschen','I'],['auftrag','Aufträge','J'],['karte','Karte','M'],['log','Gespräche','L']];
 // Gesprächsverlauf: die letzten Sätze zum Nachlesen, Regieanweisungen kursiv
-function logHTML(){if(!LOG.length)return'<p class="empty">💬<br><span class="em">Noch hat niemand was gesagt.</span></p>';
+function logHTML(){if(!LOG.length)return'<p class="empty">'+ic('log','big')+'<br><span class="em">Noch hat niemand was gesagt.</span></p>';
   const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])).replace(/\*([^*]+)\*/g,'<i>$1</i>');
   return'<div class="log">'+LOG.map(([w,t])=>`<p><b style="color:${(N[w]||['?','#ccc'])[1]}">${(N[w]||[w])[0]}:</b> ${esc(t)}</p>`).join('')+'</div>'}
 function openBook(tab){tab=tab||'tasche';let body='';
   if(tab=='tasche')body=inv.length?`<div class="grid">${inv.map(id=>{const it=ITEMS[id]||['❔',id,id];return`<button class="card" data-i="${id}"><b>${IMG(id)}</b><span>${it[1]}</span></button>`}).join('')}</div>
-      <div class="detail"><span class="em">Klick auf einen Gegenstand, um ihn anzusehen.</span></div>`:'<p class="empty">🕸️<br>Leer. Wie mein Kühlschrank.<br><span class="em">Sammle Dinge ein, indem du sie in der Welt anklickst.</span></p>';
+      <div class="detail"><span class="em">Klick auf einen Gegenstand, um ihn anzusehen.</span></div>`:'<p class="empty">'+ic('web','big')+'<br>Leer. Wie mein Kühlschrank.<br><span class="em">Sammle Dinge ein, indem du sie in der Welt anklickst.</span></p>';
   if(tab=='auftrag'){const Q=quests(),ns=nextSteps(Q),NEXT=ns[0]&&ns[0].q,open=Q.filter(q=>!q.ok),fin=Q.filter(q=>q.ok);
-    body=`${NEXT?`<div class="nextbox"><small>Nächster Schritt</small>➤ ${NEXT.t}${NEXT.h?`<p class="nh">${NEXT.h}</p>`:''}</div>`:''}${qTree(open,0,NEXT)||'<p class="em">Gerade nichts offen.</p>'}
+    body=`${NEXT?`<div class="nextbox"><small>Nächster Schritt</small>${ic('next')} ${NEXT.t}${NEXT.h?`<p class="nh">${NEXT.h}</p>`:''}</div>`:''}${qTree(open,0,NEXT)||'<p class="em">Gerade nichts offen.</p>'}
       ${fin.length?`<details class="fin"><summary>Erledigt (${fin.length})</summary>${qTree(fin,0)}</details>`:''}`;if(typeof badge=='function')badge('auftrag',0)}
   if(tab=='log')body=logHTML();
   if(tab=='karte')body=mapSVG()+`<p class="legend"><span class="lg here"></span> Du bist hier <span class="lg"></span> Besucht <span class="lg unk">?</span> Noch unerkundet</p>`;
   if(tab=='tasche'&&typeof badge=='function')badge('tasche',0);
-  const o=openO(`<div class="pan book"><div class="tabs">${BOOKT.map(([k,ic,t,key])=>`<button class="tab ${k==tab?'on':''}" data-tab="${k}">${ic} ${t} <kbd>${key}</kbd></button>`).join('')}<button class="x" title="Schließen (ESC)">✕</button></div>
+  const o=openO(`<div class="pan book"><div class="tabs">${BOOKT.map(([k,t,key])=>`<button class="tab ${k==tab?'on':''}" data-tab="${k}">${ic(k)} ${t} <kbd>${key}</kbd></button>`).join('')}<button class="x" title="Schließen (ESC)">${ic('close')}</button></div>
     <div class="bbody b-${tab}">${body}</div></div>`,'bookO');o.dataset.book=tab;if(tab=='log'){const bb=o.querySelector('.bbody');bb.scrollTop=bb.scrollHeight}
   o.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>openBook(b.dataset.tab));
   o.querySelectorAll('.card').forEach(c=>c.onclick=()=>{o.querySelectorAll('.card').forEach(k=>k.classList.toggle('sel',k===c));const it=ITEMS[c.dataset.i];
@@ -106,37 +106,37 @@ function loadState(d){closeO();if($('#start'))rm('start');
   Object.entries(d.ti||{}).forEach(([k,v])=>{if(T[k])T[k].i=v});if(FL.cut){const h=$('[data-id=sHolz]');if(h)h.style.display='none'}
   for(const k in cache)delete cache[k];renderInv();busy=false;box.style.display='none';enter(d.cur,[d.P.x,d.P.y])}
 // ===== Pausemenü =====
-const KEYS=[['Linksklick','Laufen, ansehen, benutzen, sprechen'],['Klick / Leertaste im Dialog','Text weiter'],['ESC / Rechtsklick im Dialog','Gespräch überspringen'],['➜ Schilder & Türen','Zu einem anderen Ort'],['Leertaste (halten)','Alles Klickbare zeigen'],['H','Tipp: Was soll ich als Nächstes tun?'],['I','Taschen'],['J','Aufträge'],['M','Karte'],['L','Gesprächsverlauf'],['V','Stimmen an/aus'],['F','Vollbild'],['ESC','Menü / schließen']];
+const KEYS=[['Linksklick','Laufen, ansehen, benutzen, sprechen'],['Klick / Leertaste im Dialog','Text weiter'],['ESC / Rechtsklick im Dialog','Gespräch überspringen'],['Schilder & Türen (Pfeil)','Zu einem anderen Ort'],['Leertaste (halten)','Alles Klickbare zeigen'],['H','Tipp: Was soll ich als Nächstes tun?'],['I','Taschen'],['J','Aufträge'],['M','Karte'],['L','Gesprächsverlauf'],['V','Stimmen an/aus'],['F','Vollbild'],['ESC','Menü / schließen']];
 const SPEEDS=[[45,'Langsam'],[28,'Normal'],[14,'Schnell'],[4,'Sofort']];
-function openMenu(view){view=view||'m';const a=slots(),inGame=cur&&!$('#start'),back=`<button class="mb back" data-v="m">← Zurück</button>`;
-  const slot=(mode,n)=>{const d=a[n];return`<button class="slotc" data-${mode}="${n}" ${mode=='l'&&!d?'disabled':''}><b>Platz ${n+1}</b><span>${d?'📍 '+(LOCN[d.cur]||d.cur)+'<br><small>'+d.date+'</small>':'<i>leer</i>'}</span></button>`};
+function openMenu(view){view=view||'m';const a=slots(),inGame=cur&&!$('#start'),back=`<button class="mb back" data-v="m">${ic('back')} Zurück</button>`;
+  const slot=(mode,n)=>{const d=a[n];return`<button class="slotc" data-${mode}="${n}" ${mode=='l'&&!d?'disabled':''}><b>Platz ${n+1}</b><span>${d?ic('pin','sm')+' '+(LOCN[d.cur]||d.cur)+'<br><small>'+d.date+'</small>':'<i>leer</i>'}</span></button>`};
   const sp=SPEEDS.find(s=>s[0]==OPT.speed)||SPEEDS[1];
-  const body=view=='s'?`<h3>💾 Spiel speichern</h3>${inGame?`<div class="slots3">${[0,1,2].map(n=>slot('s',n)).join('')}</div><p class="msg em">Wähl einen Platz.</p>`:'<p class="em">Erst spielen, dann speichern.</p>'}${back}`
-    :view=='l'?`<h3>📂 Spielstand laden</h3><div class="slots3">${(()=>{const d=autoSlot();return`<button class="slotc" data-l="auto" ${d?'':'disabled'}><b>Auto</b><span>${d?'📍 '+(LOCN[d.cur]||d.cur)+'<br><small>Automatisch · '+d.date+'</small>':'<i>noch nichts</i>'}</span></button>`})()}${[0,1,2].map(n=>slot('l',n)).join('')}</div>${back}`
-    :view=='o'?`<h3>⚙️ Einstellungen</h3><div class="opts">
-        <button class="mb" data-o="voice">🔊 Stimmen <b>${!VOICE_ON?'Aus':OPT.voices==='petja'?'Nur Petja':'Alle Figuren'}</b></button>
-        <label class="sl">🗣️ Lautstärke Stimmen <input type="range" min="0" max="100" value="${Math.round(OPT.vox*100)}" data-r="vox"></label>
-        <label class="sl">🎵 Lautstärke Musik <input type="range" min="0" max="100" value="${Math.round((OPT.mus==null?.35:OPT.mus)*100)}" data-r="mus"></label>
-        <label class="sl">🌲 Lautstärke Geräusche <input type="range" min="0" max="100" value="${Math.round(OPT.sfx*100)}" data-r="sfx"></label>
-        <button class="mb" data-o="barks">💬 Sprüche beim Rumstehen <b>${OPT.barks?'An':'Aus'}</b></button>
-        <button class="mb" data-o="speed">⏩ Textgeschwindigkeit <b>${sp[1]}</b></button></div>${back}`
-    :view=='k'?`<h3>⌨️ Steuerung</h3><table>${KEYS.map(([k,t])=>`<tr><td>${k}</td><td>${t}</td></tr>`).join('')}</table><button class="mb" data-v="tut">❓ Anleitung nochmal zeigen</button>${back}`
-    :`<h3>${inGame?'⏸ Pause':'Menü'}</h3>
+  const body=view=='s'?`<h3>${ic('save')} Spiel speichern</h3>${inGame?`<div class="slots3">${[0,1,2].map(n=>slot('s',n)).join('')}</div><p class="msg em">Wähl einen Platz.</p>`:'<p class="em">Erst spielen, dann speichern.</p>'}${back}`
+    :view=='l'?`<h3>${ic('load')} Spielstand laden</h3><div class="slots3">${(()=>{const d=autoSlot();return`<button class="slotc" data-l="auto" ${d?'':'disabled'}><b>Auto</b><span>${d?ic('pin','sm')+' '+(LOCN[d.cur]||d.cur)+'<br><small>Automatisch · '+d.date+'</small>':'<i>noch nichts</i>'}</span></button>`})()}${[0,1,2].map(n=>slot('l',n)).join('')}</div>${back}`
+    :view=='o'?`<h3>${ic('gear')} Einstellungen</h3><div class="opts">
+        <button class="mb" data-o="voice"><span>${ic('voice')} Stimmen</span> <b>${!VOICE_ON?'Aus':OPT.voices==='petja'?'Nur Petja':'Alle Figuren'}</b></button>
+        <label class="sl">${ic('talk')} Lautstärke Stimmen <input type="range" min="0" max="100" value="${Math.round(OPT.vox*100)}" data-r="vox"></label>
+        <label class="sl">${ic('music')} Lautstärke Musik <input type="range" min="0" max="100" value="${Math.round((OPT.mus==null?.35:OPT.mus)*100)}" data-r="mus"></label>
+        <label class="sl">${ic('tree')} Lautstärke Geräusche <input type="range" min="0" max="100" value="${Math.round(OPT.sfx*100)}" data-r="sfx"></label>
+        <button class="mb" data-o="barks"><span>${ic('log')} Sprüche beim Rumstehen</span> <b>${OPT.barks?'An':'Aus'}</b></button>
+        <button class="mb" data-o="speed"><span>${ic('speed')} Textgeschwindigkeit</span> <b>${sp[1]}</b></button></div>${back}`
+    :view=='k'?`<h3>${ic('keys')} Steuerung</h3><table>${KEYS.map(([k,t])=>`<tr><td>${k}</td><td>${t}</td></tr>`).join('')}</table><button class="mb" data-v="tut">${ic('help')} Anleitung nochmal zeigen</button>${back}`
+    :`<h3>${inGame?ic('pause')+' Pause':ic('menu')+' Menü'}</h3>
       ${inGame?`<button class="mb big" data-v="x">${ARR()}Weiterspielen</button>`:''}
-      <button class="mb" data-v="s" ${inGame?'':'disabled'}>💾 Spiel speichern</button><button class="mb" data-v="l">📂 Spielstand laden</button>
-      ${inGame?`<button class="mb" data-v="i">🎒 Taschen</button><button class="mb" data-v="j">📜 Aufträge</button><button class="mb" data-v="map">🗺️ Karte</button>`:''}
-      <button class="mb" data-v="o">⚙️ Einstellungen</button><button class="mb" data-v="k">⌨️ Steuerung</button>${inGame?`<button class="mb quit" data-v="home">🏠 Zum Titelbild</button>`:''}`;
-  const o=openO(`<div class="pan menu"><button class="x" title="Schließen (ESC)">✕</button>${body}</div>`,'menuO');o.dataset.menu=view;
+      <button class="mb" data-v="s" ${inGame?'':'disabled'}>${ic('save')} Spiel speichern</button><button class="mb" data-v="l">${ic('load')} Spielstand laden</button>
+      ${inGame?`<button class="mb" data-v="i">${ic('tasche')} Taschen</button><button class="mb" data-v="j">${ic('auftrag')} Aufträge</button><button class="mb" data-v="map">${ic('karte')} Karte</button>`:''}
+      <button class="mb" data-v="o">${ic('gear')} Einstellungen</button><button class="mb" data-v="k">${ic('keys')} Steuerung</button>${inGame?`<button class="mb quit" data-v="home">${ic('home')} Zum Titelbild</button>`:''}`;
+  const o=openO(`<div class="pan menu"><button class="x" title="Schließen (ESC)">${ic('close')}</button>${body}</div>`,'menuO');o.dataset.menu=view;
   o.querySelectorAll('button[data-v]').forEach(b=>b.onclick=()=>{const v=b.dataset.v;
     if(v=='x')return closeO();if(v=='i')return openBook('tasche');if(v=='j')return openBook('auftrag');if(v=='map')return openBook('karte');if(v=='tut'){closeO();return typeof showTutorial=='function'&&showTutorial()}
-    if(v=='home'){if(b.dataset.armed)return location.reload();b.dataset.armed=1;b.innerHTML='⚠️ Wirklich? Nicht Gespeichertes geht verloren. <b>Nochmal klicken</b>';return}
+    if(v=='home'){if(b.dataset.armed)return location.reload();b.dataset.armed=1;b.innerHTML=ic('warn')+' Wirklich? Nicht Gespeichertes geht verloren. <b>Nochmal klicken</b>';return}
     openMenu(v)});
   o.querySelectorAll('button[data-o]').forEach(b=>b.onclick=()=>{const k=b.dataset.o;
     if(k=='voice'){if(!VOICE_ON){VOICE_ON=true;OPT.voices='alle'}else if(OPT.voices!=='petja')OPT.voices='petja';else VOICE_ON=false;
       try{localStorage.setItem('petjaVoice2',VOICE_ON?'1':'0')}catch(e){}saveOpt();if(TTS)TTS.cancel();if(VOICE_ON)voice(OPT.voices==='petja'?'So klinge ich.':'So klingen wir alle.','P')}if(k=='barks'){OPT.barks=!OPT.barks;saveOpt()}if(k=='speed'){const i=SPEEDS.findIndex(s=>s[0]==OPT.speed);OPT.speed=SPEEDS[(i+1)%SPEEDS.length][0];saveOpt()}openMenu('o')});
   o.querySelectorAll('button[data-s]').forEach(b=>b.onclick=()=>{const n=+b.dataset.s;
     if(a[n]&&!b.dataset.armed){o.querySelectorAll('[data-armed]').forEach(x=>delete x.dataset.armed);b.dataset.armed=1;b.classList.add('warn');o.querySelector('.msg').textContent='Platz '+(n+1)+' ist belegt. Nochmal klicken zum Überschreiben.';return}
-    const ok=saveGame(n);openMenu('s');ovl.querySelector('.msg').textContent=ok?'✔ Gespeichert auf Platz '+(n+1)+'!':'Speichern nicht möglich (Browser blockiert Speicher).';ovl.querySelector('.msg').classList.toggle('ok',!!ok)});
+    const ok=saveGame(n);openMenu('s');ovl.querySelector('.msg').innerHTML=ok?ic('check','sm')+' Gespeichert auf Platz '+(n+1)+'!':'Speichern nicht möglich (Browser blockiert Speicher).';ovl.querySelector('.msg').classList.toggle('ok',!!ok)});
   o.querySelectorAll('button[data-l]').forEach(b=>b.onclick=()=>loadGame(b.dataset.l==='auto'?'auto':+b.dataset.l));
   o.querySelectorAll('input[data-r]').forEach(r=>{r.oninput=()=>{OPT[r.dataset.r]=r.value/100;saveOpt();if(r.dataset.r=='sfx'&&typeof sfxVolume=='function')sfxVolume();if(r.dataset.r=='mus'&&typeof musVolume=='function')musVolume()};
     r.onchange=()=>{if(r.dataset.r=='vox')voice('So laut bin ich jetzt.','P');else if(typeof sfx=='function')sfx('click')}})}

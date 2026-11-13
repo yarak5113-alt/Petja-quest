@@ -1,6 +1,12 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.68',d:'13.11.2026',t:'Neues Titelbild, Augenansicht, Symbole, lebendiges Dorf',n:[
+    'Titelbild: der gemalte Birkenwald aus dem Spiel in der Dämmerung – Mond, ziehender Nebel, Glühwürmchen und blinzelnde Augen im Unterholz, Ornamentband unter dem Titel',
+    'Augenansicht (Leertaste / Auge): alles Klickbare leuchtet warm auf, dazu Messing-Medaillons mit Symbol – Auge zum Ansehen, Person zum Reden, Hand zum Nehmen, roter Pfeil für Ausgänge',
+    'Alle Emojis in Menüs, Reitern, Meldungen, Einstellungen und Aufträgen durch einheitliche gravierte Symbole ersetzt',
+    'Dorf und Dorfstraße lebendiger: Häuser unterschiedlich groß und verschieden weit von der Straße, Birken und Büsche dazwischen',
+    'Abzweigende Wege: im Dorf links zur Mühle, in der Dorfstraße links zum Schmiedehof und rechts zur Kirche – mit Wegweisern an den Abzweigungen'] },
   {v:'1.67',d:'13.11.2026',t:'Dorf wie ein echtes Dorf',n:[
     'Die Häuser stehen jetzt in Reihen links und rechts der Straße, mit Abstand zueinander und hinter Lattenzäunen – und werden zur Kirche hin gleichmäßig kleiner',
     'Alles wird in Metern platziert (Abstand zur Straßenmitte, Entfernung) und daraus perspektivisch richtig gezeichnet',
@@ -288,9 +294,9 @@ const PATCH=[
 
 (function(){const st=$('#start');if(!st)return;let seenV='';try{seenV=localStorage.getItem('petjaPatch')||''}catch(e){}
   const L=PATCH[0],isNew=seenV!==L.v,tb=st.querySelector('.tbox');
-  const b=document.createElement('button');b.id='bNews';b.innerHTML='📰 Neuigkeiten'+(isNew?' <em class="newtag">NEU</em>':'');tb.insertBefore(b,tb.querySelector('.tsub'));
+  const b=document.createElement('button');b.id='bNews';b.innerHTML=ic('news')+' Neuigkeiten'+(isNew?' <em class="newtag">NEU</em>':'');tb.insertBefore(b,tb.querySelector('.tsub'));
   const card=document.createElement('div');card.id='newsCard';card.innerHTML=`<small>${isNew?'NEU · ':''}Version ${L.v} · ${L.d}</small><b>${L.t}</b><ul>${L.n.slice(0,3).map(x=>`<li>${x}</li>`).join('')}</ul><span>Alle Neuigkeiten ansehen ›</span>`;st.appendChild(card);
-  const open=e=>{e.stopPropagation();try{localStorage.setItem('petjaPatch',L.v)}catch(e){}b.innerHTML='📰 Neuigkeiten';card.querySelector('small').textContent=`Version ${L.v} · ${L.d}`;
-    openO(`<div class="pan news"><button class="x" title="Schließen (ESC)">✕</button><h3>📰 Neuigkeiten</h3>${PATCH.map((p,i)=>`<div class="pn ${i==0?'latest':''}">
+  const open=e=>{e.stopPropagation();try{localStorage.setItem('petjaPatch',L.v)}catch(e){}b.innerHTML=ic('news')+' Neuigkeiten';card.querySelector('small').textContent=`Version ${L.v} · ${L.d}`;
+    openO(`<div class="pan news"><button class="x" title="Schließen (ESC)">${ic('close')}</button><h3>${ic('news')} Neuigkeiten</h3>${PATCH.map((p,i)=>`<div class="pn ${i==0?'latest':''}">
       <div class="pnh"><b>${p.t}</b><span>v${p.v} · ${p.d}</span></div><ul>${p.n.map(x=>`<li>${x}</li>`).join('')}</ul></div>`).join('')}</div>`,'newsO')};
   b.onclick=open;card.onclick=open})();

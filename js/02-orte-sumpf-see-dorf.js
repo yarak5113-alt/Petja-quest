@@ -276,18 +276,26 @@ function polesR(x,rows){rows.forEach(row=>{const P=row.map(([X,B])=>[X,B,4.2*PJ(
     x.beginPath();x.moveTo(a+s*h*.08,b-h*.92);x.quadraticCurveTo((a+c2)/2,(b-h*.92+d-h2*.92)/2+h*.05,c2+s*h2*.08,d-h2*.92);x.stroke()}})}
 // Klickflächen passend zur Zeichnung setzen (Umriss einer Izba bzw. Polygon in Zeichen-Einheiten)
 const IZ=[[-112,0],[-112,-111],[0,-192],[46,-216],[162,-138],[146,-28],[100,0]];
-function setHit(id,pts,cx,B,s,flip){const h=document.querySelector(`[data-id="${id}"] .hit`);if(h)h.setAttribute('d','M'+pts.map(([a,b])=>(cx+(flip?-a:a)*s).toFixed(0)+','+(B+b*s).toFixed(0)).join('L')+'Z')}
+function setHit(id,pts,cx,B,s,flip,room=''){const h=document.querySelector(`${room} [data-id="${id}"] .hit`);if(h)h.setAttribute('d','M'+pts.map(([a,b])=>(cx+(flip?-a:a)*s).toFixed(0)+','+(B+b*s).toFixed(0)).join('L')+'Z')}
 // ----- Straße in Perspektive: jedes Ding steht seitlich (lat, Meter; links negativ) und in Entfernung d (Meter) -----
 // Petja ist 1,8 m; in Entfernung d ist er KD/d Pixel hoch. Daraus folgen Bildhöhe y und Pixel pro Meter.
 const VPX=446,KD=834;
 function yOfPJ(p){let a=S0.hz+1,b=560;for(let i=0;i<28;i++){const m=(a+b)/2;PJ(m)<p?a=m:b=m}return(a+b)/2}
 function sp(lat,d){const p=KD/d;return[VPX+lat*p/1.8,yOfPJ(p),p]}
 // Izba: Giebel zum Betrachter, Seitenwand zur Straße (links normal, rechts gespiegelt)
-function house(x,lat,d,o,id){const[X,B,p]=sp(lat,d),s=p/73,flip=lat>0;izba(x,X,B,s,flip,o);if(id)setHit(id,IZ,X,B,s,flip);return{X,B,s,p}}
+function house(x,lat,d,o,id,f=1){const[X,B,p]=sp(lat,d),s=f*p/73,flip=lat>0;izba(x,X,B,s,flip,o);if(id)setHit(id,IZ,X,B,s,flip);return{X,B,s,p}}
 // Lattenzaun entlang der Straße (≈1,1 m hoch), von fern nach nah; gaps = [[d0,d1],…] für Tore
 function fenceLine(x,lat,d0,d1,gaps=[]){const pts=[];for(let d=d1;d>=d0;d-=.22){if(gaps.some(([a,b])=>d>a&&d<b))continue;const[X,Y,p]=sp(lat,d);if(Y>540)continue;const m=p/1.8,h=1.1*m,w=Math.max(1,.1*m);
     wood(x,X-w/2,Y-h,w,h,1);x.fillStyle='rgba(120,120,110,.3)';x.fillRect(X-w/2,Y-h,w,h);x.fillStyle='#4a3a28';x.beginPath();x.moveTo(X-w/2,Y-h);x.lineTo(X,Y-h-w*.8);x.lineTo(X+w/2,Y-h);x.fill();pts.push([X,Y,m])}
   for(const f of[.35,.8]){x.strokeStyle='#3a2a18';let prev=null;for(const[X,Y,m]of pts){if(prev&&Math.abs(prev[0]-X)<m*.5){x.lineWidth=Math.max(1,.05*m);x.beginPath();x.moveTo(prev[0],prev[1]-f*1.1*prev[2]);x.lineTo(X,Y-f*1.1*m);x.stroke()}prev=[X,Y,m]}}}
+// Seitenweg: zweigt bei Entfernung dA..dB von der Straße ab und läuft nach links (side=-1) oder rechts (1) aus dem Bild
+function sidePath(x,side,dA,dB){const P=[sp(side*1.6,dA),sp(side*2.2,dB),sp(side*40,dB+1),sp(side*40,dA+1)];x.save();x.beginPath();P.forEach(([X,Y],i)=>i?x.lineTo(X,Y):x.moveTo(X,Y));x.closePath();x.clip();
+  const sd=S0.sand,y0=Math.min(...P.map(q=>q[1])),y1=Math.max(...P.map(q=>q[1]));x.fillStyle=rgba(mix(sd[0],sd[1],.45));x.fillRect(0,y0-2,800,y1-y0+4);
+  for(let i=0;i<260;i++){const X=R()*800,Y=y0+R()*(y1-y0),t=(Y-S0.hz)/(500-S0.hz);dab(x,X,Y,(3+R()*7)*t+1,R()<.5?mix(sd[0],sd[1],R()):[50,38,26],.35)}
+  x.restore()}
+// Birke zwischen den Häusern (≈ 12 m)
+function tree(x,lat,d,f=1){const[X,Y,p]=sp(lat,d),m=p/1.8,top=Y-11*f*m;birch(x,X,Y,Math.max(2,.3*m),(R()-.5)*3,top+3*m);
+  for(let k=0;k<9;k++)foliage(x,X+(R()-.5)*4.4*m,top+R()*5.5*m,1.5*m*(.7+R()*.5),k<3?1:0,1)}
 function bushAt(x,lat,d,f=1,dk=0){const[X,Y,p]=sp(lat,d);bush(x,X,Y,.28*f*p,dk)}
 function sunAt(x,lat,d,h){const[X,Y,p]=sp(lat,d);at(x,X,Y,p/90,()=>sunflower(x,0,0,h))}
 function poleRow(x,lat,ds){const P=ds.map(d=>{const[X,Y,p]=sp(lat,d);return[X,Y,4.2*p]});
@@ -296,19 +304,20 @@ function poleRow(x,lat,ds){const P=ds.map(d=>{const[X,Y,p]=sp(lat,d);return[X,Y,
     x.beginPath();x.moveTo(a+s*h*.08,b-h*.92);x.quadraticCurveTo((a+c2)/2,(b-h*.92+dd-h2*.92)/2+h*.04,c2+s*h2*.08,dd-h2*.92);x.stroke()}}
 function paintDorf(){const o=S0;sky(o);far(o);ground(o);
   let x=lay();chapel(x,452,208,.5);setHit('kirche',[[-14,0],[-14,-24],[0,-44],[14,-24],[14,0]],452,208,1);bgRow(x,26,204,232,10,18,0);[[150,236,5,0,96],[740,234,6,-1,96]].forEach(b=>birch(x,...b));put(x,.6);
-  x=lay();grass(x,7000,o.hz,500,1);details(x);dirt(x,50);[[396,420,30],[470,472,26],[440,352,14],[300,452,20]].forEach(([X,Y,r])=>mud(x,X,Y,r));put(x);
-  // Häuserreihen links und rechts, von hinten nach vorn
-  x=lay();house(x,-7.5,62,{win:'dark',smoke:0});house(x,7.8,56,{win:'dark',smoke:1});house(x,-7.8,44,{win:'dark',smoke:1});house(x,7.5,38,{trim:'#6a8a4a',smoke:0});
-  house(x,-7.4,31,{trim:'#8a6a3a',smoke:0});house(x,7.6,27,{win:'dark',smoke:0});
-  poleRow(x,-3.6,[60,40,24,12]);fenceLine(x,2.9,12,64,[[16,17.5],[30,31.5]]);fenceLine(x,-2.9,24,64,[[33,34.5],[46,47.5]]);put(x);
-  // Laden (links) und Koljas vernageltes Haus (rechts)
-  x=lay();let h=house(x,-7.2,20,{win:'dark',smoke:0},'laden');
+  x=lay();grass(x,7000,o.hz,500,1);details(x);dirt(x,50);[[396,420,30],[470,472,26],[440,352,14],[300,452,20]].forEach(([X,Y,r])=>mud(x,X,Y,r));
+  sidePath(x,-1,12.5,15.5);put(x);   // Weg links zur alten Mühle
+  // Häuserreihen: unterschiedlich weit von der Straße, verschieden groß, mit Lücken, Birken und Büschen
+  x=lay();house(x,-8.6,66,{win:'dark',smoke:0});house(x,7.4,60,{win:'dark',smoke:1},0,.9);house(x,-7.0,51,{trim:'#6a8a4a',smoke:1},0,.9);house(x,9.2,45,{trim:'#8a6a3a',smoke:0},0,1.1);
+  house(x,-9.4,39,{win:'dark',smoke:0},0,1.12);tree(x,6.2,36);house(x,6.8,31,{win:'dark',smoke:1},0,.92);tree(x,-5.6,31,.9);
+  poleRow(x,-3.6,[62,42,26,11]);fenceLine(x,2.9,13,66,[[16,17.5],[29.5,31]]);fenceLine(x,-2.9,16,66,[[24.5,26],[37,38.5],[49.5,51]]);bushAt(x,-4.6,44,1.2);bushAt(x,4.2,40,1);put(x);
+  // Laden (links) und Koljas vernageltes Haus (rechts), Brunnen am Straßenrand
+  x=lay();let h=house(x,-9.4,23,{win:'dark',smoke:0},'laden');
   at(x,h.X,h.B,h.s,()=>{wood(x,-92,-122,184,30,0);x.fillStyle='#c83a2e';x.font='bold 24px Georgia';x.textAlign='center';x.fillText('LADEN',0,-99);x.fillStyle='#e8e0c8';x.fillRect(-46,-52,20,16)});
-  house(x,7.6,17,{win:'board',smoke:0},'leer');fenceLine(x,-2.9,11,24,[[20.5,22]]);bushAt(x,-4.2,15,1.1);bushAt(x,4.4,21,1);
-  const[wx,wy]=sp(3.7,11);const wk=wellR(x,wx,wy);setHit('brunnen',[[-40,7],[-40,-102],[26,-102],[42,-86],[32,7]],wx,wy,wk);put(x);
-  // vorn links: das leere Haus hinter dem Zaun
-  x=lay();house(x,-7.6,9.5,{win:'dark',trim:'#7a6a5a',smoke:0},'haus1');fenceLine(x,-2.9,2.6,11,[[5.2,6.6]]);bushAt(x,-4.4,7,1.2);
-  sign(x,486,346,1.1,[[1,0,'Ins Dorf','hIns']]);sign(x,322,340,1,[[-1,0,'Zur alten Mühle','hMue']]);rock(x,350,332,6,1);put(x);
+  house(x,8.4,18,{win:'board',smoke:0},'leer',1.05);bushAt(x,5.6,22,1.3);bushAt(x,-4.4,18,1.1);
+  const[wx,wy]=sp(3.5,11);const wk=wellR(x,wx,wy);setHit('brunnen',[[-40,7],[-40,-102],[26,-102],[42,-86],[32,7]],wx,wy,wk);put(x);
+  // vorn links: das leere Haus hinter dem Zaun, davor die Abzweigung zur Mühle
+  x=lay();house(x,-8.2,9.5,{win:'dark',trim:'#7a6a5a',smoke:0},'haus1',1.05);fenceLine(x,-2.9,2.6,12.5,[[5.2,6.6]]);fenceLine(x,-2.9,15.5,16.2);bushAt(x,-4.6,7,1.2);
+  const[mx,my,mp]=sp(-2.5,11.6);sign(x,mx,my,2.2*mp/1.8/128,[[-1,0,'Zur alten Mühle','hMue']]);sign(x,486,346,1.1,[[1,0,'Ins Dorf','hIns']]);rock(x,350,332,6,1);put(x);
   // vorn rechts: Opas abgebranntes Haus (Ruine ≈ 5 m breit, Ofen mit Schornstein ≈ 3,3 m)
   x=lay();const rs=PJ(384)/111;ruin(x,760,384,rs);setHit('ruine',[[-150,10],[-150,-80],[-36,-80],[-36,-200],[24,-200],[24,-80],[120,-80],[120,10]],760,384,rs);
   for(let i=0;i<30;i++){const X=560+R()*240;reeds(x,X,410+R()*20,3,16,0)}
@@ -403,21 +412,27 @@ const OPA=`<g stroke="#2a1a0e" stroke-width="1.4" stroke-linejoin="round" stroke
 function laundry(x){[[300,362,58],[368,352,54]].forEach(([X,B,h])=>{shadowAt(x,X,B,8);wood(x,X-2,B-h,4,h,1)});x.strokeStyle='#2a2a2a';x.lineWidth=.7;x.beginPath();x.moveTo(300,306);x.quadraticCurveTo(334,312,368,300);x.stroke();
   [[306,[220,220,214],12,16],[322,[90,110,170],10,22],[338,[230,190,190],22,14],[356,[200,60,50],8,12]].forEach(([X,k,w,h])=>{const Y=306+Math.sin((X-300)/68*3.14)*5;x.fillStyle=rgba(k);x.fillRect(X,Y,w,h);x.fillStyle='rgba(0,0,0,.2)';x.fillRect(X+w*.6,Y,w*.4,h);x.strokeStyle='rgba(20,20,20,.6)';x.strokeRect(X,Y,w,h)})}
 function paintDorfstr(){const o=S0;sky(o);far(o);ground(o);
-  let x=lay();chapel(x,440,216,.75);bgRow(x,30,206,236,10,18,0);[[180,234,5,0,96],[700,232,5,1,100]].forEach(b=>birch(x,...b));put(x,.6);
-  x=lay();grass(x,7000,o.hz,500,1);details(x);dirt(x,50);[[410,380,20],[470,460,28],[380,440,16],[440,300,8]].forEach(([X,Y,r])=>mud(x,X,Y,r));put(x);
-  // Häuserreihen links und rechts bis zur Kirche, von hinten nach vorn
-  x=lay();house(x,-7.6,64,{win:'dark',smoke:0});house(x,7.4,58,{trim:'#5a7a9a',smoke:1});house(x,-7.4,46,{trim:'#8a6a3a',smoke:1});house(x,7.8,40,{win:'board',smoke:0});
-  house(x,-7.8,33,{win:'dark',smoke:0});house(x,7.5,28,{trim:'#6a8a4a',smoke:0});house(x,-7.5,22,{trim:'#9a5a5a',smoke:1});house(x,7.6,19,{win:'dark',smoke:0});
-  fenceLine(x,-2.9,14,66,[[24,25.5],[35,36.5],[48,49.5]]);fenceLine(x,2.9,15,66,[[20.5,22],[30,31.5],[42,43.5]]);bushAt(x,-4.4,18,1);bushAt(x,4.6,24,1.1);put(x);
+  // die Holzkirche steht rechts hinter den Häusern – dorthin führt der Weg rechts
+  let x=lay();const[kx,ky]=sp(15,72);chapel(x,kx,ky,.75);setHit('kirche2',[[-14,0],[-14,-24],[0,-44],[14,-24],[14,0]],kx,ky,1.5,0,'#r-dorfstr');
+  bgRow(x,30,206,236,10,18,0);[[180,234,5,0,96],[700,232,5,1,100]].forEach(b=>birch(x,...b));put(x,.6);
+  x=lay();grass(x,7000,o.hz,500,1);details(x);dirt(x,50);[[410,380,20],[470,460,28],[380,440,16],[440,300,8]].forEach(([X,Y,r])=>mud(x,X,Y,r));
+  sidePath(x,-1,15.5,18.5);sidePath(x,1,24,27.5);put(x);   // links zum Schmiedehof, rechts zur Kirche
+  // Häuserreihen: unregelmäßig, mit Lücken, Birken und Büschen
+  x=lay();house(x,-7.6,66,{win:'dark',smoke:0});house(x,8.6,62,{trim:'#5a7a9a',smoke:1},0,1.1);house(x,-9.2,50,{trim:'#8a6a3a',smoke:1},0,1.1);house(x,7.2,46,{win:'board',smoke:0},0,.9);
+  house(x,-7.0,38,{win:'dark',smoke:0},0,.88);tree(x,-5.4,31);house(x,8.8,35,{trim:'#6a8a4a',smoke:0},0,1.05);tree(x,5.8,30,.9);
+  house(x,-8.8,24,{trim:'#9a5a5a',smoke:1},0,1.1);house(x,7.0,20,{win:'dark',smoke:0},0,.92);
+  fenceLine(x,-2.9,18.5,66,[[24,25.5],[37,38.5],[49,50.5]]);fenceLine(x,2.9,15,24,[[19.5,21]]);fenceLine(x,2.9,27.5,66,[[34,35.5],[45,46.5]]);
+  bushAt(x,4.3,17,1.1);bushAt(x,-4.6,28,1.2);bushAt(x,4.8,42,1);put(x);
   // vorn: Omas Haus (links) und Tante Galjas Haus (rechts)
-  x=lay();house(x,-7.6,11,{trim:'#4a8a5a'},'omahaus');house(x,7.6,13,{trim:'#8a4a4a'},'galja');
+  x=lay();house(x,-7.6,11,{trim:'#4a8a5a'},'omahaus');house(x,8.4,13.5,{trim:'#8a4a4a'},'galja',1.08);
   // Wäscheleine in Omas Hof (Pfosten ≈ 1,8 m)
-  const[l1,ly,lp]=sp(-6.6,7.5),[l2]=sp(-4,7.5),lk=(l2-l1)/68;at(x,l1,ly,lk,()=>{x.translate(-300,-362);laundry(x)});setHit('waesche',[[-4,-66],[72,-66],[72,-32],[-4,-32]],l1,ly,lk);
-  // Omas Vorgarten mit Sonnenblumen, Zaun mit offenem Gartentor
-  for(let i=0;i<6;i++)sunAt(x,-3.5-R()*.6,4.4+i*.8,84+R()*20);fenceLine(x,-2.9,2.6,15,[[3.3,4.4]]);
-  fenceLine(x,2.9,2.6,16,[[9,10.2]]);bushAt(x,4.2,8,1.1);
+  const[l1,ly]=sp(-6.6,7.5),[l2]=sp(-4,7.5),lk=(l2-l1)/68;at(x,l1,ly,lk,()=>{x.translate(-300,-362);laundry(x)});setHit('waesche',[[-4,-66],[72,-66],[72,-32],[-4,-32]],l1,ly,lk);
+  // Omas Vorgarten mit Sonnenblumen, Zaun mit offenem Gartentor; Wegweiser an der Abzweigung
+  for(let i=0;i<6;i++)sunAt(x,-3.5-R()*.6,4.4+i*.8,84+R()*20);fenceLine(x,-2.9,2.6,15.5,[[3.3,4.4]]);
+  fenceLine(x,2.9,2.6,15,[[9,10.2]]);bushAt(x,4.2,8,1.1);
   const[bx,by,bp]=sp(-1.6,3.7);at(x,bx,by,.2*bp/20,()=>bucket(x,0,0));
-  sign(x,110,486,1.7,[[-1,0,'Zum Dorfeingang','hDE']]);sign(x,488,360,1.1,[[1,0,'Zur Kirche','hKi'],[-1,14,'Zum Schmiedehof','hSm']]);put(x);
+  const[gx,gy,gp]=sp(2.2,8);sign(x,gx,gy,2.2*gp/1.8/128,[[1,0,'Zur Kirche','hKi'],[-1,14,'Zum Schmiedehof','hSm']]);
+  sign(x,110,486,1.7,[[-1,0,'Zum Dorfeingang','hDE']]);put(x);
   x=lay();grass(x,700,470,515,2.4,1);bush(x,770,500,40,1);put(x,1);rays(o,[[.3,.05]]);grade(o)}
 function onion(x,X,Y,r,c0,c1){const g=x.createRadialGradient(X-r*.4,Y-r*1.1,1,X,Y-r,r*1.4);g.addColorStop(0,c0);g.addColorStop(1,c1);x.fillStyle=g;x.beginPath();x.moveTo(X-r*.55,Y);
   x.bezierCurveTo(X-r*1.5,Y-r*.6,X-r*.7,Y-r*1.5,X,Y-r*2.3);x.bezierCurveTo(X+r*.7,Y-r*1.5,X+r*1.5,Y-r*.6,X+r*.55,Y);x.fill();x.strokeStyle='rgba(20,14,6,.7)';x.lineWidth=.8;x.stroke();orthCross(x,X,Y-r*2.3,r*1.3,'#c8a850',1.4)}

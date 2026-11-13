@@ -3,7 +3,7 @@
 // ----- Automatisch speichern: bei jedem Ortswechsel, bei jedem Fortschritt (Gegenstand, Auftrag, Gespräch), alle 20 s und beim Schließen -----
 let autoSig=null,autoT=0;
 const autoOk=()=>cur&&!busy&&!changing&&!$('#start')&&!$('#fg')&&!$('#cut');
-function autoBadge(){let b=$('#autoS');if(!b){b=document.createElement('div');b.id='autoS';b.textContent='💾 gespeichert';
+function autoBadge(){let b=$('#autoS');if(!b){b=document.createElement('div');b.id='autoS';b.innerHTML=ic('save','sm')+' gespeichert';
     b.style.cssText='position:absolute;right:12px;bottom:12px;z-index:40;padding:4px 10px;border-radius:12px;background:rgba(20,14,8,.75);color:#f0e0c0;font:13px Georgia,serif;opacity:0;transition:opacity .4s;pointer-events:none';
     ($('#game')||document.body).appendChild(b)}
   b.style.opacity=1;clearTimeout(b._t);b._t=setTimeout(()=>b.style.opacity=0,1400)}
@@ -17,7 +17,7 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden&&cur&&!$('#
 function latestSave(){const c=[];const a=autoSlot();if(a)c.push(['auto',a]);slots().forEach((d,i)=>{if(d)c.push([i,d])});
   if(!c.length)return null;c.sort((x,y)=>(y[1].ts||0)-(x[1].ts||0));return c[0][0]}
 (function(){const st=$('#start');if(!st||latestSave()===null)return;const tb=st.querySelector('.tbox'),b=document.createElement('button');
-  b.id='bCont';b.innerHTML=ARR()+'Weiterspielen';b.disabled=true;tb.insertBefore(b,$('#bNew'));st.classList.add('hascont');
+  b.id='bCont';b.innerHTML=ic('next')+' Weiterspielen';b.disabled=true;tb.insertBefore(b,$('#bNew'));st.classList.add('hascont');
   const ready=setInterval(()=>{const n=$('#bNew');if(!n||!n.disabled){b.disabled=false;clearInterval(ready)}},200);
   b.onclick=e=>{e.stopPropagation();const k=latestSave();if(k!==null)loadGame(k)}})();
 
@@ -32,10 +32,10 @@ const MG={
   tableGame:{n:'Joint zerlegen',ok:()=>FL.pilze,win(){inv.splice(inv.indexOf('kippe'),1);inv.push('pilze');renderInv();FL.pilze=1;say([['P','*zupft ganz langsam alles auseinander* ...So. Neun Stück. Alle blau angelaufen.'],['J2','Bring sie her, Bürschchen. Lass die alte Jaga mal schnüffeln.']])}}};
 Object.keys(MG).forEach(name=>{const orig=window[name],m=MG[name];if(typeof orig!='function')return;
   const run=()=>{orig();const iv=setInterval(()=>{if($('#fg'))return;clearInterval(iv);if(m.ok())return;
-    const f=FL['fail_'+name]=(FL['fail_'+name]||0)+1;if(f==3)setTimeout(()=>toast('💡 Beim nächsten Versuch kannst du „'+m.n+'“ überspringen.'),400)},200)};
+    const f=FL['fail_'+name]=(FL['fail_'+name]||0)+1;if(f==3)setTimeout(()=>toast('Beim nächsten Versuch kannst du „'+m.n+'“ überspringen.',0,'tipp'),400)},200)};
   window[name]=function(){if((FL['fail_'+name]||0)<3)return run();
-    const o=openO(`<div class="pan menu"><h3>🎲 ${m.n}</h3><p class="em">Klappt nicht so recht? Kein Problem – du kannst das Minispiel auch überspringen.</p>
-      <button class="mb big" data-m="try">🔁 Nochmal versuchen</button><button class="mb" data-m="skip">⏭ Überspringen</button></div>`,'menuO');
+    const o=openO(`<div class="pan menu"><h3>${ic('dice')} ${m.n}</h3><p class="em">Klappt nicht so recht? Kein Problem – du kannst das Minispiel auch überspringen.</p>
+      <button class="mb big" data-m="try">${ic('retry')} Nochmal versuchen</button><button class="mb" data-m="skip">${ic('skip')} Überspringen</button></div>`,'menuO');
     o.querySelector('[data-m=try]').onclick=()=>{closeO();run()};o.querySelector('[data-m=skip]').onclick=()=>{closeO();m.win()}}});
 
 // ----- Sumpf: Ist die Richtige gerade nicht da, merkt Petja das -----

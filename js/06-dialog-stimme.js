@@ -46,7 +46,7 @@ function voice(t,w){if(!TTS)return;TTS.cancel();w=w||'P';if(!VOICE_ON||!t||(w!==
   const s=VOX[w]||[1,1.1,.95],u=new SpeechSynthesisUtterance(t);u.lang='de-DE';const vo=s[0]?(deVoiceF||deVoice):deVoice;if(vo)u.voice=vo;
   u.pitch=s[1];u.rate=s[2];u.volume=Math.max(0,Math.min(1,OPT.vox));TTS.speak(u)}
 function toggleVoice(){VOICE_ON=!VOICE_ON;try{localStorage.setItem('petjaVoice2',VOICE_ON?'1':'0')}catch(e){}if(!VOICE_ON&&TTS)TTS.cancel();
-  toast('🔊 Stimmen: '+(VOICE_ON?'an':'aus'))}
+  toast('Stimmen: '+(VOICE_ON?'an':'aus'),0,'voice')}
 
 // Leerlauf-Sprüche: Steht Petja eine Weile rum, sagt er was zum aktuellen Ort.
 const BARKS={
