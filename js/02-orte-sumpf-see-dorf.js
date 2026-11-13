@@ -319,7 +319,8 @@ function paintDorf(){const o=S0;sky(o);far(o);ground(o);
   x=lay();house(x,-8.2,9.5,{win:'dark',trim:'#7a6a5a',smoke:0},'haus1',1.05);fenceLine(x,-2.9,2.6,17,[[5.2,6.6]]);bushAt(x,-4.6,7,1.2);
   const[mx,my,mp]=sp(-2.4,16.4);sign(x,mx,my,2.2*mp/1.8/128,[[-1,0,'Zur alten Mühle','hMue']]);sign(x,486,346,1.1,[[1,0,'Ins Dorf','hIns']]);rock(x,350,332,6,1);put(x);
   // vorn rechts: Opas abgebranntes Haus (Ruine ≈ 5 m breit, Ofen mit Schornstein ≈ 3,3 m)
-  x=lay();const rs=PJ(384)/111;ruin(x,760,384,rs);setHit('ruine',[[-150,10],[-150,-80],[-36,-80],[-36,-200],[24,-200],[24,-80],[120,-80],[120,10]],760,384,rs);
+  x=lay();if(FL.haus){const hs=PJ(384)/112;izba(x,800,384,hs,1,{trim:'#d8b070',smoke:1});setHit('ruine',IZ,800,384,hs,1)}   // Opas neues Haus (mit Petja gebaut)
+  else{const rs=PJ(384)/111;ruin(x,760,384,rs);setHit('ruine',[[-150,10],[-150,-80],[-36,-80],[-36,-200],[24,-200],[24,-80],[120,-80],[120,10]],760,384,rs)}
   for(let i=0;i<30;i++){const X=560+R()*240;reeds(x,X,410+R()*20,3,16,0)}
   wood(x,530,380,60,5,0);wood(x,536,384,6,48,1);wood(x,578,384,6,48,1);shadowAt(x,560,432,36);
   sign(x,110,484,1.7,[[-1,0,'Zu Baba Jaga','hZB']]);put(x);

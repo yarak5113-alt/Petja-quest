@@ -59,7 +59,7 @@ Was schon da ist und wo der Plan vom Spiel abweicht. Vor dem Umsetzen klären.
 | Schmiede | Schmiedehof mit Esse und glühender Kohle vorhanden | Fehlt noch: Schuld beim Schmied, Tausch Weihwasser → Kohle |
 | Banja / Tänzerin | Banja und Tänzerin vorhanden | Fehlt noch: Zwiebel, Lüftung, Privatkabine, Fläschchen |
 | Finale | Kein Crafting-Finale, kein Loop, kein Abspann | Alles neu |
-| Opa ruft zurück | Nicht gefunden | Neu |
+| Opa ruft zurück | Nicht gefunden | Neu (umgesetzt in 1.71) |
 
 ## Umsetzungsstand (Version 1.70)
 
@@ -75,5 +75,5 @@ Umgesetzt in `js/20-akt3.js` (plus Anpassungen in `07-objekte.js`, `09-menue-spe
 
 Offen:
 
-- [ ] Opa ruft zurück („Ey, wo willst du hin?!“) – passt nicht zum heutigen Spiel: Opa hat keinen Hausbau, die Säge gehört Kusmitsch. Erst klären, was gemeint ist.
+- [x] Opas Säge und Opas Haus (1.71, `js/21-opa-haus.js`): Die Säge kommt jetzt von Opa Grischa (rostig, aus dem Ofen der Ruine) gegen das Versprechen, ihm das Haus aufzubauen. Schmied Fjodor schärft sie auf Pump, diese Schuld wird in Akt 3 mit dem Weihwasser beglichen. Wer nach dem Sägen ohne Hausbau zum Sumpf will, wird von Opa zurückgepfiffen („Ey, wo willst du hin?!“). Hausbau: Bauholz von den Birken + Brett vom Ofen + Omas Teer. Der Fischer hat keine Säge mehr, der Boot-Auftrag ist weg.
 - [ ] Optionale Charakter-Biografien im Journal

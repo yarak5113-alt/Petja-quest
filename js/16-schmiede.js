@@ -98,7 +98,7 @@ Object.assign(T,{
   sSD:{n:'Schild: Zur Dorfstraße',at:[150,488],go:'dorfstr',to:[470,372]},
   sSm:{n:'Schild: Zum Schmiedehof',at:[470,372],go:'schmiede',to:[160,486]}});
 BARKS.schmiede=['Hier riecht es nach Eisen, Heu und Arbeit. Zwei davon mag ich.','Der Brunnen gluckert. Ich krieg Durst. Auf Kwas.','Irgendwo hämmert einer. Oder mein Kopf. Schwer zu sagen.','Das Pferd auf dem Giebel guckt, als wüsste es was.'];
-ENTRY.schmiede=['Der Schmiedehof. Die Esse glüht immer noch.','Wieder beim Schmied. Er ist immer noch Bier holen. Respekt.'];
+ENTRY.schmiede=['Der Schmiedehof. Die Esse glüht immer noch.','Wieder beim Schmied. Fjodor hämmert. Fjodor hämmert immer.'];
 MORE.esse=[['P','Ein paar Funken springen hoch. Ich spring auch. Nach hinten.']];MORE.brunnen=[['P','Der Frosch ist immer noch da. Wir sind jetzt quasi Kollegen.']];
 LOCN.schmiede='Schmiedehof';MAPN.schmiede=[106,36];MAPE.push(['dorfstr','schmiede']);
 // Ausgangs-Schilder als Ausgang markieren (diese Datei lädt nach der Bedienung), Ambiente, Musik, Tester-Sprung

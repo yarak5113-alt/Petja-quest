@@ -1,6 +1,12 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.71',d:'13.11.2026',t:'Opas Säge',n:[
+    'Die Säge kommt jetzt von Opa Grischa: rostig, aus dem Ofen seiner Brandruine – gegen das Versprechen, ihm das Haus wieder aufzubauen',
+    'Schmied Fjodor schärft die Säge auf Pump. Die offene Rechnung wird in Akt 3 fällig',
+    'Wer mit Opas Säge ohne Hausbau in den Sumpf abhauen will, wird zurückgepfiffen: „Ey, wo willst du hin?!“',
+    'Opas neues Haus: Bauholz von den Birken, das Brett vom Ofen, Omas Teer fürs Dach – und das Dorf hat ein Haus mehr',
+    'Der Fischer hat keine Säge mehr (warum auch?) und schickt Petja zu Opa'] },
   {v:'1.70',d:'13.11.2026',t:'Akt 3: Der Ausweg-Joint',n:[
     'Neues Rezept vom Pilzmeister: Ur-Spore, geweihte Glut und eine echte Nymphenträne – dazu der Filter vom alten Joint',
     'Ur-Spore: Pilzbeet bei den Gnomen – goldene Pilze pflücken, bevor sie verschwinden (Minispiel)',

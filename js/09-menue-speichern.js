@@ -29,11 +29,15 @@ function quests(){const Q=[];
           {t:'Eine Neue für Madame',v:FL.clubQ,ok:FL.rekrut,h:'Madames Liste in den Taschen lesen. Dann im Sumpf (hinter der Birkensperre) die Nymphen anklicken, mit ihnen reden und die finden, die genau auf die Liste passt.'}]}]}]},
     {t:'Die Pilze untersuchen lassen',v:FL.stollen,ok:FL.recipe,h:'Mit der Laterne in die Höhle und auf den dunklen Gang klicken. Der Pilzmeister wartet hinten.'}]});
   Q.push({t:'Der versperrte Weg',d:'Umgestürzte Birken versperren den Weg zum Sumpf.',v:seen.sperre,ok:FL.cut,s:[
-    {t:'Etwas zum Zerkleinern finden',v:seen.sperre,ok:has('saege')||FL.cut,h:'Eine Säge wäre gut. Von der Birkensperre geht’s rechts zum Fischerhaus – Kusmitsch auf dem Pier fragen.',s:[
-      {t:'Dem Fischer einen Gefallen tun',v:FL.auftrag,ok:FL.boot,h:'Brett und Teer zusammen? Dann zum Fischer oder aufs alte Boot klicken und es flicken.',s:[
-        {t:'Ein Brett',v:FL.auftrag,ok:has('brett')||FL.boot,h:'Im Dorf (hinter Baba Jagas Hütte) liegt bei Opa Grischas abgebrannter Ruine ein Brett.'},
-        {t:'Etwas zum Abdichten',v:FL.auftrag,ok:has('teer')||FL.boot,h:'Oma auf der Dorfstraße hat Birkenteer. Mit ihr reden (siehe „Omas Gebiss“).'}]}]},
-    {t:'Den Weg freiräumen',v:has('saege')||FL.cut,ok:FL.cut,h:'Mit der Säge zurück zur Birkensperre und auf die umgestürzten Birken klicken.'}]});
+    {t:'Eine Säge finden',v:seen.sperre,ok:FL.sawQ||FL.cut,h:'Wer hat hier Werkzeug? Opa Grischa im Dorf (hinter Baba Jagas Hütte) hat sein Haus selbst gebaut – ihn fragen.'},
+    {t:'Die Säge schärfen lassen',v:FL.sawQ,ok:has('saege')||FL.cut,h:'Opas Säge ist verrostet. Dorfstraße → „Zum Schmiedehof“, Schmied Fjodor fragen.'},
+    {t:'Den Weg freiräumen',v:has('saege')||FL.cut,ok:FL.cut,h:'Mit der geschärften Säge zurück zur Birkensperre und auf die umgestürzten Birken klicken.'}]});
+  Q.push({t:'Opas neues Haus',d:'Opa Grischa hat mir seine Säge geliehen. Dafür bau ich ihm das Haus wieder auf. Abgemacht ist abgemacht.',v:FL.sawQ,ok:FL.haus,s:[
+    {t:'Bauholz',v:FL.sawQ,ok:has('holz')||FL.haus,h:'Das Holz kommt von den Birken an der Sperre – erst die Säge schärfen lassen, dann sägen.'},
+    {t:'Ein Brett für die Tür',v:FL.sawQ,ok:has('brett')||FL.haus,h:'Am Ofen von Opas Ruine im Dorf liegt ein Brett.'},
+    {t:'Teer fürs Dach',v:FL.sawQ,ok:has('teer')||FL.haus,h:'Oma Dusja auf der Dorfstraße hat Birkenteer (siehe „Omas Gebiss“).'},
+    {t:'Mit Opa das Haus bauen',v:['holz','brett','teer'].every(has),ok:FL.haus,h:'Alles beisammen? Zu Opa Grischa ins Dorf.'}]});
+  Q.push({t:'Eine offene Rechnung',d:'Schmied Fjodor hat Opas Säge auf Pump geschärft. „Ich vergess nix, Junge.“',v:FL.schuld,ok:FL.glut,h:'Irgendwann will der Schmied was von mir. Wenn er’s sagt, weiß ich’s.'});
   Q.push({t:'Omas Gebiss',d:'Oma hat ihr Gebiss verloren. Ohne das gibt’s keinen Teer.',v:FL.gq,ok:FL.teer,s:[
     {t:'Das Gebiss finden',v:FL.gq,ok:FL.ks,h:'Oma sagt, der Kater vom Popen hockt drauf. Also: Friedhof an der Kirche (Dorfstraße → „Zur Kirche“).'},
     {t:'Den Wächter loswerden',v:FL.ks,ok:FL.kater,s:[
