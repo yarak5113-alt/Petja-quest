@@ -118,7 +118,7 @@ function loadState(d){closeO();if($('#start'))rm('start');
 // ===== Pausemenü =====
 const KEYS=[['Linksklick','Laufen, ansehen, benutzen, sprechen'],['Klick / Leertaste im Dialog','Text weiter'],['ESC / Rechtsklick im Dialog','Gespräch überspringen'],['Schilder & Türen (Pfeil)','Zu einem anderen Ort'],['Leertaste (halten)','Alles Klickbare zeigen'],['H','Tipp: Was soll ich als Nächstes tun?'],['I','Taschen'],['J','Aufträge'],['M','Karte'],['L','Gesprächsverlauf'],['V','Stimmen an/aus'],['F','Vollbild'],['ESC','Menü / schließen']];
 const SPEEDS=[[45,'Langsam'],[28,'Normal'],[14,'Schnell'],[4,'Sofort']];
-function openMenu(view){view=view||'m';const a=slots(),inGame=cur&&!$('#start'),back=`<button class="mb back" data-v="m">${ic('back')} Zurück</button>`;
+function openMenu(view){view=view||'m';const a=slots(),inGame=cur&&!$('#start'),back=`<button class="mb back" data-v="${inGame?'m':'x'}">${ic('back')} Zurück</button>`;
   const slot=(mode,n)=>{const d=a[n];return`<button class="slotc" data-${mode}="${n}" ${mode=='l'&&!d?'disabled':''}><b>Platz ${n+1}</b><span>${d?ic('pin','sm')+' '+(LOCN[d.cur]||d.cur)+'<br><small>'+d.date+'</small>':'<i>leer</i>'}</span></button>`};
   const sp=SPEEDS.find(s=>s[0]==OPT.speed)||SPEEDS[1];
   const body=view=='s'?`<h3>${ic('save')} Spiel speichern</h3>${inGame?`<div class="slots3">${[0,1,2].map(n=>slot('s',n)).join('')}</div><p class="msg em">Wähl einen Platz.</p>`:'<p class="em">Erst spielen, dann speichern.</p>'}${back}`

@@ -44,8 +44,8 @@ game.addEventListener('click',e=>{if($('#fg')||ACT)return;if(busy)return advance
 game.addEventListener('mousemove',e=>{if(typeof hoverLabel=='function')hoverLabel(e)});game.addEventListener('mouseleave',()=>label.style.opacity=0);
 
 setTimeout(()=>{enter('wald',[400,476]);setTimeout(()=>{const b=$('#bNew');if(b){b.disabled=false;b.innerHTML=ic('play')+' Neues Spiel'}testerBoot()},500)},30);
-$('#bLoad').innerHTML=ic('load')+' Spiel laden';$('#bKeys').innerHTML=ic('keys')+' Steuerung';
-$('#bNew').onclick=e=>{e.stopPropagation();rm('start');cutscene()};$('#bLoad').onclick=e=>{e.stopPropagation();openMenu('l')};$('#bKeys').onclick=e=>{e.stopPropagation();openMenu('k')};
+$('#bLoad').innerHTML=ic('load')+' Spiel laden';$('#bKeys').innerHTML=ic('keys')+' Steuerung';$('#bOpts').innerHTML=ic('gear')+' Einstellungen';
+$('#bNew').onclick=e=>{e.stopPropagation();rm('start');cutscene()};$('#bLoad').onclick=e=>{e.stopPropagation();openMenu('l')};$('#bKeys').onclick=e=>{e.stopPropagation();openMenu('k')};$('#bOpts').onclick=e=>{e.stopPropagation();openMenu('o')};
 // ----- Titelbild: der gemalte Birkenwald aus dem Spiel in der Dämmerung, mit Mond, Nebel, Glühwürmchen und Augen im Unterholz -----
 (function title(){const tc=$('#tcv'),x=tc.getContext('2d'),FF=Array.from({length:40},()=>[Math.random()*800,230+Math.random()*250,Math.random()*6.28]),EY=[[118,392],[690,372],[60,318],[752,428],[250,350]];
   // Ersatz, solange der Wald noch gemalt wird: Nachthimmel mit Mond
