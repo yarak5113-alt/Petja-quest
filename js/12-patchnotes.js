@@ -5,7 +5,8 @@ const PATCH=[
     'Baba Jaga komplett neu gezeichnet: gebückt, lange Hakennase mit Warze, ein einzelner Zahn, wilde graue Strähnen unter dem gepunkteten Kopftuch, weinrotes Kleid mit geflickter Schürze, Fußwickel und Bastschuhe – und sie winkt Petja mit krummem Finger heran',
     'Dorf und Dorfstraße: Häuser, Zäune, Brunnen, Masten und Sonnenblumen haben jetzt echte Größen im Verhältnis zu Petja (eine Izba ist gut zweieinhalbmal so hoch wie er)',
     'Man steht jetzt mitten auf der Straße: links und rechts ein großes Haus, dahinter reihen sich die Häuser bis zur Kirche',
-    'Klickflächen passen sich automatisch an die neuen Häuser an'] },
+    'Klickflächen passen sich automatisch an die neuen Häuser an',
+    'Alle Figuren-Arrays in pixel/ neu aus dem aktuellen Spiel exportiert (vorher teils alte Fassungen, z. B. Oma ohne Karikatur) – kompakt mit 17–40 Farben'] },
   {v:'1.65',d:'13.11.2026',t:'Petja: Schultern und Hals',n:[
     'Petjas Schultern fallen jetzt glatt ab – keine runden Schulterkugeln mehr am Ärmelansatz',
     'Hals und V-Ausschnitt haben dieselbe Hautfarbe wie die Hände (kein dunkler Streifen mehr)',
