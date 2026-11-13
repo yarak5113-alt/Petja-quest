@@ -1,6 +1,7 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.82',d:'13.11.2026',t:'Sägen und Bauen zum Zuschauen',n:['Statt Abblende: kleine Animation beim Sägen der Birken (Petja sägt, Sägemehl fliegt, der Stamm bricht auseinander)','Nach dem Hausbau-Minispiel drei kurze Szenen: Petja trägt Stämme und legt sie auf, deckt auf der Leiter das Dach – und knallt die Tür zu (RUMMS!). Klick überspringt eine Szene','Bessere Hinweise auf den Ast: Kusmitsch erinnert Petja an den Ast der Krähe im Birkenwald (und an die Wäscheleine), und im Birkenwald fällt Petja der Ast von selbst auf'] },
   {v:'1.81',d:'13.11.2026',t:'Schild wieder klickbar',n:['Das Schild „Zum Schmiedehof“ auf der Dorfstraße lässt sich wieder anklicken – die Wäscheleine lag darüber'] },
   {v:'1.80',d:'13.11.2026',t:'Textgröße & kein Spoiler',n:['Neu in den Einstellungen: Textgröße im Gespräch (Klein, Normal, Groß, Sehr groß) mit Vorschau','Der Tipp verrät nicht mehr den Weg durch den Irrwald – er schickt einen zu Baba Jagas Karte in den Taschen'] },
   {v:'1.79',d:'13.11.2026',t:'Einstellungen im Hauptmenü',n:['Auf dem Titelbild gibt es jetzt den Knopf „Einstellungen“: Lautstärke von Musik, Geräuschen und Stimmen, Stimmen an/aus, Sprüche und Textgeschwindigkeit – schon vor dem Spielstart'] },

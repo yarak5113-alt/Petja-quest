@@ -113,7 +113,7 @@ function hausRun(){if($('#fg'))return;const{cv2,x,P,pos}=a3Canvas();cv2.style.cu
   function end(win){if(fin)return;fin=true;cv2.remove();removeEventListener('keydown',esc);removeEventListener('mouseup',mu);
     if(win)hausWin();else say([['G','Pause? Na gut. Die Stämme laufen nicht weg. Sag Bescheid, wenn du weitermachen willst.']])}
   requestAnimationFrame(frame)}
-const hausGame=a3Mini('hausbau','Opas Haus bauen',hausRun,()=>!!FL.haus,hausWin);
+const hausGame=a3Mini('hausbau','Opas Haus bauen',hausRun,()=>!!FL.haus,()=>hausWin());
 
 // ----- Opa Grischa: Säge gegen Hausbau -----
 wrapFn('opa',function(orig){
