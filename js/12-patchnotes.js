@@ -1,6 +1,7 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.80',d:'13.11.2026',t:'Textgröße & kein Spoiler',n:['Neu in den Einstellungen: Textgröße im Gespräch (Klein, Normal, Groß, Sehr groß) mit Vorschau','Der Tipp verrät nicht mehr den Weg durch den Irrwald – er schickt einen zu Baba Jagas Karte in den Taschen'] },
   {v:'1.79',d:'13.11.2026',t:'Einstellungen im Hauptmenü',n:['Auf dem Titelbild gibt es jetzt den Knopf „Einstellungen“: Lautstärke von Musik, Geräuschen und Stimmen, Stimmen an/aus, Sprüche und Textgeschwindigkeit – schon vor dem Spielstart'] },
   {v:'1.78',d:'13.11.2026',t:'Baba Jaga rastet aus',n:['Ende Akt 2: In der Höhle der Gnome wachsen links große blaue Traumschwämme – einsammeln und zu Baba Jaga bringen','Neue Zwischensequenz aus Petjas Sicht: Baba Jaga stapft schimpfend hin und her, kommt ganz nah ans Gesicht, fuchtelt mit den Krallenhänden – und nennt das Rezept für den Ausweg-Joint','Das Rezept kommt jetzt von Baba Jaga, der Pilzmeister zeigt nur noch auf die blauen Pilze'] },
   {v:'1.77',d:'13.11.2026',t:'Kein verschluckter Dialog',n:['Betritt man einen Ort zum ersten Mal und spricht sofort jemanden an, wartet Petjas Kommentar zum Ort jetzt, bis das Gespräch fertig ist – vorher hat er das Gespräch abgeschnitten (z. B. kam Madames Liste dann nicht an)'] },

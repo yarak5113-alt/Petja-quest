@@ -5,6 +5,7 @@ let queue=[],typing=null,full='',busy=false,done=null;
 // Einstellungen (Menü → Einstellungen): Textgeschwindigkeit in ms pro Buchstabe, Leerlauf-Sprüche an/aus
 // voices: 'alle' = jede Figur spricht, 'petja' = nur Petja; sfx/vox = Lautstärke Geräusche/Stimmen (0..1)
 const OPT={speed:28,barks:true,voices:'alle',sfx:.6,vox:1};try{Object.assign(OPT,JSON.parse(localStorage.getItem('petjaOpts')||'{}'))}catch(e){}
+function applyBox(){document.documentElement.style.setProperty('--boxs',OPT.box||1)}applyBox();
 function saveOpt(){try{localStorage.setItem('petjaOpts',JSON.stringify(OPT))}catch(e){}}
 function say(lines,cb){queue=lines.slice();done=cb;busy=true;box.style.display='block';next()}
 // Mimik aus dem Text erraten (eine Zeile darf als 3. Element auch fest eine Emotion mitgeben: ['P','Text','schreck'])

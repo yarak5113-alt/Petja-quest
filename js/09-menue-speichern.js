@@ -25,7 +25,7 @@ function quests(){const Q=[];
       {t:'Mehl vom Müller besorgen',v:FL.mehlQ,ok:FL.mehl,h:has('gutschein')?'Den Gutschein zum Müller bringen: an der Alten Mühle auf die Mühle klicken.':!FL.mullerQ?'Die Gnome wollen das „Mehl“ vom Müller. Vom Dorfeingang aufs Schild „Zur alten Mühle“ und dort an die Tür klopfen (auf die Mühle klicken).':'Der Müller rückt das Mehl nur gegen etwas aus dem Banja raus.',s:[
         {t:'Ein Wunsch des Müllers',v:FL.mullerQ,ok:FL.gutschein||FL.mehl,h:FL.rekrut?'Nastja ist unterwegs. Zurück ins Banja zu Madame Zinaida – sie schuldet mir einen Gutschein für den Müller.':'Der Müller will eine Braut aus dem Banja hinterm Irrwald – oder wenigstens einen Tanz.',s:[
           {t:'Den Weg nicht verlieren',v:FL.mullerQ,ok:FL.karte,h:'Nur Baba Jaga kennt den Weg durch den Irrwald. In ihrer Hütte mit ihr reden und nach dem Banja fragen.'},
-          {t:'Das Banja finden',v:FL.mullerQ,ok:seen.banja,h:'An der Alten Mühle aufs Schild „In den Irrwald“. Dann die Wege laut Karte nehmen: links, links, rechts, geradeaus. Falsch abgebogen = zurück zur Mühle.'},
+          {t:'Das Banja finden',v:FL.mullerQ,ok:seen.banja,h:'An der Alten Mühle aufs Schild „In den Irrwald“. Den Weg verrät Baba Jagas Karte – in den Taschen anklicken und genau lesen. Falsch abgebogen = zurück zur Mühle.'},
           {t:'Eine Neue für Madame',v:FL.clubQ,ok:FL.rekrut,h:'Madames Liste in den Taschen lesen. Dann im Sumpf (hinter der Birkensperre) die Nymphen anklicken, mit ihnen reden und die finden, die genau auf die Liste passt.'}]}]}]},
     {t:'Frische blaue Pilze holen',v:FL.stollen,ok:has('blaupilze')||FL.recipe,h:'In der Höhle wachsen links große blaue Traumschwämme. Anklicken und einsammeln.'},
     {t:'Die Pilze zu Baba Jaga bringen',v:has('blaupilze')||FL.recipe,ok:FL.recipe,h:'Zurück in Baba Jagas Hütte und mit ihr reden.'}]});
@@ -117,6 +117,7 @@ function loadState(d){closeO();if($('#start'))rm('start');
   for(const k in cache)delete cache[k];renderInv();busy=false;box.style.display='none';enter(d.cur,[d.P.x,d.P.y])}
 // ===== Pausemenü =====
 const KEYS=[['Linksklick','Laufen, ansehen, benutzen, sprechen'],['Klick / Leertaste im Dialog','Text weiter'],['ESC / Rechtsklick im Dialog','Gespräch überspringen'],['Schilder & Türen (Pfeil)','Zu einem anderen Ort'],['Leertaste (halten)','Alles Klickbare zeigen'],['H','Tipp: Was soll ich als Nächstes tun?'],['I','Taschen'],['J','Aufträge'],['M','Karte'],['L','Gesprächsverlauf'],['V','Stimmen an/aus'],['F','Vollbild'],['ESC','Menü / schließen']];
+const BOXS=[[.85,'Klein'],[1,'Normal'],[1.25,'Groß'],[1.5,'Sehr groß']];
 const SPEEDS=[[45,'Langsam'],[28,'Normal'],[14,'Schnell'],[4,'Sofort']];
 function openMenu(view){view=view||'m';const a=slots(),inGame=cur&&!$('#start'),back=`<button class="mb back" data-v="${inGame?'m':'x'}">${ic('back')} Zurück</button>`;
   const slot=(mode,n)=>{const d=a[n];return`<button class="slotc" data-${mode}="${n}" ${mode=='l'&&!d?'disabled':''}><b>Platz ${n+1}</b><span>${d?ic('pin','sm')+' '+(LOCN[d.cur]||d.cur)+'<br><small>'+d.date+'</small>':'<i>leer</i>'}</span></button>`};
@@ -129,7 +130,9 @@ function openMenu(view){view=view||'m';const a=slots(),inGame=cur&&!$('#start'),
         <label class="sl">${ic('music')} Lautstärke Musik <input type="range" min="0" max="100" value="${Math.round((OPT.mus==null?.35:OPT.mus)*100)}" data-r="mus"></label>
         <label class="sl">${ic('tree')} Lautstärke Geräusche <input type="range" min="0" max="100" value="${Math.round(OPT.sfx*100)}" data-r="sfx"></label>
         <button class="mb" data-o="barks"><span>${ic('log')} Sprüche beim Rumstehen</span> <b>${OPT.barks?'An':'Aus'}</b></button>
-        <button class="mb" data-o="speed"><span>${ic('speed')} Textgeschwindigkeit</span> <b>${sp[1]}</b></button></div>${back}`
+        <button class="mb" data-o="speed"><span>${ic('speed')} Textgeschwindigkeit</span> <b>${sp[1]}</b></button>
+        <button class="mb" data-o="box"><span>${ic('talk')} Textgröße im Gespräch</span> <b>${(BOXS.find(s=>s[0]==OPT.box)||BOXS[1])[1]}</b></button>
+        <p class="boxprev" style="font-size:calc(15px*${OPT.box||1})"><b>Petja:</b> So groß steht der Text in der Leseleiste.</p></div>${back}`
     :view=='k'?`<h3>${ic('keys')} Steuerung</h3><table>${KEYS.map(([k,t])=>`<tr><td>${k}</td><td>${t}</td></tr>`).join('')}</table><button class="mb" data-v="tut">${ic('help')} Anleitung nochmal zeigen</button>${back}`
     :`<h3>${inGame?ic('pause')+' Pause':ic('menu')+' Menü'}</h3>
       ${inGame?`<button class="mb big" data-v="x">${ARR()}Weiterspielen</button>`:''}
@@ -143,7 +146,7 @@ function openMenu(view){view=view||'m';const a=slots(),inGame=cur&&!$('#start'),
     openMenu(v)});
   o.querySelectorAll('button[data-o]').forEach(b=>b.onclick=()=>{const k=b.dataset.o;
     if(k=='voice'){if(!VOICE_ON){VOICE_ON=true;OPT.voices='alle'}else if(OPT.voices!=='petja')OPT.voices='petja';else VOICE_ON=false;
-      try{localStorage.setItem('petjaVoice2',VOICE_ON?'1':'0')}catch(e){}saveOpt();if(TTS)TTS.cancel();if(VOICE_ON)voice(OPT.voices==='petja'?'So klinge ich.':'So klingen wir alle.','P')}if(k=='barks'){OPT.barks=!OPT.barks;saveOpt()}if(k=='speed'){const i=SPEEDS.findIndex(s=>s[0]==OPT.speed);OPT.speed=SPEEDS[(i+1)%SPEEDS.length][0];saveOpt()}openMenu('o')});
+      try{localStorage.setItem('petjaVoice2',VOICE_ON?'1':'0')}catch(e){}saveOpt();if(TTS)TTS.cancel();if(VOICE_ON)voice(OPT.voices==='petja'?'So klinge ich.':'So klingen wir alle.','P')}if(k=='barks'){OPT.barks=!OPT.barks;saveOpt()}if(k=='speed'){const i=SPEEDS.findIndex(s=>s[0]==OPT.speed);OPT.speed=SPEEDS[(i+1)%SPEEDS.length][0];saveOpt()}if(k=='box'){const i=BOXS.findIndex(s=>s[0]==(OPT.box||1));OPT.box=BOXS[(i+1)%BOXS.length][0];saveOpt();applyBox()}openMenu('o')});
   o.querySelectorAll('button[data-s]').forEach(b=>b.onclick=()=>{const n=+b.dataset.s;
     if(a[n]&&!b.dataset.armed){o.querySelectorAll('[data-armed]').forEach(x=>delete x.dataset.armed);b.dataset.armed=1;b.classList.add('warn');o.querySelector('.msg').textContent='Platz '+(n+1)+' ist belegt. Nochmal klicken zum Überschreiben.';return}
     const ok=saveGame(n);openMenu('s');ovl.querySelector('.msg').innerHTML=ok?ic('check','sm')+' Gespeichert auf Platz '+(n+1)+'!':'Speichern nicht möglich (Browser blockiert Speicher).';ovl.querySelector('.msg').classList.toggle('ok',!!ok)});

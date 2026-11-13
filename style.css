@@ -285,3 +285,11 @@ html:not(.ink) .spr{image-rendering:pixelated;image-rendering:crisp-edges}
 #abspann .c{display:flex;justify-content:space-between;gap:20px;padding:5px 0;border-bottom:1px solid rgba(200,148,58,.25)}#abspann .c b{color:#ffd25a}#abspann .c span{font-style:italic;opacity:.85}
 #abspann .btns{display:flex;gap:10px;justify-content:center;margin:40px 0 60px}
 @keyframes abroll{to{top:0;transform:translate(-50%,calc(-100% + 480px))}}
+
+/* ===================== Textgröße der Leseleiste (Einstellungen) ===================== */
+#box{font-size:calc(clamp(12px,1.8vw,16px) * var(--boxs,1))}
+.boxprev{margin:6px 2px 2px;padding:8px 10px;background:rgba(0,0,0,.35);border:1px solid rgba(200,148,58,.35);border-radius:3px;color:#f6ead0;font-family:Georgia,serif;line-height:1.35}
+.boxprev b{color:var(--gold);font-variant:small-caps}
+/* Einstellungen: Fenster passt immer ins Bild (scrollt bei Bedarf), Zeilen etwas enger */
+.ovl.menuO .pan.menu{max-height:calc(100% - 20px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:#c8943a transparent}
+.ovl.menuO .opts{gap:4px}.ovl.menuO .opts .mb{padding-top:5px;padding-bottom:5px}

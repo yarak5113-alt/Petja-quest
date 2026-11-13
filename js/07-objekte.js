@@ -162,7 +162,7 @@ const T={
     if(FL.recipe)return say(['filter','spore','glut','traene'].every(i=>inv.includes(i))?[['J2','Du hast alles? Dann ab an den Tisch, Bürschchen!']]:[['J2','Ur-Spore, geweihte Glut, eine echte Träne. Und dein alter Filter. Bring mir alles, dann bauen wir dir deinen Ausweg.']]);
     if(FL.clubQ&&!FL.rekrut&&!FL.cut)return hint('bjSumpf',[[['J2','Was stehst du hier rum? Hast du nichts zu tun, Bürschchen?'],['P','Doch. Ich muss in den Sumpf. Nur liegen da Tonnen von Birken im Weg.']],
       [['P','Mit bloßen Händen wird das nix. Ich bräuchte eine Säge.'],['P','Wer hat hier Werkzeug? ...Opa Grischa im Dorf. Der hat sein Haus mal selbst gebaut.']]]);
-    if(FL.mullerQ&&FL.karte&&!seen.banja)return say([['J2','Du hast doch meine Karte! Hau ab und verlauf dich woanders!'],['P','(Zweimal links, einmal rechts, einmal geradeaus. Steht drauf. Muss ich nur noch machen.)']]);
+    if(FL.mullerQ&&FL.karte&&!seen.banja)return say([['J2','Du hast doch meine Karte! Hau ab und verlauf dich woanders!'],['P','(Der Weg steht auf ihrer Karte. Die hab ich in der Tasche. Muss ich nur genau lesen.)']]);
     if(FL.mehlQ&&!FL.mullerQ)return hint('bjMehl',[[['J2','Mehl? Bei den Gnomen ist „Mehl“ nie Mehl. Hihihi! Geht mich nichts an.']],[['P','Mehl gibt’s beim Müller. Logisch. ...Im Dorf zeigt doch ein Schild zur alten Mühle.']]]);
     if(FL.bjInfo&&!FL.stollen)return hint('bjGnome',[
       [['J2','Zu den Gnomen mit den Pilzen! Und lass dich nicht übers Ohr hauen. Die haben große Ohren. Und Nasen.']],
