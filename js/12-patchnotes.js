@@ -1,6 +1,11 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.66',d:'13.11.2026',t:'Neue Baba Jaga, Dorf in echter Größe',n:[
+    'Baba Jaga komplett neu gezeichnet: gebückt, lange Hakennase mit Warze, ein einzelner Zahn, wilde graue Strähnen unter dem gepunkteten Kopftuch, weinrotes Kleid mit geflickter Schürze, Fußwickel und Bastschuhe – und sie winkt Petja mit krummem Finger heran',
+    'Dorf und Dorfstraße: Häuser, Zäune, Brunnen, Masten und Sonnenblumen haben jetzt echte Größen im Verhältnis zu Petja (eine Izba ist gut zweieinhalbmal so hoch wie er)',
+    'Man steht jetzt mitten auf der Straße: links und rechts ein großes Haus, dahinter reihen sich die Häuser bis zur Kirche',
+    'Klickflächen passen sich automatisch an die neuen Häuser an'] },
   {v:'1.65',d:'13.11.2026',t:'Petja: Schultern und Hals',n:[
     'Petjas Schultern fallen jetzt glatt ab – keine runden Schulterkugeln mehr am Ärmelansatz',
     'Hals und V-Ausschnitt haben dieselbe Hautfarbe wie die Hände (kein dunkler Streifen mehr)',
