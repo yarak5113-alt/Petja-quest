@@ -67,9 +67,9 @@ Umgesetzt in `js/20-akt3.js` (plus Anpassungen in `07-objekte.js`, `09-menue-spe
 
 - [x] Rezept vom Pilzmeister umgestellt (Ur-Spore, geweihte Glut, echte Träne + Papierfilter); Phiole und Filter kommen automatisch, auch bei alten Spielständen
 - [x] Ur-Spore: Pilzbeet bei den Gnomen mit Minispiel (5 goldene Pilze in 40 s, max. 3 falsche; nach 3 Fehlversuchen überspringbar)
-- [x] Kirche → Pope: Vater Ignati sitzt seit 1993 an der Bar im Banja, kommt zurück zur Kirche, gibt Weihwasser
+- [x] Kirche → Pope: Vater Ignati schläft seit 1993 im Heu hinterm Banja (neuer Ort „Hinter dem Banja“, rechts vor dem Banja; „Z“ alle 3 s, leises Schnarchen), kommt zurück zur Kirche, gibt Weihwasser
 - [x] Schmiede: Schmied Fjodor (neue Figur) – die Weihe seiner Esse war die alte Schuld des Popen; Weihwasser → Glut in der Dose
-- [x] Zwiebel-Träne: Omas Zwiebel → Privattanz bei Madame buchen → Zwiebel in die Lounge-Lüftung → Nastja weint → Träne in die Phiole
+- [x] Zwiebel-Träne: Zwiebel aus dem Gemüsebeet der Gnome → von hinterm Banja in die Lüftung der Lounge → Privattanz bei Madame buchen → Nastja weint → Träne in die Phiole
 - [x] Finale: Crafting-Minispiel am Tisch (Filter → Ur-Spore → Träne → rollen → mit der Glut anzünden), Lichtblitz, Loop zurück auf Wowas Sofa, Abspann
 - [x] Aufträge mit allen neuen Schritten und Hinweisen
 

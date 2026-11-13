@@ -7,7 +7,7 @@
 N.PO=['Vater Ignati','#e8d8a0'];N.SM=['Schmied Fjodor','#e8a070'];VOX.PO=[0,.55,.88];VOX.SM=[0,.35,.86];
 
 // ----- Figuren (gleiche Zeichen-Pipeline wie alle anderen) -----
-// Vater Ignati: orthodoxer Pope, seit 1993 „in der Stadt“ (= im Banja). Kamilavka, riesiger grauer Bart, rote Nase, Goldkreuz, Schnapsglas
+// Vater Ignati: orthodoxer Pope, seit 1993 „in der Stadt“ (= schläft im Heu hinterm Banja, siehe 22-banja-hof.js). Kamilavka, riesiger grauer Bart, rote Nase, Goldkreuz, Schnapsglas
 const POPE=`<g stroke="#1e140c" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round">
 <path d="M-21,-2C-23,-8 -19,-13 -12,-13L-3,-13C-1,-8 -1,-4 -3,-2Z" fill="#1e1a1c"/><path d="M3,-2C1,-8 5,-13 12,-13L21,-13C23,-8 23,-4 21,-2Z" fill="#1e1a1c"/>
 <path d="M-26,-150C-33,-110 -37,-60 -35,-10L35,-10C37,-60 33,-110 26,-150C14,-158 -14,-158 -26,-150Z" fill="#2c2a34"/>
@@ -93,7 +93,7 @@ a3hot('gnome','pilzbeet','M452,428L460,394L580,394L590,428Z');a3hot('lounge','lu
 sprite(POPE,NPCBOX,K).then(u=>{A3IMG.pope.setAttribute('href',u);A3IMG.pope2.setAttribute('href',u)});sprite(SMITH,NPCBOX,K).then(u=>A3IMG.schmied.setAttribute('href',u));
 // Größe aus der Bildtiefe: so groß wie ein echter Mensch neben Petja
 document.querySelectorAll('[data-a3]').forEach(g=>{const[room,X,Y,m,hu]=JSON.parse(g.dataset.a3);g.setAttribute('transform',`translate(${X},${Y}) scale(${(m/1.8*pjAt(room,Y)/hu).toFixed(3)})`)});
-function a3Vis(){const show=(id,on)=>{const e=document.querySelector(`[data-id="${id}"]`);if(e)e.style.display=on?'':'none'};show('pope',FL.recipe&&!FL.popeBack);show('pope2',!!FL.popeBack);
+function a3Vis(){const show=(id,on)=>{const e=document.querySelector(`[data-id="${id}"]`);if(e)e.style.display=on?'':'none'};show('pope',!FL.popeBack);show('pope2',!!FL.popeBack);
   if(FL.recipe&&!FL.a3){FL.a3=1;if(!has('phiole')&&!has('traene'))inv.push('phiole');if(!has('filter'))inv.push('filter');renderInv()}}
 const _enterA3=enter;enter=function(id,pos){_enterA3(id,pos);a3Vis();if(id==='lounge'&&FL.booked&&!FL.zwIn)setTimeout(()=>{if(cur==='lounge'&&!busy)say([['P','Nastja macht sich frisch. Ich hab vielleicht eine Minute.'],['P','(Und die Lüftung da oben bläst direkt aufs Sofa …)']])},1300)};
 a3Vis();
@@ -137,23 +137,21 @@ Object.assign(T,{
     pilzbeetGame()}},
   lueftung:{n:'Lüftung',at:[600,470],fn(){
     if(FL.zwIn)return say([['P','Da drin liegt jetzt eine Zwiebel. Respekt an die Lüftung.']]);
-    if(has('zwiebel')&&FL.booked)return say([['P','Die Lüftung bläst direkt aufs Sofa.'],['P','*quetscht die Zwiebel durchs Gitter* … Und jetzt nicht atmen. Ganz einfach.']],
-      ()=>{inv.splice(inv.indexOf('zwiebel'),1);renderInv();FL.zwIn=1;setTimeout(()=>say([['NA','So, Süßer. Ich bin da. Hände aufs Sofa.'],['P','(Nicht atmen. Nicht atmen.)']],lapDance),500)});
+    if(has('zwiebel'))return say([['P','Die Lüftung bläst direkt aufs Sofa. Aber hier drin sieht Nastja alles.'],['P','(Von draußen wär das unauffälliger. Hinterm Banja.)']]);
     say([['P','Eine Lüftung. Bläst warme Luft direkt aufs Sofa. Wer baut sowas?']])}}});
 
 // bestehende Figuren und Orte erweitern
 const wrapFn=(id,f)=>{const o=T[id];if(!o)return;const orig=o.fn?o.fn.bind(o):()=>{o.i=o.i||0;const set=o.l[o.i%o.l.length];o.i++;say(set,o.after)};o.fn=function(){return f.call(o,orig)}};
 wrapFn('oma',orig=>{if(FL.recipe&&!FL.zwiebel&&!has('traene'))return say([['P','Oma, haben Sie zufällig eine Zwiebel? Eine richtig scharfe?'],
-  FL.teer?['O','Eine scharfe? Junge, meine Zwiebeln sind so scharf, da weint der Kater vom Popen schon beim Vorbeigehen.']:['O','Ffarfe Fwiebel? Hab iff. Da weint fogar der Kater.'],
-  ['O','Hier. Die schärfste aus dem Beet. Nicht dran riechen.'],['P','*riecht dran* … AAH. Meine Augen. Okay. Perfekt.']],()=>{FL.zwiebel=1;inv.push('zwiebel');renderInv()});return orig()});
+  FL.teer?['O','Meine Zwiebeln sind alle in der Suppe, Junge. Aber die Gnome züchten welche. So scharf, dass der Kohl daneben weint.']:['O','Fwiebeln? Alle in der Fuppe. Die Gnome haben welche. Ffarfe.']]);return orig()});
 wrapFn('nastja2',orig=>{if(FL.recipe&&!has('traene')&&!FL.traene){
   if(!FL.trQ)return say([['P','Nastja … ganz komische Frage. Könntest du mal weinen? Nur eine Träne?'],['NA','Weinen? Süßer, ich hab dreihundert Jahre im Sumpf gelegen. Ich hab keine Tränen mehr. Nur noch Schlamm.'],
-    ['P','(Eine echte Träne von einer, die nie weint. Na super.)'],['P','(Irgendwas, das jeden zum Heulen bringt … Zwiebeln. Oma hat doch einen Garten.)']],()=>{FL.trQ=1});
+    ['P','(Eine echte Träne von einer, die nie weint. Na super.)'],['P','(Irgendwas, das jeden zum Heulen bringt … Zwiebeln. Bei den Gnomen wächst doch Gemüse.)']],()=>{FL.trQ=1});
   return say([['NA','Privattanz? Frag Madame, Süßer. Die führt das Buch.']])}return orig()});
 wrapFn('madame',orig=>{if(FL.recipe&&!FL.traene&&!has('traene')){
-  if(FL.booked)return say([['Z','Die Lounge wartet, Süßer. Nastja auch. Na los.']],()=>enter('lounge',[260,480]));
-  if(has('zwiebel'))return say([['P','Madame, ich bräuchte nochmal einen Privattanz. Mit Nastja.'],['Z','Nochmal? Süßer, du wirst ja süchtig.'],['Z','Na gut. Für meinen besten Rekrutierer. Die Lounge ist frei. Geh schon mal rein, Nastja macht sich frisch.']],
-    ()=>{FL.booked=1;enter('lounge',[260,480])})}return orig()});
+  if(FL.zwIn)return say([['P','Madame, ich bräuchte nochmal einen Privattanz. Mit Nastja.'],['Z','Nochmal? Süßer, du wirst ja süchtig.'],['Z','Na gut. Für meinen besten Rekrutierer. Die Lounge ist frei.']],
+    ()=>{FL.booked=1;enter('lounge',[260,480]);setTimeout(()=>say([['NA','So, Süßer. Ich bin da. Hände aufs Sofa.'],['P','(Nicht atmen. Die Lüftung arbeitet schon.)']],lapDance),1500)});
+  if(has('zwiebel'))return say([['P','(Moment. Wenn ich mit einer Zwiebel in der Hand in die Lounge gehe, merkt Nastja das sofort.)'],['P','(Die Lüftung der Lounge muss ja irgendwo nach draußen gehen. Hinterm Banja vielleicht?)']])}return orig()});
 wrapFn('kirche2',orig=>{if(FL.popeBack&&cur==='kirche')return say([['P','Die Tür ist offen. Drinnen riecht es nach Weihrauch. Und nach Wodka.']]);return orig()});
 wrapFn('esse',orig=>{if(FL.glut)return say([['P','Jetzt glüht sie geweiht. Und riecht leicht nach Wodka.']]);return say([['P','Fjodors Esse. Die Kohle glüht. Aber irgendwie … ungeweiht.']])});
 wrapFn('tisch',orig=>{if(FL.ende)return say([['P','Hier hab ich meinen Ausweg gebaut. Ein Satz, den ich nie sagen wollte.']]);
@@ -266,7 +264,7 @@ function finale(){FL.ende=1;say([['J2','Fertig. Der schönste Ausweg-Joint, den 
     ['WO','Er sagt: Ein Zug, und du bist in einer anderen Welt. Märchenwelt!'],['P','Wowa.'],['WO','Ja?'],['P','Raus.'],['WO','Aber da sind so lustige blaue Pilze drin …'],['P','*starrt auf die Pilze*'],['P','… Na super.']]);
   await tween(1600,p=>dark=p);fin=true;cv3.remove();changing=false;abspann()})}
 function abspann(){const cast=[['Petja','der Typ auf dem Sofa'],['Wowa','der Grund für alles'],['Baba Jaga','Hexe, Köchin, Lebensberaterin'],['Pilzmeister Knolle','Wissenschaft'],['Grobnik & Opa Schnobbel','Gnome, Wegezoll'],
-  ['Kusmitsch','Fischer, Selbstbrenner'],['Oma Dusja','Gebiss, Teer, Zwiebel'],['Opa Grischa','Leiter, Ofen, kein Haus'],['Madame Zinaida','Banja'],['Nastja','Star des Banja, weint nie'],['Vater Ignati','in der Stadt seit 1993'],['Schmied Fjodor','hat seine Weihe'],['Die Krähe','Krah'],['Der Kater vom Popen','spielte sich selbst']];
+  ['Kusmitsch','Fischer, Selbstbrenner'],['Oma Dusja','Gebiss, Teer, Zwiebel'],['Opa Grischa','Leiter, Säge, neues Haus'],['Madame Zinaida','Banja'],['Nastja','Star des Banja, weint nie'],['Vater Ignati','im Heu seit 1993'],['Schmied Fjodor','hat seine Weihe'],['Die Krähe','Krah'],['Der Kater vom Popen','spielte sich selbst']];
   const o=document.createElement('div');o.id='abspann';o.innerHTML=`<div class="roll"><h1>Petja</h1><h2>und der Verfluchte Birkenwald</h2><p class="end">Ende.</p><p class="end small">… oder?</p>
     <h3>Mitwirkende</h3>${cast.map(([a,b])=>`<div class="c"><b>${a}</b><span>${b}</span></div>`).join('')}
     <h3>Keine Pilze wurden verletzt</h3><p>Außer neun blauen. Und fünf goldenen.<br>Und einer Zwiebel.</p><h3>Danke fürs Spielen!</h3>
