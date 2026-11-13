@@ -17,7 +17,7 @@ function quests(){const Q=[];
       {t:'Eine echte Träne',v:FL.recipe,ok:has('traene')||FL.ende,s:[
         {t:'Etwas, das jeden zum Heulen bringt',v:FL.recipe,ok:FL.zwiebel,h:'Nastja im Banja weint nie. Eine scharfe Zwiebel? Die Gnome haben neben dem Riesenkohl ein Gemüsebeet.'},
         {t:'Die Zwiebel in die Lüftung',v:FL.zwiebel,ok:FL.zwIn,h:'Die Lüftung der Lounge geht nach draußen: vor dem Banja rechts in den Hinterhof, dort auf die Lüftung klicken.'},
-        {t:'Einen Privattanz buchen',v:FL.zwIn,ok:FL.booked,h:'Mit Madame Zinaida im Banja reden.'},
+        {t:'Einen Privattanz bekommen',v:FL.zwIn,ok:FL.booked||FL.traene,h:'Die Gäste sind weg. Im Banja auf die Bühne klicken und Nastja ansprechen – jetzt hat sie Zeit.'},
         {t:'Die Träne auffangen',v:FL.zwIn,ok:FL.traene,h:'Einfach sitzen bleiben und die Phiole bereithalten.'}]},
       {t:'Alles zu Baba Jaga',v:['filter','spore','glut','traene'].every(has),ok:FL.ende,h:'In Baba Jagas Hütte auf den Tisch klicken und den Ausweg-Joint bauen.'}]}]});
   Q.push({t:'Das Pilzlabor',d:'Baba Jaga braucht frische blaue Traumschwämme aus der Höhle der Gnome. Aber umsonst lassen die Gnome keinen rein.',v:FL.labQ,ok:FL.recipe,s:[

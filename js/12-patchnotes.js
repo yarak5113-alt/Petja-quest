@@ -1,6 +1,7 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.84',d:'13.11.2026',t:'Volles Haus im Banja',n:['Kein Festhängen mehr beim Privattanz: Es gibt ihn nur einmal, und erst wenn die Zwiebel in der Lüftung steckt – vorher hat Nastja keine Zeit','Solange ist im Banja viel los: Gäste stehen um die Bühne und wedeln mit Geldscheinen. Mit der Zwiebel in der Lüftung verziehen sie sich'] },
   {v:'1.83',d:'13.11.2026',t:'Pilze pflücken',n:['Beim Einsammeln der blauen Pilze in der Höhle bückt sich Petja jetzt und pflückt sie – mit Aufheb-Animation wie bei den anderen Gegenständen'] },
   {v:'1.82',d:'13.11.2026',t:'Sägen und Bauen zum Zuschauen',n:['Statt Abblende: kleine Animation beim Sägen der Birken (Petja sägt, Sägemehl fliegt, der Stamm bricht auseinander)','Nach dem Hausbau-Minispiel drei kurze Szenen: Petja trägt Stämme und legt sie auf, deckt auf der Leiter das Dach – und knallt die Tür zu (RUMMS!). Klick überspringt eine Szene','Bessere Hinweise auf den Ast: Kusmitsch erinnert Petja an den Ast der Krähe im Birkenwald (und an die Wäscheleine), und im Birkenwald fällt Petja der Ast von selbst auf'] },
   {v:'1.81',d:'13.11.2026',t:'Schild wieder klickbar',n:['Das Schild „Zum Schmiedehof“ auf der Dorfstraße lässt sich wieder anklicken – die Wäscheleine lag darüber'] },
