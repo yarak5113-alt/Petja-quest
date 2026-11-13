@@ -16,8 +16,10 @@ ITEMS.blaupilze=['','Frische Traumschwämme','Große blaue Pilze aus der Höhle 
 {const h=document.querySelector('#r-hoehle [data-id="lpilze"] .hit');if(h)h.setAttribute('d','M40,380L250,380L250,462L40,462Z')}
 T.lpilze.n='Leuchtpilze';
 wrapFn('lpilze',function(orig){
-  if(FL.bjInfo&&!FL.recipe&&!has('blaupilze'))return say([['P','Da! Große blaue Pilze. Die gleiche Farbe wie die Stückchen aus dem Joint.'],['P','*pflückt ein paar* … Sie leuchten. In meiner Hand. Na super.'],['P','Ab damit zu Baba Jaga.']],
-    ()=>{inv.push('blaupilze');renderInv()});
+  if(FL.bjInfo&&!FL.recipe&&!has('blaupilze'))return say([['P','Da! Große blaue Pilze. Die gleiche Farbe wie die Stückchen aus dem Joint.']],()=>{
+    // unsichtbarer Platzhalter an den gemalten Pilzen, damit Petja sich bückt und zugreift (grab entfernt ihn danach)
+    const r=document.createElementNS('http://www.w3.org/2000/svg','rect');r.id='blauPilzG';Object.entries({x:180,y:430,width:20,height:16,fill:'none'}).forEach(([k,v])=>r.setAttribute(k,v));$('#r-hoehle').appendChild(r);
+    grab('blauPilzG','blaupilze',()=>{inv.push('blaupilze');renderInv();say([['P','Sie leuchten. In meiner Hand. Na super.'],['P','Ab damit zu Baba Jaga.']])},{kind:'boden'})});
   if(has('blaupilze'))return say([['P','Ich hab genug. Mehr leuchtende Pilze in der Tasche will ich nicht erklären müssen.']]);
   return orig()});
 
