@@ -1,6 +1,10 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.67',d:'13.11.2026',t:'Dorf wie ein echtes Dorf',n:[
+    'Die Häuser stehen jetzt in Reihen links und rechts der Straße, mit Abstand zueinander und hinter Lattenzäunen – und werden zur Kirche hin gleichmäßig kleiner',
+    'Alles wird in Metern platziert (Abstand zur Straßenmitte, Entfernung) und daraus perspektivisch richtig gezeichnet',
+    'Omas Vorgarten mit Sonnenblumen, Wäscheleine und offenem Gartentor; das LADEN-Schild ist jetzt lesbar'] },
   {v:'1.66',d:'13.11.2026',t:'Neue Baba Jaga, Dorf in echter Größe',n:[
     'Baba Jaga komplett neu gezeichnet: gebückt, lange Hakennase mit Warze, ein einzelner Zahn, wilde graue Strähnen unter dem gepunkteten Kopftuch, weinrotes Kleid mit geflickter Schürze, Fußwickel und Bastschuhe – und sie winkt Petja mit krummem Finger heran',
     'Dorf und Dorfstraße: Häuser, Zäune, Brunnen, Masten und Sonnenblumen haben jetzt echte Größen im Verhältnis zu Petja (eine Izba ist gut zweieinhalbmal so hoch wie er)',
