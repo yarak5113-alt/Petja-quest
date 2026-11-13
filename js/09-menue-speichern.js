@@ -33,6 +33,7 @@ function quests(){const Q=[];
     {t:'Die Säge schärfen lassen',v:FL.sawQ,ok:has('saege')||FL.cut,h:'Opas Säge ist verrostet. Dorfstraße → „Zum Schmiedehof“, Schmied Fjodor fragen.'},
     {t:'Opas Haus vorbereiten',v:FL.sawQ,ok:FL.deal||FL.cut,h:'Die Birken am Sumpfweg sind Opas Bauholz. Erst will er Teer – Oma Dusja auf der Dorfstraße hat welchen (siehe „Omas Gebiss“). Den Teer dann zu Opa bringen.'},
     {t:'Opas Birken zersägen',v:FL.deal||FL.cut,ok:FL.cut,h:'Mit der geschärften Säge zur Birkensperre und auf die umgestürzten Birken klicken. Aus den Stämmen wird Opas Haus.'}]});
+  Q.push({t:'Opas neues Haus',d:'Die Stämme liegen bei Opa. Jetzt wird gebaut: Stämme setzen, schälen, teeren.',v:FL.cut&&FL.sawQ,ok:FL.haus,h:'Zu Opa Grischa ins Dorf und mit ihm reden.'});
   Q.push({t:'Eine offene Rechnung',d:'Schmied Fjodor hat Opas Säge auf Pump geschärft. „Ich vergess nix, Junge.“',v:FL.schuld,ok:FL.glut,h:'Irgendwann will der Schmied was von mir. Wenn er’s sagt, weiß ich’s.'});
   Q.push({t:'Omas Gebiss',d:'Oma hat ihr Gebiss verloren. Ohne das gibt’s keinen Teer.',v:FL.gq,ok:FL.teer,s:[
     {t:'Das Gebiss finden',v:FL.gq,ok:FL.ks,h:'Oma sagt, der Kater vom Popen hockt drauf. Also: Friedhof an der Kirche (Dorfstraße → „Zur Kirche“).'},

@@ -1,6 +1,7 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.75',d:'13.11.2026',t:'Hausbau-Minispiel',n:['Opas Haus baut man jetzt selbst – in drei Phasen an einer Hauswand von der Seite:','1. Stämme setzen: Der Stamm schwingt am Seil, im richtigen Moment klicken','2. Schälen: Mit dem Zugmesser die Rinde von den Birkenstämmen ziehen','3. Teeren: Mit dem Pinsel den Teer in die Fugen streichen','Nach drei Fehlversuchen lässt sich das Minispiel überspringen, „Später“ geht jederzeit'] },
   {v:'1.74',d:'13.11.2026',t:'Wäscheleine statt Netz',n:['Die Wäscheleine ersetzt das alte Fischernetz ganz: Man kann sie jederzeit mitnehmen, so wie früher das Netz'] },
   {v:'1.73',d:'13.11.2026',t:'Wäscheleine klickbar',n:['Die Wäscheleine auf der Dorfstraße lässt sich jetzt überall anklicken – vorher hat Galjas Haus die Klicks abgefangen'] },
   {v:'1.72',d:'13.11.2026',t:'Opas Birken',n:[
