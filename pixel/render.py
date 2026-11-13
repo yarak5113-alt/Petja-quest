@@ -5,6 +5,7 @@ Aufruf:  pip install pillow
          python pixel/render.py 4          -> 4-fach vergrößert (scharfe Pixel)
 """
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -24,12 +25,22 @@ def hex_to_rgba(h):
 for path in sorted(HERE.glob("*.json")):
     data = json.loads(path.read_text(encoding="utf-8"))
     pal = {sym: hex_to_rgba(col) for sym, col in data["palette"].items()}
-    grid = data["grid"]
-    cl = data.get("code_len", 1)        # Zeichen pro Pixel (2 bei vielen Farbtönen)
-    w, h = len(grid[0]) // cl, len(grid)
+    if data.get("format") == "rle":     # kompakt: pro Zeile "Zeichen + Anzahl", Rest transparent
+        w, h = data["width"], data["height"]
+        pixels = []
+        for row in data["rows"]:
+            line = []
+            for sym, n in re.findall(r"(\D)(\d*)", row):
+                line += [pal[sym]] * int(n or 1)
+            pixels += line + [(0, 0, 0, 0)] * (w - len(line))
+    else:
+        grid = data["grid"]
+        cl = data.get("code_len", 1)    # Zeichen pro Pixel (2 bei vielen Farbtönen)
+        w, h = len(grid[0]) // cl, len(grid)
+        pixels = [pal[row[i:i + cl]] for row in grid for i in range(0, len(row), cl)]
 
     img = Image.new("RGBA", (w, h))
-    img.putdata([pal[row[i:i + cl]] for row in grid for i in range(0, len(row), cl)])
+    img.putdata(pixels)
     if SCALE > 1:
         img = img.resize((w * SCALE, h * SCALE), Image.NEAREST)
 
