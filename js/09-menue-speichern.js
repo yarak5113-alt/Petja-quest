@@ -7,7 +7,7 @@ function quests(){const Q=[];
   Q.push({t:'Raus aus dem Märchen',d:'Irgendwas stimmt nicht. Ich muss hier wieder aufwachen.',v:1,ok:FL.ende,s:[
     {t:'Jemanden finden, der sich hier auskennt',v:1,ok:seen.huette,h:'Vom Birkenwald zur Weggabelung, dann dem Schild „Zu Baba Jaga“ folgen. Eine Hexe weiß bestimmt, wie man hier rauskommt.'},
     {t:'In Baba Jagas Hütte kommen',v:FL.bjNo,ok:FL.drin,h:has('leiter')?'Mit der Leiter zur Hütte und auf die Tür oder die Hühnerbeine klicken – dann geht’s durchs Fenster rein.':'Die Tür ist nur Deko, rein geht’s nur durchs Fenster. Dafür brauch ich eine Leiter (siehe „Hoch hinaus“).'},
-    {t:'Herausfinden, was mit mir los ist',v:FL.drin,ok:FL.recipe,h:FL.bjInfo?'Baba Jaga sagt, nur der Pilzmeister der Gnome weiß, welcher Pilz in meinem Joint war (siehe „Das Pilzlabor“).':'Baba Jaga in ihrer Hütte fragen. Sie will wissen, was in meinem Joint war (siehe „Der Joint“).'},
+    {t:'Herausfinden, was mit mir los ist',v:FL.drin,ok:FL.recipe,h:FL.bjInfo?'Baba Jaga braucht frische blaue Traumschwämme aus der Höhle der Gnome (siehe „Das Pilzlabor“).':'Baba Jaga in ihrer Hütte fragen. Sie will wissen, was in meinem Joint war (siehe „Der Joint“).'},
     {t:'Den Ausweg-Joint bauen',v:FL.recipe,ok:FL.ende,s:[
       {t:'Die Ur-Spore',v:FL.recipe,ok:has('spore')||FL.ende,h:'In der Gnomsiedlung auf das Pilzbeet klicken und fünf goldene Pilze pflücken.'},
       {t:'Glut, die nicht ausgeht',v:FL.recipe,ok:has('glut')||FL.ende,s:[
@@ -20,14 +20,15 @@ function quests(){const Q=[];
         {t:'Einen Privattanz buchen',v:FL.zwIn,ok:FL.booked,h:'Mit Madame Zinaida im Banja reden.'},
         {t:'Die Träne auffangen',v:FL.zwIn,ok:FL.traene,h:'Einfach sitzen bleiben und die Phiole bereithalten.'}]},
       {t:'Alles zu Baba Jaga',v:['filter','spore','glut','traene'].every(has),ok:FL.ende,h:'In Baba Jagas Hütte auf den Tisch klicken und den Ausweg-Joint bauen.'}]}]});
-  Q.push({t:'Das Pilzlabor',d:'Der Pilzmeister der Gnome soll sagen, was in meinem Joint war. Aber umsonst ist nichts.',v:FL.labQ,ok:FL.recipe,s:[
+  Q.push({t:'Das Pilzlabor',d:'Baba Jaga braucht frische blaue Traumschwämme aus der Höhle der Gnome. Aber umsonst lassen die Gnome keinen rein.',v:FL.labQ,ok:FL.recipe,s:[
     {t:'In den Stollen kommen',v:FL.labQ,ok:FL.stollen,h:'Zur Gnomsiedlung (vom Fischerhaus am Ufer entlang) und auf das Schild „Zur Höhle“ klicken. Grobnik will dafür etwas.',s:[
       {t:'Mehl vom Müller besorgen',v:FL.mehlQ,ok:FL.mehl,h:has('gutschein')?'Den Gutschein zum Müller bringen: an der Alten Mühle auf die Mühle klicken.':!FL.mullerQ?'Die Gnome wollen das „Mehl“ vom Müller. Vom Dorfeingang aufs Schild „Zur alten Mühle“ und dort an die Tür klopfen (auf die Mühle klicken).':'Der Müller rückt das Mehl nur gegen etwas aus dem Banja raus.',s:[
         {t:'Ein Wunsch des Müllers',v:FL.mullerQ,ok:FL.gutschein||FL.mehl,h:FL.rekrut?'Nastja ist unterwegs. Zurück ins Banja zu Madame Zinaida – sie schuldet mir einen Gutschein für den Müller.':'Der Müller will eine Braut aus dem Banja hinterm Irrwald – oder wenigstens einen Tanz.',s:[
           {t:'Den Weg nicht verlieren',v:FL.mullerQ,ok:FL.karte,h:'Nur Baba Jaga kennt den Weg durch den Irrwald. In ihrer Hütte mit ihr reden und nach dem Banja fragen.'},
           {t:'Das Banja finden',v:FL.mullerQ,ok:seen.banja,h:'An der Alten Mühle aufs Schild „In den Irrwald“. Dann die Wege laut Karte nehmen: links, links, rechts, geradeaus. Falsch abgebogen = zurück zur Mühle.'},
           {t:'Eine Neue für Madame',v:FL.clubQ,ok:FL.rekrut,h:'Madames Liste in den Taschen lesen. Dann im Sumpf (hinter der Birkensperre) die Nymphen anklicken, mit ihnen reden und die finden, die genau auf die Liste passt.'}]}]}]},
-    {t:'Die Pilze untersuchen lassen',v:FL.stollen,ok:FL.recipe,h:'Mit der Laterne in die Höhle und auf den dunklen Gang klicken. Der Pilzmeister wartet hinten.'}]});
+    {t:'Frische blaue Pilze holen',v:FL.stollen,ok:has('blaupilze')||FL.recipe,h:'In der Höhle wachsen links große blaue Traumschwämme. Anklicken und einsammeln.'},
+    {t:'Die Pilze zu Baba Jaga bringen',v:has('blaupilze')||FL.recipe,ok:FL.recipe,h:'Zurück in Baba Jagas Hütte und mit ihr reden.'}]});
   Q.push({t:'Der versperrte Weg',d:'Umgestürzte Birken versperren den Weg zum Sumpf.',v:seen.sperre,ok:FL.cut,s:[
     {t:'Eine Säge finden',v:seen.sperre&&FL.clubQ,ok:FL.sawQ||FL.cut,h:'Vielleicht hat Opa Grischa eine Säge? Er steht im Dorf (hinter Baba Jagas Hütte) vor seiner Brandruine.'},
     {t:'Die Säge schärfen lassen',v:FL.sawQ,ok:has('saege')||FL.cut,h:'Opas Säge ist verrostet. Dorfstraße → „Zum Schmiedehof“, Schmied Fjodor fragen.'},

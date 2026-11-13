@@ -28,7 +28,8 @@ const TSTEPS=[
   {t:'Gutschein von Madame',f:['gutschein'],add:['gutschein'],at:['banja',300,480]},
   {t:'„Mehl“ vom Müller',f:['mehl'],del:['gutschein'],add:['mehl'],at:['muehle',700,470]},
   {t:'Stollen offen (Laterne)',f:['stollen'],del:['mehl'],add:['laterne'],s:['hoehle'],at:['hoehle',400,486]},
-  {t:'Rezept vom Pilzmeister',f:['recipe'],del:['pilze'],at:['hoehle',400,486]}];
+  {t:'Blaue Pilze aus der Höhle',add:['blaupilze'],at:['hoehle',400,486]},
+  {t:'Rezept von Baba Jaga',f:['recipe','a3'],del:['pilze','blaupilze'],add:['phiole','filter'],at:['innen',250,470]}];
 function tState(n){const d={inv:[],FL:{},seen:{wald:1},REM:[],cur:'wald',P:{x:400,y:476},ti:{}};
   TSTEPS.slice(0,n+1).forEach(st=>{(st.f||[]).forEach(k=>d.FL[k]=1);(st.del||[]).forEach(i=>{const j=d.inv.indexOf(i);if(j>=0)d.inv.splice(j,1)});
     (st.add||[]).forEach(i=>d.inv.push(i));(st.rm||[]).forEach(r=>d.REM.push(r));(st.s||[]).forEach(s=>d.seen[s]=1);

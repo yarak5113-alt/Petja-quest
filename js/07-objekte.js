@@ -154,8 +154,9 @@ const T={
     say([['P','*schnapp*'],['F','(kämpfend) KOMM HER! KOMM HER, DU MISTVIEH!'],['P','Der merkt gar nichts. Dreißig Jahre Warten machen blind.']],()=>grab('schnapsG','schnaps',()=>{FL.schnaps=1;rm('schnapsG');inv.push('schnaps');renderInv()}))}},
   leiter:{n:'Leiter',at:[700,452],fn(){say(FL.leiterQ?[['G','Die Leiter gibt’s gegen Selbstgebrannten. Nicht gegen Bitte-Bitte.']]:[['P','Eine alte Leiter am Ofen. Angekokelt, aber stabil.'],['G','Finger weg! Das ist das Einzige, was mir geblieben ist. Außer dem Ofen.']])}},
   baba:{n:'Baba Jaga',at:[540,460],fn(){
+    if(inv.includes('blaupilze')&&!FL.recipe)return bjRezept();   // Ende Akt 2: Zwischensequenz aus Petjas Sicht (23-bj-szene.js)
     if(inv.includes('pilze')&&!FL.bjInfo)return say([['P','Hier. Die waren in dem Joint. Blau angelaufen.'],['J2','*schnüffel* ...*schnüffel*... HA! Traumschwamm. Aber welche Sorte? Da gibt es hundert.'],
-      ['J2','Wer den raucht, wacht in MEINEM Märchen auf. Darum kommst du nicht raus, Bürschchen.'],['P','Wowa. Natürlich. Natürlich war es Wowa.'],['J2','Welche Sorte genau, weiß nur der Pilzmeister der Gnome. Tief in ihrer Höhle. Bring ihm die Pilze.'],
+      ['J2','Wer den raucht, wacht in MEINEM Märchen auf. Darum kommst du nicht raus, Bürschchen.'],['P','Wowa. Natürlich. Natürlich war es Wowa.'],['J2','Für ein Gegengift brauch ich frische. Und die wachsen nur tief in der Höhle der Gnome. Bring mir welche!'],
       ['J2','Aber die Gnome lassen keinen umsonst in ihren Stollen. Gnome sind schlimmer als Steuerprüfer.']],()=>{FL.bjInfo=1;FL.labQ=1});
     if(FL.mullerQ&&!FL.karte)return say([['P','Ich muss ins Banja. Hinter dem Irrwald. Kennen Sie den Weg?'],['J2','Ins BANJA? Du? Hihihi! Warte...'],['J2','*kramt im Ofen* ...*hust* ...Da! Meine alte Wegkarte. Nur ein bisschen angekokelt.'],['P','Da steht: 2× links, 1× rechts, 1× geradeaus.'],['J2','Verlauf dich nicht. Im Irrwald fressen einen die Bäume. Langsam.']],()=>{FL.karte=1;inv.push('karte');renderInv()});
     if(FL.recipe)return say(['filter','spore','glut','traene'].every(i=>inv.includes(i))?[['J2','Du hast alles? Dann ab an den Tisch, Bürschchen!']]:[['J2','Ur-Spore, geweihte Glut, eine echte Träne. Und dein alter Filter. Bring mir alles, dann bauen wir dir deinen Ausweg.']]);
@@ -166,7 +167,7 @@ const T={
     if(FL.bjInfo&&!FL.stollen)return hint('bjGnome',[
       [['J2','Zu den Gnomen mit den Pilzen! Und lass dich nicht übers Ohr hauen. Die haben große Ohren. Und Nasen.']],
       [['P','Gnome. Wo wohnen Gnome? ...Am Ufer hinterm Fischer ging noch ein Weg weiter. Da roch’s nach Pfeifenrauch.']]]);
-    if(FL.bjInfo)return say([['J2','Zum Pilzmeister! Hinten im Stollen! Na los!']]);
+    if(FL.bjInfo)return say([['J2','Frische blaue Traumschwämme! Aus der Höhle der Gnome! Na los!']]);
     if(inv.includes('kippe'))return say([['J2','Auf den Tisch damit! Zerlegen! Papier, Filter, Kraut. Ich will sehen, was drin ist.']]);
     say([['J2','Wo ist der Stummel? Du hast ihn doch nicht etwa geraucht? Bring ihn her!']])}},
   tisch:{n:'Tisch',at:[450,460],fn(){if(FL.pilze)return say([['P','Hier hab ich einen Joint zerlegt. Vor einer Hexe. Ein Satz, den ich nie sagen wollte.']]);
@@ -208,7 +209,7 @@ const T={
   kohl:{n:'Riesenkohl',at:[200,470],l:[[['P','Kohl. So groß wie ein Kinderwagen.'],['N1','Finger weg! Das ist Schnobbels Rente!']]]},
   hoehleE:{n:'Höhleneingang',at:[680,420],l:[[['P','Ein Höhleneingang mit Fackeln. Kalter Wind kommt raus. Und Gemurmel.']]]},
   gang:{n:'Dunkler Gang',at:[420,430],fn(){if(FL.stollen&&!FL.recipe)return say([['P','*mit der Laterne in den Gang* ...Hallo? Pilzmeister?'],['PK','Psst! Nicht so laut, die Pilze schlafen. Zeig her...'],['PK','*schnüff* ...Traumschwamm. Edelsorte. Von Nymphenhand im Mondlicht getrocknet. Teures Zeug.'],
-      ['PK','Ohne Gegengift wachst du nie mehr auf, Langer. Die Hexe kann es dir bauen: einen Ausweg-Joint. Dafür braucht sie drei Dinge:'],['PK','Erstens die Ur-Spore. Wächst nur in unserem Pilzbeet draußen. Und nur, wenn du schneller bist als sie.'],['PK','Zweitens Glut, die nicht ausgeht. Die gibt’s nur aus einer geweihten Esse.'],['PK','Drittens eine echte Träne einer wirklich schönen Nymphe. Keine gespielte. Eine echte.'],['PK','Hier, eine Phiole. Für die Träne. Fallen lassen ist verboten.'],['P','Und Papier? Den Filter vom alten Joint hab ich noch.'],['PK','Gut. Der Filter kennt den Weg schon. Und jetzt raus. Du störst die Pilze beim Wachsen.']],()=>{FL.recipe=1;FL.a3=1;inv.splice(inv.indexOf('pilze'),1);inv.push('phiole');if(!inv.includes('filter'))inv.push('filter');renderInv()});
+      ['PK','Frische gibt’s nur hier. Vorne links, die blauen. Nimm ein paar mit zur Hexe, die weiß, was man damit macht.'],['PK','Und jetzt raus. Du störst die Pilze beim Wachsen.']]);
     if(FL.recipe)return say([['PK','*aus dem Dunkeln* Ur-Spore, geweihte Glut, echte Träne! Und leise sein!']]);this.i=(this.i||0);say(this.l[this.i++%this.l.length])},l:[[['P','Der Gang führt tiefer. Stockdunkel. Ohne Licht geh ich da nicht rein.']],[['P','Da hinten hat was gekichert. Nein. Nein, danke.']]]},
   kristalle:{n:'Kristalle',at:[640,446],l:[[['P','Lila Kristalle. Sie summen leise.'],['P','Wenn man das Ohr ranhält, hört man... Radio Moskau?']]]},
   lpilze:{n:'Leuchtpilze',at:[180,450],l:[[['P','Leuchtpilze. Hoffentlich nicht verwandt mit denen aus dem Joint.']]]},
