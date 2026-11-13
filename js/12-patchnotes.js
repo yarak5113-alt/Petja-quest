@@ -1,6 +1,7 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.73',d:'13.11.2026',t:'Wäscheleine klickbar',n:['Die Wäscheleine auf der Dorfstraße lässt sich jetzt überall anklicken – vorher hat Galjas Haus die Klicks abgefangen'] },
   {v:'1.72',d:'13.11.2026',t:'Opas Birken',n:[
     'Opas Säge gibt es erst nach dem Banja: An der Birkensperre fällt Petja ein, dass Opa eine haben könnte',
     'Die Birken am Sumpfweg sind Opas Bauholz. Erst bekommt Opa den Teer (Oma, Gebiss, Kater …), dann darf gesägt werden – sonst pfeift er Petja zurück',
