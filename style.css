@@ -293,3 +293,8 @@ html:not(.ink) .spr{image-rendering:pixelated;image-rendering:crisp-edges}
 /* Einstellungen: Fenster passt immer ins Bild (scrollt bei Bedarf), Zeilen etwas enger */
 .ovl.menuO .pan.menu{max-height:calc(100% - 20px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:#c8943a transparent}
 .ovl.menuO .opts{gap:4px}.ovl.menuO .opts .mb{padding-top:5px;padding-bottom:5px}
+
+/* gestufte Hinweise (1.86) */
+.nextbox .nh.sol{border-top:1px dashed rgba(255,210,90,.35);padding-top:5px;color:#fff3d8}
+.nextbox .tipmore{margin-top:7px;padding:4px 10px;font:12px Georgia,serif}
+.lg.ok{background:#3a7a3a;color:#e8ffe0;font-size:8px;line-height:10px;text-align:center}

@@ -40,7 +40,8 @@ addEventListener('keyup',e=>{if(e.key===' '){clearTimeout(spotT);showSpots(false
 game.addEventListener('mousedown',()=>showSpots(false));
 
 // ----- Tipp: Petja überlegt laut, was als Nächstes dran ist -----
-// Tipp in Stufen: 1. nur der große Auftrag, 2. der konkrete nächste Schritt, 3. plus Alternative und Hinweis aufs Fragen.
+// Tipp in Stufen: 1. nur der große Auftrag, 2. der nächste Schritt als Gedanke, 3. der Ort, 4. die Lösung (+ Alternative).
+// Was hier verraten wurde, ist danach auch im Tagebuch aufgedeckt (gleiche Stufen wie in 09b-hinweise.js).
 // Die Stufe gilt pro Schritt (neuer Schritt = wieder vage). Danach kurze Denkpause, damit man nicht nur Tipps drückt.
 const TIPP_PAUSE=20000;let tippT=0,tippKey='',tippLvl=0;
 function tipp(){if(busy||ovl||changing||!cur||$('#start')||$('#fg')||$('#cut'))return;
@@ -50,8 +51,9 @@ function tipp(){if(busy||ovl||changing||!cur||$('#start')||$('#fg')||$('#cut'))r
   const k=ns[0].q.t;if(k!==tippKey){tippKey=k;tippLvl=0}const lvl=tippLvl++,top=Q[ns[0].top];
   const L=[['P',['Mal überlegen...','Na gut. Denken. Muss ja.','Was war nochmal der Plan? Ach ja.'][Math.random()*3|0]]];
   if(lvl==0)L.push(['P','Es geht gerade um: '+top.t+'.'+(top.d?' '+top.d:'')]);
-  else{L.push(['P','Als Nächstes: '+k+'.']);if(ns[0].q.h)L.push(['P',ns[0].q.h]);
-    if(lvl>=2){if(ns[1]&&ns[1].top!==ns[0].top)L.push(['P','Oder ich kümmere mich erst um: '+ns[1].q.t+'.']);L.push(['P','Und wenn ich nicht weiterkomme: Leute fragen. Mehrmals. Irgendwer quatscht immer.'])}}
+  else{const q=ns[0].q,st=Math.min(2,lvl-1);L.push(['P','Als Nächstes: '+k+'.']);hintParts(q,st).slice(-1).forEach(t=>L.push(['P',t]));
+    if(st>tipLvl(q))FL['tip_'+k]=st;
+    if(lvl>=3){if(ns[1]&&ns[1].top!==ns[0].top)L.push(['P','Oder ich kümmere mich erst um: '+ns[1].q.t+'.']);L.push(['P','Und wenn ich nicht weiterkomme: Leute fragen. Mehrmals. Irgendwer quatscht immer.'])}}
   say(L)}
 
 // ----- Meldungen bei neuen Gegenständen und Auftragsfortschritt -----

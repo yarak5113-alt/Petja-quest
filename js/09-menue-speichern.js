@@ -72,17 +72,17 @@ const BOOKT=[['tasche','Taschen','I'],['auftrag','Aufträge','J'],['karte','Kart
 function logHTML(){if(!LOG.length)return'<p class="empty">'+ic('log','big')+'<br><span class="em">Noch hat niemand was gesagt.</span></p>';
   const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])).replace(/\*([^*]+)\*/g,'<i>$1</i>');
   return'<div class="log">'+LOG.map(([w,t])=>`<p><b style="color:${(N[w]||['?','#ccc'])[1]}">${(N[w]||[w])[0]}:</b> ${esc(t)}</p>`).join('')+'</div>'}
-function openBook(tab){tab=tab||'tasche';let body='';
+let NEXTQ=null;function openBook(tab){tab=tab||'tasche';let body='';NEXTQ=null;
   if(tab=='tasche')body=inv.length?`<div class="grid">${inv.map(id=>{const it=ITEMS[id]||['❔',id,id];return`<button class="card" data-i="${id}"><b>${IMG(id)}</b><span>${it[1]}</span></button>`}).join('')}</div>
       <div class="detail"><span class="em">Klick auf einen Gegenstand, um ihn anzusehen.</span></div>`:'<p class="empty">'+ic('web','big')+'<br>Leer. Wie mein Kühlschrank.<br><span class="em">Sammle Dinge ein, indem du sie in der Welt anklickst.</span></p>';
-  if(tab=='auftrag'){const Q=quests(),ns=nextSteps(Q),NEXT=ns[0]&&ns[0].q,open=Q.filter(q=>!q.ok),fin=Q.filter(q=>q.ok);
-    body=`${NEXT?`<div class="nextbox"><small>Nächster Schritt</small>${ic('next')} ${NEXT.t}${NEXT.h?`<p class="nh">${NEXT.h}</p>`:''}</div>`:''}${qTree(open,0,NEXT)||'<p class="em">Gerade nichts offen.</p>'}
+  if(tab=='auftrag'){const Q=quests(),ns=nextSteps(Q),NEXT=NEXTQ=ns[0]&&ns[0].q,open=Q.filter(q=>!q.ok),fin=Q.filter(q=>q.ok);
+    body=`${NEXT?`<div class="nextbox"><small>Nächster Schritt</small>${ic('next')} ${NEXT.t}${nextHint(NEXT)}</div>`:''}${qTree(open,0,NEXT)||'<p class="em">Gerade nichts offen.</p>'}
       ${fin.length?`<details class="fin"><summary>Erledigt (${fin.length})</summary>${qTree(fin,0)}</details>`:''}`;if(typeof badge=='function')badge('auftrag',0)}
   if(tab=='log')body=logHTML();
-  if(tab=='karte')body=mapSVG()+`<p class="legend"><span class="lg here"></span> Du bist hier <span class="lg"></span> Besucht <span class="lg unk">?</span> Noch unerkundet</p>`;
+  if(tab=='karte')body=mapSVG()+`<p class="legend"><span class="lg here"></span> Du bist hier <span class="lg"></span> Besucht <span class="lg unk">?</span> Noch unerkundet <span class="lg ok">✓</span> Hier gibt’s gerade nichts zu tun</p>`;
   if(tab=='tasche'&&typeof badge=='function')badge('tasche',0);
   const o=openO(`<div class="pan book"><div class="tabs">${BOOKT.map(([k,t,key])=>`<button class="tab ${k==tab?'on':''}" data-tab="${k}">${ic(k)} ${t} <kbd>${key}</kbd></button>`).join('')}<button class="x" title="Schließen (ESC)">${ic('close')}</button></div>
-    <div class="bbody b-${tab}">${body}</div></div>`,'bookO');o.dataset.book=tab;if(tab=='log'){const bb=o.querySelector('.bbody');bb.scrollTop=bb.scrollHeight}
+    <div class="bbody b-${tab}">${body}</div></div>`,'bookO');o.dataset.book=tab;{const tm=o.querySelector('.tipmore');if(tm&&NEXTQ)tm.onclick=()=>{tipUp(NEXTQ);openBook('auftrag')}}if(tab=='log'){const bb=o.querySelector('.bbody');bb.scrollTop=bb.scrollHeight}
   o.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>openBook(b.dataset.tab));
   o.querySelectorAll('.card').forEach(c=>c.onclick=()=>{o.querySelectorAll('.card').forEach(k=>k.classList.toggle('sel',k===c));const it=ITEMS[c.dataset.i];
     o.querySelector('.detail').innerHTML=it?`<b class="big">${IMG(c.dataset.i)}</b><div><h4>${it[1]}</h4><p>${it[2]}</p></div>`:''})}

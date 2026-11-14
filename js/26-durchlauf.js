@@ -61,6 +61,15 @@ async function dlRecruit(){
       if(tr.s&&tr.t&&tr.v&&tr.r)ovl.querySelector('.go').click();else closeO();await dlIdle()}}
   if(!FL.rekrut)throw new Error('keine Nymphe passt auf Madames Liste (25× den Sumpf neu betreten)');dlLog('✓ Nymphe angeworben')}
 
+// Tagebuch: Hinweis-Stufen durchklicken (Gedanke → Ort → Lösung), Karte: erledigte Orte haben ein Häkchen
+async function dlBook(){await dlIdle();
+  openBook('auftrag');const q=NEXTQ;if(!q)throw new Error('Tagebuch zeigt keinen nächsten Schritt');
+  const lv0=FL['tip_'+q.t]||0;let n=0;while(ovl.querySelector('.tipmore')&&n<3){ovl.querySelector('.tipmore').click();n++}
+  const sol=ovl.querySelector('.nextbox').textContent;if(q.h&&!sol.includes(q.h.slice(0,25)))throw new Error(`Lösung für „${q.t}“ lässt sich nicht aufdecken`);
+  FL['tip_'+q.t]=lv0;closeO();
+  openBook('karte');const ok=ovl.querySelectorAll('svg.map path[stroke="#e8ffe0"]').length;closeO();
+  if(!ok)throw new Error('Karte zeigt keinen erledigten Ort');dlLog(`✓ Tagebuch-Hinweise (${n} Stufen) und Karte (${ok} Orte erledigt)`)}
+
 async function durchlauf(){if(DL.on)return;DL.on=true;DL.log=[];DL.t0=Date.now();
   const pnl=document.createElement('pre');pnl.id='dlPanel';pnl.style.cssText='position:absolute;left:8px;top:8px;z-index:99;max-width:60%;margin:0;padding:6px 10px;background:rgba(0,0,0,.75);color:#bfe;font:12px monospace;pointer-events:none;white-space:pre-wrap';$('#game').appendChild(pnl);
   // Testumgebung: kein Laufen (sofort da), kein Autosave, keine Leerlauf-Sprüche, stumm
@@ -87,6 +96,7 @@ async function durchlauf(){if(DL.on)return;DL.on=true;DL.log=[];DL.t0=Date.now()
     await dlStep('Durchs Fenster in die Hütte','huette','tuer',()=>FL.drin&&cur==='innen');
     dlExpect('Leiter nach dem Einstieg weg',()=>!has('leiter'));
     await dlGoto('huette');await dlGoto('innen');dlLog('✓ Wieder rein ohne Leiter');
+    await dlBook();
     await dlStep('Joint zerlegt (blaue Pilze)','innen','tisch',()=>FL.pilze);
     await dlStep('Baba Jaga schickt mich zu den Gnomen','innen','baba',()=>FL.bjInfo&&FL.labQ);
 
@@ -121,6 +131,7 @@ async function durchlauf(){if(DL.on)return;DL.on=true;DL.log=[];DL.t0=Date.now()
     await dlStep('Rezept von Baba Jaga','innen','baba',()=>FL.recipe&&has('phiole')&&has('filter'));
 
     // ---- Akt 3: drei Zutaten, dann das Finale ----
+    await dlBook();
     await dlProbe('Privattanz vor der Zwiebel','banja','madame',()=>!FL.booked&&!FL.traene);
     await dlProbe('Glut ohne Weihwasser','schmiede','schmied',()=>FL.glutQ&&!FL.glut);
     await dlStep('Ur-Spore aus dem Pilzbeet','gnome','pilzbeet',()=>has('spore'));
