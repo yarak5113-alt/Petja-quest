@@ -29,19 +29,7 @@ function bjRezept(){if($('#fg')||$('#cut'))return;changing=true;fade.style.opaci
     const x=cv.getContext('2d'),bg=document.createElement('canvas'),img=new Image();bg.width=800;bg.height=500;bg.getContext('2d').drawImage($('#bg'),0,0,800,500);img.src=$('#bjimg').getAttribute('href')||'';
     let phase='pace',T0=performance.now(),tc=0,fin=false,puffs=[];
     const B=[-72,-250,136,256];           // Sprite-Box der Hexe
-    const hand=(X,Y,s,a,flip)=>{x.save();x.translate(X,Y);x.rotate(a);x.scale(flip?-s:s,s);x.lineJoin='round';
-      // Ärmel (zerfranstes Rot), Handfläche, vier knochige Finger mit Krallen, Daumen – grün wie ihr Gesicht
-      x.fillStyle='#6a1c1c';x.strokeStyle='#1e0c06';x.lineWidth=3;x.beginPath();x.moveTo(-44,40);x.lineTo(-40,96);x.lineTo(-20,88);x.lineTo(0,100);x.lineTo(20,88);x.lineTo(44,98);x.lineTo(46,40);x.closePath();x.fill();x.stroke();
-      const sk=x.createLinearGradient(-40,-40,40,40);sk.addColorStop(0,'#c4d68a');sk.addColorStop(.6,'#98b060');sk.addColorStop(1,'#6a8240');
-      [[-27,-.42,50],[-9,-.14,60],[9,.14,58],[26,.42,48]].forEach(([fx,fa,L])=>{x.save();x.translate(fx,-18);x.rotate(fa);
-        x.fillStyle=sk;x.beginPath();x.moveTo(-7,0);x.quadraticCurveTo(-8,-L*.6,-4.5,-L);x.lineTo(4.5,-L);x.quadraticCurveTo(8,-L*.6,7,0);x.closePath();x.fill();x.stroke();
-        x.strokeStyle='rgba(40,50,20,.6)';x.lineWidth=1.6;[-.38,-.7].forEach(k=>{x.beginPath();x.moveTo(-5,L*k);x.quadraticCurveTo(0,L*k+3,5,L*k);x.stroke()});
-        x.fillStyle='#2a2418';x.beginPath();x.moveTo(-4.5,-L+1);x.quadraticCurveTo(0,-L-16,6,-L-20);x.quadraticCurveTo(3,-L-6,4.5,-L+1);x.closePath();x.fill();x.strokeStyle='#1e0c06';x.lineWidth=3;x.restore()});
-      x.save();x.translate(-36,18);x.rotate(-1.05);x.fillStyle=sk;x.beginPath();x.moveTo(-7,0);x.quadraticCurveTo(-8,-26,-4,-38);x.lineTo(4,-38);x.quadraticCurveTo(8,-26,7,0);x.closePath();x.fill();x.stroke();
-        x.fillStyle='#2a2418';x.beginPath();x.moveTo(-4,-37);x.quadraticCurveTo(0,-50,5,-52);x.quadraticCurveTo(3,-42,4,-37);x.fill();x.restore();
-      x.fillStyle=sk;x.beginPath();x.moveTo(-38,-14);x.quadraticCurveTo(-40,30,-30,44);x.lineTo(32,44);x.quadraticCurveTo(42,20,38,-16);x.quadraticCurveTo(0,-30,-38,-14);x.closePath();x.fill();x.stroke();
-      x.strokeStyle='rgba(40,50,20,.55)';x.lineWidth=2;x.beginPath();x.moveTo(-22,6);x.quadraticCurveTo(0,18,24,4);x.moveTo(-14,26);x.quadraticCurveTo(2,32,20,24);x.stroke();
-      x.fillStyle='#4a5a2a';[[14,-4],[-8,16]].forEach(([wx,wy])=>{x.beginPath();x.arc(wx,wy,3.4,0,7);x.fill()});x.restore()};
+    const hand=(X,Y,s,a,flip)=>bjHand(x,X,Y,s,a,flip);   // Pixel-Figur aus 29-ego-sicht.js
     function frame(){if(fin)return;const t=(performance.now()-T0)/1000;let S,X,Y,rot=0,flip=1,shake=0;
       if(phase=='pace'){S=1.3;X=400+Math.sin(t*1.1)*220;flip=Math.cos(t*1.1)>0?-1:1;const st=Math.abs(Math.sin(t*5.5));Y=468-st*12;rot=Math.sin(t*5.5)*.05;shake=st>.97?3:0;
         if(Math.random()<.06)puffs.push({x:X+(Math.random()-.5)*40,y:Y-B[3]*S*.95,l:1,r:6})}
