@@ -90,7 +90,9 @@ const T={
   oma:{n:'Oma Dusja',at:[330,454],fn(){
     if(FL.teer)return say([['O','Iff waf... ach nein, ich hab ja wieder Zähne. Iss was, du bist zu dünn! Baba Jaga mag keine Knochen.']]);
     if(inv.includes('gebiss'))return say([['P','Oma, ich hab Ihr Gebiss gefunden.'],['O','Mein Gebiff! Wo war ef?'],['P','Unter dem Kater vom Popen. Auf dem Friedhof.'],['O','*klack* ...Ah. Viel besser. Schmeckt nach Kater, aber egal.'],['O','Teer willst du? Hier, Birkenteer. Gegen Rheuma, Läuse und Männer.'],['P','*bekommt eine Flasche Birkenteer*']],()=>{FL.teer=1;inv.splice(inv.indexOf('gebiss'),1);inv.push('teer');renderInv()});
-    if(!FL.gq&&!FL.auftrag){this.j=(this.j||0)+1;return say(this.j%2?[['O','Junge, du bift fo dünn! Waf effen die in der Ftadt? Luft?']]:[['O','Ich hab keine Fähne mehr, aber Augen hab ich. Und ich fehe alles. Alles!']])}
+    if(!FL.gq&&!FL.auftrag){FL.gq=1;return say([['O','Junge! Du bift doch der Neue. Hilf einer alten Frau!'],['P','Kommt drauf an, wobei.'],
+      ['O','Mein Gebiff! Bei Waffilif Beerdigung hab ich fo geheult, da ift ef mir raufgeflogen.'],['O','Und jetft hockt der Kater vom Popen drauf. Auf dem Friedhof. Faucht jeden an.'],
+      ['P','Und was hab ich davon?'],['O','Birkenteer! Gegen Rheuma, Läufe und Männer. Und waf zu effen.'],['P','(Teer. Brauch ich nicht. …Noch nicht. Im Märchen braucht man irgendwann alles.)']])}   // ab 1.89: Gebiss-Kette schon vor dem Banja
     if(!FL.gq){FL.gq=1;return say([['P','Tag, Oma. Sie haben nicht zufällig Teer?'],['O','Teer? Hab ich. Birkenteer. Aber erft... erft...'],['P','Was ist mit Ihren Zähnen?'],['O','Weg! Bei Waffilif Beerdigung hab ich fo geheult, da ift mir daf Gebiff raufgeflogen.'],['O','Und jetft hockt der Kater vom Popen drauf. Daf Miftvieh! Faucht jeden an.'],['O','Bring mir mein Gebiff, dann kriegft du den Teer. Und waf zu effen. Du bift fo dünn.']])}
     if(FL.kater)return say([['O','Der Kater ift weg? Dann liegt mein Gebiff doch frei! Worauf warteft du?']]);
     if(FL.ks)return hint('kater',[

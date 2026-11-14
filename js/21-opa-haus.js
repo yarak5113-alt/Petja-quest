@@ -124,7 +124,9 @@ wrapFn('opa',function(orig){
     ['G','Aber Moment. Die Birken am Sumpfweg? Die hat der Sturm MIR hingelegt. Das ist mein Bauholz für ein neues Haus!'],
     ['P','Und wenn ich die für Sie säge? Dann ist mein Weg frei und Sie haben Ihr Holz.'],['G','Abgemacht! Aber erst wird hier alles vorbereitet. Ohne Teer verfault das Holz, bevor’s ein Haus wird.'],
     ['G','Teer hat die Dusja auf der Dorfstraße. Erst den Teer, DANN die Birken. Und wehe, du sägst vorher. Ich hör meine Säge. Auf zwei Kilometer.'],['P','*bekommt eine rostige Säge*']],
-    ()=>{FL.sawQ=1;FL.auftrag=1;inv.push('rsaege');renderInv()});
+    ()=>{FL.sawQ=1;FL.auftrag=1;inv.push('rsaege');renderInv();
+      if(has('teer'))say([['P','Teer? Moment.'],['P','*holt Omas Birkenteer aus der Tasche*'],['G','…Du läufst mit TEER rum? Wer läuft denn mit Teer rum?'],['P','Lange Geschichte. Mit Gebiss.'],
+        ['G','*schmiert die Ofenecke ein* Na dann. Abgemacht ist abgemacht. Säg los, sobald die Säge wieder schneidet.']],()=>{FL.deal=1;dropInv('teer')})});
   if(FL.sawQ&&!FL.haus){
     if(has('rsaege'))return say([['P','Opa, die Säge schneidet nicht. Die ist komplett verrostet.'],['G','Patina, Junge! …Na gut. Rost.'],['G','Geh zum Fjodor in den Schmiedehof. Die Dorfstraße runter. Der schleift alles. Sogar Schwiegermütter.']]);
     if(!FL.deal)return hint('opaTeer',[[['G','Erst den Teer, dann die Birken. Ohne Teer kein Haus.']],[['G','Die Dusja hat Birkenteer. Rückt aber nix raus, ohne vorher zu jammern. Hör ihr halt zu.']],

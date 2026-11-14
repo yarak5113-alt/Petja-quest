@@ -100,28 +100,30 @@ async function durchlauf(){if(DL.on)return;DL.on=true;DL.log=[];DL.t0=Date.now()
     await dlStep('Joint zerlegt (blaue Pilze)','innen','tisch',()=>FL.pilze);
     await dlStep('Baba Jaga schickt mich zu den Gnomen','innen','baba',()=>FL.bjInfo&&FL.labQ);
 
-    // ---- Akt 2: Mehl, Banja, Sperre, Opas Haus ----
-    await dlStep('Gnome wollen Mehl','gnome','sHO',()=>FL.mehlQ);
-    await dlGoto('garten');dlExpect('Grobnik lässt mich in den Garten',()=>FL.gartenOk&&cur==='garten');
-    await dlStep('Müller will eine Braut','muehle','muehle',()=>FL.mullerQ);
-    await dlStep('Wegkarte von Baba Jaga','innen','baba',()=>has('karte'));
-    await dlStep('Madame will eine Neue','banja','madame',()=>FL.clubQ&&has('liste'));
-    await dlStep('Opas rostige Säge','dorf','opa',()=>has('rsaege'));
-    await dlStep('Säge beim Schmied geschärft','schmiede','schmied',()=>has('saege')&&FL.schuld);
-    await dlProbe('Sägen ohne Opas Erlaubnis','sperre','sHolz',()=>FL.opaRuf&&!FL.cut&&has('saege'));
-    await dlStep('Oma vermisst ihr Gebiss','dorfstr','oma',()=>FL.gq);
+    await dlGoto('huette');dlExpect('Wowa-Echo 1 („Bru…“) nach Akt 1',()=>FL.echo1);
+
+    // ---- Akt 2, entzerrt: Omas Gebiss geht schon jetzt, bevor überhaupt jemand Teer will ----
+    await dlStep('Oma vermisst ihr Gebiss (gleich beim ersten Gespräch)','dorfstr','oma',()=>FL.gq);
     await dlProbe('Kater ohne Fisch','kirche','kater',()=>FL.ks&&!FL.kater);
     await dlStep('Kusmitsch angelt nicht für mich','fischer','fischer',()=>FL.angelQ);
+    await dlStep('Der Wels hängt an der Hütte (kein normaler Fisch)','fischer','welsT',()=>FL.welsSeen);
     await dlStep('Apfel gepflückt','gabel','apfel',()=>has('apfel'));
     await dlStep('Krähe vom Ast geworfen','wald','kraehe',()=>FL.kraehe);
     await dlStep('Ast geholt','wald','ast',()=>FL.ast);
     await dlStep('Wäscheleine → Angel','dorfstr','waesche',()=>has('angel'));
     await dlStep('Fisch geangelt','fischer','see',()=>FL.fisch);
-    dlExpect('Angel nach dem Fang weg',()=>!has('angel'));
+    dlExpect('Kettenkommentar beim Auswerfen, Angel danach weg',()=>FL.kette&&!has('angel'));
     await dlStep('Kater lässt das Gebiss los','kirche','kater',()=>FL.kater);
     await dlStep('Gebiss aufgehoben','kirche','gebiss',()=>has('gebiss'));
-    await dlStep('Teer von Oma','dorfstr','oma',()=>has('teer'));
-    await dlStep('Teer zu Opa, Birken frei','dorf','opa',()=>FL.deal);
+    await dlStep('Teer von Oma – lange bevor Opa ihn will','dorfstr','oma',()=>has('teer'));
+    await dlStep('Gnome wollen Mehl','gnome','sHO',()=>FL.mehlQ);
+    await dlGoto('garten');dlExpect('Grobnik lässt mich in den Garten',()=>FL.gartenOk&&cur==='garten');
+    await dlStep('Müller will eine Braut','muehle','muehle',()=>FL.mullerQ);
+    await dlStep('Wegkarte von Baba Jaga','innen','baba',()=>has('karte'));
+    dlExpect('Baba Jaga weiß vom Apfel (die Krähe hat gepetzt)',()=>FL.petzt);
+    await dlStep('Madame will eine Neue','banja','madame',()=>FL.clubQ&&has('liste'));
+    await dlStep('Opas rostige Säge – Teer gleich mitgegeben','dorf','opa',()=>has('rsaege')&&FL.deal&&!has('teer'));
+    await dlStep('Säge beim Schmied geschärft','schmiede','schmied',()=>has('saege')&&FL.schuld);
     await dlStep('Birken gesägt, Opas Haus gebaut','sperre','sHolz',()=>FL.cut&&FL.haus);
     dlExpect('Säge nach dem Hausbau zurück bei Opa',()=>!has('saege'));
     await dlRecruit();
@@ -130,6 +132,7 @@ async function durchlauf(){if(DL.on)return;DL.on=true;DL.log=[];DL.t0=Date.now()
     await dlStep('Stollen offen','gnome','gnom1',()=>FL.stollen);
     await dlStep('Blaue Pilze in der Höhle','hoehle','lpilze',()=>has('blaupilze'));
     await dlStep('Rezept von Baba Jaga','innen','baba',()=>FL.recipe&&has('phiole')&&has('filter'));
+    await dlGoto('huette');dlExpect('Wowa-Echo 2 („…der?“) nach Akt 2',()=>FL.echo2);
 
     // ---- Akt 3: drei Zutaten, dann das Finale ----
     await dlBook();
@@ -143,6 +146,8 @@ async function durchlauf(){if(DL.on)return;DL.on=true;DL.log=[];DL.t0=Date.now()
     await dlStep('Zwiebel in die Lüftung','banjaH','lueftungH',()=>FL.zwIn);
     await dlProbe('Madame bucht nicht selbst, schickt zu Nastja','banja','madame',()=>!FL.booked&&cur==='banja');
     await dlStep('Privattanz → Nastjas Träne','buehne','nastja2',()=>has('traene'));
+    await dlStep('Nastja verzeiht (fast)','buehne','nastja2',()=>FL.naV>=2);
+    await dlGoto('innen');await dlIdle();dlExpect('Wowa-Echo 3 („…BRUDER?!“) vor dem Finale',()=>FL.echo3);
     await dlStep('Ausweg-Joint gebaut','innen','tisch',()=>FL.ende);
     const t0=Date.now();while(!$('#abspann')&&Date.now()-t0<90000){if(busy)advance();await dlSleep(100)}
     dlExpect('Abspann läuft',()=>!!$('#abspann'));
