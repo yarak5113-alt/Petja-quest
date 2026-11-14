@@ -173,7 +173,7 @@ function paintFischer(){const o=S0;sky(o);far(o);ground(o);
   x=lay();for(let i=0;i<30;i++)dab(x,240+R()*580,200+R()*60,30+R()*50,[190,196,196],.25);put(x,8,'screen',.6);
   x=lay();[[250,286,8,26],[300,322,10,32],[470,334,12,30],[540,340,9,28],[760,356,14,36],[810,360,10,30]].forEach(a=>reeds(x,...a));
   fisherHut(x);netRack(x);boat(x,400,380);pier(x);bush(x,330,352,16,0);bush(x,24,360,22,1);rock(x,470,372,10,1);rock(x,620,452,14,1);fern(x,240,450,1.4);shrooms(x,300,392,4);bucket(x,120,372);
-  sign(x,110,482,1.7,[[-1,0,'Zum dunklen Wald','hZD']]);sign(x,625,500,1.15,[[1,0,'Zum Ufer','hUfer']]);put(x);
+  sign(x,110,482,1.7,[[-1,0,'Zum dunklen Wald','hZD']]);sign(x,552,500,1.15,[[1,0,'Zum Ufer','hUfer']]);put(x);
   x=lay();trunk(x,-6,520,60);fir(x,812,540,560,230,.3);bush(x,760,498,44,1);reeds(x,620,500,20,70,1);grass(x,600,470,515,2.4,1);put(x,1);
   rays(o,[[.4,.06]]);grade(o)}
 const FISHER=`<g stroke="#2a1a0e" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round">
