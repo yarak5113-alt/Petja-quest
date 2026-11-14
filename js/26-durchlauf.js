@@ -29,7 +29,7 @@ async function dlIdle(max=120000){const t0=Date.now();let calm=0;
 function dlClick(id){if(!dlVis(id))throw new Error(`„${(T[id]||{}).n||id}“ ist in „${LOCN[cur]||cur}“ nicht klickbar`);use(id)}
 
 // Wegenetz aus den Schildern/Türen bauen (Schilder mit eigener Logik von Hand)
-const DL_FN={sSumpf2:'sumpf',sFisch:'fischer',sUfer:'ufer',sGN:'gnome',sHO:'hoehle',tuer:'innen',buehne:'buehne'};
+const DL_FN={sSumpf2:'sumpf',sFisch:'fischer',sUfer:'ufer',sGN:'gnome',sHO:'hoehle',tuer:'innen',buehne:'buehne',sGA:'garten'};
 function dlGraph(){const g={},roomOf=id=>{const e=document.querySelector(`.room [data-id="${id}"]`);return e&&e.closest('.room').id.slice(2)};
   Object.keys(T).forEach(id=>{const o=T[id],to=o.go||DL_FN[id],from=roomOf(id);if(to&&from&&from!==to)(g[from]=g[from]||[]).push({to,via:id})});
   (g.muehle=g.muehle||[]).push({to:'banjaV',via:'IRRWALD'});return g}
@@ -102,6 +102,7 @@ async function durchlauf(){if(DL.on)return;DL.on=true;DL.log=[];DL.t0=Date.now()
 
     // ---- Akt 2: Mehl, Banja, Sperre, Opas Haus ----
     await dlStep('Gnome wollen Mehl','gnome','sHO',()=>FL.mehlQ);
+    await dlGoto('garten');dlExpect('Grobnik lässt mich in den Garten',()=>FL.gartenOk&&cur==='garten');
     await dlStep('Müller will eine Braut','muehle','muehle',()=>FL.mullerQ);
     await dlStep('Wegkarte von Baba Jaga','innen','baba',()=>has('karte'));
     await dlStep('Madame will eine Neue','banja','madame',()=>FL.clubQ&&has('liste'));
@@ -134,11 +135,11 @@ async function durchlauf(){if(DL.on)return;DL.on=true;DL.log=[];DL.t0=Date.now()
     await dlBook();
     await dlProbe('Privattanz vor der Zwiebel','banja','madame',()=>!FL.booked&&!FL.traene);
     await dlProbe('Glut ohne Weihwasser','schmiede','schmied',()=>FL.glutQ&&!FL.glut);
-    await dlStep('Ur-Spore aus dem Pilzbeet','gnome','pilzbeet',()=>has('spore'));
+    await dlStep('Ur-Spore aus dem Pilzbeet','garten','pilzbeet',()=>has('spore'));
     await dlStep('Pope hinterm Banja geweckt','banjaH','pope',()=>FL.popeBack);
     await dlStep('Weihwasser vom Popen','kirche','pope2',()=>has('weihwasser'));
     await dlStep('Glut vom Schmied','schmiede','schmied',()=>has('glut'));
-    await dlStep('Zwiebel aus dem Gnombeet','gnome','kohl',()=>has('zwiebel'));
+    await dlStep('Zwiebel aus dem Gnombeet','garten','kohl',()=>has('zwiebel'));
     await dlStep('Zwiebel in die Lüftung','banjaH','lueftungH',()=>FL.zwIn);
     await dlProbe('Madame bucht nicht selbst, schickt zu Nastja','banja','madame',()=>!FL.booked&&cur==='banja');
     await dlStep('Privattanz → Nastjas Träne','buehne','nastja2',()=>has('traene'));

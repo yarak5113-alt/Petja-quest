@@ -9,13 +9,13 @@ function quests(){const Q=[];
     {t:'In Baba Jagas Hütte kommen',v:FL.bjNo,ok:FL.drin,h:has('leiter')?'Mit der Leiter zur Hütte und auf die Tür oder die Hühnerbeine klicken – dann geht’s durchs Fenster rein.':'Die Tür ist nur Deko, rein geht’s nur durchs Fenster. Dafür brauch ich eine Leiter (siehe „Hoch hinaus“).'},
     {t:'Herausfinden, was mit mir los ist',v:FL.drin,ok:FL.recipe,h:FL.bjInfo?'Baba Jaga braucht frische blaue Traumschwämme aus der Höhle der Gnome (siehe „Das Pilzlabor“).':'Baba Jaga in ihrer Hütte fragen. Sie will wissen, was in meinem Joint war (siehe „Der Joint“).'},
     {t:'Den Ausweg-Joint bauen',v:FL.recipe,ok:FL.ende,s:[
-      {t:'Die Ur-Spore',v:FL.recipe,ok:has('spore')||FL.ende,h:'In der Gnomsiedlung auf das Pilzbeet klicken und fünf goldene Pilze pflücken.'},
+      {t:'Die Ur-Spore',v:FL.recipe,ok:has('spore')||FL.ende,h:'In der Gnomsiedlung links aufs Schild „Zum Garten“, dort auf das Pilzbeet klicken und fünf goldene Pilze pflücken.'},
       {t:'Glut, die nicht ausgeht',v:FL.recipe,ok:has('glut')||FL.ende,s:[
         {t:'Den Popen finden',v:FL.recipe,ok:FL.popeBack,h:'An der Kirche hängt ein Zettel: „Pope in der Stadt“, seit 1993. Hinterm Banja (vor dem Banja rechts zum Hinterhof) schnarcht doch jemand im Heu …'},
         {t:'Weihwasser holen',v:FL.popeBack,ok:FL.weih,h:'Vater Ignati ist zurück an der Kirche (Dorfstraße → „Zur Kirche“). Mit ihm reden.'},
         {t:'Den Schmied überzeugen',v:FL.recipe,ok:FL.glut,h:has('weihwasser')?'Das Weihwasser zu Schmied Fjodor in den Schmiedehof bringen.':'Schmied Fjodor im Schmiedehof (Dorfstraße → „Zum Schmiedehof“) fragen.'}]},
       {t:'Eine echte Träne',v:FL.recipe,ok:has('traene')||FL.ende,s:[
-        {t:'Etwas, das jeden zum Heulen bringt',v:FL.recipe,ok:FL.zwiebel,h:'Nastja im Banja weint nie. Eine scharfe Zwiebel? Die Gnome haben neben dem Riesenkohl ein Gemüsebeet.'},
+        {t:'Etwas, das jeden zum Heulen bringt',v:FL.recipe,ok:FL.zwiebel,h:'Nastja im Banja weint nie. Eine scharfe Zwiebel? Im Gnomgarten (Gnomsiedlung → „Zum Garten“) wachsen neben dem Riesenkohl welche.'},
         {t:'Die Zwiebel in die Lüftung',v:FL.zwiebel,ok:FL.zwIn,h:'Die Lüftung der Lounge geht nach draußen: vor dem Banja rechts in den Hinterhof, dort auf die Lüftung klicken.'},
         {t:'Einen Privattanz bekommen',v:FL.zwIn,ok:FL.booked||FL.traene,h:'Die Gäste sind weg. Im Banja auf die Bühne klicken und Nastja ansprechen – jetzt hat sie Zeit.'},
         {t:'Die Träne auffangen',v:FL.zwIn,ok:FL.traene,h:'Einfach sitzen bleiben und die Phiole bereithalten.'}]},

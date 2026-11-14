@@ -298,3 +298,36 @@ html:not(.ink) .spr{image-rendering:pixelated;image-rendering:crisp-edges}
 .nextbox .nh.sol{border-top:1px dashed rgba(255,210,90,.35);padding-top:5px;color:#fff3d8}
 .nextbox .tipmore{margin-top:7px;padding:4px 10px;font:12px Georgia,serif}
 .lg.ok{background:#3a7a3a;color:#e8ffe0;font-size:8px;line-height:10px;text-align:center}
+
+/* ===================== Augenansicht im Stil der Welt (1.88) =====================
+   Glühwürmchen-Lichter statt Messing-Plaketten, Beschriftung auf kleinen Holzbrettchen mit Nägeln (wie die Wegschilder),
+   Ausgänge als Brettchen mit Pfeilspitze, Figuren und Gegenstände bekommen einen warmen Lichtsaum. */
+#spots{background:radial-gradient(ellipse at 50% 50%,rgba(20,12,4,0) 35%,rgba(12,8,4,.5) 100%),linear-gradient(rgba(30,20,60,.08),rgba(30,20,60,.08))}
+#game.spotlit .room.on .interactive image{filter:drop-shadow(0 0 2px rgba(255,236,170,.95)) drop-shadow(0 0 9px rgba(255,190,80,.55))}
+#game.spotlit .room.on .interactive image.spr{filter:drop-shadow(0 0 2px rgba(220,236,255,.9)) drop-shadow(0 0 10px rgba(150,190,255,.5))}
+#spots .spot i{position:relative;width:34px;height:34px;border:none;border-radius:50%;box-shadow:none;background:radial-gradient(circle,#fffbe6 0 9%,rgba(255,226,140,.95) 17%,rgba(255,176,60,.45) 38%,rgba(255,150,40,.12) 58%,transparent 70%);
+  animation:ffly 2.6s ease-in-out infinite;mix-blend-mode:screen}
+#spots .spot i .ic{display:none}
+#spots .spot i::before,#spots .spot i::after{content:'';position:absolute;width:3px;height:3px;border-radius:50%;background:#fff6d0;box-shadow:0 0 5px 2px rgba(255,214,120,.8);left:50%;top:50%;animation:spark 3.2s linear infinite}
+#spots .spot i::after{animation-delay:-1.6s;animation-duration:2.7s}
+#spots .spot.talk i{background:radial-gradient(circle,#f4fbff 0 9%,rgba(190,220,255,.95) 17%,rgba(120,170,255,.45) 38%,rgba(100,150,255,.12) 58%,transparent 70%)}
+#spots .spot.talk i::before,#spots .spot.talk i::after{background:#eaf4ff;box-shadow:0 0 5px 2px rgba(150,190,255,.8)}
+#spots .spot.exit i{background:radial-gradient(circle,#fff0d8 0 9%,rgba(255,150,80,.95) 17%,rgba(230,80,30,.45) 38%,rgba(200,60,20,.12) 58%,transparent 70%)}
+#spots .spot.exit i::before,#spots .spot.exit i::after{background:#ffd8b0;box-shadow:0 0 5px 2px rgba(255,120,50,.8)}
+#spots .spot.hand i{background:radial-gradient(circle,#f8ffe6 0 9%,rgba(220,240,130,.95) 17%,rgba(170,210,60,.45) 38%,rgba(140,190,40,.12) 58%,transparent 70%)}
+#spots .spot span{position:relative;margin-top:2px;padding:3px 11px 3px;border:none;border-radius:2px;border-image:none;
+  background:repeating-linear-gradient(1.5deg,rgba(50,24,8,.22) 0 1px,transparent 1px 3.5px),repeating-linear-gradient(-.8deg,rgba(255,220,160,.08) 0 2px,transparent 2px 9px),linear-gradient(#a5743f,#7a4e26 55%,#55331a);
+  box-shadow:inset 0 1px 0 rgba(255,222,170,.4),inset 0 -2px 3px rgba(0,0,0,.45),inset 1px 0 0 rgba(255,222,170,.15),0 3px 5px rgba(0,0,0,.55);
+  color:#f6e6c0;font:bold 12px Georgia,serif;letter-spacing:.02em;text-shadow:0 1px 1px rgba(0,0,0,.85),0 -1px 0 rgba(60,30,10,.6)}
+#spots .spot span::before,#spots .spot span::after{content:'';position:absolute;top:50%;width:3px;height:3px;margin-top:-1.5px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#d8d4cc,#4a4640 70%);box-shadow:0 .5px 0 rgba(255,230,190,.3)}
+#spots .spot span::before{left:3px}#spots .spot span::after{right:3px}
+#spots .spot.exit span{color:#ffe2a8;background:repeating-linear-gradient(1.5deg,rgba(40,16,4,.25) 0 1px,transparent 1px 3.5px),linear-gradient(#8e5a2c,#643a18 55%,#43240e);box-shadow:none;border-radius:0;
+  filter:drop-shadow(0 3px 3px rgba(0,0,0,.6));padding:3px 16px 3px 11px;clip-path:polygon(0 0,calc(100% - 9px) 0,100% 50%,calc(100% - 9px) 100%,0 100%)}
+#spots .spot.exit.dl span{padding:3px 11px 3px 16px;clip-path:polygon(9px 0,100% 0,100% 100%,9px 100%,0 50%)}
+#spots .spot.exit.du span{padding:9px 11px 3px;clip-path:polygon(0 7px,50% 0,100% 7px,100% 100%,0 100%)}
+#spots .spot.exit span::before{left:5px}#spots .spot.exit span::after{right:12px}
+#spots .spot.exit.dl span::before{left:12px}#spots .spot.exit.dl span::after{right:5px}
+#spots .spot.exit.du span::before{left:5px;margin-top:2px}#spots .spot.exit.du span::after{right:5px;margin-top:2px}
+@keyframes ffly{0%,100%{transform:translate(0,0) scale(1);opacity:.95}25%{transform:translate(2px,-3px) scale(1.08);opacity:1}50%{transform:translate(-1px,-5px) scale(.92);opacity:.75}75%{transform:translate(-3px,-2px) scale(1.05);opacity:1}}
+@keyframes spark{0%{transform:rotate(0) translateX(12px) scale(1);opacity:0}15%{opacity:1}100%{transform:rotate(360deg) translateX(12px) scale(.4);opacity:0}}
+@media (prefers-reduced-motion:reduce){#spots .spot i,#spots .spot i::before,#spots .spot i::after{animation:none}}

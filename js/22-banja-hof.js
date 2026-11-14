@@ -99,12 +99,11 @@ BARKS.banjaH=['Der Bass wummert durch die Wand. Die Kisten zittern mit.','Hier h
 ENTRY.banjaH=['Hinterm Banja. Der Heuhaufen ist noch da.','Wieder hinterm Banja. Hier ist es ruhiger. Bis auf den Bass.'];
 
 // ----- Gemüsebeet der Gnome: Zwiebeln neben dem Riesenkohl -----
-{const gp=SCN.gnome.paint;SCN.gnome.paint=function(){gp.apply(this,arguments);const x=lay();
+function paintZwiebeln(tf){const x=lay();x.save();if(tf){x.translate(tf[0],tf[1]);x.scale(tf[2],tf[2])}
   [[44,466],[70,470],[96,466],[198,462],[222,466],[124,470],[34,424],[208,428]].forEach(([X,Y])=>{shadowAt(x,X,Y+2,8,.5);
     const g=x.createRadialGradient(X-3,Y-6,1,X,Y-4,9);g.addColorStop(0,'#e890c0');g.addColorStop(.5,'#a83a6a');g.addColorStop(1,'#5a1434');x.fillStyle=g;
     x.beginPath();x.moveTo(X,Y-14);x.bezierCurveTo(X+4,Y-10,X+9,Y-7,X+8,Y-2);x.bezierCurveTo(X+7,Y+2,X-7,Y+2,X-8,Y-2);x.bezierCurveTo(X-9,Y-7,X-4,Y-10,X,Y-14);x.fill();
-    x.strokeStyle='#4a9a3a';x.lineWidth=1.6;x.lineCap='round';[[-5,-30],[0,-34],[5,-28]].forEach(([dx,dy])=>{x.beginPath();x.moveTo(X,Y-13);x.quadraticCurveTo(X+dx*.4,Y+dy*.6,X+dx,Y+dy);x.stroke()})});put(x)}}
-{const k=document.querySelector('#r-gnome [data-id="kohl"] .hit');if(k)k.setAttribute('d','M24,392L246,392L246,476L24,476Z')}
+    x.strokeStyle='#4a9a3a';x.lineWidth=1.6;x.lineCap='round';[[-5,-30],[0,-34],[5,-28]].forEach(([dx,dy])=>{x.beginPath();x.moveTo(X,Y-13);x.quadraticCurveTo(X+dx*.4,Y+dy*.6,X+dx,Y+dy);x.stroke()})});x.restore();put(x)}
 T.kohl.n='Gemüsebeet';
 wrapFn('kohl',function(orig){
   if(FL.recipe&&!FL.zwiebel&&!FL.traene&&!has('traene'))return say([['P','Zwiebeln! Neben dem Riesenkohl wachsen Zwiebeln.'],['P','*zieht eine raus* … AAH. Meine Augen. Schon beim Rausziehen.'],

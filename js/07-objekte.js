@@ -134,7 +134,7 @@ const T={
   apfelbaum:{n:'Apfelbaum',at:[300,400],l:[[['P','Ein Apfelbaum mitten im Birkenwald. Den hat bestimmt jemand gepflanzt. Oder verloren.']],[['P','Die anderen Äpfel hängen zu hoch.']]]},
   ast:{n:'Ast',at:[690,400],fn(){if(!FL.kraehe)return say([['P','Ein schöner gerader Ast. Aber da sitzt die Krähe drauf.'],['K','Krah! Finger weg, das ist meiner!']]);
     say([['P','*spring* ... *spring* ... *SPRING*'],['P','*KNACK*'],['P','Ein Stock. Wird eine Angel. Ich bin heute so produktiv, das macht mir fast Sorgen.']],()=>grab('ast','stock',()=>{FL.ast=1;delete cache.wald;inv.push('stock');renderInv();enter('wald',[P.x,P.y]);craft()},{kind:'sprung',gy:P.y}))}},
-  sUfer:{n:'Schild: Zum Ufer',at:[716,480],fn(){walkTo(770,470,()=>enter('ufer',[60,452]))}},
+  sUfer:{n:'Schild: Zum Ufer',at:[640,480],fn(){walkTo(770,470,()=>enter('ufer',[60,452]))}},
   sFH:{n:'Schild: Zum Fischerhaus',at:[130,486],go:'fischer',to:[740,470]},
   sUP:{n:'Schild: Unter den Pier',at:[176,404],go:'unter',to:[640,470]},
   sUZ:{n:'Schild: Zurück zum Ufer',at:[690,486],go:'ufer',to:[180,406]},

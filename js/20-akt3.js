@@ -98,12 +98,12 @@ function a3Vis(){const show=(id,on)=>{const e=document.querySelector(`[data-id="
 const _enterA3=enter;enter=function(id,pos){_enterA3(id,pos);a3Vis();if(id==='lounge'&&FL.booked&&!FL.zwIn)setTimeout(()=>{if(cur==='lounge'&&!busy)say([['P','Nastja macht sich frisch. Ich hab vielleicht eine Minute.'],['P','(Und die Lüftung da oben bläst direkt aufs Sofa …)']])},1300)};
 a3Vis();
 // Pilzbeet und Lüftung in die gemalten Orte (vor dem ersten Betreten eingehängt)
-{const pg=SCN.gnome.paint;SCN.gnome.paint=function(){pg.apply(this,arguments);const x=lay();shadowAt(x,520,430,80,.5);
+function paintPilzbeet(tf){const x=lay();x.save();if(tf){x.translate(tf[0],tf[1]);x.scale(tf[2],tf[2])}shadowAt(x,520,430,80,.5);
   x.fillStyle='#2a1c10';x.beginPath();x.moveTo(460,428);x.lineTo(468,398);x.lineTo(572,398);x.lineTo(582,428);x.fill();for(let i=0;i<60;i++)dab(x,470+R()*104,404+R()*22,3+R()*4,[60,40,24],.6);
   wood(x,452,424,138,8,0);wood(x,462,394,116,6,0);wood(x,452,394,8,36,1);wood(x,582,394,8,36,1);
   for(let i=0;i<14;i++){const X=474+R()*94,Y=410+R()*14,gold=i%5==0,r=gold?5:3.6+R()*2;x.fillStyle='#e8dcc0';x.fillRect(X-1.2,Y-r*1.2,2.4,r*1.2);
     if(gold){x.save();x.globalCompositeOperation='lighter';dab(x,X,Y-r*1.4,12,[255,200,60],.6);x.restore()}ell(x,X,Y-r*1.3,r,r*.6,gold?[240,190,50]:[140,96,60])}
-  wood(x,596,384,4,44,1);wood(x,584,384,30,14,0);x.fillStyle='#2a1808';x.font='bold 6px Georgia';x.textAlign='center';x.fillText('FINGER',599,390);x.fillText('WEG!',599,396);put(x)}}
+  wood(x,596,384,4,44,1);wood(x,584,384,30,14,0);x.fillStyle='#2a1808';x.font='bold 6px Georgia';x.textAlign='center';x.fillText('FINGER',599,390);x.fillText('WEG!',599,396);x.restore();put(x)}
 {const pl=SCN.lounge.paint;SCN.lounge.paint=function(){pl.apply(this,arguments);const x=lay();x.fillStyle='#1a0c08';x.fillRect(586,94,64,48);
   const g=x.createLinearGradient(586,94,650,142);g.addColorStop(0,'#f4d88a');g.addColorStop(.5,'#b8862c');g.addColorStop(1,'#6a4410');x.strokeStyle=g;x.lineWidth=4;x.strokeRect(588,96,60,44);
   x.lineWidth=2.4;for(let Y=104;Y<138;Y+=6){x.beginPath();x.moveTo(592,Y);x.lineTo(644,Y);x.stroke()}x.fillStyle='#e8c870';[[592,100],[644,100],[592,136],[644,136]].forEach(([X,Y])=>{x.beginPath();x.arc(X,Y,1.8,0,7);x.fill()});put(x)}}

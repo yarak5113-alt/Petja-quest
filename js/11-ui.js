@@ -30,7 +30,7 @@ function showSpots(on){let d=$('#spots');if(!on){if(d)d.remove();game.classList.
   if(d||busy||ovl||changing||!cur||$('#start')||$('#fg')||$('#cut'))return;d=document.createElement('div');d.id='spots';const r=game.getBoundingClientRect();
   document.querySelectorAll('.interactive[data-id]').forEach(el=>{const id=el.dataset.id,o=T[id];if(!o||id=='petja')return;const room=el.closest('.room');if(room&&!room.classList.contains('on'))return;
     const b=el.getBoundingClientRect();if(b.width<2||b.height<2)return;const s=document.createElement('div');s.className='spot'+(isExit(o)?' ex':'');
-    s.style.left=(b.left+b.width/2-r.left)+'px';s.style.top=(b.top+b.height/2-r.top)+'px';const kind=isExit(o)?'exit':el.querySelector('image.spr')?'talk':o.after&&String(o.after).includes('grab(')?'hand':'spot';s.classList.add(kind);
+    s.style.left=(b.left+b.width/2-r.left)+'px';s.style.top=(b.top+b.height/2-r.top)+'px';const kind=isExit(o)?'exit':el.querySelector('image.spr')?'talk':o.after&&String(o.after).includes('grab(')?'hand':'spot';s.classList.add(kind);if(isExit(o)){const cx=(b.left+b.width/2-r.left)/r.width;s.classList.add(cx<.38?'dl':cx>.62?'dr':'du')}
     s.innerHTML=`<i>${ic(kind)}</i><span>${isExit(o)?o.n.replace(/^Schild: /,''):o.n}</span>`;d.appendChild(s)});
   game.appendChild(d);game.classList.add('spotlit')}
 function flashSpots(){showSpots(true);clearTimeout(spotT);spotT=setTimeout(()=>showSpots(false),2600)}
