@@ -27,7 +27,7 @@ game.addEventListener('contextmenu',e=>{e.preventDefault();if(busy&&!ovl)skipDia
 // ----- Minispiele: Nach 3 Fehlversuchen darf man überspringen -----
 // ok(): woran man erkennt, dass es geklappt hat; win(): dasselbe Ergebnis wie ein Sieg im Minispiel
 const MG={
-  fishing:{n:'Angeln',ok:()=>FL.fisch,win(){FL.fisch=1;inv.push('fisch');renderInv();say([['P','*zieht einfach mit aller Kraft* ...Oh. Ein Fisch. Hat sich wohl selbst erbarmt.'],['F','Der ist ja winzig. Den hätt ich zurückgeworfen.'],['P','Der ist für einen Kater, nicht für Sie.']])}},
+  fishing:{n:'Angeln',ok:()=>FL.fisch,win(){FL.fisch=1;dropInv('angel');inv.push('fisch');renderInv();say([['P','*zieht einfach mit aller Kraft* ...Oh. Ein Fisch. Hat sich wohl selbst erbarmt.'],['F','Der ist ja winzig. Den hätt ich zurückgeworfen.'],['P','Der ist für einen Kater, nicht für Sie.'],['P','*knack* …Und die Angel ist hin. Hat genau einen Fisch gehalten. Wie versprochen.']])}},
   wels:{n:'Der Wels',ok:()=>FL.ablenk,win(){FL.ablenk=1;say([['P','*hält die Schnur einfach fest und wartet*'],['F','(von oben) WAS?! Es zieht! ES ZIEHT! Das ist ER! DER WELS!'],['F','Komm her, du Mistvieh! Dreißig Jahre hab ich auf dich gewartet!'],['P','Perfekt. Der ist jetzt eine Weile beschäftigt.'],['P','Und seine Flasche steht ganz allein auf dem Pier…']])}},
   tableGame:{n:'Joint zerlegen',ok:()=>FL.pilze,win(){inv.splice(inv.indexOf('kippe'),1);inv.push('pilze');renderInv();FL.pilze=1;say([['P','*zupft ganz langsam alles auseinander* ...So. Neun Stück. Alle blau angelaufen.'],['J2','Bring sie her, Bürschchen. Lass die alte Jaga mal schnüffeln.']])}}};
 Object.keys(MG).forEach(name=>{const orig=window[name],m=MG[name];if(typeof orig!='function')return;

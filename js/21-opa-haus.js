@@ -14,8 +14,6 @@
   Object.assign(ITEMS,{rsaege:['','Rostige Säge','Opas Säge. Hat den Brand überlebt. Schneiden tut sie aber nur noch Grimassen.'],
     saege:['','Säge','Opas Säge, vom Schmied geschärft. Ausgeliehen. Gegen ein ganzes Haus.'],
     seil:['','Wäscheleine','Tante Galjas alte Wäscheleine. Riecht nach Kernseife. Hält bestimmt einen Fisch.']})})();
-// das Brett gibt es nicht mehr – das Haus wird aus Birkenstämmen gebaut
-{const b=document.getElementById('brett');if(b)b.remove();}
 
 // ----- Birkensperre: Opas Bauholz -----
 const opaRuf=()=>{if(!FL.opaRuf){FL.opaRuf=1;return say([['P','So. Dann wollen wir mal. *setzt die Säge an*'],['G','*ganz weit hinten* *PFIIIIFF* EEEY! WO WILLST DU HIN?!'],['P','…Opa? Das Dorf ist auf der anderen Seite vom Wald!'],
@@ -38,7 +36,7 @@ function sawAndBuild(){say([['P','So. Mit Opas Segen. *säg* ... *säg* ... *keu
   FL.cut=1;delete cache.sperre;T.sHolz.n='Holzreste';const h=$('[data-id=sHolz]');if(h)h.style.display='none';renderInv();
   say([['P','*schlepp* … *schlepp* … *schlepp* …']],()=>{enter('dorf',[420,480]);
     setTimeout(()=>say([['G','Na endlich! Die Stämme sind da. Jetzt wird gebaut, wie früher:'],['G','Stamm auf Stamm. Dann die Rinde runter, sonst frisst der Käfer das Haus. Und zum Schluss Teer in die Fugen.']],hausGame),1100)})})}
-function hausWin(){FL.haus=1;delete cache.dorf;say([['P','*Zwei Tage später*']],()=>{enter('dorf',[420,480]);
+function hausWin(){FL.haus=1;delete cache.dorf;dropInv('saege');say([['P','*Zwei Tage später*']],()=>{enter('dorf',[420,480]);
   setTimeout(()=>say([['G','Na bitte. Ein Haus! Aus echten Birkenstämmen! Und der Ofen war ja schon da.'],['P','Mein Rücken ist jetzt auch abgebrannt.'],
     ['G','Die Säge behältst du. Hast sie dir verdient. Und jetzt ab in deinen Sumpf, der Weg ist ja frei.']]),1100)})}
 
@@ -144,7 +142,7 @@ if(T.ruine)Object.defineProperty(T.ruine,'n',{get:()=>FL.haus?'Opas neues Haus':
 // ----- Wäscheleine bei Tante Galja: die Schnur für die Angel -----
 wrapFn('waesche',function(orig){
   if(!FL.leine&&!has('seil')&&!has('angel')&&!FL.fisch&&!FL.kater)return say([['P','Eine Wäscheleine. Lang, dünn, reißfest. Perfekte Angelschnur.'],['P','*knotet die Leine ab* … Die Unterhose lass ich hängen. Aus Respekt.'],
-    ['O','*von drüben* Nimm ruhig, Junge! Die Galja hat mir meine Leine auch nie zurückgegeben!']],()=>{FL.leine=1;inv.push('seil');renderInv()});
+    ['O','*von drüben* Nimm ruhig, Junge! Die Galja hat mir meine Leine auch nie zurückgegeben!']],()=>{FL.leine=1;inv.push('seil');renderInv();craft()});   // Ast schon da? Dann gleich die Angel bauen
   if(FL.leine)return say([['P','Die Wäsche liegt jetzt im Gras. Galja wird sich freuen.']]);
   return orig()});
 
@@ -164,6 +162,8 @@ wrapFn('schmied',function(orig){
 function opaMigrate(){
   if((FL.boot||(FL.cut&&!FL.sawQ))&&!FL.haus){FL.sawQ=1;FL.deal=1;FL.haus=1;FL.cut=1;delete cache.dorf}   // Säge noch vom Fischer bekommen bzw. schon gesägt
   ['holz','brett'].forEach(i=>{const k=inv.indexOf(i);if(k>=0)inv.splice(k,1)});
+  if(has('stock')&&has('seil')){['stock','seil'].forEach(i=>inv.splice(inv.indexOf(i),1));inv.push('angel')}   // Softlock bis 1.84: Ast vor Wäscheleine
+  [['leiter',FL.drin],['angel',FL.fisch],['saege',FL.haus]].forEach(([i,used])=>{const k=inv.indexOf(i);if(used&&k>=0)inv.splice(k,1)});   // verbrauchte Werkzeuge (ab 1.85)
   if(FL.sawQ&&!FL.deal&&!FL.cut&&FL.teer&&!has('teer')&&!FL.haus)inv.push('teer');     // Zwischenstand 1.71: Teer zurückgeben
-  {const b=document.getElementById('brett');if(b)b.remove()}renderInv()}
+  renderInv()}
 const _loadOpa=loadState;loadState=function(d){_loadOpa(d);opaMigrate()};

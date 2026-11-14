@@ -73,9 +73,9 @@ sawAndBuild=function(){say([['P','So. Mit Opas Segen.']],()=>animShots(sawShots(
   FL.cut=1;delete cache.sperre;T.sHolz.n='Holzreste';const h=$('[data-id=sHolz]');if(h)h.style.display='none';renderInv();enter('sperre',[P.x,P.y]);
   setTimeout(()=>say([['P','Geschafft. Der Weg zum Sumpf ist frei.'],['P','Und jetzt … die Stämme zu Opa. Alle. Mein Rücken weiß es schon.']],()=>{enter('dorf',[420,480]);
     setTimeout(()=>say([['G','Na endlich! Die Stämme sind da. Jetzt wird gebaut, wie früher:'],['G','Stamm auf Stamm. Dann die Rinde runter, sonst frisst der Käfer das Haus. Und zum Schluss Teer in die Fugen.']],hausGame),1100)}),700)}))};
-hausWin=function(){FL.haus=1;delete cache.dorf;animShots(hausShots(),()=>{enter('dorf',[420,480]);
+hausWin=function(){FL.haus=1;delete cache.dorf;dropInv('saege');animShots(hausShots(),()=>{enter('dorf',[420,480]);
   setTimeout(()=>say([['G','Na bitte. Ein Haus! Aus echten Birkenstämmen! Und der Ofen war ja schon da.'],['P','Mein Rücken ist jetzt auch abgebrannt.'],
-    ['G','Die Säge behältst du. Hast sie dir verdient. Und jetzt ab in deinen Sumpf, der Weg ist ja frei.']]),1100)})};
+    ['G','Die Säge häng ich wieder an den Nagel. So scharf war sie seit 1987 nicht mehr.'],['G','Und jetzt ab in deinen Sumpf, der Weg ist ja frei.']]),1100)})};
 
 // ----- Hinweis auf den Ast: Im Birkenwald fällt Petja der Ast der Krähe von selbst auf -----
 {const _e=enter;enter=function(id,pos){_e(id,pos);if(id==='wald'&&FL.angelQ&&!FL.ast&&!FL.astTipp&&!has('stock')&&!has('angel'))setTimeout(()=>{if(cur!=='wald'||busy||ovl)return;FL.astTipp=1;

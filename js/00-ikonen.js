@@ -67,8 +67,6 @@ const ICONS=(()=>{
     G('fl',`<path d="M24,22L30,15L35,22Z" fill="#6a8090"/><path d="M48,30L56,22L54,32L56,42L48,34Z" fill="#7a90a0"/>`)),
   gebiss:S(L('g','#ffa8a8','#d86070','#7a2030'),G('sk',`<path d="M8,30C8,16 56,16 56,30C56,36 50,38 44,36L20,36C14,38 8,36 8,30Z" fill="url(#g)"/><path d="M8,36C8,50 56,50 56,36C50,32 14,32 8,36Z" fill="url(#g)"/>`)+
     G('gl',[14,20,26,32,38,44,50].map(x=>`<path d="M${x-2.8},30L${x+2.8},30L${x+2.4},36L${x-2.4},36Z" fill="#f6f0e0"/><path d="M${x-2.8},37L${x+2.8},37L${x+2.4},42L${x-2.4},42Z" fill="#ece2cc"/>`).join(''))),
-  brett:S('',G('wd',`<path d="M6,40L50,14L58,24L14,50Z" fill="#c08a52"/>`,-30)+`<ellipse cx="32" cy="32" rx="2.6" ry="1.6" fill="#6a3a18" opacity=".8" transform="rotate(-30 32 32)"/>`+
-    G('fl',`<path d="M50,14L58,24L54,26L48,18Z" fill="#1a120a"/>`)+G('mt',`<circle cx="20" cy="40" r="1.2" fill="#5a5a5a"/><circle cx="40" cy="28" r="1.2" fill="#5a5a5a"/>`)),
   teer:S(RG('t','.4','.35','#6a6a6a','#0a0a0a'),G('wd',`<path d="M14,22L50,22L46,56L18,56Z" fill="#8a5a2c"/>`,90)+G('mt',`<path d="M15,28L49,28L48.6,32L15.4,32ZM16.8,44L47.2,44L46.9,48L17.1,48Z" fill="#3a3a3a"/>`)+
     G('gl',`<ellipse cx="32" cy="22" rx="18" ry="5" fill="url(#t)"/><path d="M24,20C26,26 28,28 27,32" fill="none" stroke="#0a0a0a" stroke-opacity="1" stroke-width="3"/>`)+G('mt',`<path d="M18,22C18,8 46,8 46,22" fill="none" stroke="#4a4a4a" stroke-opacity="1" stroke-width="1.8"/>`)),
   _:S(RG('q','.4','.35','#f0e0b0','#8a6a3a'),G('mt',`<circle cx="32" cy="32" r="20" fill="url(#q)"/>`)+`<text x="32" y="41" text-anchor="middle" font-family="Georgia" font-size="26" font-weight="bold" fill="#3a2410" ${N}>?</text>`)}})();

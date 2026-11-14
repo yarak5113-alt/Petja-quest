@@ -99,16 +99,6 @@ function leiter(){const g=G('leiterG');if(!g)return;g.innerHTML=pic(-13,-115,26,
   x.fillStyle='rgba(40,60,20,.5)';for(let i=0;i<14;i++){const X=(r()<.5?-8:8)+(r()-.5)*2;x.beginPath();x.ellipse(X,-2-r()*8,.5,.8,0,0,7);x.fill()}})}
 
 // ---------- angekokeltes Brett ----------
-function brett(){const g=G('brett');if(!g)return;g.innerHTML=pic(-3,-9,71,21,x=>{sd(7);shade(x,32,7,34,3,.55);
-  const face=new Path2D('M0,0L64,-5L65,3L1,8Z');x.save();x.clip(face);x.translate(0,0);x.rotate(-5/64);wood(x,-2,-1,70,10,0);x.restore();
-  x.save();x.clip(face);x.fillStyle='rgba(150,146,136,.25)';x.fill(face);x.fillStyle=grad(x,[0,-4],[0,8],[[0,'rgba(255,236,200,.18)'],[.5,'rgba(0,0,0,0)'],[1,'rgba(0,0,0,.4)']]);x.fill(face);
-  // Brandende mit Krokodilhaut-Rissen
-  x.fillStyle=grad(x,[44,0],[54,0],[[0,'rgba(20,12,6,0)'],[.5,'rgba(30,18,8,.7)'],[1,'rgba(8,6,4,.98)']]);x.fillRect(42,-8,24,18);
-  for(let X=50;X<66;X+=1.2+r()){for(let Y=-6;Y<9;Y+=1.6+r()*1.4){x.fillStyle='rgba(0,0,0,.95)';x.fillRect(X,Y,.25,1.2);x.fillRect(X,Y+1.2,1.1,.22);if(r()<.4){x.fillStyle='rgba(150,144,134,.35)';x.fillRect(X+.3,Y+.2,.7,.5)}}}x.restore();
-  const edge=new Path2D('M1,8L65,3L65,4.6L1,9.8Z');x.fillStyle='#2e2014';x.fill(edge);x.fillStyle='rgba(0,0,0,.6)';x.fillRect(50,2,16,8);
-  x.strokeStyle='rgba(16,10,4,.8)';x.lineWidth=.3;x.stroke(face);
-  x.fillStyle='#3a3a3a';[[8,2.4],[40,0]].forEach(([X,Y])=>{x.beginPath();x.arc(X,Y,.7,0,7);x.fill();x.fillStyle='rgba(120,50,20,.5)';x.beginPath();x.ellipse(X+1,Y+.6,1.4,.5,0,0,7);x.fill();x.fillStyle='#3a3a3a'})})}
-
 // ---------- Gebiss ----------
 function gebiss(){const g=G('gebissG');if(!g)return;g.innerHTML='<rect x="-12" y="-10" width="24" height="16" fill="#000" fill-opacity="0"/>'+pic(-11,-8,22,12,x=>{sd(8);shade(x,0,1.6,10,1.8,.55);
   const gum=new Path2D('M-8.6,0C-9,-4 -6,-6.6 0,-6.6C6,-6.6 9,-4 8.6,0C6,1.6 3,2.2 0,2.2C-3,2.2 -6,1.6 -8.6,0Z');
@@ -164,7 +154,7 @@ window.netRack=function(x){[[268,372],[338,366]].forEach(([X,Y])=>{shadowAt(x,X,
   for(let i=0;i<6;i++){const [X,Y]=pts[i*3>N?N:i*3][0],f=x.createRadialGradient(X+3-1,Y-1,0,X+3,Y,2.6);f.addColorStop(0,'#f0a060');f.addColorStop(.6,'#c05a24');f.addColorStop(1,'#5a2410');x.fillStyle=f;x.beginPath();x.ellipse(X+3,Y-.6,2.4,1.5,0,0,7);x.fill()}
   for(let i=0;i<8;i++){const [X,Y]=pts[2+r()*12|0][3+r()*6|0];x.strokeStyle='rgba(60,80,30,.7)';x.lineWidth=.6;x.beginPath();x.moveTo(X,Y);x.quadraticCurveTo(X+1,Y+3,X-.5,Y+5);x.stroke()}};
 
-[kippe,apfel,wuermer,schnaps,leiter,brett,gebiss,mrad,schnur].forEach(f=>{try{f()}catch(e){console.error('Objekt',f.name,e)}});
+[kippe,apfel,wuermer,schnaps,leiter,gebiss,mrad,schnur].forEach(f=>{try{f()}catch(e){console.error('Objekt',f.name,e)}});
 })();
 
 // ================= gemalte Objekte im Hintergrund (Fliegenpilz, Baumstumpf, Mühle, Mühlsteine) =================

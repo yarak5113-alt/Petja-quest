@@ -16,7 +16,7 @@ function actFrame(name,th){const k=name+th;if(ACTF[k])return ACTF[k];
   return ACTF[k]=sprite(PETV(th,0,0,'n',0,po),PBA,K,PBA_ROWS).then(u=>({u,hand:po.hand,behind:po.behind}))}
 // Gegenstand in der Hand (liegt über dem Sprite, wandert mit der Hand mit)
 const petItem=document.createElementNS('http://www.w3.org/2000/svg','image');petItem.setAttribute('class','spr');petItem.style.display='none';petG.appendChild(petItem);
-const ITEMSZ={brett:46,stock:54,seil:26,schnaps:24,gebiss:20,kippe:14,apfel:15,wuermer:20};
+const ITEMSZ={stock:54,seil:26,schnaps:24,gebiss:20,kippe:14,apfel:15,wuermer:20};
 let HELD=null;
 function showItem(f){if(!HELD||!f.hand||f.behind){petItem.style.display='none';return}
   const z=ITEMSZ[HELD]||20;petItem.setAttribute('href',ICON(HELD));petItem.setAttribute('x',(f.hand[0]-z/2).toFixed(1));petItem.setAttribute('y',(f.hand[1]-z/2).toFixed(1));
@@ -40,7 +40,7 @@ function grab(el,item,cb,opt={}){if(ACT){cb&&cb();return}const o=objPt(el);
   // Höhe über dem Boden relativ zu Petjas Größe (gleiche Tiefe angenommen, er steht ja direkt davor)
   const rel=((opt.gy||P.y)-o.y)/(scaleAt(P.y)*250),kind=opt.kind||(rel<.3?'boden':rel<.62?'mitte':'hoch'),A=kind=='sprung'?'hoch':kind,
     take=()=>{if(document.getElementById(el))rm(el);HELD=item},
-    small=!/^(brett|stock|leiter|seil)$/.test(item);
+    small=!/^(stock|leiter|seil)$/.test(item);
   const seq=kind=='sprung'?[[A+'A',140,{jy:-10}],[A+'B',190,{jy:-26}],[A+'A',150],[A+'B',190,{jy:-30}],[A+'A',150],[A+'B',260,{jy:-34,at:take}],[A+'A',200,{jy:-8}]]
     :[[A+'A',kind=='boden'?200:150],[A+'B',380,{at:take}],[A+'A',kind=='boden'?220:160]];
   seq.push(['halten',small?420:600]);if(small)seq.push(['tasche',260,{at:()=>{HELD=null}}]);

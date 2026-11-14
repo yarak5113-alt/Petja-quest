@@ -1,4 +1,6 @@
 // ================= Angel-Minispiel =================
+// Gegenstand aus der Tasche nehmen (falls vorhanden) – z. B. verbrauchte Werkzeuge
+function dropInv(i){const k=inv.indexOf(i);if(k>=0){inv.splice(k,1);renderInv()}}
 function craft(){if(inv.includes('stock')&&inv.includes('seil')){['stock','seil'].forEach(i=>inv.splice(inv.indexOf(i),1));inv.push('angel');renderInv();
   setTimeout(()=>say([['P','Stock... Schnur dran... und als Haken eine Sicherheitsnadel aus meiner Hose.'],['P','Fertig ist die Angel. Wenn mein Vater mich jetzt sehen könnte... würde er sich schämen. Wie immer.']]),300)}}
 function fishing(){if($('#fg'))return;const cv2=document.createElement('canvas');cv2.id='fg';cv2.width=800;cv2.height=500;cv2.style.cssText='position:absolute;inset:0;width:100%;height:100%;z-index:20;cursor:none';$('#game').appendChild(cv2);
@@ -7,7 +9,7 @@ function fishing(){if($('#fg'))return;const cv2=document.createElement('canvas')
   cv2.onmousemove=e=>pos(e.clientX,e.clientY);cv2.ontouchmove=e=>{e.preventDefault();pos(e.touches[0].clientX,e.touches[0].clientY)};
   cv2.onclick=e=>{e.stopPropagation();if(mx>680&&my>455)end(0)};const esc=e=>{if(e.key=='Escape')end(0)};addEventListener('keydown',esc);
   function end(win){if(fin)return;fin=true;cv2.remove();removeEventListener('keydown',esc);
-    if(win){FL.fisch=1;inv.push('fisch');renderInv();say([['P','Oh. Ich hab tatsächlich einen. Einen echten Fisch. Wer hätte das gedacht.'],['F','Der ist ja winzig. Den hätt ich zurückgeworfen.'],['P','Der ist für einen Kater, nicht für Sie.']])}
+    if(win){FL.fisch=1;dropInv('angel');inv.push('fisch');renderInv();say([['P','Oh. Ich hab tatsächlich einen. Einen echten Fisch. Wer hätte das gedacht.'],['F','Der ist ja winzig. Den hätt ich zurückgeworfen.'],['P','Der ist für einen Kater, nicht für Sie.'],['P','*knack* …Und die Angel ist hin. Hat genau einen Fisch gehalten. Wie versprochen.']])}
     else say([['P','Weg ist er. Der Fisch hat mehr Kraft als ich.'],['F','Nochmal! Und halt dagegen, Junge! Wie beim Tanzen mit meiner ersten Frau.']])}
   function frame(){if(fin)return;const t=performance.now(),dt=Math.max(0,Math.min(.05,(t-last)/1000));last=t;const el=Math.max(0,(t-t0)/1000);
     ang+=(Math.random()-.5)*dt*6+Math.sin(el*1.3)*dt*1.5;if(Math.random()<dt*.6)ang+=Math.random()*3-1.5;

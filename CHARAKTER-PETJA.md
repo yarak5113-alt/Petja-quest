@@ -33,7 +33,7 @@ Verbindliche Vorlage für alle Texte von Petja (Dialoge, Sprüche, Beschreibunge
 ## Hinweise im Spiel
 - Viele Hinweise kommen von Petja selbst. Er denkt laut nach und zieht eigene Schlüsse:
   „Mhh. Ohne Leiter komm ich hier nicht weiter.“
-- Andere Figuren geben nur dann Tipps, wenn sie selbst etwas davon haben (Opa will Schnaps, Oma ihr Gebiss, der Fischer sein Boot).
+- Andere Figuren geben nur dann Tipps, wenn sie selbst etwas davon haben (Opa will Schnaps, Oma ihr Gebiss, der Schmied seine Weihe).
 - Wer keinen Grund hat zu helfen (Baba Jaga, die Krähe, der Fischer beim eigenen Schnaps), hilft auch nicht. Dann redet die Figur nur – und Petja zieht seine Schlüsse daraus.
 - Petja kann nur wissen, was er schon gesehen hat. Hat er die Lösung schon irgendwo gesehen, erinnert er sich mit jedem Versuch genauer
   („Eine Leiter… Moment. Ich hab doch irgendwo eine gesehen.“ → „Im Dorf, am Ofen. Ich sollte im Dorf nachfragen.“).

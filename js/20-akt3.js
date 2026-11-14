@@ -77,7 +77,7 @@ const NPCBOX=[-56,-220,112,224];
     glut:S(`<path d="M12,30L52,30L50,54C50,57 47,58 32,58C17,58 14,57 14,54Z" fill="#8a8e96"/><path d="M12,30C12,26 52,26 52,30C52,34 12,34 12,30Z" fill="#3a2a22"/><g fill="#ff7a20"><circle cx="24" cy="29" r="4"/><circle cx="33" cy="28" r="4.6"/><circle cx="42" cy="29.4" r="3.6"/></g><g fill="#ffe080"><circle cx="24" cy="28" r="1.6"/><circle cx="33" cy="27" r="2"/><circle cx="42" cy="28.6" r="1.4"/></g><path d="M16,38L48,38M16,46L48,46" fill="none" stroke="#5a5e66" stroke-width="1"/><path d="M50,36C56,36 58,44 52,46" fill="none" stroke="#5a5e66" stroke-width="2.6"/>`,`<circle cx="32" cy="28" r="22" fill="url(#glow)" opacity=".8"/><path d="M28,20C26,14 30,10 28,4M36,18C38,12 34,8 36,2" fill="none" stroke="#c8c8c8" stroke-opacity=".5" stroke-width="2"/>`),
     joint2:S(`<path d="M8,46L48,20L54,28L14,54Z" fill="#f4eedc"/><path d="M44,22.6L48,20L54,28L50,30.6Z" fill="#e8dcc0"/><path d="M8,46L14,54L11,53C7,51 6,48 8,46Z" fill="#2a1e18"/><g fill="#6ab8ff" opacity=".7"><circle cx="22" cy="42" r="1.4"/><circle cx="30" cy="36" r="1.2"/><circle cx="38" cy="31" r="1.4"/></g><g fill="#f0c040"><circle cx="26" cy="40" r="1.1"/><circle cx="34" cy="34" r="1"/></g>`,`<circle cx="32" cy="37" r="24" fill="#ffd060" opacity=".22"/>`)})})();
 Object.assign(ITEMS,{filter:['','Papierfilter','Der Filter vom alten Joint. Hat alles mitgemacht. Wie ich.'],spore:['','Ur-Spore','Goldene Sporen aus dem Pilzbeet der Gnome. Glitzern. Riechen nach Keller und Zukunft.'],
-  phiole:['','Leere Phiole','Vom Pilzmeister. Für eine echte Träne. Fallen lassen ist verboten.'],traene:['','Nymphenträne','Eine echte Träne von Nastja. Dank Omas Zwiebel. Ich bin kein guter Mensch.'],
+  phiole:['','Leere Phiole','Von Baba Jaga. Für eine echte Träne. Fallen lassen ist verboten.'],traene:['','Nymphenträne','Eine echte Träne von Nastja. Dank Omas Zwiebel. Ich bin kein guter Mensch.'],
   zwiebel:['','Omas Zwiebel','Die schärfste aus Omas Beet. Schon durch die Tasche tränen mir die Augen.'],weihwasser:['','Weihwasser','Von Vater Ignati. „Zur Haltbarkeit“ mit Wodka gestreckt.'],
   glut:['','Glut in der Dose','Geweihte Glut aus Fjodors Esse. Geht nicht aus. Nicht mal im Sumpf.'],joint2:['','Ausweg-Joint','Mein Weg nach Hause. Hoffentlich.']});
 
@@ -198,7 +198,7 @@ function pilzbeetRun(){if($('#fg'))return;const{cv2,x,P,pos}=a3Canvas();let fin=
 const pilzbeetGame=a3Mini('pilzbeet','Pilzbeet',pilzbeetRun,()=>has('spore'),sporeWin);
 
 // ----- Finale am Tisch: Ausweg-Joint bauen (Filter → Ur-Spore → Träne → rollen → mit der Glut anzünden) -----
-function craftGame(){if($('#fg'))return;const{cv2,x,P,pos}=a3Canvas();let fin=false,step=0,drag=null,roll=0,rollA=false,lit=0,msg='Leg den Filter ans rechte Ende des Papiers.',spark=[];
+function craftRun(){if($('#fg'))return;const{cv2,x,P,pos}=a3Canvas();let fin=false,step=0,drag=null,roll=0,rollA=false,lit=0,msg='Leg den Filter ans rechte Ende des Papiers.',spark=[];
   const PAPER=[250,250,330,46],TIP=[262,273],FILT=[560,273];
   const it=[{id:'filter',x:90,y:110},{id:'spore',x:90,y:200},{id:'traene',x:90,y:290},{id:'glut',x:90,y:380}].map(o=>({...o,hx:o.x,hy:o.y}));
   const ORDER=['filter','spore','traene',null,'glut'],TXT=['Erst der Filter, Bürschchen!','Erst die Ur-Spore drauf!','Jetzt die Träne!','Erst rollen!','Jetzt anzünden!'];
@@ -239,9 +239,12 @@ function craftGame(){if($('#fg'))return;const{cv2,x,P,pos}=a3Canvas();let fin=fa
   cv2.ontouchstart=e=>{e.preventDefault();pos(e.touches[0].clientX,e.touches[0].clientY);down()};cv2.ontouchmove=e=>{e.preventDefault();pos(e.touches[0].clientX,e.touches[0].clientY);move()};cv2.ontouchend=()=>up();cv2.onclick=e=>e.stopPropagation();
   const esc=e=>{if(e.key=='Escape')end(0)};addEventListener('keydown',esc);
   function end(win){if(fin)return;fin=true;cv2.remove();removeEventListener('keydown',esc);removeEventListener('mouseup',mu);
-    if(win){['filter','spore','traene','glut'].forEach(i=>{const k=inv.indexOf(i);if(k>=0)inv.splice(k,1)});inv.push('joint2');renderInv();finale()}
+    if(win)craftWin();
     else say([['J2','Später? Das Märchen wartet nicht ewig, Bürschchen. … Na gut, es wartet doch. Es hat ja sonst nichts vor.']])}
   requestAnimationFrame(frame)}
+function craftWin(){['filter','spore','traene','glut'].forEach(i=>{const k=inv.indexOf(i);if(k>=0)inv.splice(k,1)});inv.push('joint2');renderInv();finale()}
+// wie die anderen Minispiele: nach 3 abgebrochenen Versuchen darf man überspringen
+const craftGame=a3Mini('craft','Ausweg-Joint bauen',craftRun,()=>!!FL.ende,craftWin);
 
 // ----- Finale: anzünden → Lichtblitz → zurück auf Wowas Sofa (Loop) → Abspann -----
 function finale(){FL.ende=1;say([['J2','Fertig. Der schönste Ausweg-Joint, den ich je gesehen hab. Und ich hab viele gesehen.'],['J2','Zieh, Bürschchen. Und grüß mir die echte Welt.'],
