@@ -89,3 +89,20 @@ wrapFn('baba',function(orig){if(!FL.kraehe||FL.petzt||!FL.drin)return orig();FL.
   if(FL.naV==2)return say([['NA','…Weißt du was, Zwiebel? Dreihundert Jahre hab ich nichts gefühlt. Gar nichts.'],['NA','Und dann heul ich. Wegen dir. Wegen einer Gnomzwiebel.'],
     ['NA','Das war das Ehrlichste, was mir seit dem Sumpf passiert ist. …Jetzt raus.'],['P','(Ich glaub, das war ein Danke.)']]);
   say([['NA','Raus, Zwiebel. *lächelt fast*']])}}
+
+// ----- Am Tisch, bevor der Ausweg-Joint gedreht wird: Baba Jagas Geschäft + Einsamkeit, Petjas Entscheidung (einmalig) -----
+wrapFn('tisch',orig=>{if(FL.ende||!FL.recipe||!hasAll()||FL.tischRede)return orig();
+  say([['J2','Setz dich. Nicht auf den Stuhl links, der beißt. Den anderen.'],
+    ['P','Bevor wir anfangen. Die blauen Pilze. Der Stempel auf den Säcken. Der Staub hinterm Banja. Das sind Ihre, oder?'],
+    ['J2','Bürschchen. Ich bin dreihundert Jahre alt und wohne auf Hühnerbeinen. Glaubst du, so ein Haus füttert sich von allein?'],
+    ['J2','Die Gnome züchten, die Nymphen trocknen, das Dorf guckt weg. Jeder verdient ein bisschen. Das nennt man Märchenwirtschaft.'],
+    ['P','Und Wowas Joint?'],['J2','Streuverlust. Kommt in den besten Familien vor.'],
+    ['J2','*schiebt ihm einen Becher hin* Tee. Ist nichts drin. Diesmal.'],
+    ['J2','Die meisten, die an diesem Tisch sitzen, liegen hinterher im Ofen. Du bist der Erste seit Jahrzehnten, der zurückredet.'],
+    ['J2','Du könntest auch bleiben. Die Gnome brauchen einen Langen. Die Oma braucht jemanden fürs Gebiss. Und ich … hätte wen zum Anmeckern.'],
+    ['P','Da drüben vermisst mich keiner. Wowa merkt erst, dass ich weg bin, wenn ihm das Feuerzeug fehlt.'],
+    ['J2','Na also.'],
+    ['P','Aber hier hängt alles an allem. Säge gegen Teer, Teer gegen Gebiss, Gebiss gegen Fisch. Wenn ich bleibe, bin ich nur noch ein Zahnrad.'],
+    ['P','Drüben bin ich auch nichts Besonderes. Aber da bin ich wenigstens mein eigenes Problem.'],
+    ['J2','… Dummkopf. *trinkt seinen Tee aus* Na gut. Dreh deinen Joint.'],
+    ['J2','Und falls du drüben mal einen blauen Stempel siehst: Du warst nie hier.']],()=>{FL.tischRede=1;orig()})});

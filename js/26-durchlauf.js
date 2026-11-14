@@ -149,6 +149,7 @@ async function durchlauf(){if(DL.on)return;DL.on=true;DL.log=[];DL.t0=Date.now()
     await dlStep('Nastja verzeiht (fast)','buehne','nastja2',()=>FL.naV>=2);
     await dlGoto('innen');await dlIdle();dlExpect('Wowa-Echo 3 („…BRUDER?!“) vor dem Finale',()=>FL.echo3);
     await dlStep('Ausweg-Joint gebaut','innen','tisch',()=>FL.ende);
+    dlExpect('Tischgespräch mit Baba Jaga lief',()=>FL.tischRede);
     const t0=Date.now();while(!$('#abspann')&&Date.now()-t0<90000){if(busy)advance();await dlSleep(100)}
     dlExpect('Abspann läuft',()=>!!$('#abspann'));
     dlLog(`Taschen am Ende: ${inv.join(', ')||'leer'}`);

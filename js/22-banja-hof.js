@@ -87,9 +87,10 @@ Object.assign(T,{
       :[['P','Eine Lüftung. Warme Luft, Parfüm und Bass. Da drin muss die private Lounge sein.']])}},
   pope:{n:'Vater Ignati',at:[560,452],fn(){
     if(!FL.recipe)return hint('popeSchlaf',[[['P','Im Heu liegt ein Pope. Hinter einem Stripclub. Und schnarcht.'],['P','Ich lass ihn schlafen. Wer so schnarcht, hat es sich verdient.']],
-      [['P','*leise* Hallo? …'],['P','*Schnarch*. Okay. Der wacht nicht mal auf, wenn die Kirche einstürzt.']]]);
+      [['P','*leise* Hallo? …'],['P','*Schnarch*. Okay. Der wacht nicht mal auf, wenn die Kirche einstürzt.']],
+      [['PO','*murmelt im Schlaf* …nur ein blaues … Pilzchen … zum Entspannen … nur kurz die Augen zu …'],['P','(Ein Pope, der von blauen Pilzen träumt. Ich frag lieber nicht.)']]]);
     say([['P','Vater? … VATER!'],['PO','*schnarch* … nur noch fünf Minuten …'],['P','*kitzelt ihn mit einem Strohhalm an der Nase*'],['PO','HAAA-TSCHI! Wer? Was? Wo bin ich?'],
-      ['P','Hinterm Banja. Im Heu. An Ihrer Kirche hängt ein Zettel: „Pope in der Stadt.“ Von 1993.'],['PO','1993?! Ich wollte nach dem Bier nur kurz die Augen zumachen …'],['PO','Herr im Himmel. Die Glocken! Der Kater! Meine Gemeinde!'],
+      ['P','Hinterm Banja. Im Heu. An Ihrer Kirche hängt ein Zettel: „Pope in der Stadt.“ Von 1993.'],['PO','1993?! Ich wollte nach dem Bier nur kurz die Augen zumachen …'],['PO','Das Bier … und so ein blaues Pilzchen dazu. Von der Alten im Wald. „Zum Entspannen“, hat sie gesagt.'],['PO','Seitdem ist alles so … zäh. Als wäre ich nie richtig aufgewacht. Dreißig Jahre, sagst du?'],['P','(Blaue Pilze. Dreißig Jahre im Heu. Notiz an mich: hier nichts essen, was blau ist. Und nirgends lange liegen bleiben.)'],['PO','Herr im Himmel. Die Glocken! Der Kater! Meine Gemeinde!'],
       ['P','Ihre Gemeinde besteht aus einer Oma und einem Kater. Beide sauer.'],['PO','Ich muss zurück. Aber durch den Irrwald? Den find ich nüchtern nicht. Und nüchtern war ich zuletzt 1993.'],
       ['P','Links, links, rechts, geradeaus. Nur halt rückwärts. Also: geradeaus, rechts, links, links.'],['PO','Gott segne dich, mein Sohn. Wir sehen uns an der Kirche.']],
       ()=>{FL.popeBack=1;popeVis();if(typeof a3Vis=='function')a3Vis()})}}});
