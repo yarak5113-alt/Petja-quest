@@ -21,7 +21,7 @@ const M=JSON.parse(fs.readFileSync(path.join(root,'pixel/nastja.json'),'utf8')),
 const C0=Math.floor((-15+74)*PX),C1=Math.ceil((15+74)*PX),R0=20,R1=91;
 // ---- Frames im Spiel rendern (Edge headless), ungekürzt ----
 let h=fs.readFileSync(path.join(root,'index.html'),'utf8');
-h=h.replace('</body>',`<pre id="xout"></pre><script>setTimeout(async()=>{const o={},sh=await nastjaShift();for(const n of ${JSON.stringify(names)})o[n]={u:await nastjaFrame(n,sh),bx:NASTJA_POSEN[n].bx||0,by:NASTJA_POSEN[n].by||0,st:NASTJA_POSEN[n].box==='stange',front:NASTJA_POSEN[n].front||[],sh};document.getElementById('xout').textContent=JSON.stringify(o)},500)</script></body>`);
+h=h.replace('</body>',`<pre id="xout"></pre><script>setTimeout(async()=>{const o={},sh=await nastjaShift();for(const n of ${JSON.stringify(names)})o[n]={u:await nastjaFrame(n,sh),bx:NASTJA_POSEN[n].bx||0,by:NASTJA_POSEN[n].by||0,st:NASTJA_POSEN[n].box==='stange',front:NASTJA_POSEN[n].front||[],brow:NASTJA_POSEN[n].brow||0,sh};document.getElementById('xout').textContent=JSON.stringify(o)},500)</script></body>`);
 const tmp=path.join(root,'_frames_'+Date.now()+'.html');fs.writeFileSync(tmp,h);const prof=fs.mkdtempSync(path.join(os.tmpdir(),'nfr-'));let out;
 try{out=execFileSync('C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',['--headless=new','--dump-dom','--virtual-time-budget=60000','--user-data-dir='+prof,'file:///'+tmp.split(path.sep).join('/')],{maxBuffer:256<<20,timeout:300000,stdio:['ignore','pipe','ignore']}).toString('utf8')}finally{fs.unlinkSync(tmp)}
 const mm=out.match(/<pre id="xout">([\s\S]*?)<\/pre>/);if(!mm||!mm[1])throw new Error('kein Ergebnis');
@@ -30,6 +30,11 @@ for(const n of names){const img=readPNG(Buffer.from(res[n].u.split(',')[1],'base
   // Gesicht pixelgenau einsetzen (nur deckende Pixel des Hauptsprites)
   for(let y=R0;y<=R1;y++)for(let x=C0;x<=C1;x++){const c=MR[y][x-MAIN_X0];if(!c)continue;const X=x+DX,Y=y+DY;if(X<0||Y<0||X>=W||Y>=H)continue;const q=(Y*W+X)*4;
     d[q]=parseInt(c.slice(1,3),16);d[q+1]=parseInt(c.slice(3,5),16);d[q+2]=parseInt(c.slice(5,7),16);d[q+3]=255;pasted++}
+  // Freche Posen: Braue über dem offenen Auge um R.brow px anheben (Mitte 1 px mehr = stärkerer Bogen), alte Stelle mit Haut füllen.
+  // Brauenpixel im Hauptsprite: Kontur #2e1c10 in Zeilen 56–63, Spalten 115–130 (Spalten ≤114 = Gesichtsrand, bleibt). Augen bleiben unberührt.
+  if(R.brow){const set=(m,y,c)=>{const X=m+MAIN_X0+DX,Y=y+DY;if(X<0||Y<0||X>=W||Y>=H)return;const q=(Y*W+X)*4;d[q]=parseInt(c.slice(1,3),16);d[q+1]=parseInt(c.slice(3,5),16);d[q+2]=parseInt(c.slice(5,7),16);d[q+3]=255};
+    const bp=[];for(let y=56;y<=63;y++)for(let m=115;m<=130;m++)if(MR[y][m]==='#2e1c10')bp.push([m,y]);
+    bp.forEach(([m,y])=>set(m,y,'#f5dbbf'));bp.forEach(([m,y])=>set(m,y-R.brow-(m>=118&&m<=124?1:0),'#2e1c10'))}
   // Array (rle, ungekürzt) + PNG
   const pal={'.':null},sym={},CH='ABCDEFGHIJLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';let ci=0;const hex=q=>'#'+[d[q],d[q+1],d[q+2]].map(v=>v.toString(16).padStart(2,'0')).join('');
   const sy=q=>{if(!d[q+3])return'.';const k=hex(q);if(!(k in sym)){sym[k]=k==='#2e1c10'?'K':CH[ci++];pal[sym[k]]=k}return sym[k]};

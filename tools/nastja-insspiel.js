@@ -8,7 +8,7 @@ const o=rd('nastja.json');
 const s=266/500,CX=131.3,G=[+(-CX*s).toFixed(2),-264,+(o.width*s).toFixed(2),266];
 // Stangen-Frames: ungekürzt, Stange (x=0 der Figurgruppe) bei Spalte pole_x
 const ld=ns=>ns.filter(n=>fs.existsSync(path.join(root,'pixel',`nastja_${n}.json`))).map(n=>rd(`nastja_${n}.json`));
-const FR=ld(['stange1','stange2','stange3']),LO=ld(['tanz1','tanz2','tanz3','tanz4','tanz5','tanz6']);   // Lounge: Privattanz (die Glas-Frames lounge1–3 liegen als Reserve in pixel/)
+const FR=ld(['stange1','stange2','stange3']),LO=ld(['tanz1','tanz2','tanz3','tanz4','tanz5','tanz6','tanz7']);   // Lounge: Privattanz (die Glas-Frames lounge1–3 liegen als Reserve in pixel/)
 const geo=o=>[+(-o.pole_x*s).toFixed(2),+(-264-(o.top_extra||0)*s).toFixed(2),+(o.width*s).toFixed(2),+(o.height*s).toFixed(2)];
 const FG=FR.length?geo(FR[0]):null,LG=LO.length?geo(LO[0]):null;
 fs.writeFileSync(path.join(root,'js/33-nastja-pixel.js'),`// ================= Nastja im Spiel: freigegebene Pixel-Arrays =================
@@ -33,13 +33,15 @@ const NASTJA_STANGE=${JSON.stringify(FR.map(arr))}.map(nastjaURL),NASTJA_FG=${JS
   const SEQ=[[0,1100],[1,700],[2,1100],[1,700]].filter(([i])=>NASTJA_STANGE[i]);let k=0,next=0;
   // setInterval statt setTimeout-Kette: der Durchlauf-Test zählt kurze Timeouts als „Spiel ist beschäftigt“
   setInterval(()=>{const t=performance.now();if(t<next)return;const[i,ms]=SEQ[k++%SEQ.length];setImg(e,NASTJA_STANGE[i],NASTJA_FG);showFront(i);next=t+ms},40)}}`:''}
-${LO.length?`// ----- Privattanz: Heranwinken → Hüftkreis (links, tief, rechts, tief …) → Kussmund → Kuss zuwerfen; in der Lounge (3. Person) und beim Lap-Dance (Ich-Sicht) -----
+${LO.length?`// ----- Privattanz: Heranwinken → Hüfte links → Haare → Hüfte rechts → … → über den Gast lehnen (Hand auf der Schulter, Finger im Choker) → Kussmund → Kuss zuwerfen; in der Lounge (3. Person) und beim Lap-Dance (Ich-Sicht) -----
 const NASTJA_TANZ=${JSON.stringify(LO.map(arr))}.map(nastjaURL),NASTJA_TG=${JSON.stringify(LG)};
 const NASTJA_TANZIMG=NASTJA_TANZ.map(u=>{const im=new Image();im.src=u;return im});
-const NASTJA_TSEQ=[[0,650],[1,380],[2,420],[3,380],[2,420],[1,380],[2,420],[3,380],[4,500],[5,700]],NASTJA_TLEN=NASTJA_TSEQ.reduce((a,[,ms])=>a+ms,0);
+const NASTJA_TSEQ=[[0,650],[1,380],[6,520],[3,380],[1,380],[2,850],[4,500],[5,700]],NASTJA_TLEN=NASTJA_TSEQ.reduce((a,[,ms])=>a+ms,0);
 // aktuelles Tanzbild nach der Uhr (kein Timer): Index in NASTJA_TANZ
 function nastjaTanzIdx(){let t=performance.now()%NASTJA_TLEN;for(const[i,ms]of NASTJA_TSEQ){if(t<ms)return i;t-=ms}return 0}
-function nastjaTanzBild(){return NASTJA_TANZIMG[nastjaTanzIdx()]}
+const NASTJA_TNAMES=${JSON.stringify(LO.map(o=>o.name.replace('nastja_','')))};
+// ohne Namen: Bild nach der Uhr; mit Namen (z. B. 'tanz3'): genau dieses Bild (Ich-Sicht steuert die Phasen selbst)
+function nastjaTanzBild(n){const i=n?NASTJA_TNAMES.indexOf(n):-1;return NASTJA_TANZIMG[i>=0?i:nastjaTanzIdx()]}
 {const e=document.getElementById('dancer2img');if(e){e.parentNode.classList.remove('dance');let last=-1;
   setInterval(()=>{const i=nastjaTanzIdx();if(i!==last){last=i;setImg(e,NASTJA_TANZ[i],NASTJA_TG)}},40)}}`:''}
 `);

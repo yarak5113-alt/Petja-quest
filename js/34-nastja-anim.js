@@ -78,7 +78,7 @@ const NASTJA_POSEN={
     armsFront:B=>nArm(B([17,-195]),B([29,-178]),B([21,-200]))+nArm(B([-17,-195]),B([-23,-164]),B([-20,-136]),{glass:1})},
   // ---- Privattanz in der Lounge: frech und offensiv (Gesicht/Augen identisch, nur der Mund wechselt) ----
   // T1: Heranwinken – Hüfte raus, eine Hand in der Hüfte, die andere winkt mit dem Zeigefinger, schiefes Grinsen
-  tanz1:{box:'lounge',bx:4,by:0,hair:1,mouth:'grins',
+  tanz1:{box:'lounge',bx:4,by:0,hair:1,mouth:'grins',brow:2,
     legs:B=>[nLeg(B([9,-134]),[3,-72],[11,-20],{...RF(B),rot:-12}),nLeg(B([-9,-134]),B([-10,-68]),B([-12,-20]),LF(B))],
     armsFront:B=>nArm(B([-17,-195]),B([-31,-168]),B([-18,-142]))+nArm(B([17,-195]),B([31,-186]),B([26,-210]),{finger:[-3,-7]})},
   // T2: Hüftkreis links – Hüfte weit raus, Hand hinterm Kopf, die andere streicht über den Oberschenkel
@@ -86,10 +86,11 @@ const NASTJA_POSEN={
     legs:B=>[nLeg(B([9,-134]),[8,-72],[13,-20],RF(B)),nLeg(B([-9,-134]),[-17,-70],[-13,-20],LF(B))],
     armsBack:B=>nArm(B([17,-195]),B([30,-226]),B([9,-242])),
     armsFront:B=>nArm(B([-17,-195]),B([-31,-160]),B([-17,-110]))},
-  // T3: tief runter – breitbeinig in die Knie, Oberkörper sackt Richtung Gast, Hände auf den Innenschenkeln
-  tanz3:{box:'lounge',bx:0,by:40,hair:0,mouth:'grins',
-    legs:B=>[nLeg(B([-9,-134]),[-31,-60],[-16,-20],{...LF(B),rot:12}),nLeg(B([9,-134]),[31,-60],[16,-20],{...RF(B),rot:-12})],
-    armsFront:B=>nArm(B([-17,-195]),B([-33,-168]),B([-21,-138]))+nArm(B([17,-195]),B([33,-168]),B([21,-138]))},
+  // T3: lehnt sich über den Gast – eine Hand stützt sich auf seiner Schulter ab (rechts unten aus dem Bild), die andere hakt den Finger in den Choker
+  //     Hüfte zur Seite gekippt, ein Knie locker eingedreht; freches Grinsen + extra hochgezogene Braue (brow: px nach oben)
+  tanz3:{box:'lounge',bx:6,by:4,hair:2,mouth:'grins',brow:3,
+    legs:B=>[nLeg(B([-9,-134]),[-4,-72],[-10,-20],{...LF(B),rot:8}),nLeg(B([9,-134]),B([14,-70]),B([15,-20]),RF(B))],
+    armsFront:B=>nArm(B([17,-195]),B([37,-180]),[55,-168],{grip:1})+nArm(B([-17,-195]),B([-30,-182]),B([-6,-203]),{finger:[4,-2]})},
   // T4: Hüftkreis rechts – Gegenbewegung zu T2
   tanz4:{box:'lounge',bx:8,by:2,hair:2,mouth:'grins',
     legs:B=>[nLeg(B([-9,-134]),[-8,-72],[-13,-20],LF(B)),nLeg(B([9,-134]),[17,-70],[13,-20],RF(B))],
@@ -102,7 +103,11 @@ const NASTJA_POSEN={
   // T6: Kuss zuwerfen – Arm schnellt zum Gast, Herzchen fliegt, Hüfte raus
   tanz6:{box:'lounge',bx:-4,by:0,hair:-1,mouth:'kuss',
     legs:B=>[nLeg(B([9,-134]),[12,-70],[12,-20],RF(B)),nLeg(B([-9,-134]),[-13,-70],[-14,-20],LF(B))],
-    armsFront:B=>nArm(B([17,-195]),B([31,-168]),B([18,-142]))+nArm(B([-17,-195]),B([-38,-204]),B([-50,-222]),{finger:[-5,-3],heart:[-62,-236]})}};
+    armsFront:B=>nArm(B([17,-195]),B([31,-168]),B([18,-142]))+nArm(B([-17,-195]),B([-38,-204]),B([-50,-222]),{finger:[-5,-3],heart:[-62,-236]})},
+  // T7: spielt mit den Haaren – Hand fährt seitlich durchs Haar, die andere gleitet die Hüfte entlang, Hüfte kreist raus; Grinsen + Braue
+  tanz7:{box:'lounge',bx:-6,by:2,hair:-3,mouth:'grins',brow:3,
+    legs:B=>[nLeg(B([9,-134]),[6,-72],[12,-20],{...RF(B),rot:-8}),nLeg(B([-9,-134]),[-15,-70],[-13,-20],LF(B))],
+    armsFront:B=>nArm(B([-17,-195]),B([-37,-200]),B([-21,-225]))+nArm(B([17,-195]),B([30,-166]),B([21,-132]))}};
 // Rendern: shift = Bodenverschiebung des Hauptsprites (px), damit alle Frames deckungsgleich mit dem Hauptsprite liegen
 function nastjaFrame(name,shift){const p=NASTJA_POSEN[name],st=p.box==='stange';
   return pixSprite(nastjaPose(p),st?NASTJA_STANGE_BOX:NASTJA_LOUNGE_BOX,st?500+NASTJA_UP:500,{...NASTJA_NEU_PIX,floor:0,shift})}
