@@ -364,11 +364,13 @@ async function lapDance(){changing=true;fade.style.opacity=1;await new Promise(r
     if(t>=10&&t<12){const u=t-10;rot=Math.sin(u*4.2)*.1;py=520-Math.abs(Math.sin(u*4.2))*14;px=400+Math.sin(u*2.1)*40;fr=Math.sin(u*2.1)>0?'tanz4':'tanz2'}
     if(t>=12&&t<13){px=400+Math.sin((t-12)*Math.PI*2)*8;fr='tanz1'}
     const O=5.5,tv=t-O;   // ab hier wie bisher, nur 5,5 s später
-    // 1) kommt näher und kniet sich über ihn: ganze Figur im Bild, ihre Knie liegen auf seinen Oberschenkeln, sie wippt sich zurecht
-    // 2) erst dann sinkt sie tiefer und rückt ganz nah ran (Knie verschwinden unten aus dem Bild)
-    if(tv>=7.5&&tv<12){const p=seg(tv,7.5,8.7),q=seg(tv,10.6,12),u=tv-8.7;sit=true;fr='sitz';
-      const bob=tv>8.7?Math.abs(Math.sin(u*4.4))*9*(1-q):0,sway=tv>8.7?Math.sin(u*2.5):0;
-      sc=tv<10.6?ease(1.5,2.2,p):ease(2.2,2.9,q);py=(tv<10.6?ease(520,668,p):ease(668,800,q))-bob+(q>0?Math.sin(u*5)*5*q:0);px=400+sway*(10+6*q);rot=sway*.04}
+    // 1) kommt STEHEND ganz nah heran (Kussmund, so nah wie beim Kuss) – erst dort hockt sie sich hin
+    // 2) hockt sich über ihn: Knie auf seinen Oberschenkeln, sie wippt sich zurecht
+    // 3) erst dann sinkt sie tiefer und rückt ganz nah ran (Knie verschwinden unten aus dem Bild)
+    if(tv>=7.5&&tv<8.7){const p=seg(tv,7.5,8.7);fr='tanz5';sc=ease(1.5,2.2,p);py=ease(520,640,p);px=400}
+    if(tv>=8.7&&tv<12){const h=seg(tv,8.7,9.3),q=seg(tv,10.6,12),u=tv-9.3;sit=true;fr='sitz';
+      const bob=tv>9.3?Math.abs(Math.sin(u*4.4))*9*(1-q):0,sway=tv>9.3?Math.sin(u*2.5):0;
+      sc=tv<10.6?2.2:ease(2.2,2.9,q);py=(tv<10.6?ease(640,668,h):ease(668,800,q))-bob+(q>0?Math.sin(u*5)*5*q:0);px=400+sway*(10+6*q);rot=sway*.04}
     // flüstert: beugt sich an sein Ohr (zur Seite, noch näher)
     if(tv>=12&&tv<15.5){const p=seg(tv,12,13);sit=true;fr='fluester';sc=ease(2.9,3.4,p);py=ease(800,880,p);px=ease(400,505,p);rot=ease(0,-.12,p)}
     if(ONION){ // die Zwiebel aus der Lüftung wirkt: zurück vors Gesicht, eine Träne
