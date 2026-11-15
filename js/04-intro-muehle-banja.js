@@ -338,7 +338,7 @@ async function privatTanz(){const g=$('#dancerG');changing=true;g.querySelector(
   changing=false;enter('lounge',[260,480]);setTimeout(()=>{$('#loungeG').style.display='';say([['NA','Willkommen in der Lounge, Süßer. Setz dich. Hände bleiben auf dem Sofa. Hausregel.'],['P','Ich... äh... ja. Sofa. Hände. Klar.'],['NA','Und jetzt... Musik!']],async()=>{
     fade.style.opacity=1;await new Promise(r=>setTimeout(r,900));say([['P','*Drei Minuten später*'],['P','...'],['P','Ich glaube, ich brauche einen Wodka. Oder zwei. Oder eine kalte Dusche im Sumpf.'],['NA','Komm wieder, Petja. Aber bring Trinkgeld mit.']],()=>{FL.lounge=1;$('#loungeG').style.display='none';enter('banja',[300,480])})})},700)}
 // ================= Bühnenrand & Privattanz (First Person) =================
-const DANCERIMG=new Image();
+const DANCERIMG=new Image(),DANCER_G=[-50,-262,104,266];   // Lage des Bildes (33-nastja-pixel.js setzt die neue Nastja)
 function paintBuehne(){c.fillStyle='#0e0408';c.fillRect(0,0,W,H);let x=lay();
   x.fillStyle='#14060a';x.fillRect(0,0,800,380);for(let X=0;X<170;X+=14){x.fillStyle=(X/14)%2?'#6a0c1c':'#8a1426';x.fillRect(X,0,14,380)}for(let X=630;X<800;X+=14){x.fillStyle=(X/14)%2?'#6a0c1c':'#8a1426';x.fillRect(X,0,14,380)}
   x.fillStyle='#d8b050';x.fillRect(0,0,800,14);
@@ -362,7 +362,7 @@ async function lapDance(){changing=true;fade.style.opacity=1;await new Promise(r
     if(t>=8&&t<11){const p=seg(t,8,11);sc=ease(1.5,2.3,Math.min(1,p*2));py=520+ease(0,90,Math.min(1,p*2));rot=Math.sin(p*12)*.06;px=400+Math.sin(p*8)*20}
     if(t>=11&&t<13.5){const p=seg(t,11,13.5);sc=ease(2.3,1.6,p);py=ease(610,520,p);rot=-.25*Math.sin(p*Math.PI);px=400}
     if(t>=13.5){const u=t-13.5;rot=Math.sin(u*5)*.08;py=520-Math.abs(Math.sin(u*5))*10;px=400}
-    x.setTransform(SC,0,0,SC,0,0);x.save();x.translate(px,py);x.rotate(rot);x.scale(sc*flip,sc);if(DANCERIMG.complete&&DANCERIMG.naturalWidth){x.imageSmoothingEnabled=false;x.drawImage(DANCERIMG,-50,-262,104,266);x.imageSmoothingEnabled=true};x.restore();
+    x.setTransform(SC,0,0,SC,0,0);x.save();x.translate(px,py);x.rotate(rot);x.scale(sc*flip,sc);if(DANCERIMG.complete&&DANCERIMG.naturalWidth){x.imageSmoothingEnabled=false;x.drawImage(DANCERIMG,...DANCER_G);x.imageSmoothingEnabled=true};x.restore();
     fpKnees(x);
     x.save();x.globalCompositeOperation='lighter';for(let i=0;i<4;i++){const p=(t*.25+i/4)%1;x.fillStyle=`rgba(255,180,220,${.6*(1-p)})`;x.font='22px Georgia';x.fillText('♪',120+i*170+Math.sin(t+i)*20,420-p*300)}x.restore();
     const v=x.createRadialGradient(400,250,150,400,250,520);v.addColorStop(0,'rgba(0,0,0,0)');v.addColorStop(1,'rgba(20,0,10,.7)');x.fillStyle=v;x.fillRect(0,0,800,500);
