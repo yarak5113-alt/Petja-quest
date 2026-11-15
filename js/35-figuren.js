@@ -32,7 +32,7 @@ const FIGUREN=[
   {n:'Nastja',w:'Nymphe, jetzt Tänzerin im Banja',s:[
     [()=>FL.rekrut||seen.sumpf&&FL.clubQ,'Kam aus dem Sumpf, tanzt jetzt an der Stange. Zwinkert, als wüsste sie mehr als du. Tut sie auch.'],
     [()=>FL.lounge||FL.traene,'Dreihundert Jahre im Sumpf. Hat Kaufleute, Soldaten und einen Popen kommen und gehen sehen. Hält das Banja für eine Beförderung.'],
-    [()=>(FL.naV||0)>=2,'Hat seit dreihundert Jahren nichts gefühlt. Dann kam eine Gnomzwiebel und ich. Sie hat geweint und mich dafür rausgeschmissen. Ich glaube, das war ein Danke.']]},
+    [()=>(FL.naV||0)>=2,'Hat seit dreihundert Jahren nichts gefühlt. Dann kam eine Gnomzwiebel und ich. Sie hat geweint und gelacht gleichzeitig. Seitdem nennt sie mich „Zwiebel“. Ich glaube, das ist ein Kosename.']]},
   {n:'Grobnik',w:'Gnom, Wächter der Höhle',s:[
     [()=>FL.mehlQ,'Steht vor der Höhle und lässt keinen rein. Will „Mehl“. Sagt „Geschäftsgeheimnis“ öfter, als gut für ihn ist.'],
     [()=>FL.stollen,'Hat am „Mehl“ geschnüffelt wie ein Zollhund im Urlaub. Gab mir dafür seine Laterne. Leihweise.'],

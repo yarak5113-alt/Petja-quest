@@ -68,7 +68,24 @@ const NASTJA_POSEN={
   // L3: Gewicht nach links verlagert, zwirbelt eine Haarsträhne
   lounge3:{box:'lounge',bx:-2,by:0,hair:-1,
     legs:B=>[nLeg(B([9,-134]),B([6,-70]),B([9,-20]),RF(B)),nLeg(B([-9,-134]),B([-9,-68]),B([-9,-20]),LF(B))],
-    armsFront:B=>nArm(B([17,-195]),B([29,-178]),B([21,-200]))+nArm(B([-17,-195]),B([-23,-164]),B([-20,-136]),{glass:1})}};
+    armsFront:B=>nArm(B([17,-195]),B([29,-178]),B([21,-200]))+nArm(B([-17,-195]),B([-23,-164]),B([-20,-136]),{glass:1})},
+  // ---- Privattanz in der Lounge (Gesicht bleibt frontal und identisch, nur der Körper tanzt) ----
+  // T1: Hände hinterm Kopf, Hüfte nach rechts
+  tanz1:{box:'lounge',bx:4,by:0,hair:1,
+    legs:B=>[nLeg(B([-9,-134]),[-8,-70],[-12,-20],LF(B)),nLeg(B([9,-134]),[13,-70],[12,-20],RF(B))],
+    armsFront:B=>nArm(B([-17,-195]),B([-29,-226]),B([-9,-240]))+nArm(B([17,-195]),B([29,-226]),B([9,-240]))},
+  // T2: Hüfte nach links, rechter Arm hoch in die Luft, linke Hand in der Hüfte
+  tanz2:{box:'lounge',bx:-6,by:2,hair:-2,
+    legs:B=>[nLeg(B([9,-134]),[10,-70],[12,-20],RF(B)),nLeg(B([-9,-134]),[-14,-70],[-12,-20],LF(B))],
+    armsFront:B=>nArm(B([17,-195]),B([27,-232]),B([21,-262]))+nArm(B([-17,-195]),B([-29,-168]),B([-18,-142]))},
+  // T3: Hüfte nach rechts, linker Arm hoch, rechte Hand in der Hüfte
+  tanz3:{box:'lounge',bx:6,by:2,hair:2,
+    legs:B=>[nLeg(B([-9,-134]),[-10,-70],[-12,-20],LF(B)),nLeg(B([9,-134]),[14,-70],[12,-20],RF(B))],
+    armsFront:B=>nArm(B([-17,-195]),B([-27,-232]),B([-21,-262]))+nArm(B([17,-195]),B([29,-168]),B([18,-142]))},
+  // T4: tief in die Knie, Hände auf den Oberschenkeln
+  tanz4:{box:'lounge',bx:0,by:12,hair:0,
+    legs:B=>[nLeg(B([-9,-134]),[-17,-70],[-12,-20],LF(B)),nLeg(B([9,-134]),[17,-70],[12,-20],RF(B))],
+    armsFront:B=>nArm(B([-17,-195]),B([-25,-162]),B([-14,-122]))+nArm(B([17,-195]),B([25,-162]),B([14,-122]))}};
 // Rendern: shift = Bodenverschiebung des Hauptsprites (px), damit alle Frames deckungsgleich mit dem Hauptsprite liegen
 function nastjaFrame(name,shift){const p=NASTJA_POSEN[name],st=p.box==='stange';
   return pixSprite(nastjaPose(p),st?NASTJA_STANGE_BOX:NASTJA_LOUNGE_BOX,st?500+NASTJA_UP:500,{...NASTJA_NEU_PIX,floor:0,shift})}

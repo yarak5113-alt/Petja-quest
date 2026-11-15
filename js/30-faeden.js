@@ -87,8 +87,8 @@ wrapFn('baba',function(orig){if(!FL.kraehe||FL.petzt||!FL.drin)return orig();FL.
 {const nf=T.nastja2.fn;T.nastja2.fn=function(){if(!FL.traene)return nf.apply(this,arguments);FL.naV=(FL.naV||0)+1;
   if(FL.naV==1)return nf.apply(this,arguments);
   if(FL.naV==2)return say([['NA','…Weißt du was, Zwiebel? Dreihundert Jahre hab ich nichts gefühlt. Gar nichts.'],['NA','Und dann heul ich. Wegen dir. Wegen einer Gnomzwiebel.'],
-    ['NA','Das war das Ehrlichste, was mir seit dem Sumpf passiert ist. …Jetzt raus.'],['P','(Ich glaub, das war ein Danke.)']]);
-  say([['NA','Raus, Zwiebel. *lächelt fast*']])}}
+    ['NA','Das war das Ehrlichste, was mir seit dem Sumpf passiert ist. …Danke, Zwiebel.'],['P','(Sie meint es ernst. Glaube ich.)']]);
+  say([['NA','Na, Zwiebel? *zwinkert* Komm mal wieder vorbei. Ohne Gemüse.']])}}
 
 // ----- Am Tisch, bevor der Ausweg-Joint gedreht wird: Baba Jagas Geschäft + Einsamkeit, Petjas Entscheidung (einmalig) -----
 wrapFn('tisch',orig=>{if(FL.ende||!FL.recipe||!hasAll()||FL.tischRede)return orig();

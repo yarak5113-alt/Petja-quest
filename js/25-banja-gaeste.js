@@ -26,7 +26,7 @@ T.gaeste={n:'Gäste',at:[560,470],fn(){hint('gaeste',[[['P','Volles Haus. Alle w
   [['P','Solange die hier stehen, hat Nastja für mich keine Zeit. Logisch. Die zahlen.']],
   FL.recipe&&!FL.zwIn?[['P','(Wenn es hier plötzlich richtig scharf riechen würde … dann würden die bestimmt gehen.)'],['P','(Die Lüftung der Lounge … die geht hinten raus.)']]:[['P','Die Typen bleiben bis zum Morgengrauen. Mindestens.']]])}};
 T.nastja2.fn=function(){
-  if(FL.traene)return say([['NA','DU! Du riechst immer noch nach Zwiebel. Raus aus meiner Lounge, Süßer!']]);
+  if(FL.traene)return say([['NA','Na, Zwiebel? *zwinkert* Du riechst immer noch ein bisschen danach. Steht dir.']]);
   if(FL.zwIn){gaesteVis();return say([['NA','Wo sind denn plötzlich alle hin? Und warum riecht es hier so … komisch?'],['P','Keine Ahnung. Aber jetzt hast du doch Zeit, oder?'],
     ['NA','Für den Mann, der mich aus dem Schlamm gezogen hat? Immer. Komm mit in die Lounge. Aufs Haus.']],()=>{FL.booked=1;lapDance()})}
   if(FL.recipe&&!FL.trQ)return say([['P','Nastja … ganz komische Frage. Könntest du mal weinen? Nur eine Träne?'],['NA','Weinen? Süßer, ich hab dreihundert Jahre im Sumpf gelegen. Ich hab keine Tränen mehr. Nur noch Schlamm.'],
