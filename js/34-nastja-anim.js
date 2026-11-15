@@ -28,17 +28,24 @@ function nArm(s,e,w,o={}){let r=nLimb([s,e,w],[3.6,2.9,2.3],N_SK)+`<circle cx="$
   if(o.grip)r+=`<path d="M${x-4.6},${y-1}C${x-4.8},${y-5.2} ${x+4.8},${y-5.2} ${x+4.6},${y-1}C${x+4.8},${y+3.6} ${x-4.8},${y+3.6} ${x-4.6},${y-1}Z" fill="${N_SK}"/><path d="M${x-3.2},${y-2.6}L${x+3.2},${y-2.6}M${x-3.4},${y-0.2}L${x+3.4},${y-0.2}M${x-3},${y+2}L${x+3},${y+2}" fill="none" stroke-width=".8"/>`;
   else r+=`<path d="M${x-3.2},${y-1}C${x-3.4},${y-4.4} ${x+3.4},${y-4.4} ${x+3.2},${y-1}C${x+3.4},${y+3.4} ${x-3.4},${y+3.4} ${x-3.2},${y-1}Z" fill="${N_SK}"/>`;
   if(o.glass)r+=`<path d="M${x-1},${y-3}L${x-1},${y-9}M${x-4.5},${y+3.4}L${x+2.5},${y+3.4}" fill="none" stroke="#f0eeea" stroke-width="1.7"/><path d="M${x-5.5},${y-17}L${x+3.5},${y-17}C${x+3.5},${y-11} ${x+1.5},${y-9} ${x-1},${y-9}C${x-3.5},${y-9} ${x-5.5},${y-11} ${x-5.5},${y-17}Z" fill="#f0eeea"/><path d="M${x-5},${y-14}L${x+3},${y-14}C${x+2.6},${y-11} ${x+1},${y-10} ${x-1},${y-10}C${x-3},${y-10} ${x-4.6},${y-11} ${x-5},${y-14}Z" fill="#712834" stroke="none"/>`;
+  if(o.finger){const[fx,fy]=o.finger;r+=nLimb([[x,y-1],[x+fx*.6,y-1+fy*.6],[x+fx,y-1+fy]],[1.4,1.2,1],N_SK)}
+  if(o.heart){const[hx,hy]=o.heart;r+=`<path d="M${hx},${hy+4}C${hx-7},${hy-1} ${hx-4},${hy-7} ${hx},${hy-3}C${hx+4},${hy-7} ${hx+7},${hy-1} ${hx},${hy+4}Z" fill="#a82034" stroke-width=".9"/>`}
   return r}
 // Federwedel im Strumpfband (Stange: Hände frei)
 function nWedel(x,y){let fe='';for(let i=0;i<7;i++){const a=(-140+i*17)*Math.PI/180,L=11+(i%3)*2,cx=x,cy=y-16,ex=cx+Math.cos(a)*L,ey=cy+Math.sin(a)*L,nx=-Math.sin(a)*3,ny=Math.cos(a)*3;
     fe+=`<path d="M${cx},${cy}C${(cx+ex)/2+nx},${(cy+ey)/2+ny} ${ex+nx*.4},${ey+ny*.4} ${ex},${ey}C${ex-nx*.4},${ey-ny*.4} ${(cx+ex)/2-nx},${(cy+ey)/2-ny} ${cx},${cy}Z" fill="${i%3==1?'#d8d4cf':'#f6f3ee'}"/>`}
   return`<path d="M${x},${y+4}L${x},${y-16}" fill="none" stroke="${N_BK}" stroke-width="2.6"/>`+fe}
+// Mund pro Pose (liegt unter dem pixelgenau übernommenen Augenbereich): grins = freches schiefes Grinsen mit Zähnen, kuss = Kussmund
+const N_MUND={
+  grins:`<path d="M-5.6,-216.2C-3,-217 3,-218.4 6.4,-218.8C5.2,-213.4 -2.6,-212.6 -5.6,-216.2Z" fill="#a82034" stroke-width=".9"/><path d="M-4.2,-216.1C-1,-216.8 2.6,-217.8 5.3,-218.2L4.8,-216.8C2,-216.4 -1.2,-215.8 -3.9,-215.4Z" fill="#f6f3ee" stroke="none"/><path d="M6.4,-218.8L7.8,-220.4M-5.6,-216.2L-6.4,-216" fill="none" stroke-width="1"/>`,
+  kuss:`<ellipse cx="0.4" cy="-215.6" rx="2.7" ry="2.3" fill="#a82034" stroke-width=".9"/><ellipse cx="0.4" cy="-215.5" rx="0.9" ry="0.8" fill="#712834" stroke="none"/>`};
+const nFace=m=>m?NASTJA_PARTS.face.replace(/<path d="M-4\.6,-215\.4[\s\S]*$/,"")+N_MUND[m]:NASTJA_PARTS.face;
 // Pose zusammensetzen. p.bx/p.by: Körperversatz in PIXELN (ganzzahlig -> Gesicht passt 1:1), p.hair: Haarschwung (Einheiten)
 // p.legs(B) -> [{leg,strap}...] in Zeichenreihenfolge, p.armsBack(B)/p.armsFront(B), p.wedel: Federwedel im Strumpfband
 function nastjaPose(p){const bx=(p.bx||0)/NASTJA_PX,by=(p.by||0)/NASTJA_PX,T=(dx,dy)=>`<g transform="translate(${(bx+dx).toFixed(3)},${(by+dy).toFixed(3)})">`,P=NASTJA_PARTS,B=([x,y])=>[x+bx,y+by];
   const legs=p.legs(B);
   return P.open+T(p.hair||0,0)+P.hairBack+'</g>'+legs.map(l=>l.leg).join('')+T(0,0)+P.hips+'</g>'+legs.map(l=>l.strap).join('')+(p.wedel?nWedel(bx+21,by-112):'')+
-    (p.armsBack?p.armsBack(B):'')+T(0,0)+P.torso+P.corset+P.head+P.face+P.hairFront+P.acc+'</g>'+(p.armsFront?p.armsFront(B):'')+'</g>'}
+    (p.armsBack?p.armsBack(B):'')+T(0,0)+P.torso+P.corset+P.head+nFace(p.mouth)+P.hairFront+P.acc+'</g>'+(p.armsFront?p.armsFront(B):'')+'</g>'}
 const LF=B=>({from:[B([-10,-141]),B([-17,-140])]}),RF=B=>({from:[B([10,-141]),B([17,-140])]});
 const NASTJA_POSEN={
   // ---- An der Stange (Stange bei x=0, mitten im Bild). front: Höhenbereiche, in denen die Stange VOR ihr liegt (Einheiten) ----
@@ -69,23 +76,33 @@ const NASTJA_POSEN={
   lounge3:{box:'lounge',bx:-2,by:0,hair:-1,
     legs:B=>[nLeg(B([9,-134]),B([6,-70]),B([9,-20]),RF(B)),nLeg(B([-9,-134]),B([-9,-68]),B([-9,-20]),LF(B))],
     armsFront:B=>nArm(B([17,-195]),B([29,-178]),B([21,-200]))+nArm(B([-17,-195]),B([-23,-164]),B([-20,-136]),{glass:1})},
-  // ---- Privattanz in der Lounge (Gesicht bleibt frontal und identisch, nur der Körper tanzt) ----
-  // T1: Hände hinterm Kopf, Hüfte nach rechts
-  tanz1:{box:'lounge',bx:4,by:0,hair:1,
-    legs:B=>[nLeg(B([-9,-134]),[-8,-70],[-12,-20],LF(B)),nLeg(B([9,-134]),[13,-70],[12,-20],RF(B))],
-    armsFront:B=>nArm(B([-17,-195]),B([-29,-226]),B([-9,-240]))+nArm(B([17,-195]),B([29,-226]),B([9,-240]))},
-  // T2: Hüfte nach links, rechter Arm hoch in die Luft, linke Hand in der Hüfte
-  tanz2:{box:'lounge',bx:-6,by:2,hair:-2,
-    legs:B=>[nLeg(B([9,-134]),[10,-70],[12,-20],RF(B)),nLeg(B([-9,-134]),[-14,-70],[-12,-20],LF(B))],
-    armsFront:B=>nArm(B([17,-195]),B([27,-232]),B([21,-262]))+nArm(B([-17,-195]),B([-29,-168]),B([-18,-142]))},
-  // T3: Hüfte nach rechts, linker Arm hoch, rechte Hand in der Hüfte
-  tanz3:{box:'lounge',bx:6,by:2,hair:2,
-    legs:B=>[nLeg(B([-9,-134]),[-10,-70],[-12,-20],LF(B)),nLeg(B([9,-134]),[14,-70],[12,-20],RF(B))],
-    armsFront:B=>nArm(B([-17,-195]),B([-27,-232]),B([-21,-262]))+nArm(B([17,-195]),B([29,-168]),B([18,-142]))},
-  // T4: tief in die Knie, Hände auf den Oberschenkeln
-  tanz4:{box:'lounge',bx:0,by:12,hair:0,
-    legs:B=>[nLeg(B([-9,-134]),[-17,-70],[-12,-20],LF(B)),nLeg(B([9,-134]),[17,-70],[12,-20],RF(B))],
-    armsFront:B=>nArm(B([-17,-195]),B([-25,-162]),B([-14,-122]))+nArm(B([17,-195]),B([25,-162]),B([14,-122]))}};
+  // ---- Privattanz in der Lounge: frech und offensiv (Gesicht/Augen identisch, nur der Mund wechselt) ----
+  // T1: Heranwinken – Hüfte raus, eine Hand in der Hüfte, die andere winkt mit dem Zeigefinger, schiefes Grinsen
+  tanz1:{box:'lounge',bx:4,by:0,hair:1,mouth:'grins',
+    legs:B=>[nLeg(B([9,-134]),[3,-72],[11,-20],{...RF(B),rot:-12}),nLeg(B([-9,-134]),B([-10,-68]),B([-12,-20]),LF(B))],
+    armsFront:B=>nArm(B([-17,-195]),B([-31,-168]),B([-18,-142]))+nArm(B([17,-195]),B([31,-186]),B([26,-210]),{finger:[-3,-7]})},
+  // T2: Hüftkreis links – Hüfte weit raus, Hand hinterm Kopf, die andere streicht über den Oberschenkel
+  tanz2:{box:'lounge',bx:-8,by:2,hair:-2,mouth:'grins',
+    legs:B=>[nLeg(B([9,-134]),[8,-72],[13,-20],RF(B)),nLeg(B([-9,-134]),[-17,-70],[-13,-20],LF(B))],
+    armsBack:B=>nArm(B([17,-195]),B([30,-226]),B([9,-242])),
+    armsFront:B=>nArm(B([-17,-195]),B([-31,-160]),B([-17,-110]))},
+  // T3: tief runter – breitbeinig in die Knie, Oberkörper sackt Richtung Gast, Hände auf den Innenschenkeln
+  tanz3:{box:'lounge',bx:0,by:40,hair:0,mouth:'grins',
+    legs:B=>[nLeg(B([-9,-134]),[-31,-60],[-16,-20],{...LF(B),rot:12}),nLeg(B([9,-134]),[31,-60],[16,-20],{...RF(B),rot:-12})],
+    armsFront:B=>nArm(B([-17,-195]),B([-33,-168]),B([-21,-138]))+nArm(B([17,-195]),B([33,-168]),B([21,-138]))},
+  // T4: Hüftkreis rechts – Gegenbewegung zu T2
+  tanz4:{box:'lounge',bx:8,by:2,hair:2,mouth:'grins',
+    legs:B=>[nLeg(B([-9,-134]),[-8,-72],[-13,-20],LF(B)),nLeg(B([9,-134]),[17,-70],[13,-20],RF(B))],
+    armsBack:B=>nArm(B([-17,-195]),B([-30,-226]),B([-9,-242])),
+    armsFront:B=>nArm(B([17,-195]),B([31,-160]),B([17,-110]))},
+  // T5: Kussmund – Fingerspitzen an den Lippen, Knie eingedreht, andere Hand in der Hüfte
+  tanz5:{box:'lounge',bx:0,by:0,hair:0,mouth:'kuss',
+    legs:B=>[nLeg(B([9,-134]),[10,-68],[12,-20],RF(B)),nLeg(B([-9,-134]),[2,-74],[-9,-20],{...LF(B),rot:10})],
+    armsFront:B=>nArm(B([17,-195]),B([31,-168]),B([18,-142]))+nArm(B([-17,-195]),B([-28,-186]),B([-9,-211]),{finger:[1,-6]})},
+  // T6: Kuss zuwerfen – Arm schnellt zum Gast, Herzchen fliegt, Hüfte raus
+  tanz6:{box:'lounge',bx:-4,by:0,hair:-1,mouth:'kuss',
+    legs:B=>[nLeg(B([9,-134]),[12,-70],[12,-20],RF(B)),nLeg(B([-9,-134]),[-13,-70],[-14,-20],LF(B))],
+    armsFront:B=>nArm(B([17,-195]),B([31,-168]),B([18,-142]))+nArm(B([-17,-195]),B([-38,-204]),B([-50,-222]),{finger:[-5,-3],heart:[-62,-236]})}};
 // Rendern: shift = Bodenverschiebung des Hauptsprites (px), damit alle Frames deckungsgleich mit dem Hauptsprite liegen
 function nastjaFrame(name,shift){const p=NASTJA_POSEN[name],st=p.box==='stange';
   return pixSprite(nastjaPose(p),st?NASTJA_STANGE_BOX:NASTJA_LOUNGE_BOX,st?500+NASTJA_UP:500,{...NASTJA_NEU_PIX,floor:0,shift})}
