@@ -8,7 +8,7 @@ const o=rd('nastja.json');
 const s=266/500,CX=131.3,G=[+(-CX*s).toFixed(2),-264,+(o.width*s).toFixed(2),266];
 // Stangen-Frames: ungekürzt, Stange (x=0 der Figurgruppe) bei Spalte pole_x
 const ld=ns=>ns.filter(n=>fs.existsSync(path.join(root,'pixel',`nastja_${n}.json`))).map(n=>rd(`nastja_${n}.json`));
-const FR=ld(['stange1','stange2','stange3']),LO=ld(['tanz1','tanz2','tanz3','tanz4','tanz5','tanz6','tanz7','sitz','fluester','weinen']);   // Lounge: Privattanz
+const FR=ld(['stange1','stange2','stange3']),LO=ld(['tanz1','tanz2','tanz3','tanz4','tanz5','tanz6','tanz7','sitz','fluester','weinen','tanz8','sitzmax']);   // Lounge: Privattanz
 const GL=ld(['lounge1','lounge2','lounge3']);   // Nastja mit Rotweinglas (Pause am Tresen, sobald Marfa tanzt)
 const geo=o=>[+(-o.pole_x*s).toFixed(2),+(-264-(o.top_extra||0)*s).toFixed(2),+(o.width*s).toFixed(2),+(o.height*s).toFixed(2)];
 const FG=FR.length?geo(FR[0]):null,LG=LO.length?geo(LO[0]):null;

@@ -120,13 +120,28 @@ const NA_DRINK=[
 const naPunkte=(k,cap,per)=>{FL['na_'+k]=Math.min(cap/per,(FL['na_'+k]||0)+1)};
 function nastjaMenu(){const v=relOf('Nastja'),dia=FL.marfaKrone&&!FL.marfaDia&&!has('diadem');
   const im=typeof NASTJA_GLAS!='undefined'?NASTJA_GLAS[1]:NASTJA_URL;
-  const o=openO(`<div class="pan menu namenu"><button class="x" title="Schließen (ESC)">${ic('close')}</button><div class="nahead"><img src="${im}" alt=""><div><h3>Nastja</h3>${relBar('Nastja')}<p class="em">Was willst du mit ihr machen?</p></div></div>
+  const o=openO(`<div class="pan menu namenu"><button class="x" title="Schließen (ESC)">${ic('close')}</button><div class="nahead"><img src="${im}" alt=""><div><h3>Nastja</h3>${relBar('Nastja')}<p class="em">${nastjaMax()?'Sie leckt sich die Lippen und lässt dich nicht aus den Augen.':'Was willst du mit ihr machen?'}</p></div></div>
     <button class="mb big" data-a="tanz">💃 Privattanz <small>+10</small></button><button class="mb big" data-a="talk">💬 Ein Gespräch führen <small>+6</small></button><button class="mb big" data-a="drink">🍷 Mit ihr anstoßen <small>+5</small></button>
     ${dia?'<button class="mb big" data-a="dia">👑 Nach einer Krone für Marfa fragen</button>':''}</div>`,'menuO');
   o.querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>{closeO();({tanz:naTanz,talk:naTalk,drink:naDrink,dia:naDia})[b.dataset.a]()})}
-function naTalk(){const L=FL.marfa?NA_TALK.concat(NA_TALK_M):NA_TALK,i=FL.naT||0;FL.naT=i+1;say(L[i%L.length],()=>naPunkte('talk',30,6))}
-function naDrink(){const i=FL.naD||0;FL.naD=i+1;say(NA_DRINK[i%NA_DRINK.length],()=>naPunkte('drink',20,5))}
-function naTanz(){say([['P','Nastja … noch ein Privattanz?'],['NA','Für dich, Zwiebel? Freundschaftspreis: umsonst. Erzähl’s keinem, sonst wollen das alle.'],['NA','Hände aufs Sofa. Und diesmal ohne Gemüse.']],()=>{naPunkte('tanz',30,10);lapDance()})}
+// ---- Max-Level-Modus: weniger als 10 Punkte bis zum Maximum (100) -> völlig schamlos, neue Posen beim Privattanz (tanz8, sitzmax) ----
+const NASTJA_MAXSCORE=100,nastjaMax=()=>NASTJA_MAXSCORE-relOf('Nastja')<10;
+const NA_TALK_MAX=[
+  [['NA','Du bist fast am Ziel, Süßer … Mal sehen, ob du dir den Hauptgewinn leisten kannst.']],
+  [['NA','Hände aufs Sofa, Zwiebel. … Ach, scheiß drauf. Heute dürfen die Hände hin, wo sie wollen. Fast.']],
+  [['NA','Dreihundert Jahre hat mich keiner rumgekriegt. Du hast es mit einer Zwiebel fast geschafft. Fast, Süßer. Das letzte Stück musst du dir verdienen.']],
+  [['NA','Zinaida sagt, ich soll dich nicht so ansehen, sonst berechnet sie dir Miete. Für den Platz in meinem Kopf. Und in meinem Bett.']],
+  [['NA','Noch zwei Gläser und ich vergess, dass du nie Trinkgeld gibst. Noch drei, und ich vergess meine Hausregeln. Alle.']],
+  [['NA','*fährt dir mit dem Finger über die Brust* Weißt du, was unter dem Korsett ist? Noch mehr Nastja. Und die ist heute nicht im Angebot. Sie ist ein Geschenk.']]];
+const NA_DRINK_MAX=[
+  [['NA','*setzt sich auf deinen Schoß und hält dir das Glas an die Lippen* Trink, Zwiebel. Aus meinem Glas. Da ist schon mein Lippenstift dran. Gratisprobe.']],
+  [['NA','*klirr* Auf uns. … Guck nicht so. Ja, ich hab „uns“ gesagt. Erzähl’s Marfa, und ich ertränk dich im Wein.']],
+  [['NA','Auf ex! *kippt und leckt sich die Lippen* … Wenn du wüsstest, was ich gerade denke, würdest du rot werden. Du wirst schon rot. Süß.']]];
+function naTalk(){const M=nastjaMax(),L=M?NA_TALK_MAX:FL.marfa?NA_TALK.concat(NA_TALK_M):NA_TALK,k=M?'naTM':'naT',i=FL[k]||0;FL[k]=i+1;say(L[i%L.length],()=>naPunkte('talk',30,6))}
+function naDrink(){const M=nastjaMax(),L=M?NA_DRINK_MAX:NA_DRINK,k=M?'naDM':'naD',i=FL[k]||0;FL[k]=i+1;say(L[i%L.length],()=>naPunkte('drink',20,5))}
+function naTanz(){if(nastjaMax())return say([['P','Nastja … noch ein Privattanz?'],['NA','Für dich gibt’s heute die Version, die Zinaida verboten hat, Süßer.'],
+    ['NA','Hände aufs Sofa. … Oder auch nicht. Mal sehen, wie lange du durchhältst.']],()=>{naPunkte('tanz',30,10);lapDance()});
+  say([['P','Nastja … noch ein Privattanz?'],['NA','Für dich, Zwiebel? Freundschaftspreis: umsonst. Erzähl’s keinem, sonst wollen das alle.'],['NA','Hände aufs Sofa. Und diesmal ohne Gemüse.']],()=>{naPunkte('tanz',30,10);lapDance()})}
 function naDia(){if(relOf('Nastja')<NASTJA_DIADEM)return hint('naDiaNein',[
     [['P','Nastja … hast du zufällig eine Krone? Für Marfa. Aus dem Sumpf.'],['NA','Marfa? Die alte Giftspritze? *lacht* Ich hab da was. Aber das kriegt nicht jeder, Zwiebel.'],
       ['NA','So gut kennen wir uns noch nicht. Tanz mit mir, trink mit mir, red mit mir. Nicht nur, wenn du was willst.']],

@@ -21,7 +21,7 @@ const REL={
   'Die Krähe':()=>(FL.kraehe?-60:0)-(FL.petzt?10:0),
   'Marfa':()=>(FL.marfaKrone?5:0)+(FL.marfaDia?30:0)+(FL.marfa?20:0)+rt('marfa',4,20)};
 const relOf=n=>Math.max(-100,Math.min(100,Math.round(REL[n]?REL[n]():0)));
-const relWort=v=>v<=-50?'Feindselig':v<=-15?'Misstrauisch':v<15?'Neutral':v<45?'Freundlich':v<75?'Vertraut':'Eng verbunden';
+const relWort=v=>v<=-50?'Feindselig':v<=-15?'Misstrauisch':v<15?'Neutral':v<45?'Freundlich':v<75?'Vertraut':v<91?'Eng verbunden':'Verrückt nach dir';
 // Gespräche zählen (Nymphe Marfa im Sumpf zählt als Marfa)
 {const _use=use;use=function(id){const o=T[id];let k=RTALK[id];if(!k&&/^slot\d$/.test(id)&&o&&o.id==='marfa')k='marfa';if(k)FL['rt_'+k]=(FL['rt_'+k]||0)+1;return _use(id)}}
 

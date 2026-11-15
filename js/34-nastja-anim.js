@@ -125,7 +125,15 @@ const NASTJA_POSEN={
     armsFront:B=>nArm(B([17,-195]),B([37,-184]),[56,-170],{grip:1})+nArm(B([-17,-195]),B([-33,-190]),B([-10,-214]),{finger:[1,-5]})},
   // S3 die Zwiebel wirkt: zitternde Unterlippe, eine Hand an der Brust, die andere krallt sich an seiner Schulter fest (Tränen malt die Ich-Sicht dazu)
   weinen:{box:'lounge',bx:0,by:0,hair:0,mouth:'zitter',legs:B=>[nSitLeg(B([-9,-134]),[-44,-114],[-45,-92],LF(B)),nSitLeg(B([9,-134]),[44,-114],[45,-92],RF(B))],
-    armsFront:B=>nArm(B([17,-195]),B([37,-184]),[56,-170],{grip:1})+nArm(B([-17,-195]),B([-30,-180]),B([-7,-196]))}};
+    armsFront:B=>nArm(B([17,-195]),B([37,-184]),[56,-170],{grip:1})+nArm(B([-17,-195]),B([-30,-180]),B([-7,-196]))},
+  // ---- Max-Level-Modus (Beziehung fast voll): direkter, provokanter ----
+  // T8: breitbeinig in die Knie, vorgebeugt, beide Hände auf den Knien, Kussmund + Braue – schiebt das Dekolleté zum Gast
+  tanz8:{box:'lounge',bx:0,by:40,hair:0,mouth:'kuss',brow:3,
+    legs:B=>[nLeg(B([-9,-134]),[-36,-74],[-19,-20],{...LF(B),rot:14}),nLeg(B([9,-134]),[36,-74],[19,-20],{...RF(B),rot:-14})],
+    armsFront:B=>nArm(B([-17,-195]),B([-33,-152]),[-27,-96])+nArm(B([17,-195]),B([33,-152]),[27,-96])},
+  // S4 auf dem Schoß, ganz ohne Zurückhaltung: eine Hand hinterm Kopf (Ellbogen hoch), Fingerspitze an der Unterlippe, Braue hoch
+  sitzmax:{box:'lounge',bx:0,by:0,hair:-2,mouth:'kuss',brow:3,legs:B=>[nSitLeg(B([-9,-134]),[-44,-114],[-45,-92],LF(B)),nSitLeg(B([9,-134]),[44,-114],[45,-92],RF(B))],
+    armsFront:B=>nArm(B([17,-195]),B([36,-224]),B([15,-249]))+nArm(B([-17,-195]),B([-30,-184]),B([-7,-207]),{finger:[2,-6]})}};
 // Rendern: shift = Bodenverschiebung des Hauptsprites (px), damit alle Frames deckungsgleich mit dem Hauptsprite liegen
 function nastjaFrame(name,shift){const p=NASTJA_POSEN[name],st=p.box==='stange';
   return pixSprite(nastjaPose(p),st?NASTJA_STANGE_BOX:NASTJA_LOUNGE_BOX,st?500+NASTJA_UP:500,{...NASTJA_NEU_PIX,floor:0,shift})}

@@ -352,14 +352,14 @@ function paintBuehne(){c.fillStyle='#0e0408';c.fillRect(0,0,W,H);let x=lay();
   x=lay();sign(x,110,486,1.4,[[-1,0,'Zurück an die Bar','hBZ']]);put(x)}
 async function lapDance(){changing=true;fade.style.opacity=1;await new Promise(r=>setTimeout(r,450));S0=SCN.lounge;s=S0.seed;if(!cache.lounge){S0.paint();const k=document.createElement('canvas');k.width=W;k.height=H;k.getContext('2d').drawImage(cv,0,0);cache.lounge=k}
   const cv3=document.createElement('canvas');cv3.id='cut';cv3.width=W;cv3.height=H;cv3.style.cssText='position:absolute;inset:0;width:100%;height:100%;z-index:15';$('#game').appendChild(cv3);fade.style.opacity=0;
-  const x=cv3.getContext('2d'),T0=performance.now(),ONION=!!(FL.zwIn&&!FL.traene),D=ONION?26:25.5;let fin=false;
+  const x=cv3.getContext('2d'),T0=performance.now(),ONION=!!(FL.zwIn&&!FL.traene),D=ONION?26.5:26,MAXN=!ONION&&typeof nastjaMax=='function'&&nastjaMax();let fin=false;   // MAXN: Max-Level-Modus (36-zweite-taenzerin.js)
   const ease=(a,b,p)=>a+(b-a)*(p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2),seg=(t,a,b)=>Math.max(0,Math.min(1,(t-a)/(b-a)));
   function frame(){if(fin)return;const t=(performance.now()-T0)/1000;x.setTransform(1,0,0,1,0,0);x.filter='blur('+(1.5*SC)+'px)';
     x.save();x.translate(W/2,H/2);x.scale(1.5,1.5);x.translate(-W/2,-H*.45);x.drawImage(cache.lounge,0,0);x.restore();x.filter='none';
     // Ablauf: heranwinken → Hüfte wiegen → Haare → vorbeugen → Hüfte → nochmal winken → (erst jetzt) auf den Schoß → flüstert ins Ohr → (Zwiebel: Träne) / (sonst: steht auf, Kussmund, Kuss)
     let px=ease(-60,400,seg(t,0,2.5)),py=520,sc=1.5,rot=0,flip=1,fr='tanz1',sit=false,tear=0;   // fr: Tanzbild der Phase (33-nastja-pixel.js)
     if(t>2.5&&t<6){const u=t-2.5;rot=Math.sin(u*4.2)*.1;py=520-Math.abs(Math.sin(u*4.2))*14;px=400+Math.sin(u*2.1)*40;fr=Math.sin(u*2.1)>0?'tanz4':'tanz2'}
-    if(t>=6&&t<7.5){const p=seg(t,6,7.5);px=400+Math.sin(p*Math.PI*2)*30;fr='tanz7'}
+    if(t>=6&&t<7.5){const p=seg(t,6,7.5);px=400+Math.sin(p*Math.PI*2)*30;fr=MAXN?'tanz8':'tanz7'}
     if(t>=7.5&&t<10){const u=t-7.5;fr='tanz3';px=400+Math.sin(u*2)*18;rot=Math.sin(u*2)*.05;py=520-Math.abs(Math.sin(u*3))*6}
     if(t>=10&&t<12){const u=t-10;rot=Math.sin(u*4.2)*.1;py=520-Math.abs(Math.sin(u*4.2))*14;px=400+Math.sin(u*2.1)*40;fr=Math.sin(u*2.1)>0?'tanz4':'tanz2'}
     if(t>=12&&t<13){px=400+Math.sin((t-12)*Math.PI*2)*8;fr='tanz1'}
@@ -367,10 +367,11 @@ async function lapDance(){changing=true;fade.style.opacity=1;await new Promise(r
     // 1) kommt STEHEND ganz nah heran (Kussmund, so nah wie beim Kuss) – erst dort hockt sie sich hin
     // 2) hockt sich über ihn: Knie auf seinen Oberschenkeln, sie wippt sich zurecht
     // 3) erst dann sinkt sie tiefer und rückt ganz nah ran (Knie verschwinden unten aus dem Bild)
-    if(tv>=7.5&&tv<8.7){const p=seg(tv,7.5,8.7);fr='tanz5';sc=ease(1.5,2.2,p);py=ease(520,640,p);px=400}
-    if(tv>=8.7&&tv<12){const h=seg(tv,8.7,9.3),q=seg(tv,10.6,12),u=tv-9.3;sit=true;fr='sitz';
-      const bob=tv>9.3?Math.abs(Math.sin(u*4.4))*9*(1-q):0,sway=tv>9.3?Math.sin(u*2.5):0;
-      sc=tv<10.6?2.2:ease(2.2,2.9,q);py=(tv<10.6?ease(640,668,h):ease(668,800,q))-bob+(q>0?Math.sin(u*5)*5*q:0);px=400+sway*(10+6*q);rot=sway*.04}
+    //    (die letzte halbe Sekunde kommt sie noch näher an den Bildschirm, damit beim Hinhocken die Unterschenkel unten aus dem Bild sind)
+    if(tv>=7.5&&tv<9.2){const p=seg(tv,7.5,9.2);fr='tanz5';sc=ease(1.5,2.5,p);py=ease(520,700,p);px=400}
+    if(tv>=9.2&&tv<12){const h=seg(tv,9.2,9.7),q=seg(tv,10.6,12),u=tv-9.7;sit=true;fr=MAXN&&tv>9.7?'sitzmax':'sitz';
+      const bob=tv>9.7?Math.abs(Math.sin(u*4.4))*(MAXN?13:9)*(1-q):0,sway=tv>9.7?Math.sin(u*2.5):0;
+      sc=tv<10.6?2.5:ease(2.5,2.9,q);py=(tv<10.6?ease(700,725,h):ease(725,800,q))-bob+(q>0?Math.sin(u*5)*5*q:0);px=400+sway*(MAXN?18:10+6*q);rot=sway*(MAXN?.07:.04)}
     // flüstert: beugt sich an sein Ohr (zur Seite, noch näher)
     if(tv>=12&&tv<15.5){const p=seg(tv,12,13);sit=true;fr='fluester';sc=ease(2.9,3.4,p);py=ease(800,880,p);px=ease(400,505,p);rot=ease(0,-.12,p)}
     if(ONION){ // die Zwiebel aus der Lüftung wirkt: zurück vors Gesicht, eine Träne
@@ -394,8 +395,8 @@ async function lapDance(){changing=true;fade.style.opacity=1;await new Promise(r
     if(t>D){fin=true;return end()}requestAnimationFrame(frame)}
   requestAnimationFrame(frame);
   setTimeout(()=>say([['NA','Hände aufs Sofa, Süßer. Hausregel.']]),2600);
-  setTimeout(()=>{if(busy)advance();say([['P','*schluck*']])},14100);
-  setTimeout(()=>{if(busy)advance();say([['NA','*haucht dir ins Ohr* Sitzt du bequem, Süßer? Ich spür da was. …Hoffentlich ist das dein Portemonnaie.']])},17800);
+  setTimeout(()=>{if(busy)advance();say([['P',MAXN?'*SCHLUCK* … Ist das … erlaubt?':'*schluck*']])},14600);
+  setTimeout(()=>{if(busy)advance();say([['NA',MAXN?'*haucht dir ins Ohr* Du bist fast am Ziel, Süßer … Mal sehen, ob du dir den Hauptgewinn leisten kannst.':'*haucht dir ins Ohr* Sitzt du bequem, Süßer? Ich spür da was. …Hoffentlich ist das dein Portemonnaie.']])},17800);
   setTimeout(()=>{if(busy)advance();say([['P','*SCHLUCK*']])},20300);
   if(ONION)setTimeout(()=>{if(busy)advance();say([['NA','*schnief* … Was … was ist das? Meine Augen!']])},21800); // Akt 3: Zwiebel in der Lüftung
   async function end(){if(busy)advance();fade.style.opacity=1;await new Promise(r=>setTimeout(r,500));cv3.remove();changing=false;
