@@ -1,0 +1,131 @@
+# 36-zweite-taenzerin.js + 37-beziehungen.js (Nebenquest Marfa, Beziehungen)
+=Anwerbebogen => Recruitment form
+=Madames neuer Bogen: Schön · Bühnenerfahrung · Frech · Will raus. Darunter in Lippenstift: „Die Zweitbeste reicht. Die Beste hab ich schon.“ => Madame's new form: Pretty · Stage experience · Cheeky · Wants out. Underneath, in lipstick: "Second best will do. I've already got the best."
+=Strass-Diadem => Rhinestone tiara
+=Nastjas altes Diadem. Strass, Blech und ein roter Glasstein. Piekt angeblich. Glitzert garantiert. => Nastya's old tiara. Rhinestones, tin and a red glass stone. Allegedly scratchy. Guaranteed sparkly.
+=Volles Haus. Marfa an der Stange, die Scheine fliegen. Madame zählt schon. => Full house. Marfa on the pole, notes flying. Madame's already counting.
+=Die Jungs wedeln wieder. Diesmal für Marfa. Nastja guckt vom Rand zu und trinkt. => The lads are waving cash again. For Marfa this time. Nastya watches from the side and drinks.
+=*dreht sich an der Stange* Na, Bauer? Die Krone sitzt. Die Männer zahlen. Der Sumpf kann mich mal. => *spins round the pole* Well, peasant? The crown fits. The men pay. The swamp can kiss my backside.
+=Nastja trinkt, ich tanze. Sie nennt es Pause. Ich nenne es Thronfolge. => Nastya drinks, I dance. She calls it a break. I call it succession.
+=Weißt du, was das Schönste hier oben ist? Trockene Haare. Hundert Jahre hab ich davon geträumt. => Know the best thing up here? Dry hair. I dreamt of it for a hundred years.
+=Wenn einer grabscht, lächle ich. Du weißt ja inzwischen, was das bei mir bedeutet. => When one of them grabs, I smile. You know by now what that means with me.
+=Der Choker? Steht mir. Und er verdeckt, was die Frau des Kaufmanns mit ihren Händen gemacht hat. Weiter im Text, Bauer. => The choker? Suits me. And it hides what the merchant's wife did with her hands. Moving on, peasant.
+=Petja, Süßer. Auf ein Wort. Unter uns. => Petya, sweetie. A word. Between us.
+=Nastja ist ein Knaller. Aber ein Knaller brennt ab. Zwischen den Shows trinkt sie mir die Bar leer. => Nastya's a firework. But fireworks burn out. Between shows she drinks my bar dry.
+=Ich brauche eine Zweite. Eine, die die Stange übernimmt, wenn Nastja das Glas übernimmt. => I need a second one. One who takes the pole when Nastya takes the glass.
+=Und wieder aus dem Sumpf? => From the swamp again?
+=Wo sonst kriegt man heute noch Personal, das nicht nach Lohn fragt? Hier, mein neuer Anwerbebogen. Diesmal mit Bühnenerfahrung. => Where else do you find staff who don't ask about wages? Here, my new recruitment form. Stage experience required this time.
+=Das ist kein Muss, Süßer. Nur eine Gefälligkeit. Aber ich vergesse Gefälligkeiten nicht. In keine Richtung. => No obligation, sweetie. Just a favour. But I never forget a favour. In either direction.
+=(Ein Nebenjob. Den Ausweg-Joint vergess ich deswegen nicht.) => (A side job. Doesn't mean I forget the way-out joint.)
+=Und? Schon eine gefunden? Die Beste hab ich ja. Mir reicht die Zweitbeste. => Well? Found one yet? I've got the best. Second best will do.
+=Schön, Bühnenerfahrung, frech, will raus. Alles vier, Süßer. Frag die Mädels im Sumpf aus und kreuz ehrlich an. => Pretty, stage experience, cheeky, wants out. All four, sweetie. Grill the girls in the swamp and tick honestly.
+=Eine Krone? Für eine Nymphe? *lacht* Frag Nastja. Die hat mehr Glitzerkram als ich Schulden. => A crown? For a nymph? *laughs* Ask Nastya. She's got more sparkly junk than I've got debts.
+=Hör genau hin, was sie dort unten hält. Jede hat ihren Preis. Wie oben auch. => Listen to what keeps them down there. Every girl has her price. Same as up here.
+=Marfa! Eine echte Königin. Sie hat dem ersten Gast das Trinkgeld aus der Brusttasche gelächelt. Ohne Hände. => Marfa! A real queen. She smiled the tip right out of the first guest's breast pocket. No hands.
+=Und Nastja hat endlich Pause. Die verbringt sie am Tresen. Mit meinem besten Rotwein. Na ja. => And Nastya finally gets a break. She spends it at the bar. With my best red. Oh well.
+=Du hast was gut bei mir, Süßer. Ich vergesse das nicht. => I owe you one, sweetie. I won't forget.
+=(Bei Madame was gut haben. Ich weiß nicht, ob das ein Geschenk ist oder eine Drohung.) => (Madame owes me one. Not sure if that's a gift or a threat.)
+=Zwei Tänzerinnen, volles Haus. So muss das, Süßer. => Two dancers, full house. That's how it should be, sweetie.
+=Marfa tanzt, Nastja trinkt, ich zähle. Jede macht, was sie am besten kann. => Marfa dances, Nastya drinks, I count. Everyone does what she does best.
+=Wenn du wieder mal eine Gefälligkeit loswerden willst – du weißt, wo ich wohne. => If you ever want to get rid of another favour – you know where I live.
+=Nastja … hast du zufällig eine Krone? Für Marfa. Aus dem Sumpf. => Nastya … you wouldn't happen to have a crown? For Marfa. From the swamp.
+=Marfa? Die alte Giftspritze? *lacht* Ich hab da was. Aber das kriegt nicht jeder, Zwiebel. => Marfa? That old viper? *laughs* I've got something. But not everyone gets it, Onion.
+=So gut kennen wir uns noch nicht. Komm öfter vorbei. Red mit mir. Nicht nur, wenn du was willst. => We don't know each other that well yet. Come by more often. Talk to me. Not just when you want something.
+=Das Diadem? Erst reden, Zwiebel. Dann vielleicht schenken. So läuft das bei Frauen. Und bei Banken. => The tiara? Talk first, Onion. Gifts maybe later. That's how it works with women. And banks.
+=Nastja … Marfa will nur mit Krone aus dem Sumpf. => Nastya … Marfa won't leave the swamp without a crown.
+=Typisch. Hundert Jahre Schlamm und immer noch Ansprüche wie eine Zarin. => Typical. A hundred years of mud and still the demands of a tsarina.
+=*kramt in ihrem Ausschnitt* Hier. Mein altes Strass-Diadem. Ich trag’s eh nicht mehr, es piekt. => *rummages in her cleavage* Here. My old rhinestone tiara. I don't wear it anyway, it scratches.
+=Aber wenn sie mir die Stange klaut, Zwiebel, dann sind wir geschieden. => But if she steals my pole, Onion, we're divorced.
+=Wir sind doch gar nicht … => We're not even …
+=Eben. => Exactly.
+=*nippt* Pause, Zwiebel. Marfa hat die Stange, ich hab den Wein. Gerechte Arbeitsteilung. => *sips* Break time, Onion. Marfa's got the pole, I've got the wine. Fair division of labour.
+=Sie tanzt nicht schlecht, die Alte. Für jemanden, der hundert Jahre im Schlamm lag. *trinkt* Ich war besser. => She doesn't dance badly, the old girl. For someone who spent a hundred years in mud. *drinks* I was better.
+=*schwenkt das Glas* Rotwein. Der einzige Mann hier, der mich nie enttäuscht hat. => *swirls the glass* Red wine. The only man in here who's never let me down.
+=Mein Diadem steht ihr. Sag ihr das nicht. Sag ihr lieber, es steht ihr nicht. => My tiara suits her. Don't tell her. Better tell her it doesn't.
+=Weißt du, was ich im Sumpf am meisten vermisst hab? Gespräche. Frösche sind miese Zuhörer. => Know what I missed most in the swamp? Conversation. Frogs are lousy listeners.
+=*lacht* Du guckst schon wieder so. Wie ein Kater vor der Sahne. Diesmal ist es fast süß. => *laughs* You're doing that look again. Like a tomcat at the cream. This time it's almost cute.
+=Zinaida zahlt pünktlich. Das ist mehr, als ich von den meisten Männern sagen kann. Du zählst nicht. Du zahlst ja nie. => Zinaida pays on time. More than I can say for most men. You don't count. You never pay.
+=Wenn du hier rauskommst, aus diesem Märchen … vergiss mich nicht ganz, ja? Nur so ein bisschen. => When you get out of here, out of this fairy tale … don't forget me completely, yeah? Just a little.
+=Publikum? Süßer, ich hab auf Kaufmannshochzeiten getanzt, bis die Tische brachen. Und die Ehen. Der Gouverneur hat Rubel geworfen. Mit Kopf drauf. => An audience? Darling, I danced at merchants' weddings till the tables broke. And the marriages. The governor threw roubles. With his face on them.
+=Mit Krone? Dann soll die Welt mal schauen, wer da aus dem Sumpf steigt. => With a crown? Then let the world see who's rising out of the swamp.
+=Raus? Pff. Hier unten bin ich Königin. Da oben wär ich eine nasse Frau ohne Krone. => Out? Pff. Down here I'm a queen. Up there I'd be a wet woman without a crown.
+=Wie mit Schlamm. Erst reinlegen, dann drübersteigen. => Like mud. First you lay them down, then you step over them.
+=Nichts mehr. Die Krone sitzt. Ich warte nur noch auf deinen Bogen, Bauer. => Nothing now. The crown fits. I'm just waiting for your form, peasant.
+=Mein Thron. Na gut, ein Baumstumpf. Eine Königin ohne Krone ist nur eine Frau mit Haltung. Bring mir eine Krone, dann reden wir. => My throne. Fine, a tree stump. A queen without a crown is just a woman with posture. Bring me a crown, then we'll talk.
+=Primaballerina, 1903! Der Zar hat geklatscht. Oder gehustet. Jedenfalls hat er Geräusche gemacht. => Prima ballerina, 1903! The tsar applauded. Or coughed. He made noises, anyway.
+=Oh ja! Applaus! Blumen! Und eine Treppe, die ich hinunterschreiten kann. => Oh yes! Applause! Flowers! And a staircase to descend.
+=Männer hält man wie Pudel, mein Lieber. An der Leine, mit Schleifchen. => One keeps men like poodles, my dear. On a lead, with a bow.
+=Nichts. Nur die Knie. Die sind jetzt aus Schlamm. => Nothing. Just the knees. They're made of mud now.
+=Publikum? Die Aale gucken mir beim Blubbern zu. Zählt das? => An audience? The eels watch me bubble. Does that count?
+=Ich setz mich drauf. Dann ist Ruhe. => I sit on them. Then it's quiet.
+=Die Schwerkraft. Und die Würmer. Die sind wie Familie. => Gravity. And the worms. They're like family.
+=Getanzt? Ich hab geschlagen. Manchmal im Takt. => Danced? I hit people. Sometimes in rhythm.
+=Mit der Faust. Nächste Frage. => With my fist. Next question.
+=Nichts. Nur dass ich noch nicht weiß, wen ich zuerst erwürge. => Nothing. Just that I haven't decided who to strangle first.
+=*klapper* Ich tanze den Knochentanz. Jede Nacht. Alleine. Ohne Zuschauer. => *rattle* I dance the bone dance. Every night. Alone. No audience.
+=Höflich, Jungchen. Ich biete ihnen Tee an. Aus Sumpfwasser. => Politely, sonny. I offer them tea. Made with swamp water.
+=*klapper* Der Fluch. Und meine Nase. Irgendwo hier liegt meine Nase. => *rattle* The curse. And my nose. My nose is down here somewhere.
+=Ich? Ich bin doch schon angeworben, Süßer. => Me? I've already been hired, darling.
+=Raus? Bin ich längst. => Out? I've been out for ages.
+=Das weißt du doch. => You know that.
+=Nichts. Ich bin im Banja. => Nothing. I'm at the banya.
+=Hast du schon mal vor Publikum getanzt? => Have you ever danced for an audience?
+=Wie gehst du mit Männern um? => How do you handle men?
+=Was hält dich hier unten? => What keeps you down here?
+=Das Diadem anbieten => Offer the tiara
+=Bühnenerfahrung => Stage experience
+=Frech => Cheeky
+=„*setzt das Diadem auf* Strass. Billig. Wunderschön. … Na gut, Bauer. Für eine Krone steig ich aus dem Schlamm.“ => "*puts on the tiara* Rhinestones. Cheap. Gorgeous. … Fine, peasant. For a crown I'll climb out of the mud."
+=Hm. Ich glaube, ich hab sie falsch eingeschätzt. Der Bogen stimmt nicht. => Hm. I think I misjudged her. The form's wrong.
+=Der Bogen stimmt. Marfa passt fast perfekt – nur raus will sie nicht. Was hält sie hier unten? => The form's right. Marfa fits almost perfectly – she just won't leave. What keeps her down here?
+=Der Bogen stimmt. Aber Madame will alle vier Kreuze. => The form's right. But Madame wants all four ticks.
+=Marfa. Madame Zinaida sucht eine Königin für ihre Bühne. Mit Spiegel, Scheinwerfer und Männern, die zahlen. => Marfa. Madame Zinaida is looking for a queen for her stage. With a mirror, a spotlight and men who pay.
+=Männer, die zahlen? So hab ich sie am liebsten. Gleich nach denen, die schweigen. => Men who pay? That's how I like them best. Right after the ones who keep quiet.
+=Ich komme. Sag deiner Madame: Die Königin des Sumpfs gibt sich die Ehre. => I'm coming. Tell your Madame: the Queen of the Swamp is gracing her with her presence.
+=(Die Zweitbeste. Madame wird zufrieden sein.) => (Second best. Madame will be pleased.)
+=Die zweite Tänzerin => The second dancer
+=Madame Zinaida will eine zweite Tänzerin, damit Nastja Pause machen kann. Kein Muss – aber Madame vergisst keine Gefälligkeit. => Madame Zinaida wants a second dancer so Nastya can take breaks. Optional – but Madame never forgets a favour.
+=Die Zweitbeste im Sumpf finden => Find the second best in the swamp
+=Mit dem Anwerbebogen in den Sumpf, die Nymphen anklicken, ausfragen und den Bogen ehrlich ausfüllen. Gesucht: schön, Bühnenerfahrung, frech, will raus. => Take the recruitment form to the swamp, click the nymphs, question them and fill in the form honestly. Wanted: pretty, stage experience, cheeky, wants out.
+=Eine Krone für Marfa => A crown for Marfa
+=Mit dem Diadem in den Sumpf zu Marfa und es ihr im Gespräch anbieten. => Take the tiara to Marfa in the swamp and offer it to her during the conversation.
+=Nastja hat so ein Glitzerding. Aber das gibt sie nur jemandem, den sie richtig mag: öfter mit ihr reden (Beziehung im Notizbuch, Taste C). => Nastya has a sparkly thing like that. But she only gives it to someone she really likes: talk to her more often (relationship in the notebook, key C).
+=Marfa anwerben => Recruit Marfa
+=Im Sumpf Marfa anklicken und den Bogen ausfüllen. Mit Krone will sie raus. => Click Marfa in the swamp and fill in the form. With a crown she wants out.
+=Madame Bescheid sagen => Tell Madame
+=Zurück ins Banja zu Madame Zinaida. => Back to the banya, to Madame Zinaida.
+=Die Beste hat Madame schon. Wer im Sumpf kommt gleich danach? => Madame already has the best. Who in the swamp comes right after?
+=Im Sumpf hinter der Birkensperre. => In the swamp behind the birch barrier.
+=Eine Krone. Wer hier hat Glitzerkram und mag mich wenigstens ein bisschen? => A crown. Who around here has sparkly junk and likes me at least a little?
+=Im Banja. Nastja steht an der Stange. => At the banya. Nastya's on the pole.
+=Jetzt hat sie, was sie wollte. Jetzt will sie bestimmt. => Now she's got what she wanted. Now she'll want to.
+=Im Sumpf. => In the swamp.
+=Madame wartet auf gute Nachrichten. => Madame is waiting for good news.
+=Im Banja. => At the banya.
+=Nebenquest => Side quest
+=Nymphe, jetzt zweite Tänzerin im Banja => Nymph, now second dancer at the banya
+=War mal die teuerste Frau im ganzen Gouvernement. Lächelt, wenn sie droht. Droht, wenn sie lächelt. => Was once the most expensive woman in the whole province. Smiles when she threatens. Threatens when she smiles.
+=Geht nur mit Krone aus dem Sumpf. Eine Königin ohne Krone ist für sie bloß eine Frau mit Haltung. => Won't leave the swamp without a crown. To her, a queen without a crown is just a woman with posture.
+=Tanzt jetzt im Banja an der Stange, mit Nastjas altem Strass-Diadem. Der Choker verdeckt die Würgemale. Ich frag nicht. => Now dances on the pole at the banya, wearing Nastya's old rhinestone tiara. The choker hides the strangle marks. I don't ask.
+=Feindselig => Hostile
+=Misstrauisch => Suspicious
+=Neutral => Neutral
+=Freundlich => Friendly
+=Vertraut => Trusted
+=Eng verbunden => Close
+=Beziehung => Relationship
+=Marfa => Marfa
+=Kusmitsch => Kuzmich
+=Zinaida => Zinaida
+=Grischa => Grisha
+=Dusja => Dusya
+=Ignati => Ignatiy
+=Fjodor => Fyodor
+=Müller => Miller
+=Krähe => Crow
+~{} mag dich mehr => {} likes you more
+~{} mag dich weniger => {} likes you less
+~Beziehung zu {}: {} => Relationship with {}: {}
+~Neue Nebenquest: {} => New side quest: {}
+~Nebenquest erledigt: {} => Side quest done: {}
+~„{}“ => "{}"

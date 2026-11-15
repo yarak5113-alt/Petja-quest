@@ -8,7 +8,8 @@ const o=rd('nastja.json');
 const s=266/500,CX=131.3,G=[+(-CX*s).toFixed(2),-264,+(o.width*s).toFixed(2),266];
 // Stangen-Frames: ungekürzt, Stange (x=0 der Figurgruppe) bei Spalte pole_x
 const ld=ns=>ns.filter(n=>fs.existsSync(path.join(root,'pixel',`nastja_${n}.json`))).map(n=>rd(`nastja_${n}.json`));
-const FR=ld(['stange1','stange2','stange3']),LO=ld(['tanz1','tanz2','tanz3','tanz4','tanz5','tanz6','tanz7','sitz','fluester','weinen']);   // Lounge: Privattanz (die Glas-Frames lounge1–3 liegen als Reserve in pixel/)
+const FR=ld(['stange1','stange2','stange3']),LO=ld(['tanz1','tanz2','tanz3','tanz4','tanz5','tanz6','tanz7','sitz','fluester','weinen']);   // Lounge: Privattanz
+const GL=ld(['lounge1','lounge2','lounge3']);   // Nastja mit Rotweinglas (Pause am Tresen, sobald Marfa tanzt)
 const geo=o=>[+(-o.pole_x*s).toFixed(2),+(-264-(o.top_extra||0)*s).toFixed(2),+(o.width*s).toFixed(2),+(o.height*s).toFixed(2)];
 const FG=FR.length?geo(FR[0]):null,LG=LO.length?geo(LO[0]):null;
 fs.writeFileSync(path.join(root,'js/33-nastja-pixel.js'),`// ================= Nastja im Spiel: freigegebene Pixel-Arrays =================
@@ -31,8 +32,9 @@ const NASTJA_STANGE=${JSON.stringify(FR.map(arr))}.map(nastjaURL),NASTJA_FG=${JS
   const W=10/1.05,x0=-W/2,cols=[['#74747e',0,.32],['#ececf4',.32,.68],['#5e5e66',.68,1]];
   const showFront=i=>{front.innerHTML='';(NASTJA_FRONT[i]||[]).forEach(([r0,r1])=>cols.forEach(([c,a,b])=>{const r=document.createElementNS(NS,'rect');Object.entries({x:x0+W*a,y:NASTJA_FG[1]+r0*${s},width:W*(b-a),height:(r1-r0)*${s},fill:c}).forEach(([k,v])=>r.setAttribute(k,v));front.appendChild(r)}))};
   const SEQ=[[0,1100],[1,700],[2,1100],[1,700]].filter(([i])=>NASTJA_STANGE[i]);let k=0,next=0;
+  // window.POLE_SRC: andere Tänzerin an der Stange (gleiche Posen, gleiche Lage – 36-zweite-taenzerin.js)
   // setInterval statt setTimeout-Kette: der Durchlauf-Test zählt kurze Timeouts als „Spiel ist beschäftigt“
-  setInterval(()=>{const t=performance.now();if(t<next)return;const[i,ms]=SEQ[k++%SEQ.length];setImg(e,NASTJA_STANGE[i],NASTJA_FG);showFront(i);next=t+ms},40)}}`:''}
+  setInterval(()=>{const t=performance.now();if(t<next)return;const[i,ms]=SEQ[k++%SEQ.length];setImg(e,(window.POLE_SRC||NASTJA_STANGE)[i],NASTJA_FG);showFront(i);next=t+ms},40)}}`:''}
 ${LO.length?`// ----- Privattanz: Heranwinken → Hüfte links → Haare → Hüfte rechts → … → über den Gast lehnen (Hand auf der Schulter, Finger im Choker) → Kussmund → Kuss zuwerfen; in der Lounge (3. Person) und beim Lap-Dance (Ich-Sicht) -----
 const NASTJA_TANZ=${JSON.stringify(LO.map(arr))}.map(nastjaURL),NASTJA_TG=${JSON.stringify(LG)};
 const NASTJA_TANZIMG=NASTJA_TANZ.map(u=>{const im=new Image();im.src=u;return im});
@@ -44,5 +46,7 @@ const NASTJA_TNAMES=${JSON.stringify(LO.map(o=>o.name.replace('nastja_','')))};
 function nastjaTanzBild(n){const i=n?NASTJA_TNAMES.indexOf(n):-1;return NASTJA_TANZIMG[i>=0?i:nastjaTanzIdx()]}
 {const e=document.getElementById('dancer2img');if(e){e.parentNode.classList.remove('dance');let last=-1;
   setInterval(()=>{const i=nastjaTanzIdx();if(i!==last){last=i;setImg(e,NASTJA_TANZ[i],NASTJA_TG)}},40)}}`:''}
+${GL.length?`// ----- Mit Rotweinglas: halten → nippen → halten → Haarsträhne (gleiche Lage wie die Tanz-Frames) -----
+const NASTJA_GLAS=${JSON.stringify(GL.map(arr))}.map(nastjaURL);`:''}
 `);
 console.log('js/33-nastja-pixel.js geschrieben',G,FR.length+' Stangen-Frames',FG,LO.length+' Tanz-Frames',LG);

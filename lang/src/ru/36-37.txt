@@ -1,0 +1,131 @@
+# 36-zweite-taenzerin.js + 37-beziehungen.js (Nebenquest Marfa, Beziehungen)
+=Anwerbebogen => Анкета найма
+=Madames neuer Bogen: Schön · Bühnenerfahrung · Frech · Will raus. Darunter in Lippenstift: „Die Zweitbeste reicht. Die Beste hab ich schon.“ => Новая анкета мадам: Красивая · Опыт сцены · Дерзкая · Хочет наружу. Снизу помадой: «Вторая лучшая сойдёт. Лучшая у меня уже есть».
+=Strass-Diadem => Диадема со стразами
+=Nastjas altes Diadem. Strass, Blech und ein roter Glasstein. Piekt angeblich. Glitzert garantiert. => Старая диадема Насти. Стразы, жесть и красная стекляшка. Говорят, колется. Блестит гарантированно.
+=Volles Haus. Marfa an der Stange, die Scheine fliegen. Madame zählt schon. => Аншлаг. Марфа на шесте, купюры летят. Мадам уже считает. Кайф.
+=Die Jungs wedeln wieder. Diesmal für Marfa. Nastja guckt vom Rand zu und trinkt. => Мужики опять машут бабками. Теперь для Марфы. Настя смотрит сбоку и бухает.
+=*dreht sich an der Stange* Na, Bauer? Die Krone sitzt. Die Männer zahlen. Der Sumpf kann mich mal. => *крутится на шесте* Ну что, деревенщина? Корона сидит. Мужики платят. А болото пусть идёт лесом.
+=Nastja trinkt, ich tanze. Sie nennt es Pause. Ich nenne es Thronfolge. => Настя пьёт, я танцую. Она называет это перерывом. Я — престолонаследием.
+=Weißt du, was das Schönste hier oben ist? Trockene Haare. Hundert Jahre hab ich davon geträumt. => Знаешь, что тут наверху лучше всего? Сухие волосы. Сто лет об этом мечтала.
+=Wenn einer grabscht, lächle ich. Du weißt ja inzwischen, was das bei mir bedeutet. => Если кто лапает, я улыбаюсь. Ты уже знаешь, что у меня это значит.
+=Der Choker? Steht mir. Und er verdeckt, was die Frau des Kaufmanns mit ihren Händen gemacht hat. Weiter im Text, Bauer. => Чокер? Мне идёт. И прикрывает, что купчиха сделала своими руками. Дальше, деревенщина.
+=Petja, Süßer. Auf ein Wort. Unter uns. => Петя, зайчик. На пару слов. Между нами.
+=Nastja ist ein Knaller. Aber ein Knaller brennt ab. Zwischen den Shows trinkt sie mir die Bar leer. => Настя — бомба. Но бомбы взрываются. Между номерами она мне весь бар выпивает.
+=Ich brauche eine Zweite. Eine, die die Stange übernimmt, wenn Nastja das Glas übernimmt. => Мне нужна вторая. Которая берёт шест, когда Настя берёт бокал.
+=Und wieder aus dem Sumpf? => Опять из болота, чё ли?
+=Wo sonst kriegt man heute noch Personal, das nicht nach Lohn fragt? Hier, mein neuer Anwerbebogen. Diesmal mit Bühnenerfahrung. => А где ещё найдёшь персонал, который не спрашивает про зарплату? Держи, новая анкета. В этот раз — с опытом сцены.
+=Das ist kein Muss, Süßer. Nur eine Gefälligkeit. Aber ich vergesse Gefälligkeiten nicht. In keine Richtung. => Никто не заставляет, зайчик. Просто услуга. Но услуги я не забываю. Ни в какую сторону.
+=(Ein Nebenjob. Den Ausweg-Joint vergess ich deswegen nicht.) => (Халтурка. Но про косяк-выход я не забыл, пофиг.)
+=Und? Schon eine gefunden? Die Beste hab ich ja. Mir reicht die Zweitbeste. => Ну? Нашёл? Лучшая у меня уже есть. Мне хватит второй лучшей.
+=Schön, Bühnenerfahrung, frech, will raus. Alles vier, Süßer. Frag die Mädels im Sumpf aus und kreuz ehrlich an. => Красивая, опыт сцены, дерзкая, хочет наружу. Все четыре, зайчик. Расспроси девочек в болоте и ставь галочки честно.
+=Eine Krone? Für eine Nymphe? *lacht* Frag Nastja. Die hat mehr Glitzerkram als ich Schulden. => Корону? Для русалки? *смеётся* Спроси Настю. У неё блестяшек больше, чем у меня долгов.
+=Hör genau hin, was sie dort unten hält. Jede hat ihren Preis. Wie oben auch. => Слушай, что их там держит. У каждой своя цена. Как и наверху.
+=Marfa! Eine echte Königin. Sie hat dem ersten Gast das Trinkgeld aus der Brusttasche gelächelt. Ohne Hände. => Марфа! Настоящая королева. Первому гостю чаевые из нагрудного кармана улыбкой вытащила. Без рук.
+=Und Nastja hat endlich Pause. Die verbringt sie am Tresen. Mit meinem besten Rotwein. Na ja. => А у Насти наконец перерыв. Проводит его у стойки. С моим лучшим красным. Ну да ладно.
+=Du hast was gut bei mir, Süßer. Ich vergesse das nicht. => Я тебе должна, зайчик. Я не забуду.
+=(Bei Madame was gut haben. Ich weiß nicht, ob das ein Geschenk ist oder eine Drohung.) => (Мадам мне должна. Хрен знает, подарок это или угроза.)
+=Zwei Tänzerinnen, volles Haus. So muss das, Süßer. => Две танцовщицы, полный зал. Вот так надо, зайчик.
+=Marfa tanzt, Nastja trinkt, ich zähle. Jede macht, was sie am besten kann. => Марфа танцует, Настя пьёт, я считаю. Каждая делает то, что умеет лучше всего.
+=Wenn du wieder mal eine Gefälligkeit loswerden willst – du weißt, wo ich wohne. => Захочешь опять услугу сделать — знаешь, где я живу.
+=Nastja … hast du zufällig eine Krone? Für Marfa. Aus dem Sumpf. => Насть … у тебя короны случайно нет? Для Марфы. Из болота.
+=Marfa? Die alte Giftspritze? *lacht* Ich hab da was. Aber das kriegt nicht jeder, Zwiebel. => Марфа? Эта старая гадюка? *смеётся* Есть у меня кое-что. Но не каждому, Лучок.
+=So gut kennen wir uns noch nicht. Komm öfter vorbei. Red mit mir. Nicht nur, wenn du was willst. => Мы ещё не настолько знакомы. Заходи почаще. Болтай со мной. Не только когда тебе что-то надо.
+=Das Diadem? Erst reden, Zwiebel. Dann vielleicht schenken. So läuft das bei Frauen. Und bei Banken. => Диадему? Сначала разговоры, Лучок. Потом, может, подарки. Так у баб. И у банков. Халявы не будет.
+=Nastja … Marfa will nur mit Krone aus dem Sumpf. => Насть … Марфа без короны из болота не вылезет.
+=Typisch. Hundert Jahre Schlamm und immer noch Ansprüche wie eine Zarin. => Типично. Сто лет в тине, а запросы как у царицы.
+=*kramt in ihrem Ausschnitt* Hier. Mein altes Strass-Diadem. Ich trag’s eh nicht mehr, es piekt. => *роется в декольте* На. Моя старая диадема со стразами. Всё равно не ношу, колется.
+=Aber wenn sie mir die Stange klaut, Zwiebel, dann sind wir geschieden. => Но если она уведёт мой шест, Лучок, мы с тобой в разводе.
+=Wir sind doch gar nicht … => Мы ж даже не …
+=Eben. => Вот именно.
+=*nippt* Pause, Zwiebel. Marfa hat die Stange, ich hab den Wein. Gerechte Arbeitsteilung. => *отпивает* Перерыв, Лучок. У Марфы шест, у меня вино. Справедливое разделение труда.
+=Sie tanzt nicht schlecht, die Alte. Für jemanden, der hundert Jahre im Schlamm lag. *trinkt* Ich war besser. => Неплохо танцует, старуха. Для той, что сто лет в тине пролежала. *пьёт* Я была лучше.
+=*schwenkt das Glas* Rotwein. Der einzige Mann hier, der mich nie enttäuscht hat. => *крутит бокал* Красное. Единственный мужик тут, который меня ни разу не подвёл.
+=Mein Diadem steht ihr. Sag ihr das nicht. Sag ihr lieber, es steht ihr nicht. => Моя диадема ей идёт. Не говори ей. Лучше скажи, что не идёт.
+=Weißt du, was ich im Sumpf am meisten vermisst hab? Gespräche. Frösche sind miese Zuhörer. => Знаешь, чего мне в болоте больше всего не хватало? Разговоров. Лягушки — хреновые слушатели.
+=*lacht* Du guckst schon wieder so. Wie ein Kater vor der Sahne. Diesmal ist es fast süß. => *смеётся* Опять так смотришь. Как кот на сметану. В этот раз почти мило.
+=Zinaida zahlt pünktlich. Das ist mehr, als ich von den meisten Männern sagen kann. Du zählst nicht. Du zahlst ja nie. => Зинаида платит вовремя. Про большинство мужиков такого не скажешь. Ты не считаешься. Ты вообще не платишь.
+=Wenn du hier rauskommst, aus diesem Märchen … vergiss mich nicht ganz, ja? Nur so ein bisschen. => Когда выберешься отсюда, из этой сказки … не забывай меня совсем, ладно? Хоть чуть-чуть.
+=Publikum? Süßer, ich hab auf Kaufmannshochzeiten getanzt, bis die Tische brachen. Und die Ehen. Der Gouverneur hat Rubel geworfen. Mit Kopf drauf. => Публика? Милок, я плясала на купеческих свадьбах, пока столы не ломались. И браки. Губернатор рубли кидал. С собственным профилем.
+=Mit Krone? Dann soll die Welt mal schauen, wer da aus dem Sumpf steigt. => С короной? Тогда пусть мир посмотрит, кто из болота выходит.
+=Raus? Pff. Hier unten bin ich Königin. Da oben wär ich eine nasse Frau ohne Krone. => Наружу? Пфф. Тут внизу я королева. А наверху буду мокрой бабой без короны.
+=Wie mit Schlamm. Erst reinlegen, dann drübersteigen. => Как с тиной. Сначала уложить, потом перешагнуть.
+=Nichts mehr. Die Krone sitzt. Ich warte nur noch auf deinen Bogen, Bauer. => Уже ничего. Корона сидит. Жду только твою анкету, деревенщина.
+=Mein Thron. Na gut, ein Baumstumpf. Eine Königin ohne Krone ist nur eine Frau mit Haltung. Bring mir eine Krone, dann reden wir. => Мой трон. Ладно, пенёк. Королева без короны — просто баба с осанкой. Принеси корону, тогда поговорим.
+=Primaballerina, 1903! Der Zar hat geklatscht. Oder gehustet. Jedenfalls hat er Geräusche gemacht. => Прима-балерина, 1903 год! Царь хлопал. Или кашлял. В общем, звуки издавал.
+=Oh ja! Applaus! Blumen! Und eine Treppe, die ich hinunterschreiten kann. => О да! Аплодисменты! Цветы! И лестница, по которой можно спуститься.
+=Männer hält man wie Pudel, mein Lieber. An der Leine, mit Schleifchen. => Мужчин держат как пуделей, голубчик. На поводке, с бантиком.
+=Nichts. Nur die Knie. Die sind jetzt aus Schlamm. => Ничего. Только колени. Они теперь из ила.
+=Publikum? Die Aale gucken mir beim Blubbern zu. Zählt das? => Публика? Угри смотрят, как я булькаю. Считается?
+=Ich setz mich drauf. Dann ist Ruhe. => Сажусь на них. И тишина.
+=Die Schwerkraft. Und die Würmer. Die sind wie Familie. => Гравитация. И черви. Они как родня.
+=Getanzt? Ich hab geschlagen. Manchmal im Takt. => Танцевала? Я била. Иногда в такт.
+=Mit der Faust. Nächste Frage. => Кулаком. Следующий вопрос.
+=Nichts. Nur dass ich noch nicht weiß, wen ich zuerst erwürge. => Ничего. Просто ещё не решила, кого первым задушить.
+=*klapper* Ich tanze den Knochentanz. Jede Nacht. Alleine. Ohne Zuschauer. => *стук-стук* Я танцую танец костей. Каждую ночь. Одна. Без зрителей.
+=Höflich, Jungchen. Ich biete ihnen Tee an. Aus Sumpfwasser. => Вежливо, сынок. Чаем угощаю. На болотной воде.
+=*klapper* Der Fluch. Und meine Nase. Irgendwo hier liegt meine Nase. => *стук-стук* Проклятие. И мой нос. Где-то тут мой нос валяется.
+=Ich? Ich bin doch schon angeworben, Süßer. => Я? Меня ж уже наняли, котик.
+=Raus? Bin ich längst. => Наружу? Я давно снаружи.
+=Das weißt du doch. => Ты ж знаешь.
+=Nichts. Ich bin im Banja. => Ничего. Я в бане.
+=Hast du schon mal vor Publikum getanzt? => Ты когда-нибудь танцевала перед публикой?
+=Wie gehst du mit Männern um? => Как ты обращаешься с мужиками?
+=Was hält dich hier unten? => Что тебя тут держит?
+=Das Diadem anbieten => Предложить диадему
+=Bühnenerfahrung => Опыт сцены
+=Frech => Дерзкая
+=„*setzt das Diadem auf* Strass. Billig. Wunderschön. … Na gut, Bauer. Für eine Krone steig ich aus dem Schlamm.“ => «*надевает диадему* Стразы. Дёшево. Шикарно. … Ладно, деревенщина. Ради короны вылезу из тины».
+=Hm. Ich glaube, ich hab sie falsch eingeschätzt. Der Bogen stimmt nicht. => Хм. Кажись, я её неправильно оценил. Анкета не сходится. Лажа.
+=Der Bogen stimmt. Marfa passt fast perfekt – nur raus will sie nicht. Was hält sie hier unten? => Анкета сходится. Марфа почти идеальна — только наружу не хочет. Что её тут держит?
+=Der Bogen stimmt. Aber Madame will alle vier Kreuze. => Анкета сходится. Но мадам нужны все четыре галочки.
+=Marfa. Madame Zinaida sucht eine Königin für ihre Bühne. Mit Spiegel, Scheinwerfer und Männern, die zahlen. => Марфа. Мадам Зинаида ищет королеву для своей сцены. С зеркалом, прожектором и мужиками, которые платят.
+=Männer, die zahlen? So hab ich sie am liebsten. Gleich nach denen, die schweigen. => Мужики, которые платят? Таких я люблю больше всего. Сразу после тех, что молчат.
+=Ich komme. Sag deiner Madame: Die Königin des Sumpfs gibt sich die Ehre. => Иду. Передай своей мадам: королева болота почтит её своим присутствием.
+=(Die Zweitbeste. Madame wird zufrieden sein.) => (Вторая лучшая. Мадам будет довольна. Кайф.)
+=Die zweite Tänzerin => Вторая танцовщица
+=Madame Zinaida will eine zweite Tänzerin, damit Nastja Pause machen kann. Kein Muss – aber Madame vergisst keine Gefälligkeit. => Мадам Зинаида хочет вторую танцовщицу, чтобы Настя могла отдыхать. Необязательно — но мадам услуг не забывает.
+=Die Zweitbeste im Sumpf finden => Найти вторую лучшую в болоте
+=Mit dem Anwerbebogen in den Sumpf, die Nymphen anklicken, ausfragen und den Bogen ehrlich ausfüllen. Gesucht: schön, Bühnenerfahrung, frech, will raus. => С анкетой в болото, кликнуть на русалок, расспросить и честно заполнить анкету. Нужно: красивая, опыт сцены, дерзкая, хочет наружу.
+=Eine Krone für Marfa => Корона для Марфы
+=Mit dem Diadem in den Sumpf zu Marfa und es ihr im Gespräch anbieten. => С диадемой в болото к Марфе и предложить её в разговоре.
+=Nastja hat so ein Glitzerding. Aber das gibt sie nur jemandem, den sie richtig mag: öfter mit ihr reden (Beziehung im Notizbuch, Taste C). => У Насти есть такая блестяшка. Но отдаст она её только тому, кто ей по-настоящему нравится: чаще с ней болтать (отношения в блокноте, клавиша C).
+=Marfa anwerben => Нанять Марфу
+=Im Sumpf Marfa anklicken und den Bogen ausfüllen. Mit Krone will sie raus. => В болоте кликнуть на Марфу и заполнить анкету. С короной она хочет наружу.
+=Madame Bescheid sagen => Сказать мадам
+=Zurück ins Banja zu Madame Zinaida. => Назад в баню к мадам Зинаиде.
+=Die Beste hat Madame schon. Wer im Sumpf kommt gleich danach? => Лучшая у мадам уже есть. Кто в болоте сразу после неё?
+=Im Sumpf hinter der Birkensperre. => В болоте за берёзовым завалом.
+=Eine Krone. Wer hier hat Glitzerkram und mag mich wenigstens ein bisschen? => Корона. У кого тут есть блестяшки и кто меня хоть чуть-чуть любит?
+=Im Banja. Nastja steht an der Stange. => В бане. Настя у шеста.
+=Jetzt hat sie, was sie wollte. Jetzt will sie bestimmt. => Теперь у неё есть, что хотела. Теперь точно захочет.
+=Im Sumpf. => В болоте.
+=Madame wartet auf gute Nachrichten. => Мадам ждёт хороших новостей.
+=Im Banja. => В бане.
+=Nebenquest => Побочка
+=Nymphe, jetzt zweite Tänzerin im Banja => Русалка, теперь вторая танцовщица в бане
+=War mal die teuerste Frau im ganzen Gouvernement. Lächelt, wenn sie droht. Droht, wenn sie lächelt. => Когда-то самая дорогая баба во всей губернии. Улыбается, когда угрожает. Угрожает, когда улыбается.
+=Geht nur mit Krone aus dem Sumpf. Eine Königin ohne Krone ist für sie bloß eine Frau mit Haltung. => Без короны из болота не выйдет. Королева без короны для неё — просто баба с осанкой.
+=Tanzt jetzt im Banja an der Stange, mit Nastjas altem Strass-Diadem. Der Choker verdeckt die Würgemale. Ich frag nicht. => Теперь танцует в бане на шесте, в старой диадеме Насти. Чокер прикрывает следы от удушения. Я не спрашиваю.
+=Feindselig => Враждебно
+=Misstrauisch => Настороженно
+=Neutral => Нейтрально
+=Freundlich => Дружески
+=Vertraut => Доверие
+=Eng verbunden => Близкие
+=Beziehung => Отношения
+=Marfa => Марфа
+=Kusmitsch => Кузьмич
+=Zinaida => Зинаида
+=Grischa => Гриша
+=Dusja => Дуся
+=Ignati => Игнатий
+=Fjodor => Фёдор
+=Müller => Мельник
+=Krähe => Ворона
+~{} mag dich mehr => {} к тебе теплее
+~{} mag dich weniger => {} к тебе холоднее
+~Beziehung zu {}: {} => Отношения с {}: {}
+~Neue Nebenquest: {} => Новая побочка: {}
+~Nebenquest erledigt: {} => Побочка выполнена: {}
+~„{}“ => «{}»

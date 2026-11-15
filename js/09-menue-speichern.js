@@ -58,8 +58,9 @@ function quests(){const Q=[];
     {t:'Das Ergebnis zeigen',v:FL.pilze,ok:FL.bjInfo,h:'Die blauen Pilzstücke Baba Jaga zeigen (auf sie klicken).'}]});
   return Q.filter(q=>q.v)}
 // Offene Blätter des Auftragsbaums; der tiefste (konkreteste) zuerst, bei Gleichstand der neuere Auftrag
-function nextSteps(Q){const out=[];const walk=(q,d,top)=>{if(!q.v||q.ok)return;const kids=(q.s||[]).filter(c=>c.v&&!c.ok);if(!kids.length)out.push({q,d,top});else kids.forEach(c=>walk(c,d+1,top))};
-  (Q||quests()).forEach((q,i)=>walk(q,0,i));return out.sort((a,b)=>b.d-a.d||b.top-a.top)}
+// Nebenquests (q.neben) kommen erst dran, wenn in der Hauptgeschichte nichts offen ist
+function nextSteps(Q){const out=[];const walk=(q,d,top,nb)=>{if(!q.v||q.ok)return;const kids=(q.s||[]).filter(c=>c.v&&!c.ok);if(!kids.length)out.push({q,d,top,nb});else kids.forEach(c=>walk(c,d+1,top,nb))};
+  (Q||quests()).forEach((q,i)=>walk(q,0,i,q.neben?1:0));return out.sort((a,b)=>a.nb-b.nb||b.d-a.d||b.top-a.top)}
 function qTree(list,lv,NEXT){return list.filter(q=>q.v).map(q=>`<div class="q l${lv} ${q.ok?'done':''} ${q===NEXT?'next':''}"><span>${ic(q.ok?'check':q===NEXT?'next':'todo','q')} ${q.t}</span>${q.d&&lv==0?`<i>${q.d}</i>`:''}${q!==NEXT&&qNote(q)?`<em class="qh">${ic('auftrag','sm')} ${qNote(q)}</em>`:''}${q.s&&!q.ok?qTree(q.s,lv+1,NEXT):''}</div>`).join('')}
 // Notiz nur bei offenen Schritten, die gerade selbst dran sind (keine offenen Unterschritte mehr)
 function qNote(q){return!q.ok&&q.h&&!(q.s||[]).some(c=>c.v&&!c.ok)?q.h:''}

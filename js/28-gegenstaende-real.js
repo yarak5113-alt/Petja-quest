@@ -286,4 +286,18 @@ make('zwiebel',x=>{ground(x,32,56,16,3.5);const p=new Path2D('M32,16C36,22 50,28
   [[-5,-14],[0,-16],[5,-12]].forEach(([dx,dy],i)=>{x.strokeStyle=lg(x,32,16,32+dx,16+dy,[[0,'#4a8a2a'],[1,'#a8d870']]);x.lineWidth=2.2-i*.3;x.beginPath();x.moveTo(32,17);x.quadraticCurveTo(32+dx*.4,16+dy*.6,32+dx,16+dy);x.stroke()});
   glow(x,32,24,4,[255,255,255],.1)});
 
+// ---------- Madames neuer Anwerbebogen: rotes Kopfband, vier Kästchen mit Haken, Kussmund ----------
+make('bogen2',x=>{ground(x,32,55,22,4,.45);x.save();x.translate(32,32);x.rotate(.1);const p=new Path2D('M-17,-25L15,-25L17,24L-16,25Z');
+  x.fillStyle=lg(x,-17,-25,17,25,[[0,'#fbf3ee'],[1,'#e8d6cf']]);x.fill(p);x.save();x.clip(p);for(let i=0;i<120;i++){x.fillStyle=`rgba(150,120,110,${.05+r()*.08})`;x.fillRect(-17+r()*34,-25+r()*50,.6,.6)}
+  x.fillStyle=lg(x,0,-25,0,-18,[[0,'#9a1838'],[1,'#6a0e24']]);x.fillRect(-18,-26,36,8);x.fillStyle='#e8c060';x.beginPath();for(let k=0;k<10;k++){const a=k*Math.PI/5-Math.PI/2,R=k%2?1.2:2.8;x.lineTo(Math.cos(a)*R,-21.5+Math.sin(a)*R)}x.fill();
+  [-12,-4,4,12].forEach((Y,i)=>{x.strokeStyle='rgba(40,30,40,.85)';x.lineWidth=.6;x.strokeRect(-12,Y-2.5,4,4);x.strokeStyle='rgba(40,30,60,.7)';x.lineWidth=.45;x.beginPath();x.moveTo(-6,Y);for(let X=-6;X<10;X+=1.1)x.lineTo(X,Y-Math.abs(Math.sin(X*1.7+i))*1.1);x.stroke();
+    x.strokeStyle='#2a7a2a';x.lineWidth=.8;x.beginPath();x.moveTo(-11.4,Y-.6);x.lineTo(-10,Y+1);x.lineTo(-7,Y-3.4);x.stroke()});
+  x.fillStyle='rgba(200,20,70,.75)';x.beginPath();x.ellipse(8,19,3.2,1.5,-.2,0,Math.PI);x.fill();x.beginPath();x.moveTo(4.8,18.6);x.quadraticCurveTo(6.5,16,8,18);x.quadraticCurveTo(9.5,16,11.2,18.6);x.fill();x.restore();edge(x,p,.5,.5);x.restore()});
+// ---------- Nastjas Strass-Diadem: Goldreif mit Zacken, roter Glasstein, Strass ----------
+make('diadem',x=>{ground(x,32,50,22,4,.4);x.save();x.translate(32,36);
+  const p=new Path2D('M-20,6C-12,2 12,2 20,6L18,10C10,7 -10,7 -18,10Z');x.fillStyle=lg(x,-20,0,20,10,[[0,'#f8e6a0'],[.5,'#c8962a'],[1,'#8a5a14']]);x.fill(p);edge(x,p,.6,.5);
+  const c=new Path2D('M-16,4L-12,-6L-7,2L0,-14L7,2L12,-6L16,4C8,2 -8,2 -16,4Z');x.fillStyle=lg(x,0,-14,0,4,[[0,'#fff4c0'],[1,'#c8962a']]);x.fill(c);edge(x,c,.6,.5);
+  [[0,-7,2.6,'#d0284e'],[-12,-3,1.4,'#e8f4ff'],[12,-3,1.4,'#e8f4ff'],[-6,1,1,'#e8f4ff'],[6,1,1,'#e8f4ff'],[-14,7,.9,'#e8f4ff'],[0,5,.9,'#e8f4ff'],[14,7,.9,'#e8f4ff']].forEach(([X,Y,R,col])=>{x.fillStyle=col;x.beginPath();x.arc(X,Y,R,0,7);x.fill();gloss(x,X-R*.3,Y-R*.3,R*.7,R*.7,.9)});
+  glow(x,0,-7,9,[255,60,110],.3);x.restore()});
+
 if(typeof renderInv=='function')renderInv()})();
