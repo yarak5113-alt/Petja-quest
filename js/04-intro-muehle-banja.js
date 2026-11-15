@@ -352,25 +352,43 @@ function paintBuehne(){c.fillStyle='#0e0408';c.fillRect(0,0,W,H);let x=lay();
   x=lay();sign(x,110,486,1.4,[[-1,0,'Zurück an die Bar','hBZ']]);put(x)}
 async function lapDance(){changing=true;fade.style.opacity=1;await new Promise(r=>setTimeout(r,450));S0=SCN.lounge;s=S0.seed;if(!cache.lounge){S0.paint();const k=document.createElement('canvas');k.width=W;k.height=H;k.getContext('2d').drawImage(cv,0,0);cache.lounge=k}
   const cv3=document.createElement('canvas');cv3.id='cut';cv3.width=W;cv3.height=H;cv3.style.cssText='position:absolute;inset:0;width:100%;height:100%;z-index:15';$('#game').appendChild(cv3);fade.style.opacity=0;
-  const x=cv3.getContext('2d'),T0=performance.now(),D=16;let fin=false;
+  const x=cv3.getContext('2d'),T0=performance.now(),ONION=!!(FL.zwIn&&!FL.traene),D=ONION?20.5:20;let fin=false;
   const ease=(a,b,p)=>a+(b-a)*(p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2),seg=(t,a,b)=>Math.max(0,Math.min(1,(t-a)/(b-a)));
   function frame(){if(fin)return;const t=(performance.now()-T0)/1000;x.setTransform(1,0,0,1,0,0);x.filter='blur('+(1.5*SC)+'px)';
     x.save();x.translate(W/2,H/2);x.scale(1.5,1.5);x.translate(-W/2,-H*.45);x.drawImage(cache.lounge,0,0);x.restore();x.filter='none';
-    let px=ease(-60,400,seg(t,0,2.5)),py=520,sc=1.5,rot=0,flip=1,fr='tanz1';   // fr: Tanzbild der Phase (33-nastja-pixel.js)
+    // Ablauf: heranwinken → Hüfte wiegen → Haare → setzt sich auf den Schoß → flüstert ins Ohr → (Zwiebel: Tränen) / (sonst: steht auf, Kussmund, Kuss)
+    let px=ease(-60,400,seg(t,0,2.5)),py=520,sc=1.5,rot=0,flip=1,fr='tanz1',sit=false,tear=0;   // fr: Tanzbild der Phase (33-nastja-pixel.js)
     if(t>2.5&&t<6){const u=t-2.5;rot=Math.sin(u*4.2)*.1;py=520-Math.abs(Math.sin(u*4.2))*14;px=400+Math.sin(u*2.1)*40;fr=Math.sin(u*2.1)>0?'tanz4':'tanz2'}
-    if(t>=6&&t<8){const p=seg(t,6,8);px=400+Math.sin(p*Math.PI*2)*30;fr='tanz7'}
-    // sinkt auf den Schoß: ganz nah ran, Gesicht direkt vor Petjas Nase, Hand auf seiner Schulter, Hüfte wiegt
-    if(t>=8&&t<11){const p=seg(t,8,11),q=Math.min(1,p*2.2);sc=ease(1.5,2.7,q);py=ease(520,790,q)+Math.sin(p*14)*6;rot=Math.sin(p*9)*.05;px=400+Math.sin(p*7)*16;fr='tanz3'}
-    if(t>=11&&t<13.5){const p=seg(t,11,13.5);sc=ease(2.7,1.6,p);py=ease(790,520,p);rot=-.15*Math.sin(p*Math.PI);px=400;fr='tanz5'}
-    if(t>=13.5){const u=t-13.5;rot=Math.sin(u*5)*.08;py=520-Math.abs(Math.sin(u*5))*10;px=400;fr='tanz6'}
-    x.setTransform(SC,0,0,SC,0,0);x.save();x.translate(px,py);x.rotate(rot);x.scale(sc*flip,sc);{const im=typeof nastjaTanzBild=='function'?nastjaTanzBild(fr):null,I=im||DANCERIMG,G=im?NASTJA_TG:DANCER_G;if(I.complete&&I.naturalWidth){x.imageSmoothingEnabled=false;x.drawImage(I,...G);x.imageSmoothingEnabled=true}};   // Tanz-Frames (33-nastja-pixel.js)x.restore();
-    fpKnees(x);
+    if(t>=6&&t<7.5){const p=seg(t,6,7.5);px=400+Math.sin(p*Math.PI*2)*30;fr='tanz7'}
+    // setzt sich: rückt ganz nah ran und sinkt breitbeinig auf Petjas Schoß, dann wiegt sie die Hüfte auf ihm
+    if(t>=7.5&&t<12){const p=seg(t,7.5,9),u=t-9;sit=true;fr='sitz';sc=ease(1.5,2.9,p);py=ease(520,800,p)+(t>9?Math.sin(u*5)*7:0);px=400+(t>9?Math.sin(u*2.5)*14:0);rot=t>9?Math.sin(u*2.5)*.04:0}
+    // flüstert: beugt sich an sein Ohr (zur Seite, noch näher)
+    if(t>=12&&t<15.5){const p=seg(t,12,13);sit=true;fr='fluester';sc=ease(2.9,3.4,p);py=ease(800,880,p);px=ease(400,505,p);rot=ease(0,-.12,p)}
+    if(ONION){ // die Zwiebel aus der Lüftung wirkt: zurück vors Gesicht, die Augen laufen über
+      if(t>=15.5){const p=seg(t,15.5,16.3),u=t-15.5;sit=true;fr='weinen';sc=ease(3.4,2.9,p);py=ease(880,800,p);px=ease(505,400,p)+Math.sin(u*30)*(u>1?1.2:0);rot=ease(-.12,0,p);tear=Math.min(1,u/3.5)}}
+    else{
+      if(t>=15.5&&t<18){const p=seg(t,15.5,18);sc=ease(2.9,1.6,p);py=ease(800,520,p);rot=-.15*Math.sin(p*Math.PI);px=ease(505,400,p);fr='tanz5'}
+      if(t>=18){const u=t-18;rot=Math.sin(u*5)*.08;py=520-Math.abs(Math.sin(u*5))*10;px=400;fr='tanz6'}}
+    x.setTransform(SC,0,0,SC,0,0);
+    // auf dem Schoß: Petjas Knie und Jeans liegen HINTER ihr (ihre Oberschenkel kommen nach vorn); sonst wie bisher davor
+    if(sit){fpKnees(x);x.fillStyle='#55688f';x.beginPath();x.ellipse(400,540,150,70,0,0,7);x.fill();x.fillStyle='#41506f';x.fillRect(396,478,8,40)}
+    x.save();x.translate(px,py);x.rotate(rot);x.scale(sc*flip,sc);{const im=typeof nastjaTanzBild=='function'?nastjaTanzBild(fr):null,I=im||DANCERIMG,G=im?NASTJA_TG:DANCER_G;if(I.complete&&I.naturalWidth){x.imageSmoothingEnabled=false;x.drawImage(I,...G);x.imageSmoothingEnabled=true}}   // Tanz-Frames (33-nastja-pixel.js)
+    // Tränen (Pixel-Tropfen in Bildkoordinaten): Auge links (offen) und rechts (zugekniffen), laufen über die Wangen
+    if(tear>0){const E=(u,v)=>[u*.971,-264+(v+270)*.971];x.imageSmoothingEnabled=false;
+      [[-5.6,-228.6],[6.2,-228.8]].forEach(([eu,ev],j)=>{const[ex,ey]=E(eu,ev),len=tear*14;
+        x.fillStyle='#7fb8f0';x.fillRect(Math.round(ex*2)/2-.5,ey,1,len);x.fillStyle='#d8f0ff';x.fillRect(Math.round(ex*2)/2-.5,ey,.5,len*.8);
+        for(let i=0;i<3;i++){const q=((t*1.3+i/3+j*.17)%1);if(q*16>len+2)continue;const dy=ey+q*16;x.fillStyle='#2e1c10';x.fillRect(ex-1.1,dy-.4,2.2,2.8);x.fillStyle='#8fc8ff';x.fillRect(ex-.7,dy,1.4,2);x.fillStyle='#e8f6ff';x.fillRect(ex-.5,dy+.2,.5,.6)}})}
+    x.restore();
+    if(!sit)fpKnees(x);
     x.save();x.globalCompositeOperation='lighter';for(let i=0;i<4;i++){const p=(t*.25+i/4)%1;x.fillStyle=`rgba(255,180,220,${.6*(1-p)})`;x.font='22px Georgia';x.fillText('♪',120+i*170+Math.sin(t+i)*20,420-p*300)}x.restore();
     const v=x.createRadialGradient(400,250,150,400,250,520);v.addColorStop(0,'rgba(0,0,0,0)');v.addColorStop(1,'rgba(20,0,10,.7)');x.fillStyle=v;x.fillRect(0,0,800,500);
     if(t>D){fin=true;return end()}requestAnimationFrame(frame)}
   requestAnimationFrame(frame);
-  setTimeout(()=>say([['NA','Hände aufs Sofa, Süßer. Hausregel.']]),2600);setTimeout(()=>{if(busy)advance();say([['P','*schluck*']])},9000);
-  if(FL.zwIn&&!FL.traene)setTimeout(()=>{if(busy)advance();say([['NA','*schnief* … Was … was ist das? Meine Augen!']])},12500); // Akt 3: Zwiebel in der Lüftung
+  setTimeout(()=>say([['NA','Hände aufs Sofa, Süßer. Hausregel.']]),2600);
+  setTimeout(()=>{if(busy)advance();say([['P','*schluck*']])},8600);
+  setTimeout(()=>{if(busy)advance();say([['NA','*haucht dir ins Ohr* Sitzt du bequem, Süßer? Ich spür da was. …Hoffentlich ist das dein Portemonnaie.']])},12300);
+  setTimeout(()=>{if(busy)advance();say([['P','*SCHLUCK*']])},14800);
+  if(ONION)setTimeout(()=>{if(busy)advance();say([['NA','*schnief* … Was … was ist das? Meine Augen!']])},16300); // Akt 3: Zwiebel in der Lüftung
   async function end(){if(busy)advance();fade.style.opacity=1;await new Promise(r=>setTimeout(r,500));cv3.remove();changing=false;
     if(FL.zwIn&&!FL.traene){say([['NA','*SCHNIEF* Ich weine! Ich weine doch nie! Dreihundert Jahre nicht!'],['P','Halt still. *hält die Phiole unters Kinn*'],['P','*plopp* Eine echte Träne. Danke.'],
       ['NA','*lacht unter Tränen* Eine Zwiebel. Du hast mir eine Zwiebel in die Lüftung gesteckt.'],['NA','Dreihundert Jahre hat mich keiner zum Weinen gebracht. Und du schaffst es mit Gemüse.'],['NA','Behalt die Träne, Zwiebel. Hast du dir verdient.'],['P','(Ich glaube, sie mag mich. Auf Nymphenart.)']],()=>{FL.traene=1;FL.lounge=1;const k=inv.indexOf('phiole');if(k>=0)inv.splice(k,1);inv.push('traene');renderInv();enter('buehne',[260,486])});fade.style.opacity=0;return}

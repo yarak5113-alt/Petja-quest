@@ -23,6 +23,11 @@ function nLeg(h,k,a,o={}){const top=nPt(h,k,.36),band=nPt(h,k,.38);let s=nLimb([
   const dx=k[0]-h[0],dy=k[1]-h[1],l=Math.hypot(dx,dy),nx=-dy/l*4.5,ny=dx/l*4.5;
   const st=(o.from||[]).map((q,i)=>{const e=[band[0]+(i?nx:-nx),band[1]+(i?ny:-ny)];return`M${q[0].toFixed(2)},${q[1].toFixed(2)}L${e[0].toFixed(2)},${e[1].toFixed(2)}`}).join('');
   return{leg:s,strap:st?`<path d="${st}" fill="none" stroke-width="1.3"/>`:''}}
+// Sitzendes Bein (auf dem Schoß, Oberschenkel zeigen zum Betrachter): Hüfte -> Knie -> Unterschenkel-Ansatz, ohne Schuh
+function nSitLeg(h,k,a,o={}){const top=nPt(h,k,.36);let s=nLimb([h,k,a],[8.6,7,5],N_ST)+nLimb([h,nPt(h,k,.2),top],[8.8,8,7.2],N_SK)+nLimb([top,nPt(h,k,.42)],[7.6,7.2],N_BK);
+  const band=nPt(h,k,.38),dx=k[0]-h[0],dy=k[1]-h[1],l=Math.hypot(dx,dy),nx=-dy/l*4.5,ny=dx/l*4.5;
+  const st=(o.from||[]).map((q,i)=>{const e=[band[0]+(i?nx:-nx),band[1]+(i?ny:-ny)];return`M${q[0].toFixed(2)},${q[1].toFixed(2)}L${e[0].toFixed(2)},${e[1].toFixed(2)}`}).join('');
+  return{leg:s,strap:st?`<path d="${st}" fill="none" stroke-width="1.3"/>`:''}}
 // Arm: Schulter -> Ellbogen -> Handgelenk. o.grip: Faust um die Stange, o.glass: Glas Rotwein in der Hand
 function nArm(s,e,w,o={}){let r=nLimb([s,e,w],[3.6,2.9,2.3],N_SK)+`<circle cx="${s[0]}" cy="${s[1]}" r="3.4" fill="${N_SK}" stroke="none"/>`;const[x,y]=w;
   if(o.grip)r+=`<path d="M${x-4.6},${y-1}C${x-4.8},${y-5.2} ${x+4.8},${y-5.2} ${x+4.6},${y-1}C${x+4.8},${y+3.6} ${x-4.8},${y+3.6} ${x-4.6},${y-1}Z" fill="${N_SK}"/><path d="M${x-3.2},${y-2.6}L${x+3.2},${y-2.6}M${x-3.4},${y-0.2}L${x+3.4},${y-0.2}M${x-3},${y+2}L${x+3},${y+2}" fill="none" stroke-width=".8"/>`;
@@ -38,6 +43,8 @@ function nWedel(x,y){let fe='';for(let i=0;i<7;i++){const a=(-140+i*17)*Math.PI/
 // Mund pro Pose (liegt unter dem pixelgenau übernommenen Augenbereich): grins = freches schiefes Grinsen mit Zähnen, kuss = Kussmund
 const N_MUND={
   grins:`<path d="M-5.6,-216.2C-3,-217 3,-218.4 6.4,-218.8C5.2,-213.4 -2.6,-212.6 -5.6,-216.2Z" fill="#a82034" stroke-width=".9"/><path d="M-4.2,-216.1C-1,-216.8 2.6,-217.8 5.3,-218.2L4.8,-216.8C2,-216.4 -1.2,-215.8 -3.9,-215.4Z" fill="#f6f3ee" stroke="none"/><path d="M6.4,-218.8L7.8,-220.4M-5.6,-216.2L-6.4,-216" fill="none" stroke-width="1"/>`,
+  fluester:`<ellipse cx="1.6" cy="-215.3" rx="2.3" ry="1.5" fill="#a82034" stroke-width=".9"/><path d="M3.9,-215.6L5,-216.6" fill="none" stroke-width=".8"/>`,
+  zitter:`<path d="M-4.6,-214.4C-3,-216 -1.5,-214.6 0,-216C1.5,-214.6 3,-216 4.6,-214.4C3.4,-211.8 -3.4,-211.8 -4.6,-214.4Z" fill="#712834" stroke-width=".9"/><path d="M-3.2,-214.6C-1.6,-215.4 1.6,-215.4 3.2,-214.6" fill="none" stroke="#f6f3ee" stroke-width=".8"/>`,
   kuss:`<ellipse cx="0.4" cy="-215.6" rx="2.7" ry="2.3" fill="#a82034" stroke-width=".9"/><ellipse cx="0.4" cy="-215.5" rx="0.9" ry="0.8" fill="#712834" stroke="none"/>`};
 const nFace=m=>m?NASTJA_PARTS.face.replace(/<path d="M-4\.6,-215\.4[\s\S]*$/,"")+N_MUND[m]:NASTJA_PARTS.face;
 // Pose zusammensetzen. p.bx/p.by: Körperversatz in PIXELN (ganzzahlig -> Gesicht passt 1:1), p.hair: Haarschwung (Einheiten)
@@ -107,7 +114,17 @@ const NASTJA_POSEN={
   // T7: spielt mit den Haaren – Hand fährt seitlich durchs Haar, die andere gleitet die Hüfte entlang, Hüfte kreist raus; Grinsen + Braue
   tanz7:{box:'lounge',bx:-6,by:2,hair:-3,mouth:'grins',brow:3,
     legs:B=>[nLeg(B([9,-134]),[6,-72],[12,-20],{...RF(B),rot:-8}),nLeg(B([-9,-134]),[-15,-70],[-13,-20],LF(B))],
-    armsFront:B=>nArm(B([-17,-195]),B([-37,-200]),B([-21,-225]))+nArm(B([17,-195]),B([30,-166]),B([21,-132]))}};
+    armsFront:B=>nArm(B([-17,-195]),B([-37,-200]),B([-21,-225]))+nArm(B([17,-195]),B([30,-166]),B([21,-132]))},
+  // ---- Ich-Sicht: auf dem Schoß (Oberschenkel kommen breitbeinig auf den Betrachter zu, Hände auf seinen Schultern) ----
+  // S1 sitzt: beide Hände auf seinen Schultern, freches Grinsen, Braue hoch
+  sitz:{box:'lounge',bx:0,by:0,hair:0,mouth:'grins',brow:3,legs:B=>[nSitLeg(B([-9,-134]),[-44,-114],[-45,-92],LF(B)),nSitLeg(B([9,-134]),[44,-114],[45,-92],RF(B))],
+    armsFront:B=>nArm(B([-17,-195]),B([-37,-184]),[-56,-170],{grip:1})+nArm(B([17,-195]),B([37,-184]),[56,-170],{grip:1})},
+  // S2 flüstert ins Ohr: Hand am Mund, andere Hand auf der Schulter, Lippen gespitzt
+  fluester:{box:'lounge',bx:0,by:0,hair:2,mouth:'fluester',brow:3,legs:B=>[nSitLeg(B([-9,-134]),[-44,-114],[-45,-92],LF(B)),nSitLeg(B([9,-134]),[44,-114],[45,-92],RF(B))],
+    armsFront:B=>nArm(B([17,-195]),B([37,-184]),[56,-170],{grip:1})+nArm(B([-17,-195]),B([-33,-190]),B([-10,-214]),{finger:[1,-5]})},
+  // S3 die Zwiebel wirkt: zitternde Unterlippe, eine Hand an der Brust, die andere krallt sich an seiner Schulter fest (Tränen malt die Ich-Sicht dazu)
+  weinen:{box:'lounge',bx:0,by:0,hair:0,mouth:'zitter',legs:B=>[nSitLeg(B([-9,-134]),[-44,-114],[-45,-92],LF(B)),nSitLeg(B([9,-134]),[44,-114],[45,-92],RF(B))],
+    armsFront:B=>nArm(B([17,-195]),B([37,-184]),[56,-170],{grip:1})+nArm(B([-17,-195]),B([-30,-180]),B([-7,-196]))}};
 // Rendern: shift = Bodenverschiebung des Hauptsprites (px), damit alle Frames deckungsgleich mit dem Hauptsprite liegen
 function nastjaFrame(name,shift){const p=NASTJA_POSEN[name],st=p.box==='stange';
   return pixSprite(nastjaPose(p),st?NASTJA_STANGE_BOX:NASTJA_LOUNGE_BOX,st?500+NASTJA_UP:500,{...NASTJA_NEU_PIX,floor:0,shift})}
