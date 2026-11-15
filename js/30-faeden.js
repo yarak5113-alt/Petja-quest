@@ -106,3 +106,13 @@ wrapFn('tisch',orig=>{if(FL.ende||!FL.recipe||!hasAll()||FL.tischRede)return ori
     ['P','Drüben bin ich auch nichts Besonderes. Aber da bin ich wenigstens mein eigenes Problem.'],
     ['J2','… Dummkopf. *trinkt seinen Tee aus* Na gut. Dreh deinen Joint.'],
     ['J2','Und falls du drüben mal einen blauen Stempel siehst: Du warst nie hier.']],()=>{FL.tischRede=1;orig()})});
+
+// ----- Laterne: hinten in der Höhle ist es stockdunkel – ohne Licht keine blauen Pilze. Danach will Grobnik sie zurück -----
+wrapFn('lpilze',orig=>{if(FL.bjInfo&&!FL.recipe&&!has('blaupilze')){
+    if(!has('laterne'))return say([['P','Hinten ist es stockdunkel. Ohne Licht greif ich da nirgends rein. Wer weiß, was zurückgreift.']]);
+    if(!FL.latHoch)return say([['P','*hält die Gnomlaterne hoch*'],['P','Grünes Licht. Und da hinten, wo vorher nur Schwarz war … leuchtet was zurück. Blau.']],()=>{FL.latHoch=1;orig()})}
+  return orig()});
+{const en=enter;enter=function(id){const r=en.apply(this,arguments);
+  if(id==='gnome'&&has('laterne')&&(has('blaupilze')||FL.recipe))setTimeout(()=>{if(!has('laterne'))return;
+    say([['N1','Halt, Langer. Die Laterne.'],['P','Was ist mit der?'],['N1','Die ist Inventar. Gnom-Inventar. Wird gezählt. Jeden Abend.'],['P','*gibt sie zurück* Danke fürs Licht.'],['N1','Danke ist nicht gezählt. Laterne schon.']],()=>dropInv('laterne'))},900);
+  return r}}

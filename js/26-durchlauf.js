@@ -131,7 +131,9 @@ async function durchlauf(){if(DL.on)return;DL.on=true;DL.log=[];DL.t0=Date.now()
     await dlStep('„Mehl“ vom Müller','muehle','muehle',()=>has('mehl'));
     await dlStep('Stollen offen','gnome','gnom1',()=>FL.stollen);
     await dlStep('Blaue Pilze in der Höhle','hoehle','lpilze',()=>has('blaupilze'));
+    dlExpect('Laterne hat geleuchtet',()=>FL.latHoch);
     await dlStep('Rezept von Baba Jaga','innen','baba',()=>FL.recipe&&has('phiole')&&has('filter'));
+    dlExpect('Grobnik hat die Laterne zurück',()=>!has('laterne'));
     await dlGoto('huette');dlExpect('Wowa-Echo 2 („…der?“) nach Akt 2',()=>FL.echo2);
 
     // ---- Akt 3: drei Zutaten, dann das Finale ----

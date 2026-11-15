@@ -93,13 +93,13 @@ Object.assign(T,{
   hufeisen:{n:'Hufeisen',at:[360,418],l:[[['P','Ein Hufeisen über der Tür. Mit der Öffnung nach oben, damit das Glück nicht rausfällt.'],['P','Bei mir ist es schon lange rausgefallen.']]]},
   heu:{n:'Heuhaufen',at:[180,424],l:[[['P','Ein Heuhaufen. Riecht nach Sommer und nach Mäusen.'],['P','Wenn ich mich jetzt reinlege, steh ich erst nächstes Jahr wieder auf.']]]},
   fass:{n:'Fass',at:[300,418],l:[[['P','Ein Fass. Drin ist Wasser. Leider.']]]},
-  brunnen:{n:'Brunnen',at:[660,492],l:[[['P','Ein Brunnen mit eigenem Dach. Hat mehr Dach als ich.'],['P','*ruft rein* Hallo? ...Nur Echo. Und ein Frosch, der genervt guckt.']]]},
+  brunnenS:{n:'Brunnen',at:[660,492],l:[[['P','Ein Brunnen mit eigenem Dach. Hat mehr Dach als ich.'],['P','*ruft rein* Hallo? ...Nur Echo. Und ein Frosch, der genervt guckt.']]]},
   holz:{n:'Holzstapel',at:[640,436],l:[[['P','Ordentlich gestapelt. Jemand hier hat sein Leben im Griff.'],['P','Ich nicht. Aber das wussten wir ja.']]]},
   sSD:{n:'Schild: Zur Dorfstraße',at:[150,488],go:'dorfstr',to:[470,372]},
   sSm:{n:'Schild: Zum Schmiedehof',at:[470,372],go:'schmiede',to:[160,486]}});
 BARKS.schmiede=['Hier riecht es nach Eisen, Heu und Arbeit. Zwei davon mag ich.','Der Brunnen gluckert. Ich krieg Durst. Auf Kwas.','Irgendwo hämmert einer. Oder mein Kopf. Schwer zu sagen.','Das Pferd auf dem Giebel guckt, als wüsste es was.'];
 ENTRY.schmiede=['Der Schmiedehof. Die Esse glüht immer noch.','Wieder beim Schmied. Fjodor hämmert. Fjodor hämmert immer.'];
-MORE.esse=[['P','Ein paar Funken springen hoch. Ich spring auch. Nach hinten.']];MORE.brunnen=[['P','Der Frosch ist immer noch da. Wir sind jetzt quasi Kollegen.']];
+MORE.esse=[['P','Ein paar Funken springen hoch. Ich spring auch. Nach hinten.']];MORE.brunnenS=[['P','Der Frosch ist immer noch da. Wir sind jetzt quasi Kollegen.']];
 LOCN.schmiede='Schmiedehof';MAPN.schmiede=[106,36];MAPE.push(['dorfstr','schmiede']);
 // Ausgangs-Schilder als Ausgang markieren (diese Datei lädt nach der Bedienung), Ambiente, Musik, Tester-Sprung
 document.querySelectorAll('[data-id="sSD"],[data-id="sSm"]').forEach(e=>e.classList.add('exit'));
