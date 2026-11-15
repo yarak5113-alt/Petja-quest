@@ -1,6 +1,7 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.95',d:'15.11.2026',t:'Nastja neu gepixelt',n:['Nastja im Banja nach den neuen Pixel-Regeln: genau 500 Pixel hoch, höchstens 20 Farben, dunkelbraune Federkontur (rundum 2 Pixel, rechts und unten 4), feine Innenlinien, Füße exakt auf dem Boden','Langes blondes Haar bis zur Hüfte, schmales Haarband, rote Lippen, weißer Fächer – und ein trockener, gelangweilter Blick statt Rouge']},
   {v:'1.94',d:'15.11.2026',t:'Tester bis zum Abspann',n:['Tester-Modus: Die Sprungpunkte gehen jetzt durch ganz Akt 3 – Ur-Spore, Pope, Weihwasser, Glut, Zwiebel, Lüftung, Träne und zuletzt alles beisammen vor Baba Jagas Hütte']},
   {v:'1.93',d:'15.11.2026',t:'20 Farben',n:['Jede Figur hat jetzt höchstens 20 Farben – klarere Flächen, echter Pixel-Look statt weicher Verläufe','Alle Bilder einer Figur (Laufen, Gesichter, Posen) teilen sich dieselbe Palette, damit beim Reden und Laufen nichts flackert','Auch die Nymphen im Sumpfwasser bleiben bei 20 Farben']},
   {v:'1.92',d:'15.11.2026',t:'Kreuz und quer getestet',n:['Für Tester: Ein zweiter automatischer Durchlauf spielt Akt 2 absichtlich in der falschen Reihenfolge (Säge vor Teer, Oma erst nach Opa, Wäscheleine vor dem Ast) und probiert Dinge aus Akt 3 zu früh (Pope wecken, Zwiebel, Pilzbeet, Lüftung). Nichts hängt sich auf, beide Wege führen bis zum Abspann'] },

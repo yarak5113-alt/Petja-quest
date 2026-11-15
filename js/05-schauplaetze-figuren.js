@@ -345,9 +345,9 @@ const INKF='<defs><filter id="v" x="-20%" y="-20%" width="140%" height="140%" co
 // Tiere (Kiste < 150 Einheiten hoch) bekommen dieselbe Pixeldichte wie Petja. PIXELSTYLE=false -> alter handgezeichneter Stil (INKSTYLE).
 const PIXELSTYLE=true,PIX_ROWS=500,PIX_LINE=.55,PIX_INK=[46,28,16],PIX_SOFT=.8,PIX_BLUR=2,PIX_SAT=.8,PIX_MIX=2,PIX_NEAR=62;
 if(INKSTYLE&&!PIXELSTYLE)document.documentElement.classList.add('ink');
-function pixSprite(inner,[x,y,w,h],rows){const H=rows?rows:h>=150?PIX_ROWS:Math.round(h*PIX_ROWS/258),W=Math.round(w*H/h),SS=3;
+function pixSprite(inner,[x,y,w,h],rows,opt){opt=opt||{};const H=rows?rows:h>=150?PIX_ROWS:Math.round(h*PIX_ROWS/258),W=Math.round(w*H/h),SS=3;
   // feine Innenlinien: Tusche- und Detailstriche (<=1.6) dünner zeichnen; dicke farbige Striche (Haarsträhnen, Stab) bleiben
-  const thin=inner.replace(/stroke-width="([\d.]+)"/g,(m,v)=>+v<=1.6?`stroke-width="${(+v*PIX_LINE).toFixed(2)}"`:m);
+  const thin=inner.replace(/stroke-width="([\d.]+)"/g,(m,v)=>+v<=1.6?`stroke-width="${(+v*(opt.line||PIX_LINE)).toFixed(2)}"`:m);
   const svg=s=>'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="${W*SS}" height="${H*SS}" viewBox="${x} ${y} ${w} ${h}" preserveAspectRatio="none">${s}</svg>`);
   const load=src=>new Promise(r=>{const im=new Image();im.onload=()=>{const c=document.createElement('canvas');c.width=W*SS;c.height=H*SS;const g=c.getContext('2d');g.drawImage(im,0,0);r(g.getImageData(0,0,c.width,c.height).data)};im.src=src});
   // zweimal rendern: flach (welche Farbe?) und beleuchtet (wie hell?)
@@ -363,9 +363,12 @@ function pixSprite(inner,[x,y,w,h],rows){const H=rows?rows:h>=150?PIX_ROWS:Math.
     for(let p=0;p<PIX_BLUR;p++){const T=RT.slice();for(let Y=0;Y<H;Y++)for(let X=0;X<W;X++){const k=Y*W+X,g0=grid[k];if(g0<=0)continue;let s=0,n=0;
       for(let dy=-2;dy<=2;dy++)for(let dx=-2;dx<=2;dx++){const xx=X+dx,yy=Y+dy;if(xx<0||yy<0||xx>=W||yy>=H)continue;const j=yy*W+xx;if(grid[j]!==g0)continue;s+=T[j];n++}RT[k]=s/n}}
     // Federkontur: ein Ring um die ganze Figur, auf der Schattenseite (rechts/unten) ein zweiter -> ungleichmäßig dick
+    let G2;if(opt.out||opt.shadow){   // eigene Konturstärke: opt.out Ringe rundum, opt.shadow zusätzliche Ringe nur rechts/unten (Federstrich)
+      const D=grid.slice(),on=(X,Y)=>X>=0&&Y>=0&&X<W&&Y<H&&D[Y*W+X]>=0,grow=dirs=>{const add=[];for(let Y=0;Y<H;Y++)for(let X=0;X<W;X++){const k=Y*W+X;if(D[k]<0&&dirs.some(([dx,dy])=>on(X+dx,Y+dy)))add.push(k)}add.forEach(k=>D[k]=0)};
+      for(let r=0;r<(opt.out||1);r++)grow([[-1,0],[1,0],[0,-1],[0,1]]);for(let r=0;r<(opt.shadow||0);r++)grow([[-1,0],[0,-1]]);G2=D}else{
     const fig=(X,Y)=>X>=0&&Y>=0&&X<W&&Y<H&&grid[Y*W+X]>=0,G=grid.slice();
     for(let Y=0;Y<H;Y++)for(let X=0;X<W;X++){const k=Y*W+X;if(grid[k]<0&&(fig(X-1,Y)||fig(X+1,Y)||fig(X,Y-1)||fig(X,Y+1)))G[k]=0}
-    const G2=G.slice();for(let Y=0;Y<H;Y++)for(let X=0;X<W;X++){const k=Y*W+X;if(G[k]>=0)continue;if((X>1&&G[k-1]==0&&grid[k-1]<0&&fig(X-2,Y))||(Y>1&&G[k-W]==0&&grid[k-W]<0&&fig(X,Y-2)))G2[k]=0}
+    G2=G.slice();for(let Y=0;Y<H;Y++)for(let X=0;X<W;X++){const k=Y*W+X;if(G[k]>=0)continue;if((X>1&&G[k-1]==0&&grid[k-1]<0&&fig(X-2,Y))||(Y>1&&G[k-W]==0&&grid[k-W]<0&&fig(X,Y-2)))G2[k]=0}}
     const C=new Float32Array(N*3);
     for(let k=0;k<N;k++){const v=G2[k];if(v<0)continue;let c;
       if(v==0)c=PIX_INK;else{const f=1-(1-Math.min(1.08,Math.max(.68,RT[k])))*PIX_SOFT,p=base[v],r=p[0]*f,g=p[1]*f,b=p[2]*f,L=.299*r+.587*g+.114*b;c=[L+(r-L)*PIX_SAT,L+(g-L)*PIX_SAT,L+(b-L)*PIX_SAT]}
@@ -377,7 +380,9 @@ function pixSprite(inner,[x,y,w,h],rows){const H=rows?rows:h>=150?PIX_ROWS:Math.
       C[k*3]=r/n;C[k*3+1]=g/n;C[k*3+2]=b/n}}
     const o=document.createElement('canvas');o.width=W;o.height=H;const og=o.getContext('2d'),id=og.createImageData(W,H),od=id.data;
     for(let k=0;k<N;k++){if(G2[k]<0)continue;const q=k*4;od[q]=Math.max(0,Math.min(255,C[k*3]));od[q+1]=Math.max(0,Math.min(255,C[k*3+1]));od[q+2]=Math.max(0,Math.min(255,C[k*3+2]));od[q+3]=255}
-    pixQuant(od,PIX_COLORS,x+','+y+','+w+','+h+','+H);og.putImageData(id,0,0);return o.toDataURL()})}
+    pixQuant(od,PIX_COLORS,x+','+y+','+w+','+h+','+H);
+    if(opt.floor){let m=-1;for(let Y=H-1;Y>=0&&m<0;Y--)for(let X=0;X<W;X++)if(od[(Y*W+X)*4+3]){m=Y;break}const sh=H-1-m;if(m>=0&&sh>0){od.copyWithin(sh*W*4,0,(H-sh)*W*4);od.fill(0,0,sh*W*4)}}   // Füße genau auf die unterste Zeile
+    og.putImageData(id,0,0);return o.toDataURL()})}
 // Höchstens PIX_COLORS Farben je Figur (Median-Cut + k-Means auf den deckenden Pixeln; Transparenz zählt nicht als Farbe).
 // Bilder mit gleicher Kiste (Lauf-Frames, Gesichter, Posen derselben Figur) nutzen dieselbe Palette, solange sie passt -> kein Farbflackern.
 const PQC={};
@@ -411,7 +416,7 @@ const petimg=$('#petimg'),petG=$('#petja'),PB=[-48,-254,96,258],K=1.15;let frame
 // Petjas Ansichten: PFR[Winkel] = [Stehen, Reden, Schritt]; PVIEW wird beim Laufen aus der Richtung gewählt, beim Reden schaut er nach vorn
 const PFR={};let PVIEW=0,ACT=null,PJY=0;
 const NB=[-30,-100,60,104];
-Promise.all([sprite(PET(0,0),PB,K),sprite(PET(1,0),PB,K),sprite(PET(0,1),PB,K),sprite(CROW,[-30,-26,64,44],K),sprite(FISHER,[-64,-142,134,224],K),sprite(OMA,[-46,-200,92,204],K),sprite(OPA,[-44,-184,88,188],K)]).then(([a,b,st,cr,fi,om,op])=>{$('#omaimg').setAttribute('href',om);$('#opaimg').setAttribute('href',op);sprite(GNOM1,[-80,-296,166,300],K).then(k=>$('#gnom1img').setAttribute('href',k));sprite(GNOM2,[-52,-232,106,236],K).then(k=>$('#gnom2img').setAttribute('href',k));sprite(WOWA,[-52,-276,104,280],K).then(u=>{WOWAIMG=new Image();WOWAIMG.src=u});sprite(DANCER,[-50,-262,104,266],K).then(k=>{$('#dancerimg').setAttribute('href',k);$('#poleimg').setAttribute('href',k);DANCERIMG.src=k;$('#dancer2img').setAttribute('href',k)});sprite(ZINA,[-60,-282,140,286],K).then(k=>$('#zinaimg').setAttribute('href',k));sprite(BJ,[-72,-250,136,256],K).then(k=>$('#bjimg').setAttribute('href',k));sprite(KATER,[-22,-58,52,62],K).then(k=>$('#katerimg').setAttribute('href',k));document.querySelectorAll('.fishimg').forEach(e=>e.setAttribute('href',fi));frames=[a,b,st];PFR[0]=frames;(async()=>{for(const th of [45,90,135,180])PFR[th]=await Promise.all([sprite(PETV(th,0,0),PB,K),sprite(PETV(th,1,0),PB,K),sprite(PETV(th,0,1),PB,K)])})();PETIMG.src=a;petimg.setAttribute('href',a);$('#crowimg').setAttribute('href',cr)});
+Promise.all([sprite(PET(0,0),PB,K),sprite(PET(1,0),PB,K),sprite(PET(0,1),PB,K),sprite(CROW,[-30,-26,64,44],K),sprite(FISHER,[-64,-142,134,224],K),sprite(OMA,[-46,-200,92,204],K),sprite(OPA,[-44,-184,88,188],K)]).then(([a,b,st,cr,fi,om,op])=>{$('#omaimg').setAttribute('href',om);$('#opaimg').setAttribute('href',op);sprite(GNOM1,[-80,-296,166,300],K).then(k=>$('#gnom1img').setAttribute('href',k));sprite(GNOM2,[-52,-232,106,236],K).then(k=>$('#gnom2img').setAttribute('href',k));sprite(WOWA,[-52,-276,104,280],K).then(u=>{WOWAIMG=new Image();WOWAIMG.src=u});(PIXELSTYLE?pixSprite(DANCER,[-50,-262,104,266],0,NASTJA_PIX):sprite(DANCER,[-50,-262,104,266],K)).then(k=>{$('#dancerimg').setAttribute('href',k);$('#poleimg').setAttribute('href',k);DANCERIMG.src=k;$('#dancer2img').setAttribute('href',k)});sprite(ZINA,[-60,-282,140,286],K).then(k=>$('#zinaimg').setAttribute('href',k));sprite(BJ,[-72,-250,136,256],K).then(k=>$('#bjimg').setAttribute('href',k));sprite(KATER,[-22,-58,52,62],K).then(k=>$('#katerimg').setAttribute('href',k));document.querySelectorAll('.fishimg').forEach(e=>e.setAttribute('href',fi));frames=[a,b,st];PFR[0]=frames;(async()=>{for(const th of [45,90,135,180])PFR[th]=await Promise.all([sprite(PETV(th,0,0),PB,K),sprite(PETV(th,1,0),PB,K),sprite(PETV(th,0,1),PB,K)])})();PETIMG.src=a;petimg.setAttribute('href',a);$('#crowimg').setAttribute('href',cr)});
 // ===== Mimik im Spiel =====
 // PEMO = aktuelle Emotion (n, schreck, staunen, frage, froh, genervt); setEmo(e,ms) setzt sie, optional nur für ms Millisekunden.
 // Gesichter (Emotion × Mund 0–3 + Blinzeln) werden im Hintergrund vorgerendert und gecacht; fehlt eins noch, nimmt er das neutrale.

@@ -281,6 +281,8 @@ function interview(nd){const idx=NYMPHS.indexOf(nd),tr=NT[nd.id];const qs=['Kann
     if(!(tr.s&&tr.t&&tr.v&&tr.r)){r.textContent='Die Karte stimmt. Aber auf Madames Liste passt sie nicht.';return}
     closeO();FL.rekrut=1;delete cache.banja;say([['P','Nastja... hättest du Lust auf einen Job? Tanzen. Musik. Wodka. Ein Ort ohne Frösche.'],['NA','Ein Job? Mit Bühne und Publikum? Süßer, ich bin schon unterwegs. Ich wring nur noch die Haare aus.'],['P','Das Banja ist hinterm Irrwald. Sag, Petja schickt dich.'],['P','...Das wird Madame freuen. Und mich hoffentlich auch.']])}}
 // ================= Banja-Show & Lounge =================
+// Pixel-Vorgaben für Nastja: Kontur 2 px rundum, rechts/unten 4 px, Innenlinien ~1 px, Füße auf der untersten Zeile (500 px hoch, max. 20 Farben)
+const NASTJA_PIX={out:2,shadow:2,line:.35,floor:1};
 const DANCER = `<g stroke="#1a0a10" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round">
 <path d="M-16,-2L-12,-14L-4,-14L-6,-2C-9,0 -14,0 -16,-2Z" fill="#c01848"/><path d="M-6,-14L-5,0" fill="none" stroke="#c01848" stroke-width="1.6"/>
 <path d="M10,-2L12,-14L20,-14L20,-2C17,0 12,0 10,-2Z" fill="#a01040"/><path d="M20,-14L21,0" fill="none" stroke="#a01040" stroke-width="1.6"/>
@@ -290,6 +292,7 @@ const DANCER = `<g stroke="#1a0a10" stroke-width="1.4" stroke-linejoin="round" s
 <path d="M-20,-96L2,-96L2,-90L-19,-90ZM2,-96L18,-98L18,-92L3,-90Z" fill="#1a0a12"/><path d="M-12,-93L-12,-88M10,-94L10,-88" fill="none" stroke="#1a0a12" stroke-width="1"/>
 <path d="M-20,-114C-32,-106 -34,-96 -28,-90C-14,-86 14,-86 28,-92C34,-98 30,-108 20,-116Z" fill="#2a8a8a"/><path d="M-26,-92C-20,-96 -14,-92 -8,-96C-2,-92 4,-96 10,-92C16,-96 22,-92 26,-96" fill="none" stroke="#1a5a5a" stroke-width=".9"/>
 <g fill="#f0e090" stroke="none"><circle cx="-22" cy="-94" r="1.2"/><circle cx="-12" cy="-92" r="1.2"/><circle cx="0" cy="-92" r="1.2"/><circle cx="12" cy="-92" r="1.2"/><circle cx="22" cy="-95" r="1.2"/></g>
+<path d="M-16,-214C-29,-200 -31,-170 -29,-142C-28,-130 -25,-120 -21,-114L21,-116C25,-128 27,-150 25,-176C23,-196 19,-208 14,-214Z" fill="#d8b464"/><path d="M-24,-180C-26,-160 -25,-140 -22,-122M20,-182C22,-160 22,-140 19,-124" fill="none" stroke="#b8943e" stroke-width=".8"/>
 <path d="M-16,-176C-20,-160 -12,-144 -11,-132C-14,-124 -20,-116 -20,-110L20,-112C20,-118 14,-126 11,-134C12,-146 20,-160 14,-176Z" fill="#2a8a8a"/>
 <path d="M6,-174C12,-160 8,-146 6,-134C9,-126 14,-118 14,-112L20,-112C20,-118 14,-126 11,-134C12,-146 20,-160 14,-176Z" fill="#1e6a6a" stroke="none"/>
 <path d="M-11,-168C-9,-150 -8,-138 -9,-116M0,-166L0,-114M10,-168C8,-150 7,-138 8,-116" fill="none" stroke="#1a5a5a" stroke-width=".8"/>
@@ -310,9 +313,9 @@ const DANCER = `<g stroke="#1a0a10" stroke-width="1.4" stroke-linejoin="round" s
 <path d="M6,-230C12,-224 15,-214 14,-206C13,-200 10,-195 6,-192C10,-202 11,-216 6,-230Z" fill="#dcae92" stroke="none"/>
 <path d="M-10,-215C-8,-217 -4,-217 -2,-215C-4,-213.6 -8,-213.6 -10,-215Z" fill="#f4ecdc" stroke-width=".7"/><circle cx="-6" cy="-215" r="1.2" fill="#3a6a4a" stroke="none"/><path d="M-10.6,-215.6C-8,-218.4 -4,-218.4 -1.6,-215.6" fill="none" stroke-width="1.5"/>
 <path d="M3,-215C5,-217 9,-217 11,-215C9,-213.6 5,-213.6 3,-215Z" fill="#f4ecdc" stroke-width=".7"/><circle cx="7" cy="-215" r="1.2" fill="#3a6a4a" stroke="none"/><path d="M2.6,-215.6C5,-218.4 9,-218.4 11.6,-215.6" fill="none" stroke-width="1.5"/>
+<path d="M-10.4,-215.4C-8,-217.4 -4,-217.4 -1.8,-215.4L-2.2,-214.6C-4,-215.6 -8,-215.6 -10,-214.6Z" fill="#dcae92" stroke="none"/><path d="M2.8,-215.4C5,-217.4 9,-217.4 11.4,-215.4L11,-214.6C9,-215.6 5,-215.6 3.2,-214.6Z" fill="#dcae92" stroke="none"/><path d="M-10.4,-214.7C-8,-215.7 -4,-215.7 -1.8,-214.7M2.8,-214.7C5,-215.7 9,-215.7 11.4,-214.7" fill="none" stroke-width="1"/>
 <path d="M-11,-216l-2,-1.4M11.6,-216l2,-1.4" fill="none" stroke-width=".7"/><path d="M-10,-222C-7,-224 -4,-224 -2,-222.6M2,-222.6C4,-224 7,-224 10,-222" fill="none" stroke="#9a7a3a" stroke-width="1"/>
 <path d="M1,-213C0,-209 -1,-206 0,-205C1,-204.6 2,-204.6 3,-205" fill="none" stroke="#b07a5a" stroke-width=".7"/>
-<ellipse cx="-7" cy="-207" rx="2.6" ry="1.8" fill="#e88a8a" stroke="none" opacity=".5"/><ellipse cx="9" cy="-207" rx="2.4" ry="1.6" fill="#e88a8a" stroke="none" opacity=".45"/>
 <path d="M-4,-199C-2,-200.6 0,-200 1,-199.4C2,-200 4,-200.6 6,-199C4,-196.6 2,-196 1,-196.2C0,-196 -2,-196.6 -4,-199Z" fill="#c8304a" stroke-width=".7"/>
 <path d="M-16,-212C-18,-226 -10,-236 2,-236C14,-236 20,-226 16,-212C14,-220 8,-226 2,-226C-4,-222 -10,-218 -16,-212Z" fill="#e8c878"/>
 <path d="M-14,-224C-8,-230 2,-232 10,-228M-16,-216C-14,-222 -10,-226 -4,-228" fill="none" stroke="#b8943e" stroke-width=".8"/>
