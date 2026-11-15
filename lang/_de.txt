@@ -1,0 +1,1923 @@
+## 00-ikonen.js
+gxxqmn	.interactive
+t5soet	.slot
+xnzakz	.card
+90qa94	.tab
+llep4b	.x
+rs0w1u	.mb
+t0l45e	.slotc
+1df2ft4	[onclick]
+## 01-malwerkzeuge.js
+13thqhr	Fehler:
+ux28qq	(Zeile
+## 02-orte-sumpf-see-dorf.js
+1i2r6d5	Sumpf der
+13osbww	ertrunkenen Huren
+1zeca2	Zum Waldweg
+2hdvte	Zum Sumpf
+1jeoxoa	Zum Fischerhaus
+1jsv4p2	Zur Weggabelung
+1g8ttyw	Zum dunklen Wald
+m66nkt	Zum Ufer
+1eqro1f	"] .hit
+197rw1q	Zur alten Mühle
+o0byto	Ins Dorf
+locnzl	Zu Baba Jaga
+vny8bq	Zur Kirche
+1dkn39a	Zum Schmiedehof
+zvuacj	Zum Dorfeingang
+1chuz0t	Zurück ins Dorf
+## 03-ufer-huette-gnome.js
+pkzoi3	Stock... Schnur dran... und als Haken eine Sicherheitsnadel aus meiner Hose.
+u1c8ls	Fertig ist die Angel. Wenn mein Vater mich jetzt sehen könnte... würde er sich schämen. Wie immer.
+1ez8zs6	Escape
+r3cz1v	Oh. Ich hab tatsächlich einen. Einen echten Fisch. Wer hätte das gedacht.
+1x3o0ta	Der ist ja winzig. Den hätt ich zurückgeworfen.
+ydhzdp	Der ist für einen Kater, nicht für Sie.
+cqp9th	*knack* …Und die Angel ist hin. Hat genau einen Fisch gehalten. Wie versprochen.
+ghgyzo	Weg ist er. Der Fisch hat mehr Kraft als ich.
+3pfp6m	Nochmal! Und halt dagegen, Junge! Wie beim Tanzen mit meiner ersten Frau.
+bi5u6w	Fisch:
+dg1d63	/ 22 s
+7hw7rv	Er reißt sich los! Zieh dagegen!
+14ucdw8	Halte den Schwimmer im Kreis – der Fisch zieht dagegen!
+1i8hjya	[Aufgeben]
+14wf36e	Unter den Pier
+17zgw4y	Zur Gnomsiedlung
+1avixvc	Zurück zum Ufer
+1ufdr8j	Warte auf den Biss… Klicke erst, wenn er RICHTIG zieht!
+awfam2	Aufgegeben.
+13vw1pz	Zu früh! Das war nur Knabbern. (
+174l9qr	Zu oft zu früh gezogen. Der Wels traut den Würmern nicht mehr.
+pu84vb	Treffer! Er wird müde…
+1pq596c	Falscher Moment! Er holt wieder Kraft. (
+13kpyxx	Der Wels hat sich mit letzter Kraft losgerissen.
+1pybbof	(von oben) WAS?! Es zieht! ES ZIEHT! Das ist ER! DER WELS!
+rj6fd9	Komm her, du Mistvieh! Dreißig Jahre hab ich auf dich gewartet!
+vsglf8	Perfekt. Der ist jetzt eine Weile beschäftigt.
+zhrfsv	Und seine Flasche steht ganz allein auf dem Pier…
+1rh129k	Nochmal. Ein paar Würmer zappeln ja noch dran.
+1ezwdr8	Verpasst! (
+hq8bbc	Fünfmal den Biss verpasst. Der Wels hat die Würmer abgefressen und ist weg.
+1l1r19d	RISS! Zu fest gezogen – die Schnur ist gerissen.
+hhsmi	Zu locker! Der Wels hat die Würmer ausgespuckt.
+15fx5fp	Er ermüdet! Klicke genau, wenn der Ring den Kreis berührt!
+137dra7	Spannung
+1i1t2kt	ER ZIEHT!
+1eybtwe	Zu spät! (
+3p0cnm	Kraft des Welses
+ac61z5	Phase 1: Anbiss
+e95jd0	Phase 2: Kampf –
+hyi1e8	/ 10 s in der Zone
+1kw8rub	Phase 3: Auspowern
+4b25j2	Kröte + Mond
+1dpd9pc	Zieh den Filter vom Joint ab und leg ihn ins Feld „Filter“.
+1l32ko	Aufgerollt! Jetzt das Papier ins Feld „Papier“ legen.
+9v0s37	Jetzt das Papier aufrollen: Von links nach rechts über den Joint ziehen.
+1oa9rs6	Sortiere die blau angelaufenen Pilzstücke in die Schale. Nur die! (Fehler: 0/3)
+1a18g5k	Das ist ein normaler Champignon!
+p9d7fn	Das ist Tabak!
+5dv6kx	(Fehler:
+1rg57hf	Die Schale ist verunreinigt! Alles nochmal sortieren. (Fehler: 0/3)
+jzwxs4	Neun Stück. Alle blau angelaufen. Das sind keine normalen Pilze.
+hh4x9k	Bring sie her, Bürschchen. Lass die alte Jaga mal schnüffeln.
+6pc7nb	Später. Meine Finger haben heute keine Lust.
+1jgn7x2	Papier
+1vvvdef	Filter
+1j20soj	Schale
+1283euf	Schritt 1/4: Filter ab
+w4hmpl	Schritt 2/4: Aufrollen
+bfj5ui	Schritt 3/4: Papier weg
+1syj38h	Schritt 4/4: Sortieren –
+1icig1x	/ 9 Pilze
+1v18iet	[Später]
+14qkmy3	Zur Höhle
+13q541o	Zum Garten
+ym912b	Zum Ausgang
+## 04-intro-muehle-banja.js
+wfmbya	deg)
+tr7o53	Samstag. Kein Geld, kein Job, kein Plan. Perfekt.
+1xq3a3g	*zieht am Joint* ...Das Zeug war auch schon mal besser.
+y9ilfk	Petja! Bruder! Rauchst du immer noch diesen Gartenabfall?
+1gdqo8r	Wowa. Wie bist du reingekommen?
+19io097	Tür war offen. Wie immer. Hör zu: Ich hab was Neues. Ganz neu. Ganz krass.
+1ydffo	Kräuter von Oma, Bruder! Hab ich von so ’nem Typen am Markt. Der hatte komische Augen. Und Schwimmhäute. Egal!
+jb4elq	Er sagt: Ein Zug, und du bist in einer anderen Welt. Märchenwelt!
+13v9gmy	Klingt nach Ärger.
+c5v1zn	Klingt nach Samstag!
+1oqwfbr	...Na gut. Gib her.
+kss0v3	*zieht*
+1tr6dzz	*hust* ...*HUST*
+b9hbtg	Und? Und? Merkst du was?
+14ae1c6	Wowa... warum... hast du drei Nasen?
+1blar1s	Bruder? ...BRUDER?!
+10ljq2l	Uhhh... mein Kopf...
+12cchjk	Wo bin ich? Das ist nicht meine Wohnung. Meine Wohnung hat weniger... Birken.
+1iz79rf	Der Joint von Wowa. Er hat gesagt, da sind „Kräuter von Oma" drin. Was für eine Oma? ...Natürlich passiert mir das.
+12o37oc	Na super. Dann muss ich wohl irgendwie wieder aufwachen.
+161rqxb	M Ü H L E
+9nehzo	Zum Dorf
+sxhzey	In den Irrwald
+14ifkpa	Links
+1633gpu	Rechts
+19vetx2	Geradeaus
+rwnkr9	Zurück zur Mühle
+1otboma	Dampf · Tanz · Wodka
+v179ji	Zur Mühle
+1ygz6rt	HEUTE KEINE SHOW
+qakzth	Nach draußen
+1vhz2mq	Tanzen? Süßer, ich hab den ganzen Sumpf um den Finger gewickelt. Mit den Hüften. Die Frösche quaken seitdem anders.
+55bu73	Raus? JA! Hier unten fasst einen nur Schilf an. Und das ist nicht zärtlich.
+1nqo6gl	Du? Riechst nach Rauch und Panik. Aber du guckst mich an wie ein Kater die Sahne. Gefällt mir.
+kuomun	Tanzen? Ich hab auf Kaufmannshochzeiten getanzt, bis die Tische gebrochen sind. Und die Ehen.
+scj9n8	Raus? Pff. Hier bin ich die Königin. Draußen bin ich nur eine nasse Frau mit Vergangenheit.
+1rzmhrv	Hübscher Pudel. Komm näher, ich beiß nur, wenn du drum bittest.
+12wv326	Primaballerina, 1903! ...Gut, die Knie sind jetzt aus Schlamm.
+1wyomcv	Oh ja! Ich will wieder Publikum! Applaus! Blumen!
+19bd0wo	Junger Mann, Sie riechen wie der Bodensatz einer Wodkaflasche. Charmant.
+1dcjxtg	Tanzen? Ich kann mich kaum umdrehen. *blubb*
+1fupbdg	Raus? Ich bin hier eingeweicht. Mich kriegt keiner mehr raus.
+z8wqfx	Du stinkst. Und ich bin eine Wasserleiche. Also: Respekt.
+1kivfxs	Nein. Ich schlag eher, als dass ich tanze.
+zf3n1v	Raus! Und dann such ich den, der mich ersäuft hat.
+m79d72	Halt die Klappe, Grünschnabel, oder ich zieh dich runter.
+18aenwy	*klapper* Ich tanze den Knochentanz. Jede Nacht. Alleine.
+psczvg	Raus? Wohin denn? Ich war schon überall. Tot.
+aema6q	*klapper* ...Hübscher Junge. Hübsch fleischig.
+cl8er0	Kannst du tanzen?
+1i6w4zr	Willst du aus dem Sumpf raus?
+1t58xou	Wie findest du mich?
+1wevglz	Gespräch
+1kmtjdr	Frag sie was.
+10wz1e	Eigenschaftskarte
+4r3ltt	Schön
+5xy826	Tanzt gern
+7v8si4	Frech / vulgär
+d2903u	Will raus
+1b1zhlh	Anwerben
+ykyzv0	Zurück
+1mj8xbs	[ESC] schließen
+glrnwm	.qb
+1hbnm7f	.ans
+j5geue	.bk
+k9qhpz	.go
+df2rxh	.res
+1c5a7o6	Hm. Ich glaube, ich hab sie falsch eingeschätzt. Die Karte stimmt nicht.
+19f1ghv	Die Karte stimmt. Aber auf Madames Liste passt sie nicht.
+1q1uy83	Nastja... hättest du Lust auf einen Job? Tanzen. Musik. Wodka. Ein Ort ohne Frösche.
+dtgphc	Ein Job? Mit Bühne und Publikum? Süßer, ich bin schon unterwegs. Ich wring nur noch die Haare aus.
+1609nqb	Das Banja ist hinterm Irrwald. Sag, Petja schickt dich.
+9cds70	...Das wird Madame freuen. Und mich hoffentlich auch.
+1sfmnxg	Zurück in den Club
+101qnig	.dance
+kcysig	Willkommen in der Lounge, Süßer. Setz dich. Hände bleiben auf dem Sofa. Hausregel.
+1oifmtu	Ich... äh... ja. Sofa. Hände. Klar.
+mjs3jz	Und jetzt... Musik!
+ho911t	*Drei Minuten später*
+2zi049	...
+1go5xcy	Ich glaube, ich brauche einen Wodka. Oder zwei. Oder eine kalte Dusche im Sumpf.
+igtiz9	Komm wieder, Petja. Aber bring Trinkgeld mit.
+1qfrgfs	Zurück an die Bar
+o0b4oz	Hände aufs Sofa, Süßer. Hausregel.
+1e1cfq2	*schluck*
+q87ds7	*schnief* … Was … was ist das? Meine Augen!
+18p60yk	*SCHNIEF* Ich weine! Ich weine doch nie! Dreihundert Jahre nicht!
+r4zf36	Halt still. *hält die Phiole unters Kinn*
+1df7poy	*plopp* Eine echte Träne. Danke.
+18npvuk	*lacht unter Tränen* Eine Zwiebel. Du hast mir eine Zwiebel in die Lüftung gesteckt.
+12q22t6	Dreihundert Jahre hat mich keiner zum Weinen gebracht. Und du schaffst es mit Gemüse.
+pigwr7	Behalt die Träne, Zwiebel. Hast du dir verdient.
+ek89a9	(Ich glaube, sie mag mich. Auf Nymphenart.)
+lwbfd2	...Ich glaube, ich brauche einen Wodka. Oder zwei. Oder eine kalte Dusche im Sumpf.
+1ekfvsn	Komm wieder, Petja. Aber nächstes Mal mit Trinkgeld.
+## 05-schauplaetze-figuren.js
+1i4xm6l	Der Weg teilt sich. Natürlich. Im Märchen teilt sich der Weg immer.
+7dyft8	Und da ist ein Schild. Wenigstens ist hier jemand ordentlich.
+1n8rdu1	Da ist sie. Eine Hütte auf Hühnerbeinen.
+t4xerd	Wowa, wenn ich hier rauskomme, bring ich dich um.
+a558v0	Wer schleicht da um mein Haus? Ich rieche Stadtluft!
+14ao7z0	Ein Sumpf. Es stinkt nach Moder und... Parfüm?
+1ajd2zg	Da sitzen nackte Frauen im Wasser. Klar. Warum auch nicht. Nicht hinstarren, Petja.
+1j0h7lt	...Manche davon sind über hundert. Okay, jetzt starr ich aus anderen Gründen.
+1906qv7	Ein See. Und ein Fischer. Endlich mal jemand, der nicht nackt ist oder auf Hühnerbeinen steht.
+ugjvws	Gut, bei dem Bart weiß man nie.
+c5abu9	Ein Dorf. Mit Häusern. Und sogar Strom.
+1ugupy9	...Nein. Die Leitungen hängen nur so rum.
+1lqets4	Ein Laden, ein Brunnen, eine Kirche und ein abgebranntes Haus. Klassisches Dorf.
+wdocka	Na toll. Alles voller Birken. Als hätte sie jemand absichtlich hier hingeworfen.
+ko4heh	Und links und rechts nur Wald. Dicht wie eine Mauer. Und dunkel wie im Arsch eines Bären.
+wizpe3	Ohne Säge komm ich da nicht durch.
+gsjh88	Ganz vorne an der Bühne. Von hier sieht man... alles. Also, die Choreografie.
+xixvak	Der Irrwald. Drei Wege, alle sehen gleich aus. Und irgendwas glotzt mich aus dem Dunkeln an.
+18rsnuz	Mitten im finsteren Wald ein Blockhaus. Rotes Licht, Musik, Dampf aus dem Schornstein. Klar.
+zp7ii7	Das muss das Banja sein. Hier draußen ist es so dunkel, dass selbst die Eulen Angst haben.
+1b495vj	Das Banja. Dampf, rotes Licht, Wodka-Geruch. Und eine Bühne mit Vorhang.
+l822d9	Neues Gesicht! Komm rein, Süßer. Füße abputzen, Hose zulassen, Geld locker machen. In der Reihenfolge.
+1j9lwff	Eine alte Wassermühle. Das Rad dreht sich, das Wasser rauscht.
+1mwmqvr	Und keiner ist da. Wer hat das Ding angeschaltet? Wasser... ja gut. Aber trotzdem.
+143vpwf	Eine Siedlung. Runde Hütten, ein Zaun, dahinter riecht es nach Kohl... und da stehen Gnome.
+lxx07m	Große Gnome. Sehr große Gnome. Mit sehr, sehr großen Nasen.
+1vnf0v5	Eine Höhle. Kalt, feucht und irgendwo tropft es.
+12lcjde	Leuchtpilze, Kristalle, ein unterirdischer See. Und hinten ein Gang ins Schwarze.
+79wndt	Na sieh mal an! Ein Gast durchs Fenster. Wie es sich gehört!
+1fcucvx	Du riechst nach Rauch, Bürschchen. Und nach etwas anderem... Zeig mal, was du in der Tasche hast.
+1x8lkm5	Nur einen alten Joint-Stummel.
+1gnzixs	Leg ihn auf den Tisch und zerleg ihn. Ich fass sowas nicht an. Gicht in den Fingern.
+1932dus	Das Ufer. Schilf, Schlamm und ein Boot, das schon lange aufgegeben hat.
+1datpfn	Da vorne fängt der Pier an. Unten drunter ist es dunkel. Natürlich.
+19caznt	Unter dem Pier. Es riecht nach Algen, Fisch und Kusmitschs Füßen.
+1o8kc22	Da hängt seine Schnur durch die Bretter. Mit leerem Haken. Kein Wunder, dass nie was beißt.
+125oxbu	Die Dorfstraße. Sonnenblumen, Wäscheleinen, Hühnerdreck. Fast gemütlich.
+rzg671	Hinten ist eine Kirche. Und hier schaut eine Oma aus dem Gartentor. Die schauen immer.
+bnd27v	Eine Holzkirche mit Zwiebeltürmen. Und ein Friedhof mit blauen Gittern.
+1imlo07	Da auf dem Grab hockt ein fetter schwarzer Kater. Er starrt mich an. Ich starre zurück. Er gewinnt.
+390xme	Zum Pfad
+9g9ijs	Zum Birkenwald
+13udzgt	([\d.]+)
+15l3y6u	.fishimg
+ht7hm6	.room
+## 06-dialog-stimme.js
+1d80x1j	Petja
+1g35d77	Krähe
+rjuwe6	Sonne
+1n9smtc	Fliegenpilz
+1s1vulm	Birke
+1jm3x4p	Stimme aus der Hütte
+1w3le7o	Mila
+iw5iww	Wera
+eogoe9	Dunja
+bldnzs	Fischer Kusmitsch
+4a3lb1	Oma Dusja
+1i1l4a6	Madame Zinaida
+154ms6	Stimme aus der Mühle
+z0g0b6	Pilzmeister Knolle
+1itfzoi	Marfa
+1sw2gsy	Nastja
+1ofkffj	Wowa
+esam79	Grobnik
+1hgu17x	Opa Schnobbel
+t1lszy	Baba Jaga
+1xr3opw	Opa Grischa
+10bsyyi	de-DE
+16iarrg	en-GB
+1dlhi6	ru-RU
+mv7paq	Stimmen:
+g44bkd	Wenn ich hier rauskomme, rauch ich nie wieder was. ...Fast nie.
+1j0xfjc	Hallo? Spieler? Ich steh hier nur rum.
+1jfksf6	Meine Füße schlafen. Wenigstens die.
+v5ugiz	Ich hab Hunger. Auf Pelmeni. Oder auf irgendwas, das nicht redet.
+10iixig	Mama hat immer gesagt, aus mir wird nichts. Jetzt bin ich in einem Märchen. ...Na ja. Immerhin.
+zpese4	Wenn ich lang genug still stehe, wach ich vielleicht einfach auf.
+19k47or	Ich zähl bis drei, dann ist alles normal. Eins... zwei... Nein. Immer noch Märchen.
+1jskk8e	Irgendwo da draußen liegt mein Körper auf einem Sofa. Hoffentlich mit Decke.
+4zsue3	Na super. Ich steh im Wald und warte auf ein Wunder. Wie jeden Samstag.
+8826k	Natürlich passiert mir das. Wem auch sonst.
+1subx3m	Ob jemand merkt, dass ich weg bin? ...Wahrscheinlich nicht. Ist auch egal. ...Ist es.
+tn2sbm	Mama ruft sonntags immer an. ...Hoffentlich geht da jemand ran. Egal. Weiter.
+1kwzafy	Wenn das hier ein Traum ist, ist er schlecht geschrieben.
+1xoj07p	Ich könnte jetzt was Sinnvolles tun. Könnte.
+1cj7m55	Ich hab meine Schlüssel noch. Bringt mir hier nur nichts.
+qwbate	Wowa schuldet mir was. Mindestens ein Bier. Eher ein Leben.
+sbniml	Kurze Pause. Hab ich mir verdient. Glaub ich.
+1p8f6ah	Mein Handy hat keinen Empfang. Im Märchen. Wer hätte das gedacht.
+151j59g	Wenn ich das irgendwem erzähle, glaubt mir das keiner. Gut so eigentlich.
+194bpo0	Ich warte. Bin gut im Warten. Hab ich lange geübt.
+cue10m	Ein bisschen vermiss ich mein Sofa. Und den Kühlschrank. Den leeren.
+1mcmt4e	Wenn mir jetzt noch ein Pilz zuzwinkert, geh ich.
+1c6ol5s	Meine Oma hätte hier ihren Spaß gehabt. Die mochte schräge Leute.
+5t58v0	Diese Birken flüstern über mich. Ich hör das genau.
+l2c4a7	Gestern war das hier noch mein Wohnzimmer. Glaub ich.
+4jfeu4	Ich schwör, der Fliegenpilz hat mir gerade zugezwinkert.
+134fcml	Viel Wald. Wenig Ausgang.
+s5n764	Die Krähe guckt, als hätte sie Wetten auf mich laufen.
+1rz13x5	Hier hat alles angefangen. Und ich hab nicht mal ein Foto.
+1wm7szu	Links, rechts, geradeaus. Alles fühlt sich nach falsch an.
+fup6hb	Ein Wegweiser wäre nett. Einer, der nicht lügt.
+18jcbzv	Drei Wege. Und alle wollen was von mir.
+1h4buky	Wenn ich mich nicht entscheide, kann ich mich auch nicht falsch entscheiden. Stark.
+1l570su	Ein Haus auf Hühnerbeinen. Ganz normal. Total normal.
+bp8ef1	Wenn die Hütte gleich wegrennt, renn ich mit.
+bsgb6	Die Schädel am Zaun grinsen. Wenigstens hat hier wer gute Laune.
+15m1k76	Die Hütte hat gerade gegähnt. Ich bild mir das ein. ...Bestimmt.
+w8bmso	Riecht nach Kohl und Magie. Hauptsächlich Kohl.
+e9kc0m	Hier riecht alles nach Kräutern und schlechten Entscheidungen.
+jlqcsm	Ich fass hier besser nichts an. Außer vielleicht die Piroggen.
+1ejg50e	Im Regal hat sich was bewegt. Ich guck nicht hin.
+p1pzg6	Gemütlich. Für eine Hexe. Für mich eher nicht.
+1czzofu	Laute Musik, rotes Licht. Fast wie zu Hause am Freitag.
+12lzi3g	Ganz entspannt, Petja. Hände in die Taschen.
+1x3aexe	Ich guck nur. Rein kulturell.
+1mjczxp	Ich... sollte vielleicht einfach gehen. Gleich. Bald.
+5qacmy	Ich bin hier schon zum dritten Mal. Oder zum ersten Mal. Dreimal.
+1ifi967	Die Bäume stehen anders als vorhin. Ich schwör.
+1mscic8	Wenn ich hier verhungere, bitte keine Grabrede.
+1pn1ftk	Ich hätte eine Brotkrümel-Spur legen sollen. Hätte die Krähe eh gefressen.
+11p66nl	Rotes Licht im Wald. Sieht man auch nicht alle Tage.
+44r43a	Drinnen wummert der Bass. Draußen wummern die Augen im Wald. Ich geh mal lieber rein.
+1ow2wes	Ich steh vor einem Club im Märchenwald. Mein Leben hat eine sehr seltsame Richtung genommen.
+kk7pgg	Dampf, Birkenzweige, Wodka. Endlich ein Ort, den ich verstehe.
+bup1dt	Ich krieg Durst vom Zuschauen.
+1m7vmye	Die Musik ist schlecht. Aber laut. Das gleicht sich aus.
+1xlj96u	Wenn Wowa das hier sehen könnte. Er wär sofort Stammgast.
+jeog48	Ein Dorf. Mit Menschen. ...Hoffentlich mit Menschen.
+1eazeji	Irgendwer hier hat bestimmt Kwas. Ich muss nur fragen.
+6f8b6v	Hier ist seit 1991 nichts passiert. Und dann kam ich.
+hfneio	Strommasten ohne Strom. Kenn ich. Ich wohne in so einer Wohnung.
+1o538fg	Die Leute gucken mich an, als wär ich der Komische hier.
+1hrsdr5	Riecht nach Rauch und Kohlsuppe. Wie bei Oma.
+1n0q35w	Eine Unterhose als Segel. Hier wird nichts verschwendet.
+t6dpo9	Die Hühner hier haben mehr Selbstbewusstsein als ich.
+cvbi94	Pssst, Petja. Hier drin nicht fluchen.
+jqhsp5	Wenn hier einer ein Wunder braucht, dann ich.
+1in7qvf	Der Kater guckt mich an. Ich guck zurück. Er gewinnt. Wieder.
+1v3p3zv	Friedhöfe sind eigentlich ganz entspannt. Keiner redet. Meistens.
+1wmj6lu	Die Mühle knarzt. Oder ist das mein Rücken?
+6w63bk	Mehl überall. Ich seh aus wie ein Gespenst. Ein hungriges.
+a0tzti	Das Wasserrad dreht sich. Ich dreh mich auch gleich. Vom Zugucken.
+medym1	Hinter der Tür atmet jemand. Schwer. Und schüchtern.
+ks4klr	Wer hat die Birken umgeschubst? Ich war das nicht. Glaub ich.
+z0lwv6	Mit bloßen Händen krieg ich das nie weg.
+1phnd92	Dunkel hier. So dunkel, dass ich meine eigene Faulheit nicht sehe.
+zh2by6	Irgendwas raschelt im Unterholz. Ich nenn es Kevin. Dann ist es weniger gruselig.
+1yvi2fu	Nicht hinstarren. Nicht hinstarren. ...Mist.
+o54xff	Wenn ich hier einsinke, sucht mich keiner.
+18pj27j	Es blubbert. Ich hoffe, das war der Sumpf.
+3cn3ap	Ich hab nasse Socken. Und das ist noch das Normalste hier.
+1r9df8c	Fischgeruch. Ich glaub, der wohnt jetzt in meiner Jacke.
+15x82ru	Ein Fischer ohne Boot. Ein Petja ohne Plan. Wir passen zusammen.
+8hus7a	Kusmitsch hat seit 1987 nichts gefangen. Ich fühl mich verstanden.
+yfmmns	Der See glitzert. Der einzige hier, der sich Mühe gibt.
+i3rlyv	Das Wasser ist so ruhig. Viel zu ruhig.
+yt38k9	Wenn ich jetzt reinspringe, bin ich wenigstens wach.
+1uge524	Schilf, Schlamm, Stille. Klingt wie ein schlechter Wellness-Urlaub.
+fwldgv	Dunkel, nass, und irgendwas tropft mir in den Kragen.
+13j1rxp	Hier unten hört mich keiner schreien. Gut zu wissen.
+1mtzq8y	Über mir knarzt Kusmitsch. Unter mir knarzt der Pier. Ich knarz gleich mit.
+1xbf9mp	Alles so klein hier. Ich fühl mich wie ein Riese. Ein müder Riese.
+1utuvkw	Ich hoffe, die Gnome beißen nicht. Die gucken so.
+7lhhit	Riesenkohl und Riesennasen. Hier ist alles eine Nummer zu groß. Außer den Leuten.
+1g7eydv	Pfeifenrauch und Kohl. Fast wie bei meinem Onkel.
+1mzzdjp	Pilze an den Wänden. Na super. Genau mein Problem.
+140vq1k	Echo. ...Echo? Keine Antwort. Nicht mal das Echo mag mich.
+tdp5r0	Die Kristalle summen. Hoffentlich nicht Radio Moskau.
+1k5qdxl	Kalt hier. Und irgendwo kichert was. Ganz normale Höhle.
+1mttexb	Zurück am Anfang. Fühlt sich nicht nach Fortschritt an.
+13qv0jl	Der Birkenwald. Riecht immer noch nach meinem Fehler.
+946itk	Hallo, Krähe. Hast mich vermisst? Nein? Dachte ich mir.
+18rwoej	Die Weggabelung. Ich kenn mich langsam aus. Schlimm eigentlich.
+3oulcr	Wieder hier. Die Schilder lügen hoffentlich immer noch gleich.
+6oo3au	Die Hütte steht noch. Schade eigentlich.
+ntxoik	Hühnerbeine, Schädelzaun, Kohlgeruch. Wie heimkommen. Nur schlimmer.
+w9ieu6	Hallo, Hütte. Bitte nicht weglaufen.
+r2es0f	Wieder drin. Nichts anfassen, Petja. Vor allem nicht das, was zwinkert.
+zu2bdx	Es riecht immer noch nach Socken und Magie.
+15ac5oq	Das rote Licht. Fühlt sich schon fast vertraut an. Bedenklich.
+199l75n	Wieder vor dem Banja. Mein Leben ist eine Abfolge von schlechten Ideen.
+1s93srt	Zurück im Banja. Ich bin hier fast schon Stammgast. Das sollte mir zu denken geben.
+1entxh9	Dampf, Bass, Madame. Alles wie immer.
+123ah9u	Das Dorf. Immer noch kein Strom. Immer noch keine Überraschung.
+1wvforc	Wieder hier. Opa Grischa riecht man schon vom Dorfeingang.
+1h32lhs	Die Dorfstraße. Die Oma am Gartentor guckt schon wieder.
+1dunzut	Hühnerdreck und Sonnenblumen. Klassiker.
+3km4hg	Der Friedhof. Der Kater ist auch noch da. Natürlich.
+qpqy4l	Zurück bei den Toten. Ruhigste Nachbarschaft im ganzen Wald.
+11kj9s	Die Mühle. Die Tür ist immer noch zugenagelt. Von innen. Immer noch komisch.
+53ae89	Das Wasserrad dreht sich. Ich hätte es enttäuschend gefunden, wenn nicht.
+1r8g5p1	Der dunkle Weg. Mein Lieblingsort. Nicht.
+1knpfba	Wieder hier. Ich nehme an, die Birken haben mich vermisst.
+1jm8pch	Der Sumpf. Ich hab die Socken noch nicht trocken von letztem Mal.
+ei4hy0	Hallo, Damen. Ich bin nur auf der Durchreise. Wie immer.
+1ig2net	Kusmitsch sitzt da wie immer. Ich glaub, der ist festgewachsen.
+szosbf	Der See. Riecht nach Fisch und Resignation.
+1f94k87	Das Ufer. Das Boot hat immer noch aufgegeben. Respekt.
+1dnwufa	Wieder am Wasser. Ich spring trotzdem nicht rein.
+7hol5t	Unterm Pier. Zieht immer noch. Tropft immer noch.
+1qnio8w	Zurück im Dunkeln. Hier sieht mich wenigstens keiner.
+1min79	Die Gnome. Die Nasen sind seit letztem Mal nicht kleiner geworden.
+1i778zk	Wieder bei den Gnomen. Ich duck mich mal lieber. Aus Respekt.
+cb7nwm	Die Höhle. Das Kichern hinten ist auch noch da. Schön.
+1jgxhmh	Kalt, feucht, Pilze. Fühlt sich an wie meine alte WG.
+## 07-objekte.js
+116rge9	Ich bin Petja. Glaub ich. Meine Beine fühlen sich an wie kalte Pelmeni.
+eiofra	Kneif mich mal einer.
+1luk4iy	...Keiner da. Typisch.
+1a69yct	Ist nur ein Trip. Ein sehr, sehr langer Trip. Passiert. ...Mir zumindest.
+1hpmfo1	Guten Morgen, Petja. Es ist schon Mittag.
+6qcnc	Die Sonne redet mit mir. Na super. Jetzt auch noch die.
+1nw5xqk	Du willst aufwachen? Frag die Alte im Wald. Baba Jaga weiß, wer hier schläft und warum.
+6nmjng	Den Pfad entlang, Petja. An der Weggabelung zur Hexe. Ich scheine dir den Weg. ...Ausnahmsweise.
+de2yz5	Wer in diesem Wald einschläft, wacht nicht so leicht wieder auf.
+1tip0vh	Danke. Sehr beruhigend.
+jv1cy9	Psst. Iss mich, und du siehst Farben, die es gar nicht gibt.
+3x9im4	Ich seh die schon, Kumpel. Alle.
+7418g6	Psst. Du gehörst nicht hierher. Das riecht sogar ein Pilz.
+1dkiywn	Geh zur Hexe. Die weiß, was in deinem Kopf rumwächst.
+1j0kztd	Baba Jaga, Kumpel. Hütte auf Hühnerbeinen. Hinter der Weggabelung. Und jetzt lass mich wachsen.
+p6atsb	Nein, Petja. Du hast heute schon genug probiert.
+lblbg6	Alte Birke
+7u4q48	Die Birke guckt mich an.
+1dt61wq	Sie guckt immer noch.
+vxjbi3	Geh weg, du riechst nach Stadt.
+1692b91	Gern. Wohin?
+1cpw963	Zur Baba Jaga. Du bist ihr Problem, nicht unseres.
+pyiwxb	Die ganze Birkenschaft redet von nichts anderem. Ein Stadtmensch im Wald. Geh. Zur. Hexe.
+1tf6ez	Schon gut. Ich geh ja.
+evpgrx	Und du nach Brennholz.
+uxe95r	Hey, Krähe. Fang.
+xu8x0v	KRAH! Bist du irre?! Ich hab dir den Weg gezeigt, du Undankbarer!
+t74855	Ich geh zur Baba Jaga petzen! Krah!
+1h7yfug	So. Der Ast ist frei.
+1ld398m	Krah! Was guckst du so auf meinen Ast?
+tr8ugk	Ist ein schöner Ast. Gerade. Angeltauglich.
+581k84	Den kriegst du nie! Ich geh hier nicht weg! Krah!
+d446gt	Freiwillig geht die da nicht runter. Vielleicht, wenn ich sie mit was bewerfe.
+1qomjbe	Was zum Werfen... Was Rundes, nicht zu schwer.
+1apmv0g	An der Weggabelung stand doch ein Apfelbaum.
+1v26eng	Krah! Immer noch hier? Zur HEXE, du Schlafmütze! Den Pfad lang, an der Gabelung zur Hütte! Krah!
+18lb6tw	Krah! Noch einer, der nicht aufwacht!
+18o44i9	Noch einer? Wie viele gibt es denn?
+15n2eqv	Frag die Baba Jaga. Ihre Hütte steht tiefer im Wald. Krah!
+15y1hv9	Die mit dem Haus auf Hühnerbeinen?
+ux85vx	Krah! Und sie macht nichts umsonst.
+1sapx5	Baumstumpf
+9e0w4p	Ein Baumstumpf. Jemand hat hier mal Holz gemacht.
+16ttj6b	Oder die Birken haben ihn gefressen.
+slqs2y	Ich setz mich lieber nicht drauf. Wer weiß, ob der auch redet.
+1fimcej	Joint-Stummel
+gl13zb	Da ist er. Der Rest von meinem Joint. Der Schuldige.
+y95pis	Den nehm ich mit. Als Beweismittel.
+8mtttp	Schild: Zum Pfad
+1apwzqm	Schild: Zu Baba Jaga
+1rlm7qz	Schild: Zum Sumpf
+rgfnyo	Umgestürzte Birken
+1nxussj	Feuerholz für drei Winter. Wowa würde es verkaufen.
+12ks9m9	Da komm ich weder drüber noch drunter. Ich brauch eine Säge.
+1k9ikor	Das Schild zeigt zum Sumpf. Nur leider liegen ein paar Tonnen Birke dazwischen.
+1boer6b	Schild: Zur Weggabelung
+1t34irb	Schild: Zum Birkenwald
+2xyify	Umgestürzte Birke
+1qwb5rh	Eine umgestürzte Birke. Man kann drübersteigen, wenn man nicht nachdenkt.
+gxx9q9	Dahinter riecht es nach Sumpf. Und nach Ärger.
+1vtbsyv	Schild: Zum Fischerhaus
+oi4gcb	Schild: Zum dunklen Wald
+1b9iupx	Fischer
+zwd829	Tag. Beißen sie?
+13d6hja	Die Fische? Nein. Die Weiber im Sumpf, ja.
+1pmysdf	Dreißig Jahre sitz ich hier. Gefangen hab ich: zwei Stiefel, ein Fahrrad und meine erste Frau.
+1svp8jf	Wissen Sie, wie ich hier rauskomme?
+v7uibj	Raus? Ich wollte 1987 nur Zigaretten holen.
+eugfvm	Frag die Alte in der Hütte auf Hühnerbeinen. Baba Jaga. Wer in diesem Wald festhängt, hängt wegen ihr.
+ydlabr	Immer noch da? Zurück zur Weggabelung und dann zur Hexe, Junge.
+wnftq5	Und nimm Wodka mit. Nüchtern ist sie unerträglich.
+1ndgxur	NICHT JETZT! DER WELS! Er zieht mich gleich vom Pier!
+1f46gu1	Lassen Sie sich Zeit.
+1pwdyws	Was zappelt da in deiner Tasche?
+14npone	Nichts. ...Nur ein paar Würmer. Für später.
+1rhbzu5	(Seine Schnur hängt unterm Pier. Da kommen die Würmer dran.)
+14ubinf	Die Flasche bleibt hier. Außer der Wels beißt endlich mal an. Dann ist mir alles egal.
+1h4r9id	(Alles egal. Auch die Flasche. Interessant.)
+pi4ngy	Mit Brot lockst du den nicht. Der will was Lebendiges. Aber ich hab nix anderes.
+1btx9q8	(Seine Schnur hängt unterm Pier runter. Da könnte man ja was dranhängen... Was Lebendiges.)
+1pne21d	(Was Lebendiges, was ein Fisch frisst... Würmer.)
+q3mkse	(Vor Baba Jagas Hütte lag doch so ein Haufen. Die zappeln bestimmt noch.)
+1ic89ph	(Was Lebendiges, was ein Fisch frisst. Würmer. Und Würmer gibt’s, wo’s matschig ist.)
+1bw25vj	(Baba Jagas Hof ist der matschigste Ort, den ich kenne.)
+8tblgg	Herr Kusmitsch, könnten Sie mir Ihren Selbstgebrannten geben? Für den Opa.
+wujvyn	Meinen Selbstgebrannten?! Für den Brandstifter? Eher fress ich mein Netz.
+27ig8j	Die Flasche lass ich nicht aus den Augen. Nur wenn einer anbeißt. Und hier beißt seit 1987 nix Großes mehr an.
+cxo5n1	Außer dem Wels. Der wohnt unterm Pier. Aber der beißt nur auf Würmer. Fette Würmer. Mit meinem Brot lockst du den nicht.
+1atqvw0	Na, eine Angel! Selbst gebaut? Sieht aus wie ein Unfall.
+19epagl	Dann zeig mal. Schwimmer in der Mitte halten, nicht vom Fisch wegziehen lassen!
+pslr7	Stock und Schnur, Junge. Mehr braucht’s nicht. Und ein bisschen Geduld. Hast du nicht, ich weiß.
+19mzdf2	Schnur? Meine geb ich nicht her. Aber im Dorf hängt bei der Galja eine Wäscheleine. Länger als der See.
+1aqi8dd	Und einen Stock findest du ja wohl selber.
+183p77o	(Ein gerader Ast... Im Birkenwald, wo ich aufgewacht bin, saß die Krähe auf einem ziemlich schönen.)
+97mfie	Könnten Sie mir einen Fisch geben? Für einen Kater.
+1j2ws7l	Für den Kater vom Popen? Der Satan hat mir mal den ganzen Fang geklaut. Von mir kriegt der nix.
+vaedjn	Fang dir selber einen. Keine Angel? Dann bau dir eine.
+nrpx5o	Ein Stock und eine Schnur. Mehr braucht ein Mann nicht. Und Wodka.
+pfuyau	Und wo krieg ich die her?
+zygodc	Stöcke wachsen an Bäumen, Junge. Und Schnur... frag nicht mich, ich sitz hier seit 1987.
+1aep9mg	(Bäume … Im Birkenwald, wo ich aufgewacht bin, hockt die Krähe auf einem schönen geraden Ast.)
+y0sbla	(Und Schnur … Auf der Dorfstraße hängt doch eine lange Wäscheleine.)
+2b2yld	Sie haben nicht zufällig eine Säge? Da liegen Birken auf dem Weg.
+1b3lm76	Eine Säge? Junge, ich bin Fischer. Ich hab ein Netz, eine Angel und einen Wels, der mich hasst.
+1tsivxg	Werkzeug hat der Grischa im Dorf. Der hat sein Haus selbst gebaut. Und selbst abgebrannt. Ein Mann vom Fach.
+1gmk5ix	Ihre... Frau.
+1aw8hty	Hab sie wieder reingeworfen. Zu klein.
+cmyl1v	Was machen Sie mit dem Netz?
+ts4imq	Flicken. Ein Wels hat ein Loch reingebissen. So groß wie ein Traktor.
+1ioczoo	Das Loch?
+1sbbgle	Der Wels, Junge. Obwohl... das Loch auch.
+jq25sz	Raus? Aus dem Wald kommt keiner raus. Ich wollte 1987 nur Zigaretten holen.
+wun0hr	Frag die Alte in der Hütte auf Hühnerbeinen. Aber nimm Wodka mit. Nüchtern ist sie unerträglich.
+poj5to	Fischerhütte
+1171wfe	Die Hütte vom Fischer. Riecht nach Rauch, Fisch und Einsamkeit.
+12ifizy	Abgeschlossen.
+s5nsu2	Da ist nur Wodka drin! Und Fisch! Und Wodka!
+ra59cg	Altes Boot
+11xpy2p	Ein umgedrehtes Boot. Unten hat es mehr Löcher als Boden.
+13cmikh	Das schwimmt noch! Nur nicht nach oben.
+6ko0dc	See
+5xjmmv	Dann wollen wir mal. Auswerfen... und warten...
+154a6z	Oh. Es zieht. Tatsächlich.
+w0xu3o	Da drin schwimmen Fische. Ich seh sie. Sie sehen mich.
+lg2u8s	Mit bloßen Händen wird das nix. Ohne Angel bleib ich hier nur der Typ am Ufer.
+ghzm9s	Der See ist so still, als würde er die Luft anhalten.
+1ro82sr	Da unten hat sich was bewegt. Groß. Ich geh nicht schwimmen.
+1u97kpl	Fischernetze
+xttwed	Fischernetze zum Trocknen. Oder moderne Kunst. Schwer zu sagen.
+1wapv7	Schild: Zum Dorf
+1yrjnm4	Iff waf... ach nein, ich hab ja wieder Zähne. Iss was, du bist zu dünn! Baba Jaga mag keine Knochen.
+hrdj9n	Oma, ich hab Ihr Gebiss gefunden.
+c7fis4	Mein Gebiff! Wo war ef?
+nyeav1	Unter dem Kater vom Popen. Auf dem Friedhof.
+1w3wjma	*klack* ...Ah. Viel besser. Schmeckt nach Kater, aber egal.
+1akqemv	Teer willst du? Hier, Birkenteer. Gegen Rheuma, Läuse und Männer.
+1sgqc7m	*bekommt eine Flasche Birkenteer*
+191chne	Junge! Du bift doch der Neue. Hilf einer alten Frau!
+1r3feio	Kommt drauf an, wobei.
+1gd37tw	Mein Gebiff! Bei Waffilif Beerdigung hab ich fo geheult, da ift ef mir raufgeflogen.
+163jpth	Und jetft hockt der Kater vom Popen drauf. Auf dem Friedhof. Faucht jeden an.
+aj8heb	Und was hab ich davon?
+1kuqlga	Birkenteer! Gegen Rheuma, Läufe und Männer. Und waf zu effen.
+1uaxc2x	(Teer. Brauch ich nicht. …Noch nicht. Im Märchen braucht man irgendwann alles.)
+18prahp	Tag, Oma. Sie haben nicht zufällig Teer?
+9cb6k	Teer? Hab ich. Birkenteer. Aber erft... erft...
+2hd2kq	Was ist mit Ihren Zähnen?
+1ttqijq	Weg! Bei Waffilif Beerdigung hab ich fo geheult, da ift mir daf Gebiff raufgeflogen.
+prmybi	Und jetft hockt der Kater vom Popen drauf. Daf Miftvieh! Faucht jeden an.
+1bqrrub	Bring mir mein Gebiff, dann kriegft du den Teer. Und waf zu effen. Du bift fo dünn.
+1eyswym	Der Kater ift weg? Dann liegt mein Gebiff doch frei! Worauf warteft du?
+1979vdk	Der Kater geht nicht weg? Der Miftkerl hört auf keinen. Nur auf feinen Magen.
+1kove1i	Der frifft nur Fifch. Frifchen Fifch. Alles andere fpuckt er mir vor die Tür.
+pho9q5	Fifch gibt’f beim Kufmitfch am Fee. Aber der ift geizig. Fag ihm bloff nicht, daff ef für den Kater ift.
+1vjcd6a	Mein Gebiff, Junge! Friedhof! Der Kater!
+1dse80i	Der Friedhof ift bei der Kirche. Die Dorfftraffe runter, dann immer der Nafe nach.
+bsbem1	Den Grifcha am Dorfeingang hab ich übrigenf angezeigt. Wegen Brandgefahr. Keiner hört auf Oma.
+12d7flj	...Waf? Ach ja. Kirche. Friedhof. Kater. Gebiff. Geh!
+14c69nl	Opa, ich hab da was für Sie.
+eezf69	Ist das... Kusmitschs Selbstgebrannter?! Riecht nach Teer und Trauer. Perfekt!
+1vhkc2x	*gluck* *gluck* ...AAAH. Da wird mir ganz warm. Wie damals beim Brand.
+11ilofg	Die Leiter gehört dir. Hat das Feuer überlebt. Wie ich.
+uvjjm2	*bekommt eine Leiter*
+abluyp	Opa, haben Sie eine Leiter? Ich muss in Baba Jagas Hütte. Die steht auf Hühnerbeinen.
+p4zj6z	Eine Leiter hab ich. Da, am Ofen. Hat das Feuer überlebt.
+zxstmk	Aber umsonst gibt’s nix. Bring mir was zu trinken. Mein Selbstgebrannter ist ja... verdampft.
+1irriq2	Der Kusmitsch am See brennt den besten. Aber der rückt nix raus. Der schläft sogar mit der Flasche.
+1whs2pv	Ohne Selbstgebrannten keine Leiter. Ich hab Durst, Junge. Seit dem Brand.
+mvudc9	Kusmitsch am See. Der hat ’ne Flasche, die ist älter als du.
+vvfo1l	Der Kusmitsch lässt die Flasche nie aus den Augen. Außer, es beißt mal was richtig Großes an.
+9sipqs	Dann vergisst der alles. Frau, Kinder, Flasche. Hab ich selbst gesehen. 1987.
+1oh6qdh	Was ist denn mit Ihrem Haus passiert?
+133mlqa	Der Samowar. Oder der Selbstgebrannte. Oder ich. Die Untersuchung läuft noch.
+1dku39q	Die Feuerwehr kam aus der Stadt. Drei Tage später. Haben Fotos gemacht.
+tci946	Kann ich hier was mitnehmen?
+2qtavz	Nimm, was nicht verbrannt ist. Also nix.
+1lmtzja	Höchstens den Ofen. Aber den lass mal stehen. Der Ofen ist das Herz vom Haus.
+148n0hp	Die Dusja aus dem Dorf hat mich angezeigt. Eine Woche bevor’s gebrannt hat.
+178snzy	Hexe. Die zweite im Wald. Die eine hat Hühnerbeine, die andre ’ne Gartenschere.
+1hkpvis	Leeres Haus
+18izq36	Ein leeres Haus. Die Gardinen sind noch da, die Leute nicht.
+vv1pic	Omas Haus
+1h04aap	Omas Haus. Sonnenblumen, Gardinen, frisch gestrichen. Das einzige Haus hier, das nicht stirbt.
+6yioln	Opas abgebranntes Haus
+1hpscbn	Opas Haus. Übrig ist nur der Ofen.
+1eodb2x	Der Ofen ist das Wichtigste! Der Rest war eh nur Dekoration.
+1hxia0a	Dorfladen
+9uoais	„Laden“. Am Zettel steht: „Geschlossen seit 1991. Kommen bald wieder.“
+w5pace	Ich glaube, die kommen nicht wieder.
+15bmjc2	Vernageltes Haus
+1fy30ad	Vernagelt. Hier wohnt keiner mehr.
+zzcons	Doch, der Kolja. Der macht nur nicht auf. Seit der Wahl.
+1wv3137	Ziehbrunnen
+1hmr92n	Ein Ziehbrunnen. Unten glitzert was.
+1h0rwse	...Eine Bierdose. Natürlich.
+17xjcmt	Kapelle
+9bgeht	Eine kleine Kapelle mit goldener Zwiebel. Die einzige Sache im Dorf, die noch glänzt.
+3furen	Schild: Ins Dorf
+n0iza2	Schild: Zum Dorfeingang
+1otois5	Schild: Zur Kirche
+1rnnovo	Schild: Zurück ins Dorf
+ymx6j2	Tante Galjas Haus
+1p0iqw7	Tante Galjas Haus. Steht zumindest auf dem Briefkasten.
+13xzin	Drinnen läuft ein Fernseher. Laut. Seit 1987 vermutlich.
+luq37q	Wäscheleine
+1p7kftf	Wäsche. Eine Unterhose so groß wie ein Segel.
+j9oqse	Wenn Galja die anzieht, kann sie damit über den See.
+he6asu	Holzkirche
+18gl639	Abgeschlossen. Ein Zettel: „Pope in der Stadt. Zurück bald.“ Datiert 1993.
+7a8u3f	Die Kuppeln sind vergoldet. Das Dach leckt. Prioritäten.
+1tk7gt8	Glocke
+181oxyd	Eine Glocke im Turm. Ich komm nicht ran. Zum Glück. Sonst würd ich läuten.
+tbyusp	Gräber
+1hdgync	„Fjodor, 1931–2024. Hat nie gewonnen.“ Wobei, was?
+1c7itq1	Plastikblumen. Die halten länger als die Leute.
+bzkrxw	Kater
+10a80xp	Hier, Mieze. Ein Fisch. Frisch aus dem See.
+1smolep	*der Kater schnappt sich den Fisch und verschwindet hinter der Kirche*
+161zj9y	Und da liegt... Omas Gebiss. Na lecker.
+14rhfzn	Na, Mieze? Gehst du mal kurz runter da?
+172439t	Okay. Verstanden. Er sitzt auf irgendwas. Das glitzert.
+1aye2tf	Der geht da nicht weg. Vielleicht mit Futter.
+1rv2gaz	Was fressen Kater? Fisch. Und wer hat Fisch? ...Genau.
+x7f552	Gebiss
+d0u1tk	Da komm ich nicht ran. Der Kater sitzt drauf und guckt böse.
+1k5mqq1	Omas Gebiss. Ich fass das nur mit zwei Fingern an.
+1dzossf	Apfel
+g47h09	Ein Apfel. Schön rot. Zum Essen zu schade...
+1mznegm	...zum Werfen genau richtig.
+6ey1iw	Apfelbaum
+ul6hig	Ein Apfelbaum mitten im Birkenwald. Den hat bestimmt jemand gepflanzt. Oder verloren.
+cb4al2	Die anderen Äpfel hängen zu hoch.
+13ya0m3	Ast
+1faght	Ein schöner gerader Ast. Aber da sitzt die Krähe drauf.
+15gxtux	Krah! Finger weg, das ist meiner!
+1mw9osw	*spring* ... *spring* ... *SPRING*
+rn3hsu	Ein Stock. Wird eine Angel. Ich bin heute so produktiv, das macht mir fast Sorgen.
+1gwftsq	Schild: Zum Ufer
+jhpxrt	Schild: Unter den Pier
+790kxh	Schild: Zurück zum Ufer
+adfy4o	Bootswrack
+1a1pzem	Ein Boot, halb versunken. Das ist wohl das, was passiert, wenn man es NICHT flickt.
+wdd7c5	Pier
+1b7k8pj	Der Pier vom Fischer. Unten drunter kann man gebückt durchkriechen.
+tcmv5g	Ganz hinten sitzt Kusmitsch. Er hat mich nicht gesehen. Gut so.
+vw7ej1	Angelschnur
+p7vzm	Die Schnur zappelt wie verrückt. Oben flucht Kusmitsch. Herrlich.
+8u44uw	Die Würmer zappeln am Haken. Jetzt muss nur noch der Wels anbeißen.
+15oqv2z	Ich spieß die Würmer auf seinen Haken. Einen nach dem anderen. Sorry, Jungs.
+16tnmou	Und jetzt halt ich die Schnur fest und warte. Der Wels muss richtig ziehen, damit Kusmitsch was merkt.
+16ziuhx	Die Angelschnur vom Fischer. Leerer Haken.
+1fux11a	Wenn hier was richtig Großes dranziehen würde, wäre Kusmitsch eine Weile beschäftigt...
+1fqrjz9	Der Wels. Kusmitsch hat gesagt, der beißt nur auf Würmer. Fette Würmer.
+1o3mslp	Brot lockt den Wels nicht. Ich brauch Würmer für den Haken.
+1v58l30	Vor Baba Jagas Hütte ist die Erde so feucht und matschig... da wimmelt es bestimmt von Würmern.
+1dwd2tg	Müll
+19o3fuv	Eine leere Flasche, ein Stiefel, ein Reifen. Kusmitschs Lebenslauf.
+qokpmw	Würmer
+1lwor7e	Fette Würmer. Genau das Richtige für einen Wels. Und für niemanden sonst.
+pz7089	Ein Haufen Erde voller fetter Würmer. Wer weiß, wofür die mal gut sind.
+4atwrm	*buddel* *glitsch* ...Eine Handvoll. Rein in die Tasche. Igitt.
+1ob24hy	Finger weg von meinen Würmern, Bürschchen! Die sind für die Suppe!
+163nu44	Ich leih sie nur aus.
+g0dz6m	Selbstgebrannter
+19c6ckb	FINGER WEG! Das ist mein Selbstgebrannter! Den hab ich im Auge, Junge!
+dxpnuq	*schnapp*
+1pmdktd	(kämpfend) KOMM HER! KOMM HER, DU MISTVIEH!
+snfdpz	Der merkt gar nichts. Dreißig Jahre Warten machen blind.
+102s05o	Leiter
+ycrtty	Die Leiter gibt’s gegen Selbstgebrannten. Nicht gegen Bitte-Bitte.
+5mt6y7	Eine alte Leiter am Ofen. Angekokelt, aber stabil.
+pwld8l	Finger weg! Das ist das Einzige, was mir geblieben ist. Außer dem Ofen.
+1whqsjb	Hier. Die waren in dem Joint. Blau angelaufen.
+10qocxj	*schnüffel* ...*schnüffel*... HA! Traumschwamm. Aber welche Sorte? Da gibt es hundert.
+go3a1h	Wer den raucht, wacht in MEINEM Märchen auf. Darum kommst du nicht raus, Bürschchen.
+1ilrj95	Wowa. Natürlich. Natürlich war es Wowa.
+kqtjoa	Für ein Gegengift brauch ich frische. Und die wachsen nur tief in der Höhle der Gnome. Bring mir welche!
+t2lav1	Aber die Gnome lassen keinen umsonst in ihren Stollen. Gnome sind schlimmer als Steuerprüfer.
+vhxqs9	Ich muss ins Banja. Hinter dem Irrwald. Kennen Sie den Weg?
+12ovs8b	Ins BANJA? Du? Hihihi! Warte...
+yx3mt	*kramt im Ofen* ...*hust* ...Da! Meine alte Wegkarte. Nur ein bisschen angekokelt.
+ls6cxg	Da steht: 2× links, 1× rechts, 1× geradeaus.
+nedj5e	Verlauf dich nicht. Im Irrwald fressen einen die Bäume. Langsam.
+jjcz74	Du hast alles? Dann ab an den Tisch, Bürschchen!
+8zog2n	Ur-Spore, geweihte Glut, eine echte Träne. Und dein alter Filter. Bring mir alles, dann bauen wir dir deinen Ausweg.
+g6y2ji	Was stehst du hier rum? Hast du nichts zu tun, Bürschchen?
+1wp345f	Doch. Ich muss in den Sumpf. Nur liegen da Tonnen von Birken im Weg.
+1qhgb3p	Mit bloßen Händen wird das nix. Ich bräuchte eine Säge.
+y83gg8	Wer hat hier Werkzeug? ...Opa Grischa im Dorf. Der hat sein Haus mal selbst gebaut.
+1q6a4vn	Du hast doch meine Karte! Hau ab und verlauf dich woanders!
+161zyxm	(Der Weg steht auf ihrer Karte. Die hab ich in der Tasche. Muss ich nur genau lesen.)
+daj8oy	Mehl? Bei den Gnomen ist „Mehl“ nie Mehl. Hihihi! Geht mich nichts an.
+b2telp	Mehl gibt’s beim Müller. Logisch. ...Im Dorf zeigt doch ein Schild zur alten Mühle.
+1fgujvv	Zu den Gnomen mit den Pilzen! Und lass dich nicht übers Ohr hauen. Die haben große Ohren. Und Nasen.
+170q7bt	Gnome. Wo wohnen Gnome? ...Am Ufer hinterm Fischer ging noch ein Weg weiter. Da roch’s nach Pfeifenrauch.
+13qd5f9	Frische blaue Traumschwämme! Aus der Höhle der Gnome! Na los!
+15n9tg5	Auf den Tisch damit! Zerlegen! Papier, Filter, Kraut. Ich will sehen, was drin ist.
+i6gal6	Wo ist der Stummel? Du hast ihn doch nicht etwa geraucht? Bring ihn her!
+w5ax0c	Tisch
+1emuthu	Hier hab ich einen Joint zerlegt. Vor einer Hexe. Ein Satz, den ich nie sagen wollte.
+1t17hya	Ich leg den Joint auf den Tisch.
+1jb564p	Vorsichtig! Erst den Filter ab, dann aufrollen, dann sortieren.
+1oj014x	Ein schwerer Holztisch. Voller Kerben und Flecken. Ich frag nicht, wovon.
+15kasmz	Ofen
+wfgm80	Ein russischer Ofen. Warm. Zu warm. Und groß genug für einen Petja.
+1ltel4e	Der ist für Piroggen! ...Meistens.
+18yargy	Im Topf blubbert was. Es riecht nach Pilzen und Socken.
+19pudww	Regal
+9c7t2u	Gläser mit Kräutern, Augen und etwas, das mir zuwinkt.
+k7smzl	Und zwei Schädel. Hoffentlich keine Stadtkinder.
+nqu4u6	Besen
+sessmi	Ihr Besen. Ich glaub, der fliegt. Ich setz mich lieber nicht drauf.
+16qhp3a	Fenster (raus)
+qnhsf1	Schild: Zur Gnomsiedlung
+1f8espa	Schild: Zur Höhle
+5l2pa1	HALT, Langer! In die Höhle kommt keiner ohne Wegezoll.
+8nm7ti	Die Höhle ist Gnomgebiet. Geschäftsgeheimnis. Sehr geheim. Sehr... geschäftlich.
+1xdc4oa	Schild: Zum Ausgang
+lzonvf	Ein Langer! Was willst du hier? Ohne Grund kommt keiner zu den Gnomen.
+lnqt7n	Ich will nach Hause.
+svzgpv	Dann bist du hier falsch, Langer.
+15xq5v8	Nach Hause? Dann musst du zur Hexe. Baba Jaga. Die hat dich hergeträumt, die träumt dich auch wieder raus. *schnief*
+1xws6k	Baba Jaga! Hütte auf Hühnerbeinen! Zurück am See vorbei, an der Weggabelung abbiegen! Und jetzt weg, wir graben.
+2rfzwt	Drei Säcke Mehl. Wie bestellt.
+nfj4wb	*schnüff* ...*SCHNÜFF* ...OH ja. Das ist gutes... Mehl.
+1fa12gb	Der Stollen ist offen für dich, Langer. Der Pilzmeister wartet hinten im Dunkeln. Hier, nimm die Laterne.
+16axv6f	Ich muss zu eurem Pilzmeister. In den Stollen.
+z8radx	In den Stollen? Ohne Wegezoll kommt da keiner rein. Drei Säcke Mehl.
+1icxjqp	Mehl? Ihr backt?
+1bcyj3e	...Ja. Wir backen. Sehr viel. Den ganzen Tag. *schnief*
+1uludun	Der Müller hat das gute Zeug. Das ganz gute. Aber der rückt nix raus.
+1722rw9	Drei Säcke. Vom Müller. Vorher kein Stollen. *schnief*
+1oc4n3v	Die alte Mühle. Hinterm Dorf. Der Müller macht nicht auf, aber er hört alles. *schnief*
+13c4i16	Frag den Schnobbel. Der kennt den Müller noch von früher. Bevor der sich eingenagelt hat.
+1m89ufc	Hallo. Sind Sie... ein Gnom?
+ss2xct	GROSS-Gnom! Kleine Gnome gibt’s in Deutschland. In Vorgärten. Mit Angel. Peinlich.
+ek3kd	Wir sind die Nasigen vom See. Je größer die Nase, desto höher der Rang. Ich bin Vorarbeiter.
+11zrlfz	Was machen Sie mit der Spitzhacke?
+2m2gok	Graben. In der Höhle. Seit dreihundert Jahren.
+9hhxzn	Und was suchen Sie?
+1fgyylq	Weiß keiner mehr. Aber jetzt aufhören wäre unhöflich.
+15rgupz	Geh nicht zu tief in die Höhle, Langer. Da hinten ist es dunkel. Und dunkel ist erst der Anfang.
+163ltsb	*paff* Du willst auch nach Hause? Geh zur Hexe, Junge. Alle gehen zur Hexe. *paff*
+8mualg	Baba Jaga. Hühnerbeine. Weggabelung. Mehr sag ich nicht, sonst schuldet sie mir noch mehr. *paff*
+1nu4pxl	Der Müller will eine Frau? *paff* Seit vierzig Jahren. Und jede ist weggerannt.
+vkdsx0	Die Schönen sind alle im Banja. Hinterm Irrwald. Aber da findest du nie hin. *paff* Nur die Hexe.
+1qdz3oe	Mehl vom Müller? *paff* Der gibt nix her. Der will was. Alle wollen was.
+1xa37uc	Klopf halt bei ihm. Hinterm Dorf, die alte Mühle. Er redet durch die Tür. Er redet immer durch die Tür.
+lj86z9	*paff* ...Noch ein Langer. Letzte Woche war einer da. Hat nach dem Weg nach Hause gefragt.
+9fhp7j	Und?
+dpvu9d	Wir haben gelacht. Lange. *paff*
+evkt7	Ihre Nase ist... beeindruckend.
+199qzx	Danke. Hab sie seit 1612. Sie hat mal einen Bären gerochen, bevor er geboren war.
+1eert57	Die Baba Jaga? Die schuldet mir drei Pfund Pilze. Grüß sie nicht von mir. *paff*
+rhnph7	Gnomhütte
+jltd95	Runde Tür, rundes Fenster, runde Bewohner.
+1vkm2r5	Drinnen schnarcht jemand. Die Wände wackeln.
+1k2p29t	Riesenkohl
+8m8k72	Kohl. So groß wie ein Kinderwagen.
+bey2xe	Finger weg! Das ist Schnobbels Rente!
+q6emtz	Höhleneingang
+110aetu	Ein Höhleneingang mit Fackeln. Kalter Wind kommt raus. Und Gemurmel.
+1pls0lf	Dunkler Gang
+ejjaea	*mit der Laterne in den Gang* ...Hallo? Pilzmeister?
+neta2m	Psst! Nicht so laut, die Pilze schlafen. Zeig her...
+mb8k1j	*schnüff* ...Traumschwamm. Edelsorte. Von Nymphenhand im Mondlicht getrocknet. Teures Zeug.
+u6uy5r	Frische gibt’s nur hier. Vorne links, die blauen. Nimm ein paar mit zur Hexe, die weiß, was man damit macht.
+1h8yb2z	Und jetzt raus. Du störst die Pilze beim Wachsen.
+bzpc84	*aus dem Dunkeln* Ur-Spore, geweihte Glut, echte Träne! Und leise sein!
+1u8tlls	Der Gang führt tiefer. Stockdunkel. Ohne Licht geh ich da nicht rein.
+jme96r	Da hinten hat was gekichert. Nein. Nein, danke.
+4rt9dy	Kristalle
+ifiu1y	Lila Kristalle. Sie summen leise.
+g584hd	Wenn man das Ohr ranhält, hört man... Radio Moskau?
+4kez1y	Leuchtpilze
+1569dlc	Leuchtpilze. Hoffentlich nicht verwandt mit denen aus dem Joint.
+t0vb7x	Unterirdischer See
+hc5zen	Ein unterirdischer See. Da schwimmt was Weißes ohne Augen.
+zmcuhf	Es winkt. Ich winke nicht zurück.
+n5ohm7	Schild: Zur alten Mühle
+162v8vn	Alte Mühle
+z109ed	*klopf klopf* Ich hab was für Sie. Einen Gutschein. Fürs Banja. Ein Abend mit Privattanz.
+sm66x6	...EIN WAS?! *Bretter krachen* *Nägel fliegen*
+z53odt	*Tür geht einen Spalt auf* Gib her! ...Oh. Oh ja. Ich muss mich rasieren. Überall.
+4hcq72	Hier, drei Säcke. Das „Mehl“. Frag nicht, was drin ist. Ich frag auch nicht, was im Banja passiert.
+wgcz6n	*klopf klopf* Hallo? Ich bräuchte Mehl.
+t5m3mk	Mehl? Hab ich. Das besondere. Die Gnome sind ganz wild drauf.
+1ijh9vn	Aber umsonst gibt’s nix. Ich will was anderes. Eine Frau. Eine schöne Braut.
+1lple9z	Vierzig Jahre sitz ich hier allein. Mit sechs Zehen. Da kommt keine freiwillig.
+qry61l	Im Banja, hinterm Irrwald, da sollen die Schönsten sein. Aber durch den Irrwald findet keiner. Nur die Hexe kennt den Weg.
+fc4103	Madame will eine Neue? Dann bring ihr eine! Und mir dann... du weißt schon.
+1wybhxe	Im Sumpf sitzen genug Weiber rum. Sagt man. Ich war seit 1985 nicht mehr draußen.
+1oovd2o	Bring mir was aus dem Banja! Eine Braut... oder wenigstens einen Tanz.
+e844tl	Das Banja liegt hinterm Irrwald. Da verläuft sich jeder. Nur die Hexe kennt den Weg.
+yodprj	Die Hexe auf den Hühnerbeinen hat irgendwo eine Karte. Die hat sie mir nie gegeben. Mir gibt nie jemand was.
+d49rur	Die Tür ist zu. Mit Brettern vernagelt. Von innen.
+bdtsu4	Von innen. Wer nagelt eine Tür von innen zu? ...Will ich gar nicht wissen.
+e74n38	Drinnen knarzt es. Wie Schritte. Oder Mahlsteine. Hoffentlich Mahlsteine.
+1u2txkj	Wasserrad
+rcxx94	Ein Wasserrad. Es dreht sich und dreht sich. Seit hundert Jahren vermutlich.
+shmeg	Wenn ich lange genug draufschaue, werd ich wieder high. Lieber nicht.
+13boedc	Wasserrinne
+188l9lt	Eine Holzrinne bringt das Wasser vom Bach zum Rad. Clever. Für 1820.
+20p1ph	Mühlteich
+1s1f5vu	Unten am Rad schäumt das Wasser. Da glitzert was zwischen den Steinen.
+775u8o	...Ein Kronkorken. Diese Welt hat ein Müllproblem.
+7ug9l0	Mühlsteine
+177grlt	Alte Mühlsteine. Schwer wie Omas Kuchen.
+c6ndf9	Mehlsäcke
+1m4zld3	Mehlsäcke. Einer ist aufgeplatzt. Hier war jemand. Vor Kurzem.
+1lcjuzf	Fußspuren im Mehl. Barfuß. Mit... sechs Zehen.
+16pv74i	Alter Karren
+agvoup	Ein Karren mit einem Rad. Das andere ist wohl auch abgehauen.
+88cwjt	Schild: In den Irrwald
+4f71ly	Irrwald. Schon der Name. Da geh ich nicht einfach so rein.
+1fg8jpi	Ich verlauf mich ja schon im Supermarkt. Erst mal rausfinden, wer hier den Weg kennt.
+1eukm6n	Die Alte in der Hütte auf Hühnerbeinen sieht aus, als wüsste sie so was. Zuerst zu Baba Jaga.
+8vslw0	Nee. Ohne Plan rein, als Pilzdünger wieder raus. Erst zu Baba Jaga.
+1cz9qfs	*späht in den Wald* ...Der Wald späht zurück. Nein danke. Erst Baba Jaga fragen.
+1ltqyu	Schild: Zurück zur Mühle
+gtj83j	Weg links
+1hn82g5	Weg rechts
+qk7da3	Weg geradeaus
+k8p2ej	Schild: Abkürzung zur Mühle
+1qlbnbv	Ausgang
+1ur3y3p	Tür zum Banja
+v0wgpr	Banja
+6u80li	Ein Blockhaus mit rosa Fenstern. Drinnen wummert Musik. Draußen wummert mein Herz.
+qp8org	Aus dem Schornstein kommt Dampf. Oder Parfüm. Oder beides.
+n2n2j0	Dunkler Wald
+oybv6l	Da drin glühen Augen. Gelbe. Viele.
+sityx3	Ich bleib schön im Licht.
+1rsycb7	Kein Weg, kein Pfad. Nur Bäume und Schwärze. Da geh ich nicht rein.
+7ad4ef	Nastja ist da! Ein Knaller! Sie tanzt, sie flirtet, sie trinkt die Gäste unter den Tisch. Perfekt!
+azawhf	Hier, Süßer. Ein Gutschein: Ein Abend im Banja mit Privattanz. Geht aufs Haus.
+1rb2hn	Der ist nicht für mich. Ich kenn da einen Müller...
+137j2sc	Mir egal, wer kommt. Hauptsache, er zahlt die Getränke.
+k1yr2q	Nastja ist der Star! Guck dir die Show an, Süßer.
+1127uzo	Na? Schon eine gefunden? Denk an meine Liste. Und bring mir keine, die nur blubbert.
+1ea35o8	Schön, tanzt gern, frech und will raus. Steht alles auf der Liste, Süßer. Frag die Mädels im Sumpf ruhig aus.
+fiymhq	Hör genau hin, wenn du fragst. Die Antworten verraten alles. Und kreuz ehrlich an.
+1da95k0	Was ist, Süßer? Der Sumpf läuft nicht weg.
+lydx8f	Der Sumpf nicht. Aber die Birken davor auch nicht. Ich bräuchte eine Säge. ...Wer ein Haus gebaut hat, hat sowas bestimmt.
+1hnjlq8	Guten Abend, Madame. Ein Müller schickt mich. Er hätte gern eine... Braut.
+1qdkapg	Eine Braut? Hier? Süßer, das ist ein Tanzlokal, kein Standesamt.
+1ns9n6w	Aber gut. Wir können uns helfen. Mir laufen die Tänzerinnen weg. Die letzte ist mit einem Gnom durchgebrannt.
+1qecic9	Bring mir eine Neue. Aus dem Sumpf, da sitzen genug, die sich langweilen. Aber nicht irgendeine. Hier ist meine Liste.
+150cjo7	Wenn sie passt, kriegst du einen Gutschein. Für deinen Müller. Oder für dich.
+1oyvuey	Bar
+1nn7hm4	Einen Kwas, bitte.
+n106ii	Kwas? Hier? Süßer, hier gibt es Wodka oder Wodka.
+1x7gm66	...Dann Wodka.
+vbavdu	*kipp* ...UARGH. Das ist kein Wodka, das ist Abflussreiniger.
+1ahrtfj	Noch einen?
+29tmxo	Ich seh jetzt schon doppelt. Zwei Madames. Das ist zu viel Madame.
+p4lor8	Süßer, von mir gibt’s nie zu viel. Frag die Feuerwehr. Die kommt jeden Freitag. Ohne Feuer.
+1yhf62	Trinkgeld geht in den Ausschnitt, Beschwerden in den Sumpf.
+rbkz98	Nein danke. Ich muss noch durch einen Irrwald.
+w4sjog	Bühne
+1rcngzv	Heute keine Show. Die Tänzerinnen sind... ausgegangen. Für immer.
+12ldiul	Nastja (auf der Bühne)
+1spvm9e	Ich geh mal näher ran. Nur um... die Technik zu studieren.
+g2fgj7	Nochmal, Süßer? Die zweite Runde kostet extra. Und du hast nicht mal Trinkgeld.
+yz6722	*dreht sich an der Stange* Na, Petja? Kiefer wieder hochklappen, du sabberst auf meine Bühne.
+1p5gfe5	Guckst du nur, oder willst du mehr?
+42f0bt	Ich... äh... Madame sagt, hier gibt’s Privattänze?
+27nrkk	Für den Mann, der mich aus dem Schlamm gezogen hat? Aufs Haus. Komm mit in die Lounge.
+6nkwmh	Schild: Zurück an die Bar
+6rfi9v	Schild: Zurück in den Club
+1p9fumr	Schild: Zum Waldweg
+s94la4	Baba Jagas Hütte
+yo8k84	Schief, alt, und ich schwör, sie atmet. Die Hütte atmet.
+8hcnt9	Aus dem Schornstein riecht es nach Kohl. Und nach... etwas, das kein Kohl ist.
+8lyux9	Tür
+rhahpt	Hallo? Frau Jaga? Darf ich reinkommen?
+8yaqy7	Durch die Tür kommt hier keiner rein! Die Tür ist Dekoration!
+wwbwx8	Wer was von mir will, kommt durchs Fenster. Wenn er hochkommt. Hihihi!
+1xte6gn	Das Fenster ist drei Meter hoch. Und die Hütte steht auf Hühnerbeinen.
+1hpuj2i	Ich brauch eine Leiter.
+iveyg5	Hallo? Ich wollte nur fragen, wie man hier wieder aufwacht.
+2e68hx	Erst klopfen, dann reden! Und die Füße abputzen!
+1x2529z	*klopf klopf*
+1dak8zx	Jetzt nicht! Der Ofen ist heiß. Komm später wieder.
+2adjrl	Hühnerbeine
+5roitu	Die Beine zucken. Wie bei einem Huhn, das träumt.
+pnveji	Ich fass da nichts an. Die treten bestimmt.
+wcafvm	Schädelzaun
+13898bq	Ein Zaun aus Schädeln. Und die Augen leuchten.
+1fsc1wo	Ist das Deko oder eine Warnung?
+1g0xzt7	...Beides. Ganz sicher beides.
+1dt5uxc	Opa Grischa will Schnaps für die Leiter. Natürlich. Umsonst gibt’s hier gar nichts.
+h2phw3	Wer hat hier Schnaps? ...Der Fischer am See sah aus, als hätte er welchen. Und als bräuchte er welchen.
+1rbvner	Irgendwer in diesem Wald brennt bestimmt Schnaps. So wie hier alle aussehen.
+1xjxm95	Muss ich wohl rumlaufen und suchen.
+zdw4c3	Mhh. Ohne Leiter komm ich hier nicht weiter.
+n2s1l5	Eine Leiter... Moment. Ich hab doch irgendwo eine gesehen.
+p75jcd	Im Dorf. Bei dem abgebrannten Haus, am Ofen. Ich sollte im Dorf nachfragen.
+y3j0kq	Eine Leiter. Hab ich hier irgendwo eine gesehen? ...Nö. Muss ich wohl suchen.
+l7vfry	Leitern gibt’s da, wo Leute wohnen. Und hinter der Hütte geht’s zu einem Dorf.
+qpvblt	Lieber nicht. Sonst wach ich in einem noch schlimmeren Märchen auf.
+1tn9btq	Säge
+aha20	Opas Säge, vom Schmied geschärft.
+kjufjz	Ein roter Apfel. Liegt gut in der Hand. Wurfgewicht: perfekt.
+ssn1v9	Stock
+1p1361o	Ein gerader Ast. Daraus wird was.
+j1g6pq	Schnur
+1wmhh32	Schnur aus einem kaputten Fischernetz.
+em664q	Angel
+1ayffbf	Selbst gebaut. Stock, Schnur, Sicherheitsnadel. Hält bestimmt.
+15ugn1g	Blaue Pilze
+q9x1yw	Neun blau angelaufene Pilzstücke aus dem Joint. Traumschwamm?
+1of46b2	Angekokelte Karte
+fdk81t	Baba Jagas Wegkarte: „2× links, 1× rechts, 1× geradeaus“.
+1pzzsgo	Madames Liste
+194njmd	Gesucht: schön, tanzt gern, frech, will raus. Keine Blubberer.
+pc91kh	Gutschein
+utv38c	„Ein Abend im Banja mit Privattanz“. Geht aufs Haus.
+n4hohl	Riecht nicht nach Mehl. Riecht nach Ärger.
+1h86kn4	Laterne
+8xyfn0	Eine Gnomlaterne. Brennt mit irgendwas Grünem.
+1ud0i3e	Eine Handvoll fetter Würmer von Baba Jagas Hof. Sie zappeln in der Tasche.
+1xsi80k	Kusmitschs Selbstgebrannter. Schon der Geruch macht blind.
+cecvi9	Opas Leiter. Angekokelt, aber stabil.
+j5a6k2	Fisch
+as5ymc	Ein kleiner Fisch. Guckt komisch.
+57tphw	Omas Gebiss
+1sioavw	Ein Gebiss. Riecht nach Kater und Friedhof.
+1e4aa3w	Birkenteer
+1qfuk67	Riecht nach Lagerfeuer und Omas Rheuma.
+19lqhnz	Moment... den Baum kenn ich doch. Und den. Und den da auch.
+119mvv2	Na super. Verlaufen. Zurück, bevor mich die Bäume fressen.
+76x7d	Bäume. Noch mehr Bäume.
+1m7f594	War das ein Kichern?
+1e3yy4t	Hier riecht es nach Parfüm... und Sauna.
+14038od	So. Leiter ans Fenster... festhalten, liebe Hühnerbeine... nicht wackeln...
+1q5xajr	*kletter* *kletter* *knarz*
+1t3dfjb	Die Leiter bleibt am Fenster stehen. Falls ich schnell weg muss. Was wahrscheinlich ist.
+## 08-nymphen.js
+1dz95oy	Na, Stadtjunge? Glotzen kostet nix. Anfassen kostet dich die Lunge.
+1gbruih	Ich... glotz nicht. Ich... orientier mich.
+pmgcd0	Klar. Und ich bin hier nur zum Baden.
+53whbw	Weißt du, was das Schlimmste am Ertrinken ist? Die Frisur. Hundert Jahre nasse Haare und kein einziger Kerl, der ein Handtuch bringt.
+ukueg	Die Frösche hier sind die einzigen Männer, die mir hinterherhüpfen. Und selbst die haben mehr Mumm als du.
+cvqhza	Komm näher, Petja. Der Letzte, der so geschaut hat, liegt jetzt unter mir. Er hat sich nicht beschwert. Er hat sich gar nicht mehr bewegt.
+h7p4de	Ich war die teuerste Frau im ganzen Gouvernement. Jetzt bin ich gratis und keiner traut sich. Typisch Männer.
+1k73y76	Vielleicht liegt’s am Schlamm.
+1al42lg	Schlamm ist ein Peeling, du Bauer.
+p4l4hp	Seine Frau hat mich ertränkt. Mit beiden Händen. Ich hab gelächelt, bis zum Schluss.
+1fx6jwn	Warum erzählst du mir das?
+49dumh	Damit du weißt, was ich mit Händen anstellen kann.
+or6ht5	Matrone Ustinja
+uqenji	Im Bordell hätte ich dich nicht mal die Treppe putzen lassen, Bürschchen. Aber hier unten nimmt man, was der Sumpf anspült.
+1ksutep	Meine eigenen Mädchen haben mich hier versenkt. Undankbares Pack.
+1r8mz7r	Das Haus am Fluss gehört immer noch mir. Den Schlüssel kriegst du, wenn du mir einen Gefallen tust.
+r61j4e	Was für ein Haus?
+19oovf	Das wirst du noch sehen, Süßer.
+zb4k6u	Fekla
+agv63n	Riechst du das? Das bin ich. Und in zwei Wochen bist das du, wenn du weiter so dumm am Ufer rumstehst.
+beuvnf	Früher war ich die Dickste im Dorf. Jetzt bin ich die Dickste im Sumpf. Karriere, was?
+3wrtrs	Willst du mal anfassen? Ist wie Wackelpudding. Mit Würmern drin.
+1dbcc5f	Ich... verzichte.
+11p8u0a	Feigling. Die Aale haben weniger Hemmungen.
+5vvxrx	Glafira
+fh52pt	Die Alte
+1n9cw5x	Blub... Jungchen... hast du... meine Nase... gesehen? Irgendein Hecht... hat sie... mitgenommen.
+1y0j074	Ich war... die Erste hier... Der Fluch... ist älter... als die Hexe...
+gr3sq2	Welcher Fluch?
+xv5iah	Blub... später... ich bin müde...
+1qkj3v2	Hier. Ein Rest. Von Wowa.
+103m7aj	Na endlich mal einer mit Manieren. ...Kräuter von Oma. Gutes Zeug.
+1t2l6of	Hör zu, Stadtjunge: Wer hier aufwachen will, braucht den Segen der Baba Jaga.
+1fct0nf	Und die alte Hexe macht keinen Finger krumm, ohne dass du blutest. Bring ihr was Schönes.
+3y8wl3	Was denn noch? Verpiss dich zur Hexe.
+1t1jp5f	Was glotzt du, du Wichser? Der, der mir das angetan hat, sah aus wie du. Nur mit mehr Mut.
+5watzy	Hast du was zu rauchen? Nein? Dann halt die Fresse.
+1w0nzk9	assets/nymphe-
+1pamvuo	Neues Spiel
+1rhef4i	Spiel laden
+a7gn8d	Steuerung
+1532dt6	Einstellungen
+## 09-menue-speichern.js
+1dwr6jk	Birkenwald
+fy2sqz	Weggabelung
+1p7farv	Hütte (innen)
+1p1ttk1	Bühnenrand
+s3w4eu	Private Lounge
+hlq7vw	Irrwald
+37wyhi	Vor dem Banja
+1ymb96z	Dorfeingang
+1xmaeuq	Dorfstraße
+1qywxil	Kirche
+1ejb4cd	Birkensperre
+17zq3t6	Sumpf
+16ivthu	Fischerhaus
+1wr4frp	Ufer
+argow9	Unter dem Pier
+1r1ohvp	Gnomsiedlung
+1ietpue	Höhle
+dvyoxg	Raus aus dem Märchen
+wye2c5	Irgendwas stimmt nicht. Ich muss hier wieder aufwachen.
+15zwdye	Jemanden finden, der sich hier auskennt
+i2qsce	Vom Birkenwald zur Weggabelung, dann dem Schild „Zu Baba Jaga“ folgen. Eine Hexe weiß bestimmt, wie man hier rauskommt.
+1yfhpq6	In Baba Jagas Hütte kommen
+5b3uzh	Mit der Leiter zur Hütte und auf die Tür oder die Hühnerbeine klicken – dann geht’s durchs Fenster rein.
+cfqy57	Die Tür ist nur Deko, rein geht’s nur durchs Fenster. Dafür brauch ich eine Leiter (siehe „Hoch hinaus“).
+5vcqn0	Herausfinden, was mit mir los ist
+1q590jv	Baba Jaga braucht frische blaue Traumschwämme aus der Höhle der Gnome (siehe „Das Pilzlabor“).
+196xb1e	Baba Jaga in ihrer Hütte fragen. Sie will wissen, was in meinem Joint war (siehe „Der Joint“).
+nhvtva	Den Ausweg-Joint bauen
+1eitvis	Die Ur-Spore
+1gfwvum	In der Gnomsiedlung links aufs Schild „Zum Garten“, dort auf das Pilzbeet klicken und fünf goldene Pilze pflücken.
+25e9h2	Glut, die nicht ausgeht
+wq07e8	Den Popen finden
+1t5hhh3	An der Kirche hängt ein Zettel: „Pope in der Stadt“, seit 1993. Hinterm Banja (vor dem Banja rechts zum Hinterhof) schnarcht doch jemand im Heu …
+1hce0ud	Weihwasser holen
+jd0l5p	Vater Ignati ist zurück an der Kirche (Dorfstraße → „Zur Kirche“). Mit ihm reden.
+9u0e4g	Den Schmied überzeugen
+1vxb5h3	Das Weihwasser zu Schmied Fjodor in den Schmiedehof bringen.
+3p2zpd	Schmied Fjodor im Schmiedehof (Dorfstraße → „Zum Schmiedehof“) fragen.
+1rjllr2	Eine echte Träne
+7dx5e8	Etwas, das jeden zum Heulen bringt
+d14tfy	Nastja im Banja weint nie. Eine scharfe Zwiebel? Im Gnomgarten (Gnomsiedlung → „Zum Garten“) wachsen neben dem Riesenkohl welche.
+dzovrc	Die Zwiebel in die Lüftung
+1xh15yj	Die Lüftung der Lounge geht nach draußen: vor dem Banja rechts in den Hinterhof, dort auf die Lüftung klicken.
+17qfz2r	Einen Privattanz bekommen
+d0ovn6	Die Gäste sind weg. Im Banja auf die Bühne klicken und Nastja ansprechen – jetzt hat sie Zeit.
+1njcv83	Die Träne auffangen
+1qaumq2	Einfach sitzen bleiben und die Phiole bereithalten.
+jdoj2g	Alles zu Baba Jaga
+181mtay	In Baba Jagas Hütte auf den Tisch klicken und den Ausweg-Joint bauen.
+1gvmxuu	Das Pilzlabor
+rxozhk	Baba Jaga braucht frische blaue Traumschwämme aus der Höhle der Gnome. Aber umsonst lassen die Gnome keinen rein.
+6qvwah	In den Stollen kommen
+swl4xb	Zur Gnomsiedlung (vom Fischerhaus am Ufer entlang) und auf das Schild „Zur Höhle“ klicken. Grobnik will dafür etwas.
+s3edj8	Mehl vom Müller besorgen
+f6a5ve	Den Gutschein zum Müller bringen: an der Alten Mühle auf die Mühle klicken.
+15t6nev	Die Gnome wollen das „Mehl“ vom Müller. Vom Dorfeingang aufs Schild „Zur alten Mühle“ und dort an die Tür klopfen (auf die Mühle klicken).
+5ng6bx	Der Müller rückt das Mehl nur gegen etwas aus dem Banja raus.
+1bduo9u	Ein Wunsch des Müllers
+n42iyv	Nastja ist unterwegs. Zurück ins Banja zu Madame Zinaida – sie schuldet mir einen Gutschein für den Müller.
+14as8ie	Der Müller will eine Braut aus dem Banja hinterm Irrwald – oder wenigstens einen Tanz.
+qgyhwh	Den Weg nicht verlieren
+193kl8q	Nur Baba Jaga kennt den Weg durch den Irrwald. In ihrer Hütte mit ihr reden und nach dem Banja fragen.
+seuhd5	Das Banja finden
+lc8xzo	Eine Neue für Madame
+it8x9b	Madames Liste in den Taschen lesen. Dann im Sumpf (hinter der Birkensperre) die Nymphen anklicken, mit ihnen reden und die finden, die genau auf die Liste passt.
+11uxs3q	Frische blaue Pilze holen
+9hk6fg	In der Höhle wachsen links große blaue Traumschwämme. Anklicken und einsammeln.
+1n5sdic	Die Pilze zu Baba Jaga bringen
+1c5lcdk	Zurück in Baba Jagas Hütte und mit ihr reden.
+15t099n	Der versperrte Weg
+qbup29	Umgestürzte Birken versperren den Weg zum Sumpf.
+1rrlks3	Eine Säge finden
+7wcusu	Vielleicht hat Opa Grischa eine Säge? Er steht im Dorf (hinter Baba Jagas Hütte) vor seiner Brandruine.
+rok6b9	Die Säge schärfen lassen
+1cbqiit	Opas Säge ist verrostet. Dorfstraße → „Zum Schmiedehof“, Schmied Fjodor fragen.
+14cei7c	Opas Haus vorbereiten
+17ofkjf	Die Birken am Sumpfweg sind Opas Bauholz. Erst will er Teer – Oma Dusja auf der Dorfstraße hat welchen (siehe „Omas Gebiss“). Den Teer dann zu Opa bringen.
+127mq9x	Opas Birken zersägen
+h91hhm	Mit der geschärften Säge zur Birkensperre und auf die umgestürzten Birken klicken. Aus den Stämmen wird Opas Haus.
+1qeyf8t	Opas neues Haus
+9fjscr	Die Stämme liegen bei Opa. Jetzt wird gebaut: Stämme setzen, schälen, teeren.
+cs5e13	Zu Opa Grischa ins Dorf und mit ihm reden.
+j07n5p	Eine offene Rechnung
+6vkozw	Schmied Fjodor hat Opas Säge auf Pump geschärft. „Ich vergess nix, Junge.“
+1775ba2	Irgendwann will der Schmied was von mir. Wenn er’s sagt, weiß ich’s.
+1q96l9k	Oma hat ihr Gebiss verloren. Ohne das gibt’s keinen Teer.
+1kjsdw2	Das Gebiss finden
+115mdm3	Oma sagt, der Kater vom Popen hockt drauf. Also: Friedhof an der Kirche (Dorfstraße → „Zur Kirche“).
+1jq2zl4	Den Wächter loswerden
+c1v8mr	Etwas, das er nicht ablehnen kann
+1gfxsya	Mit der Angel zum Fischerhaus und auf den See klicken. Beim Drill dagegenhalten!
+1nnk1dc	Ein Kater will Fisch. Kusmitsch am Fischerhaus fragen – wenn er nichts rausrückt, selbst angeln.
+opq91z	Selbst ist der Mann
+g88g8d	Ein Stock
+110wd5e	Der Ast im Birkenwald ist frei. Anklicken – Petja springt danach.
+1fb0jic	Die Krähe im Birkenwald mit dem Apfel bewerfen (auf die Krähe klicken), dann ist der Ast frei.
+1pqz5rl	Im Birkenwald hängt ein gerader Ast – aber die Krähe sitzt drauf. Mit etwas bewerfen? An der Weggabelung wachsen Äpfel.
+vv0gdp	Eine Schnur
+1hrktf3	Auf der Dorfstraße hängt bei Tante Galja (rechts) eine Wäscheleine.
+3oweox	Dem Kater den Fisch geben
+ph4gxr	Mit dem Fisch zum Friedhof an der Kirche und auf den Kater klicken.
+fih48m	Das Gebiss zurückbringen
+wju7w6	Zu Oma auf die Dorfstraße.
+1unm1yz	Hoch hinaus
+10reing	Durch die Tür kommt man bei Baba Jaga nicht rein – nur durchs Fenster.
+1brp5tt	Jemanden mit einer Leiter finden
+16atjlu	Hinter Baba Jagas Hütte geht’s zum Dorf. Am Ofen der abgebrannten Ruine lehnt eine Leiter – Opa Grischa davor fragen.
+104ckz0	Den Preis bezahlen
+1crmvzm	Den Selbstgebrannten zu Opa Grischa am Dorfeingang bringen.
+1t18wa7	An die Flasche kommen
+1x43fxw	Kusmitsch kämpft mit dem Wels! Jetzt am Fischerhaus die Flasche auf dem Pier schnappen.
+rldmg9	Kusmitschs Flasche steht neben ihm auf dem Pier am Fischerhaus. Solange er hinschaut, keine Chance.
+1jc75hk	Für Ablenkung sorgen
+allpr8	Wenn der Wels unterm Pier an Kusmitschs Schnur anbeißt, vergisst der alles andere.
+11s4fxg	Ein Köder für etwas Großes
+qxgj8b	Würmer sammeln
+1y43mj	Vor Baba Jagas Hütte ist die Erde feucht – dort liegen fette Würmer.
+1qa5twk	Die Würmer an Kusmitschs Schnur hängen
+ika9uj	Vom Ufer aufs Schild „Unter den Pier“. Dort auf die Angelschnur klicken, die durch die Bretter hängt.
+1k9gn0	Der Joint
+g7wiiz	Baba Jaga will wissen, was drin war.
+au7b2i	Den Joint untersuchen
+17ecvs7	In Baba Jagas Hütte auf den Tisch klicken und den Joint dort zerlegen.
+uf9d3b	Der Joint-Stummel liegt im Birkenwald auf dem Baumstumpf. Mitnehmen und in Baba Jagas Hütte auf den Tisch legen.
+1ite03c	Das Ergebnis zeigen
+1skph53	Die blauen Pilzstücke Baba Jaga zeigen (auf sie klicken).
+1qlm2kn	Taschen
+12dtxef	Aufträge
+mgnms6	Karte
+1nwh25y	Gespräche
+y632fq	Noch hat niemand was gesagt.
+cyvn62	Klick auf einen Gegenstand, um ihn anzusehen.
+17xqbg	Leer. Wie mein Kühlschrank.
+1czt40e	Sammle Dinge ein, indem du sie in der Welt anklickst.
+l5id3v	Nächster Schritt
+1mfwn8a	Gerade nichts offen.
+1acfopt	Erledigt (
+gnh1fk	Du bist hier
+15cycp5	Besucht
+1kg0oi4	Noch unerkundet
+1i7ftxu	Hier gibt’s gerade nichts zu tun
+s7pl7b	.tipmore
+124h21l	.bbody
+t18ixv	[data-tab]
+ijdty8	.detail
+8wcmnq	Linksklick
+1f04dmj	Laufen, ansehen, benutzen, sprechen
+13i9b77	Klick / Leertaste im Dialog
+1pxeod4	Text weiter
+1imdgxs	ESC / Rechtsklick im Dialog
+1yixk6y	Gespräch überspringen
+2ejlvz	Schilder & Türen (Pfeil)
+1f0ga68	Zu einem anderen Ort
+1acyih7	Leertaste (halten)
+1vk5syq	Alles Klickbare zeigen
+b2wjv1	Tipp: Was soll ich als Nächstes tun?
+1eni4lt	Gesprächsverlauf
+bcu2cn	Stimmen an/aus
+uvh6z7	Vollbild
+1rsuknq	Menü / schließen
+wep9f2	Klein
+onobjm	Normal
+1n0h1du	Groß
+1qqvvxm	Sehr groß
+19wxd58	Langsam
+ic4bts	Schnell
+1p1jabm	Sofort
+166425m	Platz
+1m2u3wi	Wähl einen Platz.
+teto13	Erst spielen, dann speichern.
+vdr3ol	Spiel speichern
+qo36wm	Automatisch ·
+540b06	Auto
+1k8negi	Spielstand laden
+133q2xk	Aus
+no6co6	Nur Petja
+pmt3ah	Alle Figuren
+14bon50	Sprache · Language · Язык
+1fv1ng	Stimmen
+160zj11	Lautstärke Stimmen
+1x9bq05	Lautstärke Musik
+7850re	Lautstärke Geräusche
+12fd7pc	Sprüche beim Rumstehen
+13fqjqz	Textgeschwindigkeit
+e48qzf	Textgröße im Gespräch
+1hwgamf	Petja:
+4eza4l	So groß steht der Text in der Leseleiste.
+1157rug	Anleitung nochmal zeigen
+j4z771	Pause
+xse2tx	Menü
+12n5l2h	Weiterspielen
+vj6yuq	Zum Titelbild
+1jqkzhs	button[data-v]
+1qzrzkn	Wirklich? Nicht Gespeichertes geht verloren.
+5wjpaa	Nochmal klicken
+3ia8sd	button[data-o]
+9a6cnt	So klinge ich.
+12kg76j	So klingen wir alle.
+3k7xl5	button[data-s]
+x4aljn	[data-armed]
+1h3f6ue	.msg
+wrs743	ist belegt. Nochmal klicken zum Überschreiben.
+htohsd	Gespeichert auf Platz
+11jk25t	Speichern nicht möglich (Browser blockiert Speicher).
+1ks0kva	button[data-l]
+xiy0se	input[data-r]
+islgvr	So laut bin ich jetzt.
+## 09b-hinweise.js
+1vka7iu	Allein komm ich hier nicht raus. Wer wohnt freiwillig in so einem Wald? Jemand Unheimliches, wahrscheinlich.
+1bndvyn	Vom Birkenwald zur Weggabelung. Da stehen Schilder.
+1d9mqmv	Die Tür ist Deko. Aber ein Haus hat ja nicht nur Türen.
+10740eb	An der Hütte. Irgendwo weiter oben.
+nrxzdn	Die Hexe weiß was. Sie muss es nur sagen wollen.
+1416w83	In Baba Jagas Hütte.
+1q02i9	Goldene Sporen. Wer züchtet hier Pilze, und zwar ernsthaft?
+yrzw5j	Im Garten der Gnome.
+yji63c	Ein Pope, der seit 1993 „in der Stadt“ ist. Vielleicht ist er nie weit gekommen. Popen mögen Wodka …
+1n34h59	Hinter dem Banja.
+14gqht1	Der Pope ist wieder da. Popen haben Weihwasser. Meistens.
+1ap62nj	An der Kirche.
+kykhbk	Glut, die nicht ausgeht. Wer hier hat ein Feuer, das nie ausgeht?
+c0n3ng	Im Schmiedehof.
+nzyvmp	Was bringt jeden zum Heulen? Außer meinem Leben, meine ich.
+cgz5pr	Im Garten der Gnome wächst Gemüse.
+1mbvy5p	Die Zwiebel muss dahin, wo Nastja sitzt. Ohne dass sie’s merkt.
+1wvutrx	Jetzt muss Nastja nur noch Zeit für mich haben.
+1477yje	Im Banja, an der Bühne.
+12bszii	Sitzen bleiben. Phiole bereithalten. Nicht atmen.
+q27nq1	In der Lounge.
+amog0b	Alles beisammen. Fehlt nur noch die Hexe mit ihrem Tisch.
+1pjpcum	Die Gnome lassen niemanden umsonst rein. Was wollen die?
+sa0mth	Bei den Gnomen, am Schild zur Höhle.
+1oinuxp	Die Gnome wollen „Mehl“. Wer hat hier Mehl? Außer Oma.
+1va60qd	An der Alten Mühle.
+1ih02on	Der Müller will was aus dem Banja. Wer da wohl Bescheid weiß?
+1aenqcu	Im Banja, bei Madame.
+iwkkgt	Durch den Irrwald findet keiner allein. Wer kennt sich hier überall aus?
+1q55sho	Bei Baba Jaga.
+6zsa2j	Die Karte. Genau lesen. Und mitzählen.
+1a5fjfs	An der Alten Mühle geht’s in den Irrwald.
+1o4gkny	Madame hat eine Liste. Irgendwo gibt’s Frauen, die raus wollen. Aus was Nassem.
+1n8oamh	Im Sumpf, hinter der Birkensperre.
+kat1sp	Blaue Pilze wie im Joint. Die wachsen nicht in der Sonne.
+omsgzr	In der Höhle der Gnome.
+v0m5qj	Die Hexe wollte frische Pilze. Jetzt hat sie welche. Fast.
+1xl2jtn	Birken weg heißt: Säge her. Wer hier hat mal selbst gebaut?
+drncc7	Im Dorf, bei Opa Grischa.
+1av74aw	Rost bis auf die Knochen. Wer schärft hier Werkzeug? Jemand mit Feuer und Amboss.
+1levzvw	Opa will erst was für sein Haus, bevor ich seine Birken anfasse.
+lb9kaz	Auf der Dorfstraße, bei Oma Dusja.
+1lftkld	Opa ist einverstanden. Also: sägen.
+y0rg8v	An der Birkensperre.
+1acowy	Die Stämme liegen bei Opa. Der will jetzt bauen.
+4mcpag	Im Dorf, bei Opa.
+1cctjpm	Oma sagt, der Kater vom Popen hockt drauf. Wo hocken Kater vom Popen?
+1emlvq2	Auf dem Friedhof an der Kirche.
+y4az96	Ein Kater. Was mögen Kater? Außer Ärger.
+4ojleg	Am Fischerhaus.
+1eubcfc	Wenn mir keiner einen Fisch gibt, angel ich eben selbst. Fehlt nur die Angel.
+1d1hzok	Stock plus Schnur.
+rkeg7d	Ein schöner gerader Ast. Hab ich doch schon mal gesehen.
+1qnwihw	Im Birkenwald, wo ich aufgewacht bin.
+wcuama	Was Langes, Dünnes, Reißfestes. Hängt bestimmt irgendwo rum.
+1jkuy8n	Auf der Dorfstraße.
+1o1l5y9	Fisch ist da. Kater wartet.
+mumwbj	Oma wartet. Mit leerem Mund.
+1fea2rw	Ich brauch was zum Hochklettern. Wer hat sowas rumstehen?
+obhet3	Im Dorf hinter Baba Jagas Hütte.
+vz0xn6	Opa will was zu trinken. Was Starkes.
+141mkpn	Kusmitsch passt auf seine Flasche auf. Solange er hinschaut, wird das nix.
+1eggd5y	Was lenkt einen Angler ab? Ein richtig großer Fang.
+fdjrs5	Unter dem Pier.
+oa0nrp	Fische wollen was Lebendiges. Und Würmer gibt’s, wo’s matschig ist.
+z80eot	Vor Baba Jagas Hütte.
+1u1kizy	Kusmitschs Schnur hängt durch die Bretter. Von unten käme man ran.
+1vc8s9a	Was war eigentlich in dem Joint?
+1i6c2w1	Die Hexe wollte wissen, was drin war.
+vt5zyb	Wo muss ich hin?
+4wkguy	Lösung zeigen
+## 11-ui.js
+1u9r166	Tipp
+1pc6uov	Zeigen
+1yx46s	Leertaste
+2qv8kh	.interactive[data-id]
+1gn71of	image.spr
+1np2yq1	Petja denkt noch nach… (
+36q0h	s)
+1wtepwa	Hm. Keine Ahnung. Natürlich.
+b60fmr	Vielleicht red ich nochmal mit allen. Oder ich schau mich genauer um. (Leertaste zeigt alles Klickbare.)
+1u9y4nt	Mal überlegen...
+1ouguo2	Na gut. Denken. Muss ja.
+oyyg2s	Was war nochmal der Plan? Ach ja.
+1b3ll3n	Es geht gerade um:
+17iju69	Als Nächstes:
+1bj89zf	Oder ich kümmere mich erst um:
+dplmny	Und wenn ich nicht weiterkomme: Leute fragen. Mehrmals. Irgendwer quatscht immer.
+1ym367f	Eingesteckt:
+ehbpqs	Neuer Auftrag:
+1m4qraz	Auftrag erledigt:
+y9n0av	Aufträge aktualisiert
+1qpsxb2	So spielst du
+krz0uk	Klick in die Welt
+185j6pj	, um Petja laufen zu lassen. Klick auf Dinge und Leute, um sie anzusehen, zu nehmen oder mit ihnen zu reden.
+1qs2wmf	Schilder und Türen
+1gai0sc	führen zu neuen Orten. Der Mauszeiger wird dort zum Pfeil.
+p37y2o	Leertaste halten
+1ueo5bp	zeigt alles, was man in der Szene anklicken kann.
+5pehs8	Kommst du nicht weiter?
+16jsvkc	Der Tipp-Knopf (H) sagt dir, was als Nächstes dran ist. Alle Aufträge stehen unter
+1jcnsqs	Los geht's!
+## 13-komfort.js
+1luxuf4	.tbox
+1lw6a5o	Angeln
+4c4ksb	*zieht einfach mit aller Kraft* ...Oh. Ein Fisch. Hat sich wohl selbst erbarmt.
+z0zgdx	Der Wels
+15dwk9k	*hält die Schnur einfach fest und wartet*
+9wucc9	Joint zerlegen
+1b0ox3u	*zupft ganz langsam alles auseinander* ...So. Neun Stück. Alle blau angelaufen.
+1sbk7mt	Beim nächsten Versuch kannst du „
+1gjd47c	“ überspringen.
+p94er5	Klappt nicht so recht? Kein Problem – du kannst das Minispiel auch überspringen.
+owc3r8	Nochmal versuchen
+opgpm2	Überspringen
+15slwie	Mhh. Keine von denen sieht nach Madames Liste aus. Zu alt, zu nass oder zu tot.
+1d0a7yy	Vielleicht sitzen beim nächsten Mal andere hier. Kurz raus und wieder rein. Die wechseln sich bestimmt ab.
+17ni6id	Wenn ich lange genug hinschaue, sieht das Netz aus wie mein Lebenslauf. Viele Löcher, nix gefangen.
+1ek8ca1	Auf der Fensterbank steht noch ein Kaktus. Der hat als Einziger durchgehalten.
+oz0x77	Aus dem Fenster riecht es nach Kohlsuppe. Und nach Vorwürfen.
+1mmztjv	Ein Haus ohne Haus. Nur Ofen. Hat was Ehrliches.
+1h3k3qb	Im Schaufenster liegt eine Dose Sprotten von 1991. Die ist bestimmt noch gut. Bestimmt.
+zrxcz1	Durch einen Spalt sieht man einen Fernseher. Er läuft. Ohne Strom. Ich frag nicht.
+f0egzg	Ich könnte was reinwerfen und mir was wünschen. Aber ich hab nur Dreck an den Fingern. Und keine Wünsche, die ein Brunnen erfüllen kann.
+igwo2j	Die Zwiebel glänzt so, die putzt bestimmt jemand. Jeden Tag. Aus Trotz.
+loh261	Gerade hat drinnen jemand „Tor!“ gebrüllt. Seit 1987 vermutlich auch.
+1k3eynf	Die Socken an der Leine sind trockener als meine. Neidisch bin ich trotzdem nicht. ...Doch.
+1prvigw	Wenn ich jetzt läuten könnte, würde ich’s machen. Nur um zu sehen, wer rauskommt.
+1w99d7m	Ruhig hier. Keiner will was von mir. Fast schon angenehm.
+12lprfw	Ein Mahnmal für alle, die „mach ich morgen“ sagen. Also für mich.
+1k6kgup	Ich würd ja aufräumen. Aber dann wüsste Kusmitsch nicht mehr, wer er ist.
+1v2wht3	Auf einem Glas steht „Nicht öffnen“. Auf dem daneben „Wirklich nicht“.
+nv5g6g	Er zuckt, wenn ich vorbeigehe. Wir sind uns einig: Wir mögen uns nicht.
+120uhc4	Wenn man den Kohl ganz leise anklopft, klingt er wie eine Trommel. Ich klopf lieber nicht.
+15lg3jf	Aus der Höhle kommt kalte Luft. Und ein Geruch wie aus dem Keller meiner Oma.
+1lv1m5	Jetzt läuft Schlager. Ganz leise. Ich geh lieber weiter.
+ntpzrh	Die leuchten im Takt. Als würden sie mich auslachen.
+ve20r4	Das weiße Ding ist näher gekommen. Ich tu so, als hätte ich nichts gesehen.
+1gjz7xi	Rauschen, knarzen, drehen. Wie mein Kopf nach Wowas Party.
+16nc551	Ein Blatt fährt die Rinne runter. Es hat mehr Ziel im Leben als ich.
+o6144q	Ein Frosch guckt mich an. Ich guck zurück. Unentschieden.
+1lti0qc	Einer hat einen Riss. Wie mein Rücken nach dem Banja.
+1lltruf	Auf einem Sack steht „MEHL“. Mit drei Ausrufezeichen. Sehr überzeugend.
+dl7j6y	Mit einem Rad kommt der nicht weit. Kenn ich.
+## 14-sound.js
+new829	assets/sound/
+## 16-schmiede.js
+yurvba	Ein Schmiedehof. Strohdach, Brunnen, Holzstapel, ein geschnitztes Pferd auf dem Giebel.
+1hf97jf	Die Esse glüht noch. Vom Schmied keine Spur. Wahrscheinlich holt er Bier. Würd ich auch.
+h01pe5	Zur Dorfstraße
+ru84yx	Schmiede
+1u1s7ma	Eine Schmiede aus dicken Stämmen. Offen, warm, und es riecht nach Eisen.
+1b04ad0	Wenn hier einer was repariert kriegt, dann der Schmied. Wenn er mal da wäre.
+12y0fxt	Auf dem Giebel sitzt ein geschnitztes Pferd. Soll Glück bringen.
+swg17h	Mir hat bisher nur Pech was gebracht. Aber das gratis.
+5xo35d	Esse
+1eajll5	Die Kohle glüht noch. Der Schmied kann nicht weit sein.
+cf04hq	Ich halt mal die Hände hin. ...Herrlich. Das Einzige im Märchen, das mich nicht beißen will.
+16xrxjm	Amboss
+12b2xv7	Ein Amboss. Schwer, schwarz, ehrlich.
+1eax3ow	Den klaut keiner. Ich hab es versucht. Gedanklich.
+osj910	Hufeisen
+3fyqc	Ein Hufeisen über der Tür. Mit der Öffnung nach oben, damit das Glück nicht rausfällt.
+hpq9t2	Bei mir ist es schon lange rausgefallen.
+if6coi	Heuhaufen
+1l3jbtp	Ein Heuhaufen. Riecht nach Sommer und nach Mäusen.
+1eu9nrf	Wenn ich mich jetzt reinlege, steh ich erst nächstes Jahr wieder auf.
+104to2e	Fass
+nhpew9	Ein Fass. Drin ist Wasser. Leider.
+cio4rj	Brunnen
+1krpc48	Ein Brunnen mit eigenem Dach. Hat mehr Dach als ich.
+1rmorv3	*ruft rein* Hallo? ...Nur Echo. Und ein Frosch, der genervt guckt.
+fw87wt	Holzstapel
+z5oofz	Ordentlich gestapelt. Jemand hier hat sein Leben im Griff.
+we01z9	Ich nicht. Aber das wussten wir ja.
+802kei	Schild: Zur Dorfstraße
+wnblnr	Schild: Zum Schmiedehof
+nv9gpe	Hier riecht es nach Eisen, Heu und Arbeit. Zwei davon mag ich.
+o36of5	Der Brunnen gluckert. Ich krieg Durst. Auf Kwas.
+y3sp6u	Irgendwo hämmert einer. Oder mein Kopf. Schwer zu sagen.
+n51prr	Das Pferd auf dem Giebel guckt, als wüsste es was.
+tz8brw	Der Schmiedehof. Die Esse glüht immer noch.
+14qgjx	Wieder beim Schmied. Fjodor hämmert. Fjodor hämmert immer.
+4wo6ie	Ein paar Funken springen hoch. Ich spring auch. Nach hinten.
+buqgf3	Der Frosch ist immer noch da. Wir sind jetzt quasi Kollegen.
+1k05dg6	Schmiedehof
+## 18-objekte-real.js
+1gf3kj6	.smoke
+## 20-akt3.js
+2bot0f	Vater Ignati
+wvun74	Schmied Fjodor
+10dye6o	Papierfilter
+174dctg	Der Filter vom alten Joint. Hat alles mitgemacht. Wie ich.
+1ln0rri	Ur-Spore
+1cbf2kt	Goldene Sporen aus dem Pilzbeet der Gnome. Glitzern. Riechen nach Keller und Zukunft.
+1nq5w5r	Leere Phiole
+11umkez	Von Baba Jaga. Für eine echte Träne. Fallen lassen ist verboten.
+m8ajt7	Nymphenträne
+169ctn	Eine echte Träne von Nastja. Dank einer Gnomzwiebel. Ich bin kein guter Mensch.
+1bg7zaw	Gnomzwiebel
+p45217	Die schärfste aus Schnobbels Beet. Schon durch die Tasche tränen mir die Augen.
+pv82ol	Weihwasser
+1mmsvbg	Von Vater Ignati. „Zur Haltbarkeit“ mit Wodka gestreckt.
+gokh3e	Glut in der Dose
+2sotv7	Geweihte Glut aus Fjodors Esse. Geht nicht aus. Nicht mal im Sumpf.
+bigh3w	Ausweg-Joint
+1lhpdw5	Mein Weg nach Hause. Hoffentlich.
+1omd8b4	[data-a3]
+1p91qn4	Nastja macht sich frisch. Ich hab vielleicht eine Minute.
+16oeur8	(Und die Lüftung da oben bläst direkt aufs Sofa …)
+1xldkb5	WEG!
+17h9qud	Entschuldigung … Sind Sie zufällig der Pope aus dem Dorf?
+117jx9q	*hicks* Vater Ignati. Zu Diensten. Ich bin nur kurz hier. Auf ein Bier.
+1k3fyzj	An Ihrer Kirche hängt ein Zettel. „Kollege kommt gleich wieder.“ Von 1993.
+1lj6fmc	Ehrlich gesagt weiß ich das hier auch nicht so genau.
+19rkiga	Herr im Himmel. Die Glocken! Der Kater! Meine Gemeinde!
+1m07jq2	Ihre Gemeinde besteht aus einer Oma und einem Kater. Beide sauer.
+10chrn2	Ich muss zurück. Aber durch den Irrwald? Den find ich nüchtern nicht. Und nüchtern war ich zuletzt 1993.
+rx9p3g	Links, links, rechts, geradeaus. Nur halt rückwärts. Also: geradeaus, rechts, links, links.
+4t5chz	Gott segne dich, mein Sohn. Wir sehen uns an der Kirche. Ich nehm nur noch einen für den Weg.
+19y1265	Mein Sohn! Die Kirche steht noch. Der Kater auch. Er ist dick geworden.
+km0mym	Ich bräuchte Glut aus einer geweihten Esse. Nur hat der Schmied keine geweihte Esse.
+1htzpju	Fjodor? Dem schulde ich seit 1993 die Weihe seiner Esse. Er hat mich jedes Jahr dran erinnert. Laut.
+13bmeqd	Hier: Weihwasser. Echtes. Ich hab nur ein bisschen Wodka reingetan. Zur Haltbarkeit.
+zjylps	Natürlich.
+vhnk7o	Bring es ihm. Sag ihm: Damit sind wir quitt.
+5b1yff	Grüß Fjodor von mir. Und sag ihm: Quitt heißt quitt.
+v0xgpj	Der Kater sitzt jetzt auf dem Altar. Ich lass ihn. Er ist länger in der Gemeinde als ich.
+1wdrcgo	Möge der Herr dich nach Hause führen. Und wenn nicht, gibt’s im Banja Wodka.
+9s4lgc	Pass auf die Dose auf. Und auf deine Finger. Neue Schulden? Schreibbereitschaft.
+juwr33	Schöne Grüße von Vater Ignati. Weihwasser. Er sagt: quitt.
+1ompkd3	*kippt es in die Esse* *ZISCHHH*
+if0oyk	… Riecht nach Wodka.
+1s0q74j	Zur Haltbarkeit, sagt er.
+b0nqys	Dann ist es echt. Hier – Glut in der Dose. Die geht nicht aus, nicht mal im Sumpf.
+5ukcwf	*nimmt die Dose* Heiß. Natürlich.
+mydlt	*wischt mit dem Ärmel einen Kreidestrich von der Wand* Quitt. Aber ich bleib in Schreibbereitschaft.
+v9jfb7	Ich bräuchte Glut. Glut, die nicht ausgeht.
+nkm2uc	Aus meiner Esse? Die brennt seit dreißig Jahren ungeweiht. Der Pope sollte sie segnen. 1993. Dann ist er „in die Stadt“.
+1tn77t0	Seitdem schuldet er mir die Weihe. Ohne Segen keine Glut, die nicht ausgeht.
+1la21ql	Und wenn ich Ihnen den Segen bringe?
+5ack63	Dann kriegst du die beste Glut im ganzen Märchen.
+2qktxq	Was glotzt du? Noch nie einen Schmied gesehen?
+4x1lmc	Doch. Im Fernsehen. Die waren kleiner.
+o90tj3	Hufeisen, Nägel, Sensen. Keine Wunder. Für Wunder geh zur Hexe.
+1924g0c	Ich hau auf Eisen. Nicht auf Leute. Meistens.
+14z0858	Wer bei mir nicht zahlen kann, kommt an die Wand. Mit Kreide. Schreibbereitschaft.
+102g00w	Pilzbeet
+1nc5a2m	Das Beet hat mir schon genug gegeben. Die Pilze gucken beleidigt.
+yog525	Ein Pilzbeet. Die Pilze gucken mich an. Ich guck lieber weg.
+tcznya	Finger weg, Langer! Das ist Gnomgold.
+1u3mu8v	Die Ur-Spore? Knolle schickt dich? *seufz*
+1twfo3y	Die goldenen Pilze sind’s. Die tauchen auf und sind wieder weg, schneller als du gucken kannst.
+sf2ep	Fünf goldene, dann hast du genug Sporen. Aber pflück keinen falschen, sonst kriegt das Beet schlechte Laune.
+1mnkcro	Ein Pilz-Reaktionstest. Mein Lieblingssport. Direkt nach Liegen.
+9adcpp	Lüftung
+uwur4d	Da drin liegt jetzt eine Zwiebel. Respekt an die Lüftung.
+hnft5l	Die Lüftung bläst direkt aufs Sofa. Aber hier drin sieht Nastja alles.
+1c7ec5b	(Von draußen wär das unauffälliger. Hinterm Banja.)
+90f06r	Eine Lüftung. Bläst warme Luft direkt aufs Sofa. Wer baut sowas?
+120elm0	Oma, haben Sie zufällig eine Zwiebel? Eine richtig scharfe?
+1b4uprg	Meine Zwiebeln sind alle in der Suppe, Junge. Aber die Gnome züchten welche. So scharf, dass der Kohl daneben weint.
+18t2zou	Fwiebeln? Alle in der Fuppe. Die Gnome haben welche. Ffarfe.
+1op9ghz	Nastja … ganz komische Frage. Könntest du mal weinen? Nur eine Träne?
+1bafqpe	Weinen? Süßer, ich hab dreihundert Jahre im Sumpf gelegen. Ich hab keine Tränen mehr. Nur noch Schlamm.
+11qh08a	(Eine echte Träne von einer, die nie weint. Na super.)
+1hm4wmc	(Irgendwas, das jeden zum Heulen bringt … Zwiebeln. Bei den Gnomen wächst doch Gemüse.)
+6n2mq1	Privattanz? Frag Madame, Süßer. Die führt das Buch.
+zftx2y	Madame, ich bräuchte nochmal einen Privattanz. Mit Nastja.
+1p416ca	Nochmal? Süßer, du wirst ja süchtig.
+1409zi7	Na gut. Für meinen besten Rekrutierer. Die Lounge ist frei.
+191fxwf	So, Süßer. Ich bin da. Hände aufs Sofa.
+1qsw556	(Nicht atmen. Die Lüftung arbeitet schon.)
+42l8zp	(Moment. Wenn ich mit einer Zwiebel in der Hand in die Lounge gehe, merkt Nastja das sofort.)
+120srut	(Die Lüftung der Lounge muss ja irgendwo nach draußen gehen. Hinterm Banja vielleicht?)
+175z4mj	Die Tür ist offen. Drinnen riecht es nach Weihrauch. Und nach Wodka.
+1vc5cmw	Jetzt glüht sie geweiht. Und riecht leicht nach Wodka.
+s6oeuw	Fjodors Esse. Die Kohle glüht. Aber irgendwie … ungeweiht.
+1vox9qc	Hier hab ich meinen Ausweg gebaut. Ein Satz, den ich nie sagen wollte.
+1hjme9a	Na? Ur-Spore, geweihte Glut, eine echte Träne. Und der alte Filter. Leg alles auf den Tisch, Bürschchen.
+rtkrs0	Und dreh ihn ordentlich. Ein schiefer Joint bringt dich nur ins nächste Märchen.
+1m8indw	Hier bau ich den Ausweg-Joint. Sobald ich alles hab.
+6sekuh	Ur-Spore, geweihte Glut, echte Träne. Und den Filter. Vorher fass ich nichts an.
+nt3vax	Fünf goldene Pilze. Die Sporen glitzern. Riecht nach Keller und Zukunft.
+142nk9x	Gut. Und jetzt raus aus meinem Beet, Langer.
+1ijgdly	Klick die GOLDENEN Pilze an, bevor sie verschwinden! Braune und rote nicht.
+x1q3l7	Gold:
+10qu4gk	Falsch:
+cl4zc9	Abbrechen
+mf60l1	Erwischt! Noch
+15b96rg	Fliegenpilz! Finger weg!
+14d4mjm	Das ist ein ganz normaler Pilz.
+960ale	Das Beet ist beleidigt.
+16xbd6s	Die Pilze waren schneller. Peinlich. Gegen Pilze.
+b759vh	Leg den Filter ans rechte Ende des Papiers.
+1hny1s9	Erst der Filter, Bürschchen!
+wuwuer	Erst die Ur-Spore drauf!
+l6y15a	Jetzt die Träne!
+1p2f3my	Erst rollen!
+u7w7tt	Jetzt anzünden!
+1blg7ae	Ur-Spore aufs Papier
+1kbh2ve	Ein Tropfen Träne
+99zom7	Glut an die Spitze
+1d25k29	Später
+1fb9kk6	Jetzt anzünden: Halt die Glut an die Spitze links.
+5vxtop	Jetzt die Ur-Spore aufs Papier streuen.
+u003m2	Ein Tropfen von der Träne dazu.
+75j74v	Jetzt rollen: Von links nach rechts übers Papier ziehen.
+1x433s5	Später? Das Märchen wartet nicht ewig, Bürschchen. … Na gut, es wartet doch. Es hat ja sonst nichts vor.
+184iymf	Ausweg-Joint bauen
+15mb7eg	Fertig. Der schönste Ausweg-Joint, den ich je gesehen hab. Und ich hab viele gesehen.
+1s0hhdx	Zieh, Bürschchen. Und grüß mir die echte Welt.
+41lziu	Na dann. Auf den Ausweg.
+3l7nvd	*hust* … *HUST*
+6l7jr0	Sofa. Samstag. Meine Wohnung.
+1gf636a	Ich bin … zurück?
+14q9zsa	Hör zu: Ich hab was Neues. Ganz neu. Ganz krass. Kräuter von Oma, Bruder!
+49i6n7	Wowa.
+1wso381	Ja?
+52kn4i	Raus.
+bh7ybj	Aber da sind so lustige blaue Pilze drin …
+1o42k99	*starrt auf die Pilze*
+17loldt	… Na super.
+x04l6m	der Typ auf dem Sofa
+e9s0xt	der Grund für alles
+yqmuoj	Hexe, Köchin, Lebensberaterin
+ithufr	Wissenschaft
+1vplc49	Grobnik & Opa Schnobbel
+3mprlw	Gnome, Wegezoll
+o69wi	Kusmitsch
+11yht1k	Fischer, Selbstbrenner
+1yfvote	Gebiss, Teer, Zwiebel
+1ozkaow	Leiter, Säge, neues Haus
+1r02lfq	Star des Banja, weint nie
+17lr88o	im Heu seit 1993
+1tpg0m0	hat seine Weihe
+gsxn11	Die Krähe
+66n915	Krah
+1yvqrsd	Der Kater vom Popen
+1ovdqwz	spielte sich selbst
+1fd4kfa	und der Verfluchte Birkenwald
+al9u09	Ende.
+14joj5s	… oder?
+108ptcu	Mitwirkende
+1pjg6lu	Keine Pilze wurden verletzt
+4meyi1	Außer neun blauen. Und fünf goldenen.
+1ck87f9	Und einer Zwiebel.
+49l39w	Danke fürs Spielen!
+c85bu	Weiter umsehen
+## 21-opa-haus.js
+1psbhbj	Rostige Säge
+1ufq88r	Opas Säge. Hat den Brand überlebt. Schneiden tut sie aber nur noch Grimassen.
+1d2czyd	Opas Säge, vom Schmied geschärft. Ausgeliehen. Gegen ein ganzes Haus.
+1tsx7x2	Tante Galjas alte Wäscheleine. Riecht nach Kernseife. Hält bestimmt einen Fisch.
+1q0fw55	So. Dann wollen wir mal. *setzt die Säge an*
+bx46xm	*ganz weit hinten* *PFIIIIFF* EEEY! WO WILLST DU HIN?!
+1jl0bsg	…Opa? Das Dorf ist auf der anderen Seite vom Wald!
+6uju4d	Ich hör meine Säge! Die quietscht, wenn sie an fremdes Holz geht!
+1jddwn1	Das ist MEIN Bauholz! Erst bringst du mir den Teer, dann wird gesägt. Abgemacht ist abgemacht!
+4vtb7u	(Wie macht der das?)
+c7pabi	*aus der Ferne* JUNGE! FINGER WEG VON MEINEN BIRKEN!
+98nn75	*aus der Ferne* Ich seh dich! …Na gut, ich seh dich nicht. Aber ich WEISS es!
+lwoj	(Keine Chance. Erst Opa den Teer bringen. Teer hat Oma Dusja auf der Dorfstraße.)
+4qm2gv	Hier lagen mal Opas Birken. Jetzt wohnt er drin.
+gqx7gf	*kratz* ... *kratz* ... *quietsch*
+fjnp1w	Die Säge rutscht nur drüber. Die ist so rostig, die schneidet nicht mal Butter.
+78navy	Mit dem Rostding wird das nix. Die muss jemand schärfen.
+19rh365	(Wer schärft hier Werkzeug? Jemand mit Feuer und Amboss …)
+17aec4m	Ein Schmied! Auf der Dorfstraße zeigt doch ein Schild zum Schmiedehof.
+1raet4q	Umgestürzte Birken. Tonnenweise. Da komm ich nicht durch.
+6awkdz	Muss ich aber auch gerade nicht. Glaub ich.
+hqciu0	Mhh … vielleicht hat Opa eine Säge. Der hat sein Haus ja mal selbst gebaut.
+17scfns	Opa Grischa im Dorf. Wer sein Haus selbst abbrennt, hat es vorher auch selbst gebaut. Der hat bestimmt Werkzeug.
+rcxehu	So. Mit Opas Segen. *säg* ... *säg* ... *keuch* ... *säg*
+jmpupt	Geschafft. Der Weg zum Sumpf ist frei.
+kuye1n	Und jetzt … die Stämme zu Opa. Alle. Mein Rücken weiß es schon.
+ou63gf	Holzreste
+1g5h78i	*schlepp* … *schlepp* … *schlepp* …
+2440l2	Na endlich! Die Stämme sind da. Jetzt wird gebaut, wie früher:
+1vjnx4k	Stamm auf Stamm. Dann die Rinde runter, sonst frisst der Käfer das Haus. Und zum Schluss Teer in die Fugen.
+1dt9omh	*Zwei Tage später*
+oj8z73	Na bitte. Ein Haus! Aus echten Birkenstämmen! Und der Ofen war ja schon da.
+15lnr5b	Mein Rücken ist jetzt auch abgebrannt.
+dq5tiz	Die Säge behältst du. Hast sie dir verdient. Und jetzt ab in deinen Sumpf, der Weg ist ja frei.
+61hzwo	Klick, wenn der Stamm genau über der Wand hängt!
+1tn49pm	Schälen: Maus gedrückt halten und das Zugmesser über die Stämme ziehen.
+1wonws0	Sitzt!
+ifx787	Wie angegossen!
+pkqva	Opa nickt.
+796yn	Gerade wie ein Lineal. Fast.
+15f9ujp	Noch einer!
+fp5kzd	Daneben! Nochmal.
+182tzlr	Der rollt weg … Nochmal!
+1oyq2bp	Opa: „Mit Gefühl, Junge!“
+weo7qq	Rinde ab:
+j51g48	Fugen geteert:
+mo35of	Stämme:
+om7ac7	Phase 1 von 3 – Stämme setzen
+zefxb4	Phase 2 von 3 – Schälen
+1734aoe	Phase 3 von 3 – Fugen teeren
+12lhhyk	Geschafft
+1f61wzn	Teeren: Mit dem Pinsel den Teer in die Fugen streichen.
+13wpy2x	Fertig! Ein echtes Blockhaus.
+aptq69	Pause? Na gut. Die Stämme laufen nicht weg. Sag Bescheid, wenn du weitermachen willst.
+1wli8mm	Opas Haus bauen
+rp62a0	Opa! Birkenteer. Von der Dusja. Gegen Rheuma, Läuse und Männer.
+ois7u0	Ha! Teer! Jetzt verfault mir das Holz nicht, bevor’s ein Haus wird.
+9oirqt	*schmiert die Ofenecke ein* So. Der Platz ist vorbereitet. Jetzt darfst du meine Birken sägen.
+1nitlzg	Säg sie klein und schlepp die Stämme her. Dann bauen wir. Und der Weg zu deinem Sumpf ist auch gleich frei.
+m7vbni	Opa, haben Sie zufällig eine Säge? Am Sumpfweg liegen Birken quer.
+15wij5h	Eine Säge? Hab ich. Lag im Ofen. Der Ofen hat das Feuer überlebt, die Säge auch. Halbwegs.
+fa1az6	*kramt in der Asche* Da. Ein bisschen rostig. Rost ist nur Patina, sagt mein Schwager.
+1ipu461	Aber Moment. Die Birken am Sumpfweg? Die hat der Sturm MIR hingelegt. Das ist mein Bauholz für ein neues Haus!
+1vn4hok	Und wenn ich die für Sie säge? Dann ist mein Weg frei und Sie haben Ihr Holz.
+1lr9r	Abgemacht! Aber erst wird hier alles vorbereitet. Ohne Teer verfault das Holz, bevor’s ein Haus wird.
+6bug66	Teer hat die Dusja auf der Dorfstraße. Erst den Teer, DANN die Birken. Und wehe, du sägst vorher. Ich hör meine Säge. Auf zwei Kilometer.
+dws0af	*bekommt eine rostige Säge*
+zb4nyo	Teer? Moment.
+1ws5iq5	*holt Omas Birkenteer aus der Tasche*
+1ija8su	…Du läufst mit TEER rum? Wer läuft denn mit Teer rum?
+1r3h6q8	Lange Geschichte. Mit Gebiss.
+1i2ww31	*schmiert die Ofenecke ein* Na dann. Abgemacht ist abgemacht. Säg los, sobald die Säge wieder schneidet.
+lz08f9	Opa, die Säge schneidet nicht. Die ist komplett verrostet.
+1xf597t	Patina, Junge! …Na gut. Rost.
+go8dkq	Geh zum Fjodor in den Schmiedehof. Die Dorfstraße runter. Der schleift alles. Sogar Schwiegermütter.
+103rp7g	Erst den Teer, dann die Birken. Ohne Teer kein Haus.
+6sojb8	Die Dusja hat Birkenteer. Rückt aber nix raus, ohne vorher zu jammern. Hör ihr halt zu.
+9737i	Die Dusja jammert über ihr Gebiss. Seit Wochen. Hilf ihr, dann kriegst du den Teer.
+cbbh5w	Die Stämme liegen bereit. Ärmel hoch, Junge!
+12bg28a	Der Teer ist drauf. Jetzt die Birken! Säg sie klein und bring mir die Stämme.
+1bu5u9w	Ein Haus! Mit Ofen! Der Ofen war ja schon da, aber jetzt hat er wieder was zu tun.
+jk5ih	Diesmal pass ich auf. Kein Samowar mehr im Bett.
+17bo8ev	Und der Selbstgebrannte?
+rn5f7t	Der bleibt. Man muss ja nicht übertreiben.
+1w8rby8	Wenn du mal ein Dach überm Kopf brauchst, Junge: Klopf an. Aber nicht zu fest. Ist frisch geteert.
+w74v0d	Opas neues Haus. Krumm, aber es steht. Und ich hab’s gebaut. Halb. Ein Viertel.
+1gopimy	Und es riecht nach Teer! Wie ein richtiges Zuhause.
+1soqkfl	Hier soll also das neue Haus hin. Der Ofen steht schon. Der Rest liegt am Sumpfweg.
+131ep28	Eine Wäscheleine. Lang, dünn, reißfest. Perfekte Angelschnur.
+187d367	*knotet die Leine ab* … Die Unterhose lass ich hängen. Aus Respekt.
+hs9lnq	*von drüben* Nimm ruhig, Junge! Die Galja hat mir meine Leine auch nie zurückgegeben!
+1s6pj1t	Die Wäsche liegt jetzt im Gras. Galja wird sich freuen.
+3txw9s	Guten Tag. Könnten Sie mir die Säge schärfen? Die ist von Opa Grischa.
+g60e7t	Vom Grischa? Der hat damit sein Haus … nein, das war der Samowar.
+1iolus8	*dreht die Säge* Rost bis auf die Knochen. Gib her.
+1kjd4rx	*schleif* … *funk* … *schleif* … *ZING*
+7k4wqu	So. Die schneidet jetzt sogar Ausreden.
+v98v4v	Was bin ich Ihnen schuldig?
+1bpwf4x	Hast du Geld?
+gcs1af	Nein.
+1k8ch86	Dann schreib ich’s an. Schreibbereitschaft, Junge.
+wcw6rn	Schreib… was?
+v47g1k	Schreibbereitschaft. Ich hab immer Kreide in der Schürze. Ich vergess nix. Irgendwann brauch ich was von dir. Und dann kommst du.
+12ketwe	Weihwasser, Junge. Dann sind wir quitt. Bis dahin: Schreibbereitschaft. Vorher gibt’s keine Glut.
+jlx5wl	Ah, mein Schuldner! Weißt du noch? Die Säge. Angeschrieben. Schreibbereitschaft.
+1ulzqo5	Jetzt ist es so weit. Meine Esse brennt seit 1993 ungeweiht. Der Pope sollte sie segnen. Dann ist er „in die Stadt“.
+1ijdewr	Bring mir Weihwasser. Dann sind wir quitt. Und du kriegst Glut, die nicht ausgeht, obendrauf.
+piy6w9	Weihwasser. Von einem Popen, der seit dreißig Jahren in der Stadt ist. Klar.
+12mymrq	Die Säge schneidet? Gut. Und vergiss nicht: Du stehst bei mir in der Kreide.
+15fwgw2	*klopft auf die Schürze* Schreibbereitschaft.
+## 22-banja-hof.js
+12av5uy	Hinterm Banja. Kisten, leere Flaschen, ein Heuhaufen. Und die Lüftung pustet Parfüm in den Wald.
+ljov2d	Moment. Der Heuhaufen … schnarcht.
+8yelf4	Zum Eingang
+tugmaw	Hinterhof
+gqo18w	r-banjaH
+g6otuy	r-banjaV
+1jr3sxm	interactive painted exit
+xpvs9h	Schild: Hinterhof
+104pnlp	Schild: Zum Eingang
+yzemij	Rückwand
+1cxc0wq	Die Rückwand vom Banja. Durch die Bretter wummert der Bass.
+1wm39ws	Die Wand tanzt mehr als ich.
+1mfdhyn	Hintertür
+7927lm	Die Hintertür. Abgeschlossen. Hier tragen sie nachts die Gäste raus, schätze ich.
+14pkp0y	Leere Flaschen
+1yh2h6c	Kisten voller leerer Wodkaflaschen. Das Banja hat einen guten Monat.
+jf53u0	Oder einen schlechten. Kommt drauf an, wen man fragt.
+vlndc	Da ist noch eine Kuhle im Heu. In Popenform. Dreißig Jahre tief.
+1lhki1w	Lüftung der Lounge
+1xdy4id	Da drin steckt eine Zwiebel. Die Lüftung riecht jetzt wie ein Gemüsemarkt.
+1eheto1	Die Lüftung der Lounge. Bläst direkt aufs Sofa, hat Nastja gesagt.
+1e5zvfp	*quetscht die Zwiebel durchs Gitter* … Rein mit dir.
+13pnp5u	Jetzt nur noch einen Privattanz buchen. Und nicht atmen.
+1jm8t1n	Die Lüftung der Lounge. Warme Luft, Parfüm und Bass.
+1wq3e8s	(Wenn hier was richtig Scharfes reinkäme … dann heult da drin jeder.)
+1pmw2fj	Eine Lüftung. Warme Luft, Parfüm und Bass. Da drin muss die private Lounge sein.
+1eie6c9	Im Heu liegt ein Pope. Hinter einem Stripclub. Und schnarcht.
+lqyj08	Ich lass ihn schlafen. Wer so schnarcht, hat es sich verdient.
+nvzwjw	*leise* Hallo? …
+1gpicls	*Schnarch*. Okay. Der wacht nicht mal auf, wenn die Kirche einstürzt.
+lknuhq	*murmelt im Schlaf* …nur ein blaues … Pilzchen … zum Entspannen … nur kurz die Augen zu …
+17ki70i	(Ein Pope, der von blauen Pilzen träumt. Ich frag lieber nicht.)
+uq9txt	Vater? … VATER!
+xmi44c	*schnarch* … nur noch fünf Minuten …
+1vtbank	*kitzelt ihn mit einem Strohhalm an der Nase*
+pztnc	HAAA-TSCHI! Wer? Was? Wo bin ich?
+1o7ky1	Hinterm Banja. Im Heu. An Ihrer Kirche hängt ein Zettel: „Pope in der Stadt.“ Von 1993.
+nq0e84	Das Bier … und so ein blaues Pilzchen dazu. Von der Alten im Wald. „Zum Entspannen“, hat sie gesagt.
+19uo0o3	Seitdem ist alles so … zäh. Als wäre ich nie richtig aufgewacht. Dreißig Jahre, sagst du?
+zoyye1	(Blaue Pilze. Dreißig Jahre im Heu. Notiz an mich: hier nichts essen, was blau ist. Und nirgends lange liegen bleiben.)
+1t5p46z	Gott segne dich, mein Sohn. Wir sehen uns an der Kirche.
+1tox6b5	Hinter dem Banja
+1whh4r0	Der Bass wummert durch die Wand. Die Kisten zittern mit.
+18zkk3d	Hier hinten riecht es nach Heu, Wodka und Parfüm. In der Reihenfolge.
+11e9czp	Im Wald glühen wieder Augen. Ich bleib im Licht.
+t8c865	Hinterm Banja. Der Heuhaufen ist noch da.
+1qg9pyc	Wieder hinterm Banja. Hier ist es ruhiger. Bis auf den Bass.
+10h9d9o	Gemüsebeet
+y8ob6l	Zwiebeln! Neben dem Riesenkohl wachsen Zwiebeln.
+17awylv	*zieht eine raus* … AAH. Meine Augen. Schon beim Rausziehen.
+edyftt	He! Finger weg von Schnobbels Gemüse!
+87fkim	Nur eine. Für einen guten Zweck. Ich will eine Nymphe zum Weinen bringen.
+v51qjw	… Das ist der schlechteste gute Zweck, den ich je gehört hab. Nimm sie und geh.
+1mb9di8	Ein Gemüsebeet. Riesenkohl und Zwiebeln, so scharf, dass die Luft flimmert.
+1qmvmi	Aus dem Gemüsebeet der Gnome. Schon durch die Tasche tränen mir die Augen.
+1kkst2l	Eine echte Träne von Nastja. Dank einer Gnomzwiebel in der Lüftung. Ich bin kein guter Mensch.
+## 23-bj-szene.js
+8a7npw	Frische Traumschwämme
+1baibmp	Große blaue Pilze aus der Höhle der Gnome. Sie leuchten in der Tasche. Das ist bestimmt normal.
+tmii6c	Da! Große blaue Pilze. Die gleiche Farbe wie die Stückchen aus dem Joint.
+1moe13k	Sie leuchten. In meiner Hand. Na super.
+u6415v	Ab damit zu Baba Jaga.
+9cwcg4	Ich hab genug. Mehr leuchtende Pilze in der Tasche will ich nicht erklären müssen.
+1ruavvr	*schnüff* … Frische blaue Traumschwämme. Und dein Joint war VOLL davon.
+wekd06	*stapft hin und her* Weißt du, was das heißt, Bürschchen?! Das ist kein Trip. Das ist ein UMZUG!
+1ekkoxk	So tief sitzt das. Bis in die Knochen. Bis in die Träume von deinen Träumen!
+1i6aade	Ist das … schlecht?
+vgnh9c	SCHLECHT?! *ganz nah* Hör mir gut zu!
+1f3bj73	Ohne Gegengift wachst du NIE mehr auf. Nie! Dann wohnst du hier. Bei MIR. Für IMMER!
+15eqn9r	Ich bau dir einen Ausweg-Joint. Aber dafür brauch ich drei Dinge:
+iwm426	Erstens: die Ur-Spore. Wächst nur im Pilzbeet der Gnome. Und nur, wenn du schneller bist als sie.
+kitd8y	Zweitens: Glut, die nicht ausgeht. Die gibt’s nur aus einer geweihten Esse.
+1lab65w	Drittens: eine echte Träne einer wirklich schönen Nymphe. Keine gespielte. Eine ECHTE!
+ouw1yr	*drückt ihm eine Phiole in die Hand* Für die Träne. Fallen lassen ist verboten.
+19lqg4e	Und Papier? Den Filter vom alten Joint hab ich noch.
+1gg4dhe	Gut. Der Filter kennt den Weg schon. Und jetzt RAUS, bevor ich’s mir anders überlege!
+## 24-bau-animation.js
+1lpl3ph	*säg* … *säg* … *keuch* … *säg*
+1nqb615	Stamm für Stamm …
+d6ose8	*hämmer* … *hämmer* … Dach drauf!
+w2e842	RUMMS!
+dd8k4k	So. Mit Opas Segen.
+1c4mtyi	Die Säge häng ich wieder an den Nagel. So scharf war sie seit 1987 nicht mehr.
+nh57rm	Und jetzt ab in deinen Sumpf, der Weg ist ja frei.
+k7e52n	Moment. Die Krähe da drüben hockt auf einem richtig schönen, geraden Ast.
+16jkpku	Das wär ein perfekter Angelstock. Wenn das Vieh da nur runtergehen würde …
+## 25-banja-gaeste.js
+17nyaki	.fa,.fb
+19i2yoi	.gaeste
+11qzrws	Gäste
+1hqetbv	Volles Haus. Alle wedeln mit Scheinen. Ich hab nicht mal Kleingeld.
+jd6etx	Solange die hier stehen, hat Nastja für mich keine Zeit. Logisch. Die zahlen.
+168hzv0	(Wenn es hier plötzlich richtig scharf riechen würde … dann würden die bestimmt gehen.)
+j77fki	(Die Lüftung der Lounge … die geht hinten raus.)
+3jynw	Die Typen bleiben bis zum Morgengrauen. Mindestens.
+1gngvld	Na, Zwiebel? *zwinkert* Du riechst immer noch ein bisschen danach. Steht dir.
+1007wpp	Wo sind denn plötzlich alle hin? Und warum riecht es hier so … komisch?
+wup17v	Keine Ahnung. Aber jetzt hast du doch Zeit, oder?
+181xj90	Für den Mann, der mich aus dem Schlamm gezogen hat? Immer. Komm mit in die Lounge. Aufs Haus.
+ngkyf7	*dreht sich an der Stange* Na, Petja? Siehst du doch: volles Haus!
+imvvn8	Für Privattänze hab ich gerade keine Zeit, Süßer. Die Jungs da zahlen.
+ngkyc8	Später, Süßer. Wenn die Bude leer ist.
+1qkohz3	(Die Zwiebel. Wenn die in die Lüftung der Lounge kommt … hinterm Banja …)
+uj4tb6	Kein Geld, keine Lounge. Hausregel. Außer, hier ist plötzlich keiner mehr.
+48icfw	Komm wieder, wenn hier weniger los ist. Vielleicht passiert ja mal ein Wunder.
+1ec7vvp	Riecht hier irgendwie nach Gemüse. Und alle Gäste sind weg!
+1fb1ti1	Na ja. Nastja hat jetzt jedenfalls Zeit für dich, Süßer. Frag sie selbst.
+## 27-gnomgarten.js
+1uh827n	Ein Garten. Kohl so groß wie Kinderwagen, Zwiebeln, über denen die Luft flimmert, und ein Beet mit Pilzen, die glitzern.
+lla3eb	Und Grobnik, der mich anguckt wie ein Türsteher.
+9l560z	Zur Siedlung
+4024un	Schild: Zum Garten
+1ac2tpk	HALT, Langer! Wo willst du hin?
+xujtmp	Da lang. Zum Garten.
+1iaieu4	Das ist kein Garten. Das ist Gnomgold. Kohl, Zwiebeln, Pilze. Alles gezählt. Zweimal.
+1d0yn2h	Ich will nur gucken.
+1b8atd	Gucken ist gratis. Anfassen nicht. Ich komm mit. Und ich guck zurück.
+1h6m5s0	Schild: Zur Siedlung
+12zi4is	Ich guck. Du guckst. Alle gucken. Keiner fasst an.
+1gugfyy	Der Kohl da ist älter als du, Langer. Und klüger.
+1mjm6rn	Das ist keine hohe Latte.
+1zduho	Bewachen Sie den Garten eigentlich auch nachts?
+12x25dz	Nachts bewacht der Kohl sich selbst.
+16u892f	(Ich frag lieber nicht weiter.)
+1r551q9	Gnomgarten
+id8iui	Hier riecht es nach Erde, Kohl und Zwiebel. In der Reihenfolge, von links nach rechts.
+14hug2x	Grobnik guckt. Ich guck zurück. Er gewinnt.
+nkd0mo	Die Pilze im Beet glitzern. Pilze sollten nicht glitzern.
+1xb4gnq	Der Garten. Grobnik steht schon da. Natürlich.
+1d9droi	Wieder im Gnomgarten. Der Kohl ist nicht gewachsen. Glaub ich.
+## 28-gegenstaende-real.js
+7uthuv	Gegenstand
+fwo3ej	Privattanz · aufs Haus
+## 29-ego-sicht.js
+ryq7i	Ego-Sicht
+## 30-faeden.js
+1q52lrv	*von ganz weit weg* …Bru…
+1ykszts	Wowa?
+gv91ny	(Ich hab Wowa gehört. Hier. Im Märchen. Das ist entweder ein gutes Zeichen. Oder ein sehr schlechtes.)
+1xqgmag	*näher* …der? …
+mp3z3h	(Schon wieder. Lauter diesmal.)
+1acz7ud	(Ob er merkt, dass ich weg bin? …Wahrscheinlich nicht. Ist auch egal.)
+1avuzia	(…Ist es.)
+l3u2d6	*ganz nah, als stünde er im Raum* …BRUDER?!
+bqv2ne	(Gleich, Wowa. Gleich.)
+kr185b	Für einen Kater.
+144f1fj	Damit er Omas Gebiss rausrückt.
+1frrp79	Damit Oma mir Teer gibt.
+14goi1f	Damit Opa mich seine Birken sägen lässt.
+3o0yfz	Damit ich in den Sumpf komm.
+zh6p0z	Damit Madame eine Neue kriegt.
+8i54tp	Damit der Müller sein „Mehl“ rausrückt.
+1bs67xf	Damit die Gnome mich in ihre Höhle lassen.
+127suuh	Damit die Hexe mir hilft.
+1rwy6gn	Damit ich nach Hause komm. Auf mein Sofa. Wo ich nichts tue.
+b2nnrv	…Na super.
+1uengf3	Und wofür ich Teer brauch? Keine Ahnung. Aber im Märchen braucht man irgendwann alles.
+10h37pp	Mal kurz zusammenfassen.
+1qakdxu	Ich angle.
+1p6lwp4	Der Wels. Kusmitsch hat ihn doch noch gekriegt. Respekt.
+4wuc3b	…Der hat Finger. Vier Stück. Mit Schwimmhäuten dazwischen.
+gu66zx	Und eine Armbanduhr. „Slawa“. Geht sogar noch.
+1esxsh5	Und im Bart hängen blaue Krümel.
+1bll42w	…Ich hab nichts gesehen. Ich bin nur ein Typ, der nach Hause will.
+g1fwzo	Die Uhr tickt. Der Fisch nicht. Ich geh jetzt.
+1jsgik8	Komische Augen hat der. Irgendwo hab ich so welche schon mal … Nein. Hab ich nicht.
+ap5fzy	Hast du ihn gesehen?! An der Wand! DER WELS! Dreißig Jahre!
+m9ubq3	Hat gekämpft wie ein Mensch. Hat sogar geflucht, glaub ich.
+n2uaqx	(Fische fluchen nicht.)
+ltcv9x	Und meinen Selbstgebrannten hat er mir in der Zeit auch geklaut, der Mistkerl. Muss er gewesen sein.
+dyojqy	…Bestimmt.
+o4b79a	Auf einem Sack ein Stempel. Ein kleiner Pilz. Blau.
+158q52l	Für eine Mühle ein seltsames Logo. Geht mich nichts an.
+gsmz0n	Hinter der Theke eine Blechdose. „Gewürz“, steht drauf. Drin: blaue Krümel.
+14uc3p1	Finger weg, Süßer. Das ist für Stammgäste.
+dsvfo1	Am Fenster trocknen Kräuter. Kamille, Minze … und was Blaues.
+g71frv	*von drüben* Daf ift für meinen Rücken! Fon feit fünfzig Jahren!
+1rvm6jd	(Kräuter von Oma. Nein. Nein, nein. …Nein.)
+155fmm8	Die unterste Kiste ist anders. Blauer Staub in den Ritzen. Und ein Stempel drauf: ein kleiner Pilz.
+zzgoqk	Den hab ich schon mal gesehen. …Wo eigentlich?
+1u45wzp	Bei Vollmond trocknen wir der Alten die blauen Schwämme. Auf den warmen Steinen.
+53g6r0	Welcher Alten?
+1asqfuf	Der mit den Hühnerbeinen. Dafür lässt sie uns in Ruhe. Und schickt ab und zu einen Langen wie dich vorbei.
+yimm	(Ich bin nicht „geschickt“ worden. …Oder?)
+cvkn6b	Riecht nicht nach Mehl. Riecht nach Ärger. Auf dem Stempel: ein kleiner blauer Pilz.
+ez15kk	Die Krähe war hier. Hat gepetzt. Du hast sie mit einem APFEL beworfen?
+psn8om	Sie saß auf meinem Ast.
+f5cn3v	*kichert* Gut. Die nervt mich seit hundert Jahren. Und jetzt red.
+1a4r1b5	…Weißt du was, Zwiebel? Dreihundert Jahre hab ich nichts gefühlt. Gar nichts.
+1klqc4a	Und dann heul ich. Wegen dir. Wegen einer Gnomzwiebel.
+1sxfw5d	Das war das Ehrlichste, was mir seit dem Sumpf passiert ist. …Danke, Zwiebel.
+1l6hu6o	(Sie meint es ernst. Glaube ich.)
+1i0hojr	Na, Zwiebel? *zwinkert* Komm mal wieder vorbei. Ohne Gemüse.
+dq3ubj	Setz dich. Nicht auf den Stuhl links, der beißt. Den anderen.
+1av35r4	Bevor wir anfangen. Die blauen Pilze. Der Stempel auf den Säcken. Der Staub hinterm Banja. Das sind Ihre, oder?
+zjd6zy	Bürschchen. Ich bin dreihundert Jahre alt und wohne auf Hühnerbeinen. Glaubst du, so ein Haus füttert sich von allein?
+1z11msr	Die Gnome züchten, die Nymphen trocknen, das Dorf guckt weg. Jeder verdient ein bisschen. Das nennt man Märchenwirtschaft.
+1wy1f52	Und Wowas Joint?
+1ej4ab4	Streuverlust. Kommt in den besten Familien vor.
+1hfictn	*schiebt ihm einen Becher hin* Tee. Ist nichts drin. Diesmal.
+12ht11u	Die meisten, die an diesem Tisch sitzen, liegen hinterher im Ofen. Du bist der Erste seit Jahrzehnten, der zurückredet.
+1u36czx	Du könntest auch bleiben. Die Gnome brauchen einen Langen. Die Oma braucht jemanden fürs Gebiss. Und ich … hätte wen zum Anmeckern.
+h8juwa	Da drüben vermisst mich keiner. Wowa merkt erst, dass ich weg bin, wenn ihm das Feuerzeug fehlt.
+1dau5nn	Na also.
+ogt3bq	Aber hier hängt alles an allem. Säge gegen Teer, Teer gegen Gebiss, Gebiss gegen Fisch. Wenn ich bleibe, bin ich nur noch ein Zahnrad.
+1onzczc	Drüben bin ich auch nichts Besonderes. Aber da bin ich wenigstens mein eigenes Problem.
+5thi8s	… Dummkopf. *trinkt seinen Tee aus* Na gut. Dreh deinen Joint.
+cr4f44	Und falls du drüben mal einen blauen Stempel siehst: Du warst nie hier.
+2ej2cl	Hinten ist es stockdunkel. Ohne Licht greif ich da nirgends rein. Wer weiß, was zurückgreift.
+1fxcqj	*hält die Gnomlaterne hoch*
+1sacgtb	Grünes Licht. Und da hinten, wo vorher nur Schwarz war … leuchtet was zurück. Blau.
+a9373q	Halt, Langer. Die Laterne.
+1baip0o	Was ist mit der?
+3z03sz	Die ist Inventar. Gnom-Inventar. Wird gezählt. Jeden Abend.
+1rcpqs3	*gibt sie zurück* Danke fürs Licht.
+x0ald4	Danke ist nicht gezählt. Laterne schon.
+## 35-figuren.js
+mk06h1	Figuren
+uycewk	Kumpel aus der echten Welt
+alxg5b	Mein Kumpel. Couch, Röhrenfernseher, immer was zu rauchen da. Hat mir den Joint gegeben, mit dem das alles anfing.
+i322h5	Manchmal höre ich ihn. Von ganz weit weg, durch die Wand zwischen den Welten. Er sucht mich. Glaube ich.
+livcq7	Er hat „Bruder“ gerufen. Wowa sagt nie „Bruder“. Vielleicht merkt er doch, wenn ich weg bin.
+99lmx2	Hexe im Birkenwald
+kgddpb	Wohnt in einer Hütte auf Hühnerbeinen. Die Tür ist Deko. Gäste kommen durchs Fenster, oder gar nicht.
+1wiy38c	Kennt die blauen Pilze aus Wowas Joint. Kennt sie sogar sehr gut. Hat mir ein Gegengift versprochen, wenn ich laufe.
+1rr1chg	Die blauen Pilze sind ihr Geschäft: Gnome züchten, Nymphen trocknen, das Dorf schaut weg. Und sie ist einsam. Hätte nie gedacht, dass ich das über eine Hexe schreibe.
+1l1htri	Alter Mann vor seiner Brandruine
+yyja5c	Steht vor dem, was von seinem Haus übrig ist. Will Selbstgebrannten, gibt dafür eine Leiter. Fairer Kurs.
+3vms7m	War Soldat. Sowjetarmee, Uniform, Orden, das ganze Programm. Dann fiel die Sowjetunion, und mit ihr Sold, Rente und Respekt. Er stand plötzlich in einem Land, das es nicht mehr gab.
+ugdxe2	Dann brannte auch noch das Haus ab. Nur der Ofen blieb stehen, und daneben hat er geschlafen, jahrelang. Jetzt hat er wieder Wände. Aus Birken, die ich gesägt habe. Er hat sich nicht bedankt. Er hat genickt. Das ist bei ihm mehr.
+1cfzyj3	Dorfstraße, immer am Fenster
+1nlc1ug	Weiß alles über jeden im Dorf. Erzählt es auch. Zahnlos, seit der Kater des Popen ihr Gebiss geklaut hat.
+o9zoxe	Hat Birkenteer gegen Rheuma, Läuse und Männer. Wendet alle drei Anwendungen regelmäßig an.
+m2ebhm	Trocknet blaue „Kräuter“ an ihrem Fenster. Sagt, die sind für den Tee. Ich trinke bei ihr keinen Tee mehr.
+1p8wy05	Hütte am See
+lh1lfi	Brennt Schnaps, angelt, flucht. Rückt nichts raus, schon gar nicht freiwillig.
+2ly20v	Jagt seit Jahren denselben Wels. Gibt dem Wels die Schuld an allem: verlorene Netze, geklauter Schnaps, kaputte Ehe.
+1uv0qy5	Hat ihn endlich. Der Wels hängt an seiner Hütte, mit Schwimmhäuten zwischen den Fingern und einer goldenen Uhr am Handgelenk. Kusmitsch findet das normal. Ich hab nichts gesehen.
+kgtbwu	Chefin des Banja
+1reclg0	Führt das Banja. Dampf, Tanz, Wodka. Sucht neue Mädchen und nennt jeden „Süßer“, der zahlt.
+7zzn5d	Hat eine Liste: schön, tanzt gern, frech, will raus. Ich hab ihr eine Nymphe aus dem Sumpf gebracht. Sie hat nicht mal gefragt, wie.
+1qgcxao	Im Hinterhof stapeln sich Kisten mit blauem Staub und einem Pilzstempel. Zinaida verkauft nicht nur Wodka. Ich frag nicht nach. Ich will den Gutschein behalten.
+1754p89	Nymphe, jetzt Tänzerin im Banja
+bchnib	Kam aus dem Sumpf, tanzt jetzt an der Stange. Zwinkert, als wüsste sie mehr als du. Tut sie auch.
+dae7pu	Dreihundert Jahre im Sumpf. Hat Kaufleute, Soldaten und einen Popen kommen und gehen sehen. Hält das Banja für eine Beförderung.
+1rw66nu	Hat seit dreihundert Jahren nichts gefühlt. Dann kam eine Gnomzwiebel und ich. Sie hat geweint und gelacht gleichzeitig. Seitdem nennt sie mich „Zwiebel“. Ich glaube, das ist ein Kosename.
+i9t1xl	Gnom, Wächter der Höhle
+1m2cwew	Steht vor der Höhle und lässt keinen rein. Will „Mehl“. Sagt „Geschäftsgeheimnis“ öfter, als gut für ihn ist.
+1huo6qq	Hat am „Mehl“ geschnüffelt wie ein Zollhund im Urlaub. Gab mir dafür seine Laterne. Leihweise.
+gc2dfh	Zählt jeden Abend die Laternen. Danke zählt er nicht. Das Gnomreich ist eine Buchhaltung mit Bärten.
+f867kq	Der Müller
+a8e9lw	Stimme aus der Mühle. Will eine Braut. Mahlt angeblich Mehl.
+161tl9z	Hat mir drei Säcke „Mehl“ gegeben. Für einen Gutschein auf einen Privattanz. Das Mehl riecht nicht nach Mehl.
+dwb54t	Auf seinen Säcken ist ein blauer Pilzstempel. Die Mühle ist keine Mühle. Sie ist ein Lager.
+l944zz	Pope der Holzkirche
+1si9co	Schläft im Heu hinter dem Banja. Seit 1993. An seiner Kirche hängt ein Zettel: „Pope in der Stadt“.
+1yh4xbj	Wollte nach dem Bier nur kurz die Augen zumachen. Dazu ein blaues Pilzchen, „zum Entspannen“, von der Alten im Wald. Dreißig Jahre Entspannung.
+1idzj9r	Streckt sein Weihwasser mit Wodka. „Zur Haltbarkeit.“ Der Kater sitzt jetzt auf dem Altar und ist länger in der Gemeinde als er.
+1hqft0d	Groß, rußig, ehrlich. Der Einzige im Dorf, der für Arbeit Geld will und nicht für Gefallen.
+1s4tllu	Hat Opas Säge geschärft. Jetzt schulde ich ihm was. Bei ihm ist das kein Gefühl, sondern ein Kreidestrich an der Wand. Sein Lieblingswort: „Schreibbereitschaft“. Sagt er immer, wenn er was anschreibt. Also ständig.
+1vy2rcc	Seine Esse brannte seit 1993 ungeweiht, weil der Pope „in der Stadt“ war. Jetzt glüht sie geweiht und riecht leicht nach Wodka. Er hat zum ersten Mal gelächelt.
+rn5s8i	Birkenwald, auf dem Ast
+c4q7ep	Sitzt auf dem besten Ast im Wald und verteidigt ihn wie eine Datscha.
+ex5qtz	Hat einen Apfel abgekriegt. Von mir. Musste sein.
+hh6z6t	Hat mich bei Baba Jaga verpfiffen. Krähen sind die Stasi des Waldes.
+4pkw54	Noch niemanden getroffen. Gut so, eigentlich.
+10k4la5	… Da steckt noch mehr dahinter.
+quph13	Notizbuch: Neues über eine Figur (Taste C)
+## index.html
+1gdbhhi	Petja und der Verfluchte Birkenwald
+1sl08td	Wald wird gemalt...
+fxh0tx	ein Abenteuer zwischen Birken, Sumpf und schlechten Entscheidungen
+1942lsv	Taschen – Klick auf einen Gegenstand zum Ansehen

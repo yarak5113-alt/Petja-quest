@@ -339,3 +339,6 @@ html:not(.ink) .spr{image-rendering:pixelated;image-rendering:crisp-edges}
 .b-figuren .fig .lvl{margin-left:auto;letter-spacing:2px;color:#e8c070;font-size:.85em}
 .b-figuren .fig p{margin:4px 0;line-height:1.4}
 .b-figuren .fig p.lock{opacity:.45;font-style:italic}
+
+/* Sprachwahl auf dem Titelbild */
+#start .tbox .tlang{display:flex;gap:6px;margin-top:4px}#start .tbox .tlang button{min-width:0;padding:4px 10px;font:bold 12px Georgia;opacity:.7}#start .tbox .tlang button.on{opacity:1;outline:2px solid #ffd25a}

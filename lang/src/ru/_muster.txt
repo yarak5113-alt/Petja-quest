@@ -1,0 +1,49 @@
+# Zusammengesetzte Texte: {} = Text (wird selbst übersetzt), # = Zahl
+~Fisch: # / 22 s => Рыба: # / 22 с
+~Zu früh! Das war nur Knabbern. (#/5) => Рано! Это он только пощипал. (#/5)
+~Falscher Moment! Er holt wieder Kraft. (#/6) => Не тот момент! Он снова набирается сил. (#/6)
+~Verpasst! (#/5) => Прозевал! (#/5)
+~Zu spät! (#/6) => Поздно! (#/6)
+~Phase 2: Kampf – # / 10 s in der Zone => Фаза 2: Борьба – # / 10 с в зоне
+~(Fehler: #/3) => (Ошибки: #/3)
+~{} (Fehler: #/3) => {} (Ошибки: #/3)
+~Schritt 4/4: Sortieren – # / 9 Pilze => Шаг 4/4: Сортировка – # / 9 грибов
+~Gold: # / 5 => Золото: # / 5
+~Falsch: # / 3 => Мимо: # / 3
+~Erwischt! Noch #. => Есть! Осталось #.
+~Petja denkt noch nach… (# s) => Петя ещё думает… (# с)
+~Eingesteckt: {} => Взято: {}
+~Neuer Auftrag: {} => Новое задание: {}
+~Auftrag erledigt: {} => Задание выполнено: {}
+~Stimmen: {} => Голоса: {}
+~Platz # => Слот #
+~Platz # ist belegt. Nochmal klicken zum Überschreiben. => Слот # занят. Нажми ещё раз, чтобы перезаписать.
+~Gespeichert auf Platz #! => Сохранено в слот #!
+~Beim nächsten Versuch kannst du „{}“ überspringen. => В следующий раз можно пропустить «{}».
+~# s => # с
+=an => вкл
+=aus => выкл
+=An => Вкл
+=Aus => Выкл
+=Nur Petja => Только Петя
+=Alle Figuren => Все персонажи
+=Automatisch => Автоматически
+=leer => пусто
+=noch nichts => пока ничего
+=Auto => Авто
+=Pause => Пауза
+=Menü => Меню
+=Zum Titelbild => На титульный экран
+=Neuigkeiten => Новости
+=Zurück => Назад
+=Schließen (ESC) => Закрыть (ESC)
+=Sortiere die blau angelaufenen Pilzstücke in die Schale. Nur die! => Сложи посиневшие кусочки грибов в миску. Только их!
+=Die Schale ist verunreinigt! Alles nochmal sortieren. => Миска загажена! Перебирай всё заново.
+=Nächster Schritt => Следующий шаг
+=Gerade nichts offen. => Сейчас ничего не открыто.
+~Erledigt (#) => Выполнено (#)
+=Wähl einen Platz. => Выбери слот.
+=Erst spielen, dann speichern. => Сначала поиграй, потом сохраняй.
+~Automatisch · {} => Автоматически · {}
+=… Da steckt noch mehr dahinter. => … Тут явно есть что-то ещё.
+=Sprache · Language · Язык => Язык · Language · Sprache

@@ -3,7 +3,7 @@ const N={P:['Petja','#ffb070'],K:['Krähe','#b0bcd8'],S:['Sonne','#ffe680'],M:['
 const box=$('#box'),who=$('#who'),txt=$('#txt');
 let queue=[],typing=null,full='',busy=false,done=null;
 // Einstellungen (Menü → Einstellungen): Textgeschwindigkeit in ms pro Buchstabe, Leerlauf-Sprüche an/aus
-// voices: 'alle' = jede Figur spricht, 'petja' = nur Petja; sfx/vox = Lautstärke Geräusche/Stimmen (0..1)
+// voices: 'alle' = jede Figur spricht, 'petja' = nur Petja; sfx/vox = Lautstärke Geräusche/Stimmen (0..1); lang = Sprache (00a-sprachen.js)
 const OPT={speed:28,barks:true,voices:'alle',sfx:.6,vox:1};try{Object.assign(OPT,JSON.parse(localStorage.getItem('petjaOpts')||'{}'))}catch(e){}
 function applyBox(){document.documentElement.style.setProperty('--boxs',OPT.box||1)}applyBox();
 function saveOpt(){try{localStorage.setItem('petjaOpts',JSON.stringify(OPT))}catch(e){}}
@@ -19,10 +19,10 @@ function emoOf(t){
 function next(){
   clearInterval(typing);typing=null;talking=false;box.classList.remove('done');
   if(!queue.length){box.style.display='none';busy=false;setEmo(PEMO,1200);const d=done;done=null;d&&d();return}
-  const [w,t,em]=queue.shift();who.textContent=N[w][0]+':';who.style.color=N[w][1];full=t;txt.textContent='';
-  LOG.push([w,t]);if(LOG.length>120)LOG.shift();
+  const [w,t0,em]=queue.shift(),t=tr(t0);who.textContent=tr(N[w][0])+':';who.style.color=N[w][1];full=t;txt.textContent='';
+  LOG.push([w,t0]);if(LOG.length>120)LOG.shift();
   // Petja zeigt beim Reden seine Emotion; bei anderen reagiert er nur auf Schreck/Staunen, sonst hört er neutral zu
-  const e=em||emoOf(t);if(w==='P')setEmo(e);else setEmo(e==='schreck'||e==='staunen'?e:'n',e==='n'?0:2500);
+  const e=em||emoOf(t0);if(w==='P')setEmo(e);else setEmo(e==='schreck'||e==='staunen'?e:'n',e==='n'?0:2500);
   if(w==='P')talking=true;voice(t,w);
   let i=0;typing=setInterval(()=>{txt.textContent=t.slice(0,++i);if(i>=t.length){clearInterval(typing);typing=null;talking=false;box.classList.add('done')}},OPT.speed);
 }
@@ -39,12 +39,12 @@ let VOICE_ON=false;try{VOICE_ON=localStorage.getItem('petjaVoice2')==='1'}catch(
 let deVoice=null,deVoiceF=null;const TTS=window.speechSynthesis;
 const VOX={P:[0,.8,.95],F:[0,.6,.85],G:[0,.7,.82],N1:[0,.3,.9],N2:[0,.5,.75],MU:[0,.95,1.12],PK:[0,1.25,1.1],WO:[0,1.05,1.15],K:[0,1.8,1.3],M:[0,1.5,1.2],
   J:[1,1.7,1.0],J2:[1,1.7,1.0],O:[1,1.35,.82],Z:[1,1.0,.95],NA:[1,1.2,1.05],S:[1,1.15,.9],B:[1,.6,.78],alte:[1,.5,.7],fekla:[1,.8,.85],ustinja:[1,1.1,.9]};
-function pickVoice(){if(!TTS)return;const v=TTS.getVoices().filter(v=>/^de/i.test(v.lang)),fem=/female|frau|katja|hedda|marlene|vicki|anna|petra|seraphina|amala|louisa|elke|gisela|klarissa|maja|tanja/i;
-  deVoiceF=v.find(x=>fem.test(x.name))||null;deVoice=v.find(x=>!fem.test(x.name)&&/male|mann|stefan|conrad|killian|hans|florian|ralf|bernd|christoph/i.test(x.name))||v.find(x=>!fem.test(x.name))||v[0]||null}
+function pickVoice(){if(!TTS)return;const v=TTS.getVoices().filter(v=>v.lang.toLowerCase().startsWith(LANG)),fem=/female|frau|katja|hedda|marlene|vicki|anna|petra|seraphina|amala|louisa|elke|gisela|klarissa|maja|tanja|zira|hazel|susan|libby|sonia|jenny|aria|irina|svetlana|dariya|ekaterina|milena/i;
+  deVoiceF=v.find(x=>fem.test(x.name))||null;deVoice=v.find(x=>!fem.test(x.name)&&/male|mann|stefan|conrad|killian|hans|florian|ralf|bernd|christoph|david|george|ryan|guy|pavel|dmitry|maxim/i.test(x.name))||v.find(x=>!fem.test(x.name))||v[0]||null}
 if(TTS){pickVoice();TTS.onvoiceschanged=pickVoice}
-function voice(t,w){if(!TTS)return;TTS.cancel();w=w||'P';if(!VOICE_ON||!t||(w!=='P'&&OPT.voices==='petja'))return;
-  t=t.replace(/\*[^*]*\*/g,' ').replace(/\.{2,}/g,', ').replace(/[()]/g,'').trim();if(!t||!/[a-zäöüß]/i.test(t))return;
-  const s=VOX[w]||[1,1.1,.95],u=new SpeechSynthesisUtterance(t);u.lang='de-DE';const vo=s[0]?(deVoiceF||deVoice):deVoice;if(vo)u.voice=vo;
+function voice(t,w){if(!TTS)return;t=tr(t);TTS.cancel();w=w||'P';if(!VOICE_ON||!t||(w!=='P'&&OPT.voices==='petja'))return;
+  t=t.replace(/\*[^*]*\*/g,' ').replace(/\.{2,}/g,', ').replace(/[()]/g,'').trim();if(!t||!/[a-zäöüßа-яё]/i.test(t))return;
+  const s=VOX[w]||[1,1.1,.95],u=new SpeechSynthesisUtterance(t);u.lang={de:'de-DE',en:'en-GB',ru:'ru-RU'}[LANG]||'de-DE';const vo=s[0]?(deVoiceF||deVoice):deVoice;if(vo)u.voice=vo;
   u.pitch=s[1];u.rate=s[2];u.volume=Math.max(0,Math.min(1,OPT.vox));TTS.speak(u)}
 function toggleVoice(){VOICE_ON=!VOICE_ON;try{localStorage.setItem('petjaVoice2',VOICE_ON?'1':'0')}catch(e){}if(!VOICE_ON&&TTS)TTS.cancel();
   toast('Stimmen: '+(VOICE_ON?'an':'aus'),0,'voice')}

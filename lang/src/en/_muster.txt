@@ -1,0 +1,49 @@
+# Zusammengesetzte Texte: {} = Text (wird selbst übersetzt), # = Zahl
+~Fisch: # / 22 s => Fish: # / 22 s
+~Zu früh! Das war nur Knabbern. (#/5) => Too early! That was just nibbling. (#/5)
+~Falscher Moment! Er holt wieder Kraft. (#/6) => Wrong moment! He's getting his strength back. (#/6)
+~Verpasst! (#/5) => Missed! (#/5)
+~Zu spät! (#/6) => Too late! (#/6)
+~Phase 2: Kampf – # / 10 s in der Zone => Phase 2: Fight – # / 10 s in the zone
+~(Fehler: #/3) => (Mistakes: #/3)
+~{} (Fehler: #/3) => {} (Mistakes: #/3)
+~Schritt 4/4: Sortieren – # / 9 Pilze => Step 4/4: Sort – # / 9 mushrooms
+~Gold: # / 5 => Gold: # / 5
+~Falsch: # / 3 => Wrong: # / 3
+~Erwischt! Noch #. => Got it! # to go.
+~Petja denkt noch nach… (# s) => Petya is still thinking… (# s)
+~Eingesteckt: {} => Pocketed: {}
+~Neuer Auftrag: {} => New task: {}
+~Auftrag erledigt: {} => Task done: {}
+~Stimmen: {} => Voices: {}
+~Platz # => Slot #
+~Platz # ist belegt. Nochmal klicken zum Überschreiben. => Slot # is taken. Click again to overwrite.
+~Gespeichert auf Platz #! => Saved to slot #!
+~Beim nächsten Versuch kannst du „{}“ überspringen. => Next time you can skip "{}".
+~# s => # s
+=an => on
+=aus => off
+=An => On
+=Aus => Off
+=Nur Petja => Petya only
+=Alle Figuren => All characters
+=Automatisch => Automatic
+=leer => empty
+=noch nichts => nothing yet
+=Auto => Auto
+=Pause => Pause
+=Menü => Menu
+=Zum Titelbild => To the title screen
+=Neuigkeiten => News
+=Zurück => Back
+=Schließen (ESC) => Close (ESC)
+=Sortiere die blau angelaufenen Pilzstücke in die Schale. Nur die! => Sort the blue-tinged mushroom bits into the bowl. Only those!
+=Die Schale ist verunreinigt! Alles nochmal sortieren. => The bowl is contaminated! Sort it all again.
+=Nächster Schritt => Next step
+=Gerade nichts offen. => Nothing open right now.
+~Erledigt (#) => Done (#)
+=Wähl einen Platz. => Pick a slot.
+=Erst spielen, dann speichern. => Play first, then save.
+~Automatisch · {} => Automatic · {}
+=… Da steckt noch mehr dahinter. => … There's more to this one.
+=Sprache · Language · Язык => Language · Sprache · Язык
