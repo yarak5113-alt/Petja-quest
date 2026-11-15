@@ -66,11 +66,12 @@ T.nastjaBar={n:'Nastja',at:[225,476],fn(){T.nastja2.fn()}};
 T.nastjaX={n:'Nastja',at:[540,486],fn(){}};
 wrapFn('gaeste',function(orig){if(!FL.marfa)return orig();hint('gaesteM',[[['P','Volles Haus. Marfa an der Stange, die Scheine fliegen. Madame zählt schon.']],[['P','Die Jungs wedeln wieder. Diesmal für Marfa. Nastja guckt vom Rand zu und trinkt.']]])});
 T.marfa2={n:'Marfa',at:[400,486],l:[
-  [['marfa','*dreht sich an der Stange* Na, Bauer? Die Krone sitzt. Die Männer zahlen. Der Sumpf kann mich mal.']],
-  [['marfa','Nastja trinkt, ich tanze. Sie nennt es Pause. Ich nenne es Thronfolge.']],
-  [['marfa','Weißt du, was das Schönste hier oben ist? Trockene Haare. Hundert Jahre hab ich davon geträumt.']],
-  [['marfa','Wenn einer grabscht, lächle ich. Du weißt ja inzwischen, was das bei mir bedeutet.']],
-  [['marfa','Der Choker? Steht mir. Und er verdeckt, was die Frau des Kaufmanns mit ihren Händen gemacht hat. Weiter im Text, Bauer.']]]};
+  [['marfa','*gleitet an der Stange runter* Na, Bauer? Guck nicht so. Oder guck ruhig. Aber dann zahl auch.']],
+  [['marfa','Nastja trinkt, ich tanze. Sie nennt es Pause. Ich nenne es Thronfolge. Ihre Stammgäste nenne ich jetzt meine.']],
+  [['marfa','Hundert Jahre Schlamm zwischen den Zehen. Jetzt hab ich Scheine im Strumpfband. Rate mal, was sich besser anfühlt.']],
+  [['marfa','Wenn einer grabscht, lächle ich. Und dann lächelt er nie wieder. Willst du’s ausprobieren? *zwinkert*']],
+  [['marfa','Der Choker verdeckt, was die Kaufmannsfrau mit ihren Händen gemacht hat. Da dürfen deine Hände nicht hin. Andere Stellen … verhandelbar.']],
+  [['marfa','Komm näher, Süßer. Noch näher. … So. Jetzt riechst du nach mir. Viel Spaß, das Nastja zu erklären.']]]};
 
 // ---------- Madame: Auftrag, Erinnerung, Belohnung ----------
 wrapFn('madame',function(orig){
@@ -94,28 +95,52 @@ wrapFn('madame',function(orig){
   hint('t2Danach',[[['Z','Zwei Tänzerinnen, volles Haus. So muss das, Süßer.']],[['Z','Marfa tanzt, Nastja trinkt, ich zähle. Jede macht, was sie am besten kann.']],
     [['Z','Wenn du wieder mal eine Gefälligkeit loswerden willst – du weißt, wo ich wohne.']]])});
 
-// ---------- Nastja: Diadem für Marfa (nur bei guter Beziehung), Plaudern, Pause mit Glas ----------
+// ---------- Nastja nach der Träne: Menü mit drei Dingen, die Punkte bringen (Privattanz, Gespräch, Anstoßen) + Diadem für Marfa ----------
+// Punkte (37-beziehungen.js): Gespräch +6 (bis 30), Privattanz +10 (bis 30), Anstoßen +5 (bis 20). Ab NASTJA_DIADEM gibt sie das Diadem raus.
+const NA_TALK=[
+  [['NA','Weißt du, was ich an dir mag, Zwiebel? Du guckst mir in die Augen. Meistens. Die anderen Kerle reden mit meinem Ausschnitt.']],
+  [['NA','Im Sumpf hat mich mal ein Wassermann angebaggert. Kalte Hände, kalte Füße, kalter … na ja. Du bist wenigstens warm. Glaub ich.']],
+  [['NA','Sag mal ehrlich: Hast du beim Tanz an deine Oma gedacht, damit nichts passiert?'],['P','… Vielleicht.'],['NA','*lacht* Hat nicht geklappt, Süßer. Ich saß drauf.']],
+  [['NA','Wenn du mir noch einmal so auf die Lippen starrst, berechne ich das als Privattanz. Halbe Stunde. Mit Zuschlag.']],
+  [['NA','Ich hab Zinaida gesagt, du bist mein Stammgast. Sie hat gefragt, was du zahlst. Ich hab gesagt: Nerven.']],
+  [['NA','Weißt du, was Männer und der Sumpf gemeinsam haben? Wer zu lange drinsteckt, kommt nicht mehr raus. Bleib in Bewegung, Süßer.']],
+  [['NA','Dreihundert Jahre hab ich im Schilf die Unschuld vom Lande gespielt. Dann kommst du mit Rauch im Haar und Gemüse in der Tasche. Das Leben ist ein Witz, Zwiebel. Ein schmutziger.']],
+  [['NA','Wenn du hier rauskommst, aus diesem Märchen … vergiss mich nicht ganz, ja? Und wenn doch, dann vergiss wenigstens meinen Hintern nicht.']]];
+const NA_TALK_M=[
+  [['NA','*nippt* Pause, Zwiebel. Marfa hat die Stange, ich hab den Wein. Und ehrlich: Die Stange war nie so gut wie der Wein.']],
+  [['NA','Sie tanzt nicht schlecht, die Alte. Für eine, die hundert Jahre im Schlamm lag. *trinkt* Ich lag dreihundert drin und hab trotzdem mehr Hüfte.']],
+  [['NA','*schwenkt das Glas* Rotwein. Der einzige Mann hier, der mich nie enttäuscht hat. Und der Einzige, der nicht zu früh fertig ist.']],
+  [['NA','Mein Diadem steht ihr. Sag ihr das nicht. Sag ihr lieber, es piekt. Überall.']]];
+const NA_DRINK=[
+  [['NA','*schenkt zwei Gläser ein* Auf was trinken wir, Zwiebel?'],['P','Auf dich.'],['NA','*klirr* Gute Wahl. Die einzig richtige.'],['P','*schluck* … Das ist kein Wein, das ist Lack.'],['NA','Zinaidas bester. Geht auf deine Rechnung. Kleiner Scherz. … Oder?']],
+  [['NA','*klirr* Auf die Frösche! Ohne die hätte ich nie gewusst, wie wenig man von Männern erwarten kann.'],['P','Danke.'],['NA','Dich hab ich nicht gemeint. Noch nicht.']],
+  [['NA','Auf ex, Zwiebel! *kippt* … Na? Wird dir warm? Mir auch. Aber das liegt nicht am Wein.']],
+  [['NA','*stößt an und beugt sich vor* Weißt du, warum man sich beim Anstoßen in die Augen schaut? Damit man nicht woanders hinschaut. … Du hast verloren.']],
+  [['NA','*klirr* Auf Gemüse. Und auf Männer, die wissen, wo man es hinsteckt.'],['P','In die Lüftung.'],['NA','*prustet in den Wein* Genau da, Süßer.']]];
+const naPunkte=(k,cap,per)=>{FL['na_'+k]=Math.min(cap/per,(FL['na_'+k]||0)+1)};
+function nastjaMenu(){const v=relOf('Nastja'),dia=FL.marfaKrone&&!FL.marfaDia&&!has('diadem');
+  const im=typeof NASTJA_GLAS!='undefined'?NASTJA_GLAS[1]:NASTJA_URL;
+  const o=openO(`<div class="pan menu namenu"><button class="x" title="Schließen (ESC)">${ic('close')}</button><div class="nahead"><img src="${im}" alt=""><div><h3>Nastja</h3>${relBar('Nastja')}<p class="em">Was willst du mit ihr machen?</p></div></div>
+    <button class="mb big" data-a="tanz">💃 Privattanz <small>+10</small></button><button class="mb big" data-a="talk">💬 Ein Gespräch führen <small>+6</small></button><button class="mb big" data-a="drink">🍷 Mit ihr anstoßen <small>+5</small></button>
+    ${dia?'<button class="mb big" data-a="dia">👑 Nach einer Krone für Marfa fragen</button>':''}</div>`,'menuO');
+  o.querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>{closeO();({tanz:naTanz,talk:naTalk,drink:naDrink,dia:naDia})[b.dataset.a]()})}
+function naTalk(){const L=FL.marfa?NA_TALK.concat(NA_TALK_M):NA_TALK,i=FL.naT||0;FL.naT=i+1;say(L[i%L.length],()=>naPunkte('talk',30,6))}
+function naDrink(){const i=FL.naD||0;FL.naD=i+1;say(NA_DRINK[i%NA_DRINK.length],()=>naPunkte('drink',20,5))}
+function naTanz(){say([['P','Nastja … noch ein Privattanz?'],['NA','Für dich, Zwiebel? Freundschaftspreis: umsonst. Erzähl’s keinem, sonst wollen das alle.'],['NA','Hände aufs Sofa. Und diesmal ohne Gemüse.']],()=>{naPunkte('tanz',30,10);lapDance()})}
+function naDia(){if(relOf('Nastja')<NASTJA_DIADEM)return hint('naDiaNein',[
+    [['P','Nastja … hast du zufällig eine Krone? Für Marfa. Aus dem Sumpf.'],['NA','Marfa? Die alte Giftspritze? *lacht* Ich hab da was. Aber das kriegt nicht jeder, Zwiebel.'],
+      ['NA','So gut kennen wir uns noch nicht. Tanz mit mir, trink mit mir, red mit mir. Nicht nur, wenn du was willst.']],
+    [['NA','Das Diadem? Erst ein bisschen Liebe, Zwiebel. Dann vielleicht Schmuck. So läuft das bei Frauen. Und bei Banken.']]]);
+  say([['P','Nastja … Marfa will nur mit Krone aus dem Sumpf.'],['NA','Typisch. Hundert Jahre Schlamm und immer noch Ansprüche wie eine Zarin.'],
+    ['NA','*kramt in ihrem Ausschnitt* Hier. Mein altes Strass-Diadem. Ich trag’s eh nicht mehr, es piekt. Überall.'],
+    ['NA','Aber wenn sie mir die Stange klaut, Zwiebel, dann sind wir geschieden.'],['P','Wir sind doch gar nicht …'],['NA','Eben.']],()=>{inv.push('diadem');renderInv()})}
 {const nf=T.nastja2.fn;T.nastja2.fn=function(){
-  if(!FL.traene)return nf.apply(this,arguments);
-  if(FL.marfaKrone&&!FL.marfaDia&&!has('diadem')){
-    if(relOf('Nastja')<NASTJA_DIADEM)return hint('naDiaNein',[
-      [['P','Nastja … hast du zufällig eine Krone? Für Marfa. Aus dem Sumpf.'],['NA','Marfa? Die alte Giftspritze? *lacht* Ich hab da was. Aber das kriegt nicht jeder, Zwiebel.'],
-        ['NA','So gut kennen wir uns noch nicht. Komm öfter vorbei. Red mit mir. Nicht nur, wenn du was willst.']],
-      [['NA','Das Diadem? Erst reden, Zwiebel. Dann vielleicht schenken. So läuft das bei Frauen. Und bei Banken.']]]);
-    return say([['P','Nastja … Marfa will nur mit Krone aus dem Sumpf.'],['NA','Typisch. Hundert Jahre Schlamm und immer noch Ansprüche wie eine Zarin.'],
-      ['NA','*kramt in ihrem Ausschnitt* Hier. Mein altes Strass-Diadem. Ich trag’s eh nicht mehr, es piekt.'],
-      ['NA','Aber wenn sie mir die Stange klaut, Zwiebel, dann sind wir geschieden.'],['P','Wir sind doch gar nicht …'],['NA','Eben.']],()=>{inv.push('diadem');renderInv()})}
-  const n=FL.naV||0;if(n<2)return nf.apply(this,arguments);FL.naV=n+1;
-  const L=FL.marfa?[
-    [['NA','*nippt* Pause, Zwiebel. Marfa hat die Stange, ich hab den Wein. Gerechte Arbeitsteilung.']],
-    [['NA','Sie tanzt nicht schlecht, die Alte. Für jemanden, der hundert Jahre im Schlamm lag. *trinkt* Ich war besser.']],
-    [['NA','*schwenkt das Glas* Rotwein. Der einzige Mann hier, der mich nie enttäuscht hat.']],
-    [['NA','Mein Diadem steht ihr. Sag ihr das nicht. Sag ihr lieber, es steht ihr nicht.']]]:[
-    [['NA','Weißt du, was ich im Sumpf am meisten vermisst hab? Gespräche. Frösche sind miese Zuhörer.']],
-    [['NA','*lacht* Du guckst schon wieder so. Wie ein Kater vor der Sahne. Diesmal ist es fast süß.']],
-    [['NA','Zinaida zahlt pünktlich. Das ist mehr, als ich von den meisten Männern sagen kann. Du zählst nicht. Du zahlst ja nie.']],
-    [['NA','Wenn du hier rauskommst, aus diesem Märchen … vergiss mich nicht ganz, ja? Nur so ein bisschen.']]];
-  say(L[(n-2)%L.length])}}
+  // bis zur Versöhnung (naV 2) läuft die Geschichte wie bisher, danach das Menü
+  if(!FL.traene||(FL.naV||0)<2)return nf.apply(this,arguments);nastjaMenu()}}
+(function(){const css=document.createElement('style');css.textContent=`.namenu{max-width:440px}.namenu .nahead{display:flex;gap:14px;align-items:center;margin-bottom:10px}
+.namenu .nahead img{height:120px;image-rendering:pixelated}.namenu .nahead>div{flex:1}.namenu .mb.big{display:block;width:100%;margin:6px 0;text-align:left}.namenu small{float:right;opacity:.7}
+.namenu .rel{display:flex;align-items:center;gap:8px;font:12px Georgia,serif}.namenu .rel .rl{opacity:.7}.namenu .rel .rb{position:relative;flex:1;height:8px;border-radius:4px;background:rgba(0,0,0,.35);overflow:hidden}
+.namenu .rel .rb i{position:absolute;top:0;bottom:0}.namenu .rel .rb u{position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(240,220,180,.7)}`;document.head.appendChild(css)})();
 
 // ---------- Sumpf: Nastja ist weg (Banja), Marfa auch, sobald angeworben; solange der Bogen läuft, ist Marfa immer da ----------
 updateSwampNymphs=function(){const gone=i=>(NYMPHS[i].id==='nastja'&&FL.rekrut)||(NYMPHS[i].id==='marfa'&&FL.marfa);
@@ -128,10 +153,10 @@ updateSwampNymphs=function(){const gone=i=>(NYMPHS[i].id==='nastja'&&FL.rekrut)|
 // ---------- Neuer Anwerbebogen: Gespräch mit vier Fragen ----------
 const NT2={
   marfa:{s:1,b:1,v:1,r:()=>FL.marfaDia?1:0,a:[
-    'Publikum? Süßer, ich hab auf Kaufmannshochzeiten getanzt, bis die Tische brachen. Und die Ehen. Der Gouverneur hat Rubel geworfen. Mit Kopf drauf.',
-    ()=>FL.marfaDia?'Mit Krone? Dann soll die Welt mal schauen, wer da aus dem Sumpf steigt.':'Raus? Pff. Hier unten bin ich Königin. Da oben wär ich eine nasse Frau ohne Krone.',
-    'Wie mit Schlamm. Erst reinlegen, dann drübersteigen.',
-    ()=>FL.marfaDia?'Nichts mehr. Die Krone sitzt. Ich warte nur noch auf deinen Bogen, Bauer.':'Mein Thron. Na gut, ein Baumstumpf. Eine Königin ohne Krone ist nur eine Frau mit Haltung. Bring mir eine Krone, dann reden wir.']},
+    'Publikum? Süßer, ich hab auf Kaufmannshochzeiten getanzt, bis die Tische brachen. Und die Ehen. Der Bräutigam hat mir sein Erbe ins Mieder gesteckt. Die Braut ihren Dolch.',
+    ()=>FL.marfaDia?'Mit Krone? Dann soll die Welt mal schauen, wer da aus dem Sumpf steigt. Tropfnass und unbezahlbar.':'Raus? Pff. Hier unten bin ich Königin. Da oben wär ich nur eine nasse Frau mit schönem Busen und ohne Krone.',
+    'Wie mit Schlamm. Erst reinlegen, dann drübersteigen. Und wenn er Glück hat, dazwischen ein bisschen wälzen.',
+    ()=>FL.marfaDia?'Nichts mehr. Die Krone sitzt. Ich warte nur noch auf deinen Bogen, Bauer.':'Mein Thron. Na gut, ein Baumstumpf. Eine Königin ohne Krone ist nur eine Frau mit Haltung und nassen Unterröcken. Bring mir eine Krone, Bauer, dann zeig ich dir, wie ich mich bedanke.']},
   ustinja:{s:0,b:1,v:1,r:1,a:['Primaballerina, 1903! Der Zar hat geklatscht. Oder gehustet. Jedenfalls hat er Geräusche gemacht.',
     'Oh ja! Applaus! Blumen! Und eine Treppe, die ich hinunterschreiten kann.','Männer hält man wie Pudel, mein Lieber. An der Leine, mit Schleifchen.','Nichts. Nur die Knie. Die sind jetzt aus Schlamm.']},
   fekla:{s:0,b:0,v:1,r:0,a:['Publikum? Die Aale gucken mir beim Blubbern zu. Zählt das?','Raus? Ich bin hier eingeweicht. Mich kriegt keiner mehr raus.','Ich setz mich drauf. Dann ist Ruhe.','Die Schwerkraft. Und die Würmer. Die sind wie Familie.']},
@@ -148,14 +173,14 @@ function interview2(nd){const idx=NYMPHS.indexOf(nd),tr=NT2[nd.id]||NT2.fekla,hv
   const ans=o.querySelector('.ans');
   o.querySelectorAll('.qb[data-q]').forEach(b=>b.onclick=()=>{const q=+b.dataset.q;ans.textContent='„'+hv2(tr.a[q])+'“';if(nd.id==='marfa'&&q==3&&!FL.marfaDia)FL.marfaKrone=1});
   const dia=o.querySelector('.dia');if(dia)dia.onclick=()=>{const k=inv.indexOf('diadem');if(k>=0){inv.splice(k,1);renderInv()}FL.marfaDia=1;FL.marfaKrone=1;dia.remove();
-    ans.textContent='„*setzt das Diadem auf* Strass. Billig. Wunderschön. … Na gut, Bauer. Für eine Krone steig ich aus dem Schlamm.“'};
+    ans.textContent='„*setzt das Diadem auf* Strass. Billig. Wunderschön. Wie ich früher. … Na gut, Bauer. Für eine Krone steig ich aus dem Schlamm. Du darfst mir dabei die Hand geben. Nur die Hand.“'};
   o.querySelector('.bk').onclick=closeO;
   o.querySelector('.go').onclick=()=>{const ck={};o.querySelectorAll('input').forEach(i=>ck[i.dataset.k]=i.checked?1:0);const r=o.querySelector('.res'),want={s:tr.s,b:tr.b,v:tr.v,r:hv2(tr.r)};
     if(['s','b','v','r'].some(k=>ck[k]!=want[k])){r.textContent='Hm. Ich glaube, ich hab sie falsch eingeschätzt. Der Bogen stimmt nicht.';return}
     if(!(want.s&&want.b&&want.v&&want.r)){r.textContent=nd.id==='marfa'?'Der Bogen stimmt. Marfa passt fast perfekt – nur raus will sie nicht. Was hält sie hier unten?':'Der Bogen stimmt. Aber Madame will alle vier Kreuze.';return}
     closeO();FL.marfa=1;updateSwampNymphs();
     say([['P','Marfa. Madame Zinaida sucht eine Königin für ihre Bühne. Mit Spiegel, Scheinwerfer und Männern, die zahlen.'],
-      ['marfa','Männer, die zahlen? So hab ich sie am liebsten. Gleich nach denen, die schweigen.'],
+      ['marfa','Männer, die zahlen? So hab ich sie am liebsten. Gleich nach denen, die schweigen. Und die, die beides können, heirate ich. Kurz.'],
       ['marfa','Ich komme. Sag deiner Madame: Die Königin des Sumpfs gibt sich die Ehre.'],['P','(Die Zweitbeste. Madame wird zufrieden sein.)']])}}
 {const _use=use;use=function(id){const o=T[id];if(/^slot\d$/.test(id)&&o&&FL.t2Q&&!FL.marfa&&has('bogen2'))return interview2(o);return _use(id)}}
 
