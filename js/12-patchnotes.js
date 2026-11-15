@@ -1,6 +1,7 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.97',d:'15.11.2026',t:'An der Stange',n:['Nastja tanzt jetzt wirklich an der Stange: Sie hält sich oben und unten fest, gleitet langsam ein Stück herab, hakt das Bein um die Stange und zieht sich wieder hoch','Der Federwedel steckt dabei im Strumpfband']},
   {v:'1.96',d:'15.11.2026',t:'Die neue Nastja',n:['Nastja im Banja ist neu: blondes Wallehaar mit Haarband, dunkelrotes Korsett, Strapse, Strümpfe, Plateauschuhe, Choker, große Creolen und ein Federwedel','Strenger Pixel-Stil: 500 Pixel hoch, 20 Farben, dunkelbraune Federkontur','Sie zwinkert. Und lächelt dabei, als wüsste sie mehr als du']},
   {v:'1.95',d:'15.11.2026',t:'Nastja neu gepixelt',n:['Nastja im Banja nach den neuen Pixel-Regeln: genau 500 Pixel hoch, höchstens 20 Farben, dunkelbraune Federkontur (rundum 2 Pixel, rechts und unten 4), feine Innenlinien, Füße exakt auf dem Boden','Langes blondes Haar bis zur Hüfte, schmales Haarband, rote Lippen, weißer Fächer – und ein trockener, gelangweilter Blick statt Rouge']},
   {v:'1.94',d:'15.11.2026',t:'Tester bis zum Abspann',n:['Tester-Modus: Die Sprungpunkte gehen jetzt durch ganz Akt 3 – Ur-Spore, Pope, Weihwasser, Glut, Zwiebel, Lüftung, Träne und zuletzt alles beisammen vor Baba Jagas Hütte']},
