@@ -13,14 +13,14 @@ const TSTEPS=[
   {t:'Leiter von Opa bekommen',f:['schnaps','leiter'],add:['leiter'],rm:['schnapsG','leiterG'],at:['huette',640,474]},
   {t:'In Baba Jagas Hütte',f:['drin'],del:['leiter'],s:['innen'],at:['innen',250,470]},
   {t:'Joint zerlegt (blaue Pilze)',f:['pilze'],del:['kippe'],add:['pilze'],at:['innen',250,470]},
-  {t:'Baba Jaga: Ab zu den Gnomen',f:['bjInfo','labQ'],at:['innen',250,470]},
+  {t:'Baba Jaga: Ab zu den Gnomen',f:['bjInfo','labQ','echo1'],at:['innen',250,470]},
   {t:'Gnome wollen Mehl',f:['mehlQ'],s:['gnome'],at:['gnome',60,472]},
   {t:'Müller will eine Braut',f:['mullerQ'],s:['muehle'],at:['muehle',700,470]},
   {t:'Wegkarte von Baba Jaga',f:['karte'],add:['karte'],at:['innen',250,470]},
   {t:'Banja gefunden, Madames Liste',f:['clubQ'],add:['liste'],s:['irrwald','banjaV','banja'],at:['banja',300,480]},
   {t:'Opas rostige Säge + Omas Gebiss',f:['sawQ','auftrag','gq','ks'],add:['rsaege'],s:['dorfstr','kirche','sperre'],at:['kirche',420,488]},
   {t:'Angel gebaut (Wäscheleine)',f:['angelQ','kraehe','ast','leine'],add:['angel'],rm:['apfelG','kraeheG'],at:['fischer',90,476]},
-  {t:'Fisch → Gebiss → Teer',f:['fisch','kater','teer'],del:['angel'],add:['teer'],rm:['katerG','gebissG'],at:['fischer',90,476]},
+  {t:'Fisch → Gebiss → Teer',f:['fisch','kater','teer','kette'],del:['angel'],add:['teer'],rm:['katerG','gebissG'],at:['fischer',90,476]},
   {t:'Säge geschärft (Schuld beim Schmied)',f:['schuld'],del:['rsaege'],add:['saege'],s:['schmiede'],at:['dorf',150,486]},
   {t:'Teer bei Opa, Birken freigegeben',f:['deal'],del:['teer'],at:['sperre',400,488]},
   {t:'Birken zersägt, Opas Haus steht',f:['cut','haus'],del:['saege'],s:['sumpf'],at:['sumpf',540,488]},
@@ -29,7 +29,16 @@ const TSTEPS=[
   {t:'„Mehl“ vom Müller',f:['mehl'],del:['gutschein'],add:['mehl'],at:['muehle',700,470]},
   {t:'Stollen offen (Laterne)',f:['stollen'],del:['mehl'],add:['laterne'],s:['hoehle'],at:['hoehle',400,486]},
   {t:'Blaue Pilze aus der Höhle',add:['blaupilze'],at:['hoehle',400,486]},
-  {t:'Rezept von Baba Jaga',f:['recipe','a3'],del:['pilze','blaupilze','laterne'],add:['phiole','filter'],at:['innen',250,470]}];
+  {t:'Rezept von Baba Jaga',f:['recipe','a3','latHoch','echo2'],del:['pilze','blaupilze','laterne'],add:['phiole','filter'],at:['innen',250,470]},
+  // ---- Akt 3 ----
+  {t:'Akt 3: Ur-Spore aus dem Pilzbeet',f:['sporeQ','gartenOk'],add:['spore'],s:['garten'],at:['garten',640,478]},
+  {t:'Pope hinterm Banja geweckt',f:['popeBack'],s:['banjaH'],at:['banjaH',300,470]},
+  {t:'Weihwasser vom Popen',f:['weih'],add:['weihwasser'],at:['kirche',420,488]},
+  {t:'Glut vom Schmied',f:['glutQ','glut'],del:['weihwasser'],add:['glut'],s:['schmiede'],at:['schmiede',300,470]},
+  {t:'Zwiebel aus dem Gnombeet',f:['trQ','zwiebel'],add:['zwiebel'],at:['garten',640,478]},
+  {t:'Zwiebel in der Lounge-Lüftung',f:['zwIn'],del:['zwiebel'],at:['banjaH',300,470]},
+  {t:'Privattanz → Nastjas Träne',f:['booked','traene','lounge'],del:['phiole'],add:['traene'],s:['buehne','lounge'],at:['buehne',260,486]},
+  {t:'Alles beisammen – ab zu Baba Jagas Tisch (Echo 3 beim Betreten)',at:['huette',640,488]}];
 function tState(n){const d={inv:[],FL:{},seen:{wald:1},REM:[],cur:'wald',P:{x:400,y:476},ti:{}};
   TSTEPS.slice(0,n+1).forEach(st=>{(st.f||[]).forEach(k=>d.FL[k]=1);(st.del||[]).forEach(i=>{const j=d.inv.indexOf(i);if(j>=0)d.inv.splice(j,1)});
     (st.add||[]).forEach(i=>d.inv.push(i));(st.rm||[]).forEach(r=>d.REM.push(r));(st.s||[]).forEach(s=>d.seen[s]=1);
