@@ -380,19 +380,20 @@ function pixSprite(inner,[x,y,w,h],rows,opt){opt=opt||{};const H=rows?rows:h>=15
       C[k*3]=r/n;C[k*3+1]=g/n;C[k*3+2]=b/n}}
     const o=document.createElement('canvas');o.width=W;o.height=H;const og=o.getContext('2d'),id=og.createImageData(W,H),od=id.data;
     for(let k=0;k<N;k++){if(G2[k]<0)continue;const q=k*4;od[q]=Math.max(0,Math.min(255,C[k*3]));od[q+1]=Math.max(0,Math.min(255,C[k*3+1]));od[q+2]=Math.max(0,Math.min(255,C[k*3+2]));od[q+3]=255}
-    pixQuant(od,PIX_COLORS,x+','+y+','+w+','+h+','+H);
+    pixQuant(od,PIX_COLORS,x+','+y+','+w+','+h+','+H,opt.pal);
     if(opt.floor){let m=-1;for(let Y=H-1;Y>=0&&m<0;Y--)for(let X=0;X<W;X++)if(od[(Y*W+X)*4+3]){m=Y;break}const sh=H-1-m;if(m>=0&&sh>0){od.copyWithin(sh*W*4,0,(H-sh)*W*4);od.fill(0,0,sh*W*4)}}   // Füße genau auf die unterste Zeile
     og.putImageData(id,0,0);return o.toDataURL()})}
 // Höchstens PIX_COLORS Farben je Figur (Median-Cut + k-Means auf den deckenden Pixeln; Transparenz zählt nicht als Farbe).
 // Bilder mit gleicher Kiste (Lauf-Frames, Gesichter, Posen derselben Figur) nutzen dieselbe Palette, solange sie passt -> kein Farbflackern.
 const PQC={};
 const PIX_COLORS=20;
-function pixQuant(d,N,key){const cnt=new Map();for(let q=0;q<d.length;q+=4){if(d[q+3]<128){d[q+3]=0;continue}d[q+3]=255;const k=d[q]<<16|d[q+1]<<8|d[q+2];cnt.set(k,(cnt.get(k)||0)+1)}
+function pixQuant(d,N,key,fixed){const cnt=new Map();for(let q=0;q<d.length;q+=4){if(d[q+3]<128){d[q+3]=0;continue}d[q+3]=255;const k=d[q]<<16|d[q+1]<<8|d[q+2];cnt.set(k,(cnt.get(k)||0)+1)}
   const U=[...cnt].map(([k,n])=>[k>>16&255,k>>8&255,k&255,n]);
   const near0=(P,c)=>{let bd=1e9,bi=0;for(let i=0;i<P.length;i++){const p=P[i],e=(p[0]-c[0])**2+(p[1]-c[1])**2+(p[2]-c[2])**2;if(e<bd){bd=e;bi=i}}return[bi,bd]};
   const apply=P=>{const map=new Map();U.forEach(c=>map.set(c[0]<<16|c[1]<<8|c[2],P[near0(P,c)[0]]));for(let q=0;q<d.length;q+=4){if(!d[q+3])continue;const p=map.get(d[q]<<16|d[q+1]<<8|d[q+2]);d[q]=p[0];d[q+1]=p[1];d[q+2]=p[2]}};
   const mse=P=>{let e=0,bad=0,tot=0;const lim=Math.max(4*(P.err||0),40*40);for(const c of U){const dd=near0(P,c)[1];e+=dd*c[3];tot+=c[3];if(dd>lim)bad+=c[3]}return[e/tot,bad/tot]};
   // gespeicherte Palette passt, wenn sie kaum schlechter trifft als beim eigenen Bild und keine neue Farbe (z. B. rote Wangen) fehlt
+  if(fixed)return apply(fixed.map(h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16))));   // feste Palette (z. B. damit unveränderte Teile pixelgenau gleich bleiben)
   if(key)for(const P of PQC[key]||[]){const[e,bad]=mse(P);if(e<=P.err*1.35+20&&bad<=.002)return apply(P)}
   if(cnt.size<=N)return;
   const stat=b=>{let lo=[255,255,255],hi=[0,0,0],w=0;for(const c of b){for(let j=0;j<3;j++){if(c[j]<lo[j])lo[j]=c[j];if(c[j]>hi[j])hi[j]=c[j]}w+=c[3]}const r=hi.map((h,j)=>h-lo[j]),ch=r.indexOf(Math.max(...r));return{b,ch,score:r[ch]*Math.sqrt(w),w}};

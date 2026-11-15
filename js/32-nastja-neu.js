@@ -4,6 +4,9 @@
 // Gerendert wie alle Figuren (pixSprite) mit NASTJA_PIX: 500 px hoch, max. 20 Farben, Kontur 2 px / rechts+unten 4 px, Füße auf der Bodenzeile.
 // Noch NICHT im Spiel eingesetzt – Vorschau/Export: nastjaNeuExport() -> JSON-Text im Array-Format von pixel/
 const NASTJA_NEU_BOX=[-74,-270,134,274];
+// feste 20er-Palette: Augen & alles Unveränderte bleiben bei Änderungen pixelgenau gleich
+const NASTJA_NEU_PAL=["#2e1c10","#e8d19b","#53514f","#cfba9d","#cab58b","#bea97c","#ac9a72","#373535","#27262a","#f5dbbf","#e8d1ba","#d8c5b1","#f0eeea","#b3a08c","#521e27","#998866","#a5946d","#712834","#64242f","#41171f"];
+const NASTJA_NEU_PIX={...NASTJA_PIX,pal:NASTJA_NEU_PAL};
 const NASTJA_NEU=(()=>{const mir=d=>d.replace(/(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)/g,(m,x,y)=>`${-x},${y}`);   // Pfad an der Mittelachse spiegeln
   const both=(d,a)=>`<path d="${d}" ${a}/><path d="${mir(d)}" ${a}/>`;
   const wave=(pts,amp)=>pts.slice(1).map((p,i)=>{const q=pts[i],mx=(p[0]+q[0])/2,my=(p[1]+q[1])/2,dx=p[0]-q[0],dy=p[1]-q[1],l=Math.hypot(dx,dy)||1;return`Q${(mx+dy/l*amp).toFixed(1)},${(my-dx/l*amp).toFixed(1)} ${p[0]},${p[1]}`}).join(' ');
@@ -35,7 +38,7 @@ ${both('M-20,-10.5L-0.8,-10.5L-0.8,0L-20,0Z',`fill="#2c2c32"`)}
 <!-- Strapse -->
 <path d="M-10,-141L-10,-108M-17,-140L-16.5,-108M10,-141L10,-108M17,-140L16.5,-108" fill="none" stroke-width="1.3"/>
 <!-- Hals, Schultern, Dekolleté -->
-<path d="M-6,-212L-6,-202C-12,-200 -20,-199 -24,-196C-26,-192 -26,-188 -24,-183L24,-183C26,-188 26,-192 24,-196C20,-199 12,-200 6,-202L6,-212Z" fill="${SK}"/>
+<path d="M-6,-212L-6,-202C-12,-200 -20,-199 -24,-196C-26,-192 -26,-188 -24,-183L-14,-172L14,-172L24,-183C26,-188 26,-192 24,-196C20,-199 12,-200 6,-202L6,-212Z" fill="${SK}"/>
 <path d="M2,-212L6,-212L6,-202C12,-200 20,-199 24,-196C26,-192 26,-188 24,-183L14,-183C18,-190 10,-198 2,-202Z" fill="${SK2}" stroke="none"/>
 <!-- rechter Arm (hängt) -->
 <path d="M19,-196C26,-196 28,-188 27.5,-178C27,-165 26.5,-152 26.5,-140C26.5,-132 27,-126 27,-121L21.5,-121C21.5,-128 21,-136 21,-142C21,-156 20,-168 19,-178Z" fill="${SK}"/>
@@ -49,11 +52,11 @@ ${fe}
 <path d="M-45,-199C-40.5,-201 -37.5,-198 -38,-193C-38.5,-188 -42.5,-186 -45.5,-188C-48,-190 -48,-197 -45,-199Z" fill="${SK}"/>
 <path d="M-46,-195L-40,-196.5M-46.5,-191.5L-40.5,-192.5" fill="none" stroke-width=".8"/>
 <!-- Korsett -->
-<path d="M-19,-186C-15,-192 -6,-191 0,-183C6,-191 15,-192 19,-186C17,-172 13,-163 13,-155C13,-150 16,-145 18,-139L0,-136L-18,-139C-16,-145 -13,-150 -13,-155C-13,-163 -17,-172 -19,-186Z" fill="${CO}"/>
-<path d="M8,-185C13,-190 17,-189 19,-186C17,-172 13,-163 13,-155C13,-150 16,-145 18,-139L8,-137Z" fill="${CO2}" stroke="none"/>
+<path d="M-19.5,-185C-16,-190.5 -8,-188 0,-174.5C8,-188 16,-190.5 19.5,-185C17,-172 13,-163 13,-155C13,-150 16,-145 18,-139L0,-136L-18,-139C-16,-145 -13,-150 -13,-155C-13,-163 -17,-172 -19,-186Z" fill="${CO}"/>
+<path d="M9,-185.5C13,-189.5 17,-189 19.5,-185C17,-172 13,-163 13,-155C13,-150 16,-145 18,-139L8,-137Z" fill="${CO2}" stroke="none"/>
 <path d="M-8,-182C-7,-166 -7,-152 -9,-139M8,-182C7,-166 7,-152 9,-139M-15,-176C-12,-166 -11,-156 -14,-142M15,-176C12,-166 11,-156 14,-142" fill="none" stroke="${CO2}" stroke-width="1.8"/>
-${Array.from({length:7},(_,i)=>{const y=-179+i*5.6;return `<path d="M-2.6,${y}L2.6,${y+4}M2.6,${y}L-2.6,${y+4}" fill="none" stroke-width="1.1"/>`}).join('')}
-<path d="M0,-183L0,-177M-12,-190L-15,-199M12,-190L15,-199" fill="none" stroke-width="1.1"/>
+${Array.from({length:6},(_,i)=>{const y=-172+i*5;return `<path d="M-2.6,${y}L2.6,${y+4}M2.6,${y}L-2.6,${y+4}" fill="none" stroke-width="1.1"/>`}).join('')}
+<path d="M0,-179L0,-175.5M-3,-182C-2,-179 -1,-177 0,-176.5M-13.5,-189.6L-15.5,-199M13.5,-189.6L15.5,-199" fill="none" stroke-width="1.1"/>
 <!-- Kopf -->
 <path d="M-13,-232C-13,-220 -10,-213 -5,-209.5C-2,-207.5 2,-207.5 5,-209.5C10,-213 13,-220 13,-232C13,-244 7,-250 0,-250C-7,-250 -13,-244 -13,-232Z" fill="${SK}"/>
 <path d="M6,-248C11,-244 13,-238 13,-232C13,-220 10,-213 5,-209.5C9,-216 10,-226 9,-236C8,-242 7,-246 6,-248Z" fill="${SK2}" stroke="none"/>
@@ -65,8 +68,8 @@ ${Array.from({length:7},(_,i)=>{const y=-179+i*5.6;return `<path d="M-2.6,${y}L2
 <path d="M1.8,-229.4C4,-231.4 8,-231.4 10.8,-229.4M10.8,-229.4L13,-230.8M9.8,-230.4L11.4,-232.4" fill="none" stroke-width="1.6"/>
 <path d="M-10.6,-236.4C-8,-240 -4,-240 -1.8,-237.4M2,-236.2C4,-237.6 7,-237.6 10.2,-235.6" fill="none" stroke-width="1.1"/>
 <path d="M0.6,-227C0,-223 -1,-221 0,-220.4C1,-220 2,-220.2 2.6,-220.8" fill="none" stroke-width=".8"/>
-<path d="M-5.2,-216.2C-2.6,-218.2 -0.4,-217.4 0,-217C0.4,-217.4 2.6,-218.2 5.2,-216.2C3.4,-212.4 -3.4,-212.4 -5.2,-216.2Z" fill="#a82034" stroke-width=".8"/>
-<path d="M-4.8,-216C-1.6,-214.4 1.6,-214.4 4.8,-216M-5.2,-216.2L-6.2,-217.4M5.2,-216.2L6.2,-217.4" fill="none" stroke-width=".9"/>
+<path d="M-4.6,-215.4C-2.4,-216.8 -0.4,-216.5 0,-216.2C0.6,-216.8 2.8,-217.6 5,-216.9C3.6,-213.8 -2.6,-213.3 -4.6,-215.4Z" fill="#a82034" stroke-width=".9"/>
+<path d="M-4.4,-215.3C-1.6,-215 1.6,-215.3 4.8,-216.8M4.8,-216.8L6,-218M-4.6,-215.4L-5.3,-214.9" fill="none" stroke-width="1"/>
 <!-- Haar vorne: Scheitel, Stirnpartie, Locken über die Schultern -->
 <path d="M-14,-231C-16,-246 -8,-257 0,-257C8,-257 16,-246 14,-231C11,-239 6,-244 1,-245C-4,-244 -11,-239 -14,-231Z" fill="${HA}"/>
 <path d="M-13.5,-241.5C-8,-251.5 8,-251.5 13.5,-241.5L13,-239C8,-248.5 -8,-248.5 -13,-239Z" fill="${BK}"/>
@@ -82,4 +85,4 @@ function pixArray(url,name){return new Promise(res=>{const im=new Image();im.onl
   const rows=[];for(let y=0;y<H;y++){let last=-1;for(let x=x0;x<=x1;x++)if(d[(y*W+x)*4+3])last=x;let s='',x=x0;while(x<=last){const ch=sy((y*W+x)*4);let n=1;while(x+n<=last&&sy((y*W+x+n)*4)===ch)n++;s+=ch+(n>1?n:'');x+=n}rows.push(s)}
   const P={'.':null};if(pal.K)P.K=pal.K;Object.keys(pal).filter(k=>k!='K').sort().forEach(k=>P[k]=pal[k]);
   res(`{"name":"${name}",\n"width":${x1-x0+1},"height":${H},"format":"rle",\n"info":"Pro Zeile: Zeichen + Anzahl (ohne Zahl = 1). \\".\\" = transparent, fehlendes Zeilenende = transparent.",\n"palette":{${Object.entries(P).map(([k,v])=>JSON.stringify(k)+':'+JSON.stringify(v)).join(',\n')}},"rows":[\n${rows.map(r=>JSON.stringify(r)).join(',\n')}]}`)};im.src=url})}
-function nastjaNeuExport(){return pixSprite(NASTJA_NEU,NASTJA_NEU_BOX,0,NASTJA_PIX).then(u=>pixArray(u,'nastja'))}
+function nastjaNeuExport(){return pixSprite(NASTJA_NEU,NASTJA_NEU_BOX,0,NASTJA_NEU_PIX).then(u=>pixArray(u,'nastja'))}
