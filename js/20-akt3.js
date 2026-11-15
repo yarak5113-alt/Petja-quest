@@ -123,12 +123,12 @@ Object.assign(T,{
       ['P','Natürlich.'],['PO','Bring es ihm. Sag ihm: Damit sind wir quitt.']],()=>{FL.weih=1;inv.push('weihwasser');renderInv()});
     hint('pope2',[[['PO','Grüß Fjodor von mir. Und sag ihm: Quitt heißt quitt.']],[['PO','Der Kater sitzt jetzt auf dem Altar. Ich lass ihn. Er ist länger in der Gemeinde als ich.']],[['PO','Möge der Herr dich nach Hause führen. Und wenn nicht, gibt’s im Banja Wodka.']]])}},
   schmied:{n:'Schmied Fjodor',at:[440,472],fn(){
-    if(FL.glut)return say([['SM','Pass auf die Dose auf. Und auf deine Finger.']]);
+    if(FL.glut)return say([['SM','Pass auf die Dose auf. Und auf deine Finger. Neue Schulden? Schreibbereitschaft.']]);
     if(has('weihwasser'))return say([['P','Schöne Grüße von Vater Ignati. Weihwasser. Er sagt: quitt.'],['SM','*kippt es in die Esse* *ZISCHHH*'],['SM','… Riecht nach Wodka.'],['P','Zur Haltbarkeit, sagt er.'],
-      ['SM','Dann ist es echt. Hier – Glut in der Dose. Die geht nicht aus, nicht mal im Sumpf.'],['P','*nimmt die Dose* Heiß. Natürlich.']],()=>{inv.splice(inv.indexOf('weihwasser'),1);inv.push('glut');FL.glut=1;renderInv()});
+      ['SM','Dann ist es echt. Hier – Glut in der Dose. Die geht nicht aus, nicht mal im Sumpf.'],['P','*nimmt die Dose* Heiß. Natürlich.'],['SM','*wischt mit dem Ärmel einen Kreidestrich von der Wand* Quitt. Aber ich bleib in Schreibbereitschaft.']],()=>{inv.splice(inv.indexOf('weihwasser'),1);inv.push('glut');FL.glut=1;renderInv()});
     if(FL.recipe)return say([['P','Ich bräuchte Glut. Glut, die nicht ausgeht.'],['SM','Aus meiner Esse? Die brennt seit dreißig Jahren ungeweiht. Der Pope sollte sie segnen. 1993. Dann ist er „in die Stadt“.'],
       ['SM','Seitdem schuldet er mir die Weihe. Ohne Segen keine Glut, die nicht ausgeht.'],['P','Und wenn ich Ihnen den Segen bringe?'],['SM','Dann kriegst du die beste Glut im ganzen Märchen.']],()=>{FL.glutQ=1});
-    hint('schmied',[[['SM','Was glotzt du? Noch nie einen Schmied gesehen?'],['P','Doch. Im Fernsehen. Die waren kleiner.']],[['SM','Hufeisen, Nägel, Sensen. Keine Wunder. Für Wunder geh zur Hexe.']],[['SM','Ich hau auf Eisen. Nicht auf Leute. Meistens.']]])}},
+    hint('schmied',[[['SM','Was glotzt du? Noch nie einen Schmied gesehen?'],['P','Doch. Im Fernsehen. Die waren kleiner.']],[['SM','Hufeisen, Nägel, Sensen. Keine Wunder. Für Wunder geh zur Hexe.']],[['SM','Ich hau auf Eisen. Nicht auf Leute. Meistens.']],[['SM','Wer bei mir nicht zahlen kann, kommt an die Wand. Mit Kreide. Schreibbereitschaft.']]])}},
   pilzbeet:{n:'Pilzbeet',at:[520,446],fn(){
     if(has('spore')||FL.ende)return say([['P','Das Beet hat mir schon genug gegeben. Die Pilze gucken beleidigt.']]);
     if(!FL.recipe)return hint('pilzbeet',[[['P','Ein Pilzbeet. Die Pilze gucken mich an. Ich guck lieber weg.']],[['N1','Finger weg, Langer! Das ist Gnomgold.']]]);

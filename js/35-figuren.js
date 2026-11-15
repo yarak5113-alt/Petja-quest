@@ -47,7 +47,7 @@ const FIGUREN=[
     [()=>FL.weih,'Streckt sein Weihwasser mit Wodka. „Zur Haltbarkeit.“ Der Kater sitzt jetzt auf dem Altar und ist länger in der Gemeinde als er.']]},
   {n:'Schmied Fjodor',w:'Schmiedehof',s:[
     [()=>FL.schuld||seen.schmiede,'Groß, rußig, ehrlich. Der Einzige im Dorf, der für Arbeit Geld will und nicht für Gefallen.'],
-    [()=>FL.schuld,'Hat Opas Säge geschärft. Jetzt schulde ich ihm was. Bei ihm ist das kein Gefühl, sondern ein Eintrag im Kopf.'],
+    [()=>FL.schuld,'Hat Opas Säge geschärft. Jetzt schulde ich ihm was. Bei ihm ist das kein Gefühl, sondern ein Kreidestrich an der Wand. Sein Lieblingswort: „Schreibbereitschaft“. Sagt er immer, wenn er was anschreibt. Also ständig.'],
     [()=>FL.glut,'Seine Esse brannte seit 1993 ungeweiht, weil der Pope „in der Stadt“ war. Jetzt glüht sie geweiht und riecht leicht nach Wodka. Er hat zum ersten Mal gelächelt.']]},
   {n:'Die Krähe',w:'Birkenwald, auf dem Ast',s:[
     [()=>FL.kraehe||seen.wald,'Sitzt auf dem besten Ast im Wald und verteidigt ihn wie eine Datscha.'],

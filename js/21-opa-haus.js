@@ -152,12 +152,12 @@ wrapFn('waesche',function(orig){
 wrapFn('schmied',function(orig){
   if(has('rsaege'))return say([['P','Guten Tag. Könnten Sie mir die Säge schärfen? Die ist von Opa Grischa.'],['SM','Vom Grischa? Der hat damit sein Haus … nein, das war der Samowar.'],
     ['SM','*dreht die Säge* Rost bis auf die Knochen. Gib her.'],['SM','*schleif* … *funk* … *schleif* … *ZING*'],['SM','So. Die schneidet jetzt sogar Ausreden.'],
-    ['P','Was bin ich Ihnen schuldig?'],['SM','Hast du Geld?'],['P','Nein.'],['SM','Dann schreib ich’s an. Ich vergess nix, Junge. Irgendwann brauch ich was von dir. Und dann kommst du.']],
+    ['P','Was bin ich Ihnen schuldig?'],['SM','Hast du Geld?'],['P','Nein.'],['SM','Dann schreib ich’s an. Schreibbereitschaft, Junge.'],['P','Schreib… was?'],['SM','Schreibbereitschaft. Ich hab immer Kreide in der Schürze. Ich vergess nix. Irgendwann brauch ich was von dir. Und dann kommst du.']],
     ()=>{inv.splice(inv.indexOf('rsaege'),1);inv.push('saege');FL.schuld=1;renderInv()});
-  if(FL.schuld&&FL.recipe&&!FL.glut&&!has('weihwasser'))return FL.glutQ?say([['SM','Weihwasser, Junge. Dann sind wir quitt. Vorher gibt’s keine Glut.']]):say([['P','Ich bräuchte Glut. Glut, die nicht ausgeht.'],['SM','Ah, mein Schuldner! Weißt du noch? Die Säge. Angeschrieben.'],
+  if(FL.schuld&&FL.recipe&&!FL.glut&&!has('weihwasser'))return FL.glutQ?say([['SM','Weihwasser, Junge. Dann sind wir quitt. Bis dahin: Schreibbereitschaft. Vorher gibt’s keine Glut.']]):say([['P','Ich bräuchte Glut. Glut, die nicht ausgeht.'],['SM','Ah, mein Schuldner! Weißt du noch? Die Säge. Angeschrieben. Schreibbereitschaft.'],
     ['SM','Jetzt ist es so weit. Meine Esse brennt seit 1993 ungeweiht. Der Pope sollte sie segnen. Dann ist er „in die Stadt“.'],['SM','Bring mir Weihwasser. Dann sind wir quitt. Und du kriegst Glut, die nicht ausgeht, obendrauf.'],
     ['P','Weihwasser. Von einem Popen, der seit dreißig Jahren in der Stadt ist. Klar.']],()=>{FL.glutQ=1});
-  if(FL.schuld&&!FL.recipe)return say([['SM','Die Säge schneidet? Gut. Und vergiss nicht: Du stehst bei mir in der Kreide.']]);
+  if(FL.schuld&&!FL.recipe)return say([['SM','Die Säge schneidet? Gut. Und vergiss nicht: Du stehst bei mir in der Kreide.'],['SM','*klopft auf die Schürze* Schreibbereitschaft.']]);
   return orig()});
 
 // ----- alte Spielstände -----
