@@ -37,18 +37,18 @@ const BJH=(()=>{let f='';const SK='#a9b866',INK='#1e1a10';
 ${f}<path d="M-30,10L-50,-6L-62,-26" stroke="${INK}" stroke-width="15"/><path d="M-30,10L-50,-6L-62,-26" stroke="${SK}" stroke-width="12"/><ellipse cx="-50" cy="-6" rx="7" ry="6" fill="${SK}"/>
 <path d="M-62,-26Q-70,-38 -66,-48Q-64,-38 -57,-30Z" fill="#2a2418"/>
 <path d="M-16,-8Q-6,8 -12,34M6,-14Q2,0 10,8" stroke="#5c6a30" stroke-width="1.8"/><circle cx="18" cy="22" r="2.4" fill="#7a8a40"/></g>`})();
-// Petjas Knie in Jeans (Blick nach unten aufs Sofa), linke und rechte Seite
+// Petjas Knie in Jeans (Blick nach unten aufs Sofa), breitbeinig: Oberschenkel laufen von unten nach außen, Kniescheiben zeigen schräg nach außen.
+// Matter Stoff: keine Glanzfläche, nur dunklere Nähte und Falten.
 const KNEES=`<g stroke="${FP_INK}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
-<path d="M70,512C96,470 196,448 290,446C338,444 360,462 356,484C352,502 332,512 318,512Z" fill="#7f98c8"/>
-<path d="M730,512C704,470 604,448 510,446C462,444 440,462 444,484C448,502 468,512 482,512Z" fill="#7f98c8"/>
-<path d="M300,452C328,456 344,470 340,490C330,474 316,462 300,452ZM500,452C472,456 456,470 460,490C470,474 484,462 500,452Z" fill="#a8bce0" stroke="none"/>
-<path d="M110,500C186,470 262,462 334,468M690,500C614,470 538,462 466,468" fill="none" stroke="#4a5e8e" stroke-width="2.2"/>
-<path d="M210,470Q236,486 228,506M590,470Q564,486 572,506M270,458Q290,470 284,492M530,458Q510,470 516,492" fill="none" stroke="#5a6e9e" stroke-width="2"/></g>`;
+<path d="M118,516C100,478 118,432 160,416C202,402 244,412 256,434C270,460 330,494 382,516Z" fill="#5f7398"/>
+<path d="M682,516C700,478 682,432 640,416C598,402 556,412 544,434C530,460 470,494 418,516Z" fill="#5f7398"/>
+<path d="M162,422C198,416 232,426 246,446M638,422C602,416 568,426 554,446" fill="none" stroke="#4c5d80" stroke-width="2.2"/>
+<path d="M150,510C160,476 186,456 222,450M650,510C640,476 614,456 578,450M306,510Q284,490 264,474M494,510Q516,490 536,474" fill="none" stroke="#4c5d80" stroke-width="2"/></g>`;
 // Pixeldichte wie die Nachbarfigur: Einheiten pro Pixel der Figur × deren Skalierung ÷ eigene Skalierung
 const fpRows=(boxH,ownScale,figH,figScale)=>Math.round(boxH*ownScale/(figH/PIX_ROWS*figScale));
 const FPIMG={};
 const FPDEF={hb:[FPH_BACK,[-14,-24,280,280],fpRows(280,1.4,280,2.3)],hf:[FPH_FRONT,[-8,-30,82,46],fpRows(46,1.4,280,2.3)],
-  bj:[BJH,[-78,-104,130,208],fpRows(208,1.3,256,3.6)],knees:[KNEES,[60,436,680,80],fpRows(80,1,266,1.5)]};
+  bj:[BJH,[-78,-104,130,208],fpRows(208,1.3,256,3.6)],knees:[KNEES,[60,400,680,116],fpRows(116,1,266,1.5)]};
 function fpLoad(){Object.entries(FPDEF).forEach(([k,[svg,box,rows]])=>{if(FPIMG[k])return;Promise.resolve(PIXELSTYLE?pixSprite(svg,box,rows):sprite(svg,box,2)).then(u=>{const im=new Image();im.onload=()=>FPIMG[k]={im,box};im.src=u}).catch(e=>console.error('Ego-Sicht',k,e))})}
 setTimeout(fpLoad,1500);   // nach dem Laden der Figuren, damit der Start nicht ruckelt
 const fpDraw=(x,k)=>{const f=FPIMG[k];if(!f)return false;const[bx,by,bw,bh]=f.box;x.save();x.imageSmoothingEnabled=false;x.drawImage(f.im,bx,by,bw,bh);x.restore();return true};
@@ -56,7 +56,7 @@ const fpDraw=(x,k)=>{const f=FPIMG[k];if(!f)return false;const[bx,by,bw,bh]=f.bo
 // ---------- Einhängen ----------
 const _fpHandOld=fpHand;fpHand=function(x,part){if(!fpDraw(x,part=='back'?'hb':'hf'))_fpHandOld(x,part)};
 function bjHand(x,X,Y,s,a,flip){x.save();x.translate(X,Y);x.rotate(a);x.scale(flip?-s:s,s);fpDraw(x,'bj');x.restore()}
-function fpKnees(x){if(fpDraw(x,'knees'))return;x.fillStyle='#a2b4d8';x.beginPath();x.ellipse(250,520,150,60,.25,0,7);x.fill();x.beginPath();x.ellipse(550,520,150,60,-.25,0,7);x.fill()}
+function fpKnees(x){if(fpDraw(x,'knees'))return;x.fillStyle='#5f7398';x.beginPath();x.ellipse(220,490,130,55,-.35,0,7);x.fill();x.beginPath();x.ellipse(580,490,130,55,.35,0,7);x.fill()}
 
 // ---------- Tür im Intro: gemalte Holztür mit Füllungen, Klinke und Spion; dahinter der Hausflur ----------
 let FPDOOR=null;function fpDoorPaint(){const K=3,o=document.createElement('canvas');o.width=100*K;o.height=280*K;const x=o.getContext('2d');x.scale(K,K);

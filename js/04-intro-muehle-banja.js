@@ -361,7 +361,11 @@ async function lapDance(){changing=true;fade.style.opacity=1;await new Promise(r
     if(t>2.5&&t<6){const u=t-2.5;rot=Math.sin(u*4.2)*.1;py=520-Math.abs(Math.sin(u*4.2))*14;px=400+Math.sin(u*2.1)*40;fr=Math.sin(u*2.1)>0?'tanz4':'tanz2'}
     if(t>=6&&t<7.5){const p=seg(t,6,7.5);px=400+Math.sin(p*Math.PI*2)*30;fr='tanz7'}
     // setzt sich: rückt ganz nah ran und sinkt breitbeinig auf Petjas Schoß, dann wiegt sie die Hüfte auf ihm
-    if(t>=7.5&&t<12){const p=seg(t,7.5,9),u=t-9;sit=true;fr='sitz';sc=ease(1.5,2.9,p);py=ease(520,800,p)+(t>9?Math.sin(u*5)*7:0);px=400+(t>9?Math.sin(u*2.5)*14:0);rot=t>9?Math.sin(u*2.5)*.04:0}
+    // 1) kommt näher und kniet sich über ihn: ganze Figur im Bild, ihre Knie liegen auf seinen Oberschenkeln, sie wippt sich zurecht
+    // 2) erst dann sinkt sie tiefer und rückt ganz nah ran (Knie verschwinden unten aus dem Bild)
+    if(t>=7.5&&t<12){const p=seg(t,7.5,8.7),q=seg(t,10.6,12),u=t-8.7;sit=true;fr='sitz';
+      const bob=t>8.7?Math.abs(Math.sin(u*4.4))*9*(1-q):0,sway=t>8.7?Math.sin(u*2.5):0;
+      sc=t<10.6?ease(1.5,2.2,p):ease(2.2,2.9,q);py=(t<10.6?ease(520,668,p):ease(668,800,q))-bob+(q>0?Math.sin(u*5)*5*q:0);px=400+sway*(10+6*q);rot=sway*.04}
     // flüstert: beugt sich an sein Ohr (zur Seite, noch näher)
     if(t>=12&&t<15.5){const p=seg(t,12,13);sit=true;fr='fluester';sc=ease(2.9,3.4,p);py=ease(800,880,p);px=ease(400,505,p);rot=ease(0,-.12,p)}
     if(ONION){ // die Zwiebel aus der Lüftung wirkt: zurück vors Gesicht, die Augen laufen über
@@ -373,11 +377,11 @@ async function lapDance(){changing=true;fade.style.opacity=1;await new Promise(r
     // auf dem Schoß: Petjas Knie und Jeans liegen HINTER ihr (ihre Oberschenkel kommen nach vorn); sonst wie bisher davor
     if(sit){fpKnees(x);x.fillStyle='#55688f';x.beginPath();x.ellipse(400,540,150,70,0,0,7);x.fill();x.fillStyle='#41506f';x.fillRect(396,478,8,40)}
     x.save();x.translate(px,py);x.rotate(rot);x.scale(sc*flip,sc);{const im=typeof nastjaTanzBild=='function'?nastjaTanzBild(fr):null,I=im||DANCERIMG,G=im?NASTJA_TG:DANCER_G;if(I.complete&&I.naturalWidth){x.imageSmoothingEnabled=false;x.drawImage(I,...G);x.imageSmoothingEnabled=true}}   // Tanz-Frames (33-nastja-pixel.js)
-    // Tränen (Pixel-Tropfen in Bildkoordinaten): Auge links (offen) und rechts (zugekniffen), laufen über die Wangen
+    // Eine einzige Träne (Pixel-Tropfen in Bildkoordinaten) aus dem offenen Auge, rollt langsam über die Wange und bleibt am Kinn hängen
     if(tear>0){const E=(u,v)=>[u*.971,-264+(v+270)*.971];x.imageSmoothingEnabled=false;
-      [[-5.6,-228.6],[6.2,-228.8]].forEach(([eu,ev],j)=>{const[ex,ey]=E(eu,ev),len=tear*14;
-        x.fillStyle='#7fb8f0';x.fillRect(Math.round(ex*2)/2-.5,ey,1,len);x.fillStyle='#d8f0ff';x.fillRect(Math.round(ex*2)/2-.5,ey,.5,len*.8);
-        for(let i=0;i<3;i++){const q=((t*1.3+i/3+j*.17)%1);if(q*16>len+2)continue;const dy=ey+q*16;x.fillStyle='#2e1c10';x.fillRect(ex-1.1,dy-.4,2.2,2.8);x.fillStyle='#8fc8ff';x.fillRect(ex-.7,dy,1.4,2);x.fillStyle='#e8f6ff';x.fillRect(ex-.5,dy+.2,.5,.6)}})}
+      const[ex,ey]=E(-5.6,-228.6),len=tear*13,dy=ey+len;
+      x.fillStyle='rgba(127,184,240,.55)';x.fillRect(Math.round(ex*2)/2-.25,ey,.5,len);
+      x.fillStyle='#2e1c10';x.fillRect(ex-1.1,dy-.4,2.2,2.8);x.fillStyle='#8fc8ff';x.fillRect(ex-.7,dy,1.4,2);x.fillStyle='#e8f6ff';x.fillRect(ex-.5,dy+.2,.5,.6)}
     x.restore();
     if(!sit)fpKnees(x);
     x.save();x.globalCompositeOperation='lighter';for(let i=0;i<4;i++){const p=(t*.25+i/4)%1;x.fillStyle=`rgba(255,180,220,${.6*(1-p)})`;x.font='22px Georgia';x.fillText('♪',120+i*170+Math.sin(t+i)*20,420-p*300)}x.restore();
