@@ -1,4 +1,5 @@
 // Automatischer Durchlauf im Hintergrund (ohne Fenster): node tools/durchlauf.js
+// Variante: node tools/durchlauf.js b  → falsche Reihenfolgen (Säge vor Teer, Akt-3-Dinge zu früh …)
 // Startet Edge/Chrome headless mit index.html?durchlauf und gibt das Protokoll aus.
 // Exit-Code 0 = Spiel komplett durchspielbar, 1 = Fehler (Schritt + Spielstand stehen im Protokoll).
 // Browser-Pfad notfalls per Umgebungsvariable BROWSER angeben.
@@ -8,7 +9,7 @@ const cands=[process.env.BROWSER,
   'C:/Program Files/Google/Chrome/Application/chrome.exe','/usr/bin/google-chrome','/usr/bin/chromium','/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'].filter(Boolean);
 const exe=cands.find(p=>fs.existsSync(p));if(!exe){console.error('Kein Edge/Chrome gefunden – Pfad per BROWSER=... angeben.');process.exit(2)}
 const prof=fs.mkdtempSync(path.join(os.tmpdir(),'petja-durchlauf-'));   // frisches Profil: echte Spielstände bleiben unberührt
-const url=pathToFileURL(path.join(__dirname,'..','index.html')).href+'?durchlauf';
+const url=pathToFileURL(path.join(__dirname,'..','index.html')).href+'?durchlauf='+(process.argv[2]||'a');
 const b=spawn(exe,['--headless=new','--enable-logging=stderr','--v=0','--no-first-run','--mute-audio','--autoplay-policy=no-user-gesture-required',
   '--window-size=1280,800','--user-data-dir='+prof,url],{stdio:['ignore','ignore','pipe']});
 let ok=null,buf='';

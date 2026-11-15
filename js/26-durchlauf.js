@@ -6,7 +6,7 @@
 // - nach jedem Schritt wird geprüft, ob das erwartete Flag/der Gegenstand da ist
 // Starten: Tester-Menü → „Durchlauf“ oder index.html?durchlauf (headless: node tools/durchlauf.js)
 // Spielstände werden dabei NICHT angefasst (Autosave ist während des Laufs aus).
-const DL={on:false,log:[],t0:0};
+const DL={on:false,log:[],t0:0,v:(location.search.match(/durchlauf=(\w)/)||[])[1]||'a'};
 function dlLog(m){DL.log.push(m);console.log('DURCHLAUF| '+m);const p=document.getElementById('dlPanel');if(p)p.textContent=DL.log.slice(-12).join('\n')}
 const dlSleep=ms=>new Promise(r=>setTimeout(r,ms));
 // offene kurze Timer des Spiels (Pausen zwischen zwei Gesprächen, Szenenwechsel …) – wird erst im Durchlauf eingehängt
@@ -76,7 +76,7 @@ async function durchlauf(){if(DL.on)return;DL.on=true;DL.log=[];DL.t0=Date.now()
   dlTimers();walkTo=(tx,ty,cb)=>{P.x=tx;P.y=ty;render();if(cb)setTimeout(cb,0)};autoSave=()=>false;OPT.barks=false;OPT.sfx=0;OPT.vox=0;VOICE_ON=false;
   const has=i=>inv.includes(i);
   try{
-    dlLog('Start: Neues Spiel');
+    dlLog('Start: Neues Spiel (Variante '+DL.v.toUpperCase()+(DL.v==='b'?': falsche Reihenfolgen':': normale Reihenfolge')+')');
     while(!$('#bNew')||$('#bNew').disabled)await dlSleep(100);
     $('#bNew').click();await dlIdle();
     ['fishing','wels','tableGame','pilzbeet','hausbau','craft'].forEach(n=>FL['fail_'+n]=3);   // Minispiele über „Überspringen“
@@ -102,6 +102,38 @@ async function durchlauf(){if(DL.on)return;DL.on=true;DL.log=[];DL.t0=Date.now()
 
     await dlGoto('huette');dlExpect('Wowa-Echo 1 („Bru…“) nach Akt 1',()=>FL.echo1);
 
+    if(DL.v==='b'){
+    // ---- Akt 2, Variante B: alles in der „falschen“ Reihenfolge – Säge vor Teer, Oma erst nach Opa, Akt-3-Dinge zu früh ----
+    await dlProbe('Zwiebel vor dem Rezept','garten','kohl',()=>!has('zwiebel'));
+    await dlProbe('Pilzbeet vor dem Rezept','garten','pilzbeet',()=>!has('spore'));
+    await dlStep('Gnome wollen Mehl','gnome','sHO',()=>FL.mehlQ);
+    await dlStep('Müller will eine Braut','muehle','muehle',()=>FL.mullerQ);
+    await dlStep('Wegkarte von Baba Jaga','innen','baba',()=>has('karte'));
+    for(let k=1;k<=3;k++)await dlProbe('Pope vor dem Rezept wecken ('+k+'×)','banjaH','pope',()=>!FL.popeBack&&cur==='banjaH');
+    await dlProbe('Lüftung ohne Zwiebel','banjaH','lueftungH',()=>!FL.zwIn);
+    await dlStep('Madame will eine Neue','banja','madame',()=>FL.clubQ&&has('liste'));
+    await dlStep('Opas rostige Säge – noch ohne Teer','dorf','opa',()=>has('rsaege')&&FL.sawQ&&!FL.deal);
+    await dlProbe('Opa ohne Teer nochmal fragen','dorf','opa',()=>!FL.deal&&has('rsaege'));
+    await dlProbe('Birken mit rostiger Säge','sperre','sHolz',()=>!FL.cut);
+    await dlStep('Säge beim Schmied geschärft','schmiede','schmied',()=>has('saege')&&FL.schuld);
+    await dlProbe('Birken sägen ohne Opas Teer-Abmachung','sperre','sHolz',()=>!FL.cut&&has('saege'));
+    await dlStep('Oma vermisst ihr Gebiss (erst nach Opas Säge)','dorfstr','oma',()=>FL.gq);
+    await dlProbe('Kater ohne Fisch','kirche','kater',()=>FL.ks&&!FL.kater);
+    await dlStep('Kusmitsch angelt nicht für mich','fischer','fischer',()=>FL.angelQ);
+    await dlStep('Wäscheleine zuerst (Ast fehlt noch)','dorfstr','waesche',()=>FL.leine&&has('seil')&&!has('angel'));
+    await dlProbe('Ast, solange die Krähe drauf sitzt','wald','ast',()=>!FL.ast);
+    await dlStep('Apfel gepflückt','gabel','apfel',()=>has('apfel'));
+    await dlStep('Krähe vom Ast geworfen','wald','kraehe',()=>FL.kraehe);
+    await dlStep('Ast geholt → Angel','wald','ast',()=>has('angel'));
+    await dlStep('Fisch geangelt','fischer','see',()=>FL.fisch);
+    dlExpect('Angel nach dem Fang weg',()=>!has('angel'));
+    await dlStep('Der Wels hängt an der Hütte','fischer','welsT',()=>FL.welsSeen);
+    await dlStep('Kater lässt das Gebiss los','kirche','kater',()=>FL.kater);
+    await dlStep('Gebiss aufgehoben','kirche','gebiss',()=>has('gebiss'));
+    await dlStep('Teer von Oma','dorfstr','oma',()=>has('teer'));
+    await dlStep('Teer nachträglich zu Opa','dorf','opa',()=>FL.deal&&!has('teer'));
+    await dlStep('Birken gesägt, Opas Haus gebaut','sperre','sHolz',()=>FL.cut&&FL.haus);
+    }else{
     // ---- Akt 2, entzerrt: Omas Gebiss geht schon jetzt, bevor überhaupt jemand Teer will ----
     await dlStep('Oma vermisst ihr Gebiss (gleich beim ersten Gespräch)','dorfstr','oma',()=>FL.gq);
     await dlProbe('Kater ohne Fisch','kirche','kater',()=>FL.ks&&!FL.kater);
@@ -125,6 +157,7 @@ async function durchlauf(){if(DL.on)return;DL.on=true;DL.log=[];DL.t0=Date.now()
     await dlStep('Opas rostige Säge – Teer gleich mitgegeben','dorf','opa',()=>has('rsaege')&&FL.deal&&!has('teer'));
     await dlStep('Säge beim Schmied geschärft','schmiede','schmied',()=>has('saege')&&FL.schuld);
     await dlStep('Birken gesägt, Opas Haus gebaut','sperre','sHolz',()=>FL.cut&&FL.haus);
+    }
     dlExpect('Säge nach dem Hausbau zurück bei Opa',()=>!has('saege'));
     await dlRecruit();
     await dlStep('Gutschein von Madame','banja','madame',()=>has('gutschein'));
