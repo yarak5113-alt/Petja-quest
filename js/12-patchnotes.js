@@ -1,6 +1,7 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'1.98',d:'15.11.2026',t:'Um die Stange',n:['Nastja tanzt jetzt mitten an der Stange: beide Hände greifen über dem Kopf, ein Bein schlingt sich um die Stange, sie gleitet herab und wechselt die Seite','In der privaten Lounge steht sie gelangweilt mit einem Glas Rotwein, nippt ab und zu und zwirbelt eine Haarsträhne']},
   {v:'1.97',d:'15.11.2026',t:'An der Stange',n:['Nastja tanzt jetzt wirklich an der Stange: Sie hält sich oben und unten fest, gleitet langsam ein Stück herab, hakt das Bein um die Stange und zieht sich wieder hoch','Der Federwedel steckt dabei im Strumpfband']},
   {v:'1.96',d:'15.11.2026',t:'Die neue Nastja',n:['Nastja im Banja ist neu: blondes Wallehaar mit Haarband, dunkelrotes Korsett, Strapse, Strümpfe, Plateauschuhe, Choker, große Creolen und ein Federwedel','Strenger Pixel-Stil: 500 Pixel hoch, 20 Farben, dunkelbraune Federkontur','Sie zwinkert. Und lächelt dabei, als wüsste sie mehr als du']},
   {v:'1.95',d:'15.11.2026',t:'Nastja neu gepixelt',n:['Nastja im Banja nach den neuen Pixel-Regeln: genau 500 Pixel hoch, höchstens 20 Farben, dunkelbraune Federkontur (rundum 2 Pixel, rechts und unten 4), feine Innenlinien, Füße exakt auf dem Boden','Langes blondes Haar bis zur Hüfte, schmales Haarband, rote Lippen, weißer Fächer – und ein trockener, gelangweilter Blick statt Rouge']},

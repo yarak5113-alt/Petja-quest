@@ -381,7 +381,8 @@ function pixSprite(inner,[x,y,w,h],rows,opt){opt=opt||{};const H=rows?rows:h>=15
     const o=document.createElement('canvas');o.width=W;o.height=H;const og=o.getContext('2d'),id=og.createImageData(W,H),od=id.data;
     for(let k=0;k<N;k++){if(G2[k]<0)continue;const q=k*4;od[q]=Math.max(0,Math.min(255,C[k*3]));od[q+1]=Math.max(0,Math.min(255,C[k*3+1]));od[q+2]=Math.max(0,Math.min(255,C[k*3+2]));od[q+3]=255}
     pixQuant(od,PIX_COLORS,x+','+y+','+w+','+h+','+H,opt.pal);
-    if(opt.floor){let m=-1;for(let Y=H-1;Y>=0&&m<0;Y--)for(let X=0;X<W;X++)if(od[(Y*W+X)*4+3]){m=Y;break}const sh=H-1-m;if(m>=0&&sh>0){od.copyWithin(sh*W*4,0,(H-sh)*W*4);od.fill(0,0,sh*W*4)}}   // Füße genau auf die unterste Zeile
+    if(opt.floor||typeof opt.shift=='number'){let m=-1;for(let Y=H-1;Y>=0&&m<0;Y--)for(let X=0;X<W;X++)if(od[(Y*W+X)*4+3]){m=Y;break}const sh=typeof opt.shift=='number'?opt.shift:H-1-m;   // opt.shift: feste Verschiebung (Animations-Frames)
+   if(m>=0&&sh>0){od.copyWithin(sh*W*4,0,(H-sh)*W*4);od.fill(0,0,sh*W*4)}}   // Füße genau auf die unterste Zeile
     og.putImageData(id,0,0);return o.toDataURL()})}
 // Höchstens PIX_COLORS Farben je Figur (Median-Cut + k-Means auf den deckenden Pixeln; Transparenz zählt nicht als Farbe).
 // Bilder mit gleicher Kiste (Lauf-Frames, Gesichter, Posen derselben Figur) nutzen dieselbe Palette, solange sie passt -> kein Farbflackern.
