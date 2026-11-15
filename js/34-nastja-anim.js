@@ -42,7 +42,8 @@ function nWedel(x,y){let fe='';for(let i=0;i<7;i++){const a=(-140+i*17)*Math.PI/
   return`<path d="M${x},${y+4}L${x},${y-16}" fill="none" stroke="${N_BK}" stroke-width="2.6"/>`+fe}
 // Mund pro Pose (liegt unter dem pixelgenau übernommenen Augenbereich): grins = freches schiefes Grinsen mit Zähnen, kuss = Kussmund
 const N_MUND={
-  grins:`<path d="M-5.6,-216.2C-3,-217 3,-218.4 6.4,-218.8C5.2,-213.4 -2.6,-212.6 -5.6,-216.2Z" fill="#a82034" stroke-width=".9"/><path d="M-4.2,-216.1C-1,-216.8 2.6,-217.8 5.3,-218.2L4.8,-216.8C2,-216.4 -1.2,-215.8 -3.9,-215.4Z" fill="#f6f3ee" stroke="none"/><path d="M6.4,-218.8L7.8,-220.4M-5.6,-216.2L-6.4,-216" fill="none" stroke-width="1"/>`,
+  // grins = verruchtes Lächeln mit geschlossenen, vollen Lippen, ein Mundwinkel leicht hochgezogen (keine Zähne)
+  grins:`<path d="M-4.8,-215.5C-2.6,-216.9 -0.4,-216.6 0.2,-216.3C0.8,-217 3.2,-217.7 5.4,-217.4C4.2,-213.6 -2.6,-213.1 -4.8,-215.5Z" fill="#a82034" stroke-width=".9"/><path d="M-4.2,-215.4C-1.4,-215.1 2,-215.6 5,-217" fill="none" stroke="#712834" stroke-width=".7"/><path d="M5.4,-217.4L6.4,-218.3" fill="none" stroke-width=".8"/>`,
   fluester:`<ellipse cx="1.6" cy="-215.3" rx="2.3" ry="1.5" fill="#a82034" stroke-width=".9"/><path d="M3.9,-215.6L5,-216.6" fill="none" stroke-width=".8"/>`,
   zitter:`<path d="M-4.6,-214.4C-3,-216 -1.5,-214.6 0,-216C1.5,-214.6 3,-216 4.6,-214.4C3.4,-211.8 -3.4,-211.8 -4.6,-214.4Z" fill="#712834" stroke-width=".9"/><path d="M-3.2,-214.6C-1.6,-215.4 1.6,-215.4 3.2,-214.6" fill="none" stroke="#f6f3ee" stroke-width=".8"/>`,
   kuss:`<ellipse cx="0.4" cy="-215.6" rx="2.7" ry="2.3" fill="#a82034" stroke-width=".9"/><ellipse cx="0.4" cy="-215.5" rx="0.9" ry="0.8" fill="#712834" stroke="none"/>`};
