@@ -21,7 +21,7 @@ const VIP_TEXT={   // Zeile beim Betreten eines Schritts (auf Englisch/Russisch 
   14.6:[['P','Ich … äh … meine Hände sind auf dem Sofa. Beide. Glaub ich.']],
   18.2:[['NA','*haucht* Ganz ruhig atmen, Süßer. Wenn du jetzt umkippst, tanz ich trotzdem zu Ende. Und morgen erzähl ich allen, du hättest gebettelt.']]};
 
-async function nastjaVip(){changing=true;fade.style.opacity=1;await new Promise(r=>setTimeout(r,450));S0=SCN.lounge;s=S0.seed;
+async function nastjaVip(){const VON=cur||'buehne',VPOS=cur?[P.x,P.y]:[260,486];changing=true;fade.style.opacity=1;await new Promise(r=>setTimeout(r,450));S0=SCN.lounge;s=S0.seed;
   if(!cache.lounge){S0.paint();const k=document.createElement('canvas');k.width=W;k.height=H;k.getContext('2d').drawImage(cv,0,0);cache.lounge=k}
   const cv3=document.createElement('canvas');cv3.id='cut';cv3.width=W;cv3.height=H;cv3.style.cssText='position:absolute;inset:0;width:100%;height:100%;z-index:15';$('#game').appendChild(cv3);fade.style.opacity=0;
   const x=cv3.getContext('2d'),T0=performance.now(),said=new Set();let fin=false,zustand='',schritt=null;
@@ -71,9 +71,9 @@ async function nastjaVip(){changing=true;fade.style.opacity=1;await new Promise(
     const v=x.createRadialGradient(400,250,150,400,250,520);v.addColorStop(0,'rgba(0,0,0,0)');v.addColorStop(1,'rgba(20,0,10,.7)');x.fillStyle=v;x.fillRect(0,0,800,500);
     requestAnimationFrame(frame)}
   requestAnimationFrame(frame);
-  async function ende(){if(busy)advance();fade.style.opacity=1;await new Promise(r=>setTimeout(r,500));cv3.remove();changing=false;
+  async function ende(){if(busy)advance();fade.style.opacity=1;await new Promise(r=>setTimeout(r,500));changing=false;x.setTransform(1,0,0,1,0,0);x.fillStyle='rgba(12,0,6,.72)';x.fillRect(0,0,W,H);
     say([['P','*Fünf Minuten später*'],['P','(Ich glaube, ich hab vergessen, wie man atmet. Und wie ich heiße.)'],
-      ['NA','*zwinkert* Das Outfit bleibt unter uns, Zwiebel. Sonst muss ich dich heiraten. Oder umbringen. Je nach Laune.']],()=>{FL.lounge=1;FL.naVip=(FL.naVip||0)+1;enter('buehne',[260,486])});fade.style.opacity=0}}
+      ['NA','*zwinkert* Das Outfit bleibt unter uns, Zwiebel. Sonst muss ich dich heiraten. Oder umbringen. Je nach Laune.']],()=>{cv3.remove();FL.lounge=1;FL.naVip=(FL.naVip||0)+1;enter(VON,VPOS)});fade.style.opacity=0}}
 
 // Privattanz im Menü: kurz vor der besten Beziehung geht’s in die VIP-Kabine
 {const nt=naTanz;naTanz=function(){if(!nastjaVipStufe())return nt.apply(this,arguments);

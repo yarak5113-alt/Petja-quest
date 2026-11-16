@@ -350,7 +350,7 @@ function paintBuehne(){c.fillStyle='#0e0408';c.fillRect(0,0,W,H);let x=lay();
   x.fillStyle='#1a0c10';x.fillRect(0,404,800,96);for(let i=0;i<20;i++)dab(x,R()*800,420+R()*80,30+R()*40,[60,10,30],.4);
   [[90,470],[710,470]].forEach(([X,Y])=>{ell(x,X,Y,36,9,[60,20,16]);wood(x,X-3,Y,6,30,1);bottle(x,X-8,Y-2,16,[200,200,210]);ell(x,X+12,Y-3,5,2,[240,200,80])});put(x);
   x=lay();sign(x,110,486,1.4,[[-1,0,'Zurück an die Bar','hBZ']]);put(x)}
-async function lapDance(){changing=true;fade.style.opacity=1;await new Promise(r=>setTimeout(r,450));S0=SCN.lounge;s=S0.seed;if(!cache.lounge){S0.paint();const k=document.createElement('canvas');k.width=W;k.height=H;k.getContext('2d').drawImage(cv,0,0);cache.lounge=k}
+async function lapDance(){const VON=cur||'buehne',VPOS=cur?[P.x,P.y]:[260,486];changing=true;fade.style.opacity=1;await new Promise(r=>setTimeout(r,450));S0=SCN.lounge;s=S0.seed;if(!cache.lounge){S0.paint();const k=document.createElement('canvas');k.width=W;k.height=H;k.getContext('2d').drawImage(cv,0,0);cache.lounge=k}
   const cv3=document.createElement('canvas');cv3.id='cut';cv3.width=W;cv3.height=H;cv3.style.cssText='position:absolute;inset:0;width:100%;height:100%;z-index:15';$('#game').appendChild(cv3);fade.style.opacity=0;
   const x=cv3.getContext('2d'),T0=performance.now(),ONION=!!(FL.zwIn&&!FL.traene),D=ONION?26.5:26,MAXN=!ONION&&typeof nastjaMax=='function'&&nastjaMax();let fin=false;   // MAXN: Max-Level-Modus (36-zweite-taenzerin.js)
   const ease=(a,b,p)=>a+(b-a)*(p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2),seg=(t,a,b)=>Math.max(0,Math.min(1,(t-a)/(b-a)));
@@ -399,7 +399,9 @@ async function lapDance(){changing=true;fade.style.opacity=1;await new Promise(r
   setTimeout(()=>{if(busy)advance();say([['NA',MAXN?'*haucht dir ins Ohr* Du bist fast am Ziel, Süßer … Mal sehen, ob du dir den Hauptgewinn leisten kannst.':'*haucht dir ins Ohr* Sitzt du bequem, Süßer? Ich spür da was. …Hoffentlich ist das dein Portemonnaie.']])},17800);
   setTimeout(()=>{if(busy)advance();say([['P','*SCHLUCK*']])},20300);
   if(ONION)setTimeout(()=>{if(busy)advance();say([['NA','*schnief* … Was … was ist das? Meine Augen!']])},21800); // Akt 3: Zwiebel in der Lüftung
-  async function end(){if(busy)advance();fade.style.opacity=1;await new Promise(r=>setTimeout(r,500));cv3.remove();changing=false;
+  async function end(){if(busy)advance();fade.style.opacity=1;await new Promise(r=>setTimeout(r,500));changing=false;
+    // Tanzbild abgedunkelt stehen lassen, bis die Schlusszeilen durch sind (darunter liegt noch der alte Raum mit Lounge-Hintergrund)
+    x.setTransform(1,0,0,1,0,0);x.fillStyle='rgba(12,0,6,.72)';x.fillRect(0,0,W,H);
     if(FL.zwIn&&!FL.traene){say([['NA','*SCHNIEF* Ich weine! Ich weine doch nie! Dreihundert Jahre nicht!'],['P','Halt still. *hält die Phiole unters Kinn*'],['P','*plopp* Eine echte Träne. Danke.'],
-      ['NA','*lacht unter Tränen* Eine Zwiebel. Du hast mir eine Zwiebel in die Lüftung gesteckt.'],['NA','Dreihundert Jahre hat mich keiner zum Weinen gebracht. Und du schaffst es mit Gemüse.'],['NA','Behalt die Träne, Zwiebel. Hast du dir verdient.'],['P','(Ich glaube, sie mag mich. Auf Nymphenart.)']],()=>{FL.traene=1;FL.lounge=1;const k=inv.indexOf('phiole');if(k>=0)inv.splice(k,1);inv.push('traene');renderInv();enter('buehne',[260,486])});fade.style.opacity=0;return}
-    say([['P','*Drei Minuten später*'],['P','...Ich glaube, ich brauche einen Wodka. Oder zwei. Oder eine kalte Dusche im Sumpf.'],['NA','Komm wieder, Petja. Aber nächstes Mal mit Trinkgeld.']],()=>{FL.lounge=1;enter('buehne',[260,486])});fade.style.opacity=0}}
+      ['NA','*lacht unter Tränen* Eine Zwiebel. Du hast mir eine Zwiebel in die Lüftung gesteckt.'],['NA','Dreihundert Jahre hat mich keiner zum Weinen gebracht. Und du schaffst es mit Gemüse.'],['NA','Behalt die Träne, Zwiebel. Hast du dir verdient.'],['P','(Ich glaube, sie mag mich. Auf Nymphenart.)']],()=>{cv3.remove();FL.traene=1;FL.lounge=1;const k=inv.indexOf('phiole');if(k>=0)inv.splice(k,1);inv.push('traene');renderInv();enter('buehne',[260,486])});fade.style.opacity=0;return}
+    say([['P','*Drei Minuten später*'],['P','...Ich glaube, ich brauche einen Wodka. Oder zwei. Oder eine kalte Dusche im Sumpf.'],['NA','Komm wieder, Petja. Aber nächstes Mal mit Trinkgeld.']],()=>{cv3.remove();FL.lounge=1;enter(VON,VPOS)});fade.style.opacity=0}}
