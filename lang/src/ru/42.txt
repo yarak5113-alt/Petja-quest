@@ -127,7 +127,7 @@
 =Riesenkohl => Гигантская капуста
 =Riesenkohl. Gnome düngen offenbar mit Größenwahn. => Гигантская капуста. Гномы, видимо, удобряют манией величия.
 =Kisten => Ящики
-=Kisten. „Wodka – nicht Wodka“ steht drauf. Ich frag lieber nicht. => Ящики. На них написано «Водка — не водка». Лучше не спрашивать.
+=Kisten. „Wodka – nicht Wodka“ steht drauf. Ich frag lieber nicht. => Ящики. На них написано «Водка — не водка». Либо водка, либо нет, либо одно из двух.
 =Holzstapel => Поленница
 =Holz für die Esse. Mehr Holz, als dieses Dorf Birken hat. Und das will was heißen. => Дрова для горна. Больше, чем в этой деревне берёз. А это о многом говорит.
 =Klick auf einen besuchten Ort: Schnellreise => Клик по посещённому месту: быстрое перемещение

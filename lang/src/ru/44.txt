@@ -22,7 +22,7 @@
 =Was ist das, Zwiebel? Ein Geschenk? Dann üb noch ein bisschen. => Что это, Лучок? Подарок? Потренируйся ещё. Даже у Моргенштерна подарки лучше.
 =Wenn du schon was in meine Hand drückst, dann bitte Geld. Oder dich. => Если уж суёшь мне что-то в руку — то деньги. Или себя.
 =Das ist kein Mehl. Und kein Zoll. Also verschwinde. => Это не мука. И не пошлина. Так что вали.
-=Gnome nehmen nur zwei Dinge: Mehl und Bestechung. Das da ist keins von beiden. => Гномы берут две вещи: муку и взятки. Это ни то, ни другое.
+=Gnome nehmen nur zwei Dinge: Mehl und Bestechung. Das da ist keins von beiden. => Гномы берут две вещи: муку и взятки. Это ни то, ни другое. Приходите с правильно оформленной пошлиной.
 =Hier? => Вот?
 =Nervensäge => Шо, опять?
 =Zehnmal hintereinander auf dasselbe geklickt. => Десять раз подряд кликнул по одному и тому же.
