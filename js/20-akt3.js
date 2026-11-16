@@ -265,7 +265,9 @@ function finale(){FL.ende=1;say([['J2','Fertig. Der schönste Ausweg-Joint, den 
   cs('hallSteps',5);await wait(1200);cs('doorBurst');await tween(200,p=>door=p);await wait(250);cs('steps',5);await tween(1500,p=>wx=860-260*p);
   await talk([['WO','Petja! Bruder! Rauchst du immer noch diesen Gartenabfall?'],['P','…'],['WO','Hör zu: Ich hab was Neues. Ganz neu. Ganz krass. Kräuter von Oma, Bruder!'],
     ['WO','Er sagt: Ein Zug, und du bist in einer anderen Welt. Märchenwelt!'],['P','Wowa.'],['WO','Ja?'],['P','Raus.'],['WO','Aber da sind so lustige blaue Pilze drin …'],['P','*starrt auf die Pilze*'],['P','… Na super.']]);
-  await tween(1600,p=>dark=p);fin=true;cv3.remove();changing=false;abspann()})}
+  // mit Nastjas Polaroid geht es weiter: Petja hängt das Foto über den Schreibtisch (39-enden.js)
+  if(has('polaroid')&&typeof polaroidEnde=='function'){fin=true;await polaroidEnde(cv3);cv3.remove();changing=false;return abspannEnde('nastja')}
+  await tween(1600,p=>dark=p);fin=true;cv3.remove();changing=false;typeof abspannEnde=='function'?abspannEnde('heim'):abspann()})}
 function abspann(){const cast=[['Petja','der Typ auf dem Sofa'],['Wowa','der Grund für alles'],['Baba Jaga','Hexe, Köchin, Lebensberaterin'],['Pilzmeister Knolle','Wissenschaft'],['Grobnik & Opa Schnobbel','Gnome, Wegezoll'],
   ['Kusmitsch','Fischer, Selbstbrenner'],['Oma Dusja','Gebiss, Teer, Zwiebel'],['Opa Grischa','Leiter, Säge, neues Haus'],['Madame Zinaida','Banja'],['Nastja','Star des Banja, weint nie'],['Vater Ignati','im Heu seit 1993'],['Schmied Fjodor','hat seine Weihe'],['Die Krähe','Krah'],['Der Kater vom Popen','spielte sich selbst']];
   const o=document.createElement('div');o.id='abspann';o.innerHTML=`<div class="roll"><h1>Petja</h1><h2>und der Verfluchte Birkenwald</h2><p class="end">Ende.</p><p class="end small">… oder?</p>

@@ -1,0 +1,44 @@
+# 39-enden.js (drei Enden, Polaroid)
+=💃 Privattanz => 💃 Private dance
+=💬 Ein Gespräch führen => 💬 Have a chat
+=🍷 Mit ihr anstoßen => 🍷 Have a drink with her
+=👑 Nach einer Krone für Marfa fragen => 👑 Ask for a crown for Marfa
+=🚬 Den Ausweg-Joint drehen => 🚬 Roll the way-out joint
+=🌲 Hierbleiben => 🌲 Stay here
+=Vermiss dich, Zwiebel ♥ => I miss you, Onion ♥
+=Nastjas Polaroid => Nastya's Polaroid
+=Nastja an der Stange, mit Zwinkern und Schmollmund. Auf dem weißen Rand in Kugelschreiber: „Vermiss dich, Zwiebel ♥“. Hat sie geschrieben, bevor ich überhaupt weg bin. => Nastya by the pole, winking and pouting. On the white border, in biro: "I miss you, Onion ♥". She wrote it before I'd even left.
+=*kramt eine Sofortbildkamera hinter dem Tresen hervor* Halt mal still, Zwiebel. … Nein, warte. Andersrum. Ich bin das Motiv. => *digs an instant camera out from behind the bar* Hold still, Onion. … No, wait. Other way round. I'm the subject.
+=*posiert, zwinkert* *KLICK* … *wedelt mit dem Foto* Nicht gucken, das muss erst entwickeln. Wie du. => *poses, winks* *CLICK* … *waves the photo* Don't look, it has to develop first. Like you.
+=*schreibt etwas auf den Rand* Hier. Damit du mich nicht vergisst, wenn du in deine echte Welt verschwindest. => *writes something on the border* Here. So you don't forget me when you vanish into your real world.
+=Was steht da? => What does it say?
+=Lies es zu Hause, Süßer. Und häng mich irgendwo hin, wo du jeden Tag hinguckst. => Read it at home, sweetie. And hang me somewhere you look every day.
+=(Mein Herz klopft. Oder der Wein. Eins von beiden.) => (My heart's pounding. Or it's the wine. One of the two.)
+=Wie geht’s weiter? => What now?
+=Alles liegt auf dem Tisch. Baba Jaga schaut dich an. => Everything's on the table. Baba Yaga is looking at you.
+=Den Ausweg-Joint drehen => Roll the way-out joint
+=Zurück in die echte Welt => Back to the real world
+=Hierbleiben => Stay here
+=Ein Zahnrad im Märchen werden => Become a cog in the fairy tale
+=📸 Nastjas Polaroid steckt in deiner Tasche. => 📸 Nastya's Polaroid is in your pocket.
+=Wissen Sie was, Frau Jaga? … Ich bleibe. => You know what, Mrs Yaga? … I'm staying.
+=Wie bitte? => Excuse me?
+=Drüben bin ich mein eigenes Problem. Hier bin ich wenigstens das Problem von allen. => Over there I'm my own problem. Here at least I'm everybody's problem.
+=*lacht krächzend* Dummkopf. Aber mein Dummkopf. Die Zutaten kommen in den Schrank. Für schlechte Zeiten. => *cackles* Bloody fool. But my fool. The ingredients go in the cupboard. For bad times.
+=Na, Langer? Du bist ja immer noch da. Dann trag mir die Kohlen rein. Und Finger weg von meinem Gebiss. => Well, beanpole? Still here, are you? Then carry my coal in. And hands off my dentures.
+=Bleibst du, Sohnemann? Dann hilf mir mit dem Dach. Teer ist noch da. Und Selbstgebrannter. Den teilen wir gerecht: ich zwei Drittel. => Staying, son? Then help me with the roof. There's tar left. And moonshine. We split it fair: two thirds for me, blimey.
+=Der Lange bleibt? Gut. Wir brauchen einen, der an die oberen Regale kommt. Lohn: eine Laterne. Leihweise. => The tall one's staying? Good. We need someone who can reach the top shelves. Pay: one lantern. On loan.
+=Na, Zahnrad? Morgen früh Würmer sammeln. Für die Suppe. => Well, cog? Tomorrow morning you collect worms. For the soup.
+=Jawohl, Frau Jaga. => Yes, Mrs Yaga.
+=(Drüben merkt Wowa erst, dass ich weg bin, wenn ihm das Feuerzeug fehlt.) => (Over there Vova only notices I'm gone when his lighter's missing.)
+=(Hier merkt es jeder. Das ist neu.) => (Here everyone notices. That's new.)
+=*kramt in der Hosentasche* … Moment. => *rummages in his trouser pocket* … Hang on.
+=Das Polaroid. Es ist mitgekommen. => The Polaroid. It came back with me.
+=Da. Über dem Schreibtisch. Da guck ich jeden Tag hin. => There. Above the desk. I look there every day.
+=(Wowa wird fragen, wer das ist.) => (Vova's going to ask who that is.)
+=(Ich werd sagen: eine Bekannte. Aus dem Sumpf.) => (I'll say: a friend. From the swamp.)
+=Ende: Ein Foto über dem Schreibtisch => Ending: A photo above the desk
+=Manche Märchen nimmt man mit nach Hause. => Some fairy tales you take home with you.
+=Ende: Das Zahnrad => Ending: The cog
+=Petja blieb im Märchen. Wowa sucht noch sein Feuerzeug. => Petya stayed in the fairy tale. Vova is still looking for his lighter.
+~Gefundene Enden: # von # => Endings found: # of #

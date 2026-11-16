@@ -105,7 +105,7 @@ wrapFn('tisch',orig=>{if(FL.ende||!FL.recipe||!hasAll()||FL.tischRede)return ori
     ['P','Aber hier hängt alles an allem. Säge gegen Teer, Teer gegen Gebiss, Gebiss gegen Fisch. Wenn ich bleibe, bin ich nur noch ein Zahnrad.'],
     ['P','Drüben bin ich auch nichts Besonderes. Aber da bin ich wenigstens mein eigenes Problem.'],
     ['J2','… Dummkopf. *trinkt seinen Tee aus* Na gut. Dreh deinen Joint.'],
-    ['J2','Und falls du drüben mal einen blauen Stempel siehst: Du warst nie hier.']],()=>{FL.tischRede=1;orig()})});
+    ['J2','Und falls du drüben mal einen blauen Stempel siehst: Du warst nie hier.']],()=>{FL.tischRede=1;T.tisch.fn()})});   // erneut über alle Hüllen: danach kommt die Wahl (39-enden.js)
 
 // ----- Laterne: hinten in der Höhle ist es stockdunkel – ohne Licht keine blauen Pilze. Danach will Grobnik sie zurück -----
 wrapFn('lpilze',orig=>{if(FL.bjInfo&&!FL.recipe&&!has('blaupilze')){

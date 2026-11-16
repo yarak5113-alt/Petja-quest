@@ -1,0 +1,44 @@
+# 39-enden.js (drei Enden, Polaroid)
+=💃 Privattanz => 💃 Приватный танец
+=💬 Ein Gespräch führen => 💬 Поболтать
+=🍷 Mit ihr anstoßen => 🍷 Выпить с ней
+=👑 Nach einer Krone für Marfa fragen => 👑 Спросить корону для Марфы
+=🚬 Den Ausweg-Joint drehen => 🚬 Скрутить косяк-выход
+=🌲 Hierbleiben => 🌲 Остаться
+=Vermiss dich, Zwiebel ♥ => Скучаю, Лучок ♥
+=Nastjas Polaroid => Полароид Насти
+=Nastja an der Stange, mit Zwinkern und Schmollmund. Auf dem weißen Rand in Kugelschreiber: „Vermiss dich, Zwiebel ♥“. Hat sie geschrieben, bevor ich überhaupt weg bin. => Настя у шеста, подмигивает, губки бантиком. На белой кромке ручкой: «Скучаю, Лучок ♥». Написала ещё до того, как я ушёл.
+=*kramt eine Sofortbildkamera hinter dem Tresen hervor* Halt mal still, Zwiebel. … Nein, warte. Andersrum. Ich bin das Motiv. => *достаёт из-под стойки полароид* Замри, Лучок. … Не, стой. Наоборот. Модель тут я.
+=*posiert, zwinkert* *KLICK* … *wedelt mit dem Foto* Nicht gucken, das muss erst entwickeln. Wie du. => *позирует, подмигивает* *ЩЁЛК* … *машет фоткой* Не смотри, ей надо проявиться. Как и тебе.
+=*schreibt etwas auf den Rand* Hier. Damit du mich nicht vergisst, wenn du in deine echte Welt verschwindest. => *что-то пишет на кромке* Держи. Чтоб не забыл меня, когда свалишь в свой настоящий мир.
+=Was steht da? => Чё там написано?
+=Lies es zu Hause, Süßer. Und häng mich irgendwo hin, wo du jeden Tag hinguckst. => Прочитаешь дома, сладкий. И повесь меня туда, куда смотришь каждый день.
+=(Mein Herz klopft. Oder der Wein. Eins von beiden.) => (Сердце колотится. Или это вино. Одно из двух.)
+=Wie geht’s weiter? => Что дальше?
+=Alles liegt auf dem Tisch. Baba Jaga schaut dich an. => Всё на столе. Баба Яга смотрит на тебя.
+=Den Ausweg-Joint drehen => Скрутить косяк-выход
+=Zurück in die echte Welt => Назад в настоящий мир
+=Hierbleiben => Остаться
+=Ein Zahnrad im Märchen werden => Стать винтиком в сказке
+=📸 Nastjas Polaroid steckt in deiner Tasche. => 📸 Полароид Насти у тебя в кармане.
+=Wissen Sie was, Frau Jaga? … Ich bleibe. => Знаете что, бабушка Яга? … Я остаюсь.
+=Wie bitte? => Чего-чего?
+=Drüben bin ich mein eigenes Problem. Hier bin ich wenigstens das Problem von allen. => Там я сам себе проблема. А тут хоть проблема для всех. Кайф.
+=*lacht krächzend* Dummkopf. Aber mein Dummkopf. Die Zutaten kommen in den Schrank. Für schlechte Zeiten. => *хрипло смеётся* Хренов дурень. Но мой дурень. Ингредиенты — в шкаф. На чёрный день.
+=Na, Langer? Du bist ja immer noch da. Dann trag mir die Kohlen rein. Und Finger weg von meinem Gebiss. => Ну что, длинный? Всё ещё тут? Тогда таскай мне уголь. И руки прочь от моей челюсти.
+=Bleibst du, Sohnemann? Dann hilf mir mit dem Dach. Teer ist noch da. Und Selbstgebrannter. Den teilen wir gerecht: ich zwei Drittel. => Остаёшься, сынок? Тогда помоги с крышей. Дёготь есть. И самогон. Делим честно: мне две трети, ёмаё.
+=Der Lange bleibt? Gut. Wir brauchen einen, der an die oberen Regale kommt. Lohn: eine Laterne. Leihweise. => Длинный остаётся? Хорошо. Нам нужен кто-то, кто достаёт до верхних полок. Оплата: фонарь. Во временное пользование.
+=Na, Zahnrad? Morgen früh Würmer sammeln. Für die Suppe. => Ну что, винтик? Завтра с утра червей собирать. Для супа.
+=Jawohl, Frau Jaga. => Есть, бабушка Яга.
+=(Drüben merkt Wowa erst, dass ich weg bin, wenn ihm das Feuerzeug fehlt.) => (Там Вова заметит, что меня нет, только когда зажигалку не найдёт.)
+=(Hier merkt es jeder. Das ist neu.) => (А тут замечают все. Это что-то новое.)
+=*kramt in der Hosentasche* … Moment. => *роется в кармане* … Погоди-ка.
+=Das Polaroid. Es ist mitgekommen. => Полароид. Он вернулся со мной.
+=Da. Über dem Schreibtisch. Da guck ich jeden Tag hin. => Вот. Над столом. Туда я смотрю каждый день.
+=(Wowa wird fragen, wer das ist.) => (Вова спросит, кто это.)
+=(Ich werd sagen: eine Bekannte. Aus dem Sumpf.) => (Скажу: знакомая. Из болота.)
+=Ende: Ein Foto über dem Schreibtisch => Концовка: Фото над столом
+=Manche Märchen nimmt man mit nach Hause. => Некоторые сказки забираешь с собой домой.
+=Ende: Das Zahnrad => Концовка: Винтик
+=Petja blieb im Märchen. Wowa sucht noch sein Feuerzeug. => Петя остался в сказке. Вова всё ещё ищет свою зажигалку.
+~Gefundene Enden: # von # => Найдено концовок: # из #
