@@ -5,6 +5,12 @@ const fs=require('fs'),path=require('path'),root=path.join(__dirname,'..');
 const o=JSON.parse(fs.readFileSync(path.join(root,'pixel/nastja_vip.json'),'utf8'));
 const dec=r=>{const a=[];for(const m of r.matchAll(/([^0-9])([0-9]*)/g))for(let i=0;i<(+m[2]||1);i++)a.push(m[1]);while(a.length<o.width)a.push('.');return a};
 const enc=a=>{let s='',x=0,last=a.length-1;while(last>=0&&a[last]==='.')last--;while(x<=last){let n=1;while(x+n<=last&&a[x+n]===a[x])n++;s+=a[x]+(n>1?n:'');x+=n}return s};
+// Farben an Nastjas übrige Bilder angleichen (das Vorlagenbild ist grauer): Korsett/Strümpfe/Weiß direkt auf ihre Palette,
+// Haare und Haut kräftiger (Sättigung hoch, minimal heller)
+const hex=c=>'#'+c.map(v=>Math.max(0,Math.min(255,Math.round(v))).toString(16).padStart(2,'0')).join(''),rgb=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
+const FEST={'#5a292e':'#712834','#462223':'#521e27','#3c3530':'#373535','#4e463f':'#53514f','#322922':'#27262a','#e7e3df':'#f0eeea'};
+for(const k in o.palette){const v=o.palette[k];if(!v||k==='K')continue;if(FEST[v]){o.palette[k]=FEST[v];continue}
+  const c=rgb(v),L=.299*c[0]+.587*c[1]+.114*c[2];o.palette[k]=hex(c.map((x,i)=>L+(x-L)*1.4+[5,3,-3][i]))}
 const G=o.rows.map(dec),set=(x,y,c)=>{G[y][x]=c};
 // einzelne Tusche-Sprenkel (Reste vom Schachbrett-Hintergrund) mitten in Flächen weg
 let weg=0;for(let y=1;y<o.height-1;y++)for(let x=1;x<o.width-1;x++){if(G[y][x]!=='K')continue;const n=[G[y-1][x],G[y+1][x],G[y][x-1],G[y][x+1]];if(n.some(c=>c==='K'||c==='.'))continue;const h={};n.forEach(c=>h[c]=(h[c]||0)+1);G[y][x]=Object.keys(h).sort((a,b)=>h[b]-h[a])[0];weg++}
