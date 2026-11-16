@@ -1,0 +1,136 @@
+# 42-komfort-plus.js (Untersuchen, Kombinieren, Kulissen, Schnellreise)
+=Ein Joint-Stummel. Das letzte Stück meiner Würde. Leicht angekokelt. => A joint stub. The last bit of my dignity. Slightly charred.
+=Frisch geschärft. Jetzt schneidet sie Birken. Vorher hat sie nur Ausreden geschnitten. => Freshly sharpened. Now it cuts birches. Before, it only cut excuses.
+=Rostiger als Opas Witze. Und genauso stumpf. => Rustier than Grandpa's jokes. And just as blunt.
+=Ein Apfel. Gesund, sagt man. Ich nutz ihn lieber als Wurfgeschoss. Das ist auch Sport. => An apple. Healthy, they say. I prefer it as a projectile. That counts as exercise too.
+=Ein Stock. Mit Schnur dran wär er eine Angel. Ohne Schnur ist er … ein Stock. So wie ich ohne Kaffee. => A stick. With string it'd be a fishing rod. Without string it's … a stick. Like me without coffee.
+=Schnur. Zum Angeln, zum Knoten, zum … nein. So schlimm ist es noch nicht. => String. For fishing, for knots, for … no. It's not that bad yet.
+=Stock, Schnur, Sicherheitsnadel. Meine bisher größte Ingenieursleistung. Traurig, eigentlich. => Stick, string, safety pin. My greatest feat of engineering so far. Sad, really.
+=Neun blaue Pilzstücke. Wenn Mama wüsste, was ich in der Tasche hab. Sie würde fragen, ob ich genug esse. => Nine blue mushroom bits. If Mum knew what's in my pocket. She'd ask if I'm eating enough.
+=Frische Traumschwämme. Leuchten blau. Ich ess die nicht. Ich hab aus dem letzten Mal gelernt. Glaub ich. => Fresh dream sponges. Glowing blue. I'm not eating them. I learned from last time. I think.
+=Baba Jagas Karte. Halb verbrannt. Wie meine Pläne fürs Wochenende. => Baba Yaga's map. Half burnt. Like my plans for the weekend.
+=Madames Wunschliste: schön, frech, will raus. Ich bin keins davon. Okay, raus will ich. => Madame's wish list: pretty, cheeky, wants out. I'm none of those. Okay, I want out.
+=Ein Gutschein für den Banja. Das Wertvollste, was ich je besessen hab. Erschreckend. => A voucher for the Banya. The most valuable thing I've ever owned. Frightening.
+=„Mehl“. In Anführungszeichen. Ich stell keine Fragen. Ich trag nur. => "Flour". In quotation marks. I don't ask questions. I just carry.
+=Grünes Licht. Brennt mit irgendwas Gnomischem. Mein Abstellraum hatte nie so viel Atmosphäre. => Green light. Burns on something gnomish. My box room never had this much atmosphere.
+=Würmer. Sie zappeln. Ich auch, innerlich. => Worms. They wriggle. So do I, inside.
+=Kusmitschs Selbstgebrannter. Riecht nach Benzin und Reue. Ich hab ihn geklaut. Er weiß es. Ich weiß, dass er es weiß. => Kuzmich's moonshine. Smells of petrol and regret. I nicked it. He knows. I know he knows.
+=Eine Leiter. Nach oben geht’s für mich sonst nie. => A ladder. The only way up for me, ever.
+=Ein Fisch. Guckt mich an, als hätte ich was falsch gemacht. Hab ich auch. Ich hab ihn gefangen. => A fish. Looking at me like I did something wrong. I did. I caught it.
+=Omas Gebiss. Ich halt es mit zwei Fingern. Mehr Berührung verkraftet meine Seele nicht. => Granny's dentures. I hold them with two fingers. My soul can't take more contact than that.
+=Birkenteer. Klebt an allem. Vor allem an mir. => Birch tar. Sticks to everything. Mostly to me.
+=Der Filter vom alten Joint. Hat alles mitgemacht. Wir verstehen uns. => The filter from the old joint. Been through everything. We understand each other.
+=Goldene Sporen. Glitzern wie Kryptowährung. Und sind genauso stabil. => Golden spores. Glitter like crypto. And are just as stable.
+=Glut vom Schmied, in einer Dose. Heiß. Ich halte sie wie ein rohes Ei. Ein brennendes rohes Ei. => Embers from the smith, in a tin. Hot. I hold it like a raw egg. A burning raw egg.
+=Weihwasser. Ich hab mal dran gerochen. Riecht nach Wasser. Enttäuschend heilig. => Holy water. I sniffed it once. Smells like water. Disappointingly holy.
+=Eine Zwiebel. Bringt Leute zum Weinen. Wie meine Lebensgeschichte, nur schneller. => An onion. Makes people cry. Like my life story, only faster.
+=Eine leere Phiole. Für eine Träne. Ich hätte meine eigene anbieten können. Hab genug. => An empty vial. For a tear. I could've offered my own. I've got plenty.
+=Nastjas Träne. Dreihundert Jahre lang aufgespart. Für mich. Und eine Zwiebel. => Nastya's tear. Saved up for three hundred years. For me. And an onion.
+=Der Ausweg-Joint. Mein Ticket nach Hause. Hoffentlich ohne Umsteigen. => The way-out joint. My ticket home. Hopefully no changes.
+=Madames neuer Bogen: „Die Zweitbeste reicht.“ Das Motto meines Lebens, endlich schriftlich. => Madame's new form: "Second best will do." The motto of my life, finally in writing.
+=Ein Strass-Diadem. Piekt angeblich überall. Ich probier’s nicht an. Heute nicht. => A rhinestone tiara. Supposedly pricks everywhere. I'm not trying it on. Not today.
+=Nastja. Zwinkert. Ich guck nicht zu lange hin. … Okay, ein bisschen. => Nastya. Winking. I won't look too long. … Okay, a bit.
+=Sieht aus wie immer. Ich auch. => Looks the same as always. So do I.
+=Hm. Ja. Ein Ding. In meiner Tasche. Spannend. => Hm. Yes. A thing. In my pocket. Thrilling.
+=Würmer an die Angel? Gute Idee. Aber erst, wenn ich weiß, wo der Fisch ist. Ich verschwende keine Würmer. => Worms on the rod? Good idea. But only once I know where the fish is. I don't waste worms.
+=Apfel auf den Stock spießen? Toffee-Apfel ohne Toffee. Nein, danke. => Skewer the apple on the stick? Toffee apple without toffee. No thanks.
+=Pilze in den Filter? Nein. Das hat mich überhaupt erst hierher gebracht. => Mushrooms in the filter? No. That's what got me here in the first place.
+=Das Gebiss frisst den Fisch nicht von allein. Hab ich ausprobiert. Im Kopf. => The dentures won't eat the fish by themselves. I tried. In my head.
+=Wodka und Zwiebel. Klingt nach Opas Frühstück. => Vodka and onion. Sounds like Grandpa's breakfast.
+=Mit der Laterne auf die Karte leuchten. Jetzt seh ich deutlicher, dass ich mich verlaufen werde. => Shining the lantern on the map. Now I can see more clearly that I'm going to get lost.
+=Die Glut an den Stummel? Und dann? Noch tiefer ins Märchen? Lieber nicht. => Embers to the stub? And then? Even deeper into the fairy tale? Better not.
+=Das passt nicht zusammen. Wie ich und Frühaufstehen. => That doesn't go together. Like me and early mornings.
+=Nein. Das ergibt nicht mal im Märchen Sinn. => No. That doesn't make sense even in a fairy tale.
+=Ich halte das eine ans andere. Nichts passiert. Wie bei mir montags. => I hold one to the other. Nothing happens. Like me on Mondays.
+=Wenn ich das kombiniere, krieg ich nur Ärger. Und ein Loch in der Hose. => If I combine those, all I get is trouble. And a hole in my trousers.
+=(Ein Stock. Und Schnur. Wenn ich das eine an das andere knote … ) => (A stick. And string. If I tie one to the other … )
+=(Zieh die Schnur in der Tasche auf den Stock.) => (Drag the string onto the stick in your pockets.)
+=Birken => Birches
+=Birken. Tausende. Wenn man eine gesehen hat, hat man alle gesehen. Und ich hab alle gesehen. => Birches. Thousands. Seen one, seen them all. And I've seen them all.
+=Ich glaube, die Birken tuscheln über mich. => I think the birches are gossiping about me.
+=Baumstumpf => Tree stump
+=Ein Baumstumpf. Der einzige hier, der noch weniger vorhat als ich. => A tree stump. The only one here with even fewer plans than me.
+=Himmel => Sky
+=Blauer Himmel, Sonne, Vögel. Viel zu fröhlich für meinen Zustand. => Blue sky, sun, birds. Far too cheerful for my condition.
+=Birkenstamm => Birch trunk
+=Noch eine Birke. Ich glaube, die folgen mir. => Another birch. I think they're following me.
+=Umgestürzter Baum => Fallen tree
+=Ein umgestürzter Baum. Hat auch einfach aufgegeben. Respekt. => A fallen tree. Just gave up too. Respect.
+=Schädelzaun => Skull fence
+=Ein Zaun aus Schädeln. Bei uns stehen Gartenzwerge im Vorgarten. Hier ist der Gartenzwerg der Zaun. => A fence of skulls. Back home we have garden gnomes out front. Here the garden gnome is the fence.
+=Ich zähle die Schädel. Ich hoffe, ich werde nicht der nächste. => I count the skulls. I hope I'm not the next one.
+=Feuerholz => Firewood
+=Feuerholz. Ordentlich gestapelt. Das Ordentlichste an diesem ganzen Grundstück. => Firewood. Neatly stacked. The neatest thing on this whole property.
+=Tote Bäume => Dead trees
+=Kahle Bäume. Selbst die Natur hat hier keine Lust mehr. => Bare trees. Even nature can't be bothered here.
+=Hexenfenster => Witch's window
+=Ein Fenster mit Gardine. Sogar Hexen wollen nicht, dass die Nachbarn reingucken. => A window with a net curtain. Even witches don't want the neighbours looking in.
+=Regale => Shelves
+=Gläser über Gläser: „Krötenschleim“, „Augen, gemischt“, „NICHT ANFASSEN, PETJA“. Woher kennt die meinen Namen? => Jars and jars: "Toad slime", "Eyes, assorted", "DON'T TOUCH, PETYA". How does she know my name?
+=Porträt => Portrait
+=Ein Porträt. Der Typ guckt, als hätte er auch mal einen Joint geraucht. Und dann nie wieder irgendwas. => A portrait. The guy looks like he once smoked a joint too. And then never did anything again.
+=Tafel => Blackboard
+=„Kräuter + Mond … ?“ Ich hab in Mathe auch nie die Lösung gewusst. => "Herbs + moon … ?" I never knew the answer in maths either.
+=Pfütze => Puddle
+=Eine Pfütze. Tiefer als sie aussieht. Mein Schuh weiß das jetzt. => A puddle. Deeper than it looks. My shoe knows that now.
+=Strommast => Power pole
+=Ein Strommast. Hier gibt’s Strom? Aber kein WLAN. Ich hasse es hier. => A power pole. They have electricity here? But no Wi-Fi. I hate it here.
+=Schornstein => Chimney
+=Ein Schornstein ohne Haus. Postsowjetische Architektur in Reinform. => A chimney without a house. Post-Soviet architecture in its purest form.
+=Sonnenblumen => Sunflowers
+=Sonnenblumen. Größer als ich. Und mit mehr Lebensfreude. => Sunflowers. Taller than me. And with more joie de vivre.
+=Noch eine Pfütze. Das Dorf besteht zu dreißig Prozent aus Pfützen. => Another puddle. This village is thirty percent puddle.
+=Friedhof => Graveyard
+=Ein Friedhof. Ruhige Nachbarschaft. Keiner beschwert sich über laute Musik. => A graveyard. Quiet neighbourhood. Nobody complains about loud music.
+=Zwiebelturm => Onion dome
+=Eine goldene Zwiebel auf dem Dach. Selbst die Kirche hier hat was mit Gemüse. => A golden onion on the roof. Even the church here is into vegetables.
+=Mühlrad => Mill wheel
+=Das Mühlrad dreht sich. Im Gegensatz zu mir. Ich dreh nur durch. => The mill wheel turns. Unlike me. I just lose it.
+=Bank => Bench
+=Eine Bank. Ich setz mich nicht. Wenn ich sitze, steh ich nie wieder auf. => A bench. I won't sit. If I sit down, I'll never get up again.
+=Augen im Gebüsch => Eyes in the bushes
+=Da leuchten Augen im Gebüsch. Ich winke. Sie winken nicht zurück. => There are eyes glowing in the bushes. I wave. They don't wave back.
+=Neonschild => Neon sign
+=„BANJA – Dampf, Tanz, Wodka.“ Drei Dinge, von denen ich zwei verstehe. => "BANYA – steam, dance, vodka." Three things, two of which I understand.
+=Flaschenregal => Bottle shelf
+=Wodka, Wodka, etwas Grünes, Wodka. Die Getränkekarte ist kurz und ehrlich. => Vodka, vodka, something green, vodka. The drinks menu is short and honest.
+=Pappschild => Cardboard sign
+=„… KEINE S…“ Keine Socken? Keine Sorgen? Keine Seele? Ich tippe auf alles drei. => "… NO S…" No socks? No sorrow? No soul? My bet is all three.
+=Dunkler Wald => Dark forest
+=Da drin ist es so dunkel, dass selbst die Dunkelheit eine Taschenlampe bräuchte. => It's so dark in there that even the darkness would need a torch.
+=Schilf => Reeds
+=Schilf. Ideal zum Verstecken. Oder zum Ertrinken. Der Sumpf lässt einem die Wahl. => Reeds. Perfect for hiding. Or drowning. The swamp lets you choose.
+=Seerosen => Water lilies
+=Seerosen. Hübsch. Bestimmt giftig. Wie alles Hübsche hier. => Water lilies. Pretty. Surely poisonous. Like everything pretty around here.
+=Boot => Boat
+=Ein Boot, kieloben. Wie mein Leben. => A boat, upside down. Like my life.
+=See => Lake
+=Der See. Spiegelglatt. Irgendwo da unten liegt bestimmt mein Selbstwertgefühl. => The lake. Smooth as glass. Somewhere down there lies my self-esteem.
+=Ruderboot => Rowing boat
+=Noch ein Boot. Halb versunken. Das Ufer ist ein Friedhof für Boote. => Another boat. Half sunk. This shore is a graveyard for boats.
+=Kahler Baum => Bare tree
+=Ein kahler Baum am Wasser. Sieht aus wie ich nach einer Party. => A bare tree by the water. Looks like me after a party.
+=Pfähle => Piles
+=Glitschige Pfähle mit Algen. Hier unten wohnt garantiert was mit Zähnen. => Slimy piles with algae. Something with teeth definitely lives down here.
+=Fass => Barrel
+=Ein Fass in Gnomgröße. Für mich ein Schnapsglas. => A gnome-sized barrel. For me, a shot glass.
+=Kristalle => Crystals
+=Lila Kristalle, leuchten von selbst. Entweder Magie oder Radioaktivität. In Russland weiß man das nie so genau. => Purple crystals, glowing on their own. Either magic or radioactivity. In Russia you never quite know.
+=Schädel => Skull
+=Ein Schädel. Der Vorgänger von dem, der hier zu laut war. => A skull. The predecessor of whoever was too loud in here.
+=Geldscheine => Banknotes
+=Geldscheine auf der Bühne. Bücken wäre unhöflich. Und Madame sieht alles. => Banknotes on the stage. Bending down would be rude. And Madame sees everything.
+=Spiegel => Mirror
+=Ein ovaler Spiegel. Ich seh darin einen Mann, der nach Zwiebel riecht. Er guckt zurück. => An oval mirror. I see a man in it who smells of onion. He looks back.
+=Kerzen => Candles
+=Kerzen. Romantisch. Oder Brandschutz-Albtraum. Je nach Perspektive. => Candles. Romantic. Or a fire-safety nightmare. Depends on your point of view.
+=Riesenkohl => Giant cabbage
+=Riesenkohl. Gnome düngen offenbar mit Größenwahn. => Giant cabbage. Apparently gnomes fertilise with megalomania.
+=Kisten => Crates
+=Kisten. „Wodka – nicht Wodka“ steht drauf. Ich frag lieber nicht. => Crates. "Vodka – not vodka" written on them. I'd rather not ask.
+=Holzstapel => Woodpile
+=Holz für die Esse. Mehr Holz, als dieses Dorf Birken hat. Und das will was heißen. => Wood for the forge. More wood than this village has birches. And that's saying something.
+=Klick auf einen besuchten Ort: Schnellreise => Click a visited place: fast travel
+=Stock + Schnur = Angel. In der Tasche die Schnur auf den Stock ziehen. => Stick + string = fishing rod. In your pockets, drag the string onto the stick.
+~Schnellreise ab # entdeckten Orten => Fast travel from # discovered places
+~# – Klick: untersuchen · ziehen: kombinieren oder benutzen => # – click: examine · drag: combine or use

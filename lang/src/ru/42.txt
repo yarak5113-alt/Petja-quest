@@ -1,0 +1,136 @@
+# 42-komfort-plus.js (Untersuchen, Kombinieren, Kulissen, Schnellreise)
+=Ein Joint-Stummel. Das letzte Stück meiner Würde. Leicht angekokelt. => Бычок от косяка. Последний кусочек моего достоинства. Слегка обугленный.
+=Frisch geschärft. Jetzt schneidet sie Birken. Vorher hat sie nur Ausreden geschnitten. => Свеженаточенная. Теперь режет берёзы. Раньше резала только отмазки.
+=Rostiger als Opas Witze. Und genauso stumpf. => Ржавее дедовых шуток. И такая же тупая.
+=Ein Apfel. Gesund, sagt man. Ich nutz ihn lieber als Wurfgeschoss. Das ist auch Sport. => Яблоко. Полезно, говорят. Я его лучше как снаряд использую. Это тоже спорт.
+=Ein Stock. Mit Schnur dran wär er eine Angel. Ohne Schnur ist er … ein Stock. So wie ich ohne Kaffee. => Палка. С леской была бы удочкой. Без лески это … палка. Как я без кофе.
+=Schnur. Zum Angeln, zum Knoten, zum … nein. So schlimm ist es noch nicht. => Леска. Для рыбалки, для узлов, для … нет. Не настолько всё плохо. Пока.
+=Stock, Schnur, Sicherheitsnadel. Meine bisher größte Ingenieursleistung. Traurig, eigentlich. => Палка, леска, булавка. Моё величайшее инженерное достижение. Грустно, если подумать.
+=Neun blaue Pilzstücke. Wenn Mama wüsste, was ich in der Tasche hab. Sie würde fragen, ob ich genug esse. => Девять синих кусочков грибов. Знала бы мама, что у меня в кармане. Спросила бы, хорошо ли я ем.
+=Frische Traumschwämme. Leuchten blau. Ich ess die nicht. Ich hab aus dem letzten Mal gelernt. Glaub ich. => Свежие сонные губки. Светятся синим. Я их не ем. Я на прошлом разе научился. Вроде.
+=Baba Jagas Karte. Halb verbrannt. Wie meine Pläne fürs Wochenende. => Карта Бабы Яги. Наполовину сгоревшая. Как мои планы на выходные.
+=Madames Wunschliste: schön, frech, will raus. Ich bin keins davon. Okay, raus will ich. => Список хотелок мадам: красивая, дерзкая, хочет свалить. Я ничто из этого. Ладно, свалить хочу.
+=Ein Gutschein für den Banja. Das Wertvollste, was ich je besessen hab. Erschreckend. => Купон в Баню. Самое ценное, что у меня когда-либо было. Жуть.
+=„Mehl“. In Anführungszeichen. Ich stell keine Fragen. Ich trag nur. => «Мука». В кавычках. Я не задаю вопросов. Я просто несу.
+=Grünes Licht. Brennt mit irgendwas Gnomischem. Mein Abstellraum hatte nie so viel Atmosphäre. => Зелёный свет. Горит на чём-то гномьем. В моей кладовке никогда не было столько атмосферы.
+=Würmer. Sie zappeln. Ich auch, innerlich. => Черви. Извиваются. Я тоже, внутренне.
+=Kusmitschs Selbstgebrannter. Riecht nach Benzin und Reue. Ich hab ihn geklaut. Er weiß es. Ich weiß, dass er es weiß. => Самогон Кузьмича. Пахнет бензином и раскаянием. Я его стырил. Он знает. Я знаю, что он знает.
+=Eine Leiter. Nach oben geht’s für mich sonst nie. => Лестница. Больше мне наверх никак.
+=Ein Fisch. Guckt mich an, als hätte ich was falsch gemacht. Hab ich auch. Ich hab ihn gefangen. => Рыба. Смотрит, будто я что-то не так сделал. Так и есть. Я её поймал.
+=Omas Gebiss. Ich halt es mit zwei Fingern. Mehr Berührung verkraftet meine Seele nicht. => Бабкина челюсть. Держу двумя пальцами. Больше прикосновений моя душа не вынесет.
+=Birkenteer. Klebt an allem. Vor allem an mir. => Берёзовый дёготь. Липнет ко всему. В основном ко мне.
+=Der Filter vom alten Joint. Hat alles mitgemacht. Wir verstehen uns. => Фильтр от старого косяка. Прошёл через всё. Мы друг друга понимаем.
+=Goldene Sporen. Glitzern wie Kryptowährung. Und sind genauso stabil. => Золотые споры. Блестят, как криптовалюта. И такие же стабильные.
+=Glut vom Schmied, in einer Dose. Heiß. Ich halte sie wie ein rohes Ei. Ein brennendes rohes Ei. => Угли от кузнеца, в банке. Горячо. Держу, как сырое яйцо. Горящее сырое яйцо.
+=Weihwasser. Ich hab mal dran gerochen. Riecht nach Wasser. Enttäuschend heilig. => Святая вода. Я понюхал. Пахнет водой. Разочаровывающе свято.
+=Eine Zwiebel. Bringt Leute zum Weinen. Wie meine Lebensgeschichte, nur schneller. => Луковица. Доводит до слёз. Как история моей жизни, только быстрее.
+=Eine leere Phiole. Für eine Träne. Ich hätte meine eigene anbieten können. Hab genug. => Пустой флакон. Для слезы. Мог бы и свою предложить. У меня их полно.
+=Nastjas Träne. Dreihundert Jahre lang aufgespart. Für mich. Und eine Zwiebel. => Слеза Насти. Копилась триста лет. Для меня. И для луковицы.
+=Der Ausweg-Joint. Mein Ticket nach Hause. Hoffentlich ohne Umsteigen. => Косяк-выход. Мой билет домой. Надеюсь, без пересадок.
+=Madames neuer Bogen: „Die Zweitbeste reicht.“ Das Motto meines Lebens, endlich schriftlich. => Новая анкета мадам: «Сойдёт и вторая лучшая». Девиз моей жизни, наконец письменно.
+=Ein Strass-Diadem. Piekt angeblich überall. Ich probier’s nicht an. Heute nicht. => Диадема со стразами. Говорят, колется везде. Я не мерю. Не сегодня.
+=Nastja. Zwinkert. Ich guck nicht zu lange hin. … Okay, ein bisschen. => Настя. Подмигивает. Я долго не смотрю. … Ладно, немножко.
+=Sieht aus wie immer. Ich auch. => Выглядит как всегда. Я тоже.
+=Hm. Ja. Ein Ding. In meiner Tasche. Spannend. => Хм. Да. Штука. У меня в кармане. Захватывающе.
+=Würmer an die Angel? Gute Idee. Aber erst, wenn ich weiß, wo der Fisch ist. Ich verschwende keine Würmer. => Червей на удочку? Хорошая идея. Но только когда буду знать, где рыба. Червей я не трачу зря.
+=Apfel auf den Stock spießen? Toffee-Apfel ohne Toffee. Nein, danke. => Насадить яблоко на палку? Яблоко в карамели без карамели. Нет, спасибо.
+=Pilze in den Filter? Nein. Das hat mich überhaupt erst hierher gebracht. => Грибы в фильтр? Нет. Именно это меня сюда и занесло.
+=Das Gebiss frisst den Fisch nicht von allein. Hab ich ausprobiert. Im Kopf. => Челюсть сама рыбу не съест. Я проверял. В голове.
+=Wodka und Zwiebel. Klingt nach Opas Frühstück. => Водка и лук. Звучит как дедов завтрак.
+=Mit der Laterne auf die Karte leuchten. Jetzt seh ich deutlicher, dass ich mich verlaufen werde. => Посветить фонарём на карту. Теперь я отчётливее вижу, что заблужусь.
+=Die Glut an den Stummel? Und dann? Noch tiefer ins Märchen? Lieber nicht. => Угли к бычку? А потом? Ещё глубже в сказку? Лучше не надо.
+=Das passt nicht zusammen. Wie ich und Frühaufstehen. => Это не сочетается. Как я и ранний подъём.
+=Nein. Das ergibt nicht mal im Märchen Sinn. => Нет. Это даже в сказке не имеет смысла.
+=Ich halte das eine ans andere. Nichts passiert. Wie bei mir montags. => Прикладываю одно к другому. Ничего не происходит. Как со мной по понедельникам.
+=Wenn ich das kombiniere, krieg ich nur Ärger. Und ein Loch in der Hose. => Если я это соединю, получу только проблемы. И дырку в штанах.
+=(Ein Stock. Und Schnur. Wenn ich das eine an das andere knote … ) => (Палка. И леска. Если привязать одно к другому … )
+=(Zieh die Schnur in der Tasche auf den Stock.) => (Перетащи леску на палку в карманах.)
+=Birken => Берёзы
+=Birken. Tausende. Wenn man eine gesehen hat, hat man alle gesehen. Und ich hab alle gesehen. => Берёзы. Тысячи. Видел одну — видел все. А я видел все.
+=Ich glaube, die Birken tuscheln über mich. => Кажется, берёзы обо мне шепчутся.
+=Baumstumpf => Пень
+=Ein Baumstumpf. Der einzige hier, der noch weniger vorhat als ich. => Пень. Единственный тут, у кого планов ещё меньше, чем у меня.
+=Himmel => Небо
+=Blauer Himmel, Sonne, Vögel. Viel zu fröhlich für meinen Zustand. => Голубое небо, солнце, птички. Слишком жизнерадостно для моего состояния.
+=Birkenstamm => Берёзовый ствол
+=Noch eine Birke. Ich glaube, die folgen mir. => Ещё одна берёза. По-моему, они меня преследуют.
+=Umgestürzter Baum => Поваленное дерево
+=Ein umgestürzter Baum. Hat auch einfach aufgegeben. Respekt. => Поваленное дерево. Тоже просто сдалось. Уважаю.
+=Schädelzaun => Забор из черепов
+=Ein Zaun aus Schädeln. Bei uns stehen Gartenzwerge im Vorgarten. Hier ist der Gartenzwerg der Zaun. => Забор из черепов. У нас в палисаднике садовые гномы. А тут садовый гном — это забор.
+=Ich zähle die Schädel. Ich hoffe, ich werde nicht der nächste. => Считаю черепа. Надеюсь, я не следующий.
+=Feuerholz => Дрова
+=Feuerholz. Ordentlich gestapelt. Das Ordentlichste an diesem ganzen Grundstück. => Дрова. Аккуратно сложены. Самое аккуратное на всём участке.
+=Tote Bäume => Мёртвые деревья
+=Kahle Bäume. Selbst die Natur hat hier keine Lust mehr. => Голые деревья. Даже природе тут лень.
+=Hexenfenster => Ведьмино окно
+=Ein Fenster mit Gardine. Sogar Hexen wollen nicht, dass die Nachbarn reingucken. => Окно с занавеской. Даже ведьмы не хотят, чтоб соседи заглядывали.
+=Regale => Полки
+=Gläser über Gläser: „Krötenschleim“, „Augen, gemischt“, „NICHT ANFASSEN, PETJA“. Woher kennt die meinen Namen? => Банки, банки: «Жабья слизь», «Глаза, ассорти», «НЕ ТРОГАТЬ, ПЕТЯ». Откуда она знает моё имя?
+=Porträt => Портрет
+=Ein Porträt. Der Typ guckt, als hätte er auch mal einen Joint geraucht. Und dann nie wieder irgendwas. => Портрет. Мужик смотрит так, будто тоже когда-то курнул. И больше никогда ничего.
+=Tafel => Доска
+=„Kräuter + Mond … ?“ Ich hab in Mathe auch nie die Lösung gewusst. => «Травы + луна … ?» Я и в математике ответа никогда не знал.
+=Pfütze => Лужа
+=Eine Pfütze. Tiefer als sie aussieht. Mein Schuh weiß das jetzt. => Лужа. Глубже, чем кажется. Мой ботинок теперь это знает.
+=Strommast => Столб
+=Ein Strommast. Hier gibt’s Strom? Aber kein WLAN. Ich hasse es hier. => Столб. Тут есть электричество? Но нет вайфая. Ненавижу это место.
+=Schornstein => Труба
+=Ein Schornstein ohne Haus. Postsowjetische Architektur in Reinform. => Труба без дома. Постсоветская архитектура в чистом виде.
+=Sonnenblumen => Подсолнухи
+=Sonnenblumen. Größer als ich. Und mit mehr Lebensfreude. => Подсолнухи. Выше меня. И жизнерадостнее.
+=Noch eine Pfütze. Das Dorf besteht zu dreißig Prozent aus Pfützen. => Ещё лужа. Деревня на тридцать процентов состоит из луж.
+=Friedhof => Кладбище
+=Ein Friedhof. Ruhige Nachbarschaft. Keiner beschwert sich über laute Musik. => Кладбище. Тихие соседи. Никто не жалуется на громкую музыку.
+=Zwiebelturm => Луковичный купол
+=Eine goldene Zwiebel auf dem Dach. Selbst die Kirche hier hat was mit Gemüse. => Золотая луковица на крыше. Даже церковь тут неравнодушна к овощам.
+=Mühlrad => Мельничное колесо
+=Das Mühlrad dreht sich. Im Gegensatz zu mir. Ich dreh nur durch. => Мельничное колесо крутится. В отличие от меня. Я только с катушек слетаю.
+=Bank => Скамейка
+=Eine Bank. Ich setz mich nicht. Wenn ich sitze, steh ich nie wieder auf. => Скамейка. Не сяду. Если сяду, больше не встану.
+=Augen im Gebüsch => Глаза в кустах
+=Da leuchten Augen im Gebüsch. Ich winke. Sie winken nicht zurück. => В кустах светятся глаза. Я машу. Они не машут в ответ.
+=Neonschild => Неоновая вывеска
+=„BANJA – Dampf, Tanz, Wodka.“ Drei Dinge, von denen ich zwei verstehe. => «БАНЯ — пар, танцы, водка». Три вещи, из которых я понимаю две.
+=Flaschenregal => Полка с бутылками
+=Wodka, Wodka, etwas Grünes, Wodka. Die Getränkekarte ist kurz und ehrlich. => Водка, водка, что-то зелёное, водка. Барная карта короткая и честная.
+=Pappschild => Картонная табличка
+=„… KEINE S…“ Keine Socken? Keine Sorgen? Keine Seele? Ich tippe auf alles drei. => «… НЕ С…» Не сорить? Не сидеть? Не страдать? Ставлю на все три.
+=Dunkler Wald => Тёмный лес
+=Da drin ist es so dunkel, dass selbst die Dunkelheit eine Taschenlampe bräuchte. => Там так темно, что даже темноте понадобился бы фонарик.
+=Schilf => Камыш
+=Schilf. Ideal zum Verstecken. Oder zum Ertrinken. Der Sumpf lässt einem die Wahl. => Камыш. Идеально, чтобы спрятаться. Или утонуть. Болото даёт выбор.
+=Seerosen => Кувшинки
+=Seerosen. Hübsch. Bestimmt giftig. Wie alles Hübsche hier. => Кувшинки. Красивые. Наверняка ядовитые. Как всё красивое тут.
+=Boot => Лодка
+=Ein Boot, kieloben. Wie mein Leben. => Лодка, кверху дном. Как моя жизнь.
+=See => Озеро
+=Der See. Spiegelglatt. Irgendwo da unten liegt bestimmt mein Selbstwertgefühl. => Озеро. Гладкое, как зеркало. Где-то там на дне лежит моя самооценка.
+=Ruderboot => Вёсельная лодка
+=Noch ein Boot. Halb versunken. Das Ufer ist ein Friedhof für Boote. => Ещё одна лодка. Наполовину затонула. Берег — кладбище лодок.
+=Kahler Baum => Голое дерево
+=Ein kahler Baum am Wasser. Sieht aus wie ich nach einer Party. => Голое дерево у воды. Выглядит как я после вечеринки.
+=Pfähle => Сваи
+=Glitschige Pfähle mit Algen. Hier unten wohnt garantiert was mit Zähnen. => Скользкие сваи в водорослях. Тут внизу точно живёт что-то с зубами.
+=Fass => Бочка
+=Ein Fass in Gnomgröße. Für mich ein Schnapsglas. => Бочка гномьего размера. Для меня — рюмка.
+=Kristalle => Кристаллы
+=Lila Kristalle, leuchten von selbst. Entweder Magie oder Radioaktivität. In Russland weiß man das nie so genau. => Фиолетовые кристаллы, светятся сами. То ли магия, то ли радиация. В России никогда точно не знаешь.
+=Schädel => Череп
+=Ein Schädel. Der Vorgänger von dem, der hier zu laut war. => Череп. Предшественник того, кто тут слишком шумел.
+=Geldscheine => Купюры
+=Geldscheine auf der Bühne. Bücken wäre unhöflich. Und Madame sieht alles. => Купюры на сцене. Нагибаться невежливо. И мадам всё видит.
+=Spiegel => Зеркало
+=Ein ovaler Spiegel. Ich seh darin einen Mann, der nach Zwiebel riecht. Er guckt zurück. => Овальное зеркало. Вижу в нём мужика, который пахнет луком. Он смотрит в ответ.
+=Kerzen => Свечи
+=Kerzen. Romantisch. Oder Brandschutz-Albtraum. Je nach Perspektive. => Свечи. Романтика. Или кошмар пожарного. Смотря как посмотреть.
+=Riesenkohl => Гигантская капуста
+=Riesenkohl. Gnome düngen offenbar mit Größenwahn. => Гигантская капуста. Гномы, видимо, удобряют манией величия.
+=Kisten => Ящики
+=Kisten. „Wodka – nicht Wodka“ steht drauf. Ich frag lieber nicht. => Ящики. На них написано «Водка — не водка». Лучше не спрашивать.
+=Holzstapel => Поленница
+=Holz für die Esse. Mehr Holz, als dieses Dorf Birken hat. Und das will was heißen. => Дрова для горна. Больше, чем в этой деревне берёз. А это о многом говорит.
+=Klick auf einen besuchten Ort: Schnellreise => Клик по посещённому месту: быстрое перемещение
+=Stock + Schnur = Angel. In der Tasche die Schnur auf den Stock ziehen. => Палка + леска = удочка. В карманах перетащи леску на палку.
+~Schnellreise ab # entdeckten Orten => Быстрое перемещение — от # открытых мест
+~# – Klick: untersuchen · ziehen: kombinieren oder benutzen => # — клик: осмотреть · перетащить: соединить или применить

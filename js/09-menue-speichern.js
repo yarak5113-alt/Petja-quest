@@ -40,7 +40,7 @@ function quests(){const Q=[];
     {t:'Das Gebiss finden',v:FL.gq,ok:FL.ks,h:'Oma sagt, der Kater vom Popen hockt drauf. Also: Friedhof an der Kirche (Dorfstraße → „Zur Kirche“).'},
     {t:'Den Wächter loswerden',v:FL.ks,ok:FL.kater,s:[
       {t:'Etwas, das er nicht ablehnen kann',v:FL.ks,ok:FL.fisch||FL.kater,h:has('angel')?'Mit der Angel zum Fischerhaus und auf den See klicken. Beim Drill dagegenhalten!':'Ein Kater will Fisch. Kusmitsch am Fischerhaus fragen – wenn er nichts rausrückt, selbst angeln.',s:[
-        {t:'Selbst ist der Mann',v:FL.angelQ,ok:has('angel')||FL.fisch||FL.kater,h:'Stock + Schnur = Angel. Die baut Petja von selbst zusammen, sobald er beides hat.',s:[
+        {t:'Selbst ist der Mann',v:FL.angelQ,ok:has('angel')||FL.fisch||FL.kater,h:'Stock + Schnur = Angel. In der Tasche die Schnur auf den Stock ziehen.',s:[
           {t:'Ein Stock',v:FL.angelQ,ok:FL.ast,h:FL.kraehe?'Der Ast im Birkenwald ist frei. Anklicken – Petja springt danach.':has('apfel')?'Die Krähe im Birkenwald mit dem Apfel bewerfen (auf die Krähe klicken), dann ist der Ast frei.':'Im Birkenwald hängt ein gerader Ast – aber die Krähe sitzt drauf. Mit etwas bewerfen? An der Weggabelung wachsen Äpfel.'},
           {t:'Eine Schnur',v:FL.angelQ,ok:has('seil')||has('angel')||FL.fisch||FL.kater,h:'Auf der Dorfstraße hängt bei Tante Galja (rechts) eine Wäscheleine.'}]}]},
       {t:'Dem Kater den Fisch geben',v:FL.fisch&&!FL.kater,ok:FL.kater,h:'Mit dem Fisch zum Friedhof an der Kirche und auf den Kater klicken.'}]},
