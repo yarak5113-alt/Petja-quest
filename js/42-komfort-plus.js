@@ -74,7 +74,9 @@ craft=function(){if(!(has('stock')&&has('seil')))return;if(typeof DL!='undefined
   addEventListener('pointerup',e=>{if(!drag)return;const d=drag;drag=null;document.querySelectorAll('.ziel').forEach(x=>x.classList.remove('ziel'));d.el.classList.remove('zieht');document.body.classList.remove('ziehen');geist.style.display='none';
     if(!d.an)return;schlucken=true;setTimeout(()=>schlucken=false,50);
     const s=slotAt(e.clientX,e.clientY);if(s&&s.dataset.item)return kombiniere(d.id,s.dataset.item);
-    const h=hotAt(e.clientX,e.clientY);if(h){const id=h.dataset.id,o=T[id];if(!o)return;FL.zugDrauf=d.id;if(id=='petja'||!o.at)return use(id);return walkTo(o.at[0],o.at[1],()=>use(id))}});
+    const h=hotAt(e.clientX,e.clientY);if(h){const id=h.dataset.id,o=T[id];if(!o)return;FL.zugDrauf=d.id;
+      if(typeof zieheAuf=='function'&&zieheAuf(d.id,id,h))return;   // passt nicht → sarkastische Absage (44-geht-nicht-erfolge.js)
+      if(id=='petja'||!o.at)return use(id);return walkTo(o.at[0],o.at[1],()=>use(id))}});
   if(typeof inv!='undefined')renderInv()}
 
 // ---------- 2) Kulissen: fast alles hat einen trockenen Einzeiler ----------

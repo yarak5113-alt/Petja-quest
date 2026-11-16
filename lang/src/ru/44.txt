@@ -1,0 +1,66 @@
+# 44-geht-nicht-erfolge.js (Absagen, Erfolge, Easter Eggs – mit eigenen Anspielungen je Sprache)
+=Bist du komplett durch? Das passt doch vorne und hinten nicht. => Ты совсем того? Это ж ни в какие ворота.
+=Ich halt es hin. Die Figur guckt mich an wie einen Vertreter für Staubsauger. => Протягиваю. На меня смотрят, как на продавца пылесосов.
+=Nein. Einfach nein. Selbst im Märchen gibt es Grenzen. => Нет. Просто нет. Даже у сказки есть границы.
+=Das will keiner haben. Nicht mal geschenkt. Nicht mal hier. => Это никому не надо. Даже даром. Даже тут.
+=Ich reib das eine am anderen. Nichts. Außer peinlich. => Тру одно о другое. Ничего. Только стыдно.
+=Wenn ich das da reinstecke, ruft garantiert jemand die Miliz. => Если я это туда засуну, кто-нибудь точно вызовет милицию.
+=Nö. Das Ding und das Ding haben sich nichts zu sagen. => Не-а. Этой штуке и той штуке нечего друг другу сказать.
+=Ich soll das … an mir benutzen? So verzweifelt bin ich noch nicht. Fast. => Использовать это … на себе? Я ещё не настолько в отчаянии. Почти.
+=Nein. Mein Körper ist ein Tempel. Ein verfallener, aber trotzdem. => Нет. Моё тело — храм. Полуразрушенный, но всё же.
+=Ich steck mir das nicht an. Ich steck mir das nicht rein. Ich steck es zurück in die Tasche. => Не надену. Не засуну. Положу обратно в карман.
+=Was soll ich damit, Langer? Ich hab nicht mal Zähne, um mich darüber aufzuregen. => И на что мне это, длинный? У меня даже зубов нет, чтоб из-за этого скрипеть.
+=Steck das weg, bevor ich’s in den Ofen werf. => Убери, пока я это в печку не кинула.
+=Sohnemann, das nehm ich nicht. Es sei denn, es brennt. Oder man kann’s trinken. => Сынок, не возьму. Разве что горит. Или пьётся.
+=Was ist das? Kann man das rauchen? Nein? Dann weg damit. => Это что? Курится? Нет? Тогда убери.
+=Damit? Damit fang ich nicht mal Ärger. Den hab ich schon. Dich. => Этим? Этим я даже неприятностей не поймаю. Они у меня уже есть. Ты.
+=Gib mir lieber meinen Schnaps wieder, Dieb. => Лучше самогон мой верни, ворюга.
+=Was soll ich mit dem Krempel, Bürschchen? Ich koche Zaubertränke, keine Flohmärkte. => На что мне этот хлам, сопляк? Я зелья варю, а не барахолку держу.
+=Noch einmal so was, und du landest im Kessel. Als Einlage. => Ещё раз такое — и полезешь в котёл. На гарнир.
+=Nee, Süßer. Das kannst du dir sonst wohin stecken. Ich zeig dir auch gern, wohin. => Не-а, сладкий. Засунь это себе сам знаешь куда. Могу показать.
+=Das ist kein Trinkgeld. Das ist eine Beleidigung. => Это не чаевые. Это оскорбление. Денег нет — ну ты держись.
+=Was ist das, Zwiebel? Ein Geschenk? Dann üb noch ein bisschen. => Что это, Лучок? Подарок? Потренируйся ещё. Даже у Моргенштерна подарки лучше.
+=Wenn du schon was in meine Hand drückst, dann bitte Geld. Oder dich. => Если уж суёшь мне что-то в руку — то деньги. Или себя.
+=Das ist kein Mehl. Und kein Zoll. Also verschwinde. => Это не мука. И не пошлина. Так что вали.
+=Gnome nehmen nur zwei Dinge: Mehl und Bestechung. Das da ist keins von beiden. => Гномы берут две вещи: муку и взятки. Это ни то, ни другое.
+=Hier? => Вот?
+=Nervensäge => Шо, опять?
+=Zehnmal hintereinander auf dasselbe geklickt. => Десять раз подряд кликнул по одному и тому же.
+=Russische Seele => Загадочная русская душа
+=Die versteckte Matrjoschka in der Höhle gefunden. => Нашёл спрятанную матрёшку в пещере.
+=Wiedervereinigung => Воссоединение
+=Petjas verlorene Socke im Sumpf gefunden. => Нашёл потерянный носок Пети в болоте.
+=Mixtape ’98 => Микстейп ’98
+=Die Kassette hinter der Kirche gefunden. => Нашёл кассету за церковью.
+=Schatzsucher => Кладоискатель
+=Alle drei versteckten Dinge gefunden. => Нашёл все три спрятанные вещи.
+=Tourist => Турист
+=15 verschiedene Kulissen-Dinge angeschaut. => Осмотрел 15 разных предметов обстановки.
+=Bastler ohne Plan => Самоделкин без плана
+=5 unsinnige Dinge kombiniert. => Соединил 5 бессмысленных вещей.
+=Mit dem Kopf durch die Wand => Напролом
+=8 Mal etwas Unpassendes angeboten. => 8 раз предложил что-то не то.
+=Taxi Petja => Такси «Петя»
+=5 Mal per Karte gereist. => 5 раз переместился по карте.
+=Alle Wege führen … => Все дороги ведут …
+=Alle drei Enden gesehen. => Увидел все три концовки.
+=??? => ???
+=Noch nicht gefunden. => Ещё не найдено.
+=Erfolge => Достижения
+=Zehnmal. Ich hab zehnmal draufgeklickt. Da werden Sie geholfen? Nein. Hier wird keinem geholfen. => Десять раз. Я кликнул десять раз. Как пёс из мультика: «Шо, опять?»
+=Elf, zwölf … Ich hör jetzt auf. Wirklich. Gleich. => Одиннадцать, двенадцать … Всё, бросаю. Честно. Сейчас.
+=Matrjoschka => Матрёшка
+=Eine Matrjoschka. Ich mach sie auf. Noch eine. Und noch eine. Und noch eine. => Матрёшка. Открываю. Ещё одна. И ещё. И ещё.
+=Ganz innen ein Zettel: „Geh raus und triff Leute.“ … Mama, bist du das? => В самой маленькой записка: «Выйди из дома и познакомься с людьми». … Мам, это ты?
+=Socke => Носок
+=Meine Socke! Die hab ich 2019 in der Waschmaschine verloren. => Мой носок! Я потерял его в стиралке в 2019-м.
+=Sie war die ganze Zeit hier. Im Sumpf. Das erklärt so einiges über Waschmaschinen. => Он всё это время был тут. В болоте. Вот это поворот.
+=Kassette => Кассета
+=Eine Kassette. Aufschrift: „Mixtape ’98 – nicht überspielen!!!“ => Кассета. Надпись: «Микстейп ’98 — Город под подошвой. НЕ ПЕРЕЗАПИСЫВАТЬ!!!»
+=Ohne Rekorder nutzlos. Wie alles aus ’98. Mich eingeschlossen. => Без магнитофона бесполезна. Как всё из ’98-го. Включая меня.
+~Hier, #? => Вот, #?
+~Erfolg: # => Достижение: #
+=Klick / Rechtsklick auf Gegenstand => Клик / правый клик по предмету
+=Untersuchen => Осмотреть
+=Gegenstand ziehen => Перетащить предмет
+=Auf anderen Gegenstand: kombinieren · auf Figur/Ding: benutzen => На другой предмет: соединить · на персонажа/вещь: применить

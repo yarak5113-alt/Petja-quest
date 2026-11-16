@@ -1,0 +1,66 @@
+# 44-geht-nicht-erfolge.js (Absagen, Erfolge, Easter Eggs – mit eigenen Anspielungen je Sprache)
+=Bist du komplett durch? Das passt doch vorne und hinten nicht. => Have you completely lost it? That doesn't fit, front or back.
+=Ich halt es hin. Die Figur guckt mich an wie einen Vertreter für Staubsauger. => I hold it out. They look at me like a vacuum-cleaner salesman.
+=Nein. Einfach nein. Selbst im Märchen gibt es Grenzen. => No. Just no. Even fairy tales have limits.
+=Das will keiner haben. Nicht mal geschenkt. Nicht mal hier. => Nobody wants that. Not even for free. Not even here.
+=Ich reib das eine am anderen. Nichts. Außer peinlich. => I rub one against the other. Nothing. Except awkward.
+=Wenn ich das da reinstecke, ruft garantiert jemand die Miliz. => If I stick that in there, someone's definitely calling the cops.
+=Nö. Das Ding und das Ding haben sich nichts zu sagen. => Nope. This thing and that thing have nothing to say to each other.
+=Ich soll das … an mir benutzen? So verzweifelt bin ich noch nicht. Fast. => Use it … on myself? I'm not that desperate yet. Almost.
+=Nein. Mein Körper ist ein Tempel. Ein verfallener, aber trotzdem. => No. My body is a temple. A crumbling one, but still.
+=Ich steck mir das nicht an. Ich steck mir das nicht rein. Ich steck es zurück in die Tasche. => I'm not putting it on. I'm not putting it in. I'm putting it back in my pocket.
+=Was soll ich damit, Langer? Ich hab nicht mal Zähne, um mich darüber aufzuregen. => What am I supposed to do with that, beanpole? I haven't even got the teeth to get worked up about it.
+=Steck das weg, bevor ich’s in den Ofen werf. => Put that away before I chuck it in the stove.
+=Sohnemann, das nehm ich nicht. Es sei denn, es brennt. Oder man kann’s trinken. => Son, I'm not taking that. Unless it burns. Or you can drink it.
+=Was ist das? Kann man das rauchen? Nein? Dann weg damit. => What's that? Can you smoke it? No? Then get rid of it.
+=Damit? Damit fang ich nicht mal Ärger. Den hab ich schon. Dich. => With that? I couldn't even catch trouble with that. I already have trouble. You.
+=Gib mir lieber meinen Schnaps wieder, Dieb. => Give me my moonshine back instead, thief.
+=Was soll ich mit dem Krempel, Bürschchen? Ich koche Zaubertränke, keine Flohmärkte. => What would I want with that junk, laddie? I brew potions, not car-boot sales.
+=Noch einmal so was, und du landest im Kessel. Als Einlage. => One more like that and you go in the cauldron. As croutons.
+=Nee, Süßer. Das kannst du dir sonst wohin stecken. Ich zeig dir auch gern, wohin. => Nah, sweetie. You can stick that somewhere else. Happy to show you where.
+=Das ist kein Trinkgeld. Das ist eine Beleidigung. => That's not a tip. That's an insult. Computer says no.
+=Was ist das, Zwiebel? Ein Geschenk? Dann üb noch ein bisschen. => What's that, Onion? A present? Then practise a bit more.
+=Wenn du schon was in meine Hand drückst, dann bitte Geld. Oder dich. => If you're putting something in my hand, make it money. Or you.
+=Das ist kein Mehl. Und kein Zoll. Also verschwinde. => That's not flour. And not a toll. So scram.
+=Gnome nehmen nur zwei Dinge: Mehl und Bestechung. Das da ist keins von beiden. => Gnomes accept two things: flour and bribes. That's neither.
+=Hier? => Here?
+=Nervensäge => Broken Record
+=Zehnmal hintereinander auf dasselbe geklickt. => Clicked the same thing ten times in a row.
+=Russische Seele => Russian Soul
+=Die versteckte Matrjoschka in der Höhle gefunden. => Found the hidden matryoshka in the cave.
+=Wiedervereinigung => Reunited
+=Petjas verlorene Socke im Sumpf gefunden. => Found Petya's lost sock in the swamp.
+=Mixtape ’98 => Mixtape ’98
+=Die Kassette hinter der Kirche gefunden. => Found the cassette behind the church.
+=Schatzsucher => Treasure Hunter
+=Alle drei versteckten Dinge gefunden. => Found all three hidden things.
+=Tourist => Tourist
+=15 verschiedene Kulissen-Dinge angeschaut. => Looked at 15 different bits of scenery.
+=Bastler ohne Plan => MacGyver Without a Plan
+=5 unsinnige Dinge kombiniert. => Combined 5 pointless things.
+=Mit dem Kopf durch die Wand => Square Peg, Round Hole
+=8 Mal etwas Unpassendes angeboten. => Offered something unsuitable 8 times.
+=Taxi Petja => Taxi Petya
+=5 Mal per Karte gereist. => Travelled by map 5 times.
+=Alle Wege führen … => All Roads Lead …
+=Alle drei Enden gesehen. => Saw all three endings.
+=??? => ???
+=Noch nicht gefunden. => Not found yet.
+=Erfolge => Achievements
+=Zehnmal. Ich hab zehnmal draufgeklickt. Da werden Sie geholfen? Nein. Hier wird keinem geholfen. => Ten times. I clicked it ten times. Press F to pay respects.
+=Elf, zwölf … Ich hör jetzt auf. Wirklich. Gleich. => Eleven, twelve … I'm stopping now. Really. In a sec.
+=Matrjoschka => Matryoshka
+=Eine Matrjoschka. Ich mach sie auf. Noch eine. Und noch eine. Und noch eine. => A matryoshka. I open it. Another one. And another. It's dolls all the way down.
+=Ganz innen ein Zettel: „Geh raus und triff Leute.“ … Mama, bist du das? => Right in the middle, a note: "Go outside and meet people." … Mum, is that you?
+=Socke => Sock
+=Meine Socke! Die hab ich 2019 in der Waschmaschine verloren. => My sock! I lost that in the washing machine in 2019.
+=Sie war die ganze Zeit hier. Im Sumpf. Das erklärt so einiges über Waschmaschinen. => It's been here the whole time. In the swamp. The truth is out there. And it's damp.
+=Kassette => Cassette
+=Eine Kassette. Aufschrift: „Mixtape ’98 – nicht überspielen!!!“ => A cassette. Label: "Mixtape ’98 – never gonna give it up, DO NOT TAPE OVER!!!"
+=Ohne Rekorder nutzlos. Wie alles aus ’98. Mich eingeschlossen. => Useless without a tape deck. Like everything from ’98. Me included.
+~Hier, #? => Here, #?
+~Erfolg: # => Achievement: #
+=Klick / Rechtsklick auf Gegenstand => Click / right-click an item
+=Untersuchen => Examine
+=Gegenstand ziehen => Drag an item
+=Auf anderen Gegenstand: kombinieren · auf Figur/Ding: benutzen => Onto another item: combine · onto a character/object: use

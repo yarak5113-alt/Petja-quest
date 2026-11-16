@@ -72,9 +72,9 @@
 =Tafel => Доска
 =„Kräuter + Mond … ?“ Ich hab in Mathe auch nie die Lösung gewusst. => «Травы + луна … ?» Я и в математике ответа никогда не знал.
 =Pfütze => Лужа
-=Eine Pfütze. Tiefer als sie aussieht. Mein Schuh weiß das jetzt. => Лужа. Глубже, чем кажется. Мой ботинок теперь это знает.
+=Eine Pfütze. Tiefer als sie aussieht. Mein Schuh weiß das jetzt. => Лужа. Глубже, чем кажется. Мой ботинок теперь «на дне». Горький бы оценил.
 =Strommast => Столб
-=Ein Strommast. Hier gibt’s Strom? Aber kein WLAN. Ich hasse es hier. => Столб. Тут есть электричество? Но нет вайфая. Ненавижу это место.
+=Ein Strommast. Hier gibt’s Strom? Aber kein WLAN. Ich hasse es hier. => Столб. Тут есть электричество? А вайфая нет. Связи нет, но вы держитесь.
 =Schornstein => Труба
 =Ein Schornstein ohne Haus. Postsowjetische Architektur in Reinform. => Труба без дома. Постсоветская архитектура в чистом виде.
 =Sonnenblumen => Подсолнухи
@@ -93,7 +93,7 @@
 =Neonschild => Неоновая вывеска
 =„BANJA – Dampf, Tanz, Wodka.“ Drei Dinge, von denen ich zwei verstehe. => «БАНЯ — пар, танцы, водка». Три вещи, из которых я понимаю две.
 =Flaschenregal => Полка с бутылками
-=Wodka, Wodka, etwas Grünes, Wodka. Die Getränkekarte ist kurz und ehrlich. => Водка, водка, что-то зелёное, водка. Барная карта короткая и честная.
+=Wodka, Wodka, etwas Grünes, Wodka. Die Getränkekarte ist kurz und ehrlich. => Водка, водка, что-то зелёное, водка. «Пить или не пить» — тут такой вопрос не стоит.
 =Pappschild => Картонная табличка
 =„… KEINE S…“ Keine Socken? Keine Sorgen? Keine Seele? Ich tippe auf alles drei. => «… НЕ С…» Не сорить? Не сидеть? Не страдать? Ставлю на все три.
 =Dunkler Wald => Тёмный лес
@@ -107,13 +107,13 @@
 =See => Озеро
 =Der See. Spiegelglatt. Irgendwo da unten liegt bestimmt mein Selbstwertgefühl. => Озеро. Гладкое, как зеркало. Где-то там на дне лежит моя самооценка.
 =Ruderboot => Вёсельная лодка
-=Noch ein Boot. Halb versunken. Das Ufer ist ein Friedhof für Boote. => Ещё одна лодка. Наполовину затонула. Берег — кладбище лодок.
+=Noch ein Boot. Halb versunken. Das Ufer ist ein Friedhof für Boote. => Ещё одна лодка, наполовину затонула. «Лодка любви разбилась о быт». Классика.
 =Kahler Baum => Голое дерево
 =Ein kahler Baum am Wasser. Sieht aus wie ich nach einer Party. => Голое дерево у воды. Выглядит как я после вечеринки.
 =Pfähle => Сваи
 =Glitschige Pfähle mit Algen. Hier unten wohnt garantiert was mit Zähnen. => Скользкие сваи в водорослях. Тут внизу точно живёт что-то с зубами.
 =Fass => Бочка
-=Ein Fass in Gnomgröße. Für mich ein Schnapsglas. => Бочка гномьего размера. Для меня — рюмка.
+=Ein Fass in Gnomgröße. Für mich ein Schnapsglas. => Бочка гномьего размера. Для меня — рюмка. «Пачка сигарет» сюда не влезет, а рюмка — вполне.
 =Kristalle => Кристаллы
 =Lila Kristalle, leuchten von selbst. Entweder Magie oder Radioaktivität. In Russland weiß man das nie so genau. => Фиолетовые кристаллы, светятся сами. То ли магия, то ли радиация. В России никогда точно не знаешь.
 =Schädel => Череп
@@ -121,7 +121,7 @@
 =Geldscheine => Купюры
 =Geldscheine auf der Bühne. Bücken wäre unhöflich. Und Madame sieht alles. => Купюры на сцене. Нагибаться невежливо. И мадам всё видит.
 =Spiegel => Зеркало
-=Ein ovaler Spiegel. Ich seh darin einen Mann, der nach Zwiebel riecht. Er guckt zurück. => Овальное зеркало. Вижу в нём мужика, который пахнет луком. Он смотрит в ответ.
+=Ein ovaler Spiegel. Ich seh darin einen Mann, der nach Zwiebel riecht. Er guckt zurück. => Овальное зеркало. «Свет мой, зеркальце, скажи…» — «Ты пахнешь луком», говорит.
 =Kerzen => Свечи
 =Kerzen. Romantisch. Oder Brandschutz-Albtraum. Je nach Perspektive. => Свечи. Романтика. Или кошмар пожарного. Смотря как посмотреть.
 =Riesenkohl => Гигантская капуста

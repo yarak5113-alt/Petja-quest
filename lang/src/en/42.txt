@@ -72,9 +72,9 @@
 =Tafel => Blackboard
 =„Kräuter + Mond … ?“ Ich hab in Mathe auch nie die Lösung gewusst. => "Herbs + moon … ?" I never knew the answer in maths either.
 =Pfütze => Puddle
-=Eine Pfütze. Tiefer als sie aussieht. Mein Schuh weiß das jetzt. => A puddle. Deeper than it looks. My shoe knows that now.
+=Eine Pfütze. Tiefer als sie aussieht. Mein Schuh weiß das jetzt. => A puddle. Deeper than it looks. My shoe has seen things. Terrible things.
 =Strommast => Power pole
-=Ein Strommast. Hier gibt’s Strom? Aber kein WLAN. Ich hasse es hier. => A power pole. They have electricity here? But no Wi-Fi. I hate it here.
+=Ein Strommast. Hier gibt’s Strom? Aber kein WLAN. Ich hasse es hier. => A power pole. Electricity, but no Wi-Fi. Is this the real life? Is this just fantasy?
 =Schornstein => Chimney
 =Ein Schornstein ohne Haus. Postsowjetische Architektur in Reinform. => A chimney without a house. Post-Soviet architecture in its purest form.
 =Sonnenblumen => Sunflowers
@@ -107,7 +107,7 @@
 =See => Lake
 =Der See. Spiegelglatt. Irgendwo da unten liegt bestimmt mein Selbstwertgefühl. => The lake. Smooth as glass. Somewhere down there lies my self-esteem.
 =Ruderboot => Rowing boat
-=Noch ein Boot. Halb versunken. Das Ufer ist ein Friedhof für Boote. => Another boat. Half sunk. This shore is a graveyard for boats.
+=Noch ein Boot. Halb versunken. Das Ufer ist ein Friedhof für Boote. => Another boat, half sunk. We're gonna need a bigger boat.
 =Kahler Baum => Bare tree
 =Ein kahler Baum am Wasser. Sieht aus wie ich nach einer Party. => A bare tree by the water. Looks like me after a party.
 =Pfähle => Piles
@@ -121,7 +121,7 @@
 =Geldscheine => Banknotes
 =Geldscheine auf der Bühne. Bücken wäre unhöflich. Und Madame sieht alles. => Banknotes on the stage. Bending down would be rude. And Madame sees everything.
 =Spiegel => Mirror
-=Ein ovaler Spiegel. Ich seh darin einen Mann, der nach Zwiebel riecht. Er guckt zurück. => An oval mirror. I see a man in it who smells of onion. He looks back.
+=Ein ovaler Spiegel. Ich seh darin einen Mann, der nach Zwiebel riecht. Er guckt zurück. => An oval mirror. Mirror, mirror, on the wall … says I smell of onion. Rude.
 =Kerzen => Candles
 =Kerzen. Romantisch. Oder Brandschutz-Albtraum. Je nach Perspektive. => Candles. Romantic. Or a fire-safety nightmare. Depends on your point of view.
 =Riesenkohl => Giant cabbage
