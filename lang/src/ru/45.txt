@@ -1,0 +1,8 @@
+# 45-buendel-karte.js
+=Petjas Bündel => Узелок Пети
+=Kombinieren => Соединить
+=Untersuchen => Осмотреть
+=Erst einen Gegenstand, dann einen zweiten anklicken. => Кликни один предмет, потом второй.
+=Klick auf einen Gegenstand: ansehen. => Клик по предмету — осмотреть.
+=… und womit? => … и с чем?
+=Der Verfluchte Birkenwald => Проклятый берёзовый лес

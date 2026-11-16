@@ -67,7 +67,7 @@ async function dlBook(){await dlIdle();
   const lv0=FL['tip_'+q.t]||0;let n=0;while(ovl.querySelector('.tipmore')&&n<3){ovl.querySelector('.tipmore').click();n++}
   const sol=ovl.querySelector('.nextbox').textContent;if(q.h&&!sol.includes(q.h.slice(0,25)))throw new Error(`Lösung für „${q.t}“ lässt sich nicht aufdecken`);
   FL['tip_'+q.t]=lv0;closeO();
-  openBook('karte');const ok=ovl.querySelectorAll('svg.map path[stroke="#e8ffe0"]').length;closeO();
+  openBook('karte');const ok=ovl.querySelectorAll('.kmap .kfertig, svg.map path[stroke="#e8ffe0"]').length;closeO();
   if(!ok)throw new Error('Karte zeigt keinen erledigten Ort');dlLog(`✓ Tagebuch-Hinweise (${n} Stufen) und Karte (${ok} Orte erledigt)`)}
 
 async function durchlauf(){if(DL.on)return;DL.on=true;DL.log=[];DL.t0=Date.now();

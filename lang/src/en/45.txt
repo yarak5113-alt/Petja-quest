@@ -1,0 +1,8 @@
+# 45-buendel-karte.js
+=Petjas Bündel => Petya's Bundle
+=Kombinieren => Combine
+=Untersuchen => Examine
+=Erst einen Gegenstand, dann einen zweiten anklicken. => Click one item, then a second one.
+=Klick auf einen Gegenstand: ansehen. => Click an item to look at it.
+=… und womit? => … and with what?
+=Der Verfluchte Birkenwald => The Cursed Birch Forest
