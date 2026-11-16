@@ -42,3 +42,8 @@
 =Ende: Das Zahnrad => Ending: The cog
 =Petja blieb im Märchen. Wowa sucht noch sein Feuerzeug. => Petya stayed in the fairy tale. Vova is still looking for his lighter.
 ~Gefundene Enden: # von # => Endings found: # of #
+=*Tür knallt. Stille.* => *Door slams. Silence.*
+=(Baba Jaga. Gnome. Eine Nymphe, die mich Zwiebel nennt.) => (Baba Yaga. Gnomes. A nymph who calls me Onion.)
+=(War das alles … einfach nur ein Traum?) => (Was all that … just a dream?)
+=*zieht ein Birkenblatt aus den Haaren* => *pulls a birch leaf out of his hair*
+=… Hm. => … Hm.

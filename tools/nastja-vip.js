@@ -20,7 +20,11 @@ for(const k in o.palette){const v=o.palette[k];if(!v||k==='K')continue;const c=r
 const G=o.rows.map(dec),set=(x,y,c)=>{G[y][x]=c};
 // einzelne Tusche-Sprenkel (Reste vom Schachbrett-Hintergrund) mitten in Flächen weg
 let weg=0;for(let y=1;y<o.height-1;y++)for(let x=1;x<o.width-1;x++){if(G[y][x]!=='K')continue;const n=[G[y-1][x],G[y+1][x],G[y][x-1],G[y][x+1]];if(n.some(c=>c==='K'||c==='.'))continue;const h={};n.forEach(c=>h[c]=(h[c]||0)+1);G[y][x]=Object.keys(h).sort((a,b)=>h[b]-h[a])[0];weg++}
-o.rows=G.map(enc);console.log('Sprenkel entfernt:',weg);
+// Flächen beruhigen (die Vorlage rauscht): Mehrheitsfilter 3×3 über Farbflächen, Tusche-Linien und Rand bleiben
+let ruhig=0;for(let it=0;it<3;it++){const N=G.map(r=>r.slice());for(let y=1;y<o.height-1;y++)for(let x=1;x<o.width-1;x++){const c=G[y][x];if(c==='K'||c==='.')continue;
+  const h={};for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){const q=G[y+dy][x+dx];if(q!=='.'&&q!=='K')h[q]=(h[q]||0)+1}
+  let best=c,bn=h[c]||0;for(const q in h)if(h[q]>bn){best=q;bn=h[q]}if(best!==c&&bn>=4&&(h[c]||0)<=2){N[y][x]=best;ruhig++}}G.splice(0,G.length,...N)}
+o.rows=G.map(enc);console.log('Sprenkel entfernt:',weg,'beruhigt:',ruhig);
 // offenes Auge (x 63–83, y 48–60) mit Haut füllen, dann ein geschlossener Lidbogen (nach unten gewölbt), Lidstrich-Schwung außen, Wimpern unten
 for(let y=48;y<=60;y++)for(let x=63;x<=83;x++)set(x,y,HAUT);
 for(let x=68;x<=80;x++)set(x,55,SCHATTEN);

@@ -42,3 +42,8 @@
 =Ende: Das Zahnrad => Концовка: Винтик
 =Petja blieb im Märchen. Wowa sucht noch sein Feuerzeug. => Петя остался в сказке. Вова всё ещё ищет свою зажигалку.
 ~Gefundene Enden: # von # => Найдено концовок: # из #
+=*Tür knallt. Stille.* => *Дверь хлопает. Тишина.*
+=(Baba Jaga. Gnome. Eine Nymphe, die mich Zwiebel nennt.) => (Баба Яга. Гномы. Нимфа, которая зовёт меня Лучком.)
+=(War das alles … einfach nur ein Traum?) => (Это всё … просто сон был?)
+=*zieht ein Birkenblatt aus den Haaren* => *вытаскивает из волос берёзовый листок*
+=… Hm. => … Хм.
