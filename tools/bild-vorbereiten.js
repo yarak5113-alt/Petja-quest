@@ -1,12 +1,15 @@
 // Vorlage vorbereiten: Schachbrett-Hintergrund (dunkelgrau) vom Rand her weiß machen und weiche/hochskalierte Bilder schärfen (Unscharf-Maskieren).
-//   node tools/bild-vorbereiten.js <bild.png> <aus.png> [stärke=2.2] [radius=2.5]   danach: node tools/bild2array.js <aus.png> <name> <json> <vorschau.png> 16 500
+//   node tools/bild-vorbereiten.js <bild.png> <aus.png> [stärke=2.2] [radius=2.5] [hintergrund-max-helligkeit=42] [max-buntheit=8] [kontur-verbreitern=0]   danach: node tools/bild2array.js <aus.png> <name> <json> <vorschau.png> 16 500
 const fs=require('fs'),path=require('path'),os=require('os'),{execFileSync}=require('child_process');
-const [IN,OUT,AMT="0",RAD="2"]=process.argv.slice(2);
+const [IN,OUT,AMT="0",RAD="2",MAXL="42",CHROMA="8",DIL="0"]=process.argv.slice(2);
 const data='data:image/png;base64,'+fs.readFileSync(IN).toString('base64');
 const page=`<!doctype html><body><pre id="png"></pre><script>
 const im=new Image();im.onload=()=>{const W=im.width,H=im.height,c=document.createElement('canvas');c.width=W;c.height=H;const g=c.getContext('2d');g.drawImage(im,0,0);
 const id=g.getImageData(0,0,W,H),d=id.data,bg=new Uint8Array(W*H),st=[];
-const ok=k=>{const q=k*4,mx=Math.max(d[q],d[q+1],d[q+2]),mn=Math.min(d[q],d[q+1],d[q+2]);return mx-mn<8&&mx<42};
+// Sperre: bräunliche Konturpixel (bunt, dunkel), um DIL px verbreitert – schließt Lücken in der Kontur, damit die Flut nicht in dunkle Stiefel/Strümpfe läuft
+const DIL=${DIL},sperre=new Uint8Array(W*H);if(DIL>0){const br=new Uint8Array(W*H);for(let k=0;k<W*H;k++){const q=k*4,mx=Math.max(d[q],d[q+1],d[q+2]),mn=Math.min(d[q],d[q+1],d[q+2]);if(mx-mn>=12&&mx<110)br[k]=1}
+  for(let y=0;y<H;y++)for(let x=0;x<W;x++)if(br[y*W+x])for(let dy=-DIL;dy<=DIL;dy++)for(let dx=-DIL;dx<=DIL;dx++){const X=x+dx,Y=y+dy;if(X>=0&&Y>=0&&X<W&&Y<H)sperre[Y*W+X]=1}}
+const ok=k=>{if(sperre[k])return false;const q=k*4,mx=Math.max(d[q],d[q+1],d[q+2]),mn=Math.min(d[q],d[q+1],d[q+2]);return mx-mn<${CHROMA}&&mx<${MAXL}};
 for(let x=0;x<W;x++)st.push(x,(H-1)*W+x);for(let y=0;y<H;y++)st.push(y*W,y*W+W-1);
 while(st.length){const k=st.pop();if(bg[k]||!ok(k))continue;bg[k]=1;const x=k%W,y=(k-x)/W;if(x>0)st.push(k-1);if(x<W-1)st.push(k+1);if(y>0)st.push(k-W);if(y<H-1)st.push(k+W)}
 for(let k=0;k<W*H;k++)if(bg[k]){d[k*4]=d[k*4+1]=d[k*4+2]=255}

@@ -1,6 +1,7 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'2.21',d:'16.11.2026',t:'Das neue VIP-Bild',n:['Nastja in der VIP-Kabine ist jetzt das neue, fertig gepixelte Bild: Korsett mit Schnürung, Strapse, Strümpfe und Schnürstiefel, Haarspange, Sommersprossen, Zwinkern','Beim Umziehen sind ihre Augen wieder geschlossen (aus demselben Bild)']},
   {v:'2.20',d:'16.11.2026',t:'Echte Pixel',n:['Nastja in der VIP-Kabine ist jetzt ihr eigenes, sauber gepixeltes Bild (zwinkernd, heranwinkend) – nur die Kleidung ist neu gepixelt: kürzeres Korsett mit Spitze, Bauch frei mit Bauchnabel, Träger über den Schultern','Damit ist sie genauso scharf wie in allen anderen Szenen; beim Umziehen sind ihre Augen geschlossen']},
   {v:'2.19',d:'16.11.2026',t:'Nur ein Traum?',n:['Normales Ende: Nachdem Wowa rausgeflogen ist, fragt sich Petja, ob das alles nur ein Traum war – und zieht sich ein Birkenblatt aus den Haaren','Nastja im VIP-Outfit: ruhige, klare Farbflächen statt fleckigem Rauschen in Haaren und Haut']},
   {v:'2.18',d:'16.11.2026',t:'Scharf gestellt',n:['Nastja im VIP-Outfit ist nicht mehr verschwommen: die Vorlage wird vor dem Umwandeln geschärft, mit weniger Farben und klaren dunklen Linien wie ihre anderen Bilder']},
