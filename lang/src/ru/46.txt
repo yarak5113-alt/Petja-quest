@@ -6,3 +6,4 @@
 =Herauszoomen => Отдалить
 =Ganze Karte => Вся карта
 =Mausrad oder + / −: zoomen · Ziehen: verschieben => Колесо мыши или + / −: масштаб · Перетаскивание: сдвинуть
+=Weiter => Дальше

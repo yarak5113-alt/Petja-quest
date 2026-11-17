@@ -6,23 +6,66 @@
 
 // ---------- Figuren-Teile (Koordinaten wie die alten Canvas-Zeichnungen) ----------
 const FP_INK='#2a1a0e',FP_SKIN='#e6b48c',FP_SKIN2='#c98e66';
-// Petjas rechte Hand von hinten (Ursprung = Griffpunkt des Joints), Ärmel vom türkisen Hemd mit hochgekrempeltem Bündchen
-const finger=(d,w,col)=>`<path d="${d}" fill="none" stroke="${FP_INK}" stroke-width="${w+3}"/><path d="${d}" fill="none" stroke="${col}" stroke-width="${w}"/>`;
-const FPH_BACK=`<g stroke="${FP_INK}" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round">
+// Petjas rechte Hand von hinten (Ursprung = Griffpunkt des Joints), Ärmel vom türkisen Hemd mit hochgekrempeltem Bündchen.
+// Anatomisch: Daumen unten, Zeigefinger daneben (gebeugt, hält mit dem Daumen den Joint), Mittel-, Ring- und kleiner Finger
+// zur lockeren Faust eingerollt (man sieht ihre Grundglieder und Mittelknöchel). Finger verjüngen sich, haben Knöchel und Falten;
+// Nägel sind kurze, flache Nagelplatten mit Nagelhaut und hellem Rand. Licht von links oben (Stehlampe).
+const FP_SKINH='#f3caa4',FP_SKINS='#b47a56',FP_NAIL='#f6d6ca',FP_NAILR='#8e5644';
+// Finger als verjüngte Form: Mittellinie (Catmull-Rom) mit Breiten → Umriss mit runder Kuppe
+function fpForm(P,Wd,kap=.6){const D=[],Wi=[];for(let i=0;i<P.length-1;i++){const p0=P[i-1]||P[i],p1=P[i],p2=P[i+1],p3=P[i+2]||p2;
+    for(let j=0;j<8;j++){const t=j/8,t2=t*t,t3=t2*t,f=(a,b,c,d)=>.5*(2*b+(-a+c)*t+(2*a-5*b+4*c-d)*t2+(-a+3*b-3*c+d)*t3);D.push([f(p0[0],p1[0],p2[0],p3[0]),f(p0[1],p1[1],p2[1],p3[1])]);Wi.push(Wd[i]+(Wd[i+1]-Wd[i])*t)}}
+  D.push(P[P.length-1]);Wi.push(Wd[Wd.length-1]);
+  const N=D.map((p,i)=>{const a=D[Math.max(0,i-1)],b=D[Math.min(D.length-1,i+1)],dx=b[0]-a[0],dy=b[1]-a[1],l=Math.hypot(dx,dy)||1;return[-dy/l,dx/l]});
+  const off=(i,s)=>[D[i][0]+N[i][0]*Wi[i]/2*s,D[i][1]+N[i][1]*Wi[i]/2*s],n=D.length-1,dir=[N[n][1],-N[n][0]],k=Wi[n]*kap,f=v=>v.toFixed(1);
+  const Lp=D.map((_,i)=>off(i,1)),Rp=D.map((_,i)=>off(i,-1));
+  let d=`M${f(Rp[0][0])},${f(Rp[0][1])}L${Lp.map(q=>f(q[0])+','+f(q[1])).join('L')}`;
+  d+=`C${f(Lp[n][0]+dir[0]*k)},${f(Lp[n][1]+dir[1]*k)} ${f(Rp[n][0]+dir[0]*k)},${f(Rp[n][1]+dir[1]*k)} ${f(Rp[n][0])},${f(Rp[n][1])}`;
+  d+='L'+Rp.slice().reverse().map(q=>f(q[0])+','+f(q[1])).join('L')+'Z';
+  // Licht- und Schattenkante innen entlang des Fingers (Licht von links oben)
+  const lit=N[Math.floor(n/2)][0]*-.8+N[Math.floor(n/2)][1]*-.6>0?1:-1,line=(s)=>'M'+D.map((_,i)=>{const q=off(i,s);return f(q[0])+','+f(q[1])}).join('L');
+  return{d,hi:line(.42*lit),sh:line(-.55*lit),D,Wi,N,dir}}
+// Nagel: kurze Platte an der Kuppe, entlang der Fingerrichtung, mit Nagelhaut und hellem freiem Rand
+function fpNagel(F,sz=1){const n=F.D.length-1,[tx,ty]=F.D[n],w=F.Wi[n],[dx,dy]=F.dir,len=w*.78*sz,br=w*.58*sz,cx=tx+dx*(w*.06),cy=ty+dy*(w*.06),a=Math.atan2(dy,dx)*180/Math.PI;
+  return`<g transform="translate(${cx.toFixed(1)},${cy.toFixed(1)}) rotate(${a.toFixed(1)})">
+<path d="M${(-len*.62).toFixed(1)},${(-br*.42).toFixed(1)}Q${(-len*.72).toFixed(1)},0 ${(-len*.62).toFixed(1)},${(br*.42).toFixed(1)}L${(len*.22).toFixed(1)},${(br*.5).toFixed(1)}Q${(len*.42).toFixed(1)},0 ${(len*.22).toFixed(1)},${(-br*.5).toFixed(1)}Z" fill="${FP_NAIL}" stroke="${FP_NAILR}" stroke-width="1.1"/>
+<path d="M${(len*.12).toFixed(1)},${(-br*.48).toFixed(1)}Q${(len*.34).toFixed(1)},0 ${(len*.12).toFixed(1)},${(br*.48).toFixed(1)}" fill="none" stroke="#fff2ea" stroke-width="1.5"/>
+<path d="M${(-len*.6).toFixed(1)},${(-br*.36).toFixed(1)}Q${(-len*.68).toFixed(1)},0 ${(-len*.6).toFixed(1)},${(br*.36).toFixed(1)}" fill="none" stroke="${FP_SKINS}" stroke-width="1.3" opacity=".8"/>
+<path d="M${(-len*.4).toFixed(1)},${(-br*.18).toFixed(1)}L${(len*.05).toFixed(1)},${(-br*.24).toFixed(1)}" stroke="#fff6ee" stroke-width="1.2" opacity=".7"/></g>`}
+// Falte quer über ein Gelenk
+const fpFalte=(F,i,s=1)=>{const[x0,y0]=F.D[i],[nx,ny]=F.N[i],w=F.Wi[i]*.32*s,[dx,dy]=[ny,-nx],f=v=>v.toFixed(1);
+  return`<path d="M${f(x0-nx*w)},${f(y0-ny*w)}Q${f(x0+dx*2.2)},${f(y0+dy*2.2)} ${f(x0+nx*w)},${f(y0+ny*w)}" fill="none" stroke="${FP_SKINS}" stroke-width="1" opacity=".75"/>`};
+const fpHaut=(Fs)=>Fs.map(F=>`<path d="${F.d}" fill="${FP_INK}" stroke="${FP_INK}" stroke-width="3.2"/>`).join('')+Fs.map(F=>`<path d="${F.d}" fill="${F.col||FP_SKIN}"/>`).join('')+
+  Fs.map(F=>`<path d="${F.hi}" fill="none" stroke="${FP_SKINH}" stroke-width="${(Math.min(...F.Wi)*.2).toFixed(1)}" opacity=".45"/><path d="${F.sh}" fill="none" stroke="${FP_SKINS}" stroke-width="${(Math.min(...F.Wi)*.16).toFixed(1)}" opacity=".28"/>`).join('');
+const FPH_BACK=(()=>{
+  // Handrücken als Fläche (Handgelenk unter dem Bündchen, Daumenballen unten, Knöchelreihe oben links)
+  const ruecken={d:'M124,54Q118,14 104,-12Q96,-18 86,-10L62,26Q50,44 54,62Q60,88 80,104Q100,120 126,122Z',hi:'',sh:'',Wi:[10]};
+  // Daumen: kräftig, Ballen an der Wurzel; Zeigefinger gebeugt; die drei Faustfinger von hinten stark verkürzt (man sieht die Knöchel)
+  const daumen=fpForm([[92,98],[58,74],[34,44],[11,16]],[34,26,21.5,18],.7),zeige=fpForm([[66,32],[42,12],[22,3]],[18,15.5,14]),
+    mittel=fpForm([[76,20],[66,8]],[20,19],.42),ring=fpForm([[86,6],[78,-5]],[19,18],.42),klein=fpForm([[96,-6],[89,-15]],[17,15.5],.42);
+  // gebeugter Mittelknöchel: kleine Querfalten statt Glanzpunkt (sonst sieht er wie eine Fingerkuppe aus), Schatten zur Handfläche hin
+  const knoechel=F=>{const n=F.D.length-1,[a,b]=F.D[n],[nx,ny]=F.N[n],[dx,dy]=F.dir,w=F.Wi[n],f=v=>v.toFixed(1);let s='';
+    for(let k=0;k<3;k++){const o=-1.5-k*2.6,h=w*(.22-k*.04);s+=`<path d="M${f(a+dx*o-nx*h)},${f(b+dy*o-ny*h)}Q${f(a+dx*(o+1.6))},${f(b+dy*(o+1.6))} ${f(a+dx*o+nx*h)},${f(b+dy*o+ny*h)}" fill="none" stroke="${FP_SKINS}" stroke-width=".9" opacity=".7"/>`}
+    return s+`<path d="M${f(a+dx*2-nx*w*.4)},${f(b+dy*2-ny*w*.4)}Q${f(a+dx*4)},${f(b+dy*4)} ${f(a+dx*2+nx*w*.4)},${f(b+dy*2+ny*w*.4)}" fill="none" stroke="${FP_SKINS}" stroke-width="2.2" opacity=".35"/>`};
+  return`<g stroke-linejoin="round" stroke-linecap="round">
+${fpHaut([klein])}${knoechel(klein)}${fpHaut([ring])}${knoechel(ring)}${fpHaut([mittel])}${knoechel(mittel)}
+${fpHaut([ruecken,daumen,zeige])}
+<path d="M71,25Q58,12 46,4" fill="none" stroke="${FP_INK}" stroke-width="1.5"/>
+<path d="M116,64Q92,46 70,32M120,56Q100,32 80,18M124,46Q108,22 90,4M126,38Q114,12 99,-6" fill="none" stroke="${FP_SKINS}" stroke-width="1.2" opacity=".28"/>
+<path d="M112,40Q104,50 106,62Q108,72 100,80" fill="none" stroke="#c99a86" stroke-width="1.4" opacity=".45"/>
+${[[66,32],[76,20],[86,6],[96,-6]].map(([a,b])=>`<ellipse cx="${a+3}" cy="${b+2}" rx="5" ry="3.4" fill="${FP_SKINH}" opacity=".6"/>`).join('')}
+${fpFalte(zeige,8,1.1)}${fpFalte(zeige,9,.8)}${fpFalte(daumen,16,1)}${fpFalte(daumen,17,.7)}
+<path d="M60,64Q70,66 76,74" fill="none" stroke="${FP_SKINS}" stroke-width="1.3" opacity=".55"/>
+${fpNagel(daumen,.95)}</g>
+<g stroke="${FP_INK}" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round">
 <path d="M118,58C150,50 200,60 260,90L260,250L110,250C100,180 104,110 118,58Z" fill="#30b4ab"/>
 <path d="M150,90Q164,120 140,150M190,90Q204,130 180,170M225,110Q238,150 215,190" fill="none" stroke="#147470" stroke-width="1.2"/>
-<path d="M112,62C124,54 140,54 150,60L138,130C124,128 110,124 100,118Z" fill="#2aa198"/>
-<path d="M118,62L108,120M126,58L116,124M134,57L124,127M142,58L132,129" fill="none" stroke="#147470" stroke-width=".9"/>
-<path d="M44,2C62,-6 84,0 100,14C112,26 120,44 118,66C116,86 108,108 96,116C84,112 70,100 60,86C48,66 38,34 44,2Z" fill="${FP_SKIN}"/>
-<path d="M60,6Q85,17 98,40M62,20Q85,33 96,58M64,34Q85,48 94,74" fill="none" stroke="${FP_SKIN2}" stroke-width="1.2"/>
-${finger('M62,16C38,12 28,24 36,34',17,FP_SKIN)}<path d="M40,10Q36,18 40,24" fill="none" stroke="${FP_SKIN2}" stroke-width="1.1"/>
-${finger('M64,34C42,30 34,42 42,50',16,FP_SKIN)}<path d="M44,28Q40,36 44,42" fill="none" stroke="${FP_SKIN2}" stroke-width="1.1"/>
-${finger('M66,52C50,48 44,58 50,64',13,FP_SKIN2)}
-${finger('M80,82C54,64 30,38 6,10',17,FP_SKIN)}<path d="M44,52Q40,46 36,44" fill="none" stroke="${FP_SKIN2}" stroke-width="1.1"/>
-<ellipse cx="10" cy="12" rx="5" ry="3.5" transform="rotate(-52 10 12)" fill="#f2d4c0" stroke="#a87058" stroke-width=".9"/></g>`;
-const FPH_FRONT=`<g stroke="${FP_INK}" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round">
-${finger('M68,10C48,-12 22,-16 3,-5',16,FP_SKIN)}<path d="M44,-6Q38,-12 32,-13M20,-14Q16,-10 14,-6" fill="none" stroke="${FP_SKIN2}" stroke-width="1.1"/>
-<ellipse cx="5" cy="-10" rx="5.5" ry="4" transform="rotate(29 5 -10)" fill="#f2d4c0" stroke="#a87058" stroke-width=".9"/></g>`;
+<path d="M112,52C124,44 142,46 152,54L140,132C124,130 108,126 96,118Z" fill="#2aa198"/>
+<path d="M118,54L106,118M126,50L115,123M134,50L124,126M142,52L132,129" fill="none" stroke="#147470" stroke-width=".9"/></g>`})();
+// vorderes Glied des Zeigefingers liegt über dem Joint
+const FPH_FRONT=(()=>{const z=fpForm([[22,4],[12,-1],[4,-4]],[14,13,12.2]);
+  // Ansatzkante übermalen, damit keine dunkle Naht quer über dem Finger liegt
+  const[a,b]=z.D[0],[nx,ny]=z.N[0],h=z.Wi[0]/2-2.2,naht=`<path d="M${(a-nx*h).toFixed(1)},${(b-ny*h).toFixed(1)}L${(a+nx*h).toFixed(1)},${(b+ny*h).toFixed(1)}" stroke="${FP_SKIN}" stroke-width="4.2"/>`;
+  return`<g stroke-linejoin="round" stroke-linecap="round">${fpHaut([z])}${naht}${fpFalte(z,2,.9)}${fpNagel(z,1.15)}</g>`})();
 // Baba Jagas Hand (grün, knochig, Krallen) mit zerfranstem rotem Ärmel – lokal wie früher: Finger nach oben, Ärmel unten
 const BJH=(()=>{let f='';const SK='#a9b866',INK='#1e1a10';
   // Finger aus drei Gliedern, jedes etwas dünner und leicht nach innen gekrümmt; Knöchel als Verdickung, Kralle an der Spitze
@@ -47,9 +90,9 @@ const KNEES=`<g stroke="${FP_INK}" stroke-width="2" stroke-linejoin="round" stro
 // Pixeldichte wie die Nachbarfigur: Einheiten pro Pixel der Figur × deren Skalierung ÷ eigene Skalierung
 const fpRows=(boxH,ownScale,figH,figScale)=>Math.round(boxH*ownScale/(figH/PIX_ROWS*figScale));
 const FPIMG={};
-const FPDEF={hb:[FPH_BACK,[-14,-24,280,280],fpRows(280,1.4,280,2.3)],hf:[FPH_FRONT,[-8,-30,82,46],fpRows(46,1.4,280,2.3)],
+const FPDEF={hb:[FPH_BACK,[-14,-24,280,280],fpRows(280,1.4,280,2.3)],hf:[FPH_FRONT,[-8,-30,82,46],fpRows(46,1.4,280,2.3),{out:-1}],
   bj:[BJH,[-78,-104,130,208],fpRows(208,1.3,256,3.6)],knees:[KNEES,[60,400,680,116],fpRows(116,1,266,1.5)]};
-function fpLoad(){Object.entries(FPDEF).forEach(([k,[svg,box,rows]])=>{if(FPIMG[k])return;Promise.resolve(PIXELSTYLE?pixSprite(svg,box,rows):sprite(svg,box,2)).then(u=>{const im=new Image();im.onload=()=>FPIMG[k]={im,box};im.src=u}).catch(e=>console.error('Ego-Sicht',k,e))})}
+function fpLoad(){Object.entries(FPDEF).forEach(([k,[svg,box,rows,opt]])=>{if(FPIMG[k])return;Promise.resolve(PIXELSTYLE?pixSprite(svg,box,rows,opt):sprite(svg,box,2)).then(u=>{const im=new Image();im.onload=()=>FPIMG[k]={im,box};im.src=u}).catch(e=>console.error('Ego-Sicht',k,e))})}
 setTimeout(fpLoad,1500);   // nach dem Laden der Figuren, damit der Start nicht ruckelt
 const fpDraw=(x,k)=>{const f=FPIMG[k];if(!f)return false;const[bx,by,bw,bh]=f.box;x.save();x.imageSmoothingEnabled=false;x.drawImage(f.im,bx,by,bw,bh);x.restore();return true};
 

@@ -237,13 +237,15 @@ b:()=>`<path d="M-6.4,-224C-6.6,-218 -6,-213 -5.2,-209L5.2,-209C6,-213 6.6,-218 
 <path d="M-1.6,-248.6C-.2,-250 2,-249.6 2.2,-247.8C2.4,-246 .4,-245.2 -.8,-246.2C-1.8,-247 -1.2,-248.4 0,-248.2" fill="none" stroke="#5a3818" stroke-width=".55"/>
 <path d="M-.8,-246.2C-4,-243 -6.4,-236 -7.4,-226M.6,-245.4C1,-240 1.2,-232 .4,-219M2.2,-247.4C5.6,-244 7.6,-236 7.6,-226M-1.6,-248.6C-6,-247.6 -9.6,-242 -10.6,-232M2,-249C7,-250 10.4,-246 11.2,-238M-3.6,-238C-4.2,-232 -4.6,-226 -3.8,-220M4.4,-238C4.8,-232 4.6,-226 3.8,-221" fill="none" stroke="#5a3818" stroke-width=".45"/>
 <path d="M-5,-252C-2,-253.6 2,-253.6 5,-252.4M-9,-247C-7,-250 -4,-251.6 -1.6,-251.6" fill="none" stroke="#a87440" stroke-width=".55"/>`};
-function PETV(th,open,step,em,bl,po){const r=th*Math.PI/180,c=Math.cos(r),s=Math.sin(r),X=(x,z)=>x*c+z*s,D=(x,z)=>-x*s+z*c,st=step?8:0,out=[];
+function PETV(th,open,step,em,bl,po){const r=th*Math.PI/180,c=Math.cos(r),s=Math.sin(r),X=(x,z)=>x*c+z*s,D=(x,z)=>-x*s+z*c,st=(+step||0)*8,out=[];   // step 1 = linkes Bein vorn, -1 = rechtes Bein vorn
   // Pose (Aufheben, Werfen): po={crouch 0..1 (in die Knie), lean Grad (Oberkörper vor), arm Grad (aktiver Arm nach vorn/oben)}; po.hand bekommt die Handposition
   const cr=po&&po.crouch||0,drop=cr*52,hy=-124+drop,lean=po&&po.lean||0,AS=s>.1?-1:1;
   // Knie per Zweigelenk-Kette (Oberschenkel 64, Unterschenkel 56): je tiefer die Hüfte, desto weiter schiebt sich das Knie nach vorn
   const kd=-8-hy,ka=(64*64-56*56+kd*kd)/(2*kd),kz=cr?Math.sqrt(Math.max(0,4096-ka*ka))-15.5:0,ky=cr?hy+ka:-60;
   // Bein + Schuh einer Seite (side -1 = links im Bild, +1 = rechts); linkes Bein vorn, wenn Schritt
-  const leg=side=>{const zf=side<0?st:-st,Xh=X(10.5*side,0),Xk=X((11+cr*6)*side,zf*.5+kz),Xm=X(13.5*side,zf);
+  // Schritt in der Tiefe auch als Höhe zeigen (sonst sieht man ihn von vorn/hinten gar nicht): Fuß näher an der Kamera setzt tiefer auf,
+  // der hintere höher; der nachgezogene Fuß hebt zusätzlich etwas ab
+  const leg=side=>{const zf=side<0?st:-st,dyF=cr?0:zf*c*.55-(zf<0?2.6:0),Xh=X(10.5*side,0),Xk=X((11+cr*6)*side,zf*.5+kz),Xm=X(13.5*side,zf);
     const xf=12.5*side,Xhe=X(xf,zf-3),Xto=X(xf+2.8*side,zf+10.6),mn=Math.min(Xhe-5,Xto-6.4),mx=Math.max(Xhe+5,Xto+6.4),Xl=Xhe+(Xto-Xhe)*.62;
     let shoe=`<path d="${tube(Xhe,-5.8,5,Xto,-5.4,6.4)}" fill="#f2efe6"/><path d="M${f1(mn+1)},-2.4L${f1(mx-1)},-2.4Q${f1(mx+.6)},-2.4 ${f1(mx+.4)},0L${f1(mn-.4)},0Q${f1(mn-.6)},-2.4 ${f1(mn+1)},-2.4Z" fill="#c9c4b8"/>`;
     if(c>.25)shoe+=`<path d="M${f1(Xto-4.8)},-3.4C${f1(Xto-2)},-1.8 ${f1(Xto+2)},-1.8 ${f1(Xto+4.8)},-3.4" fill="none" stroke-width=".5"/>`;
@@ -253,9 +255,10 @@ function PETV(th,open,step,em,bl,po){const r=th*Math.PI/180,c=Math.cos(r),s=Math
     const nrm=(ax,ay,bx,by)=>{const L=Math.hypot(bx-ax,by-ay)||1;return[(by-ay)/L,-(bx-ax)/L]},n1=nrm(Xh,hy,Xk,ky),n2=nrm(Xk,ky,Xm,-8.4),nk=[(n1[0]+n2[0])/2,(n1[1]+n2[1])/2],
       Q=(x,y,n,w)=>f1(x+n[0]*w)+','+f1(y+n[1]*w);
     const pants=(cr?`<path d="M${Q(Xh,hy,n1,10.5)}L${Q(Xk,ky,nk,9)}L${Q(Xm,-8.4,n2,9.8)}L${Q(Xm,-8.4,n2,-9.8)}L${Q(Xk,ky,nk,-8.4)}L${Q(Xh,hy,n1,-10.5)}Z" fill="${PJE}"/>`
-      :`<path d="M${f1(Xh-10.5)},${f1(hy)}Q${f1(Xk-5.6)},${f1(ky)} ${f1(Xm-9.8)},-8.4L${f1(Xm+9.8)},-8.4Q${f1(Xk+5.6)},${f1(ky)} ${f1(Xh+10.5)},${f1(hy)}Z" fill="${PJE}"/>`)+
+      :`<path d="M${f1(Xh-10.5)},${f1(hy)}Q${f1(Xk-5.6)},${f1(ky+dyF*.5)} ${f1(Xm-9.8)},${f1(-8.4+dyF)}L${f1(Xm+9.8)},${f1(-8.4+dyF)}Q${f1(Xk+5.6)},${f1(ky+dyF*.5)} ${f1(Xh+10.5)},${f1(hy)}Z" fill="${PJE}"/>`)+
       `<path d="M${f1(Xk-4)},${f1(ky-2)}C${f1(Xk-1)},${f1(ky+.5)} ${f1(Xk+2)},${f1(ky+.5)} ${f1(Xk+4)},${f1(ky-2)}M${f1(Xm-7)},-22C${f1(Xm-3)},-18 ${f1(Xm+3)},-18 ${f1(Xm+7)},-22" fill="none" stroke="${PJEL}" stroke-width=".8"/>`;
     const back=c<-.3?`<g transform="translate(0,${f1(drop)})"><path d="M${f1(Xh-6.6)},-112L${f1(Xh+6.6)},-112L${f1(Xh+6)},-97C${f1(Xh+3)},-95 ${f1(Xh-3)},-95 ${f1(Xh-6)},-97Z" fill="#a2b4d8" stroke="${PJEL}" stroke-width=".7"/><path d="M${f1(Xh-5.6)},-110.6L${f1(Xh+5.6)},-110.6M${f1(Xh-5)},-98.4C${f1(Xh-2.4)},-96.8 ${f1(Xh+2.4)},-96.8 ${f1(Xh+5)},-98.4" fill="none" stroke="#e0c890" stroke-width=".4" stroke-dasharray="1 .8"/><path d="M${f1(Xk-4)},-66C${f1(Xk-1.4)},-67.4 ${f1(Xk+1.4)},-67.4 ${f1(Xk+4)},-66M${f1(Xk-3.4)},-62.6C${f1(Xk-1)},-63.6 ${f1(Xk+1)},-63.6 ${f1(Xk+3.4)},-62.6" fill="none" stroke="${PJEL}" stroke-width=".6"/></g>`:'';
+    if(dyF)shoe=`<g transform="translate(0,${f1(dyF)})">${shoe}</g>`;
     return{d:D(10.5*side,zf*.5),svg:c>.3?pants+shoe:shoe+pants+back}};
   // Arm einer Seite – breite Haltung: Schultern zurück, Oberarm vom Rumpf weg, Ellbogen nach außen,
   // Unterarm locker hängend mit Abstand zum Körper; Ärmelende als weiche Stoffwulst, Hand mit Innenfläche zum Oberschenkel
@@ -418,7 +421,7 @@ const petimg=$('#petimg'),petG=$('#petja'),PB=[-48,-254,96,258],K=1.15;let frame
 // Petjas Ansichten: PFR[Winkel] = [Stehen, Reden, Schritt]; PVIEW wird beim Laufen aus der Richtung gewählt, beim Reden schaut er nach vorn
 const PFR={};let PVIEW=0,ACT=null,PJY=0;
 const NB=[-30,-100,60,104];
-Promise.all([sprite(PET(0,0),PB,K),sprite(PET(1,0),PB,K),sprite(PET(0,1),PB,K),sprite(CROW,[-30,-26,64,44],K),sprite(FISHER,[-64,-142,134,224],K),sprite(OMA,[-46,-200,92,204],K),sprite(OPA,[-44,-184,88,188],K)]).then(([a,b,st,cr,fi,om,op])=>{$('#omaimg').setAttribute('href',om);$('#opaimg').setAttribute('href',op);sprite(GNOM1,[-80,-296,166,300],K).then(k=>$('#gnom1img').setAttribute('href',k));sprite(GNOM2,[-52,-232,106,236],K).then(k=>$('#gnom2img').setAttribute('href',k));sprite(WOWA,[-52,-276,104,280],K).then(u=>{WOWAIMG=new Image();WOWAIMG.src=u});(PIXELSTYLE?pixSprite(DANCER,[-50,-262,104,266],0,NASTJA_PIX):sprite(DANCER,[-50,-262,104,266],K)).then(k=>{if(typeof NASTJA_URL!=='undefined')return;$('#dancerimg').setAttribute('href',k);$('#poleimg').setAttribute('href',k);DANCERIMG.src=k;$('#dancer2img').setAttribute('href',k)});sprite(ZINA,[-60,-282,140,286],K).then(k=>$('#zinaimg').setAttribute('href',k));sprite(BJ,[-72,-250,136,256],K).then(k=>$('#bjimg').setAttribute('href',k));sprite(KATER,[-22,-58,52,62],K).then(k=>$('#katerimg').setAttribute('href',k));document.querySelectorAll('.fishimg').forEach(e=>e.setAttribute('href',fi));frames=[a,b,st];PFR[0]=frames;(async()=>{for(const th of [45,90,135,180])PFR[th]=await Promise.all([sprite(PETV(th,0,0),PB,K),sprite(PETV(th,1,0),PB,K),sprite(PETV(th,0,1),PB,K)])})();PETIMG.src=a;petimg.setAttribute('href',a);$('#crowimg').setAttribute('href',cr)});
+Promise.all([sprite(PET(0,0),PB,K),sprite(PET(1,0),PB,K),sprite(PET(0,1),PB,K),sprite(CROW,[-30,-26,64,44],K),sprite(FISHER,[-64,-142,134,224],K),sprite(OMA,[-46,-200,92,204],K),sprite(OPA,[-44,-184,88,188],K)]).then(([a,b,st,cr,fi,om,op])=>{$('#omaimg').setAttribute('href',om);$('#opaimg').setAttribute('href',op);sprite(GNOM1,[-80,-296,166,300],K).then(k=>$('#gnom1img').setAttribute('href',k));sprite(GNOM2,[-52,-232,106,236],K).then(k=>$('#gnom2img').setAttribute('href',k));sprite(WOWA,[-52,-276,104,280],K).then(u=>{WOWAIMG=new Image();WOWAIMG.src=u});(PIXELSTYLE?pixSprite(DANCER,[-50,-262,104,266],0,NASTJA_PIX):sprite(DANCER,[-50,-262,104,266],K)).then(k=>{if(typeof NASTJA_URL!=='undefined')return;$('#dancerimg').setAttribute('href',k);$('#poleimg').setAttribute('href',k);DANCERIMG.src=k;$('#dancer2img').setAttribute('href',k)});sprite(ZINA,[-60,-282,140,286],K).then(k=>$('#zinaimg').setAttribute('href',k));sprite(BJ,[-72,-250,136,256],K).then(k=>$('#bjimg').setAttribute('href',k));sprite(KATER,[-22,-58,52,62],K).then(k=>$('#katerimg').setAttribute('href',k));document.querySelectorAll('.fishimg').forEach(e=>e.setAttribute('href',fi));frames=[a,b,st];PFR[0]=frames;(async()=>{frames[3]=await sprite(PET(0,-1),PB,K);for(const th of [45,90,135,180])PFR[th]=await Promise.all([sprite(PETV(th,0,0),PB,K),sprite(PETV(th,1,0),PB,K),sprite(PETV(th,0,1),PB,K),sprite(PETV(th,0,-1),PB,K)])})();PETIMG.src=a;petimg.setAttribute('href',a);$('#crowimg').setAttribute('href',cr)});
 // ===== Mimik im Spiel =====
 // PEMO = aktuelle Emotion (n, schreck, staunen, frage, froh, genervt); setEmo(e,ms) setzt sie, optional nur für ms Millisekunden.
 // Gesichter (Emotion × Mund 0–3 + Blinzeln) werden im Hintergrund vorgerendert und gecacht; fehlt eins noch, nimmt er das neutrale.
@@ -426,9 +429,11 @@ let PEMO='n',PEMO_T=0,blinkN=25;const FACE={};
 function setEmo(e,ms){PEMO=PEMOS[e]?e:'n';PEMO_T=ms?Date.now()+ms:0}
 function face(e,m,b){const k=e+m+(b?'b':'');if(!(k in FACE)){FACE[k]=null;sprite(PETV(0,m,0,e,b),PB,K).then(u=>FACE[k]=u)}return FACE[k]}
 setTimeout(async function pre(){if(!frames[2])return setTimeout(pre,500);for(const e of Object.keys(PEMOS))for(const m of [0,1,2,3,'b']){const k=e+(m==='b'?'0b':m);if(!(k in FACE)){FACE[k]=null;FACE[k]=await sprite(PETV(0,m==='b'?0:m,0,e,m==='b'),PB,K)}}},1500);
+let WK=0;const WALKPH=[2,0,3,0];
 setInterval(()=>{if(!frames[2])return;ft=1-ft;if(ACT)return;
   if(PEMO_T&&Date.now()>PEMO_T){PEMO='n';PEMO_T=0}
-  if(mv){petimg.setAttribute('href',(PFR[PVIEW]||frames)[ft?2:0]);return}
+  // Laufzyklus: linkes Bein vorn – Mitte – rechtes Bein vorn – Mitte (vorher immer dasselbe Bein)
+  if(mv){const F=PFR[PVIEW]||frames,ph=WALKPH[WK++%4];petimg.setAttribute('href',F[ph]||F[2]);return}
   // seitlich/hinten stehend ohne Gefühlsregung: normale Ansicht; sonst dreht er sich zum Spieler und zeigt Mimik
   if(!talking&&PVIEW&&PEMO==='n'){petimg.setAttribute('href',(PFR[PVIEW]||frames)[0]);return}
   let m=0,b=false;

@@ -6,3 +6,4 @@
 =Herauszoomen => Zoom out
 =Ganze Karte => Whole map
 =Mausrad oder + / −: zoomen · Ziehen: verschieben => Mouse wheel or + / −: zoom · Drag: move
+=Weiter => Next

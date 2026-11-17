@@ -36,8 +36,20 @@ function gsprHTML(k){const L=GSPR.by[k];if(!L||!L.length)return'';
 {const _tb=toggleBook;toggleBook=function(k){return _tb.call(this,k==='log'?'figuren':k)}}
 {const k=KEYS.find(k=>k[0]==='L');if(k){k[0]='C / L';k[1]='Figuren und Gespräche'}}
 
-// ---------- Schnell-Inventar: bei vielen Sachen mehrere Reihen und kleinere Felder statt einer endlos langen Leiste ----------
-{const _ri=renderInv;renderInv=function(){const r=_ri.apply(this,arguments);const S=$('#slots');if(S){S.classList.toggle('viel',inv.length>6);S.classList.toggle('sehrviel',inv.length>12)}return r}}
+// ---------- Schnell-Inventar: höchstens 6 Felder, Pfeile links/rechts (und Mausrad) zum Durchblättern ----------
+// Die Felder bleiben alle im DOM (Ziehen auf Figuren/Gegenstände in 42-komfort-plus.js zählt über die Reihenfolge), nur die
+// nicht sichtbaren sind ausgeblendet. Kommt ein neuer Gegenstand dazu, springt die Leiste ans Ende, damit man ihn sieht.
+const INV_SICHT=6;let INV_AB=0,INV_N=0;
+function invBlaettern(neu){const S=$('#slots'),I=$('#inv');if(!S||!I)return;const n=S.children.length,max=Math.max(0,n-INV_SICHT);
+  if(neu&&n>INV_N)INV_AB=max;INV_N=n;INV_AB=Math.max(0,Math.min(max,INV_AB));
+  [...S.children].forEach((d,i)=>d.style.display=i>=INV_AB&&i<INV_AB+INV_SICHT?'':'none');
+  let L=I.querySelector('.invpf.l'),R=I.querySelector('.invpf.r');
+  if(!L){const pf=(k,t,z,d)=>{const b=document.createElement('button');b.className='invpf '+k;b.textContent=z;b.title=t;
+      b.onclick=e=>{e.stopPropagation();INV_AB+=d;invBlaettern()};return b};
+    L=pf('l','Zurück','‹',-1);R=pf('r','Weiter','›',1);S.before(L);S.after(R);
+    S.addEventListener('wheel',e=>{if(S.children.length<=INV_SICHT)return;e.preventDefault();INV_AB+=e.deltaY>0||e.deltaX>0?1:-1;invBlaettern()},{passive:false})}
+  const zeig=n>INV_SICHT;L.classList.toggle('weg',!zeig);R.classList.toggle('weg',!zeig);L.disabled=INV_AB<=0;R.disabled=INV_AB>=max}
+{const _ri=renderInv;renderInv=function(){const r=_ri.apply(this,arguments);invBlaettern(true);return r}}
 
 (function(){const css=document.createElement('style');css.textContent=`
 .gspr{margin:6px 0 2px;border-top:1px dashed rgba(200,170,110,.35);padding-top:4px}
@@ -48,6 +60,5 @@ function gsprHTML(k){const L=GSPR.by[k];if(!L||!L.length)return'';
 .gsp{margin:0 0 8px;padding:6px 8px;border-left:2px solid rgba(200,160,80,.45);background:rgba(0,0,0,.18);border-radius:3px}
 .gsp p{margin:0 0 4px;line-height:1.4;font-size:13px}.gsp p:last-child{margin:0}.gsp b{font-family:Arial,sans-serif}.gsp i{color:var(--muted)}
 .gsprH{grid-column:1/-1;margin:10px 0 0;font:italic bold 15px Georgia,serif;color:#e8c878}
-#slots{flex-wrap:wrap;justify-content:flex-end;max-width:calc(6 * 46px + 5 * 5px)}
-#slots.viel{gap:4px;max-width:calc(8 * 36px + 7 * 4px)}#slots.viel .slot{width:36px;height:36px}#slots.viel .slot img{width:30px;height:30px}
-#slots.sehrviel{max-width:calc(10 * 30px + 9 * 3px);gap:3px}#slots.sehrviel .slot{width:30px;height:30px}#slots.sehrviel .slot img{width:25px;height:25px}`;document.head.appendChild(css)})();
+.invpf{flex:none;width:20px;height:42px;padding:0;border:1px solid #1a0e04;border-radius:3px;background:var(--brass,#c89a40);color:#2a1608;font:bold 22px/1 Georgia,serif;cursor:pointer;box-shadow:inset 0 0 0 1px rgba(255,236,180,.45)}
+.invpf:hover:not(:disabled){filter:brightness(1.15)}.invpf:disabled{opacity:.35;cursor:default}.invpf.weg{display:none}`;document.head.appendChild(css)})();
