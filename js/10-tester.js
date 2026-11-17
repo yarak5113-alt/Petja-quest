@@ -44,9 +44,10 @@ const TSTEPS=[
 const TNEBEN=[
   {t:'Nebenquest: Madame will eine zweite Tänzerin (Anwerbebogen)',f:['t2Q','booked'],v:{naV:2},add:['bogen2'],at:['banja',300,480]},
   {t:'Marfa will nur mit Krone aus dem Sumpf',f:['marfaKrone','m2met'],at:['sumpf',540,488]},
+  {t:'Nastja: Beziehung 52 % – Privattanz im VIP-Outfit',v:{na_talk:2,na_drink:1},at:['buehne',260,486]},
   {t:'Nastja: Beziehung 75 % – rückt das Diadem raus',v:{na_talk:5,na_drink:2},at:['buehne',260,486]},
   {t:'Diadem von Nastja bekommen',add:['diadem'],at:['buehne',260,486]},
-  {t:'Marfa mit Krone angeworben',f:['marfaDia','marfa'],del:['diadem'],at:['sumpf',540,488]},
+  {t:'Marfa mit Krone angeworben (Nastja jetzt 80 % – Privattanz im Dessous-Outfit)',f:['marfaDia','marfa'],del:['diadem'],at:['sumpf',540,488]},
   {t:'Nebenquest erledigt (Madame Bescheid gesagt)',f:['t2Done'],del:['bogen2'],at:['banja',300,480]},
   {t:'Nastja: Max-Level-Modus (95 %)',v:{na_talk:5,na_tanz:1,na_drink:3},at:['buehne',260,486]},
   {t:'Nastja: 100 % – Klick auf sie gibt das Polaroid',v:{na_talk:5,na_tanz:2,na_drink:2},at:['buehne',260,486]},

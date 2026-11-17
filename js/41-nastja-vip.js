@@ -1,10 +1,12 @@
-// ================= Nastja: VIP-Kabine (weniger als 5 Punkte bis zur besten Beziehung) =================
+// ================= Nastja: VIP-Kabine (alte Einzelszene) =================
+// Seit 2.31 läuft jeder Privattanz über die Engine in 49-nastja-show.js (Outfit nach Beziehung: 25 Standard, 50 VIP, 80 Dessous).
+// Diese Szene bleibt als Vorlage erhalten (z. B. für den Tester), wird aber vom Menü nicht mehr aufgerufen.
 // Statt des normalen Privattanzes läuft eine eigene Szene als kleiner Zustandsautomat:
 //   TRANSITION_PREP  – kokette Ansage, Kabarett-Pose (vorgebeugt, Hohlkreuz)
 //   OUTFIT_SWAP      – Petja macht die Augen zu (eyes_closed) → sie zieht sich um (swap_sprite) → Augen auf, ihre sind noch zu
 //   VIP_REVEAL       – Augen auf (zwinkert, Braue hoch), dann die enge Sofa-Choreografie und die letzte Pointe
 // Bilder: NASTJA_VIP_IMG[0] zwinkernd, [1] Augen zu (40-nastja-vip-pixel.js); vorher die normalen Tanzbilder.
-const nastjaVipStufe=()=>NASTJA_MAXSCORE-relOf('Nastja')<5;
+const nastjaVipStufe=()=>relOf('Nastja')>=50;
 
 const VIP_PHASEN=[   // [Zustand, Start in s, Sprite-Schritt]
   ['TRANSITION_PREP',0,null],
@@ -73,9 +75,4 @@ async function nastjaVip(){const VON=cur||'buehne',VPOS=cur?[P.x,P.y]:[260,486];
   async function ende(){if(busy)advance();fade.style.opacity=1;await new Promise(r=>setTimeout(r,500));changing=false;x.setTransform(1,0,0,1,0,0);x.fillStyle='rgba(12,0,6,.72)';x.fillRect(0,0,W,H);
     say([['P','*Fünf Minuten später*'],['P','(Ich glaube, ich hab vergessen, wie man atmet. Und wie ich heiße.)'],
       ['NA','*zwinkert* Das Outfit bleibt unter uns, Zwiebel. Sonst muss ich dich heiraten. Oder umbringen. Je nach Laune.']],()=>{cv3.remove();FL.lounge=1;FL.naVip=(FL.naVip||0)+1;enter(VON,VPOS)});fade.style.opacity=0}}
-
-// Privattanz im Menü: kurz vor der besten Beziehung geht’s in die VIP-Kabine
-{const nt=naTanz;naTanz=function(){if(!nastjaVipStufe())return nt.apply(this,arguments);
-  say([['P','Nastja … noch ein Privattanz?'],['NA','Ein Privattanz? Für dich gibt’s heute was, das nicht mal Zinaida gesehen hat. Ab in die VIP-Kabine, Süßer.']],()=>{naPunkte('tanz',30,10);nastjaVip()})}}
-// Menü-Kopf zeigt sie dann im VIP-Outfit
-{const nm=nastjaMenu;nastjaMenu=function(){const r=nm.apply(this,arguments);if(nastjaVipStufe()){const im=document.querySelector('.namenu .nahead img');if(im)im.src=NASTJA_VIP_URL[0]}return r}}
+// Privattanz im Menü und Menü-Kopf: siehe 49-nastja-show.js
