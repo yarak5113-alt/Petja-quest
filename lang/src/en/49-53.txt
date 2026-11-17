@@ -172,42 +172,12 @@
 =(Fisch, dunkel, unter etwas … der Steg beim Fischer!) => (Fish, dark, under something … the fisherman’s pier!)
 =Du. Lange. Kannst du Kabel? => You. Beanpole. Can you do cables?
 =Kabel … gucken? => Cables … like, watch them?
-=Die Dorfleitung ist von 1971. Die Masten stehen noch, aber die Kabel sind Zunder. Mein Licht flackert, als wär’s besoffen. => The village line is from 1971. The poles still stand, but the cables are tinder. My light flickers like it’s drunk.
-=Hier: neue Kabelrolle und die Zange mit den gelben Griffen. Erst den Hauptschalter am Trafo aus, dann die alten Kabel runter, dann die neuen ran. => Here: a new cable reel and the pliers with the yellow handles. First the main switch at the transformer off, then the old cables down, then the new ones up.
-=Und wehe, du fasst an, solange Strom drauf ist. Dann stehen dir die Haare wie meinem Besen. => And don’t you dare touch anything while it’s live. Your hair will stand up like my broom.
 =*bekommt Kabelrolle und Isolierzange* => *receives a cable reel and insulated pliers*
-=Die Leitung, Junge. Trafo, vier Masten, meine Schmiede. Leg los. => The line, boy. Transformer, four poles, my smithy. Get to it.
 =*schaut zur flackerfreien Lampe* … Na sieh mal an. Licht wie im Kreml. => *looks at the steady lamp* … Well, look at that. Light like in the Kremlin.
 =Hier, ein Sack Kohle. Der ist nicht für dich. Der ist für die Dusja. => Here, a sack of coal. It’s not for you. It’s for Dusya.
 =Sie friert in ihrer Hütte, sagt aber nix. Stolz wie ein Ziegenbock. Bring ihn ihr und sag nicht, dass er von mir ist. => She’s freezing in her hut but won’t say a word. Proud as a billy goat. Take it to her and don’t say it’s from me.
-=Leitung verlegen => Lay the line
-=*schaltet den Hauptschalter an* … *KLACK* => *flips the main switch on* … *CLACK*
 =*aus der Schmiede* LICHT! Junge, ich seh meine eigenen Füße! Die sind hässlich, aber ich seh sie! => *from the smithy* LIGHT! Boy, I can see my own feet! They’re ugly, but I can see them!
-=Fjodor? Sie wollten mir noch was geben. => Fyodor? You were going to give me something.
-=*BZZZT* Au! Strom ist noch drauf! => *BZZZT* Ow! It’s still live!
-=*BZZZT* Die Haare! Meine Haare! => *BZZZT* My hair! My hair!
-=*BZZZT* … Hauptschalter. Erst den HAUPTSCHALTER. => *BZZZT* … Main switch. The MAIN SWITCH first.
-=Nicht anschalten, solange gearbeitet wird! => Don’t switch it on while you’re working!
-=Strom an. Die alten Kabel knistern wieder. => Power on. The old cables are crackling again.
-=*KLACK* Licht in der Schmiede! => *CLACK* Light in the smithy!
-=*KLACK* Hauptschalter aus. Jetzt ist es sicher. => *CLACK* Main switch off. Now it’s safe.
-=*schnipp* Altes Kabel runter. => *snip* Old cable down.
-=Erst alle alten Kabel abnehmen. => Take all the old cables down first.
-=*festschraub* Hält. => *screws it tight* Holds.
-=*festschraub* Angeschlossen! Jetzt Strom an. => *screws it tight* Connected! Now power on.
-=Zu weit – das Kabel muss über jeden Mast. => Too far – the cable has to go over every pole.
-=Am Trafo hängt es schon. Jetzt zum ersten Mast. => It’s already fixed at the transformer. Now to the first pole.
-=AN => ON
-=AUS => OFF
-=Hauptschalter => Main switch
-=Licht! Die Schmiede hat wieder Strom. => Light! The smithy has power again.
-=#. Erst den Hauptschalter AUS (links am Trafo). => #. First switch the main switch OFF (left, at the transformer).
-=#. Alte Kabel anklicken und abnehmen (noch #). => #. Click the old cables to take them down (# left).
-=#. Neues Kabel verlegen: den grün blinkenden Mast anklicken (# / #). => #. Lay the new cable: click the green blinking pole (# / #).
-=#. Hauptschalter wieder AN. => #. Main switch back ON.
 =Esc: aufhören => Esc: stop
-=Pause. Mein Herz macht noch Stromstöße. => Break. My heart is still giving off shocks.
-=Komm wieder, wenn deine Frisur sich beruhigt hat. => Come back when your hair has calmed down.
 =Oma Dusja, ich hab hier einen Sack Kohle. Für Ihren Ofen. => Granny Dusya, I’ve got a sack of coal here. For your stove.
 =Kohle? Für mich? Ich frier doch nicht! … Wer fagt daf? => Coal? For me? I’m not freezing! … Who thaid that?
 =Niemand. Die Kohle ist … einfach übrig. => Nobody. The coal is … just spare.
@@ -217,8 +187,6 @@
 =Brrr … Junge, mach die Tür zu, ef zieht. => Brrr … boy, thut the door, there’th a draught.
 =(Die Kohle für sie. Ich hab den Sack doch … wo hab ich den Sack?) => (The coal for her. I had the sack … where did I put the sack?)
 =Strom für die Schmiede => Power for the smithy
-=Fjodors Dorfleitung ist von 1971. Alte Kabel runter, neue ran. => Fyodor’s village line is from 1971. Old cables down, new ones up.
-=In der Schmiede mit Fjodor reden. Erst den Hauptschalter aus, dann die alten Kabel abnehmen, neues Kabel Mast für Mast ziehen, Strom wieder an. => Talk to Fyodor at the smithy. Main switch off first, then take the old cables down, run the new cable pole by pole, power back on.
 =Kohle für Oma Dusja => Coal for Granny Dusya
 =Oma Dusja friert, sagt aber nix. Fjodor hat einen Sack Kohle für sie. => Granny Dusya is freezing but won’t say so. Fyodor has a sack of coal for her.
 =Den Kohlensack zu Oma Dusja an der Dorfstraße bringen. => Take the sack of coal to Granny Dusya on the village street.
@@ -241,3 +209,24 @@
 =(Drüben hatte ich ein Sofa, das mir nicht gehört. Hier hab ich ein Haus. Mit Tür.) => (Over there I had a sofa that wasn’t mine. Here I have a house. With a door.)
 =(Ich bleibe.) => (I’m staying.)
 =Petja blieb. Nicht als Zahnrad – als einer von ihnen. Mit Urkunde und eigenem Haus. => Petya stayed. Not as a cog – as one of them. With a certificate and a house of his own.
+# Verteilerkasten (Logikrätsel, 2.36)
+=Die Dorfleitung ist von 1971. Mein Licht flackert, als wär’s besoffen, und bei der Dusja ist es ganz dunkel. => The village line is from 1971. My light flickers like it’s drunk, and at Dusya’s it’s pitch dark.
+=Im Verteilerkasten am Trafo liegen die Kabelstücke kreuz und quer. Dreh sie so, dass der Strom zu mir UND zur Dusja kommt. => In the junction box by the transformer the cable pieces are all over the place. Turn them so the power reaches me AND Dusya.
+=Und keine offenen Enden! Wo ein Kabel ins Leere zeigt, funkt es. Dann brennt das Dorf und nicht meine Lampe. => And no open ends! Where a cable points at nothing, it sparks. Then the village burns instead of my lamp.
+=Der Verteilerkasten, Junge. Vom Trafo zu meiner Schmiede und zu Dusjas Hütte. Leg los. => The junction box, boy. From the transformer to my smithy and to Dusya’s hut. Get to it.
+=Verteilerkasten => Junction box
+=*dreht das letzte Stück* … *KLACK* => *turns the last piece* … *CLACK*
+=Und bei der Dusja brennt auch Licht. Aber Licht wärmt nicht. Die Alte friert, sagt aber nix. Stolz wie ein Ziegenbock. => And there’s light at Dusya’s too. But light doesn’t warm you. The old girl is freezing and won’t say a word. Proud as a billy goat.
+=Hier, ein Sack Kohle. Der ist nicht für dich, der ist für sie. Bring ihn ihr und sag nicht, dass er von mir ist. => Here, a sack of coal. It’s not for you, it’s for her. Take it to her and don’t say it’s from me.
+=*bekommt einen Sack Kohle* => *receives a sack of coal*
+=Neue Aufgabe: Kohle für Oma Dusja => New task: Coal for Granny Dusya
+=Trafo => Transformer
+=Schmiede => Smithy
+=Omas Hütte => Granny’s hut
+=Strom überall, kein Funke. Sauber! => Power everywhere, not a spark. Clean!
+=Klick dreht ein Kabelstück. Strom zur Schmiede UND zu Omas Hütte, kein offenes Ende. => A click turns a cable piece. Power to the smithy AND to Granny’s hut, no open ends.
+~Schmiede {} · Omas Hütte {} · Offene Enden: # · Züge: # => Smithy {}   ·   Granny’s hut {}   ·   Open ends: #   ·   Moves: #
+=Pause. Mir drehen sich die Kabel vor den Augen. => Break. The cables are spinning in front of my eyes.
+=Komm wieder, wenn dein Kopf sortiert ist. => Come back when your head is sorted.
+=Fjodors Dorfleitung ist von 1971. Im Verteilerkasten liegen die Kabelstücke kreuz und quer. => Fyodor’s village line is from 1971. In the junction box the cable pieces are all over the place.
+=In der Schmiede mit Fjodor reden. Die Kabelstücke drehen, bis Schmiede und Omas Hütte Strom haben. Kein Kabel darf ins Leere zeigen. => Talk to Fyodor at the smithy. Turn the cable pieces until the smithy and Granny’s hut have power. No cable may point at nothing.

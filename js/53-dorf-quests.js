@@ -1,8 +1,9 @@
 // ================= Dorf-Quests: Stromleitung (Schmied), Kohle für Oma, Ignatis Kater · Kater-Flug · eigenes Haus beim Bleiben =================
-// 1) Schmied Fjodor (nach der geschärften Säge oder der Glut): Die Dorfleitung von 1971 ist verrottet. Minispiel „Leitung verlegen“:
-//    Hauptschalter am Trafo AUS (sonst gibt’s einen Schlag) → alte Kabel abnehmen → neues Kabel Mast für Mast vom Trafo bis zur
-//    Schmiede ziehen → Hauptschalter wieder AN → in der Schmiede brennt Licht. Belohnung: Dorf-Ruf + ein Sack Kohle für Oma Dusja.
-// 2) Oma Dusja friert, sagt es aber nicht. Kohlensack hinbringen → Ofen an, Dorf-Ruf.
+// 1) Schmied Fjodor (nach der geschärften Säge oder der Glut): Die Dorfleitung von 1971 ist durcheinander. Logikrätsel „Verteilerkasten“:
+//    6×4 Kabelstücke (gerade, Ecke, T), Klick dreht ein Stück um 90°. Strom fließt vom Trafo (links oben) los. Gelöst, wenn die
+//    Schmiede (rechts) UND Omas Hütte (unten) Strom haben und kein unter Strom stehendes Kabel ins Leere zeigt (offene Enden funken).
+//    Belohnung: Dorf-Ruf + Fjodor gibt sofort einen Sack Kohle für Oma Dusja.
+// 2) Oma Dusja friert, sagt es aber nicht. Kohlensack hinbringen (anklicken oder Sack auf sie ziehen) → Ofen an, Dorf-Ruf.
 // 3) Ignatis Kater: Gibt Petja dem Kater am Friedhof den Fisch, springt der ihm mit allen Krallen ans Bein – Petja tritt reflexartig aus,
 //    und der Kater fliegt wie im Zeichentrick im hohen Bogen über die Kirche. Er landet unter dem Pier (Raum „unter“).
 //    Ist Vater Ignati zurück (und das Weihwasser erledigt), sucht er ihn: unter dem Steg einsammeln, zurückbringen → Dorf-Ruf, 1 Rubel.
@@ -66,84 +67,96 @@ wrapFn('pope2',function(orig){if(!FL.weih||!FL.kater||FL.katzeHeim)return orig()
 // ---------- Schmied: neue Stromleitung ----------
 wrapFn('schmied',function(orig){
   if(has('weihwasser')||(FL.recipe&&!FL.glutQ&&!FL.glut)||!(FL.schuld||FL.glut||FL.cut))return orig();   // Hauptgeschichte geht vor
-  if(!FL.kabelQ)return say([['SM','Du. Lange. Kannst du Kabel?'],['P','Kabel … gucken?'],['SM','Die Dorfleitung ist von 1971. Die Masten stehen noch, aber die Kabel sind Zunder. Mein Licht flackert, als wär’s besoffen.'],
-    ['SM','Hier: neue Kabelrolle und die Zange mit den gelben Griffen. Erst den Hauptschalter am Trafo aus, dann die alten Kabel runter, dann die neuen ran.'],
-    ['SM','Und wehe, du fasst an, solange Strom drauf ist. Dann stehen dir die Haare wie meinem Besen.'],['P','*bekommt Kabelrolle und Isolierzange*']],()=>{FL.kabelQ=1;if(!has('kabel'))inv.push('kabel');renderInv()});
-  if(!FL.kabel)return say([['SM','Die Leitung, Junge. Trafo, vier Masten, meine Schmiede. Leg los.']],kabelGame);
+  if(!FL.kabelQ)return say([['SM','Du. Lange. Kannst du Kabel?'],['P','Kabel … gucken?'],['SM','Die Dorfleitung ist von 1971. Mein Licht flackert, als wär’s besoffen, und bei der Dusja ist es ganz dunkel.'],
+    ['SM','Im Verteilerkasten am Trafo liegen die Kabelstücke kreuz und quer. Dreh sie so, dass der Strom zu mir UND zur Dusja kommt.'],
+    ['SM','Und keine offenen Enden! Wo ein Kabel ins Leere zeigt, funkt es. Dann brennt das Dorf und nicht meine Lampe.'],['P','*bekommt Kabelrolle und Isolierzange*']],()=>{FL.kabelQ=1;if(!has('kabel'))inv.push('kabel');renderInv()});
+  if(!FL.kabel)return say([['SM','Der Verteilerkasten, Junge. Vom Trafo zu meiner Schmiede und zu Dusjas Hütte. Leg los.']],kabelGame);
   if(!FL.kohleGeg){return say([['SM','*schaut zur flackerfreien Lampe* … Na sieh mal an. Licht wie im Kreml.'],['SM','Hier, ein Sack Kohle. Der ist nicht für dich. Der ist für die Dusja.'],
     ['SM','Sie friert in ihrer Hütte, sagt aber nix. Stolz wie ein Ziegenbock. Bring ihn ihr und sag nicht, dass er von mir ist.']],()=>{FL.kohleGeg=1;inv.push('kohle');renderInv()})}
   return orig()});
-const kabelGame=a3Mini('kabel','Leitung verlegen',kabelRun,()=>!!FL.kabel,()=>kabelSieg());
+const kabelGame=a3Mini('kabel','Verteilerkasten',kabelRun,()=>!!FL.kabel,()=>kabelSieg());
 function kabelSieg(){FL.kabel=1;dropInv('kabel');rufToast(DORF_RUF.kabel);
-  say([['P','*schaltet den Hauptschalter an* … *KLACK*'],['SM','*aus der Schmiede* LICHT! Junge, ich seh meine eigenen Füße! Die sind hässlich, aber ich seh sie!'],['P','Fjodor? Sie wollten mir noch was geben.']])}
-function kabelRun(){const{cv2,x,P:M,pos}=a3Canvas(),T0=performance.now();
-  // Punkte: Trafo-Isolator, vier Masten, Schmiede
-  const PT=[[118,236],[232,168],[372,176],[512,168],[652,176],[748,214]];
-  const st={strom:true,alt:[1,1,1,1,1],neu:0,schlaege:0,blitz:-9,fall:[],pop:[],fertig:0,maus:[0,0]};let fin=false;
-  const sag=(a,b,durch)=>{const m=[(a[0]+b[0])/2,(a[1]+b[1])/2+durch];return k=>[(1-k)*(1-k)*a[0]+2*(1-k)*k*m[0]+k*k*b[0],(1-k)*(1-k)*a[1]+2*(1-k)*k*m[1]+k*k*b[1]]};
-  const nahKabel=(i,X,Y)=>{const f=sag(PT[i],PT[i+1],46);for(let k=0;k<=1;k+=.04){const[px,py]=f(k);if(Math.hypot(px-X,py-Y)<14)return true}return false};
-  const hebel={x:52,y:300,w:54,h:70},imHebel=(X,Y)=>X>hebel.x-10&&X<hebel.x+hebel.w+10&&Y>hebel.y-10&&Y<hebel.y+hebel.h+10;
-  const t=()=>(performance.now()-T0)/1000,meld=(s,c='255,230,170')=>st.pop.push({t:t(),s,c});
-  const schlag=()=>{st.schlaege++;st.blitz=t();meld(['*BZZZT* Au! Strom ist noch drauf!','*BZZZT* Die Haare! Meine Haare!','*BZZZT* … Hauptschalter. Erst den HAUPTSCHALTER.'][Math.min(2,st.schlaege-1)],'255,240,120')};
-  cv2.onmousemove=e=>{pos(e.clientX,e.clientY);st.maus=[M.x,M.y]};
-  cv2.onclick=e=>{e.stopPropagation();if(fin)return;pos(e.clientX,e.clientY);const X=M.x,Y=M.y;
-    if(imHebel(X,Y)){
-      if(!st.strom){if(st.alt.some(a=>a)||st.neu<5){st.strom=true;if(st.neu>0){schlag();st.strom=false;meld('Nicht anschalten, solange gearbeitet wird!')}else meld('Strom an. Die alten Kabel knistern wieder.')}
-        else{st.strom=true;st.fertig=t();meld('*KLACK* Licht in der Schmiede!','255,255,180')}}
-      else{st.strom=false;meld('*KLACK* Hauptschalter aus. Jetzt ist es sicher.','170,230,255')}return}
-    // alte Kabel abnehmen
-    for(let i=0;i<5;i++)if(st.alt[i]&&nahKabel(i,X,Y)){if(st.strom)return schlag();st.alt[i]=0;st.fall.push({i,t:t()});meld('*schnipp* Altes Kabel runter.');return}
-    if(st.alt.some(a=>a))return meld('Erst alle alten Kabel abnehmen.');
-    if(st.neu<5){const n=st.neu+1,[px,py]=PT[n];if(Math.hypot(X-px,Y-py)<26){if(st.strom)return schlag();st.neu=n;meld(n<5?'*festschraub* Hält.':'*festschraub* Angeschlossen! Jetzt Strom an.')}
-      else{for(let j=n+1;j<6;j++)if(Math.hypot(X-PT[j][0],Y-PT[j][1])<26)return meld('Zu weit – das Kabel muss über jeden Mast.','255,170,150');
-        if(st.neu===0&&Math.hypot(X-PT[0][0],Y-PT[0][1])<26)return meld('Am Trafo hängt es schon. Jetzt zum ersten Mast.')}}};
+  say([['P','*dreht das letzte Stück* … *KLACK*'],['SM','*aus der Schmiede* LICHT! Junge, ich seh meine eigenen Füße! Die sind hässlich, aber ich seh sie!'],
+    ['SM','Und bei der Dusja brennt auch Licht. Aber Licht wärmt nicht. Die Alte friert, sagt aber nix. Stolz wie ein Ziegenbock.'],
+    ['SM','Hier, ein Sack Kohle. Der ist nicht für dich, der ist für sie. Bring ihn ihr und sag nicht, dass er von mir ist.'],['P','*bekommt einen Sack Kohle*']],
+    ()=>{if(!FL.kohleGeg){FL.kohleGeg=1;if(!has('kohle'))inv.push('kohle');renderInv();toast('Neue Aufgabe: Kohle für Oma Dusja','done','tipp')}})}
+// Logikrätsel Verteilerkasten. Richtungen als Bitmaske: N=1, O=2, S=4, W=8. Klick dreht ein Stück im Uhrzeigersinn.
+function kabelRun(){const{cv2,x,P:M,pos}=a3Canvas(),T0=performance.now(),t=()=>(performance.now()-T0)/1000;
+  const C=6,R=4,Z=72,X0=184,Y0=74,N=1,O=2,S=4,W=8,gegen={1:4,2:8,4:1,8:2},schritt={1:[0,-1],2:[1,0],4:[0,1],8:[-1,0]};
+  const dreh=m=>((m<<1)|(m>>3))&15;
+  // Lösungsweg: Trafo → (0,0) … T bei (2,1) → runter zu Omas Hütte (2,3) und rechts zur Schmiede (5,2)
+  const LOES={'0,0':W|O,'1,0':W|S,'1,1':N|O,'2,1':W|O|S,'2,2':N|S,'2,3':N|S,'3,1':W|S,'3,2':N|O,'4,2':W|O,'5,2':W|O};
+  const AUSGANG={'0,0':W,'5,2':O,'2,3':S};   // Randöffnungen, die zählen: Trafo, Schmiede, Oma
+  const feld=[];for(let j=0;j<R;j++)for(let i=0;i<C;i++){let m=LOES[i+','+j];
+    if(m===undefined)m=[N|S,N|O,O|S,N|O][(i*7+j*3)%4];   // Füllstücke
+    const gerade=m===5||m===10,n=gerade?1:1+Math.floor(Math.random()*3);for(let k=0;k<n;k++)m=dreh(m);
+    feld.push({i,j,m,anim:-9})}
+  const at=(i,j)=>i>=0&&j>=0&&i<C&&j<R?feld[j*C+i]:null;
+  let fin=false,zuege=0,geloest=0,info={an:new Set(),lecks:[],schmiede:false,oma:false};
+  function rechne(){const an=new Set(),lecks=[];let schmiede=false,oma=false;const st=at(0,0);
+    if(st.m&W){const q=[st];an.add(st);while(q.length){const z=q.shift();
+      for(const d of[N,O,S,W]){if(!(z.m&d))continue;const k=z.i+','+z.j;
+        if(AUSGANG[k]===d){if(k==='5,2')schmiede=true;if(k==='2,3')oma=true;continue}
+        const[dx,dy]=schritt[d],nb=at(z.i+dx,z.j+dy);
+        if(nb&&(nb.m&gegen[d])){if(!an.has(nb)){an.add(nb);q.push(nb)}}else lecks.push([z,d])}}}
+    info={an,lecks,schmiede,oma}}
+  rechne();if(info.schmiede&&info.oma&&!info.lecks.length){feld[1].m=dreh(feld[1].m);rechne()}   // nie schon gelöst starten
+  const kachel=(X,Y)=>X<X0||Y<Y0?null:at(Math.floor((X-X0)/Z),Math.floor((Y-Y0)/Z));
+  cv2.onmousemove=e=>{pos(e.clientX,e.clientY)};
+  cv2.onclick=e=>{e.stopPropagation();if(fin||geloest)return;pos(e.clientX,e.clientY);const k=kachel(M.x,M.y);if(!k)return;
+    k.m=dreh(k.m);k.anim=t();zuege++;rechne();
+    if(info.schmiede&&info.oma&&!info.lecks.length)geloest=t()};
   const esc=e=>{if(e.key==='Escape'){e.stopPropagation();ende(false)}};addEventListener('keydown',esc,true);
-  function mast(X,top){x.fillStyle='#5a3e24';x.fillRect(X-6,top,12,420-top);x.fillStyle='#4a321c';x.fillRect(X-38,top+8,76,8);
-    x.fillStyle='#e8e2d0';[[X-30,top+2],[X+24,top+2],[X-3,top-4]].forEach(([a,b])=>{x.fillRect(a,b,6,8)})}
-  function frame(){if(fin)return;const T=t();
-    const g=x.createLinearGradient(0,0,0,420);g.addColorStop(0,'#2a2c5a');g.addColorStop(.6,'#c86a4a');g.addColorStop(1,'#e8a060');x.fillStyle=g;x.fillRect(0,0,800,500);
-    x.fillStyle='#3a2a1e';for(let i=0;i<7;i++){const X=60+i*120,h=40+(i*37)%30;x.fillRect(X,330-h,80,h);x.beginPath();x.moveTo(X-8,330-h);x.lineTo(X+40,300-h);x.lineTo(X+88,330-h);x.fill()}
-    x.fillStyle='#4a5a2a';x.fillRect(0,330,800,170);x.fillStyle='#6a5a3a';x.beginPath();x.moveTo(300,500);x.lineTo(380,330);x.lineTo(420,330);x.lineTo(560,500);x.fill();
-    // Trafo-Häuschen mit Hauptschalter
-    x.fillStyle='#7a7a72';x.fillRect(30,220,110,200);x.fillStyle='#5a5a54';x.beginPath();x.moveTo(20,222);x.lineTo(85,196);x.lineTo(150,222);x.fill();
-    x.fillStyle='#e8d020';x.beginPath();x.moveTo(85,246);x.lineTo(70,272);x.lineTo(100,272);x.closePath();x.fill();x.fillStyle='#111';x.font='bold 16px Georgia';x.textAlign='center';x.fillText('⚡',85,268);
-    x.fillStyle='#2a2a2a';x.fillRect(hebel.x,hebel.y,hebel.w,hebel.h);x.fillStyle=st.strom?'#e83a2a':'#3a8a3a';x.beginPath();x.arc(hebel.x+hebel.w/2,hebel.y+12,6,0,7);x.fill();
-    x.strokeStyle='#c8c8c8';x.lineWidth=7;x.beginPath();x.moveTo(hebel.x+hebel.w/2,hebel.y+44);x.lineTo(hebel.x+hebel.w/2+(st.strom?-14:14),hebel.y+(st.strom?26:62));x.stroke();x.lineWidth=1;
-    x.fillStyle='#f6ead0';x.font='bold 11px Georgia';x.fillText(st.strom?'AN':'AUS',hebel.x+hebel.w/2,hebel.y+hebel.h+16);x.fillText('Hauptschalter',hebel.x+hebel.w/2,hebel.y-8);
-    // Schmiede rechts mit Fenster
-    x.fillStyle='#6a4a2a';x.fillRect(700,200,110,220);x.fillStyle='#3a2a1a';x.beginPath();x.moveTo(690,204);x.lineTo(760,160);x.lineTo(820,204);x.fill();
-    const licht=st.fertig?Math.min(1,(T-st.fertig)*2):0,flacker=st.strom&&!st.fertig&&st.alt.some(a=>a)?(Math.random()<.3?.5:0):0;
-    x.fillStyle=`rgb(${40+200*Math.max(licht,flacker)},${30+180*Math.max(licht,flacker)},${20+90*Math.max(licht,flacker)})`;x.fillRect(722,260,44,36);x.strokeStyle='#2a1a0a';x.lineWidth=4;x.strokeRect(722,260,44,36);x.lineWidth=1;
-    if(licht){x.save();x.globalCompositeOperation='lighter';const gl=x.createRadialGradient(744,278,4,744,278,120);gl.addColorStop(0,`rgba(255,220,120,${.6*licht})`);gl.addColorStop(1,'rgba(255,220,120,0)');x.fillStyle=gl;x.fillRect(620,160,200,240);x.restore()}
-    x.fillStyle='#e8e2d0';x.fillRect(PT[5][0]-3,PT[5][1]-4,6,8);
-    for(let i=1;i<5;i++)mast(PT[i][0],PT[i][1]);
-    // alte Kabel: braun, ausgefranst, knistern unter Strom
-    for(let i=0;i<5;i++){if(!st.alt[i])continue;const f=sag(PT[i],PT[i+1],46);x.strokeStyle='#5a3a1a';x.lineWidth=3;x.setLineDash([14,4,6,5]);x.beginPath();for(let k=0;k<=1.001;k+=.05){const[a,b]=f(k);k?x.lineTo(a,b):x.moveTo(a,b)}x.stroke();x.setLineDash([]);
-      if(st.strom&&Math.random()<.25){const[a,b]=f(.3+Math.random()*.4);x.strokeStyle='#fff27a';x.lineWidth=1.5;x.beginPath();x.moveTo(a,b);x.lineTo(a+(Math.random()-.5)*14,b+(Math.random()-.5)*14);x.stroke()}}
-    for(const q of st.fall){const k=Math.min(1,(T-q.t)/.6),f=sag(PT[q.i],PT[q.i+1],46+k*200);if(k>=1)continue;x.globalAlpha=1-k;x.strokeStyle='#5a3a1a';x.lineWidth=3;x.beginPath();for(let j=0;j<=1.001;j+=.05){const[a,b]=f(j);j?x.lineTo(a,b):x.moveTo(a,b)}x.stroke();x.globalAlpha=1}
-    // neue Kabel: schwarz, straff
-    for(let i=0;i<st.neu;i++){const f=sag(PT[i],PT[i+1],26);x.strokeStyle='#111';x.lineWidth=3.5;x.beginPath();for(let k=0;k<=1.001;k+=.05){const[a,b]=f(k);k?x.lineTo(a,b):x.moveTo(a,b)}x.stroke()}
-    const altDa=st.alt.some(a=>a);
-    if(!altDa&&st.neu<5){const[a,b]=PT[st.neu],[mx,my]=st.maus;x.strokeStyle='rgba(20,20,20,.7)';x.setLineDash([6,5]);x.lineWidth=2.5;x.beginPath();x.moveTo(a,b);x.quadraticCurveTo((a+mx)/2,(b+my)/2+30,mx,my);x.stroke();x.setLineDash([]);
-      const[nx,ny]=PT[st.neu+1],p=.5+.5*Math.sin(T*6);x.strokeStyle=`rgba(120,255,140,${.5+.5*p})`;x.lineWidth=3;x.beginPath();x.arc(nx,ny,14+p*4,0,7);x.stroke()}
-    if(!st.fertig&&!altDa&&st.neu>=5&&!st.strom){const p=.5+.5*Math.sin(T*6);x.strokeStyle=`rgba(120,255,140,${.5+.5*p})`;x.lineWidth=3;x.strokeRect(hebel.x-6,hebel.y-6,hebel.w+12,hebel.h+12)}
-    if(st.strom&&altDa){const p=.5+.5*Math.sin(T*5);x.strokeStyle=`rgba(255,90,70,${.4+.5*p})`;x.lineWidth=3;x.strokeRect(hebel.x-6,hebel.y-6,hebel.w+12,hebel.h+12)}
-    x.lineWidth=1;
-    // Anleitung oben
-    const ziel=st.fertig?'Licht! Die Schmiede hat wieder Strom.':altDa?(st.strom?'1. Erst den Hauptschalter AUS (links am Trafo).':`2. Alte Kabel anklicken und abnehmen (noch ${st.alt.filter(a=>a).length}).`)
-      :st.neu<5?`3. Neues Kabel verlegen: den grün blinkenden Mast anklicken (${st.neu} / 5).`:'4. Hauptschalter wieder AN.';
-    x.fillStyle='rgba(15,8,4,.78)';x.fillRect(120,10,560,34);x.fillStyle='#f6ead0';x.font='15px Georgia';x.fillText(ziel,400,32);
-    x.font='11px Georgia';x.fillStyle='rgba(246,234,208,.7)';x.fillText('Esc: aufhören',740,490);
-    for(const q of st.pop.slice(-1)){const a=T-q.t;if(a>2)continue;   /* nur die neueste Meldung */x.fillStyle=`rgba(${q.c},${1-a/2})`;x.font='bold 17px Georgia';x.fillText(q.s,400,90-a*14)}st.pop=st.pop.filter(q=>T-q.t<2.1);
-    if(T-st.blitz<.35){x.fillStyle=`rgba(255,255,200,${.8*(1-(T-st.blitz)/.35)})`;x.fillRect(0,0,800,500)}
-    x.textAlign='left';
-    if(st.fertig&&T-st.fertig>1.8)return ende(true);
+  // Schmiede und Omas Hütte im Dorfstil: dieselbe Izba wie im Dorf (izba aus 02-orte), einmal dunkel und einmal mit Licht vorgerendert
+  const HAUS=(()=>{const mk=(cx,B,sk,flip,win)=>{const c=document.createElement('canvas');c.width=800*SC;c.height=500*SC;const g=c.getContext('2d');g.setTransform(SC,0,0,SC,0,0);
+      try{izba(g,cx,B,sk,flip,{win,smoke:0,trim:cx>500?'#8a5a3a':'#d8b070'})}catch(e){console.warn(e)}return c};
+    return{sd:mk(712,306,.5,1,'dark'),sl:mk(712,306,.5,1,0),od:mk(366,494,.42,0,'dark'),ol:mk(366,494,.42,0,0)}})();
+  const haus=(dunkel,hell,k)=>{x.drawImage(dunkel,0,0,800,500);if(k>0){x.globalAlpha=Math.min(1,k);x.drawImage(hell,0,0,800,500);x.globalAlpha=1}};
+  function frame(){if(fin)return;const T=t(),hov=kachel(M.x,M.y);
+    const g=x.createLinearGradient(0,0,0,500);g.addColorStop(0,'#1e2046');g.addColorStop(.7,'#4a3a4a');g.addColorStop(1,'#2a2a22');x.fillStyle=g;x.fillRect(0,0,800,500);
+    // Trafo links oben
+    {const gw=x.createLinearGradient(40,0,150,0);gw.addColorStop(0,'#8a867a');gw.addColorStop(1,'#5e5b52');x.fillStyle=gw;x.fillRect(40,60,110,130);   // Trafohäuschen: verwitterter Beton
+      x.fillStyle='rgba(0,0,0,.12)';for(let r=0;r<6;r++)x.fillRect(40,72+r*20,110,1.5);x.fillStyle='rgba(120,60,20,.35)';[[58,4,60],[118,3,46],[134,5,70]].forEach(([a,w,h])=>x.fillRect(a,64,w,h));
+      x.fillStyle='#4a4038';x.fillRect(66,128,34,62);x.strokeStyle='#2a221a';x.lineWidth=2;x.strokeRect(66,128,34,62);x.fillStyle='#8a7a5a';x.fillRect(94,158,3,6);
+      x.fillStyle='#3e3a34';x.beginPath();x.moveTo(30,64);x.lineTo(95,38);x.lineTo(160,64);x.fill();x.fillStyle='rgba(0,0,0,.35)';x.fillRect(40,64,110,5);}
+    x.fillStyle='#e8d020';x.beginPath();x.moveTo(95,84);x.lineTo(78,114);x.lineTo(112,114);x.closePath();x.fill();x.fillStyle='#111';x.font='bold 16px Georgia';x.textAlign='center';x.fillText('⚡',95,109);
+    x.font='bold 12px Georgia';x.lineWidth=3;x.strokeStyle='rgba(0,0,0,.8)';x.strokeText('Trafo',95,208);x.fillStyle='#f6ead0';x.fillText('Trafo',95,208);x.lineWidth=1;
+    x.strokeStyle='#ffd23a';x.lineWidth=8;x.beginPath();x.moveTo(150,Y0+Z/2);x.lineTo(X0,Y0+Z/2);x.stroke();
+    // Schmiede rechts, Omas Hütte unten
+    const fertigK=geloest?Math.min(1,(T-geloest)*2):0;
+    x.strokeStyle=info.schmiede?'#ffd23a':'#3a3a3a';x.lineWidth=8;x.beginPath();x.moveTo(X0+C*Z,Y0+2.5*Z);x.lineTo(690,Y0+2.5*Z);x.stroke();
+    x.strokeStyle=info.oma?'#ffd23a':'#3a3a3a';x.beginPath();x.moveTo(X0+2.5*Z,Y0+R*Z);x.lineTo(X0+2.5*Z,Y0+R*Z+50);x.stroke();
+    haus(HAUS.sd,HAUS.sl,info.schmiede?(geloest?.35+.65*fertigK:.35):0);haus(HAUS.od,HAUS.ol,info.oma?(geloest?.35+.65*fertigK:.35):0);
+    x.font='bold 12px Georgia';x.textAlign='center';x.lineWidth=3;x.strokeStyle='rgba(0,0,0,.8)';
+    for(const[txt,tx,ty]of[['Schmiede',712,326],['Omas Hütte',486,476]]){x.strokeText(txt,tx,ty);x.fillStyle='#f6ead0';x.fillText(txt,tx,ty)}x.textAlign='left';
+    // Kasten
+    x.fillStyle='#3c4044';x.fillRect(X0-10,Y0-10,C*Z+20,R*Z+20);x.strokeStyle='#22262a';x.lineWidth=4;x.strokeRect(X0-10,Y0-10,C*Z+20,R*Z+20);
+    for(const k of feld){const cx=X0+k.i*Z+Z/2,cy=Y0+k.j*Z+Z/2,an=info.an.has(k);
+      x.fillStyle=k===hov&&!geloest?'#5a6066':'#4a5056';x.fillRect(cx-Z/2+3,cy-Z/2+3,Z-6,Z-6);
+      x.fillStyle='#2e3236';[[-1,-1],[1,-1],[-1,1],[1,1]].forEach(([a,b])=>{x.beginPath();x.arc(cx+a*(Z/2-10),cy+b*(Z/2-10),2.5,0,7);x.fill()});
+      const a=Math.min(1,(T-k.anim)/.15);x.save();x.translate(cx,cy);x.rotate(-(1-a)*Math.PI/2);x.lineCap='round';
+      const zeichne=()=>{x.beginPath();for(const d of[N,O,S,W])if(k.m&d){const[dx,dy]=schritt[d];x.moveTo(0,0);x.lineTo(dx*Z/2,dy*Z/2)}x.stroke()};
+      x.strokeStyle='#1a1a1a';x.lineWidth=14;zeichne();
+      x.strokeStyle=an?`rgb(255,${Math.round(200+40*Math.sin(T*8+k.i))},70)`:'#6a6a64';x.lineWidth=8;zeichne();
+      x.fillStyle=an?'#ffe48a':'#7a7a72';x.beginPath();x.arc(0,0,7,0,7);x.fill();x.restore()}
+    // offene Enden funken
+    for(const[z,d]of info.lecks){const[dx,dy]=schritt[d],ex=X0+z.i*Z+Z/2+dx*Z/2,ey=Y0+z.j*Z+Z/2+dy*Z/2;x.strokeStyle='#fff27a';x.lineWidth=2;
+      for(let n=0;n<3;n++){const w=Math.random()*7;x.beginPath();x.moveTo(ex,ey);x.lineTo(ex+Math.cos(w)*12,ey+Math.sin(w)*12);x.stroke()}}
+    x.lineWidth=1;x.lineCap='butt';
+    // Anleitung + Stand
+    x.textAlign='center';x.fillStyle='rgba(15,8,4,.82)';x.fillRect(130,4,540,48);x.fillStyle='#f6ead0';x.font='14px Georgia';
+    x.fillText(geloest?'Strom überall, kein Funke. Sauber!':'Klick dreht ein Kabelstück. Strom zur Schmiede UND zu Omas Hütte, kein offenes Ende.',400,23);
+    x.font='12px Georgia';x.fillStyle='#e8d8b0';
+    x.fillText(`Schmiede ${info.schmiede?'✓':'✗'}   ·   Omas Hütte ${info.oma?'✓':'✗'}   ·   Offene Enden: ${info.lecks.length}   ·   Züge: ${zuege}`,400,43);
+    x.font='11px Georgia';x.fillStyle='rgba(246,234,208,.7)';x.fillText('Esc: aufhören',740,490);x.textAlign='left';
+    if(geloest&&T-geloest>1.8)return ende(true);
     requestAnimationFrame(frame)}
   function ende(sieg){if(fin)return;fin=true;removeEventListener('keydown',esc,true);cv2.remove();
-    if(sieg)return kabelSieg();say([['P','Pause. Mein Herz macht noch Stromstöße.'],['SM','Komm wieder, wenn deine Frisur sich beruhigt hat.']])}
+    if(sieg)return kabelSieg();say([['P','Pause. Mir drehen sich die Kabel vor den Augen.'],['SM','Komm wieder, wenn dein Kopf sortiert ist.']])}
   requestAnimationFrame(frame)}
 
 // ---------- Oma Dusja: Kohle ----------
+for(const[id,it]of[['oma','kohle'],['pope2','katze'],['schmied','kabel']])(ZIELE_EXTRA[id]=ZIELE_EXTRA[id]||[]).push(it);   // Gegenstand auf Figur ziehen = anklicken
 wrapFn('oma',function(orig){
   if(has('kohle'))return say([['P','Oma Dusja, ich hab hier einen Sack Kohle. Für Ihren Ofen.'],['O','Kohle? Für mich? Ich frier doch nicht! … Wer fagt daf?'],['P','Niemand. Die Kohle ist … einfach übrig.'],
     ['O','*schnuppert am Sack* Daf riecht nach Fjodorf Fchmiede. Der alte Bock.'],['O','*heizt den Ofen an* … Ahhh. Warm. Junge, du bift ein Engel mit langen Beinen.'],['O','Fag ihm danke. Aber nicht fo, daff er ef merkt.']],
@@ -153,8 +166,8 @@ wrapFn('oma',function(orig){
 
 // ---------- Auftragsbuch ----------
 {const _q=quests;quests=function(){const Q=_q();
-  if(FL.kabelQ)Q.push({t:'Strom für die Schmiede',neben:1,d:'Fjodors Dorfleitung ist von 1971. Alte Kabel runter, neue ran.',v:1,ok:FL.kabel,
-    h:'In der Schmiede mit Fjodor reden. Erst den Hauptschalter aus, dann die alten Kabel abnehmen, neues Kabel Mast für Mast ziehen, Strom wieder an.'});
+  if(FL.kabelQ)Q.push({t:'Strom für die Schmiede',neben:1,d:'Fjodors Dorfleitung ist von 1971. Im Verteilerkasten liegen die Kabelstücke kreuz und quer.',v:1,ok:FL.kabel,
+    h:'In der Schmiede mit Fjodor reden. Die Kabelstücke drehen, bis Schmiede und Omas Hütte Strom haben. Kein Kabel darf ins Leere zeigen.'});
   if(FL.kohleGeg)Q.push({t:'Kohle für Oma Dusja',neben:1,d:'Oma Dusja friert, sagt aber nix. Fjodor hat einen Sack Kohle für sie.',v:1,ok:FL.omaKohle,h:'Den Kohlensack zu Oma Dusja an der Dorfstraße bringen.'});
   if(FL.katzeQ)Q.push({t:'Ignatis Kater',neben:1,d:'Vater Ignati vermisst seinen Kater. Er ist … geflogen. Meinetwegen.',v:1,ok:FL.katzeHeim,
     h:has('katze')?'Den Kater zu Vater Ignati an der Kirche bringen.':'Wo riecht es nach Fisch, und wo ist es dunkel? Unter dem Pier nachsehen (vom Ufer aus).'});
