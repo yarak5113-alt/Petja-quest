@@ -22,7 +22,13 @@
 // Tanzmenü (unten links, während des Tanzes):
 //   🧻 Скомканные салфетки / Tempos zustecken (immer, einmal pro Tanz) → Nastja lacht dich auf Russisch aus, Stimmung leicht +
 //   👋 Ближе наклониться (näher ranbeugen)       → Kamera zoomt auf den Oberkörper (mehrfach = näher), geht nach 6 s zurück
-//   ✋ Рискнуть и приобнять – entscheidet Nastjas BEZIEHUNG beim Klick auf den Oberkörper (relOf > GRIFF_SCHWELLE = 70):
+//   ✋ Рискнуть и приобнять – danach auf eine von DREI Zonen klicken (ph.zoneOben / ph.torso / ph.zoneUnten), entscheidet
+//        jeweils Nastjas BEZIEHUNG (relOf > GRIFF_SCHWELLE = 70). Kopf und Hüfte nur mit Dialog, der POV-Arm nur in der Mitte:
+//        Kopf/Haare  > 70 → „Na gut, an die Haare kommst du nicht ran …“ Stimmung +5   · ≤ 70 → „Finger weg von der Frisur!“
+//        Hüfte       > 70 → „Du legst es drauf an, Pjotr.“ Stimmung +8                 · ≤ 70 → Zinaida: „Schluss mit dem Zirkus!“ (STOPP, Stimmung −10)
+//        Nach jedem Versuch ist „Riskant anfassen“ RISK_PAUSE (4 s) gesperrt, nach einem gelungenen Griff 2 s länger.
+//        Alle Sprüche stehen auf Deutsch im Code; die russische Fassung kommt aus lang/src/ru/49-53.txt.
+//        Mitte (Oberkörper):
 //        ≤ 70                → Hand-Wegschlag nach rechts unten (siehe unten).
 //        > 70, Zinaida guckt → Zinaida reißt den Vorhang auf: Arm zuckt zurück, Stimmung −15, Tanz stockt kurz.
 //        > 70, freie Bahn    → Hand-Zustandsautomat (griffZustand): heran (gespreizt) → greifen (Hand drückt sich zusammen,
@@ -148,7 +154,7 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
   const glow=(X,Y,r,c,a)=>{const g=x.createRadialGradient(X,Y,0,X,Y,r);g.addColorStop(0,`rgba(${c},${a})`);g.addColorStop(1,`rgba(${c},0)`);x.fillStyle=g;x.fillRect(X-r,Y-r,r*2,r*2)};
   // Zustand der Physik (Sprite-Pixel)
   const ph={jy:0,vy:0,jx:0,vx:0,hx:0,hv:0,hy:0,hyv:0,wippV:0,wippA:0,huefV:0,theta:0,thetaZiel:0,maus:0,vibe:40,pop:[],kopfPuffer:[],
-    pauseSum:0,pauseBis:0,zoom:1,zoomZiel:1,zoomBis:0,torso:null,risiko:null,handT:0,handZiel:null,erfolg:false,tempoDa:0,riskDa:0,winkN:0,
+    pauseSum:0,pauseBis:0,zoom:1,zoomZiel:1,zoomBis:0,torso:null,risiko:null,handT:0,handZiel:null,erfolg:false,tempoDa:0,riskBis:0,winkN:0,
     zin:{sicht:false,ab:0,naechste:6+Math.random()*5,auftritt:-9}};cv3._ph=ph;   // Zustand für automatische Tests
   let fin=false,T0=performance.now(),tAlt=0,mausWinkel=null,mausKreis=0,letzterSchlag=-1;
   // ---- Eingabe: Takt (Leertaste/Klick) und Maus-Kreisen ----
@@ -164,35 +170,46 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
   const sprich=l=>{if(busy)advance();say(l)};
   const menu=document.createElement('div');menu.id='tanzmenu';$('#game').appendChild(menu);
   function menuBau(){const c=player.cash;
-    menu.innerHTML=`<button data-m="tempo" ${ph.tempoDa?'disabled':''}>🧻 Скомканные салфетки <small>Tempos zustecken</small></button><button data-m="wink">👋 Ближе наклониться <small>näher ranbeugen</small></button>
-      <button data-m="risk" ${ph.riskDa||ph.risiko?'disabled':''}>✋ Рискнуть и приобнять <small>ab ${GRIFF_SCHWELLE} % Beziehung</small></button>${c>0?`<button data-m="geld">💸 Башли <small>${c} ₽</small></button>`:''}`;
+    menu.innerHTML=`<button data-m="tempo" ${ph.tempoDa?'disabled':''}>🧻 Tempos zustecken</button><button data-m="wink">👋 Näher ranbeugen</button>
+      <button data-m="risk" ${ph.risiko||jetztT()<ph.riskBis?'disabled':''}>✋ Riskant anfassen <small>ab ${GRIFF_SCHWELLE} % Beziehung</small></button>${c>0?`<button data-m="geld">💸 Geld zustecken <small>${c} ₽</small></button>`:''}`;
     menu.querySelectorAll('button').forEach(b=>{b.onmousedown=e=>{e.preventDefault();e.stopPropagation()};b.onclick=e=>{e.stopPropagation();aktion(b.dataset.m)}})}
   function aktion(m){const t=jetztT(),u=t-OFF-ph.pauseSum;if(t<ph.pauseBis)return;
     if(m==='tempo'&&!ph.tempoDa){ph.tempoDa=1;FL.na_tempo=Math.min(2,(FL.na_tempo||0)+1);ph.vibe=Math.min(100,ph.vibe+8);ph.pop.push({t:u,txt:'+ Frechheit',c:'255,220,160'});
-      sprich([['NA','*zieht das zerknüllte Taschentuch aus dem Strumpfband und hält es hoch* Ты чё, нищеброд, совсем берега попутал? Ну ладно, за наглость засчитаю.','laugh'],
+      sprich([['NA','*zieht das zerknüllte Taschentuch aus dem Strumpfband und hält es hoch* Sag mal, du Pleitegeier, hast du komplett die Orientierung verloren? Na gut, für die Frechheit gibt’s einen Punkt.','laugh'],
         ['P','(Ich glaube, das war ein Kompliment. Auf Russisch klingt alles wie eine Drohung.)','smirk']])}
     if(m==='wink'){ph.zoomZiel=Math.min(1.9,ph.zoomZiel+.3);ph.zoomBis=t+6;ph.vibe=Math.min(100,ph.vibe+3);
       if(!ph.winkN++)sprich([['NA','*beugt sich vor* Näher, Zwiebel? Noch näher kostet Aufpreis.','flirt']])}
-    if(m==='risk'&&!ph.riskDa&&!ph.risiko){ph.risiko='wählen';cv3.style.cursor='grab';$('#box').style.pointerEvents='none';ph.pop.push({t:u,txt:'✋ Klick auf den Oberkörper …',c:'255,200,160'})}
-    if(m==='geld'&&player.cash>0){player.cash--;FL.na_tip=Math.min(3,(FL.na_tip||0)+1);ph.vibe=Math.min(100,ph.vibe+15);ph.pop.push({t:u,txt:'+ Башли ₽',c:'160,255,170'});
+    if(m==='risk'&&!ph.risiko&&t>=ph.riskBis){ph.risiko='wählen';cv3.style.cursor='grab';$('#box').style.pointerEvents='none';ph.pop.push({t:u,txt:'✋ Klick auf Kopf, Oberkörper oder Hüfte …',c:'255,200,160'})}
+    if(m==='geld'&&player.cash>0){player.cash--;FL.na_tip=Math.min(3,(FL.na_tip||0)+1);ph.vibe=Math.min(100,ph.vibe+15);ph.pop.push({t:u,txt:'+ Rubel ₽',c:'160,255,170'});
       sprich([['NA','*nimmt den Rubel und steckt ihn ins Strumpfband* Na also. Geht doch, Zwiebel. Für Geld tanz ich sogar mit Gefühl.','flirt']])}
     menuBau()}
   // RISKY_CONTACT: Klick in upper_torso_zone
   function griff(e){const[mx,my]=pos(e),b=ph.torso,t=jetztT();cv3.style.cursor='crosshair';
     $('#box').style.pointerEvents='';
     if(Math.cos(ph.theta)<.5){ph.risiko=null;ph.pop.push({t:t-OFF-ph.pauseSum,txt:'Sie dreht dir den Rücken zu …',c:'200,170,190'});menuBau();return}
+    const drin=z=>z&&mx>=z.x0&&mx<=z.x1&&my>=z.y0&&my<=z.y1,ok=relOf('Nastja')>GRIFF_SCHWELLE;
+    if(drin(ph.zoneOben)||drin(ph.zoneUnten)){ph.risiko=null;ph.riskBis=t+RISK_PAUSE;zoneKlick(drin(ph.zoneOben)?'oben':'unten',ok,t);menuBau();return}
     if(!b||mx<b.x0||mx>b.x1||my<b.y0||my>b.y1){ph.risiko=null;ph.pop.push({t:t-OFF-ph.pauseSum,txt:'… doch nicht. Feigling.',c:'200,170,190'});menuBau();return}
-    ph.risiko='hand';ph.riskDa=1;ph.handT=t;ph.handAus=0;$('#box').style.pointerEvents='';
+    ph.risiko='hand';ph.riskBis=t+RISK_PAUSE+(relOf('Nastja')>GRIFF_SCHWELLE?2:0);ph.handT=t;ph.handAus=0;$('#box').style.pointerEvents='';
     ph.griffArt=relOf('Nastja')<=GRIFF_SCHWELLE?'nein':ph.zin.sicht?'zin':'ja';
     if(ph.griffArt==='ja')ph.handZiel=[b.x1-(b.x1-b.x0)*.12,b.y1-(b.y1-b.y0)*.08];   // Hand an ihre Taille (Seite zu Petja)
     else{const d=Math.hypot(900-mx,620-my);ph.handZiel=[mx+(900-mx)/d*34,my+(620-my)/d*34]}   // Hand bleibt 34 px vor dem Ziel in der Luft
     menuBau()}
-  // Stimmung ≥ 70 und Zinaida guckt weg: sie lässt sich näher ziehen
+  // Kopf- und Hüft-Zone: nur Dialog und Stimmung, kein Arm
+  function zoneKlick(zone,ok,t){const u=t-OFF-ph.pauseSum;
+    if(zone==='oben'){if(ok){ph.vibe=Math.min(100,ph.vibe+5);ph.hv+=18;ph.pop.push({t:u,txt:'♥',c:'255,215,120'});
+        sprich([['NA','*streicht sich die Strähne zurück* Na gut. An die Haare kommst du nicht ran … aber so geht’s. Die Frisur ist heilig, Zwiebel.']])}
+      else{ph.pop.push({t:u,txt:'Nö.',c:'255,140,120'});
+        sprich([['NA','Finger weg von der Frisur! Die hat zwei Stunden und eine Dose Haarspray gekostet.','laugh']])}}
+    else{if(ok){ph.vibe=Math.min(100,ph.vibe+8);ph.vx+=14;ph.pop.push({t:u,txt:'Frech! ♥',c:'255,215,120'});
+        sprich([['NA','*zieht eine Augenbraue hoch* Du legst es drauf an, Pjotr. Ich merk mir das.','flirt']])}
+      else{ph.vibe=Math.max(0,ph.vibe-10);ph.pauseBis=t+2.2;ph.zin.stopp=t;ph.zin.sicht=false;ph.pop.push({t:u,txt:'Erwischt!',c:'255,110,110'});
+        sprich([['Z','*reißt den Vorhang auf* Schluss mit dem Zirkus, ihr zwei! Hände aufs Sofa, Süßer!'],['P','(Herzinfarkt. Fast.)','pain']])}}}
+  // Mitte, Beziehung > 70 und Zinaida guckt weg: sie lässt sich näher ziehen
   function griffErfolg(t){const u=t-OFF-ph.pauseSum;playSquishSound();ph.vx+=26;ph.hv+=34;ph.hyv-=10;   // im selben Bild wie das Zusammendrücken
-    ph.vibe=Math.min(100,ph.vibe+20);FL.na_mut=Math.min(2,(FL.na_mut||0)+1);
+    ph.vibe=Math.min(100,ph.vibe+15);FL.na_mut=Math.min(2,(FL.na_mut||0)+1);
     ph.zoomZiel=2.15;ph.zoomBis=t+3.2;ph.pop.push({t:u,txt:'Mutig! ♥♥',c:'255,215,120'});
-    sprich([['NA','*lässt sich von dir an der Taille ein Stück näher ziehen* Ну ты наглец … Mutig, Zwiebel.','flirt'],
-      ['NA','*beugt sich ganz nah zu dir runter* Bei der Stimmung lass ich dir das durchgehen. Einmal. Hände bleiben, wo ich sie sehe.','flirt'],
+    sprich([['NA','Oh … du bist ja ein ganz Frecher.','flirt'],['NA','*lässt sich von dir an der Taille ein Stück näher ziehen* Mutig, Zwiebel. Dir lass ich das durchgehen. Einmal. Hände bleiben, wo ich sie sehe.','flirt'],
       ['P','(Sie riecht nach Vanille und Haarspray. Ich darf jetzt nie wieder blinzeln.)']])}
   // Stimmung ≥ 70, aber Zinaida guckt: sie geht dazwischen
   function griffZinaida(t){const u=t-OFF-ph.pauseSum;ph.vibe=Math.max(0,ph.vibe-15);ph.pauseBis=t+2.2;ph.zin.stopp=t;ph.zin.sicht=false;
@@ -200,9 +217,9 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
     sprich([['Z','*reißt den Vorhang auf* STOPP! Hände aufs Sofa, Süßer! In meinem Haus wird geguckt, nicht gegrapscht!'],
       ['NA','*verdreht die Augen* Danke, Mamotschka. Wir hatten’s gerade so gemütlich.','laugh'],['P','(Herzinfarkt. Fast.)','pain']])}
   // Nastjas Konter: Hand wegschlagen, Stimmung runter, Zinaida grinst
-  function griffAusgang(t){const u=t-OFF-ph.pauseSum;ph.vibe=Math.max(0,ph.vibe-12);ph.zin.grinst=t;ph.zin.sicht=false;
+  function griffAusgang(t){const u=t-OFF-ph.pauseSum;ph.vibe=Math.max(0,ph.vibe-10);ph.zin.grinst=t;ph.zin.sicht=false;
     ph.pop.push({t:u,txt:'*KLATSCH*',c:'255,140,120'});
-    sprich([['NA','*schlägt deine Hand genervt zur Seite* Клешни свои убрал с верхнего этажа!','laugh'],['NA','Schaufelhände weg vom Obergeschoss, Zwiebel. Gucken ja, Baustelle nein.'],
+    sprich([['NA','*schlägt deine Hand genervt zur Seite* Pfoten weg, du Pleitegeier!','laugh'],['NA','Schaufelhände weg, Zwiebel. Gucken ja, Baustelle nein.'],
       ['P','(Meine Hand pocht. Mein Stolz auch.)','pain']])}
   menuBau();
   cv3.onmousemove=e=>{const[mx,my]=pos(e),a=Math.atan2(my-250,mx-400);if(Math.hypot(mx-400,my-250)<40){mausWinkel=null;return}
@@ -241,6 +258,7 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
     // Zinaida linst ab und zu hinter dem Vorhang hervor
     {const Z=ph.zin;if(!Z.sicht&&u>2&&u<21&&u>=Z.naechste&&t>ph.pauseBis){Z.sicht=true;Z.ab=t}
       if(Z.sicht&&t-Z.ab>2.6){Z.sicht=false;Z.naechste=u+7+Math.random()*6}}
+    if(ph.riskBis&&t>=ph.riskBis&&!ph.risiko){ph.riskBis=0;menuBau()}
     if(ph.risiko==='hand'&&!ph.handAus){const a=t-ph.handT;
       if(ph.griffArt==='ja'&&a>=GRIFF_T.heran){ph.handAus=1;griffErfolg(t)}else if(ph.griffArt==='zin'&&a>=.42){ph.handAus=1;griffZinaida(t)}else if(ph.griffArt==='nein'&&a>=.52){ph.handAus=1;griffAusgang(t)}}
     if(ph.risiko==='hand'&&t-ph.handT>(ph.griffArt==='ja'?GRIFF_T.weg:1.4)){ph.risiko=null;ph.handAus=0;menuBau()}
@@ -289,7 +307,9 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
     const rig=naRig(bild,SK.zonen,eigen?null:SK.brust);
     const fy=py-266*sc*(1-SK.zonen.brust),zm=ph.zoom;   // Kamera-Zoom auf den Oberkörper
     if(rig){const w0=rig.w*266/rig.h*sc,hh=266*sc,P2=(sx,sy)=>[px+sx*w0*zm,fy+(py-hh+sy*hh-fy)*zm],[ax0,ay0]=P2(-.17,SK.zonen.hals),[ax1,ay1]=P2(.17,SK.zonen.taille);
-      ph.torso={x0:Math.min(ax0,ax1),x1:Math.max(ax0,ax1),y0:ay0,y1:ay1}}   // upper_torso_zone in Bildschirm-Koordinaten (800×500)
+      ph.torso={x0:Math.min(ax0,ax1),x1:Math.max(ax0,ax1),y0:ay0,y1:ay1};
+      const[kx0,ky0]=P2(-.2,.01),[kx1]=P2(.2,.01),[ux0,uy1]=P2(-.21,SK.zonen.huefte+.03),[ux1]=P2(.21,SK.zonen.huefte);
+      ph.zoneOben={x0:Math.min(kx0,kx1),x1:Math.max(kx0,kx1),y0:ky0,y1:ay0};ph.zoneUnten={x0:Math.min(ux0,ux1),x1:Math.max(ux0,ux1),y0:ay1,y1:uy1}}   // upper_torso_zone in Bildschirm-Koordinaten (800×500)
     x.save();x.translate(px,fy);x.scale(zm,zm);x.translate(-px,-fy);
     if(u>-.9&&rig){x.save();x.translate(px,py+(sit?-2:0));x.rotate(Math.sin(w*u)*.025*inten);const s0=266/rig.h*sc;x.scale(s0,s0);
       const st={kopf,brust,huefte,wipp:ph.wipp,jigX:ph.jx,jigY:ph.jy,haar:ph.hx,haarY:ph.hy,faecher:Math.min(.18,Math.abs(omega)*.04)};
@@ -343,6 +363,7 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
 
 // Petjas ausgestreckter Arm aus der Ich-Sicht: Handfläche (PETJA_ARM_ANKER) liegt auf X/Y, Ärmel läuft nach rechts unten aus dem Bild.
 // rot dreht um die Handfläche (weggeschlagen = im Uhrzeigersinn). Solange das Bild noch lädt, springt die klobige Hand ein.
+const RISK_PAUSE=4;   // Sekunden, bis „Riskant anfassen“ wieder geht
 const GRIFF_SCHWELLE=70;   // über dieser Beziehung lässt Nastja sich anfassen
 const ARM_S=.7,ARM_DIR=(()=>{const v=[PETJA_ARM_W-PETJA_ARM_ANKER[0],PETJA_ARM_H*.85-PETJA_ARM_ANKER[1]],l=Math.hypot(...v);return[v[0]/l,v[1]/l]})();
 // druck 0 = Hand gespreizt (wie im Bild), 1 = zusammengedrückt. Statt eines zweiten Sprites verformt eine Skalierungs-Matrix nur die Hand:
@@ -365,10 +386,10 @@ function griffZustand(a){const T=GRIFF_T;
   const k=Math.min(1,(a-T.loslassen)/(T.weg-T.loslassen));return{zustand:'weg',w:k*k*470,dreh:-.05*(1-k),druck:0}}
 // Squish: synthetischer Frequenz-Sweep 180 → 340 → 120 Hz (Web Audio), hängt an der Geräusch-Lautstärke (MASTER, 14-sound.js)
 function playSquishSound(){try{initAudio();if(!AC||!MASTER)return;const t=AC.currentTime,o=AC.createOscillator(),g=AC.createGain(),f=AC.createBiquadFilter();
-  o.type='triangle';o.frequency.setValueAtTime(180,t);o.frequency.exponentialRampToValueAtTime(340,t+.07);o.frequency.exponentialRampToValueAtTime(120,t+.22);
-  f.type='lowpass';f.frequency.value=900;f.Q.value=6;
-  g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.35,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+.26);
-  o.connect(f);f.connect(g);g.connect(MASTER);o.start(t);o.stop(t+.28)}catch(e){}}
+  o.type='sine';o.frequency.setValueAtTime(180,t);o.frequency.exponentialRampToValueAtTime(340,t+.08);o.frequency.exponentialRampToValueAtTime(120,t+.18);
+  f.type='lowpass';f.frequency.value=1200;
+  g.gain.setValueAtTime(.01,t);g.gain.linearRampToValueAtTime(.35,t+.04);g.gain.exponentialRampToValueAtTime(.001,t+.2);
+  o.connect(f);f.connect(g);g.connect(MASTER);o.start(t);o.stop(t+.2)}catch(e){}}
 // Petjas klobige Hand (Ersatz): grobe Pixel-Art (9-px-Blöcke), Ärmel nach oben, Finger nach unten; rot dreht den Ärmel zur Einflugrichtung.
 // Sauberer Hautton, nur massiv und unförmig – ein Klotz neben Nastjas feinem Korsett.
 const KLOBIG=['...KKKKK...','..KAAAAAK..','..KAAAAAK..','..KAABAAK..','..KAAAAAK..','..KKKKKKK..','..KSSSSSK..','.KSSSSSSDK.','KSHSSSSSSDK','KSHSSSSSSDK','KSSSSSSSSDK',

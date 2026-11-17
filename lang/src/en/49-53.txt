@@ -12,18 +12,12 @@
 =Daneben … => Off beat …
 =Dreh dich! ✦ => Spin! ✦
 =+ Frechheit => + Cheek
-=+ Башли ₽ => + Башли ₽
-=💸 Башли => 💸 Башли (cash)
-=*zieht das zerknüllte Taschentuch aus dem Strumpfband und hält es hoch* Ты чё, нищеброд, совсем берега попутал? Ну ладно, за наглость засчитаю. => *pulls the crumpled tissue out of her garter and holds it up* Ты чё, нищеброд, совсем берега попутал? Ну ладно, за наглость засчитаю.
 =(Ich glaube, das war ein Kompliment. Auf Russisch klingt alles wie eine Drohung.) => (I think that was a compliment. In Russian everything sounds like a threat.)
 =*beugt sich vor* Näher, Zwiebel? Noch näher kostet Aufpreis. => *leans in* Closer, Onion? Any closer costs extra.
-=✋ Klick auf den Oberkörper … => ✋ Click her upper body …
 =*nimmt den Rubel und steckt ihn ins Strumpfband* Na also. Geht doch, Zwiebel. Für Geld tanz ich sogar mit Gefühl. => *takes the rouble and tucks it into her garter* There we go, Onion. For money I even dance with feeling.
 =Sie dreht dir den Rücken zu … => She has her back to you …
 =… doch nicht. Feigling. => … or not. Coward.
 =*KLATSCH* => *SLAP*
-=*schlägt deine Hand genervt zur Seite* Клешни свои убрал с верхнего этажа! => *swats your hand aside, annoyed* Клешни свои убрал с верхнего этажа!
-=Schaufelhände weg vom Obergeschoss, Zwiebel. Gucken ja, Baustelle nein. => Keep those clumsy shovel-hands off the upper floor, Onion. Looking, yes. Building site, no.
 =(Meine Hand pocht. Mein Stolz auch.) => (My hand is throbbing. So is my pride.)
 =STIMMUNG => MOOD
 =*grinst hämisch* => *grins smugly*
@@ -60,7 +54,6 @@
 ~Freier Tanz – kreise mit der Maus! ({}) => Free dance – circle the mouse! ({})
 =📺 CRT-Filter => 📺 CRT filter
 =🙂 Porträts im Gespräch => 🙂 Portraits in dialogue
-=За здоровье! *kipp* … Ahh. Wie Muttermilch. Wenn die Mutter ein Traktor war. => За здоровье! *knocks it back* … Ahh. Like mother’s milk. If your mother was a tractor.
 =*kipp* Der ist vom Februar. Guter Monat. Kurzer Monat. => *knocks it back* This one’s from February. Good month. Short month.
 =*hicks* Noch einer, Städter? Oder brauchst du ein Kissen? => *hic* Another one, city boy? Or do you need a pillow?
 =*kipp* *rülps* Für die Sowjetunion! Die war auch irgendwann alle. => *knocks it back* *burp* To the Soviet Union! That ran out eventually too.
@@ -78,12 +71,10 @@
 =/ # · 🏅 Trinkduell gewonnen => / # · 🏅 Drinking duel won
 =Dorf-Ruf: => Village standing:
 =🥃 Trinkduell => 🥃 Drinking duel
-=Самосад, bis einer liegt => Самосад, until someone drops
 =💬 Reden => 💬 Talk
 =Revanche? *hicks* Ich hab extra den vom März aufgemacht. Der ist böser. => A rematch? *hic* I opened the March batch specially. It’s nastier.
 =Na, Städter? Wieder wach? Dann setz dich. Diesmal halt ich dir die Stirn fest. => Well, city boy? Awake again? Sit down then. This time I’ll hold your forehead.
 =Opa … was ist das für eine Flasche? => Grandpa … what’s in that bottle?
-=Самосад. Selbstgebrannt. Aus Kartoffeln, Zucker und Groll. => Самосад. Home-distilled. From potatoes, sugar and grudges.
 =Wer im Dorf was gelten will, muss mit Grischa trinken. Wer zuerst umfällt, verliert. Wer gewinnt, ist einer von uns. => Anyone who wants to count for something in this village drinks with Grisha. First to fall over loses. The winner is one of us.
 =Und wenn ich verliere? => And if I lose?
 =Dann schläfst du unterm Tisch. Ist auch gemütlich. Frisch geteert. => Then you sleep under the table. It’s cosy. Freshly tarred.
@@ -96,7 +87,6 @@
 =Glas # => Glass #
 =Leertaste / Klick: kippen! => Space / click: knock it back!
 =Trink endlich! Der Schnaps wird nicht jünger! => Drink already! The booze isn’t getting any younger!
-=*hicks* … Твою мать! … Der Boden … der Boden kommt hoch! => *hic* … Твою мать! … The floor … the floor is coming up!
 =*RUMMS* => *THUD*
 =(Opa liegt unterm Tisch. Ich sitze noch. Glaube ich.) => (Grandpa is under the table. I’m still sitting. I think.)
 =*würg* … Opa … warum dreht sich Ihr Haus? => *gag* … Grandpa … why is your house spinning?
@@ -126,7 +116,6 @@
 =Grischa untern Tisch getrunken. => Drank Grisha under the table.
 =*lacht krächzend* Dann bist du verloren. Geh. Die warten schon. => *cackles* Then you’re lost. Go. They’re waiting.
 =*steht stramm, schwankt leicht* Achtung! Hiermit ernenne ich, Grischa, Gefreiter a. D., dich zum Ehrenbürger! => *stands to attention, swaying slightly* Attention! I, Grisha, retired private, hereby name you honorary citizen!
-=*heftet dir einen Orden an* Почётный гражданин. Der war mal für 30 Jahre Melkbetrieb. Jetzt ist er deiner. => *pins a medal on you* Почётный гражданин. It used to be for 30 years at the dairy farm. Now it’s yours.
 =Ich … danke. Ehrlich. => I … thank you. Really.
 =Ehrenbürger! Dann darfst du mir jetzt auch offiziell die Kohlen reintragen. Mit Orden. => Honorary citizen! Then you can officially carry my coal in now. With your medal on.
 =Natürlich, Oma Dusja. => Of course, Granny Dusya.
@@ -228,15 +217,35 @@
 =Fjodors Dorfleitung ist von 1971. Im Verteilerkasten liegen die Kabelstücke kreuz und quer. => Fyodor’s village line is from 1971. In the junction box the cable pieces are all over the place.
 =In der Schmiede mit Fjodor reden. Die Kabelstücke drehen, bis Schmiede und Omas Hütte Strom haben. Kein Kabel darf ins Leere zeigen. => Talk to Fyodor at the smithy. Turn the cable pieces until the smithy and Granny’s hut have power. No cable may point at nothing.
 # Tanz: 70-%-Schwelle, russische Menünamen (2.39)
-=Tempos zustecken => slip her some tissues
-=näher ranbeugen => lean in closer
 =ab # % Beziehung => from # % relationship
 =Mutig! ♥♥ => Bold! ♥♥
 =Erwischt! => Caught!
 =STOPP! => STOP!
-=*lässt sich von dir an der Taille ein Stück näher ziehen* Ну ты наглец … Mutig, Zwiebel. => *lets you pull her a little closer by the waist* Ну ты наглец … Bold, Onion.
-=*beugt sich ganz nah zu dir runter* Bei der Stimmung lass ich dir das durchgehen. Einmal. Hände bleiben, wo ich sie sehe. => *leans right down to you* With this mood I’ll let it slide. Once. Hands stay where I can see them.
 =(Sie riecht nach Vanille und Haarspray. Ich darf jetzt nie wieder blinzeln.) => (She smells of vanilla and hairspray. I am never allowed to blink again.)
 =*reißt den Vorhang auf* STOPP! Hände aufs Sofa, Süßer! In meinem Haus wird geguckt, nicht gegrapscht! => *rips the curtain open* STOP! Hands on the sofa, sweetie! In my house we look, we don’t grab!
 =*verdreht die Augen* Danke, Mamotschka. Wir hatten’s gerade so gemütlich. => *rolls her eyes* Thanks, Mamochka. We were just getting cosy.
 =(Herzinfarkt. Fast.) => (Heart attack. Almost.)
+# Tanz: drei Zonen (2.41)
+=✋ Klick auf Kopf, Oberkörper oder Hüfte … => ✋ Click her head, upper body or hip …
+=Nö. => Nope.
+=Frech! ♥ => Cheeky! ♥
+=Finger weg von der Frisur! Die hat zwei Stunden und eine Dose Haarspray gekostet. => Hands off the hairdo! That took two hours and a whole can of hairspray.
+=*zieht eine Augenbraue hoch* Du legst es drauf an, Pjotr. Ich merk mir das. => *raises an eyebrow* You’re pushing it, Pyotr. I’ll remember that.
+=*reißt den Vorhang auf* Schluss mit dem Zirkus, ihr zwei! Hände aufs Sofa, Süßer! => *rips the curtain open* Enough of this circus, you two! Hands on the sofa, sweetie!
+=*lässt sich von dir an der Taille ein Stück näher ziehen* Mutig, Zwiebel. Dir lass ich das durchgehen. Einmal. Hände bleiben, wo ich sie sehe. => *lets you pull her a little closer by the waist* Bold, Onion. I’ll let you get away with it. Once. Hands stay where I can see them.
+=Schaufelhände weg, Zwiebel. Gucken ja, Baustelle nein. => Shovel hands off, Onion. Looking yes, building site no.
+# Deutsch statt Russisch im Code (2.41)
+=🧻 Tempos zustecken => 🧻 Slip her some tissues
+=👋 Näher ranbeugen => 👋 Lean in closer
+=✋ Riskant anfassen => ✋ Risky touch
+=💸 Geld zustecken => 💸 Slip her some cash
+=+ Rubel ₽ => + Rouble ₽
+=*zieht das zerknüllte Taschentuch aus dem Strumpfband und hält es hoch* Sag mal, du Pleitegeier, hast du komplett die Orientierung verloren? Na gut, für die Frechheit gibt’s einen Punkt. => *pulls the crumpled tissue out of her garter and holds it up* Seriously, you broke little vulture, have you lost all sense of direction? Fine, one point for the cheek.
+=*streicht sich die Strähne zurück* Na gut. An die Haare kommst du nicht ran … aber so geht’s. Die Frisur ist heilig, Zwiebel. => *smooths the strand back* Fine. You don’t get near the hair … but this is okay. The hairdo is sacred, Onion.
+=Oh … du bist ja ein ganz Frecher. => Oh … aren’t you a cheeky one.
+=*schlägt deine Hand genervt zur Seite* Pfoten weg, du Pleitegeier! => *swats your hand aside, annoyed* Paws off, you broke little vulture!
+=Auf die Gesundheit! *kipp* … Ahh. Wie Muttermilch. Wenn die Mutter ein Traktor war. => To your health! *knocks it back* … Ahh. Like mother’s milk. If your mother was a tractor.
+=Selbstgebrannter, bis einer liegt => moonshine until someone drops
+=Selbstgebrannter. Aus Kartoffeln, Zucker und Groll. => Moonshine. Made from potatoes, sugar and grudges.
+=*hicks* … Verdammt nochmal! … Der Boden … der Boden kommt hoch! => *hic* … Bloody hell! … The floor … the floor’s coming up!
+=*heftet dir einen Orden an* Ehrenbürger. Der war mal für 30 Jahre Melkbetrieb. Jetzt ist er deiner. => *pins a medal on you* Honorary citizen. It was for 30 years of dairy farming. Now it’s yours.

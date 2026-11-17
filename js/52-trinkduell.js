@@ -21,7 +21,7 @@ function endeMatrix(wahl){return wahl==='return'?(has('polaroid')?'nastja':'heim
 
 // ---------- Texte ----------
 const DUELL_OPA_TRINKT=[
-  [['G','За здоровье! *kipp* … Ahh. Wie Muttermilch. Wenn die Mutter ein Traktor war.']],
+  [['G','Auf die Gesundheit! *kipp* … Ahh. Wie Muttermilch. Wenn die Mutter ein Traktor war.']],
   [['G','*kipp* Der ist vom Februar. Guter Monat. Kurzer Monat.']],
   [['G','*hicks* Noch einer, Städter? Oder brauchst du ein Kissen?']],
   [['G','*kipp* *rülps* Für die Sowjetunion! Die war auch irgendwann alle.']],
@@ -38,14 +38,14 @@ wrapFn('opa',function(orig){if(!FL.haus||has('schnaps'))return orig();
   const ruf=dorfRuf(),bild=PORTRAETS.opa[FL.duellSieg?'drunk':FL.duellNied?'angry':'neutral'];
   const o=openO(`<div class="pan menu namenu duellmenu"><button class="x" title="Schließen (ESC)">${ic('close')}</button><div class="nahead"><img src="${bild}" alt="" style="image-rendering:pixelated"><div><h3>Opa Grischa</h3>
     <p class="em">Dorf-Ruf: <b>${ruf}</b> / 100${FL.duellSieg?' · 🏅 Trinkduell gewonnen':''}</p></div></div>
-    <button class="mb big" data-a="duell">🥃 Trinkduell <small>Самосад, bis einer liegt</small></button><button class="mb big" data-a="reden">💬 Reden</button></div>`,'menuO');
+    <button class="mb big" data-a="duell">🥃 Trinkduell <small>Selbstgebrannter, bis einer liegt</small></button><button class="mb big" data-a="reden">💬 Reden</button></div>`,'menuO');
   o.querySelector('[data-a=reden]').onclick=()=>{closeO();orig()};
   o.querySelector('[data-a=duell]').onclick=()=>{closeO();duellStart()}});
 
 function duellStart(){
   const intro=FL.duellSieg?[['G','Revanche? *hicks* Ich hab extra den vom März aufgemacht. Der ist böser.','drunk']]
     :FL.duellNied?[['G','Na, Städter? Wieder wach? Dann setz dich. Diesmal halt ich dir die Stirn fest.','drunk']]
-    :[['P','Opa … was ist das für eine Flasche?'],['G','Самосад. Selbstgebrannt. Aus Kartoffeln, Zucker und Groll.'],
+    :[['P','Opa … was ist das für eine Flasche?'],['G','Selbstgebrannter. Aus Kartoffeln, Zucker und Groll.'],
       ['G','Wer im Dorf was gelten will, muss mit Grischa trinken. Wer zuerst umfällt, verliert. Wer gewinnt, ist einer von uns.'],
       ['P','Und wenn ich verliere?'],['G','Dann schläfst du unterm Tisch. Ist auch gemütlich. Frisch geteert.','drunk'],
       ['P','(Kipp ihn, wenn das Herz in der Mitte ist. Leertaste oder Klick.)']];
@@ -141,7 +141,7 @@ function duellRun(){const{cv2,x}=a3Canvas(),T0=performance.now(),opaBild=DUELL_O
     if(st.treffer==='daneben'&&st.phase==='petjaTrinkt'){x.fillStyle=`rgba(255,60,40,${.35*(1-(t-st.tPhase)/1.2)})`;x.fillRect(0,0,800,500)}
     const v=x.createRadialGradient(400,250,180,400,250,520);v.addColorStop(0,'rgba(0,0,0,0)');v.addColorStop(1,`rgba(0,0,0,${.45+dr*.4})`);x.fillStyle=v;x.fillRect(0,0,800,500);
     hud(t);requestAnimationFrame(frame)}
-  function gewonnen(t){st.phase='ende';st.sieger='petja';st.tPhase=t;sprich([['G','*hicks* … Твою мать! … Der Boden … der Boden kommt hoch!','angry'],['P','*RUMMS*'],['P','(Opa liegt unterm Tisch. Ich sitze noch. Glaube ich.)']])}
+  function gewonnen(t){st.phase='ende';st.sieger='petja';st.tPhase=t;sprich([['G','*hicks* … Verdammt nochmal! … Der Boden … der Boden kommt hoch!','angry'],['P','*RUMMS*'],['P','(Opa liegt unterm Tisch. Ich sitze noch. Glaube ich.)']])}
   function verloren(t){st.phase='ende';st.sieger='opa';st.tPhase=t;sprich([['P','*würg* … Opa … warum dreht sich Ihr Haus?'],['G','*lacht* Städter! Weich wie Butter!','drunk']])}
   function ende(sieger){if(fin)return;fin=true;removeEventListener('keydown',key,true);DUELL_AKTIV=null;cv2.remove();if(busy)advance();
     if(sieger==='petja')duellSieg(false);
@@ -169,7 +169,7 @@ function endeEhren(){const sz=(room,pos,lines)=>new Promise(r=>{enter(room,pos);
   say([['P','Frau Jaga … das Dorf hat mich gefragt, ob ich bleibe.'],['J2','Das Dorf fragt nie jemanden. Was hast du angestellt?'],['P','Grischa untern Tisch getrunken.'],
     ['J2','*lacht krächzend* Dann bist du verloren. Geh. Die warten schon.']],async()=>{FL.ende=3;
     await sz('dorf',[420,470],[['G','*steht stramm, schwankt leicht* Achtung! Hiermit ernenne ich, Grischa, Gefreiter a. D., dich zum Ehrenbürger!'],
-      ['G','*heftet dir einen Orden an* Почётный гражданин. Der war mal für 30 Jahre Melkbetrieb. Jetzt ist er deiner.','drunk'],['P','Ich … danke. Ehrlich.','smirk']]);
+      ['G','*heftet dir einen Orden an* Ehrenbürger. Der war mal für 30 Jahre Melkbetrieb. Jetzt ist er deiner.','drunk'],['P','Ich … danke. Ehrlich.','smirk']]);
     await sz('dorfstr',[400,470],[['O','Ehrenbürger! Dann darfst du mir jetzt auch offiziell die Kohlen reintragen. Mit Orden.'],['P','Natürlich, Oma Dusja.','smirk']]);
     await sz('dorf',[420,470],[['G','Und jeden Freitag: Duell. Ehrenbürger trinken nicht weniger. Ehrenbürger trinken pünktlich.','drunk'],
       ['P','(Drüben war ich der Typ auf Wowas Sofa. Hier hab ich einen Orden. Für Saufen. Aber einen Orden.)'],['P','(Ich glaube, ich bleibe.)']]);
