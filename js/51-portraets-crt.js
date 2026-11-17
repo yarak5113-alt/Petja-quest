@@ -26,8 +26,13 @@ function portraitMimik(w,t,em){const fig=PORTRAIT_FIG[w];if(!fig)return null;con
 const PORTRAIT_IMG=(()=>{const im=document.createElement('img');im.id='portrait';im.alt='';$('#box').prepend(im);return im})();
 {const _next=next;next=function(){const zeile=queue[0];_next.apply(this,arguments);
   const an=OPT.portraits!==false&&busy&&zeile;const m=an?portraitMimik(zeile[0],zeile[1],zeile[2]):null;
-  if(m){PORTRAIT_IMG.src=PORTRAETS[PORTRAIT_FIG[zeile[0]]][m];PORTRAIT_IMG.dataset.fig=PORTRAIT_FIG[zeile[0]];box.classList.add('mitbild')}
+  if(m){PORTRAIT_IMG.src=PORTRAETS[PORTRAIT_FIG[zeile[0]]][m];PORTRAIT_IMG.dataset.fig=PORTRAIT_FIG[zeile[0]];box.classList.add('mitbild');portraitGroesse()}
   else box.classList.remove('mitbild')}}
+
+// Porträt immer genau so hoch wie die Leseleiste innen (passt sich an Textlänge und Textgröße an)
+function portraitGroesse(){if(!box.classList.contains('mitbild')||!PORTRAIT_IMG.naturalWidth)return;const h=Math.max(28,box.clientHeight-8),w=Math.round(h*PORTRAIT_IMG.naturalWidth/PORTRAIT_IMG.naturalHeight);
+  if(Math.abs((parseFloat(box.style.getPropertyValue('--ph'))||0)-h)<2)return;box.style.setProperty('--ph',h+'px');box.style.setProperty('--pw',w+'px')}
+if(window.ResizeObserver)new ResizeObserver(()=>requestAnimationFrame(portraitGroesse)).observe(box);   // erst im nächsten Bild: keine Resize-SchleifePORTRAIT_IMG.addEventListener('load',portraitGroesse);
 
 // ---------- CRT ----------
 document.body.insertAdjacentHTML('beforeend',`<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="crtRGB" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
@@ -46,10 +51,9 @@ function applyCrt(){document.documentElement.classList.toggle('crt-an',!!OPT.crt
   opts.querySelector('[data-x=portraits]').onclick=()=>{OPT.portraits=OPT.portraits===false;saveOpt();openMenu('o')};return r}}
 
 (function(){const css=document.createElement('style');css.textContent=`
-#box #portrait{display:none;position:absolute;left:10px;top:50%;transform:translateY(-50%);height:calc(78px*var(--boxs,1));width:auto;image-rendering:pixelated;
+#box #portrait{display:none;position:absolute;left:8px;top:4px;height:var(--ph,40px);width:auto;image-rendering:pixelated;
   border:2px solid var(--gold,#c8a04a);border-radius:4px;background:radial-gradient(circle at 50% 40%,#5a3a26,#2a160c);box-shadow:0 2px 0 rgba(0,0,0,.5)}
-#box.mitbild{padding-left:calc(122px*var(--boxs,1))!important;min-height:calc(66px*var(--boxs,1))}#box.mitbild #portrait{display:block}
-#box #portrait[data-fig=opa]{height:calc(84px*var(--boxs,1))}
+#box.mitbild{padding-left:calc(var(--pw,40px) + 18px)!important}#box.mitbild #portrait{display:block}
 #crt{display:none;position:absolute;inset:0;z-index:60;pointer-events:none}
 #crt i{position:absolute;inset:0}
 #crt .scan{background:repeating-linear-gradient(180deg,rgba(0,0,0,.22) 0 1px,rgba(0,0,0,0) 1px 3px);mix-blend-mode:multiply;animation:crtFlimmer .12s steps(2) infinite}

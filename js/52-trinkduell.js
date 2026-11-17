@@ -56,12 +56,12 @@ const duellGame=a3Mini('duell','Trinkduell mit Opa',duellRun,()=>!!FL.duellSieg,
 function duellRun(){const{cv2,x}=a3Canvas(),T0=performance.now(),opaBild=DUELL_OPA;
   const st={petja:100,opa:100,shot:1,phase:'zug',tPhase:0,pos:0,phi:Math.random()*6,treffer:null,pop:[],flasche:1,wackel:0};DUELL_AKTIV=st;
   let fin=false,tAlt=0;
-  const zone=()=>Math.max(.11,.19-st.shot*.01),tempo=()=>2.3+st.shot*.42,zitter=()=>.03+st.shot*.028+(1-st.petja/100)*.1;
+  const zone=()=>Math.max(.16,.25-st.shot*.012),tempo=()=>1.9+st.shot*.3,zitter=()=>.02+st.shot*.018+(1-st.petja/100)*.06;   // leichter (2.35)
   const sprich=l=>{if(busy)advance();say(l)},zufall=a=>a[Math.floor(Math.random()*a.length)];
   // Eingabe
   const kippen=()=>{if(fin||st.phase!=='zug')return;const a=Math.abs(st.pos),z=zone();const t=(performance.now()-T0)/1000;
-    if(a<=z){const perfekt=a<=z*.4;st.petja-=perfekt?6+st.shot:8+st.shot;st.treffer=perfekt?'perfekt':'ok';st.pop.push({t,txt:perfekt?'Perfekt runter! ♥':'Runtergewürgt',c:'255,220,120'});if(Math.random()<.4)sprich(zufall(DUELL_PETJA_TREFFER))}
-    else{st.petja-=20+st.shot*1.5;st.treffer='daneben';st.wackel=1;st.pop.push({t,txt:'*HUST* Verschluckt!',c:'255,120,120'});sprich(zufall(DUELL_PETJA_DANEBEN))}
+    if(a<=z){const perfekt=a<=z*.4;st.petja-=perfekt?4+st.shot*.8:6+st.shot*.9;st.treffer=perfekt?'perfekt':'ok';st.pop.push({t,txt:perfekt?'Perfekt runter! ♥':'Runtergewürgt',c:'255,220,120'});if(Math.random()<.4)sprich(zufall(DUELL_PETJA_TREFFER))}
+    else{st.petja-=14+st.shot;st.treffer='daneben';st.wackel=1;st.pop.push({t,txt:'*HUST* Verschluckt!',c:'255,120,120'});sprich(zufall(DUELL_PETJA_DANEBEN))}
     st.petja=Math.max(0,st.petja);st.flasche=Math.max(.05,st.flasche-.06);st.phase='petjaTrinkt';st.tPhase=t};
   const key=e=>{if(e.key===' '){e.preventDefault();e.stopPropagation();if(!e.repeat)kippen()}else if(e.key==='Escape'){e.stopPropagation();ende(null)}};
   addEventListener('keydown',key,true);cv2.onclick=e=>{e.stopPropagation();kippen()};
@@ -109,7 +109,7 @@ function duellRun(){const{cv2,x}=a3Canvas(),T0=performance.now(),opaBild=DUELL_O
     const M=400,B=230,Y=16;x.fillStyle='rgba(15,8,4,.75)';x.fillRect(M-B-70,Y-8,2*B+140,34);
     x.fillStyle='#3a2216';x.fillRect(M-B,Y,2*B,16);x.fillStyle='#e8903a';x.fillRect(M-B*st.petja/100,Y,B*st.petja/100,16);x.fillStyle='#c0392b';x.fillRect(M,Y,B*st.opa/100,16);
     x.fillStyle='#f6ead0';x.fillRect(M-1,Y-4,2,24);x.font='bold 13px Georgia';x.textAlign='right';x.fillText('PETJA',M-B-8,Y+13);x.textAlign='left';x.fillText('OPA',M+B+8,Y+13);
-    x.textAlign='center';x.font='12px Georgia';x.fillStyle='#ffd27a';x.fillText(`Shot ${st.shot}`,M,Y+32);x.textAlign='left';
+    x.textAlign='center';x.font='12px Georgia';x.fillStyle='#ffd27a';x.fillText(`Glas ${st.shot}`,M,Y+32);x.textAlign='left';
     // Herzschlag-Zeiger unten
     const QY=468,QB=210,z=zone();x.fillStyle='rgba(15,8,4,.8)';x.fillRect(M-QB-20,QY-22,2*QB+40,44);
     const g=x.createLinearGradient(M-QB,0,M+QB,0);g.addColorStop(0,'#8a1a1a');g.addColorStop(.5-z/2,'#c8902a');g.addColorStop(.5,'#3aa04a');g.addColorStop(.5+z/2,'#c8902a');g.addColorStop(1,'#8a1a1a');
@@ -121,9 +121,9 @@ function duellRun(){const{cv2,x}=a3Canvas(),T0=performance.now(),opaBild=DUELL_O
   function frame(){if(fin)return;const t=(performance.now()-T0)/1000,dt=Math.min(.05,t-tAlt);tAlt=t;
     // Zeiger: Sinus + zwei langsame „Herzflattern“-Wellen als Zittern
     if(st.phase==='zug'){st.phi+=dt*tempo();const zi=zitter();st.pos=Math.max(-1,Math.min(1,Math.sin(st.phi)*.95+zi*(Math.sin(t*13.7)+.6*Math.sin(t*23.1+1)+.4*Math.sin(t*5.3))));
-      if(t-st.tPhase>8&&st.tPhase>0){st.pos=9;kippen();sprich([['G','Trink endlich! Der Schnaps wird nicht jünger!','angry']])}}   // zu lange gezögert = daneben
+      if(t-st.tPhase>10&&st.tPhase>0){st.pos=9;kippen();sprich([['G','Trink endlich! Der Schnaps wird nicht jünger!','angry']])}}   // zu lange gezögert = daneben
     if(st.phase==='petjaTrinkt'&&t-st.tPhase>1.2){if(st.petja<=0){verloren(t);return requestAnimationFrame(frame)}st.phase='opaTrinkt';st.tPhase=t;
-      st.opa=Math.max(0,st.opa-(7+st.shot*1.8+Math.random()*4));if(st.opa>0&&Math.random()<.55)sprich(zufall(DUELL_OPA_TRINKT))}
+      st.opa=Math.max(0,st.opa-(9+st.shot*2+Math.random()*4));if(st.opa>0&&Math.random()<.55)sprich(zufall(DUELL_OPA_TRINKT))}
     if(st.phase==='opaTrinkt'&&t-st.tPhase>1.6){if(st.opa<=0){gewonnen(t);return requestAnimationFrame(frame)}st.shot++;st.phase='zug';st.tPhase=t;st.treffer=null}
     if(st.phase==='ende'&&t-st.tPhase>2.2)return ende(st.sieger);
     st.wackel=Math.max(0,st.wackel-dt*1.5);

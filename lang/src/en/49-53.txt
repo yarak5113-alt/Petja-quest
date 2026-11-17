@@ -1,0 +1,243 @@
+# 49–53: Privattanz-Menü, Porträts/CRT, Trinkduell, Dorf-Quests (2.35)
+=vorn => front
+=vorn-rechts => front right
+=Profil rechts => right profile
+=hinten-rechts => back right
+=hinten => back
+=hinten-links => back left
+=Profil links => left profile
+=vorn-links => front left
+=Perfekt! ♥ => Perfect! ♥
+=Im Takt ♪ => On the beat ♪
+=Daneben … => Off beat …
+=Dreh dich! ✦ => Spin! ✦
+=+ Frechheit => + Cheek
+=+ Башли ₽ => + Башли ₽
+=🧻 Tempos zustecken => 🧻 Slip her some tissues
+=👋 Näher ranwinken => 👋 Wave her closer
+=✋ Riskant … => ✋ Risky …
+=💸 Башли => 💸 Башли (cash)
+=*zieht das zerknüllte Taschentuch aus dem Strumpfband und hält es hoch* Ты чё, нищеброд, совсем берега попутал? Ну ладно, за наглость засчитаю. => *pulls the crumpled tissue out of her garter and holds it up* Ты чё, нищеброд, совсем берега попутал? Ну ладно, за наглость засчитаю.
+=(Ich glaube, das war ein Kompliment. Auf Russisch klingt alles wie eine Drohung.) => (I think that was a compliment. In Russian everything sounds like a threat.)
+=*beugt sich vor* Näher, Zwiebel? Noch näher kostet Aufpreis. => *leans in* Closer, Onion? Any closer costs extra.
+=✋ Klick auf den Oberkörper … => ✋ Click her upper body …
+=*nimmt den Rubel und steckt ihn ins Strumpfband* Na also. Geht doch, Zwiebel. Für Geld tanz ich sogar mit Gefühl. => *takes the rouble and tucks it into her garter* There we go, Onion. For money I even dance with feeling.
+=Sie dreht dir den Rücken zu … => She has her back to you …
+=… doch nicht. Feigling. => … or not. Coward.
+=*KLATSCH* => *SLAP*
+=*schlägt deine Hand genervt zur Seite* Клешни свои убрал с верхнего этажа! => *swats your hand aside, annoyed* Клешни свои убрал с верхнего этажа!
+=Schaufelhände weg vom Obergeschoss, Zwiebel. Gucken ja, Baustelle nein. => Keep those clumsy shovel-hands off the upper floor, Onion. Looking, yes. Building site, no.
+=(Meine Hand pocht. Mein Stolz auch.) => (My hand is throbbing. So is my pride.)
+=STIMMUNG => MOOD
+=*grinst hämisch* => *grins smugly*
+=Leertaste / Klick, wenn der Ring den Kreis trifft · Maus im Kreis: sie dreht sich mit · Esc beendet => Space / click when the ring meets the circle · circle the mouse: she spins along · Esc ends
+=✋ Klick auf ihren Oberkörper – auf eigene Gefahr! (daneben klicken = lassen) => ✋ Click her upper body – at your own risk! (click elsewhere = never mind)
+=*raschel* => *rustle*
+=*Strapse schnalzen* => *suspenders snap*
+=*Reißverschluss* => *zip*
+=*Fünf Minuten später. Stimmung: # %* => *Five minutes later. Mood: # %*
+=*außer Atem* Du hast den Takt gehalten, Zwiebel. Das schaffen nicht mal Zinaidas Stammgäste. => *out of breath* You kept the beat, Onion. Not even Zinaida’s regulars manage that.
+=*zupft dich am Kragen* Nächstes Mal klatschst du im Takt mit, Süßer. Oder wenigstens in der Nähe vom Takt. => *tugs your collar* Next time you clap along on the beat, sweetie. Or at least somewhere near it.
+=*haucht* Augen zu, Zwiebel. Ich hab was Neues an. Na ja – weniger Altes. => *breathes* Eyes shut, Onion. I’ve got something new on. Well – less of the old.
+=Augen zu. Und diesmal wirklich, Süßer. Das hier hat nicht mal Zinaida gesehen. => Eyes shut. Properly this time, sweetie. Not even Zinaida has seen this one.
+=(Das war ein Reißverschluss. Das war eindeutig ein Reißverschluss.) => (That was a zip. That was definitely a zip.)
+=Hände aufs Sofa, Zwiebel. Ich mach den Rest. => Hands on the sofa, Onion. I’ll do the rest.
+=Einmal rum … damit du siehst, dass hinten auch was ist. => Once around … so you can see there’s something at the back too.
+=Na los, dreh mich. Du hast doch Hände. Benutz sie – an der Maus. => Go on, spin me. You’ve got hands. Use them – on the mouse.
+=(Die Haare. Die Haare machen mich fertig.) => (The hair. The hair is killing me.)
+=*öffnet ein Auge, zieht die Braue hoch* Na? Das Outfit gibt’s nur für Stammkunden. Und für Zwiebeln. => *opens one eye, raises a brow* Well? This outfit is for regulars only. And onions.
+=Langsam drehen … so. Damit du was zum Erzählen hast. => Slow turn … like that. So you’ve got something to tell people.
+=Freier Tanz, Süßer. Du führst. Aber wehe, du trittst mir auf die Stiefel. => Free dance, sweetie. You lead. But step on my boots and you’re dead.
+=*zwinkert* Dreihundert Jahre im Sumpf, und das hier hat mich noch keiner tragen sehen. Fühl dich geehrt. => *winks* Three hundred years in the swamp and nobody has seen me in this. Feel honoured.
+=Ganz rum, Zwiebel. Von hinten bin ich übrigens genauso gefährlich. => All the way round, Onion. I’m just as dangerous from behind, by the way.
+=Dreh mich. Schneller. … Nicht so schnell, ich hab Absätze an! => Spin me. Faster. … Not that fast, I’m in heels!
+=*haucht* Ganz ruhig atmen, Süßer. Wenn du jetzt umkippst, tanz ich trotzdem zu Ende. => *breathes* Nice and slow, sweetie. If you pass out now, I’ll finish the dance anyway.
+=Wenn du so weitermachst, kriegst du noch was zum Mitnehmen. Was mit Rand. Zum Aufhängen. => Keep this up and you’ll get something to take home. Something with a border. For your wall.
+=(Ein … Foto? Meint sie ein Foto?) => (A … photo? Does she mean a photo?)
+=Nastja … ein Privattanz? => Nastya … a private dance?
+=Langsam, Zwiebel. Erst redest du mit mir, dann trinkst du mit mir – und dann reden wir übers Tanzen. => Easy, Onion. First you talk to me, then you drink with me – and then we talk about dancing.
+=(Sie will mich erst besser kennenlernen. Reden, anstoßen … ab „Freundlich“ tanzt sie vielleicht.) => (She wants to get to know me first. Talking, a toast … from “Friendly” on she might dance.)
+=Ein Privattanz? Heute nicht im Korsett, Süßer. Heute gibt’s … weniger. Ab in die Kabine. => A private dance? No corset today, sweetie. Today there’s … less. Into the booth.
+=Die Kabine ist frei, Zwiebel. Und ich bin’s auch – fast. => The booth is free, Onion. And so am I – almost.
+=VIP-Kabine, wie immer? Natürlich wie immer. => VIP booth, as usual? Of course as usual.
+~Freier Tanz – kreise mit der Maus! ({}) => Free dance – circle the mouse! ({})
+=📺 CRT-Filter => 📺 CRT filter
+=🙂 Porträts im Gespräch => 🙂 Portraits in dialogue
+=За здоровье! *kipp* … Ahh. Wie Muttermilch. Wenn die Mutter ein Traktor war. => За здоровье! *knocks it back* … Ahh. Like mother’s milk. If your mother was a tractor.
+=*kipp* Der ist vom Februar. Guter Monat. Kurzer Monat. => *knocks it back* This one’s from February. Good month. Short month.
+=*hicks* Noch einer, Städter? Oder brauchst du ein Kissen? => *hic* Another one, city boy? Or do you need a pillow?
+=*kipp* *rülps* Für die Sowjetunion! Die war auch irgendwann alle. => *knocks it back* *burp* To the Soviet Union! That ran out eventually too.
+=*hicks* … Der Tisch wackelt. Nicht ich. Der Tisch. => *hic* … The table’s wobbling. Not me. The table.
+=*kipp* *hicks* Ich seh dich doppelt, Junge. Beide sehen blass aus. => *knocks it back* *hic* I’m seeing two of you, boy. Both look pale.
+=*HUST* *würg* … Das ist kein Schnaps, das ist Abbeizer! => *COUGH* *gag* … That’s not booze, that’s paint stripper!
+=Ha! Wie ein Spatz am Brunnen! => Ha! Like a sparrow at the well!
+=*röchel* Mein Hals … ich glaub, mein Hals ist ausgezogen. => *wheeze* My throat … I think my throat has moved out.
+=*lacht* Durch die Nase! Der Junge trinkt durch die Nase! => *laughs* Through the nose! The boy drinks through his nose!
+=*keuch* Der brennt bis in die Schuhe. => *gasp* It burns all the way down to my shoes.
+=Dafür ist er ja da. Wärmt auch die Füße. => That’s what it’s for. Warms the feet too.
+=*schluck* … Geht. Geht doch. => *gulp* … Fine. That was fine.
+=*kipp* Ich spür meine Zunge nicht mehr. Ist das gut? => *knocks it back* I can’t feel my tongue. Is that good?
+=*schluck* Na klar. Wie Wasser. Brennendes Wasser. => *gulp* Sure. Like water. Burning water.
+=/ # · 🏅 Trinkduell gewonnen => / # · 🏅 Drinking duel won
+=Dorf-Ruf: => Village standing:
+=🥃 Trinkduell => 🥃 Drinking duel
+=Самосад, bis einer liegt => Самосад, until someone drops
+=💬 Reden => 💬 Talk
+=Revanche? *hicks* Ich hab extra den vom März aufgemacht. Der ist böser. => A rematch? *hic* I opened the March batch specially. It’s nastier.
+=Na, Städter? Wieder wach? Dann setz dich. Diesmal halt ich dir die Stirn fest. => Well, city boy? Awake again? Sit down then. This time I’ll hold your forehead.
+=Opa … was ist das für eine Flasche? => Grandpa … what’s in that bottle?
+=Самосад. Selbstgebrannt. Aus Kartoffeln, Zucker und Groll. => Самосад. Home-distilled. From potatoes, sugar and grudges.
+=Wer im Dorf was gelten will, muss mit Grischa trinken. Wer zuerst umfällt, verliert. Wer gewinnt, ist einer von uns. => Anyone who wants to count for something in this village drinks with Grisha. First to fall over loses. The winner is one of us.
+=Und wenn ich verliere? => And if I lose?
+=Dann schläfst du unterm Tisch. Ist auch gemütlich. Frisch geteert. => Then you sleep under the table. It’s cosy. Freshly tarred.
+=(Kipp ihn, wenn das Herz in der Mitte ist. Leertaste oder Klick.) => (Knock it back when the heart is in the middle. Space or click.)
+=Trinkduell mit Opa => Drinking duel with Grandpa
+=Perfekt runter! ♥ => Perfectly downed! ♥
+=Runtergewürgt => Choked it down
+=*HUST* Verschluckt! => *COUGH* Went down the wrong way!
+=OPA => GRANDPA
+=Glas # => Glass #
+=Leertaste / Klick: kippen! => Space / click: knock it back!
+=Trink endlich! Der Schnaps wird nicht jünger! => Drink already! The booze isn’t getting any younger!
+=*hicks* … Твою мать! … Der Boden … der Boden kommt hoch! => *hic* … Твою мать! … The floor … the floor is coming up!
+=*RUMMS* => *THUD*
+=(Opa liegt unterm Tisch. Ich sitze noch. Glaube ich.) => (Grandpa is under the table. I’m still sitting. I think.)
+=*würg* … Opa … warum dreht sich Ihr Haus? => *gag* … Grandpa … why is your house spinning?
+=*lacht* Städter! Weich wie Butter! => *laughs* City boy! Soft as butter!
+=*Später. Unterm Tisch.* => *Later. Under the table.*
+=(Es riecht nach Teer und Kartoffeln. Und nach Niederlage.) => (It smells of tar and potatoes. And defeat.)
+=*von oben* Morgen nochmal, Junge. Dann trink ich mit links. => *from above* Again tomorrow, boy. I’ll drink left-handed.
+=Aufhören mittendrin? Pfff. Feigling. … Der Schnaps läuft nicht weg. Du schon. => Quitting halfway? Pfff. Coward. … The booze won’t run away. You do.
+=*kriecht unterm Tisch hervor* … Junge. Du hast Grischa untern Tisch getrunken. => *crawls out from under the table* … Boy. You drank Grisha under the table.
+=Das hat seit Breschnew keiner geschafft. Du bist einer von uns. Ab heute. => Nobody has done that since Brezhnev. You’re one of us. As of today.
+=Und hier. Dein Wetteinsatz. Drei Rubel. Gib sie nicht für Schnaps aus. Schnaps kriegst du bei mir. => And here. Your winnings. Three roubles. Don’t spend them on booze. Booze you get from me.
+=Hier, ein Rubel. Revanche ist Revanche. => Here, a rouble. A rematch is a rematch.
+=(Ich hab gerade das Dorf erobert. Mit der Leber.) => (I just conquered the village. With my liver.)
+=+# Rubel · jetzt # ₽ => +# roubles · now # ₽
+=+# Rubel => +# rouble
+=Dorf-Ruf +# · jetzt # / # => Village standing +# · now # / #
+=Das Dorf will dich ehren. An Baba Jagas Tisch gibt es jetzt eine neue Wahl. => The village wants to honour you. At Baba Yaga’s table there’s a new choice now.
+=Für „Ehrenbürger“ fehlt noch Dorf-Ruf: # / #. Hilf den Leuten im Dorf. => For “Honorary Citizen” you still need village standing: # / #. Help the villagers.
+=Ende: Ehrenbürger => Ending: Honorary Citizen
+=Petja blieb. Nicht als Zahnrad – als einer von ihnen. Mit Urkunde. => Petya stayed. Not as a cog – as one of them. With a certificate.
+=🎖 Hierbleiben – als Ehrenbürger => 🎖 Stay – as an honorary citizen
+=Das Dorf will dich behalten: Orden, Urkunde, Freitagsduell => The village wants to keep you: medal, certificate, Friday duel
+=🎖 Dorf-Ruf # / # => 🎖 Village standing # / #
+=🎖 Dorf-Ruf # / # – mit mehr Ruf würde das Dorf dich als Ehrenbürger behalten => 🎖 Village standing # / # – with more standing the village would keep you as an honorary citizen
+=Frau Jaga … das Dorf hat mich gefragt, ob ich bleibe. => Mrs Yaga … the village asked me to stay.
+=Das Dorf fragt nie jemanden. Was hast du angestellt? => The village never asks anyone. What did you do?
+=Grischa untern Tisch getrunken. => Drank Grisha under the table.
+=*lacht krächzend* Dann bist du verloren. Geh. Die warten schon. => *cackles* Then you’re lost. Go. They’re waiting.
+=*steht stramm, schwankt leicht* Achtung! Hiermit ernenne ich, Grischa, Gefreiter a. D., dich zum Ehrenbürger! => *stands to attention, swaying slightly* Attention! I, Grisha, retired private, hereby name you honorary citizen!
+=*heftet dir einen Orden an* Почётный гражданин. Der war mal für 30 Jahre Melkbetrieb. Jetzt ist er deiner. => *pins a medal on you* Почётный гражданин. It used to be for 30 years at the dairy farm. Now it’s yours.
+=Ich … danke. Ehrlich. => I … thank you. Really.
+=Ehrenbürger! Dann darfst du mir jetzt auch offiziell die Kohlen reintragen. Mit Orden. => Honorary citizen! Then you can officially carry my coal in now. With your medal on.
+=Natürlich, Oma Dusja. => Of course, Granny Dusya.
+=Und jeden Freitag: Duell. Ehrenbürger trinken nicht weniger. Ehrenbürger trinken pünktlich. => And every Friday: a duel. Honorary citizens don’t drink less. Honorary citizens drink on time.
+=(Drüben war ich der Typ auf Wowas Sofa. Hier hab ich einen Orden. Für Saufen. Aber einen Orden.) => (Over there I was the guy on Vova’s sofa. Here I have a medal. For boozing. But a medal.)
+=(Ich glaube, ich bleibe.) => (I think I’ll stay.)
+=Wahres Ende: Ein Foto über dem Schreibtisch => True ending: A photo above the desk
+=Kabelrolle und Isolierzange => Cable reel and insulated pliers
+=Fjodors neues Kabel. Kupfer, schwarz ummantelt, schwer wie ein Gewissen. Die Zange hat gelbe Griffe. Gegen Strom. Hoffentlich. => Fyodor’s new cable. Copper, black sheathing, heavy as a guilty conscience. The pliers have yellow handles. Against electricity. Hopefully.
+=Kohlensack => Sack of coal
+=Ein Sack Steinkohle aus der Schmiede. Für Oma Dusja. Sie friert, sagt Fjodor. Sie würde es nie zugeben. => A sack of coal from the smithy. For Granny Dusya. She’s freezing, says Fyodor. She’d never admit it.
+=Vater Ignatis Kater => Father Ignati’s tomcat
+=Nass, beleidigt, riecht nach Fisch und Steg. Krallt sich in meine Jacke, als wäre ich ein Baum. Ich hab’s verdient. => Wet, offended, smells of fish and pier. Clings to my jacket like I’m a tree. I deserved that.
+=*springt mit allen Krallen an mein Bein* MRRRAAAAU! => *leaps at my leg with every claw out* MRRRAAAAOW!
+=AU! AU! LOS! LASS LOS! => OW! OW! LET GO! LET GO!
+=… Ups. => … Oops.
+=Der landet bestimmt weich. Katzen landen immer weich. Steht in jedem Buch. => He’ll land softly. Cats always land softly. It’s in every book.
+=Und da liegt … Omas Gebiss. Na lecker. => And there lie … Granny’s dentures. Lovely.
+=*TRITT* => *KICK*
+=MIAAAUUUUU! => MEOOOOOW!
+=Da unten, zwischen den Pfählen … zwei gelbe Augen. Der Kater vom Friedhof! => Down there, between the posts … two yellow eyes. The tomcat from the graveyard!
+=Er sitzt auf den Gräten von meinem Fisch und guckt, als hätte ich ihn getreten. => He’s sitting on my fish’s bones and looking at me like I kicked him.
+=… Hab ich ja auch. => … Which I did.
+=Okay. Ich lass dich in Ruhe. Für heute. => Okay. I’ll leave you alone. For today.
+=*kriecht auf allen vieren unter den Steg* Komm, Mieze. Dein Herrchen vermisst dich. => *crawls under the pier on all fours* Come on, kitty. Your master misses you.
+=*FAUCH* … *mrrr* … => *HISS* … *mrrr* …
+=*packt den nassen Kater* Na also. Ganz ruhig. Ich trete heute niemanden mehr. Versprochen. => *grabs the wet cat* There. Easy now. I’m not kicking anyone else today. Promise.
+=Vater Ignati … ich hab da was. Unter dem Steg beim Fischer gefunden. => Father Ignati … I’ve got something. Found it under the fisherman’s pier.
+=MURKA! Mein Kater! *drückt ihn an die Brust* Wie ist er bloß unter den Steg gekommen? => MURKA! My tomcat! *hugs him to his chest* How on earth did he get under the pier?
+=Er … ist geflogen. Im hohen Bogen. => He … flew. In a high arc.
+=*bekreuzigt sich* Ein Wunder. Ich wusste es. Der Herr wirkt durch Kater. => *crosses himself* A miracle. I knew it. The Lord works through tomcats.
+=Hier, mein Sohn. Aus der Kollekte. Ein Rubel. Sag’s keinem, sonst wollen alle einen. => Here, my son. From the collection. One rouble. Don’t tell anyone, or everyone will want one.
+=Mein Sohn, hast du meinen Kater gesehen? Den Dicken vom Friedhof? => My son, have you seen my tomcat? The fat one from the graveyard?
+=Die Dusja sagt, er ist über die Kirche geflogen. GEFLOGEN. Sie trinkt zu viel Kräutertee. => Dusya says he flew over the church. FLEW. She drinks too much herbal tea.
+=(Oh nein.) => (Oh no.)
+=Ich … halte die Augen offen, Vater. => I’ll … keep my eyes open, Father.
+=Gott segne dich. Er frisst gern Fisch. Vielleicht ist er beim See. => God bless you. He likes fish. Maybe he’s by the lake.
+=Noch keine Spur von meinem Kater? Er mag Fisch. Und dunkle Ecken. => No sign of my tomcat yet? He likes fish. And dark corners.
+=Beim See, mein Sohn. Wo es nach Fisch riecht. Unter etwas. => By the lake, my son. Where it smells of fish. Under something.
+=(Fisch, dunkel, unter etwas … der Steg beim Fischer!) => (Fish, dark, under something … the fisherman’s pier!)
+=Du. Lange. Kannst du Kabel? => You. Beanpole. Can you do cables?
+=Kabel … gucken? => Cables … like, watch them?
+=Die Dorfleitung ist von 1971. Die Masten stehen noch, aber die Kabel sind Zunder. Mein Licht flackert, als wär’s besoffen. => The village line is from 1971. The poles still stand, but the cables are tinder. My light flickers like it’s drunk.
+=Hier: neue Kabelrolle und die Zange mit den gelben Griffen. Erst den Hauptschalter am Trafo aus, dann die alten Kabel runter, dann die neuen ran. => Here: a new cable reel and the pliers with the yellow handles. First the main switch at the transformer off, then the old cables down, then the new ones up.
+=Und wehe, du fasst an, solange Strom drauf ist. Dann stehen dir die Haare wie meinem Besen. => And don’t you dare touch anything while it’s live. Your hair will stand up like my broom.
+=*bekommt Kabelrolle und Isolierzange* => *receives a cable reel and insulated pliers*
+=Die Leitung, Junge. Trafo, vier Masten, meine Schmiede. Leg los. => The line, boy. Transformer, four poles, my smithy. Get to it.
+=*schaut zur flackerfreien Lampe* … Na sieh mal an. Licht wie im Kreml. => *looks at the steady lamp* … Well, look at that. Light like in the Kremlin.
+=Hier, ein Sack Kohle. Der ist nicht für dich. Der ist für die Dusja. => Here, a sack of coal. It’s not for you. It’s for Dusya.
+=Sie friert in ihrer Hütte, sagt aber nix. Stolz wie ein Ziegenbock. Bring ihn ihr und sag nicht, dass er von mir ist. => She’s freezing in her hut but won’t say a word. Proud as a billy goat. Take it to her and don’t say it’s from me.
+=Leitung verlegen => Lay the line
+=*schaltet den Hauptschalter an* … *KLACK* => *flips the main switch on* … *CLACK*
+=*aus der Schmiede* LICHT! Junge, ich seh meine eigenen Füße! Die sind hässlich, aber ich seh sie! => *from the smithy* LIGHT! Boy, I can see my own feet! They’re ugly, but I can see them!
+=Fjodor? Sie wollten mir noch was geben. => Fyodor? You were going to give me something.
+=*BZZZT* Au! Strom ist noch drauf! => *BZZZT* Ow! It’s still live!
+=*BZZZT* Die Haare! Meine Haare! => *BZZZT* My hair! My hair!
+=*BZZZT* … Hauptschalter. Erst den HAUPTSCHALTER. => *BZZZT* … Main switch. The MAIN SWITCH first.
+=Nicht anschalten, solange gearbeitet wird! => Don’t switch it on while you’re working!
+=Strom an. Die alten Kabel knistern wieder. => Power on. The old cables are crackling again.
+=*KLACK* Licht in der Schmiede! => *CLACK* Light in the smithy!
+=*KLACK* Hauptschalter aus. Jetzt ist es sicher. => *CLACK* Main switch off. Now it’s safe.
+=*schnipp* Altes Kabel runter. => *snip* Old cable down.
+=Erst alle alten Kabel abnehmen. => Take all the old cables down first.
+=*festschraub* Hält. => *screws it tight* Holds.
+=*festschraub* Angeschlossen! Jetzt Strom an. => *screws it tight* Connected! Now power on.
+=Zu weit – das Kabel muss über jeden Mast. => Too far – the cable has to go over every pole.
+=Am Trafo hängt es schon. Jetzt zum ersten Mast. => It’s already fixed at the transformer. Now to the first pole.
+=AN => ON
+=AUS => OFF
+=Hauptschalter => Main switch
+=Licht! Die Schmiede hat wieder Strom. => Light! The smithy has power again.
+=#. Erst den Hauptschalter AUS (links am Trafo). => #. First switch the main switch OFF (left, at the transformer).
+=#. Alte Kabel anklicken und abnehmen (noch #). => #. Click the old cables to take them down (# left).
+=#. Neues Kabel verlegen: den grün blinkenden Mast anklicken (# / #). => #. Lay the new cable: click the green blinking pole (# / #).
+=#. Hauptschalter wieder AN. => #. Main switch back ON.
+=Esc: aufhören => Esc: stop
+=Pause. Mein Herz macht noch Stromstöße. => Break. My heart is still giving off shocks.
+=Komm wieder, wenn deine Frisur sich beruhigt hat. => Come back when your hair has calmed down.
+=Oma Dusja, ich hab hier einen Sack Kohle. Für Ihren Ofen. => Granny Dusya, I’ve got a sack of coal here. For your stove.
+=Kohle? Für mich? Ich frier doch nicht! … Wer fagt daf? => Coal? For me? I’m not freezing! … Who thaid that?
+=Niemand. Die Kohle ist … einfach übrig. => Nobody. The coal is … just spare.
+=*schnuppert am Sack* Daf riecht nach Fjodorf Fchmiede. Der alte Bock. => *sniffs the sack* Thmellth of Fyodor’th thmithy. The old goat.
+=*heizt den Ofen an* … Ahhh. Warm. Junge, du bift ein Engel mit langen Beinen. => *lights the stove* … Ahhh. Warm. Boy, you’re an angel with long legth.
+=Fag ihm danke. Aber nicht fo, daff er ef merkt. => Thay thankth to him. But not tho he noticeth.
+=Brrr … Junge, mach die Tür zu, ef zieht. => Brrr … boy, thut the door, there’th a draught.
+=(Die Kohle für sie. Ich hab den Sack doch … wo hab ich den Sack?) => (The coal for her. I had the sack … where did I put the sack?)
+=Strom für die Schmiede => Power for the smithy
+=Fjodors Dorfleitung ist von 1971. Alte Kabel runter, neue ran. => Fyodor’s village line is from 1971. Old cables down, new ones up.
+=In der Schmiede mit Fjodor reden. Erst den Hauptschalter aus, dann die alten Kabel abnehmen, neues Kabel Mast für Mast ziehen, Strom wieder an. => Talk to Fyodor at the smithy. Main switch off first, then take the old cables down, run the new cable pole by pole, power back on.
+=Kohle für Oma Dusja => Coal for Granny Dusya
+=Oma Dusja friert, sagt aber nix. Fjodor hat einen Sack Kohle für sie. => Granny Dusya is freezing but won’t say so. Fyodor has a sack of coal for her.
+=Den Kohlensack zu Oma Dusja an der Dorfstraße bringen. => Take the sack of coal to Granny Dusya on the village street.
+=Ignatis Kater => Ignati’s tomcat
+=Vater Ignati vermisst seinen Kater. Er ist … geflogen. Meinetwegen. => Father Ignati misses his tomcat. He … flew. Because of me.
+=Den Kater zu Vater Ignati an der Kirche bringen. => Take the tomcat to Father Ignati at the church.
+=Wo riecht es nach Fisch, und wo ist es dunkel? Unter dem Steg beim Fischerhaus nachsehen. => Where does it smell of fish, and where is it dark? Look under the pier at the fisherman’s hut.
+=Einer von uns werden => Become one of us
+=Vier Dinge machen dich im Dorf zu einem von ihnen: Strom für Fjodor, Kohle für Dusja, Ignatis Kater und ein Trinkduell gegen Opa. => Four things make you one of them in the village: power for Fyodor, coal for Dusya, Ignati’s tomcat and a drinking duel against Grandpa.
+=Geschafft: # von #. Wer alle vier schafft und am Ende bleibt, baut sich ein eigenes Haus. => Done: # of #. Whoever manages all four and stays at the end builds a house of their own.
+=Strom gelegt. Kohle geschleppt. Einen Kater gefunden. Grischa untern Tisch getrunken. => Laid power. Hauled coal. Found a tomcat. Drank Grisha under the table.
+=Achtung! Hiermit ernenne ich, Grischa, Gefreiter a. D., dich zum Ehrenbürger! => Attention! I, Grisha, retired private, hereby name you honorary citizen!
+=Und ein Ehrenbürger braucht ein Dach. Das Holz liegt bereit. Ich hab die Nägel geschmiedet. => And an honorary citizen needs a roof. The timber is ready. I forged the nails.
+=Ich segne es. Und Murka kommt zur Einweihung. => I’ll bless it. And Murka is coming to the housewarming.
+=Ich bring Pirogi. Mit Gebiff gebacken. => I’ll bring pirozhki. Baked with dentureth.
+=(Ein eigenes Haus. Ich. Der Typ von Wowas Sofa.) => (A house of my own. Me. The guy from Vova’s sofa.)
+=Petjas eigenes Haus => Petya’s own house
+=Petjas Haus => Petya’s house
+=Ein Haus aus Birken, mit Fjodors Nägeln, Dusjas Pirogi und Ignatis Segen. Jetzt bist du einer von uns, Junge. => A house of birch, with Fyodor’s nails, Dusya’s pirozhki and Ignati’s blessing. Now you’re one of us, boy.
+=(Drüben hatte ich ein Sofa, das mir nicht gehört. Hier hab ich ein Haus. Mit Tür.) => (Over there I had a sofa that wasn’t mine. Here I have a house. With a door.)
+=(Ich bleibe.) => (I’m staying.)
+=Petja blieb. Nicht als Zahnrad – als einer von ihnen. Mit Urkunde und eigenem Haus. => Petya stayed. Not as a cog – as one of them. With a certificate and a house of his own.

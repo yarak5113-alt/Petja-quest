@@ -16,15 +16,16 @@
 //                   Richtung ein eigenes Bild (NA_SKINS.<outfit>.dirs[i] = Image), wird es benutzt. Sonst rechnet die Engine die
 //                   Drehung aus der Frontansicht: Breite mit |cos θ|, Schattierung zur abgewandten Seite, Rückansicht gespiegelt
 //                   und abgedunkelt mit den Haaren VOR dem Körper und Hinterkopf statt Gesicht.
-//   Vibe-Meter      Leertaste / Klick im Takt (100 BPM, ±0,2 s, Taktring zeigt den Moment) füllt es, daneben kostet etwas; Maus im Kreis bewegen dreht
+//   Stimmungsbalken Leertaste / Klick im Takt (100 BPM, ±0,2 s, Taktring zeigt den Moment) füllt es, daneben kostet etwas; Maus im Kreis bewegen dreht
 //                   Nastja mit und gibt auch Vibe. Viel Vibe = größere Bewegungen, mehr Glitzer, am Ende Bonus-Beziehung.
 // Punkte: alle Beziehungspunkte außer dem Anwerben zählen ×1,25 (20 % schneller zu 80 % / 100 %).
 // Tanzmenü (unten links, während des Tanzes):
 //   🧻 Tempos zustecken (immer, einmal pro Tanz)  → Nastja lacht dich auf Russisch aus, Beziehung moderat +
 //   👋 Näher ranwinken                            → Kamera zoomt auf den Oberkörper (mehrfach = näher), geht nach 6 s zurück
-//   ✋ Riskant (RISKY_CONTACT, einmal pro Tanz)  → danach auf die Trefferzone upper_torso_zone klicken: Petjas Hand kommt ins Bild,
-//        Nastja fängt sie ab, bevor sie ankommt. Entweder findet sie das frech-mutig (großer Vibe- und Beziehungs-Boost)
-//        oder Zinaida geht dazwischen (Tanz stockt 3,5 s, Vibe runter). Schaut Zinaida gerade zu, fliegt es immer auf.
+//   ✋ Riskant (RISKY_CONTACT, einmal pro Tanz)  → danach auf die Trefferzone upper_torso_zone klicken: Petjas klobige Pixel-Hand
+//        eiert von OBEN RECHTS ins Bild (klobigeHand: Start außerhalb bei top −90 / right −60). Bevor sie ankommt, schlägt Nastja sie
+//        blitzschnell zur Seite (*KLATSCH*, «Клешни свои убрал с верхнего этажа!»). Kein Beziehungs-Boost, nur Stimmung −12,
+//        und Zinaida grinst hämisch hinter dem Vorhang. Alle passiven Ebenen haben pointer-events: none, damit die Zone klickbar bleibt.
 //   💸 Башли (nur wenn player.cash > 0)          → ein Rubel ins Strumpfband, Vibe und Beziehung +
 // Zinaida (Aufpasserin) linst ab und zu hinter dem Vorhang hervor – dann lieber nichts Riskantes.
 // player.cash = Rubel (FL.cash). Petja startet pleite; Opa zahlt nach gewonnenem Trinkduell aus (52-trinkduell.js).
@@ -165,22 +166,23 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
         ['P','(Ich glaube, das war ein Kompliment. Auf Russisch klingt alles wie eine Drohung.)','smirk']])}
     if(m==='wink'){ph.zoomZiel=Math.min(1.75,ph.zoomZiel+.25);ph.zoomBis=t+6;ph.vibe=Math.min(100,ph.vibe+3);
       if(!ph.winkN++)sprich([['NA','*beugt sich vor* Näher, Zwiebel? Noch näher kostet Aufpreis.','flirt']])}
-    if(m==='risk'&&!ph.riskDa&&!ph.risiko){ph.risiko='wählen';cv3.style.cursor='grab';ph.pop.push({t:u,txt:'✋ Klick auf den Oberkörper …',c:'255,200,160'})}
+    if(m==='risk'&&!ph.riskDa&&!ph.risiko){ph.risiko='wählen';cv3.style.cursor='grab';$('#box').style.pointerEvents='none';ph.pop.push({t:u,txt:'✋ Klick auf den Oberkörper …',c:'255,200,160'})}
     if(m==='geld'&&player.cash>0){player.cash--;FL.na_tip=Math.min(3,(FL.na_tip||0)+1);ph.vibe=Math.min(100,ph.vibe+15);ph.pop.push({t:u,txt:'+ Башли ₽',c:'160,255,170'});
       sprich([['NA','*nimmt den Rubel und steckt ihn ins Strumpfband* Na also. Geht doch, Zwiebel. Für Geld tanz ich sogar mit Gefühl.','flirt']])}
     menuBau()}
   // RISKY_CONTACT: Klick in upper_torso_zone
   function griff(e){const[mx,my]=pos(e),b=ph.torso,t=jetztT();cv3.style.cursor='crosshair';
+    $('#box').style.pointerEvents='';
     if(Math.cos(ph.theta)<.5){ph.risiko=null;ph.pop.push({t:t-OFF-ph.pauseSum,txt:'Sie dreht dir den Rücken zu …',c:'200,170,190'});menuBau();return}
     if(!b||mx<b.x0||mx>b.x1||my<b.y0||my>b.y1){ph.risiko=null;ph.pop.push({t:t-OFF-ph.pauseSum,txt:'… doch nicht. Feigling.',c:'200,170,190'});menuBau();return}
-    ph.risiko='hand';ph.riskDa=1;ph.handT=t;ph.handAus=0;ph.handZiel=[mx,Math.min(b.y1+40,my+70)];   // Hand stoppt vorher in der Luft – Nastja fängt sie ab
-    ph.erfolg=!ph.zin.sicht&&Math.random()<.35+ph.vibe/250;menuBau()}
-  function griffAusgang(t){const u=t-OFF-ph.pauseSum;
-    if(ph.erfolg){ph.vibe=Math.min(100,ph.vibe+25);FL.na_mut=Math.min(2,(FL.na_mut||0)+1);ph.pop.push({t:u,txt:'Mutig! ♥♥',c:'255,215,120'});
-      sprich([['NA','*fängt deine Hand mitten in der Luft ab und hält sie fest* Frech, Zwiebel. … Aber mutig. Das gefällt mir.','flirt'],['NA','*legt deine Hand zurück aufs Sofa* Da bleibt sie. Fürs Erste.','flirt']])}
-    else{ph.vibe=Math.max(0,ph.vibe-25);ph.pauseBis=t+3.5;ph.zin.auftritt=t;ph.zin.sicht=false;ph.pop.push({t:u,txt:'Erwischt!',c:'255,110,110'});
-      sprich([['Z','*reißt den Vorhang auf* STOPP! Hände aufs Sofa, Süßer! In meinem Haus wird geguckt, nicht gegrapscht!'],
-        ['NA','*fängt deine Hand ab und verdreht die Augen* Danke, Mamotschka. Wir hatten’s gerade so gemütlich.','laugh'],['P','(Herzinfarkt. Fast.)','pain']])}}
+    ph.risiko='hand';ph.riskDa=1;ph.handT=t;ph.handAus=0;$('#box').style.pointerEvents='';
+    const d=Math.hypot(860-mx,-90-my);ph.handZiel=[mx+(860-mx)/d*34,my+(-90-my)/d*34];   // Hand bleibt 34 px vor dem Ziel in der Luft
+    menuBau()}
+  // Nastjas Konter: Hand wegschlagen, Stimmung runter, Zinaida grinst
+  function griffAusgang(t){const u=t-OFF-ph.pauseSum;ph.vibe=Math.max(0,ph.vibe-12);ph.zin.grinst=t;ph.zin.sicht=false;
+    ph.pop.push({t:u,txt:'*KLATSCH*',c:'255,140,120'});
+    sprich([['NA','*schlägt deine Hand genervt zur Seite* Клешни свои убрал с верхнего этажа!','laugh'],['NA','Schaufelhände weg vom Obergeschoss, Zwiebel. Gucken ja, Baustelle nein.'],
+      ['P','(Meine Hand pocht. Mein Stolz auch.)','pain']])}
   menuBau();
   cv3.onmousemove=e=>{const[mx,my]=pos(e),a=Math.atan2(my-250,mx-400);if(Math.hypot(mx-400,my-250)<40){mausWinkel=null;return}
     if(mausWinkel!==null){let d=a-mausWinkel;if(d>Math.PI)d-=2*Math.PI;if(d<-Math.PI)d+=2*Math.PI;if(Math.abs(d)<.6){ph.maus+=d;mausKreis+=Math.abs(d);
@@ -199,9 +201,9 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
     x.fillStyle='rgba(255,210,150,.5)';for(let i=0;i<5;i++){x.beginPath();x.arc(14+i*24,420+i*14,2.2,0,7);x.fill();x.beginPath();x.arc(786-i*24,420+i*14,2.2,0,7);x.fill()}}
   // Vibe-Meter (rechts) mit Taktpuls
   function meter(t,u){const v=ph.vibe/100,X=748,Y0=96,Hm=300,puls=Math.max(0,1-((u%BEAT+BEAT)%BEAT)/BEAT*3);
-    x.fillStyle='rgba(15,2,10,.6)';x.fillRect(X-16,Y0-30,32,Hm+60);x.strokeStyle='rgba(255,190,220,.6)';x.lineWidth=1.5;x.strokeRect(X-9,Y0,18,Hm);
+    x.fillStyle='rgba(15,2,10,.6)';x.fillRect(X-30,Y0-30,60,Hm+60);x.strokeStyle='rgba(255,190,220,.6)';x.lineWidth=1.5;x.strokeRect(X-9,Y0,18,Hm);
     const g=x.createLinearGradient(0,Y0+Hm,0,Y0);g.addColorStop(0,'#6a1b4d');g.addColorStop(.5,'#d0407a');g.addColorStop(1,'#ffd27a');x.fillStyle=g;x.fillRect(X-8,Y0+Hm*(1-v),16,Hm*v);
-    x.fillStyle=`rgba(255,${200+puls*55|0},${220-puls*80|0},${.55+.45*puls})`;x.font='bold 11px Georgia';x.textAlign='center';x.fillText('VIBE',X,Y0-12);
+    x.fillStyle=`rgba(255,${200+puls*55|0},${220-puls*80|0},${.55+.45*puls})`;x.font='bold 11px Georgia';x.textAlign='center';x.font='bold 9px Georgia';x.fillText('STIMMUNG',X,Y0-12);
     x.font=`${18+puls*6}px Georgia`;x.fillText('♥',X,Y0+Hm+24);x.textAlign='left';
     if(u<0)return;
     // Taktring: schrumpft auf den Kreis zu – genau wenn er ihn berührt, drücken
@@ -218,8 +220,8 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
     // Zinaida linst ab und zu hinter dem Vorhang hervor
     {const Z=ph.zin;if(!Z.sicht&&u>2&&u<21&&u>=Z.naechste&&t>ph.pauseBis){Z.sicht=true;Z.ab=t}
       if(Z.sicht&&t-Z.ab>2.6){Z.sicht=false;Z.naechste=u+7+Math.random()*6}}
-    if(ph.risiko==='hand'&&t-ph.handT>=.45&&!ph.handAus){ph.handAus=1;griffAusgang(t)}
-    if(ph.risiko==='hand'&&t-ph.handT>1.7){ph.risiko=null;ph.handAus=0;menuBau()}
+    if(ph.risiko==='hand'&&t-ph.handT>=.52&&!ph.handAus){ph.handAus=1;griffAusgang(t)}
+    if(ph.risiko==='hand'&&t-ph.handT>1.4){ph.risiko=null;ph.handAus=0;menuBau()}
     if(t>ph.zoomBis)ph.zoomZiel=1;ph.zoom+=(ph.zoomZiel-ph.zoom)*Math.min(1,dt*3);
     menu.style.display=u>1.5&&u<21&&t>=ph.pauseBis&&!fin?'flex':'none';
     for(const k in TEXT)if(u>=+k&&!said.has(k)){said.add(k);if(busy)advance();say(TEXT[k])}
@@ -272,12 +274,18 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
       naZeichne(x,rig,SK.zonen,st,eigen?0:ph.theta);x.restore()}
     x.restore();
     if(!sit){sofa();fpKnees(x)}
-    // Petjas Hand (RISKY_CONTACT) und Zinaida im Vordergrund bei Unterbrechung
-    if(ph.risiko==='hand'&&ph.handZiel){const a=t-ph.handT,rein=Math.min(1,a/.45),raus=ph.erfolg?Math.max(0,(a-1.2)/.5):Math.max(0,(a-.5)/.25),k=Math.max(0,rein-raus);
-      naHand(x,400+(ph.handZiel[0]-400)*k,560+(ph.handZiel[1]-560)*k,.95,'#e8b48c');
-      if(a>.4&&k>.2)naHand(x,ph.handZiel[0]+34,ph.handZiel[1]+18,.62,'#f2d2b8',true,1.25)}   // Nastjas Hand packt Petjas Handgelenk von der Seite
-    if(t-ph.zin.auftritt<3.5&&ZIN_IMG.complete&&ZIN_IMG.naturalWidth){const a=t-ph.zin.auftritt,k=Math.max(0,Math.min(1,a/.35,(3.5-a)/.4)),zs=1.15;
-      x.drawImage(ZIN_IMG,800-ZIN_IMG.naturalWidth*zs*k*.8,520-500*zs*.92,ZIN_IMG.naturalWidth*zs,500*zs)}
+    // RISKY_CONTACT: klobige Hand eiert von oben rechts heran, Nastja schlägt sie weg
+    if(ph.risiko==='hand'&&ph.handZiel){const a=t-ph.handT,[zx,zy]=ph.handZiel,S0X=860,S0Y=-90;   // Start: außerhalb oben rechts
+      let hx,hy,dreh=0;
+      if(a<.5){const k=1-Math.pow(1-a/.5,2);hx=S0X+(zx-S0X)*k+Math.sin(a*26)*6*(1-k);hy=S0Y+(zy-S0Y)*k+Math.cos(a*21)*5*(1-k)}   // heraneiern
+      else{const k=Math.min(1,(a-.5)/.45);hx=zx+(S0X+80-zx)*k*k+70*Math.sin(k*Math.PI);hy=zy+(S0Y-40-zy)*k*k;dreh=k*2.6}   // weggeschlagen, trudelt raus
+      klobigeHand(x,hx,hy,Math.atan2(S0Y-zy,S0X-zx)+Math.PI/2+dreh);
+      if(a>.36&&a<.74){const k=a<.52?(a-.36)/.16:1+(a-.52)*1.2,al=a<.52?1:1-(a-.52)/.22;   // Nastjas Hand schnellt von links vor, wischt durch und ist weg
+        x.save();x.globalAlpha=Math.max(0,al);naHand(x,zx-150+130*k,zy+40-24*k,.6,'#f2d2b8',true,-1.35);x.restore()}
+      if(a>.5&&a<.75){x.save();x.font='bold 30px Georgia';x.textAlign='center';x.lineWidth=5;x.strokeStyle='#000';x.strokeText('*KLATSCH*',zx,zy-30);x.fillStyle='#ffd25a';x.fillText('*KLATSCH*',zx,zy-30);x.restore()}}
+    if(t-(ph.zin.grinst||-9)<2.8&&ZIN_IMG.complete&&ZIN_IMG.naturalWidth){const a=t-ph.zin.grinst,k=Math.max(0,Math.min(1,a/.35,(2.8-a)/.4)),zs=.42;   // Zinaida grinst hämisch am Rand
+      x.save();x.globalAlpha=k;x.filter='brightness(.75)';x.drawImage(ZIN_IMG,-ZIN_IMG.naturalWidth*zs*.55+k*70,470-500*zs,ZIN_IMG.naturalWidth*zs,500*zs);x.filter='none';
+      x.font='italic 13px Georgia';x.fillStyle='rgba(255,220,150,.95)';x.fillText('*grinst hämisch*',20+k*40,450-500*zs);x.restore()}
     // Glitzer und Noten, mehr bei viel Vibe
     if(u>0){x.save();x.globalCompositeOperation='lighter';const n=4+Math.round(vib*10);for(let j=0;j<n;j++){const p=(u*.4+j/n)%1,X=400+Math.sin(j*7.1)*280,Y=440-p*380;
       x.fillStyle=`rgba(255,235,200,${.8*(1-p)})`;x.save();x.translate(X,Y);x.rotate(t*2+j);x.fillRect(-4,-.8,8,1.6);x.fillRect(-.8,-4,1.6,8);x.restore()}
@@ -287,23 +295,31 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
     if(u>0&&u<7){x.fillStyle=`rgba(255,230,240,${Math.min(1,u)*Math.min(1,7-u)*.85})`;x.font='13px Georgia';x.textAlign='center';
       x.fillText('Leertaste / Klick, wenn der Ring den Kreis trifft · Maus im Kreis: sie dreht sich mit · Esc beendet',400,30);x.textAlign='left'}
     if(ph.risiko==='wählen'){x.strokeStyle='rgba(255,200,160,.55)';x.setLineDash([5,4]);const b=ph.torso;if(b)x.strokeRect(b.x0,b.y0,b.x1-b.x0,b.y1-b.y0);x.setLineDash([]);
-      x.fillStyle='rgba(255,220,200,.95)';x.font='italic 14px Georgia';x.textAlign='center';x.fillText(ph.zin.sicht?'✋ Zinaida guckt gerade! … Klick auf den Oberkörper – oder daneben, um es zu lassen':'✋ Klick auf ihren Oberkörper – Risiko!',400,52);x.textAlign='left'}
-    if(frei){x.fillStyle='rgba(255,220,235,.8)';x.font='italic 13px Georgia';x.textAlign='center';x.fillText(`Freestyle – kreise mit der Maus! (${NA_RICHTUNG[idx]})`,400,30);x.textAlign='left'}
+      x.fillStyle='rgba(255,220,200,.95)';x.font='italic 14px Georgia';x.textAlign='center';x.fillText('✋ Klick auf ihren Oberkörper – auf eigene Gefahr! (daneben klicken = lassen)',400,52);x.textAlign='left'}
+    if(frei){x.fillStyle='rgba(255,220,235,.8)';x.font='italic 13px Georgia';x.textAlign='center';x.fillText(`Freier Tanz – kreise mit der Maus! (${NA_RICHTUNG[idx]})`,400,30);x.textAlign='left'}
     // Umziehen: Augen zu → auf
     if(enthuellen){const k=t<.4?seg(t,0,.4):t<OFF-1?1:1-seg(t,OFF-1,OFF-.2);lider(k,t);
       if(k>=1){x.fillStyle='rgba(255,200,220,.55)';x.font='italic 15px Georgia';x.textAlign='center';x.fillText(['*raschel*','*Strapse schnalzen*','*Reißverschluss*'][Math.floor(t*1.3)%3],400,250);x.textAlign='left'}
       if(u>-.2&&u<.8){x.save();x.globalCompositeOperation='lighter';glow(400,280,320,'255,200,230',.5*(1-seg(u,-.2,.8)));x.restore()}}
     requestAnimationFrame(frame)}
   requestAnimationFrame(frame);
-  async function beenden(){if(fin)return;fin=true;removeEventListener('keydown',key,true);menu.remove();if(busy)advance();
+  async function beenden(){if(fin)return;fin=true;removeEventListener('keydown',key,true);menu.remove();$('#box').style.pointerEvents='';if(busy)advance();
     const vibe=Math.round(ph.vibe),gut=vibe>=70;if(gut)FL.na_vibe=Math.min(2,(FL.na_vibe||0)+1);
     FL['naSkin_'+skin]=1;FL.lounge=1;if(skin!=='standard')FL.naVip=(FL.naVip||0)+1;
     fade.style.opacity=1;await new Promise(r=>setTimeout(r,500));changing=false;x.setTransform(1,0,0,1,0,0);x.fillStyle='rgba(12,0,6,.72)';x.fillRect(0,0,W,H);
-    const schluss=gut?[['P',`*Fünf Minuten später. Vibe: ${vibe} %*`],['NA','*außer Atem* Du hast den Takt gehalten, Zwiebel. Das schaffen nicht mal Zinaidas Stammgäste.']]
-      :[['P',`*Fünf Minuten später. Vibe: ${vibe} %*`],['NA','*zupft dich am Kragen* Nächstes Mal klatschst du im Takt mit, Süßer. Oder wenigstens in der Nähe vom Takt.']];
+    const schluss=gut?[['P',`*Fünf Minuten später. Stimmung: ${vibe} %*`],['NA','*außer Atem* Du hast den Takt gehalten, Zwiebel. Das schaffen nicht mal Zinaidas Stammgäste.']]
+      :[['P',`*Fünf Minuten später. Stimmung: ${vibe} %*`],['NA','*zupft dich am Kragen* Nächstes Mal klatschst du im Takt mit, Süßer. Oder wenigstens in der Nähe vom Takt.']];
     say(schluss.concat(NA_SHOW_ENDE[skin]||[]),()=>{cv3.remove();enter(VON,VPOS)});fade.style.opacity=0}}
 
-// Hand für die Ich-Sicht (Petja) bzw. Nastjas Hand (oben=true: von oben, rote Nägel)
+// Petjas klobige Hand: grobe Pixel-Art (9-px-Blöcke), Ärmel nach oben, Finger nach unten; rot dreht den Ärmel zur Einflugrichtung.
+// Sauberer Hautton, nur massiv und unförmig – ein Klotz neben Nastjas feinem Korsett.
+const KLOBIG=['...KKKKK...','..KAAAAAK..','..KAAAAAK..','..KAABAAK..','..KAAAAAK..','..KKKKKKK..','..KSSSSSK..','.KSSSSSSDK.','KSHSSSSSSDK','KSHSSSSSSDK','KSSSSSSSSDK',
+  'KSSSSSSSSDK','.KSSKSSKSSK','.KSSKSSKSSK','.KSSKSSKSDK','..KKKKKKKK.'];
+const KLOBIG_FARBE={K:'#3a2414',S:'#e9b48e',H:'#f6d0b0',D:'#c98e68',A:'#2f8f86',B:'#ecebe2'};
+function klobigeHand(x,X,Y,rot){const B=9,w=KLOBIG[0].length*B,h=KLOBIG.length*B;x.save();x.translate(X,Y);x.rotate(rot);x.translate(-w/2,-h+B);
+  KLOBIG.forEach((r,j)=>[...r].forEach((c,i)=>{if(c==='.')return;x.fillStyle=KLOBIG_FARBE[c];x.fillRect(i*B,j*B,B+.5,B+.5)}));
+  x.fillStyle='rgba(0,0,0,.18)';x.fillRect(w-2*B,6*B,B,9*B);x.restore()}
+// Nastjas Hand (oben=true: rote Nägel)
 function naHand(x,X,Y,s,farbe,oben,rot){x.save();x.translate(X,Y);if(rot)x.rotate(rot);x.scale(s,oben?-s:s);x.fillStyle=farbe;x.strokeStyle='#2e1c10';x.lineWidth=2.2;
   x.beginPath();x.moveTo(-15,44);x.lineTo(-17,110);x.lineTo(17,110);x.lineTo(15,44);x.fill();x.stroke();   // Unterarm
   x.beginPath();x.ellipse(0,28,21,24,0,0,7);x.fill();x.stroke();
@@ -311,7 +327,8 @@ function naHand(x,X,Y,s,farbe,oben,rot){x.save();x.translate(X,Y);if(rot)x.rotat
     if(oben){x.fillStyle='#c0203a';x.fillRect(fx-fw/2+1,fy+1,fw-2,5);x.fillStyle=farbe}});
   x.beginPath();x.ellipse(-21,24,7,14,-.6,0,7);x.fill();x.stroke();   // Daumen
   x.fillStyle='rgba(120,60,40,.25)';x.beginPath();x.ellipse(3,34,12,9,0,0,7);x.fill();x.restore()}
-(function(){const css=document.createElement('style');css.textContent=`#tanzmenu{position:absolute;left:1.5%;bottom:3%;z-index:16;display:none;flex-direction:column;gap:6px}
+(function(){const css=document.createElement('style');css.textContent=`#tanzmenu{position:absolute;left:1.5%;bottom:3%;z-index:16;display:none;flex-direction:column;gap:6px;pointer-events:none}#tanzmenu button{pointer-events:auto}
+#toasts,#crt,#crt i,#box #portrait{pointer-events:none}
 #tanzmenu button{font:13px Georgia,serif;color:#f6ead0;background:rgba(40,8,24,.82);border:1px solid rgba(255,190,220,.55);border-radius:6px;padding:6px 10px;text-align:left;cursor:pointer}
 #tanzmenu button:hover:not([disabled]){background:rgba(110,20,60,.9)}#tanzmenu button[disabled]{opacity:.4;cursor:default}#tanzmenu small{opacity:.75}`;document.head.appendChild(css)})();
 
@@ -323,7 +340,7 @@ const NA_SHOW_TEXT={
   standard:{.3:[['NA','Hände aufs Sofa, Zwiebel. Ich mach den Rest.']],8:[['NA','Einmal rum … damit du siehst, dass hinten auch was ist.']],
     12:[['NA','Na los, dreh mich. Du hast doch Hände. Benutz sie – an der Maus.']],18.5:[['P','(Die Haare. Die Haare machen mich fertig.)']]},
   vip:{.4:[['NA','*öffnet ein Auge, zieht die Braue hoch* Na? Das Outfit gibt’s nur für Stammkunden. Und für Zwiebeln.']],8:[['NA','Langsam drehen … so. Damit du was zum Erzählen hast.']],
-    12:[['NA','Freestyle, Süßer. Du führst. Aber wehe, du trittst mir auf die Stiefel.']],21.5:[['P','Ich … äh … meine Hände sind auf dem Sofa. Beide. Glaub ich.']]},
+    12:[['NA','Freier Tanz, Süßer. Du führst. Aber wehe, du trittst mir auf die Stiefel.']],21.5:[['P','Ich … äh … meine Hände sind auf dem Sofa. Beide. Glaub ich.']]},
   dessous:{.4:[['NA','*zwinkert* Dreihundert Jahre im Sumpf, und das hier hat mich noch keiner tragen sehen. Fühl dich geehrt.']],8:[['NA','Ganz rum, Zwiebel. Von hinten bin ich übrigens genauso gefährlich.']],
     12:[['NA','Dreh mich. Schneller. … Nicht so schnell, ich hab Absätze an!']],21.5:[['NA','*haucht* Ganz ruhig atmen, Süßer. Wenn du jetzt umkippst, tanz ich trotzdem zu Ende.']]}};
 const NA_SHOW_ENDE={
