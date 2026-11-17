@@ -65,7 +65,9 @@ Along the way he has to roll a new **"way-out joint"**.
 | **Esc / right-click in dialogue** | Skip conversation | Gespräch überspringen |
 | **Hold Space** | Show everything clickable | Alles Klickbare zeigen |
 | **H** | Hint: what should I do next? | Tipp: Was als Nächstes? |
-| **I / J / M / L** | Pockets / quests / map / dialogue log | Taschen / Aufträge / Karte / Gesprächsverlauf |
+| **I / J / M** | Pockets / quests / map | Taschen / Aufträge / Karte |
+| **C / L** | Characters and their conversations | Figuren und ihre Gespräche |
+| **Mouse wheel / drag on the map** | Zoom / move the map | Karte zoomen / verschieben |
 | **Map click** | Fast travel (after 5 discovered places) | Schnellreise (ab 5 entdeckten Orten) |
 | **V** | Voices on/off | Stimmen an/aus |
 | **F** | Fullscreen | Vollbild |

@@ -1,0 +1,8 @@
+# 46-gespraeche-figuren.js und Karten-Zoom (45-buendel-karte.js)
+=Weitere Stimmen => Other voices
+=Selbstgespräche => Talking to himself
+=Figuren und Gespräche => Characters and conversations
+=Hineinzoomen => Zoom in
+=Herauszoomen => Zoom out
+=Ganze Karte => Whole map
+=Mausrad oder + / −: zoomen · Ziehen: verschieben => Mouse wheel or + / −: zoom · Drag: move

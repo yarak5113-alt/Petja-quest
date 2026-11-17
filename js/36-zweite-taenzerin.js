@@ -55,7 +55,7 @@ function marfaSync(force){const on=!!FL.marfa;if((FL.t2Q||on)&&!MARFA_IMG.pole)m
   T.nastja2.at=ready?[540,486]:[400,486];
   // kleine Bühne im Club: Marfa statt Nastja
   const di=document.getElementById('dancerimg');if(di&&(force||mLast.d!==ready)){mLast.d=ready;setImg(di,ready?MARFA_IMG.stand:NASTJA_URL,ready?NASTJA_TG:NASTJA_G)}
-  if(ready&&typeof NASTJA_GLAS!='undefined'){const i=glasIdx();if(i!==gLast||force){gLast=i;[NBAR,NBUE].forEach(g=>g&&setImg(g.firstChild,NASTJA_GLAS[i],NASTJA_TG))}}
+  if(ready&&typeof NASTJA_GLAS!='undefined'&&(force||cur==='banja'||cur==='buehne')){const i=glasIdx();if(i!==gLast||force){gLast=i;[NBAR,NBUE].forEach(g=>g&&setImg(g.firstChild,NASTJA_GLAS[i],NASTJA_TG))}}
   // Gäste kommen zurück, sobald Marfa tanzt – die Show läuft wieder
   if(ready)document.querySelectorAll('.gaeste').forEach(e=>e.style.display='')}
 setInterval(()=>{if(typeof FL!='undefined')marfaSync()},120);

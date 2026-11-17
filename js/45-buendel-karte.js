@@ -60,7 +60,9 @@ function buendelVerdrahten(o){const B=o.querySelector('.buendel');if(!B)return;c
 // die Mühle steht am Bach (mit Brücke), Irrwald und Banja im Westen, Sumpf, See und Gnome im Osten, die Höhle im Fels.
 // Was zusammengehört, ist EIN Ort: Hütte + Hütte innen, Banja + Bühne + Lounge + Hinterhof, Ufer + Unter dem Pier.
 // Brücken entstehen von selbst dort, wo ein Weg Wasser kreuzt.
-const KW=1000,KH=620,KR=26;   // Leinwand und Rahmenbreite
+const KW=1000,KH=620,KR=26,KQ=2;   // Leinwand, Rahmenbreite, Auflösungsfaktor (doppelt, damit die Karte beim Hineinzoomen scharf bleibt)
+// Zeichenfläche in KQ-facher Auflösung: jede gesetzte Transformation wird mit KQ multipliziert, gezeichnet wird weiter in Kartenkoordinaten
+const kHiRes=(cv,x)=>{cv.width=KW*KQ;cv.height=KH*KQ;const st=x.setTransform.bind(x);x.setTransform=(a,b,c2,d,e,f)=>st(a*KQ,b*KQ,c2*KQ,d*KQ,e*KQ,f*KQ);x.setTransform(1,0,0,1,0,0);return x};
 const KORT=[   // Kartenort: m = Schauplätze (der erste ist das Reiseziel), n = Name aus LOCN
   {k:'wald',m:['wald'],x:452,y:532},{k:'gabel',m:['gabel'],x:486,y:422},{k:'huette',m:['huette','innen'],x:376,y:326},
   {k:'dorf',m:['dorf'],x:468,y:216},{k:'dorfstr',m:['dorfstr'],x:574,y:190},{k:'kirche',m:['kirche'],x:668,y:152},{k:'schmiede',m:['schmiede'],x:612,y:266},
@@ -91,7 +93,7 @@ const KDORF=[[432,200,1],[500,196,1],[526,172,.9],[552,230,1],[600,166,.9],[624,
 
 let KARTE_BG=null,KARTE_L=null;
 function karteBild(){const L0=typeof LANG=='string'?LANG:'de';if(KARTE_BG&&KARTE_L===L0)return KARTE_BG;
-  const c=document.createElement('canvas');c.width=KW;c.height=KH;const x=c.getContext('2d'),r=_rnd(42),R=(a,b)=>a+r()*(b-a);
+  const c=document.createElement("canvas"),x=kHiRes(c,c.getContext("2d")),r=_rnd(42),R=(a,b)=>a+r()*(b-a);
   const WEGE=kWege(),HOR=118;
   // Pinseltupfer: gedrehte Ellipse ohne save/restore (schnell genug für zehntausende)
   const dab=(a,b,l,w,ang,col)=>{const co=Math.cos(ang),si=Math.sin(ang);x.setTransform(co,si,-si,co,a,b);x.fillStyle=col;x.beginPath();x.ellipse(0,0,l,w,0,0,7);x.fill();x.setTransform(1,0,0,1,0,0)},
@@ -164,7 +166,7 @@ function karteBild(){const L0=typeof LANG=='string'?LANG:'de';if(KARTE_BG&&KARTE
     tanne:(a,b,s,dunkel)=>{dab(a+5*s,b+1*s,8*s,2.4*s,0,'rgba(15,25,10,.4)');x.fillStyle='#3a2a18';x.fillRect(a-.8*s,b-3*s,1.6*s,3*s);
       for(let k=0;k<5;k++){const yy=b-2*s-k*4.2*s,w=(7.5-k*1.4)*s;for(let j=0;j<5;j++){const u=(j-2)/2;dab(a+u*w*.8,yy-Math.abs(u)*-1*s,w*.55,2*s,u*.5,hsl(R(115,150),R(22,34),(dunkel?17:23)+k*1.5+R(-2,2),.85))}
         dab(a-w*.5,yy-1.2*s,w*.35,1*s,-.35,hsl(R(80,105),R(30,42),(dunkel?30:40),.6))}dab(a,b-23*s,1.2*s,3*s,0,hsl(130,28,dunkel?20:26,.9))}};
-  const inFels=(()=>{const p=new Path2D();KFELS.forEach(([a,b],i)=>i?p.lineTo(a,b):p.moveTo(a,b));p.closePath();return(a,b)=>x.isPointInPath(p,a,b)})();
+  const inFels=(()=>{const p=new Path2D();KFELS.forEach(([a,b],i)=>i?p.lineTo(a,b):p.moveTo(a,b));p.closePath();return(a,b)=>x.isPointInPath(p,a*KQ,b*KQ)})();
   const frei=(a,b)=>{if(b<HOR+8||inSee(a,b,14)||inFels(a,b+6))return false;const s=st(b);
     if(KORT.some(g=>Math.hypot(g.x-a,(g.y-b)*1.5)<24*sb(b)+6))return false;if(a>396&&a<664&&b>140&&b<290)return false;   // Lichtungen und Dorf
     if(WEGE.some(({P})=>kDist(P,a,b)<7*s+3))return false;if(kDist(KFLUSS,a,b)<10||kDist(KBACH,a,b)<8)return false;
@@ -242,7 +244,7 @@ function karteBild(){const L0=typeof LANG=='string'?LANG:'de';if(KARTE_BG&&KARTE
   KORT.forEach(g=>add(g.y+.5,()=>(V[g.k]||(()=>{}))(g.x,g.y,sb(g.y))));
   D.sort((p,q)=>p[0]-q[0]).forEach(([,f])=>{f();reset()});
   // ---------- Malerei: jede Stelle noch einmal mit kurzen Tupfern in ihrer eigenen Farbe übermalt (weiche, gemalte Kanten) ----------
-  {const im=x.getImageData(0,0,KW,KH).data;for(let i=0;i<22000;i++){const a=R(KR,KW-KR)|0,b=R(KR,KH-KR)|0,o=(b*KW+a)*4,t=tiefe(b);
+  {const im=x.getImageData(0,0,KW*KQ,KH*KQ).data;for(let i=0;i<22000;i++){const a=R(KR,KW-KR)|0,b=R(KR,KH-KR)|0,o=(b*KQ*KW*KQ+a*KQ)*4,t=tiefe(b);
       dab(a+R(-1,1),b+R(-1,1),R(1.6,3.2)+t*1.6,R(.8,1.3)+t*.5,R(-.7,.7)+(b<HOR?0:.0),`rgba(${im[o]},${im[o+1]},${im[o+2]},.55)`)}reset()}
   // ---------- Luft: Dunst zum Horizont, warmes Licht von links oben, dunklere Ränder ----------
   g=x.createLinearGradient(0,HOR-30,0,HOR+140);g.addColorStop(0,'rgba(230,225,205,.0)');g.addColorStop(.3,'rgba(230,225,205,.35)');g.addColorStop(1,'rgba(230,225,205,0)');x.fillStyle=g;x.fillRect(0,HOR-30,KW,170);
@@ -262,8 +264,32 @@ function karteBild(){const L0=typeof LANG=='string'?LANG:'de';if(KARTE_BG&&KARTE
     x.strokeStyle='#4a300a';x.lineWidth=1.5;x.stroke();[[a-w/2+9,b],[a+w/2-9,b]].forEach(([u,v])=>{x.fillStyle='#6a4a18';x.beginPath();x.arc(u,v,3,0,7);x.fill()});
     x.fillStyle='#3a2208';x.font='italic bold 18px Georgia';x.textAlign='center';x.textBaseline='middle';x.fillText('Der Verfluchte Birkenwald',a,b+1)}
   KARTE_BG=c;KARTE_L=L0;return c}
-function karteHTML(){return`<div class="kmap"><canvas class="kcv" width="${KW}" height="${KH}"></canvas><div class="korte"></div><div class="kfuss"></div></div>`}
-function karteMalen(o){const M=o.querySelector('.kmap');if(!M)return;const cv2=M.querySelector('.kcv'),x=cv2.getContext('2d'),r=_rnd(9);x.drawImage(karteBild(),0,0);
+// Zoom und Verschieben in der Karte, ohne Browserzoom: Mausrad (um den Mauszeiger), Knöpfe + / − / ganze Karte,
+// Doppelklick, Ziehen mit der Maus, zwei Finger auf dem Touchscreen. Nadel und Haken bleiben dabei gleich groß.
+let KZ={z:1,x:0,y:0};
+function kZoom(M){const V=M.querySelector('.kview'),I=M.querySelector('.kinner'),ZMAX=3.5;if(!V||!I)return;
+  const setz=()=>{const w=V.clientWidth,h=V.clientHeight;KZ.z=Math.max(1,Math.min(ZMAX,KZ.z));KZ.x=Math.min(0,Math.max(w-w*KZ.z,KZ.x));KZ.y=Math.min(0,Math.max(h-h*KZ.z,KZ.y));
+    I.style.transform=`translate(${KZ.x}px,${KZ.y}px) scale(${KZ.z})`;I.style.setProperty('--z',KZ.z);V.classList.toggle('gross',KZ.z>1.01);
+    M.querySelector('[data-z="1"]').disabled=KZ.z>=ZMAX-.01;M.querySelector('[data-z="-1"]').disabled=M.querySelector('[data-z="0"]').disabled=KZ.z<=1.01};
+  const um=(f,px,py)=>{const z0=KZ.z,z1=Math.max(1,Math.min(ZMAX,z0*f));KZ.x=px-(px-KZ.x)*z1/z0;KZ.y=py-(py-KZ.y)*z1/z0;KZ.z=z1;setz()};
+  const rel=e=>{const b=V.getBoundingClientRect();return[e.clientX-b.left,e.clientY-b.top]};
+  KZ={z:1,x:0,y:0};setz();   // beim Öffnen: ganze Karte
+  V.addEventListener('wheel',e=>{e.preventDefault();const[px,py]=rel(e);um(e.deltaY<0?1.25:1/1.25,px,py)},{passive:false});
+  M.querySelectorAll('[data-z]').forEach(b=>b.onclick=e=>{e.stopPropagation();const d=+b.dataset.z;if(!d){KZ={z:1,x:0,y:0};setz();return}um(d>0?1.5:1/1.5,V.clientWidth/2,V.clientHeight/2)});
+  // Ziehen (ein Finger / Maus) und Zwei-Finger-Zoom; wer gezogen hat, löst keinen Klick (Schnellreise) aus
+  const P=new Map();let st=null,zog=false;
+  const werte=()=>[...P.values()],dist=()=>{const[a,b]=werte();return Math.hypot(a[0]-b[0],a[1]-b[1])},mitte=()=>{const[a,b]=werte();return[(a[0]+b[0])/2,(a[1]+b[1])/2]};
+  const neu=()=>{st=P.size>=2?{d:dist()||1,m:mitte(),z:KZ.z,x:KZ.x,y:KZ.y}:P.size==1?{p:werte()[0],x:KZ.x,y:KZ.y}:null};
+  V.addEventListener('pointerdown',e=>{if(e.target.closest('.kzoom')||(e.pointerType==='mouse'&&e.button!==0))return;P.set(e.pointerId,rel(e));if(P.size==1)zog=false;neu()});
+  V.addEventListener('pointermove',e=>{if(!P.has(e.pointerId)||!st)return;P.set(e.pointerId,rel(e));
+    if(P.size>=2&&st.d){const m=mitte(),z1=Math.max(1,Math.min(ZMAX,st.z*dist()/st.d));KZ.x=m[0]-(st.m[0]-st.x)*z1/st.z;KZ.y=m[1]-(st.m[1]-st.y)*z1/st.z;KZ.z=z1;zog=true;setz();return}
+    const p=P.get(e.pointerId),dx=p[0]-st.p[0],dy=p[1]-st.p[1];if(!zog&&Math.hypot(dx,dy)<5)return;
+    if(!zog){zog=true;try{V.setPointerCapture(e.pointerId)}catch(_){}}KZ.x=st.x+dx;KZ.y=st.y+dy;setz()});
+  const auf=e=>{if(!P.has(e.pointerId))return;P.delete(e.pointerId);neu()};V.addEventListener('pointerup',auf);V.addEventListener('pointercancel',auf);
+  V.addEventListener('click',e=>{if(zog){e.stopPropagation();e.preventDefault();zog=false}},true);
+  V.addEventListener('dblclick',e=>{if(e.target.closest('.kzoom'))return;const[px,py]=rel(e);um(KZ.z>=ZMAX-.01?1/ZMAX:2,px,py)})}
+function karteHTML(){return`<div class="kmap"><div class="kview"><div class="kinner"><canvas class="kcv"></canvas><div class="korte"></div></div><div class="kzoom"><button data-z="1" title="Hineinzoomen">+</button><button data-z="-1" title="Herauszoomen">−</button><button data-z="0" title="Ganze Karte">⤢</button></div></div><div class="kfuss"></div><div class="khilfe">Mausrad oder + / −: zoomen · Ziehen: verschieben</div></div>`}
+function karteMalen(o){const M=o.querySelector('.kmap');if(!M)return;const cv2=M.querySelector(".kcv"),x=kHiRes(cv2,cv2.getContext("2d")),r=_rnd(9);x.drawImage(karteBild(),0,0,KW,KH);kZoom(M);
   const hier=KG[cur];
   // Nebel über Unerkundetem (wie Wolken gemalt); Orte direkt am Weg bekommen ein „?“
   const nachbar=new Set();MAPE.forEach(([a,b])=>{const A=KG[a],B=KG[b];if(!A||!B||A===B)return;if(kSeen(A)&&!kSeen(B))nachbar.add(B);if(kSeen(B)&&!kSeen(A))nachbar.add(A)});
@@ -283,6 +309,10 @@ function karteMalen(o){const M=o.querySelector('.kmap');if(!M)return;const cv2=M
   M.querySelector('.kfuss').textContent=reise?'Klick auf einen besuchten Ort: Schnellreise':`Schnellreise ab ${REISE_MIN} entdeckten Orten`;
   L.querySelectorAll('.kort.go').forEach(b=>b.onclick=()=>{if(busy||changing)return;const g=KORT.find(k=>k.k===b.dataset.go),id=g&&ziel(g);if(!id)return;closeO();FL.reisen=(FL.reisen||0)+1;enter(id,TTELE[id])})}
 
+// Karte vormalen, solange der Titelbildschirm steht (das Malen dauert einen Moment – dort stört es nicht, im Spiel öffnet M dann sofort)
+{const vor=()=>{if(KARTE_BG||!$('#start')||/durchlauf/.test(location.search))return;try{karteBild()}catch(e){console.warn('Karte vormalen',e)}};
+  setTimeout(()=>window.requestIdleCallback?requestIdleCallback(vor,{timeout:3000}):vor(),6000)}
+
 // ---------- ins Notizbuch einhängen ----------
 {const _ob=openBook;openBook=function(tab){const r=_ob.apply(this,arguments);tab=tab||'tasche';if(!ovl)return r;const bb=ovl.querySelector('.bbody');if(!bb)return r;
   if(tab==='tasche'){bb.innerHTML=buendelHTML();buendelVerdrahten(ovl)}
@@ -300,11 +330,17 @@ function karteMalen(o){const M=o.querySelector('.kmap');if(!M)return;const cv2=M
 .bleer{color:#f6e6c0;font:italic 18px Georgia,serif;margin-top:10%;text-shadow:0 2px 3px #000}
 .bzeile{margin:0 11% 5.5%;min-height:46px;padding:8px 14px;background:rgba(20,6,4,.72);border:1px solid rgba(232,177,42,.6);border-radius:8px;color:#f6e6c0;font:15px Georgia,serif;line-height:1.35}
 .bzeile b{color:#ffd25a;margin-right:6px}
-.kmap{position:relative;width:100%;max-width:1000px;aspect-ratio:${KW}/${KH+34}}.kmap .kcv{width:100%;display:block;border-radius:3px;box-shadow:0 8px 24px rgba(0,0,0,.65)}
-.korte{position:absolute;left:0;top:0;right:0;aspect-ratio:${KW}/${KH}}
+.kmap{position:relative;width:100%;max-width:1000px}
+.kview{position:relative;overflow:hidden;aspect-ratio:${KW}/${KH};border-radius:3px;box-shadow:0 8px 24px rgba(0,0,0,.65);touch-action:none}.kview.gross{cursor:grab}.kview.gross:active{cursor:grabbing}
+.kinner{position:absolute;inset:0;transform-origin:0 0;--iz:calc(1 / var(--z,1))}.kmap .kcv{width:100%;height:100%;display:block}
+.korte{position:absolute;inset:0}
+.kzoom{position:absolute;right:3.4%;top:5.6%;display:flex;flex-direction:column;gap:5px;z-index:2}
+.kzoom button{width:30px;height:30px;padding:0;border-radius:50%;border:2px solid #6a4418;background:radial-gradient(circle at 40% 35%,#fbecb8,#c89a40);color:#3a2208;font:bold 18px/24px Georgia,serif;cursor:pointer;box-shadow:0 2px 5px rgba(0,0,0,.55)}
+.kzoom button:hover:not(:disabled){filter:brightness(1.1)}.kzoom button:disabled{opacity:.4;cursor:default}
+.khilfe{text-align:center;font:italic 12px Georgia,serif;opacity:.6;margin-top:3px}
 .kort{position:absolute;width:7%;height:12%;transform:translate(-50%,-62%);border:0;background:none;border-radius:50%;cursor:default}
 .kort.go{cursor:pointer}.kort.go:hover{background:radial-gradient(rgba(255,220,120,.45),rgba(255,220,120,0) 70%)}
-.knadel{position:absolute;left:50%;top:-6%;width:16px;height:16px;margin-left:-8px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#c0201a;border:2px solid #fff3d0;box-shadow:0 0 0 0 rgba(255,80,40,.7);animation:knp 1.4s ease-out infinite}
+.knadel{position:absolute;left:50%;top:-6%;width:16px;height:16px;margin-left:-8px;border-radius:50% 50% 50% 0;transform:rotate(-45deg) scale(var(--iz,1));background:#c0201a;border:2px solid #fff3d0;box-shadow:0 0 0 0 rgba(255,80,40,.7);animation:knp 1.4s ease-out infinite}
 @keyframes knp{0%{box-shadow:0 0 0 0 rgba(255,80,40,.7)}100%{box-shadow:0 0 0 16px rgba(255,80,40,0)}}
-.kfertig{position:absolute;right:-4%;top:-8%;width:18px;height:18px;border-radius:50%;background:#3a7a3a;border:2px solid #f0e0c0;color:#e8ffe0;font:bold 12px/14px Georgia;font-style:normal;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.5)}
+.kfertig{position:absolute;right:-4%;top:-8%;transform:scale(var(--iz,1));width:18px;height:18px;border-radius:50%;background:#3a7a3a;border:2px solid #f0e0c0;color:#e8ffe0;font:bold 12px/14px Georgia;font-style:normal;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.5)}
 .kfuss{text-align:center;font:italic 14px Georgia,serif;opacity:.85;margin-top:8px}`;document.head.appendChild(css)})();

@@ -1,0 +1,8 @@
+# 46-gespraeche-figuren.js und Karten-Zoom (45-buendel-karte.js)
+=Weitere Stimmen => Другие голоса
+=Selbstgespräche => Разговоры с самим собой
+=Figuren und Gespräche => Персонажи и разговоры
+=Hineinzoomen => Приблизить
+=Herauszoomen => Отдалить
+=Ganze Karte => Вся карта
+=Mausrad oder + / −: zoomen · Ziehen: verschieben => Колесо мыши или + / −: масштаб · Перетаскивание: сдвинуть
