@@ -13,9 +13,6 @@
 =Dreh dich! ✦ => Spin! ✦
 =+ Frechheit => + Cheek
 =+ Башли ₽ => + Башли ₽
-=🧻 Tempos zustecken => 🧻 Slip her some tissues
-=👋 Näher ranwinken => 👋 Wave her closer
-=✋ Riskant … => ✋ Risky …
 =💸 Башли => 💸 Башли (cash)
 =*zieht das zerknüllte Taschentuch aus dem Strumpfband und hält es hoch* Ты чё, нищеброд, совсем берега попутал? Ну ладно, за наглость засчитаю. => *pulls the crumpled tissue out of her garter and holds it up* Ты чё, нищеброд, совсем берега попутал? Ну ладно, за наглость засчитаю.
 =(Ich glaube, das war ein Kompliment. Auf Russisch klingt alles wie eine Drohung.) => (I think that was a compliment. In Russian everything sounds like a threat.)
@@ -230,3 +227,16 @@
 =Komm wieder, wenn dein Kopf sortiert ist. => Come back when your head is sorted.
 =Fjodors Dorfleitung ist von 1971. Im Verteilerkasten liegen die Kabelstücke kreuz und quer. => Fyodor’s village line is from 1971. In the junction box the cable pieces are all over the place.
 =In der Schmiede mit Fjodor reden. Die Kabelstücke drehen, bis Schmiede und Omas Hütte Strom haben. Kein Kabel darf ins Leere zeigen. => Talk to Fyodor at the smithy. Turn the cable pieces until the smithy and Granny’s hut have power. No cable may point at nothing.
+# Tanz: 70-%-Schwelle, russische Menünamen (2.39)
+=Tempos zustecken => slip her some tissues
+=näher ranbeugen => lean in closer
+=ab # % Stimmung => from # % mood
+=Mutig! ♥♥ => Bold! ♥♥
+=Erwischt! => Caught!
+=STOPP! => STOP!
+=*lässt sich von dir an der Taille ein Stück näher ziehen* Ну ты наглец … Mutig, Zwiebel. => *lets you pull her a little closer by the waist* Ну ты наглец … Bold, Onion.
+=*beugt sich ganz nah zu dir runter* Bei der Stimmung lass ich dir das durchgehen. Einmal. Hände bleiben, wo ich sie sehe. => *leans right down to you* With this mood I’ll let it slide. Once. Hands stay where I can see them.
+=(Sie riecht nach Vanille und Haarspray. Ich darf jetzt nie wieder blinzeln.) => (She smells of vanilla and hairspray. I am never allowed to blink again.)
+=*reißt den Vorhang auf* STOPP! Hände aufs Sofa, Süßer! In meinem Haus wird geguckt, nicht gegrapscht! => *rips the curtain open* STOP! Hands on the sofa, sweetie! In my house we look, we don’t grab!
+=*verdreht die Augen* Danke, Mamotschka. Wir hatten’s gerade so gemütlich. => *rolls her eyes* Thanks, Mamochka. We were just getting cosy.
+=(Herzinfarkt. Fast.) => (Heart attack. Almost.)

@@ -20,8 +20,13 @@
 //                   Nastja mit und gibt auch Vibe. Viel Vibe = größere Bewegungen, mehr Glitzer, am Ende Bonus-Beziehung.
 // Punkte: alle Beziehungspunkte außer dem Anwerben zählen ×1,25 (20 % schneller zu 80 % / 100 %).
 // Tanzmenü (unten links, während des Tanzes):
-//   🧻 Tempos zustecken (immer, einmal pro Tanz)  → Nastja lacht dich auf Russisch aus, Beziehung moderat +
-//   👋 Näher ranwinken                            → Kamera zoomt auf den Oberkörper (mehrfach = näher), geht nach 6 s zurück
+//   🧻 Скомканные салфетки / Tempos zustecken (immer, einmal pro Tanz) → Nastja lacht dich auf Russisch aus, Stimmung leicht +
+//   👋 Ближе наклониться (näher ranbeugen)       → Kamera zoomt auf den Oberkörper (mehrfach = näher), geht nach 6 s zurück
+//   ✋ Рискнуть и приобнять – entscheidet die STIMMUNG beim Klick auf den Oberkörper (GRIFF_SCHWELLE = 70):
+//        < 70 %              → Hand-Wegschlag (siehe unten).
+//        ≥ 70 %, Zinaida guckt → Zinaida reißt den Vorhang auf: Arm zuckt zurück, Stimmung −15, Tanz stockt kurz.
+//        ≥ 70 %, freie Bahn  → Petjas Arm (Oberarm nah, Hand fern) fasst sie an der Taille, zieht sie näher (Kamera lehnt sich
+//                              tief rein, Zoom 2,15) → Flirt-Reaktion, Stimmung +20, Beziehung + (na_mut).
 //   ✋ Riskant (RISKY_CONTACT, einmal pro Tanz)  → danach auf die Trefferzone upper_torso_zone klicken: Petjas ausgestreckter Arm (Ich-Sicht, PETJA_ARM_IMG aus
 //        54-petja-arm-pixel.js) schiebt sich von RECHTS UNTEN ins Bild Richtung Brust. Bevor die Hand ankommt, schlägt Nastja sie
 //        blitzschnell zur Seite (*KLATSCH*, «Клешни свои убрал с верхнего этажа!»). Kein Beziehungs-Boost, nur Stimmung −12,
@@ -142,7 +147,7 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
   // Zustand der Physik (Sprite-Pixel)
   const ph={jy:0,vy:0,jx:0,vx:0,hx:0,hv:0,hy:0,hyv:0,wippV:0,wippA:0,huefV:0,theta:0,thetaZiel:0,maus:0,vibe:40,pop:[],kopfPuffer:[],
     pauseSum:0,pauseBis:0,zoom:1,zoomZiel:1,zoomBis:0,torso:null,risiko:null,handT:0,handZiel:null,erfolg:false,tempoDa:0,riskDa:0,winkN:0,
-    zin:{sicht:false,ab:0,naechste:6+Math.random()*5,auftritt:-9}};
+    zin:{sicht:false,ab:0,naechste:6+Math.random()*5,auftritt:-9}};cv3._ph=ph;   // Zustand für automatische Tests
   let fin=false,T0=performance.now(),tAlt=0,mausWinkel=null,mausKreis=0,letzterSchlag=-1;
   // ---- Eingabe: Takt (Leertaste/Klick) und Maus-Kreisen ----
   const schlag=()=>{const t=(performance.now()-T0)/1000-OFF-ph.pauseSum;if(t<0||fin)return;const ph0=t/BEAT,abw=Math.abs(ph0-Math.round(ph0))*BEAT,nr=Math.round(ph0);
@@ -157,14 +162,14 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
   const sprich=l=>{if(busy)advance();say(l)};
   const menu=document.createElement('div');menu.id='tanzmenu';$('#game').appendChild(menu);
   function menuBau(){const c=player.cash;
-    menu.innerHTML=`<button data-m="tempo" ${ph.tempoDa?'disabled':''}>🧻 Tempos zustecken</button><button data-m="wink">👋 Näher ranwinken</button>
-      <button data-m="risk" ${ph.riskDa||ph.risiko?'disabled':''}>✋ Riskant …</button>${c>0?`<button data-m="geld">💸 Башли <small>${c} ₽</small></button>`:''}`;
+    menu.innerHTML=`<button data-m="tempo" ${ph.tempoDa?'disabled':''}>🧻 Скомканные салфетки <small>Tempos zustecken</small></button><button data-m="wink">👋 Ближе наклониться <small>näher ranbeugen</small></button>
+      <button data-m="risk" ${ph.riskDa||ph.risiko?'disabled':''}>✋ Рискнуть и приобнять <small>ab ${GRIFF_SCHWELLE} % Stimmung</small></button>${c>0?`<button data-m="geld">💸 Башли <small>${c} ₽</small></button>`:''}`;
     menu.querySelectorAll('button').forEach(b=>{b.onmousedown=e=>{e.preventDefault();e.stopPropagation()};b.onclick=e=>{e.stopPropagation();aktion(b.dataset.m)}})}
   function aktion(m){const t=jetztT(),u=t-OFF-ph.pauseSum;if(t<ph.pauseBis)return;
     if(m==='tempo'&&!ph.tempoDa){ph.tempoDa=1;FL.na_tempo=Math.min(2,(FL.na_tempo||0)+1);ph.vibe=Math.min(100,ph.vibe+8);ph.pop.push({t:u,txt:'+ Frechheit',c:'255,220,160'});
       sprich([['NA','*zieht das zerknüllte Taschentuch aus dem Strumpfband und hält es hoch* Ты чё, нищеброд, совсем берега попутал? Ну ладно, за наглость засчитаю.','laugh'],
         ['P','(Ich glaube, das war ein Kompliment. Auf Russisch klingt alles wie eine Drohung.)','smirk']])}
-    if(m==='wink'){ph.zoomZiel=Math.min(1.75,ph.zoomZiel+.25);ph.zoomBis=t+6;ph.vibe=Math.min(100,ph.vibe+3);
+    if(m==='wink'){ph.zoomZiel=Math.min(1.9,ph.zoomZiel+.3);ph.zoomBis=t+6;ph.vibe=Math.min(100,ph.vibe+3);
       if(!ph.winkN++)sprich([['NA','*beugt sich vor* Näher, Zwiebel? Noch näher kostet Aufpreis.','flirt']])}
     if(m==='risk'&&!ph.riskDa&&!ph.risiko){ph.risiko='wählen';cv3.style.cursor='grab';$('#box').style.pointerEvents='none';ph.pop.push({t:u,txt:'✋ Klick auf den Oberkörper …',c:'255,200,160'})}
     if(m==='geld'&&player.cash>0){player.cash--;FL.na_tip=Math.min(3,(FL.na_tip||0)+1);ph.vibe=Math.min(100,ph.vibe+15);ph.pop.push({t:u,txt:'+ Башли ₽',c:'160,255,170'});
@@ -176,8 +181,21 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
     if(Math.cos(ph.theta)<.5){ph.risiko=null;ph.pop.push({t:t-OFF-ph.pauseSum,txt:'Sie dreht dir den Rücken zu …',c:'200,170,190'});menuBau();return}
     if(!b||mx<b.x0||mx>b.x1||my<b.y0||my>b.y1){ph.risiko=null;ph.pop.push({t:t-OFF-ph.pauseSum,txt:'… doch nicht. Feigling.',c:'200,170,190'});menuBau();return}
     ph.risiko='hand';ph.riskDa=1;ph.handT=t;ph.handAus=0;$('#box').style.pointerEvents='';
-    const d=Math.hypot(900-mx,620-my);ph.handZiel=[mx+(900-mx)/d*34,my+(620-my)/d*34];   // Hand bleibt 34 px vor dem Ziel in der Luft
+    ph.griffArt=ph.vibe<GRIFF_SCHWELLE?'nein':ph.zin.sicht?'zin':'ja';
+    if(ph.griffArt==='ja')ph.handZiel=[b.x1-(b.x1-b.x0)*.12,b.y1-(b.y1-b.y0)*.08];   // Hand an ihre Taille (Seite zu Petja)
+    else{const d=Math.hypot(900-mx,620-my);ph.handZiel=[mx+(900-mx)/d*34,my+(620-my)/d*34]}   // Hand bleibt 34 px vor dem Ziel in der Luft
     menuBau()}
+  // Stimmung ≥ 70 und Zinaida guckt weg: sie lässt sich näher ziehen
+  function griffErfolg(t){const u=t-OFF-ph.pauseSum;ph.vibe=Math.min(100,ph.vibe+20);FL.na_mut=Math.min(2,(FL.na_mut||0)+1);
+    ph.zoomZiel=2.15;ph.zoomBis=t+3.2;ph.pop.push({t:u,txt:'Mutig! ♥♥',c:'255,215,120'});
+    sprich([['NA','*lässt sich von dir an der Taille ein Stück näher ziehen* Ну ты наглец … Mutig, Zwiebel.','flirt'],
+      ['NA','*beugt sich ganz nah zu dir runter* Bei der Stimmung lass ich dir das durchgehen. Einmal. Hände bleiben, wo ich sie sehe.','flirt'],
+      ['P','(Sie riecht nach Vanille und Haarspray. Ich darf jetzt nie wieder blinzeln.)']])}
+  // Stimmung ≥ 70, aber Zinaida guckt: sie geht dazwischen
+  function griffZinaida(t){const u=t-OFF-ph.pauseSum;ph.vibe=Math.max(0,ph.vibe-15);ph.pauseBis=t+2.2;ph.zin.stopp=t;ph.zin.sicht=false;
+    ph.pop.push({t:u,txt:'Erwischt!',c:'255,110,110'});
+    sprich([['Z','*reißt den Vorhang auf* STOPP! Hände aufs Sofa, Süßer! In meinem Haus wird geguckt, nicht gegrapscht!'],
+      ['NA','*verdreht die Augen* Danke, Mamotschka. Wir hatten’s gerade so gemütlich.','laugh'],['P','(Herzinfarkt. Fast.)','pain']])}
   // Nastjas Konter: Hand wegschlagen, Stimmung runter, Zinaida grinst
   function griffAusgang(t){const u=t-OFF-ph.pauseSum;ph.vibe=Math.max(0,ph.vibe-12);ph.zin.grinst=t;ph.zin.sicht=false;
     ph.pop.push({t:u,txt:'*KLATSCH*',c:'255,140,120'});
@@ -220,8 +238,9 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
     // Zinaida linst ab und zu hinter dem Vorhang hervor
     {const Z=ph.zin;if(!Z.sicht&&u>2&&u<21&&u>=Z.naechste&&t>ph.pauseBis){Z.sicht=true;Z.ab=t}
       if(Z.sicht&&t-Z.ab>2.6){Z.sicht=false;Z.naechste=u+7+Math.random()*6}}
-    if(ph.risiko==='hand'&&t-ph.handT>=.52&&!ph.handAus){ph.handAus=1;griffAusgang(t)}
-    if(ph.risiko==='hand'&&t-ph.handT>1.4){ph.risiko=null;ph.handAus=0;menuBau()}
+    if(ph.risiko==='hand'&&!ph.handAus){const a=t-ph.handT;
+      if(ph.griffArt==='ja'&&a>=.62){ph.handAus=1;griffErfolg(t)}else if(ph.griffArt==='zin'&&a>=.42){ph.handAus=1;griffZinaida(t)}else if(ph.griffArt==='nein'&&a>=.52){ph.handAus=1;griffAusgang(t)}}
+    if(ph.risiko==='hand'&&t-ph.handT>(ph.griffArt==='ja'?3:1.4)){ph.risiko=null;ph.handAus=0;menuBau()}
     if(t>ph.zoomBis)ph.zoomZiel=1;ph.zoom+=(ph.zoomZiel-ph.zoom)*Math.min(1,dt*3);
     menu.style.display=u>1.5&&u<21&&t>=ph.pauseBis&&!fin?'flex':'none';
     for(const k in TEXT)if(u>=+k&&!said.has(k)){said.add(k);if(busy)advance();say(TEXT[k])}
@@ -275,7 +294,16 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
     x.restore();
     if(!sit){sofa();fpKnees(x)}
     // RISKY_CONTACT: Petjas Arm streckt sich von rechts unten zur Brust, Nastja schlägt ihn weg
-    if(ph.risiko==='hand'&&ph.handZiel){const a=t-ph.handT,[zx,zy]=ph.handZiel;
+    if(ph.risiko==='hand'&&ph.handZiel&&ph.griffArt==='ja'){const a=t-ph.handT,b=ph.torso||{x0:380,x1:430,y0:200,y1:260},hh=b.y1-b.y0;   // Erfolg: Arm fasst die Taille, zieht, lässt los
+      const zx=b.x1+(b.x1-b.x0)*.12,zy=b.y1+hh*.22;   // Taille an ihrer Seite, folgt ihr beim Zoom
+      let w=0,dreh=0;
+      if(a<.62){const k=1-Math.pow(1-a/.62,2);w=(1-k)*440}
+      else if(a<2.3){const k=Math.min(1,(a-.62)/.5);w=-10*Math.sin(k*Math.PI/2)+1.5*Math.sin(a*7);dreh=-.05*k}   // hält fest und zieht leicht
+      else{const k=Math.min(1,(a-2.3)/.6);w=k*k*470;dreh=-.05*(1-k)}
+      petjaArm(x,zx+ARM_DIR[0]*w,zy+ARM_DIR[1]*w,dreh)}
+    if(ph.risiko==='hand'&&ph.handZiel&&ph.griffArt==='zin'){const a=t-ph.handT,[zx,zy]=ph.handZiel;   // Zinaida: Arm zuckt erschrocken zurück
+      const w=a<.42?(1-(1-Math.pow(1-a/.42,2)))*430:Math.pow(Math.min(1,(a-.42)/.3),2)*480;petjaArm(x,zx+ARM_DIR[0]*w,zy+ARM_DIR[1]*w+(a>.42?-8*Math.sin(Math.min(1,(a-.42)/.3)*Math.PI):0),0)}
+    if(ph.risiko==='hand'&&ph.handZiel&&ph.griffArt==='nein'){const a=t-ph.handT,[zx,zy]=ph.handZiel;
       let hx=zx,hy=zy,dreh=0;
       if(a<.5){const k=1-Math.pow(1-a/.5,2),w=(1-k)*430;hx=zx+ARM_DIR[0]*w+Math.sin(a*19)*3*(1-k);hy=zy+ARM_DIR[1]*w}   // Arm schiebt sich ins Bild
       else{const k=Math.min(1,(a-.5)/.45),w=k*k*480;hx=zx+ARM_DIR[0]*w+38*Math.sin(Math.min(1,k*3)*Math.PI)*(1-k);hy=zy+ARM_DIR[1]*w+12*Math.sin(Math.min(1,k*3)*Math.PI);dreh=.32*Math.sin(Math.min(1,k*2.2)*Math.PI/2)}   // weggeschlagen, zuckt zurück
@@ -283,6 +311,9 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
       if(a>.36&&a<.74){const k=a<.52?(a-.36)/.16:1+(a-.52)*1.2,al=a<.52?1:1-(a-.52)/.22;   // Nastjas Hand schnellt von links vor, wischt durch und ist weg
         x.save();x.globalAlpha=Math.max(0,al);naHand(x,zx-150+130*k,zy+40-24*k,.6,'#f2d2b8',true,-1.35);x.restore()}
       if(a>.5&&a<.75){x.save();x.font='bold 30px Georgia';x.textAlign='center';x.lineWidth=5;x.strokeStyle='#000';x.strokeText('*KLATSCH*',zx,zy-30);x.fillStyle='#ffd25a';x.fillText('*KLATSCH*',zx,zy-30);x.restore()}}
+    if(t-(ph.zin.stopp||-9)<2.4&&ZIN_IMG.complete&&ZIN_IMG.naturalWidth){const a=t-ph.zin.stopp,k=Math.max(0,Math.min(1,a/.25,(2.4-a)/.35)),zs=.62;
+      x.save();x.globalAlpha=k;x.drawImage(ZIN_IMG,-ZIN_IMG.naturalWidth*zs*.7+k*120,500-500*zs*.92,ZIN_IMG.naturalWidth*zs,500*zs);
+      x.font='bold 30px Georgia';x.lineWidth=5;x.strokeStyle='#000';x.strokeText('STOPP!',40+k*60,190);x.fillStyle='#ff7a6a';x.fillText('STOPP!',40+k*60,190);x.restore()}
     if(t-(ph.zin.grinst||-9)<2.8&&ZIN_IMG.complete&&ZIN_IMG.naturalWidth){const a=t-ph.zin.grinst,k=Math.max(0,Math.min(1,a/.35,(2.8-a)/.4)),zs=.42;   // Zinaida grinst hämisch am Rand
       x.save();x.globalAlpha=k;x.filter='brightness(.75)';x.drawImage(ZIN_IMG,-ZIN_IMG.naturalWidth*zs*.55+k*70,470-500*zs,ZIN_IMG.naturalWidth*zs,500*zs);x.filter='none';
       x.font='italic 13px Georgia';x.fillStyle='rgba(255,220,150,.95)';x.fillText('*grinst hämisch*',20+k*40,450-500*zs);x.restore()}
@@ -313,6 +344,7 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
 
 // Petjas ausgestreckter Arm aus der Ich-Sicht: Handfläche (PETJA_ARM_ANKER) liegt auf X/Y, Ärmel läuft nach rechts unten aus dem Bild.
 // rot dreht um die Handfläche (weggeschlagen = im Uhrzeigersinn). Solange das Bild noch lädt, springt die klobige Hand ein.
+const GRIFF_SCHWELLE=70;   // ab dieser Stimmung lässt Nastja sich anfassen
 const ARM_S=.7,ARM_DIR=(()=>{const v=[PETJA_ARM_W-PETJA_ARM_ANKER[0],PETJA_ARM_H*.85-PETJA_ARM_ANKER[1]],l=Math.hypot(...v);return[v[0]/l,v[1]/l]})();
 function petjaArm(x,X,Y,rot){if(!PETJA_ARM_IMG.complete||!PETJA_ARM_IMG.naturalWidth)return klobigeHand(x,X,Y,-2.3+rot);
   x.save();x.translate(X,Y);x.rotate(rot);x.imageSmoothingEnabled=false;
@@ -336,7 +368,7 @@ function naHand(x,X,Y,s,farbe,oben,rot){x.save();x.translate(X,Y);if(rot)x.rotat
 (function(){const css=document.createElement('style');css.textContent=`#tanzmenu{position:absolute;left:1.5%;bottom:3%;z-index:16;display:none;flex-direction:column;gap:6px;pointer-events:none}#tanzmenu button{pointer-events:auto}
 #toasts,#crt,#crt i,#box #portrait{pointer-events:none}
 #tanzmenu button{font:13px Georgia,serif;color:#f6ead0;background:rgba(40,8,24,.82);border:1px solid rgba(255,190,220,.55);border-radius:6px;padding:6px 10px;text-align:left;cursor:pointer}
-#tanzmenu button:hover:not([disabled]){background:rgba(110,20,60,.9)}#tanzmenu button[disabled]{opacity:.4;cursor:default}#tanzmenu small{opacity:.75}`;document.head.appendChild(css)})();
+#tanzmenu button:hover:not([disabled]){background:rgba(110,20,60,.9)}#tanzmenu button[disabled]{opacity:.4;cursor:default}#tanzmenu small{display:block;font-size:11px;opacity:.75}`;document.head.appendChild(css)})();
 
 // ---------- Texte je Outfit (Zeitpunkt in s nach Tanzbeginn) ----------
 const NA_SHOW_ZU={

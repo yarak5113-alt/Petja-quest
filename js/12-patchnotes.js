@@ -1,6 +1,7 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'2.39',d:'17.11.2026',t:'Ab 70 %',n:['Tanzmenü auf Russisch: Скомканные салфетки (Tempos zustecken), Ближе наклониться (näher ranbeugen), Рискнуть и приобнять. Башли erscheint nur mit Geld in der Tasche.','Рискнуть и приобнять hängt jetzt an der Stimmung: unter 70 % schlägt Nastja die Hand weg. Ab 70 % fasst Petja sie an der Taille und zieht sie näher (Kamera lehnt sich tief rein, Flirt, Beziehung +), außer Zinaida guckt gerade: dann reißt sie den Vorhang auf und ruft STOPP.']},
   {v:'2.38',d:'17.11.2026',t:'Lange Arme',n:['Beim riskanten Griff im Tanz streckt sich jetzt Petjas echter Arm aus der Ich-Sicht von rechts unten zur Brust, im türkisen Hemd. Nastja schlägt ihn trotzdem weg.']},
   {v:'2.37',d:'17.11.2026',t:'Verteilerkasten',n:['Fjodors Stromleitung ist jetzt ein Logikrätsel: Kabelstücke drehen, bis Schmiede und Omas Hütte Strom haben, ohne offene Enden.','Schmiede, Omas Hütte und Trafo im Rätsel sehen jetzt aus wie die Häuser im Dorf.','Die Kohle für Oma Dusja gibt Fjodor jetzt direkt nach dem Rätsel. Man kann den Sack auch auf Oma ziehen (genauso den Kater auf Vater Ignati).']},
   {v:'2.36',d:'17.11.2026',t:'Wo ist Murka?',n:['Der weggetretene Kater sitzt jetzt wirklich unter dem Pier (vom Ufer aus über das Schild „Unter den Pier“) statt am Fischerhaus.']},
