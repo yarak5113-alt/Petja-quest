@@ -230,7 +230,7 @@
 # Tanz: 70-%-Schwelle, russische Menünamen (2.39)
 =Tempos zustecken => slip her some tissues
 =näher ranbeugen => lean in closer
-=ab # % Stimmung => from # % mood
+=ab # % Beziehung => from # % relationship
 =Mutig! ♥♥ => Bold! ♥♥
 =Erwischt! => Caught!
 =STOPP! => STOP!
