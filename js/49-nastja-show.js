@@ -16,8 +16,9 @@
 //                   Richtung ein eigenes Bild (NA_SKINS.<outfit>.dirs[i] = Image), wird es benutzt. Sonst rechnet die Engine die
 //                   Drehung aus der Frontansicht: Breite mit |cos θ|, Schattierung zur abgewandten Seite, Rückansicht gespiegelt
 //                   und abgedunkelt mit den Haaren VOR dem Körper und Hinterkopf statt Gesicht.
-//   Vibe-Meter      Leertaste / Klick im Takt (100 BPM, ±0,13 s) füllt es, daneben kostet etwas; Maus im Kreis bewegen dreht
-//                   Nastja mit und gibt auch Vibe. Viel Vibe = größere Bewegungen, mehr Glitzer, am Ende Bonus-Beziehung (max. +10).
+//   Vibe-Meter      Leertaste / Klick im Takt (100 BPM, ±0,2 s, Taktring zeigt den Moment) füllt es, daneben kostet etwas; Maus im Kreis bewegen dreht
+//                   Nastja mit und gibt auch Vibe. Viel Vibe = größere Bewegungen, mehr Glitzer, am Ende Bonus-Beziehung.
+// Punkte: alle Beziehungspunkte außer dem Anwerben zählen ×1,25 (20 % schneller zu 80 % / 100 %).
 
 const NA_STUFEN=[[80,'dessous'],[50,'vip'],[25,'standard']];
 const nastjaSkin=(v=relOf('Nastja'))=>{for(const[g,k]of NA_STUFEN)if(v>=g)return k;return null};
@@ -29,7 +30,8 @@ const NA_SKINS={
 const NA_RICHTUNG=['vorn','vorn-rechts','Profil rechts','hinten-rechts','hinten','hinten-links','Profil links','vorn-links'];
 
 // Bonus aus dem Vibe-Meter fließt in die Beziehung (je +5, höchstens zweimal)
-{const f=REL['Nastja'];REL['Nastja']=()=>f()+Math.min(2,FL.na_vibe||0)*5}
+// Alles außer den 15 % fürs Anwerben zählt ×1,25 → bis 100 % braucht man 20 % weniger Gespräche, Tänze und Drinks.
+{const f=REL['Nastja'];REL['Nastja']=()=>{const rek=FL.rekrut?15:0;return rek+(f()-rek+Math.min(2,FL.na_vibe||0)*5)*1.25}}
 
 // ---------- Rig: Bild in Körper- und Haarschicht zerlegen ----------
 function naRig(img,zonen){if(!img||!img.complete||!img.naturalWidth)return null;if(img._naRig)return img._naRig;
@@ -40,6 +42,16 @@ function naRig(img,zonen){if(!img||!img.complete||!img.naturalWidth)return null;
     if(r===46&&gg===28&&b===16){typ[k]=3;continue}
     const mx=Math.max(r,gg,b),mn=Math.min(r,gg,b),dl=mx-mn,s=mx?dl/mx:0;let H=0;if(dl){H=mx===r?((gg-b)/dl)%6:mx===gg?(b-r)/dl+2:(r-gg)/dl+4;H*=60;if(H<0)H+=360}
     if(H>=34.5&&H<=60&&s>=.23&&mx>=140&&k/w<haarBis){typ[k]=2;hr+=r;hg+=gg;hb+=b;hn++}else typ[k]=1}
+  // Aufräumen 1: kleine Haar-Inseln (Hautlichter mit Haar-Farbton) gehören zum Körper – sonst entstehen beim Bewegen Löcher
+  {const lab=new Int32Array(w*h).fill(-1);for(let s0=0;s0<w*h;s0++){if(typ[s0]!==2||lab[s0]>=0)continue;const comp=[s0],st=[s0];lab[s0]=s0;
+    while(st.length){const k=st.pop(),x=k%w,y=(k-x)/w;for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){const X=x+dx,Y=y+dy;if(X<0||Y<0||X>=w||Y>=h)continue;const j=Y*w+X;if(typ[j]===2&&lab[j]<0){lab[j]=s0;st.push(j);comp.push(j)}}}
+    if(comp.length<250)comp.forEach(k=>typ[k]=1)}}
+  // Aufräumen 2: Haarpixel, die links UND rechts UND oben UND unten (≤ 5 px) Körper haben, liegen im Körper → Körper
+  {const istK=(x,y)=>x>=0&&y>=0&&x<w&&y<h&&typ[y*w+x]===1,neu=[];
+    for(let y=0;y<h;y++)for(let x=0;x<w;x++){if(typ[y*w+x]!==2)continue;let l=0,r=0,o=0,u=0;
+      for(let i=1;i<=5;i++){l|=istK(x-i,y);r|=istK(x+i,y);o|=istK(x,y-i);u|=istK(x,y+i)}if(l&&r&&o&&u)neu.push(y*w+x)}
+    neu.forEach(k=>typ[k]=1)}
+  hr=hg=hb=hn=0;const toene=[];for(let k=0;k<w*h;k++)if(typ[k]===2){const q=k*4;hr+=d[q];hg+=d[q+1];hb+=d[q+2];hn++;toene.push([d[q],d[q+1],d[q+2]])}
   // Kontur: gehört zum Haar, wenn in 2 px Haar liegt und kein Körper
   const t2=typ.slice();for(let y=0;y<h;y++)for(let x=0;x<w;x++){const k=y*w+x;if(typ[k]!==3)continue;let haar=0,koerper=0;
     for(let dy=-2;dy<=2;dy++)for(let dx=-2;dx<=2;dx++){const X=x+dx,Y=y+dy;if(X<0||Y<0||X>=w||Y>=h)continue;const t=typ[Y*w+X];if(t===2)haar=1;else if(t===1)koerper=1}
@@ -48,24 +60,25 @@ function naRig(img,zonen){if(!img||!img.complete||!img.naturalWidth)return null;
     for(let k=0;k<w*h;k++)if(t2[k]===want){const q=k*4;oi.data[q]=d[q];oi.data[q+1]=d[q+1];oi.data[q+2]=d[q+2];oi.data[q+3]=255}og.putImageData(oi,0,0);return o};
   // Kopf (Gesicht) über dem Hals: für die Rückansicht mit Hinterkopf übermalen
   let x0=w,x1=0,y0=h,y1=0;const hals=h*zonen.hals;for(let y=0;y<hals;y++)for(let x=0;x<w;x++)if(t2[y*w+x]===1&&typ[y*w+x]===1){x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y)}
-  // Rückansicht: Haarvorhang – jede Zeile von der linken bis zur rechten Haarkante, mit Strähnen und Kontur
+  // Rückansicht: Haarvorhang aus Locken in den echten Haarfarben des Bildes (4 Töne), unten gewellte Spitzen
   const haarFarbe=hn?[hr/hn|0,hg/hn|0,hb/hn|0]:[216,192,138],rk=document.createElement('canvas');rk.width=w;rk.height=h;
-  {const rg=rk.getContext('2d'),ri=rg.createImageData(w,h),rd=ri.data,L=new Int16Array(h).fill(-1),R=new Int16Array(h).fill(-1);
-    const ende=Math.round(h*(zonen.huefte-.015));   // Vorhang endet knapp über der Hüfte (darunter würden Hautschatten mitzählen)
-    for(let y=0;y<ende;y++)for(let x=0;x<w;x++)if(t2[y*w+x]===2){if(L[y]<0)L[y]=x;R[y]=x}
-    // Kanten glätten: Median über ±6 Zeilen, Lücken überbrücken
-    const med=(A,y)=>{const v=[];for(let i=-6;i<=6;i++){const k=y+i;if(k>=0&&k<ende&&A[k]>=0)v.push(A[k])}if(!v.length)return-1;v.sort((a,b)=>a-b);return v[v.length>>1]};
-    const L2=new Int16Array(h).fill(-1),R2=new Int16Array(h).fill(-1);let start=-1;for(let y=0;y<ende;y++)if(L[y]>=0&&R[y]-L[y]>=6){start=y;break}
-    if(start>=0)for(let y=start;y<ende;y++){L2[y]=med(L,y);R2[y]=med(R,y)}
-    for(let y=start+1;y>0&&y<ende;y++)if(L2[y]<0&&L2[y-1]>=0){L2[y]=L2[y-1];R2[y]=R2[y-1]}
-    // unten rund auslaufen lassen
-    for(let i=0;i<10;i++){const y=ende-1-i;if(y<0||L2[y]<0)continue;const e=Math.round((1-Math.sqrt(1-((10-i)/10)**2))*(R2[y]-L2[y])*.18);L2[y]+=e;R2[y]-=e}
-    L.set(L2);R.set(R2);
-    for(let y=0;y<h;y++){if(L[y]<0)continue;const wy=R[y]-L[y];if(wy<6)continue;
-      for(let x=L[y];x<=R[y];x++){const q=(y*w+x)*4,rand=x-L[y]<2||R[y]-x<2,unten=y+2<h&&(L[y+2]<0||x<L[y+2]||x>R[y+2]);
-        const strähne=.82+.18*Math.sin(x*.9+Math.sin(y*.05+x*.3)*2)+(((x*7+((y/9)|0)*13)%11)===0?-.18:0);
-        const f=rand||unten?0:Math.max(.55,Math.min(1.12,strähne));
-        if(!f){rd[q]=46;rd[q+1]=28;rd[q+2]=16}else{rd[q]=Math.min(255,haarFarbe[0]*f);rd[q+1]=Math.min(255,haarFarbe[1]*f);rd[q+2]=Math.min(255,haarFarbe[2]*f)}rd[q+3]=255}}
+  {const lum=c=>.299*c[0]+.587*c[1]+.114*c[2];toene.sort((p,q)=>lum(p)-lum(q));
+    const ton=p=>toene.length?toene[Math.min(toene.length-1,Math.floor(p*toene.length))]:haarFarbe,T=[ton(.08),ton(.35),ton(.62),ton(.9)];
+    const rg=rk.getContext('2d'),ri=rg.createImageData(w,h),rd=ri.data,L=new Int16Array(h).fill(-1),R=new Int16Array(h).fill(-1),bis=Math.round(h*zonen.haar);
+    for(let y=0;y<bis;y++)for(let x=0;x<w;x++)if(t2[y*w+x]===2){if(L[y]<0)L[y]=x;R[y]=x}
+    const med=(A,y)=>{const v=[];for(let i=-6;i<=6;i++){const k=y+i;if(k>=0&&k<bis&&A[k]>=0)v.push(A[k])}if(!v.length)return-1;v.sort((p,q)=>p-q);return v[v.length>>1]};
+    const L2=new Int16Array(h).fill(-1),R2=new Int16Array(h).fill(-1);for(let y=0;y<bis;y++){L2[y]=med(L,y);R2[y]=med(R,y)}
+    let breit=0;for(let y=0;y<bis;y++)if(L2[y]>=0)breit=Math.max(breit,R2[y]-L2[y]);
+    let ende=0;for(let y=0;y<bis;y++)if(L2[y]>=0&&R2[y]-L2[y]>=breit*.55)ende=y;ende=Math.min(ende,Math.round(h*(zonen.huefte+.03)));
+    for(let y=ende+1;y<ende+14&&y<h;y++){L2[y]=L2[ende];R2[y]=R2[ende]}   // Platz für die Spitzen
+    const px=(x,y,c)=>{const q=(y*w+x)*4;rd[q]=c[0];rd[q+1]=c[1];rd[q+2]=c[2];rd[q+3]=255},K=[46,28,16];
+    const drin=(x,y)=>{if(y<0||y>=h||L2[y]<0||x<L2[y]||x>R2[y])return false;const cx=(L2[y]+R2[y])/2,u=(x-cx+Math.sin(y*.03+x*.01)*6)/15,i=Math.floor(u),f=u-i;
+      const spitze=ende+5+Math.round(6*Math.sin(i*2.3+1));return y<=spitze+Math.round(8*(1-(2*f-1)**2))};
+    for(let y=0;y<h;y++){if(L2[y]<0)continue;for(let x=L2[y];x<=R2[y];x++){if(!drin(x,y))continue;
+      if(!drin(x-1,y)||!drin(x+1,y)||!drin(x,y+1)||!drin(x,y-1)||!drin(x-2,y)||!drin(x+2,y)||!drin(x,y+2)){px(x,y,K);continue}   // Kontur 2 px
+      const cx=(L2[y]+R2[y])/2,u=(x-cx+Math.sin(y*.03+x*.01)*6)/15,f=u-Math.floor(u);
+      let t=f<.07?0:f<.22||f>.86?1:f>.38&&f<.62?3:2;if(Math.min(x-L2[y],R2[y]-x)<6||y>ende-4)t=Math.max(0,t-1);   // Locke: dunkle Kante, helle Mitte; außen und unten etwas dunkler
+      px(x,y,T[t])}}
     rg.putImageData(ri,0,0)}
   return img._naRig={w,h,koerper:lay(1),haar:lay(2),ruecken:rk,haarFarbe:`rgb(${haarFarbe.join(',')})`,kopf:x1>x0?{x0,x1,y0,y1}:null}}
 
@@ -75,7 +88,7 @@ const naKurve=(knoten,y)=>{if(y<=knoten[0][0])return knoten[0][1];for(let i=1;i<
 
 // ---------- Eine Schicht in Zeilenstreifen zeichnen (Ursprung: unten Mitte) ----------
 function naStreifen(x,src,w,h,dxF,dyF,sxF){const S=2;for(let y=0;y<h;y+=S){const n=Math.min(S,h-y),a=y+dyF(y),b=y+n+dyF(y+n),sx=sxF?sxF(y):1;
-  x.drawImage(src,0,y,w,n,-w/2*sx+dxF(y),a-h,w*sx,b-a+.6)}}
+  x.drawImage(src,0,y,w,n,Math.round(-w/2*sx+dxF(y)),Math.round(a-h),Math.round(w*sx),Math.max(1,Math.round(b-h)-Math.round(a-h)))}}   // lückenlos aneinander
 
 // ---------- Tänzerin zeichnen (in den Zwischenpuffer, dann mit Richtung/Schatten auf die Bühne) ----------
 const NA_PUF=document.createElement('canvas');NA_PUF.width=420;NA_PUF.height=560;
@@ -89,7 +102,7 @@ function naZeichne(x,rig,z,st,theta){const p=NA_PUF.getContext('2d'),{w,h}=rig,Y
   const dyK=y=>{const bein=Math.max(0,Math.min(1,(h-y)/(h-Y(z.huefte))));return st.wipp*bein+st.jigY*bell(y)};
   const wH=y=>Math.max(0,Math.min(1,(y-Y(z.hals)+h*.04)/(Y(z.haar)-Y(z.hals))));
   const dxH=y=>st.kopf+wH(y)*st.haar,sxH=y=>1+wH(y)*st.faecher,dyH=y=>st.wipp*.95+wH(y)*st.haarY;
-  if(!hinten){naStreifen(p,rig.haar,w,h,dxH,dyH,sxH);naStreifen(p,rig.koerper,w,h,dxK,dyK)}
+  if(!hinten){naStreifen(p,rig.haar,w,h,y=>st.kopf,y=>st.wipp*.95);naStreifen(p,rig.haar,w,h,dxH,dyH,sxH);naStreifen(p,rig.koerper,w,h,dxK,dyK)}   // Haare: fester Grund + nachschwingende Lage
   else{p.filter='brightness(.72) saturate(.9)';naStreifen(p,rig.koerper,w,h,dxK,dyK);p.filter='none';
     naStreifen(p,rig.haar,w,h,dxH,dyH,sxH);naStreifen(p,rig.ruecken,w,h,dxH,dyH,sxH)}   // Haarspitzen, darüber der Haarvorhang (verdeckt Gesicht und Rücken)
   // Schatten zur abgewandten Seite (nur auf der Figur)
@@ -115,8 +128,8 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
   // ---- Eingabe: Takt (Leertaste/Klick) und Maus-Kreisen ----
   const schlag=()=>{const t=(performance.now()-T0)/1000-OFF;if(t<0||fin)return;const ph0=t/BEAT,abw=Math.abs(ph0-Math.round(ph0))*BEAT,nr=Math.round(ph0);
     if(nr===letzterSchlag)return;   // pro Takt nur ein Treffer
-    if(abw<=.13){letzterSchlag=nr;ph.vibe=Math.min(100,ph.vibe+7);ph.pop.push({t,txt:abw<.06?'Perfekt! ♥':'Im Takt ♪',c:'255,215,120'})}
-    else{ph.vibe=Math.max(0,ph.vibe-4);ph.pop.push({t,txt:'Daneben …',c:'200,120,140'})}};
+    if(abw<=.2){letzterSchlag=nr;ph.vibe=Math.min(100,ph.vibe+(abw<.09?10:7));ph.pop.push({t,txt:abw<.09?'Perfekt! ♥':'Im Takt ♪',c:'255,215,120'})}
+    else{ph.vibe=Math.max(0,ph.vibe-2);ph.pop.push({t,txt:'Daneben …',c:'200,120,140'})}};
   const key=e=>{if(e.key===' '){e.preventDefault();if(!e.repeat)schlag()}else if(e.key==='Escape')beenden()};
   const pos=e=>{const r=cv3.getBoundingClientRect();return[(e.clientX-r.left)/r.width*800,(e.clientY-r.top)/r.height*500]};
   cv3.onmousedown=e=>{e.stopPropagation();schlag()};
@@ -142,6 +155,12 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
     x.fillStyle=`rgba(255,${200+puls*55|0},${220-puls*80|0},${.55+.45*puls})`;x.font='bold 11px Georgia';x.textAlign='center';x.fillText('VIBE',X,Y0-12);
     x.font=`${18+puls*6}px Georgia`;x.fillText('♥',X,Y0+Hm+24);x.textAlign='left';
     if(u<0)return;
+    // Taktring: schrumpft auf den Kreis zu – genau wenn er ihn berührt, drücken
+    {const ph0=((u%BEAT)+BEAT)%BEAT/BEAT,r=12+28*(1-ph0),CX=400,CY=470,treff=ph0>.75||ph0<.12;
+      x.strokeStyle='rgba(255,230,240,.85)';x.lineWidth=2.5;x.beginPath();x.arc(CX,CY,12,0,7);x.stroke();
+      x.strokeStyle=treff?'rgba(255,215,120,.95)':'rgba(255,150,200,.6)';x.lineWidth=3;x.beginPath();x.arc(CX,CY,r,0,7);x.stroke();
+      if(ph0<.12){x.fillStyle=`rgba(255,215,120,${.8*(1-ph0/.12)})`;x.beginPath();x.arc(CX,CY,11,0,7);x.fill()}
+      x.fillStyle='rgba(255,230,240,.8)';x.font='11px Georgia';x.textAlign='center';x.fillText('Leertaste',CX,CY+30);x.textAlign='left'}
     for(const q of ph.pop){const a=u-q.t;if(a>1.1)continue;x.fillStyle=`rgba(${q.c},${1-a/1.1})`;x.font='bold 15px Georgia';x.textAlign='right';x.fillText(q.txt,X-22,Y0+Hm*(1-v)-a*40);x.textAlign='left'}
     ph.pop=ph.pop.filter(q=>u-q.t<1.2)}
   const TEXT=NA_SHOW_TEXT[skin]||{};
@@ -172,7 +191,7 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
       ph.vx+=(-k*ph.jx-c*ph.vx-huefA*1.0)*dt;ph.jx+=ph.vx*dt;ph.jx=Math.max(-2,Math.min(2,ph.jx))}
     // Haare: hängen dem Kopf 0,15 s hinterher, Feder 1,8 Hz, ζ 0,35; Drehung schleudert sie raus
     const kopfWelt=px/sc+kopf;ph.kopfPuffer.push([t,kopfWelt]);while(ph.kopfPuffer.length>2&&ph.kopfPuffer[1][0]<=t-.15)ph.kopfPuffer.shift();
-    {const alt=ph.kopfPuffer[0][1],ziel=Math.max(-16,Math.min(16,(alt-kopfWelt)*1.4-omega*1.6)),k=(2*Math.PI*1.8)**2,c=2*.35*Math.sqrt(k);
+    {const alt=ph.kopfPuffer[0][1],ziel=Math.max(-7,Math.min(7,(alt-kopfWelt)*1.2-omega*1.2)),k=(2*Math.PI*1.8)**2,c=2*.35*Math.sqrt(k);
       ph.hv+=(k*(ziel-ph.hx)-c*ph.hv)*dt;ph.hx+=ph.hv*dt;ph.hyv+=(-k*ph.hy-c*ph.hyv-wippA*.5)*dt;ph.hy+=ph.hyv*dt;ph.hy=Math.max(-4,Math.min(4,ph.hy))}
     // Vibe zerfällt langsam
     if(u>0)ph.vibe=Math.max(0,ph.vibe-dt*1.5);
@@ -185,7 +204,7 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
     let bild=eigen||SK.bild();if(enthuellen&&SK.zu&&u>-.6&&u<1.4)bild=SK.zu()||bild;   // VIP: erst noch Augen zu, dann Zwinkern
     const rig=naRig(bild,SK.zonen);
     if(u>-.9&&rig){x.save();x.translate(px,py+(sit?-2:0));x.rotate(Math.sin(w*u)*.025*inten);const s0=266/rig.h*sc;x.scale(s0,s0);
-      const st={kopf,brust,huefte,wipp:ph.wipp,jigX:ph.jx,jigY:ph.jy,haar:ph.hx,haarY:ph.hy,faecher:Math.min(.35,Math.abs(omega)*.06)};
+      const st={kopf,brust,huefte,wipp:ph.wipp,jigX:ph.jx,jigY:ph.jy,haar:ph.hx,haarY:ph.hy,faecher:Math.min(.18,Math.abs(omega)*.04)};
       naZeichne(x,rig,SK.zonen,st,eigen?0:ph.theta);x.restore()}
     if(!sit){sofa();fpKnees(x)}
     // Glitzer und Noten, mehr bei viel Vibe
@@ -195,7 +214,7 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
     const v=x.createRadialGradient(400,250,150,400,250,520);v.addColorStop(0,'rgba(0,0,0,0)');v.addColorStop(1,'rgba(20,0,10,.7)');x.fillStyle=v;x.fillRect(0,0,800,500);
     meter(t,u);
     if(u>0&&u<7){x.fillStyle=`rgba(255,230,240,${Math.min(1,u)*Math.min(1,7-u)*.85})`;x.font='13px Georgia';x.textAlign='center';
-      x.fillText('Leertaste / Klick im Takt füllt den Vibe · Maus im Kreis: sie dreht sich mit · Esc beendet',400,30);x.textAlign='left'}
+      x.fillText('Leertaste / Klick, wenn der Ring den Kreis trifft · Maus im Kreis: sie dreht sich mit · Esc beendet',400,30);x.textAlign='left'}
     if(frei){x.fillStyle='rgba(255,220,235,.8)';x.font='italic 13px Georgia';x.textAlign='center';x.fillText(`Freestyle – kreise mit der Maus! (${NA_RICHTUNG[idx]})`,400,30);x.textAlign='left'}
     // Umziehen: Augen zu → auf
     if(enthuellen){const k=t<.4?seg(t,0,.4):t<OFF-1?1:1-seg(t,OFF-1,OFF-.2);lider(k,t);
@@ -237,4 +256,5 @@ naTanz=function(){const v=relOf('Nastja'),skin=nastjaSkin(v);
   say([['P','Nastja … noch ein Privattanz?'],vor],()=>{naPunkte('tanz',30,10);nastjaShow(skin,neu)})};
 // Menü-Kopf zeigt sie im Outfit ihrer Stufe
 {const nm=nastjaMenu;nastjaMenu=function(){const r=nm.apply(this,arguments),sk=nastjaSkin(),im=document.querySelector('.namenu .nahead img');
-  if(im&&sk==='vip')im.src=NASTJA_VIP_URL[0];else if(im&&sk==='dessous')im.src=NASTJA_DES_URL;return r}}
+  if(im&&sk==='vip')im.src=NASTJA_VIP_URL[0];else if(im&&sk==='dessous')im.src=NASTJA_DES_URL;
+  const plus={tanz:'+13',talk:'+8',drink:'+6'};document.querySelectorAll('.namenu [data-a] small').forEach(e=>{const a=e.parentNode.dataset.a;if(plus[a])e.textContent=plus[a]});return r}}

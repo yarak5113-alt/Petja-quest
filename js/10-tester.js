@@ -40,17 +40,17 @@ const TSTEPS=[
   {t:'Privattanz → Nastjas Träne',f:['booked','traene','lounge'],del:['phiole'],add:['traene'],s:['buehne','lounge'],at:['buehne',260,486]},
   {t:'Alles beisammen – ab zu Baba Jagas Tisch (Echo 3 beim Betreten)',at:['huette',640,488]}];
 // Nebenquest & Enden: bauen auf dem letzten Story-Punkt auf (alles beisammen, Träne da), dann Schritt für Schritt weiter.
-// v = Zahlen-Flags (Beziehungspunkte: na_talk ×6, na_tanz ×10, na_drink ×5; Basis Nastja 35, mit Diadem-Bonus 40)
+// v = Zahlen-Flags (Beziehungspunkte: na_talk ×6, na_tanz ×10, na_drink ×5, alles außer Anwerben ×1,25 (49-nastja-show.js); Basis Nastja 40 %, mit Diadem-Bonus 46 %)
 const TNEBEN=[
   {t:'Nebenquest: Madame will eine zweite Tänzerin (Anwerbebogen)',f:['t2Q','booked'],v:{naV:2},add:['bogen2'],at:['banja',300,480]},
   {t:'Marfa will nur mit Krone aus dem Sumpf',f:['marfaKrone','m2met'],at:['sumpf',540,488]},
-  {t:'Nastja: Beziehung 52 % – Privattanz im VIP-Outfit',v:{na_talk:2,na_drink:1},at:['buehne',260,486]},
-  {t:'Nastja: Beziehung 75 % – rückt das Diadem raus',v:{na_talk:5,na_drink:2},at:['buehne',260,486]},
+  {t:'Nastja: Beziehung 54 % – Privattanz im VIP-Outfit',v:{na_talk:1,na_drink:1},at:['buehne',260,486]},
+  {t:'Nastja: Beziehung 75 % – rückt das Diadem raus',v:{na_talk:3,na_drink:2},at:['buehne',260,486]},
   {t:'Diadem von Nastja bekommen',add:['diadem'],at:['buehne',260,486]},
-  {t:'Marfa mit Krone angeworben (Nastja jetzt 80 % – Privattanz im Dessous-Outfit)',f:['marfaDia','marfa'],del:['diadem'],at:['sumpf',540,488]},
+  {t:'Marfa mit Krone angeworben (Nastja jetzt 81 % – Privattanz im Dessous-Outfit)',f:['marfaDia','marfa'],del:['diadem'],at:['sumpf',540,488]},
   {t:'Nebenquest erledigt (Madame Bescheid gesagt)',f:['t2Done'],del:['bogen2'],at:['banja',300,480]},
-  {t:'Nastja: Max-Level-Modus (95 %)',v:{na_talk:5,na_tanz:1,na_drink:3},at:['buehne',260,486]},
-  {t:'Nastja: 100 % – Klick auf sie gibt das Polaroid',v:{na_talk:5,na_tanz:2,na_drink:2},at:['buehne',260,486]},
+  {t:'Nastja: Max-Level-Modus (95 %)',v:{na_talk:4,na_drink:3},at:['buehne',260,486]},
+  {t:'Nastja: 100 % – Klick auf sie gibt das Polaroid',v:{na_talk:5,na_drink:3},at:['buehne',260,486]},
   {t:'VIP-Kabine (100 %, Polaroid schon in der Tasche) – Nastja → Privattanz',f:['polaroid'],add:['polaroid'],at:['buehne',260,486]},
   {t:'Enden: mit Polaroid zu Baba Jagas Tisch (Joint = Nastja-Ende, Hierbleiben = Zahnrad)',at:['huette',640,488]}];
 function tNeben(n){const d=tState(TSTEPS.length-1);TNEBEN.slice(0,n+1).forEach(st=>{(st.f||[]).forEach(k=>d.FL[k]=1);Object.assign(d.FL,st.v||{});
