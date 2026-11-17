@@ -4,7 +4,7 @@
 //    Schmiede ziehen → Hauptschalter wieder AN → in der Schmiede brennt Licht. Belohnung: Dorf-Ruf + ein Sack Kohle für Oma Dusja.
 // 2) Oma Dusja friert, sagt es aber nicht. Kohlensack hinbringen → Ofen an, Dorf-Ruf.
 // 3) Ignatis Kater: Gibt Petja dem Kater am Friedhof den Fisch, springt der ihm mit allen Krallen ans Bein – Petja tritt reflexartig aus,
-//    und der Kater fliegt wie im Zeichentrick im hohen Bogen über die Kirche. Er landet unter dem Steg beim Fischer.
+//    und der Kater fliegt wie im Zeichentrick im hohen Bogen über die Kirche. Er landet unter dem Pier (Raum „unter“).
 //    Ist Vater Ignati zurück (und das Weihwasser erledigt), sucht er ihn: unter dem Steg einsammeln, zurückbringen → Dorf-Ruf, 1 Rubel.
 // 4) Das Trinkduell mit Opa (52-trinkduell.js).
 // Alle vier geschafft + „Hierbleiben“ am Tisch → Ehrenbürger-Ende mit Hausbau: Petja baut sich sein eigenes Haus im Dorf.
@@ -41,10 +41,10 @@ function katerFlug(done){const g=document.getElementById('katerG');if(!g)return 
       if(k>=1){if(t<2.4){zeig('✦',760,60,30+Math.sin(t*30)*8,'#fff6c0');g.style.display='none'}else{tx.remove();changing=false;return done()}}}
     requestAnimationFrame(f)})()}
 
-// ---------- Der Kater unter dem Steg (Fischerhaus) ----------
-const KATER_STEG=(()=>{const g=document.createElementNS(NS_SVG,'g');g.id='katerSteg';g.setAttribute('class','interactive');g.dataset.id='katerSteg';g.setAttribute('transform','translate(170,352) scale(.6)');
-  const im=document.createElementNS(NS_SVG,'image');im.setAttribute('class','spr');im.setAttribute('x','-22');im.setAttribute('y','-58');im.setAttribute('width','52');im.setAttribute('height','62');im.style.filter='brightness(.62)';g.appendChild(im);
-  const r=document.getElementById('r-fischer');if(r)r.appendChild(g);
+// ---------- Der Kater unter dem Pier (Raum „Unter dem Pier“, vom Ufer aus) ----------
+const KATER_STEG=(()=>{const g=document.createElementNS(NS_SVG,'g');g.id='katerSteg';g.setAttribute('class','interactive');g.dataset.id='katerSteg';g.setAttribute('transform','translate(232,468) scale(.8)');
+  const im=document.createElementNS(NS_SVG,'image');im.setAttribute('class','spr');im.setAttribute('x','-22');im.setAttribute('y','-58');im.setAttribute('width','52');im.setAttribute('height','62');im.style.filter='brightness(.88)';g.appendChild(im);
+  const r=document.getElementById('r-unter');if(r)r.appendChild(g);
   const kopie=setInterval(()=>{const k=document.getElementById('katerimg'),h=k&&(k.getAttribute('href')||k.getAttribute('xlink:href'));if(h){im.setAttribute('href',h);clearInterval(kopie)}},500);return g})();
 function questVis(){KATER_STEG.style.display=FL.kater&&!FL.katzeHeim&&!has('katze')?'':'none'}
 {const _e=enter;enter=function(){const r=_e.apply(this,arguments);setTimeout(questVis,450);return r}}questVis();
@@ -52,8 +52,7 @@ function katerUnterSteg(){if(!FL.katzeQ)return hint('katerSteg',[[['P','Da unten
     [['KA','*FAUCH*'],['P','Okay. Ich lass dich in Ruhe. Für heute.']]]);
   say([['P','*kriecht auf allen vieren unter den Steg* Komm, Mieze. Dein Herrchen vermisst dich.'],['KA','*FAUCH* … *mrrr* …'],['P','*packt den nassen Kater* Na also. Ganz ruhig. Ich trete heute niemanden mehr. Versprochen.']],
     ()=>{inv.push('katze');renderInv();questVis()})}
-T.katerSteg={n:'Kater',at:[190,476],fn:katerUnterSteg};
-wrapFn('steg',function(orig){if(FL.kater&&!FL.katzeHeim&&!has('katze'))return katerUnterSteg();return orig()});
+T.katerSteg={n:'Kater',at:[270,478],fn:katerUnterSteg};
 
 // ---------- Vater Ignati sucht seinen Kater ----------
 wrapFn('pope2',function(orig){if(!FL.weih||!FL.kater||FL.katzeHeim)return orig();
@@ -158,7 +157,7 @@ wrapFn('oma',function(orig){
     h:'In der Schmiede mit Fjodor reden. Erst den Hauptschalter aus, dann die alten Kabel abnehmen, neues Kabel Mast für Mast ziehen, Strom wieder an.'});
   if(FL.kohleGeg)Q.push({t:'Kohle für Oma Dusja',neben:1,d:'Oma Dusja friert, sagt aber nix. Fjodor hat einen Sack Kohle für sie.',v:1,ok:FL.omaKohle,h:'Den Kohlensack zu Oma Dusja an der Dorfstraße bringen.'});
   if(FL.katzeQ)Q.push({t:'Ignatis Kater',neben:1,d:'Vater Ignati vermisst seinen Kater. Er ist … geflogen. Meinetwegen.',v:1,ok:FL.katzeHeim,
-    h:has('katze')?'Den Kater zu Vater Ignati an der Kirche bringen.':'Wo riecht es nach Fisch, und wo ist es dunkel? Unter dem Steg beim Fischerhaus nachsehen.'});
+    h:has('katze')?'Den Kater zu Vater Ignati an der Kirche bringen.':'Wo riecht es nach Fisch, und wo ist es dunkel? Unter dem Pier nachsehen (vom Ufer aus).'});
   if(FL.haus)Q.push({t:'Einer von uns werden',neben:1,d:'Vier Dinge machen dich im Dorf zu einem von ihnen: Strom für Fjodor, Kohle für Dusja, Ignatis Kater und ein Trinkduell gegen Opa.',v:1,ok:alleVierQuests(),
     h:`Geschafft: ${[FL.kabel,FL.omaKohle,FL.katzeHeim,FL.duellSieg].filter(Boolean).length} von 4. Wer alle vier schafft und am Ende bleibt, baut sich ein eigenes Haus.`});
   return Q}}
