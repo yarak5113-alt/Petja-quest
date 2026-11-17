@@ -7,3 +7,12 @@
 =Ganze Karte => Whole map
 =Mausrad oder + / −: zoomen · Ziehen: verschieben => Mouse wheel or + / −: zoom · Drag: move
 =Weiter => Next
+# 47-madames-liste.js
+=Gesucht: eine neue Tänzerin => Wanted: a new dancer
+=schön => pretty
+=tanzt gern => loves to dance
+=frech => cheeky
+=will raus => wants out
+=Keine Blubberer! => No gurglers!
+=Erledigt => Done
+=Klick zum Schließen => Click to close

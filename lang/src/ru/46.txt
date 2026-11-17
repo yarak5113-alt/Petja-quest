@@ -7,3 +7,12 @@
 =Ganze Karte => Вся карта
 =Mausrad oder + / −: zoomen · Ziehen: verschieben => Колесо мыши или + / −: масштаб · Перетаскивание: сдвинуть
 =Weiter => Дальше
+# 47-madames-liste.js
+=Gesucht: eine neue Tänzerin => Требуется: новая танцовщица
+=schön => красивая
+=tanzt gern => любит танцевать
+=frech => дерзкая
+=will raus => хочет вырваться
+=Keine Blubberer! => Никаких булькающих!
+=Erledigt => Выполнено
+=Klick zum Schließen => Щёлкни, чтобы закрыть
