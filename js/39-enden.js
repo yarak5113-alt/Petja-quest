@@ -1,4 +1,4 @@
-// ================= Drei Enden =================
+// ================= Enden (4. Ende „Ehrenbürger“ in 52-trinkduell.js) =================
 // 1) Heim     – Ausweg-Joint rauchen, Wowas Sofa, Abspann (wie bisher).
 // 2) Nastja   – wie Heim, aber mit Nastjas Polaroid in der Tasche (gibt sie nur bei 100 % Beziehung): Die Szene geht weiter,
 //               Petja steht auf und hängt das Foto über seinen Schreibtisch. Auf dem Foto: Nastja, verführerisch, zwinkernd,
@@ -122,12 +122,12 @@ async function polaroidEnde(cv3){const x=cv3.getContext('2d'),PIC=polaroidCanvas
   await wait(400);fin=true}   // letztes Bild bleibt stehen – der Abspann läuft darüber (abspannEnde mit Hintergrund)
 
 // ---------- Abspann je Ende, gefundene Enden zählen ----------
-const ENDEN={heim:['Ende.','… oder?'],nastja:['Ende: Ein Foto über dem Schreibtisch','Manche Märchen nimmt man mit nach Hause.'],bleiben:['Ende: Das Zahnrad','Petja blieb im Märchen. Wowa sucht noch sein Feuerzeug.']};
+const ENDEN={heim:['Ende.','… oder?'],nastja:['Wahres Ende: Ein Foto über dem Schreibtisch','Manche Märchen nimmt man mit nach Hause.'],bleiben:['Ende: Das Zahnrad','Petja blieb im Märchen. Wowa sucht noch sein Feuerzeug.']};
 function abspannEnde(id,bg){let found=[];try{found=JSON.parse(localStorage.getItem('petjaEnden')||'[]')}catch(e){}if(!found.includes(id))found.push(id);try{localStorage.setItem('petjaEnden',JSON.stringify(found))}catch(e){}
   FL['ende_'+id]=1;abspann();const o=$('#abspann');if(!o)return;
   // letzter Moment des Endes als Hintergrund hinter den Credits
   if(bg){bg.removeAttribute('id');bg.style.cssText='position:absolute;inset:0;width:100%;height:100%';o.style.background='#000';o.insertBefore(bg,o.firstChild);const sh=document.createElement('div');sh.style.cssText='position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,4,8,.25),rgba(10,4,8,.5) 30%,rgba(10,4,8,.5) 70%,rgba(10,4,8,.25))';bg.after(sh)}
   const[a,b]=ENDEN[id]||ENDEN.heim;o.querySelector('.end').textContent=a;const sm=o.querySelector('.end.small');if(sm){sm.textContent=b;
-    sm.insertAdjacentHTML('afterend',`<p class="end small endz">Gefundene Enden: ${found.length} von 3</p>`)}}
+    sm.insertAdjacentHTML('afterend',`<p class="end small endz">Gefundene Enden: ${found.length} von ${Object.keys(ENDEN).length}</p>`)}}
 
 (function(){const css=document.createElement('style');css.textContent=`.endwahl{max-width:460px}.endwahl .mb.big{display:block;width:100%;margin:8px 0;text-align:left}.endwahl small{display:block;font-size:12px;opacity:.75;margin-top:2px}.endwahl .pol{margin-top:6px}`;document.head.appendChild(css)})();

@@ -19,22 +19,34 @@
 //   Vibe-Meter      Leertaste / Klick im Takt (100 BPM, ±0,2 s, Taktring zeigt den Moment) füllt es, daneben kostet etwas; Maus im Kreis bewegen dreht
 //                   Nastja mit und gibt auch Vibe. Viel Vibe = größere Bewegungen, mehr Glitzer, am Ende Bonus-Beziehung.
 // Punkte: alle Beziehungspunkte außer dem Anwerben zählen ×1,25 (20 % schneller zu 80 % / 100 %).
+// Tanzmenü (unten links, während des Tanzes):
+//   🧻 Tempos zustecken (immer, einmal pro Tanz)  → Nastja lacht dich auf Russisch aus, Beziehung moderat +
+//   👋 Näher ranwinken                            → Kamera zoomt auf den Oberkörper (mehrfach = näher), geht nach 6 s zurück
+//   ✋ Riskant (RISKY_CONTACT, einmal pro Tanz)  → danach auf die Trefferzone upper_torso_zone klicken: Petjas Hand kommt ins Bild,
+//        Nastja fängt sie ab, bevor sie ankommt. Entweder findet sie das frech-mutig (großer Vibe- und Beziehungs-Boost)
+//        oder Zinaida geht dazwischen (Tanz stockt 3,5 s, Vibe runter). Schaut Zinaida gerade zu, fliegt es immer auf.
+//   💸 Башли (nur wenn player.cash > 0)          → ein Rubel ins Strumpfband, Vibe und Beziehung +
+// Zinaida (Aufpasserin) linst ab und zu hinter dem Vorhang hervor – dann lieber nichts Riskantes.
+// player.cash = Rubel (FL.cash). Petja startet pleite; Opa zahlt nach gewonnenem Trinkduell aus (52-trinkduell.js).
+const player={get cash(){return FL.cash||0},set cash(v){FL.cash=Math.max(0,v|0)}};
+const ZIN_IMG=(()=>{const im=new Image();im.src=ZINAIDA_GANZ;return im})();
 
 const NA_STUFEN=[[80,'dessous'],[50,'vip'],[25,'standard']];
 const nastjaSkin=(v=relOf('Nastja'))=>{for(const[g,k]of NA_STUFEN)if(v>=g)return k;return null};
 // Zonen als Anteil der Bildhöhe (von oben): Hals, Brust, Taille, Hüfte, Knie, Haarende
 const NA_SKINS={
-  standard:{bild:()=>typeof nastjaTanzBild=='function'?nastjaTanzBild('tanz1'):null,zonen:{hals:.22,brust:.33,taille:.43,huefte:.53,knie:.76,haar:.62},dirs:[]},
+  standard:{bild:()=>typeof nastjaTanzBild=='function'?nastjaTanzBild('tanz1'):null,zonen:{hals:.22,brust:.33,taille:.43,huefte:.53,knie:.76,haar:.62},dirs:[],
+    brust:{box:[108,148,64,46],anker:[140,194],s:[1.22,1.3]}},   // Korsett-Oberteil größer (wie bei VIP/Dessous): Ausschnitt vergrößert, unten am Unterbrustbogen verankert
   vip:{bild:()=>NASTJA_VIP_IMG[0],zu:()=>NASTJA_VIP_IMG[1],zonen:{hals:.2,brust:.3,taille:.42,huefte:.52,knie:.75,haar:.62},dirs:[]},
   dessous:{bild:()=>NASTJA_DES_IMG,zonen:{hals:.19,brust:.28,taille:.4,huefte:.5,knie:.74,haar:.62},dirs:[]}};
 const NA_RICHTUNG=['vorn','vorn-rechts','Profil rechts','hinten-rechts','hinten','hinten-links','Profil links','vorn-links'];
 
 // Bonus aus dem Vibe-Meter fließt in die Beziehung (je +5, höchstens zweimal)
 // Alles außer den 15 % fürs Anwerben zählt ×1,25 → bis 100 % braucht man 20 % weniger Gespräche, Tänze und Drinks.
-{const f=REL['Nastja'];REL['Nastja']=()=>{const rek=FL.rekrut?15:0;return rek+(f()-rek+Math.min(2,FL.na_vibe||0)*5)*1.25}}
+{const f=REL['Nastja'];REL['Nastja']=()=>{const rek=FL.rekrut?15:0;return rek+(f()-rek+Math.min(2,FL.na_vibe||0)*5+Math.min(2,FL.na_tempo||0)*4+Math.min(2,FL.na_mut||0)*6+Math.min(3,FL.na_tip||0)*5)*1.25}}
 
 // ---------- Rig: Bild in Körper- und Haarschicht zerlegen ----------
-function naRig(img,zonen){if(!img||!img.complete||!img.naturalWidth)return null;if(img._naRig)return img._naRig;
+function naRig(img,zonen,brust){if(!img||!img.complete||!img.naturalWidth)return null;if(img._naRig)return img._naRig;
   const w=img.naturalWidth,h=img.naturalHeight,c=document.createElement('canvas');c.width=w;c.height=h;const g=c.getContext('2d');g.drawImage(img,0,0);
   const id=g.getImageData(0,0,w,h),d=id.data,typ=new Uint8Array(w*h),haarBis=h*zonen.haar;   // 0 leer · 1 Körper · 2 Haar · 3 Kontur
   let hr=0,hg=0,hb=0,hn=0;
@@ -80,7 +92,9 @@ function naRig(img,zonen){if(!img||!img.complete||!img.naturalWidth)return null;
       let t=f<.07?0:f<.22||f>.86?1:f>.38&&f<.62?3:2;if(Math.min(x-L2[y],R2[y]-x)<6||y>ende-4)t=Math.max(0,t-1);   // Locke: dunkle Kante, helle Mitte; außen und unten etwas dunkler
       px(x,y,T[t])}}
     rg.putImageData(ri,0,0)}
-  return img._naRig={w,h,koerper:lay(1),haar:lay(2),ruecken:rk,haarFarbe:`rgb(${haarFarbe.join(',')})`,kopf:x1>x0?{x0,x1,y0,y1}:null}}
+  let brustCv=null;if(brust){const[bx,by,bw,bh]=brust.box;brustCv=document.createElement('canvas');brustCv.width=bw;brustCv.height=bh;const bg=brustCv.getContext('2d'),bi=bg.createImageData(bw,bh);
+    for(let y=0;y<bh;y++)for(let x=0;x<bw;x++){const k=(by+y)*w+bx+x;if(t2[k]!==1)continue;const q=k*4,o=(y*bw+x)*4;bi.data[o]=d[q];bi.data[o+1]=d[q+1];bi.data[o+2]=d[q+2];bi.data[o+3]=255}bg.putImageData(bi,0,0)}
+  return img._naRig={w,h,koerper:lay(1),haar:lay(2),ruecken:rk,brustCv,brust,haarFarbe:`rgb(${haarFarbe.join(',')})`,kopf:x1>x0?{x0,x1,y0,y1}:null}}
 
 // ---------- Weiche Stützstellen-Kurve (Kosinus zwischen den Knoten) ----------
 const naKurve=(knoten,y)=>{if(y<=knoten[0][0])return knoten[0][1];for(let i=1;i<knoten.length;i++){const[a,va]=knoten[i-1],[b,vb]=knoten[i];
@@ -102,7 +116,9 @@ function naZeichne(x,rig,z,st,theta){const p=NA_PUF.getContext('2d'),{w,h}=rig,Y
   const dyK=y=>{const bein=Math.max(0,Math.min(1,(h-y)/(h-Y(z.huefte))));return st.wipp*bein+st.jigY*bell(y)};
   const wH=y=>Math.max(0,Math.min(1,(y-Y(z.hals)+h*.04)/(Y(z.haar)-Y(z.hals))));
   const dxH=y=>st.kopf+wH(y)*st.haar,sxH=y=>1+wH(y)*st.faecher,dyH=y=>st.wipp*.95+wH(y)*st.haarY;
-  if(!hinten){naStreifen(p,rig.haar,w,h,y=>st.kopf,y=>st.wipp*.95);naStreifen(p,rig.haar,w,h,dxH,dyH,sxH);naStreifen(p,rig.koerper,w,h,dxK,dyK)}   // Haare: fester Grund + nachschwingende Lage
+  if(!hinten){naStreifen(p,rig.haar,w,h,y=>st.kopf,y=>st.wipp*.95);naStreifen(p,rig.haar,w,h,dxH,dyH,sxH);naStreifen(p,rig.koerper,w,h,dxK,dyK);   // Haare: fester Grund + nachschwingende Lage
+    if(rig.brustCv){const[bx,by,bw,bh]=rig.brust.box,[ax,ay]=rig.brust.anker,[sx,sy]=rig.brust.s;   // größere Brust (Standard-Outfit), wippt mit
+      p.drawImage(rig.brustCv,Math.round(-w/2+ax+dxK(ay)+(bx-ax)*sx),Math.round(-h+ay+dyK(ay)+(by-ay)*sy+st.jigY*.7),Math.round(bw*sx),Math.round(bh*sy))}}
   else{p.filter='brightness(.72) saturate(.9)';naStreifen(p,rig.koerper,w,h,dxK,dyK);p.filter='none';
     naStreifen(p,rig.haar,w,h,dxH,dyH,sxH);naStreifen(p,rig.ruecken,w,h,dxH,dyH,sxH)}   // Haarspitzen, darüber der Haarvorhang (verdeckt Gesicht und Rücken)
   // Schatten zur abgewandten Seite (nur auf der Figur)
@@ -123,16 +139,49 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
   const ease=(a,b,p)=>a+(b-a)*(p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2),seg=(t,a,b)=>Math.max(0,Math.min(1,(t-a)/(b-a)));
   const glow=(X,Y,r,c,a)=>{const g=x.createRadialGradient(X,Y,0,X,Y,r);g.addColorStop(0,`rgba(${c},${a})`);g.addColorStop(1,`rgba(${c},0)`);x.fillStyle=g;x.fillRect(X-r,Y-r,r*2,r*2)};
   // Zustand der Physik (Sprite-Pixel)
-  const ph={jy:0,vy:0,jx:0,vx:0,hx:0,hv:0,hy:0,hyv:0,wippV:0,wippA:0,huefV:0,theta:0,thetaZiel:0,maus:0,vibe:40,pop:[],kopfPuffer:[]};
+  const ph={jy:0,vy:0,jx:0,vx:0,hx:0,hv:0,hy:0,hyv:0,wippV:0,wippA:0,huefV:0,theta:0,thetaZiel:0,maus:0,vibe:40,pop:[],kopfPuffer:[],
+    pauseSum:0,pauseBis:0,zoom:1,zoomZiel:1,zoomBis:0,torso:null,risiko:null,handT:0,handZiel:null,erfolg:false,tempoDa:0,riskDa:0,winkN:0,
+    zin:{sicht:false,ab:0,naechste:6+Math.random()*5,auftritt:-9}};
   let fin=false,T0=performance.now(),tAlt=0,mausWinkel=null,mausKreis=0,letzterSchlag=-1;
   // ---- Eingabe: Takt (Leertaste/Klick) und Maus-Kreisen ----
-  const schlag=()=>{const t=(performance.now()-T0)/1000-OFF;if(t<0||fin)return;const ph0=t/BEAT,abw=Math.abs(ph0-Math.round(ph0))*BEAT,nr=Math.round(ph0);
+  const schlag=()=>{const t=(performance.now()-T0)/1000-OFF-ph.pauseSum;if(t<0||fin)return;const ph0=t/BEAT,abw=Math.abs(ph0-Math.round(ph0))*BEAT,nr=Math.round(ph0);
     if(nr===letzterSchlag)return;   // pro Takt nur ein Treffer
     if(abw<=.2){letzterSchlag=nr;ph.vibe=Math.min(100,ph.vibe+(abw<.09?10:7));ph.pop.push({t,txt:abw<.09?'Perfekt! ♥':'Im Takt ♪',c:'255,215,120'})}
     else{ph.vibe=Math.max(0,ph.vibe-2);ph.pop.push({t,txt:'Daneben …',c:'200,120,140'})}};
   const key=e=>{if(e.key===' '){e.preventDefault();if(!e.repeat)schlag()}else if(e.key==='Escape')beenden()};
   const pos=e=>{const r=cv3.getBoundingClientRect();return[(e.clientX-r.left)/r.width*800,(e.clientY-r.top)/r.height*500]};
-  cv3.onmousedown=e=>{e.stopPropagation();schlag()};
+  cv3.onmousedown=e=>{e.stopPropagation();if(ph.risiko==='wählen')return griff(e);schlag()};
+  // ---- Tanzmenü ----
+  const jetztT=()=>(performance.now()-T0)/1000;
+  const sprich=l=>{if(busy)advance();say(l)};
+  const menu=document.createElement('div');menu.id='tanzmenu';$('#game').appendChild(menu);
+  function menuBau(){const c=player.cash;
+    menu.innerHTML=`<button data-m="tempo" ${ph.tempoDa?'disabled':''}>🧻 Tempos zustecken</button><button data-m="wink">👋 Näher ranwinken</button>
+      <button data-m="risk" ${ph.riskDa||ph.risiko?'disabled':''}>✋ Riskant …</button>${c>0?`<button data-m="geld">💸 Башли <small>${c} ₽</small></button>`:''}`;
+    menu.querySelectorAll('button').forEach(b=>{b.onmousedown=e=>{e.preventDefault();e.stopPropagation()};b.onclick=e=>{e.stopPropagation();aktion(b.dataset.m)}})}
+  function aktion(m){const t=jetztT(),u=t-OFF-ph.pauseSum;if(t<ph.pauseBis)return;
+    if(m==='tempo'&&!ph.tempoDa){ph.tempoDa=1;FL.na_tempo=Math.min(2,(FL.na_tempo||0)+1);ph.vibe=Math.min(100,ph.vibe+8);ph.pop.push({t:u,txt:'+ Frechheit',c:'255,220,160'});
+      sprich([['NA','*zieht das zerknüllte Taschentuch aus dem Strumpfband und hält es hoch* Ты чё, нищеброд, совсем берега попутал? Ну ладно, за наглость засчитаю.','laugh'],
+        ['P','(Ich glaube, das war ein Kompliment. Auf Russisch klingt alles wie eine Drohung.)','smirk']])}
+    if(m==='wink'){ph.zoomZiel=Math.min(1.75,ph.zoomZiel+.25);ph.zoomBis=t+6;ph.vibe=Math.min(100,ph.vibe+3);
+      if(!ph.winkN++)sprich([['NA','*beugt sich vor* Näher, Zwiebel? Noch näher kostet Aufpreis.','flirt']])}
+    if(m==='risk'&&!ph.riskDa&&!ph.risiko){ph.risiko='wählen';cv3.style.cursor='grab';ph.pop.push({t:u,txt:'✋ Klick auf den Oberkörper …',c:'255,200,160'})}
+    if(m==='geld'&&player.cash>0){player.cash--;FL.na_tip=Math.min(3,(FL.na_tip||0)+1);ph.vibe=Math.min(100,ph.vibe+15);ph.pop.push({t:u,txt:'+ Башли ₽',c:'160,255,170'});
+      sprich([['NA','*nimmt den Rubel und steckt ihn ins Strumpfband* Na also. Geht doch, Zwiebel. Für Geld tanz ich sogar mit Gefühl.','flirt']])}
+    menuBau()}
+  // RISKY_CONTACT: Klick in upper_torso_zone
+  function griff(e){const[mx,my]=pos(e),b=ph.torso,t=jetztT();cv3.style.cursor='crosshair';
+    if(Math.cos(ph.theta)<.5){ph.risiko=null;ph.pop.push({t:t-OFF-ph.pauseSum,txt:'Sie dreht dir den Rücken zu …',c:'200,170,190'});menuBau();return}
+    if(!b||mx<b.x0||mx>b.x1||my<b.y0||my>b.y1){ph.risiko=null;ph.pop.push({t:t-OFF-ph.pauseSum,txt:'… doch nicht. Feigling.',c:'200,170,190'});menuBau();return}
+    ph.risiko='hand';ph.riskDa=1;ph.handT=t;ph.handAus=0;ph.handZiel=[mx,Math.min(b.y1+40,my+70)];   // Hand stoppt vorher in der Luft – Nastja fängt sie ab
+    ph.erfolg=!ph.zin.sicht&&Math.random()<.35+ph.vibe/250;menuBau()}
+  function griffAusgang(t){const u=t-OFF-ph.pauseSum;
+    if(ph.erfolg){ph.vibe=Math.min(100,ph.vibe+25);FL.na_mut=Math.min(2,(FL.na_mut||0)+1);ph.pop.push({t:u,txt:'Mutig! ♥♥',c:'255,215,120'});
+      sprich([['NA','*fängt deine Hand mitten in der Luft ab und hält sie fest* Frech, Zwiebel. … Aber mutig. Das gefällt mir.','flirt'],['NA','*legt deine Hand zurück aufs Sofa* Da bleibt sie. Fürs Erste.','flirt']])}
+    else{ph.vibe=Math.max(0,ph.vibe-25);ph.pauseBis=t+3.5;ph.zin.auftritt=t;ph.zin.sicht=false;ph.pop.push({t:u,txt:'Erwischt!',c:'255,110,110'});
+      sprich([['Z','*reißt den Vorhang auf* STOPP! Hände aufs Sofa, Süßer! In meinem Haus wird geguckt, nicht gegrapscht!'],
+        ['NA','*fängt deine Hand ab und verdreht die Augen* Danke, Mamotschka. Wir hatten’s gerade so gemütlich.','laugh'],['P','(Herzinfarkt. Fast.)','pain']])}}
+  menuBau();
   cv3.onmousemove=e=>{const[mx,my]=pos(e),a=Math.atan2(my-250,mx-400);if(Math.hypot(mx-400,my-250)<40){mausWinkel=null;return}
     if(mausWinkel!==null){let d=a-mausWinkel;if(d>Math.PI)d-=2*Math.PI;if(d<-Math.PI)d+=2*Math.PI;if(Math.abs(d)<.6){ph.maus+=d;mausKreis+=Math.abs(d);
       if(mausKreis>2*Math.PI){mausKreis-=2*Math.PI;ph.vibe=Math.min(100,ph.vibe+6);ph.pop.push({t:(performance.now()-T0)/1000-OFF,txt:'Dreh dich! ✦',c:'255,180,230'})}}}
@@ -164,10 +213,18 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
     for(const q of ph.pop){const a=u-q.t;if(a>1.1)continue;x.fillStyle=`rgba(${q.c},${1-a/1.1})`;x.font='bold 15px Georgia';x.textAlign='right';x.fillText(q.txt,X-22,Y0+Hm*(1-v)-a*40);x.textAlign='left'}
     ph.pop=ph.pop.filter(q=>u-q.t<1.2)}
   const TEXT=NA_SHOW_TEXT[skin]||{};
-  function frame(){if(fin)return;const jetzt=(performance.now()-T0)/1000,dt=Math.min(1/30,Math.max(1/240,jetzt-tAlt));tAlt=jetzt;const t=jetzt,u=t-OFF;
+  function frame(){if(fin)return;const jetzt=(performance.now()-T0)/1000,dt=Math.min(1/30,Math.max(1/240,jetzt-tAlt));tAlt=jetzt;const t=jetzt;
+    if(t<ph.pauseBis)ph.pauseSum+=dt;const u=t-OFF-ph.pauseSum;   // Zinaida unterbricht: Choreografie steht still
+    // Zinaida linst ab und zu hinter dem Vorhang hervor
+    {const Z=ph.zin;if(!Z.sicht&&u>2&&u<21&&u>=Z.naechste&&t>ph.pauseBis){Z.sicht=true;Z.ab=t}
+      if(Z.sicht&&t-Z.ab>2.6){Z.sicht=false;Z.naechste=u+7+Math.random()*6}}
+    if(ph.risiko==='hand'&&t-ph.handT>=.45&&!ph.handAus){ph.handAus=1;griffAusgang(t)}
+    if(ph.risiko==='hand'&&t-ph.handT>1.7){ph.risiko=null;ph.handAus=0;menuBau()}
+    if(t>ph.zoomBis)ph.zoomZiel=1;ph.zoom+=(ph.zoomZiel-ph.zoom)*Math.min(1,dt*3);
+    menu.style.display=u>1.5&&u<21&&t>=ph.pauseBis&&!fin?'flex':'none';
     for(const k in TEXT)if(u>=+k&&!said.has(k)){said.add(k);if(busy)advance();say(TEXT[k])}
     if(enthuellen&&!said.has('zu')&&t>=.3){said.add('zu');if(busy)advance();say(NA_SHOW_ZU[skin]||NA_SHOW_ZU.vip)}
-    if(t>=ENDE)return beenden();
+    if(u>=ENDE-OFF)return beenden();
     // ---- Choreografie → Ziel-Winkel, Ort, Größe ----
     const vib=ph.vibe/100,inten=.6+.65*vib,frei=u>=10.5&&u<17;
     let px=400,py=520,sc=1.5,sit=false;
@@ -199,14 +256,28 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
     x.setTransform(1,0,0,1,0,0);x.filter='blur('+(1.5*SC)+'px)';x.save();x.translate(W/2,H/2);x.scale(1.5,1.5);x.translate(-W/2,-H*.45);x.drawImage(cache.lounge,0,0);x.restore();x.filter='none';
     x.setTransform(SC,0,0,SC,0,0);
     glow(400,300,300,'255,60,140',.12+.18*vib*(.6+.4*Math.sin(u*w*2)));   // Clublicht pulsiert mit dem Vibe
+    if(ph.zin.sicht&&ZIN_IMG.complete&&ZIN_IMG.naturalWidth){const a=Math.max(0,Math.min(1,(t-ph.zin.ab)/.4,(ph.zin.ab+2.6-t)/.4)),zs=.42;x.save();x.globalAlpha=a;
+      x.filter='brightness(.7)';x.drawImage(ZIN_IMG,-ZIN_IMG.naturalWidth*zs*.55+a*70,470-500*zs,ZIN_IMG.naturalWidth*zs,500*zs);x.filter='none';
+      x.fillStyle='rgba(255,220,120,.9)';x.font='bold 16px Georgia';x.fillText('👁',30+a*70,455-500*zs);x.restore()}   // Aufpasserin am Rand
     if(sit){sofa();fpKnees(x)}
     const idx=((Math.round(ph.theta/(Math.PI/4))%8)+8)%8,eigen=idx&&SK.dirs[idx];
     let bild=eigen||SK.bild();if(enthuellen&&SK.zu&&u>-.6&&u<1.4)bild=SK.zu()||bild;   // VIP: erst noch Augen zu, dann Zwinkern
-    const rig=naRig(bild,SK.zonen);
+    const rig=naRig(bild,SK.zonen,eigen?null:SK.brust);
+    const fy=py-266*sc*(1-SK.zonen.brust),zm=ph.zoom;   // Kamera-Zoom auf den Oberkörper
+    if(rig){const w0=rig.w*266/rig.h*sc,hh=266*sc,P2=(sx,sy)=>[px+sx*w0*zm,fy+(py-hh+sy*hh-fy)*zm],[ax0,ay0]=P2(-.17,SK.zonen.hals),[ax1,ay1]=P2(.17,SK.zonen.taille);
+      ph.torso={x0:Math.min(ax0,ax1),x1:Math.max(ax0,ax1),y0:ay0,y1:ay1}}   // upper_torso_zone in Bildschirm-Koordinaten (800×500)
+    x.save();x.translate(px,fy);x.scale(zm,zm);x.translate(-px,-fy);
     if(u>-.9&&rig){x.save();x.translate(px,py+(sit?-2:0));x.rotate(Math.sin(w*u)*.025*inten);const s0=266/rig.h*sc;x.scale(s0,s0);
       const st={kopf,brust,huefte,wipp:ph.wipp,jigX:ph.jx,jigY:ph.jy,haar:ph.hx,haarY:ph.hy,faecher:Math.min(.18,Math.abs(omega)*.04)};
       naZeichne(x,rig,SK.zonen,st,eigen?0:ph.theta);x.restore()}
+    x.restore();
     if(!sit){sofa();fpKnees(x)}
+    // Petjas Hand (RISKY_CONTACT) und Zinaida im Vordergrund bei Unterbrechung
+    if(ph.risiko==='hand'&&ph.handZiel){const a=t-ph.handT,rein=Math.min(1,a/.45),raus=ph.erfolg?Math.max(0,(a-1.2)/.5):Math.max(0,(a-.5)/.25),k=Math.max(0,rein-raus);
+      naHand(x,400+(ph.handZiel[0]-400)*k,560+(ph.handZiel[1]-560)*k,.95,'#e8b48c');
+      if(a>.4&&k>.2)naHand(x,ph.handZiel[0]+34,ph.handZiel[1]+18,.62,'#f2d2b8',true,1.25)}   // Nastjas Hand packt Petjas Handgelenk von der Seite
+    if(t-ph.zin.auftritt<3.5&&ZIN_IMG.complete&&ZIN_IMG.naturalWidth){const a=t-ph.zin.auftritt,k=Math.max(0,Math.min(1,a/.35,(3.5-a)/.4)),zs=1.15;
+      x.drawImage(ZIN_IMG,800-ZIN_IMG.naturalWidth*zs*k*.8,520-500*zs*.92,ZIN_IMG.naturalWidth*zs,500*zs)}
     // Glitzer und Noten, mehr bei viel Vibe
     if(u>0){x.save();x.globalCompositeOperation='lighter';const n=4+Math.round(vib*10);for(let j=0;j<n;j++){const p=(u*.4+j/n)%1,X=400+Math.sin(j*7.1)*280,Y=440-p*380;
       x.fillStyle=`rgba(255,235,200,${.8*(1-p)})`;x.save();x.translate(X,Y);x.rotate(t*2+j);x.fillRect(-4,-.8,8,1.6);x.fillRect(-.8,-4,1.6,8);x.restore()}
@@ -215,6 +286,8 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
     meter(t,u);
     if(u>0&&u<7){x.fillStyle=`rgba(255,230,240,${Math.min(1,u)*Math.min(1,7-u)*.85})`;x.font='13px Georgia';x.textAlign='center';
       x.fillText('Leertaste / Klick, wenn der Ring den Kreis trifft · Maus im Kreis: sie dreht sich mit · Esc beendet',400,30);x.textAlign='left'}
+    if(ph.risiko==='wählen'){x.strokeStyle='rgba(255,200,160,.55)';x.setLineDash([5,4]);const b=ph.torso;if(b)x.strokeRect(b.x0,b.y0,b.x1-b.x0,b.y1-b.y0);x.setLineDash([]);
+      x.fillStyle='rgba(255,220,200,.95)';x.font='italic 14px Georgia';x.textAlign='center';x.fillText(ph.zin.sicht?'✋ Zinaida guckt gerade! … Klick auf den Oberkörper – oder daneben, um es zu lassen':'✋ Klick auf ihren Oberkörper – Risiko!',400,52);x.textAlign='left'}
     if(frei){x.fillStyle='rgba(255,220,235,.8)';x.font='italic 13px Georgia';x.textAlign='center';x.fillText(`Freestyle – kreise mit der Maus! (${NA_RICHTUNG[idx]})`,400,30);x.textAlign='left'}
     // Umziehen: Augen zu → auf
     if(enthuellen){const k=t<.4?seg(t,0,.4):t<OFF-1?1:1-seg(t,OFF-1,OFF-.2);lider(k,t);
@@ -222,13 +295,25 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
       if(u>-.2&&u<.8){x.save();x.globalCompositeOperation='lighter';glow(400,280,320,'255,200,230',.5*(1-seg(u,-.2,.8)));x.restore()}}
     requestAnimationFrame(frame)}
   requestAnimationFrame(frame);
-  async function beenden(){if(fin)return;fin=true;removeEventListener('keydown',key,true);if(busy)advance();
+  async function beenden(){if(fin)return;fin=true;removeEventListener('keydown',key,true);menu.remove();if(busy)advance();
     const vibe=Math.round(ph.vibe),gut=vibe>=70;if(gut)FL.na_vibe=Math.min(2,(FL.na_vibe||0)+1);
     FL['naSkin_'+skin]=1;FL.lounge=1;if(skin!=='standard')FL.naVip=(FL.naVip||0)+1;
     fade.style.opacity=1;await new Promise(r=>setTimeout(r,500));changing=false;x.setTransform(1,0,0,1,0,0);x.fillStyle='rgba(12,0,6,.72)';x.fillRect(0,0,W,H);
     const schluss=gut?[['P',`*Fünf Minuten später. Vibe: ${vibe} %*`],['NA','*außer Atem* Du hast den Takt gehalten, Zwiebel. Das schaffen nicht mal Zinaidas Stammgäste.']]
       :[['P',`*Fünf Minuten später. Vibe: ${vibe} %*`],['NA','*zupft dich am Kragen* Nächstes Mal klatschst du im Takt mit, Süßer. Oder wenigstens in der Nähe vom Takt.']];
     say(schluss.concat(NA_SHOW_ENDE[skin]||[]),()=>{cv3.remove();enter(VON,VPOS)});fade.style.opacity=0}}
+
+// Hand für die Ich-Sicht (Petja) bzw. Nastjas Hand (oben=true: von oben, rote Nägel)
+function naHand(x,X,Y,s,farbe,oben,rot){x.save();x.translate(X,Y);if(rot)x.rotate(rot);x.scale(s,oben?-s:s);x.fillStyle=farbe;x.strokeStyle='#2e1c10';x.lineWidth=2.2;
+  x.beginPath();x.moveTo(-15,44);x.lineTo(-17,110);x.lineTo(17,110);x.lineTo(15,44);x.fill();x.stroke();   // Unterarm
+  x.beginPath();x.ellipse(0,28,21,24,0,0,7);x.fill();x.stroke();
+  [[-15,-2,8,30],[-5,-10,8,36],[5,-8,8,34],[14,0,7,28]].forEach(([fx,fy,fw,fh])=>{x.beginPath();if(x.roundRect)x.roundRect(fx-fw/2,fy,fw,fh+10,fw/2);else x.rect(fx-fw/2,fy,fw,fh+10);x.fill();x.stroke();
+    if(oben){x.fillStyle='#c0203a';x.fillRect(fx-fw/2+1,fy+1,fw-2,5);x.fillStyle=farbe}});
+  x.beginPath();x.ellipse(-21,24,7,14,-.6,0,7);x.fill();x.stroke();   // Daumen
+  x.fillStyle='rgba(120,60,40,.25)';x.beginPath();x.ellipse(3,34,12,9,0,0,7);x.fill();x.restore()}
+(function(){const css=document.createElement('style');css.textContent=`#tanzmenu{position:absolute;left:1.5%;bottom:3%;z-index:16;display:none;flex-direction:column;gap:6px}
+#tanzmenu button{font:13px Georgia,serif;color:#f6ead0;background:rgba(40,8,24,.82);border:1px solid rgba(255,190,220,.55);border-radius:6px;padding:6px 10px;text-align:left;cursor:pointer}
+#tanzmenu button:hover:not([disabled]){background:rgba(110,20,60,.9)}#tanzmenu button[disabled]{opacity:.4;cursor:default}#tanzmenu small{opacity:.75}`;document.head.appendChild(css)})();
 
 // ---------- Texte je Outfit (Zeitpunkt in s nach Tanzbeginn) ----------
 const NA_SHOW_ZU={

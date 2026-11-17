@@ -52,6 +52,9 @@ const TNEBEN=[
   {t:'Nastja: Max-Level-Modus (95 %)',v:{na_talk:4,na_drink:3},at:['buehne',260,486]},
   {t:'Nastja: 100 % – Klick auf sie gibt das Polaroid',v:{na_talk:5,na_drink:3},at:['buehne',260,486]},
   {t:'VIP-Kabine (100 %, Polaroid schon in der Tasche) – Nastja → Privattanz',f:['polaroid'],add:['polaroid'],at:['buehne',260,486]},
+  {t:'3 Rubel in der Tasche – beim Privattanz gibt es „Башли“',v:{cash:3},at:['buehne',260,486]},
+  {t:'Trinkduell: zu Opa (Haus steht) – Klick auf Opa → Trinkduell',at:['dorf',420,480]},
+  {t:'Trinkduell gewonnen – „Hierbleiben“ am Tisch wird zum Ehrenbürger-Ende (bei Dorf-Ruf ≥ 70)',f:['duellSieg'],at:['huette',640,488]},
   {t:'Enden: mit Polaroid zu Baba Jagas Tisch (Joint = Nastja-Ende, Hierbleiben = Zahnrad)',at:['huette',640,488]}];
 function tNeben(n){const d=tState(TSTEPS.length-1);TNEBEN.slice(0,n+1).forEach(st=>{(st.f||[]).forEach(k=>d.FL[k]=1);Object.assign(d.FL,st.v||{});
   (st.del||[]).forEach(i=>{const j=d.inv.indexOf(i);if(j>=0)d.inv.splice(j,1)});(st.add||[]).forEach(i=>d.inv.push(i));
