@@ -311,7 +311,9 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
       const[kx0,ky0]=P2(-.2,.01),[kx1]=P2(.2,.01),[ux0,uy1]=P2(-.21,SK.zonen.huefte+.03),[ux1]=P2(.21,SK.zonen.huefte);
       ph.zoneOben={x0:Math.min(kx0,kx1),x1:Math.max(kx0,kx1),y0:ky0,y1:ay0};ph.zoneUnten={x0:Math.min(ux0,ux1),x1:Math.max(ux0,ux1),y0:ay1,y1:uy1}}   // upper_torso_zone in Bildschirm-Koordinaten (800×500)
     x.save();x.translate(px,fy);x.scale(zm,zm);x.translate(-px,-fy);
-    if(u>-.9&&rig){x.save();x.translate(px,py+(sit?-2:0));x.rotate(Math.sin(w*u)*.025*inten);const s0=266/rig.h*sc;x.scale(s0,s0);
+    const twerk=skin==='dessous'&&NASTJA_TWERK.ready&&u>=17.5&&u<19.4&&Math.cos(ph.theta)<-.85;   // Rücken zum Sofa: gezeichnete Frames statt Rig
+    if(twerk){NASTJA_TWERK.sync(u,BEAT);NASTJA_TWERK.draw(x,px,py,266/500*sc)}
+    else if(u>-.9&&rig){x.save();x.translate(px,py+(sit?-2:0));x.rotate(Math.sin(w*u)*.025*inten);const s0=266/rig.h*sc;x.scale(s0,s0);
       const st={kopf,brust,huefte,wipp:ph.wipp,jigX:ph.jx,jigY:ph.jy,haar:ph.hx,haarY:ph.hy,faecher:Math.min(.18,Math.abs(omega)*.04)};
       naZeichne(x,rig,SK.zonen,st,eigen?0:ph.theta);x.restore()}
     x.restore();
