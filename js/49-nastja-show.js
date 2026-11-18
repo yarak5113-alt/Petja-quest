@@ -22,7 +22,10 @@
 // Tanzmenü (unten links, während des Tanzes):
 //   🧻 Скомканные салфетки / Tempos zustecken (immer, einmal pro Tanz) → Nastja lacht dich auf Russisch aus, Stimmung leicht +
 //   👋 Ближе наклониться (näher ranbeugen)       → Kamera zoomt auf den Oberkörper (mehrfach = näher), geht nach 6 s zurück
-//   ✋ Рискнуть и приобнять – danach auf eine von DREI Zonen klicken (ph.zoneOben / ph.torso / ph.zoneUnten), entscheidet
+//   💃 Twerken (nur im Dessous-Outfit, ersetzt „Riskant anfassen“) → Nastja dreht sich um und tanzt TWERK_TAKTE Takte lang die
+//        gezeichneten Frames (55-sprite-strip.js, tiefster Punkt auf dem Schlag), dreht sich zurück; Stimmung +12; danach TWERK_PAUSE s Pause.
+//        Der Griff-Code unten (Zonen, Arm, Squish) ist ohne Knopf derzeit nicht erreichbar, bleibt aber erhalten.
+//   (früher) ✋ Рискнуть и приобнять – danach auf eine von DREI Zonen klicken (ph.zoneOben / ph.torso / ph.zoneUnten), entscheidet
 //        jeweils Nastjas BEZIEHUNG (relOf > GRIFF_SCHWELLE = 70). Kopf und Hüfte nur mit Dialog, der POV-Arm nur in der Mitte:
 //        Kopf/Haare  > 70 → „Na gut, an die Haare kommst du nicht ran …“ Stimmung +5   · ≤ 70 → „Finger weg von der Frisur!“
 //        Hüfte       > 70 → „Du legst es drauf an, Pjotr.“ Stimmung +8                 · ≤ 70 → Zinaida: „Schluss mit dem Zirkus!“ (STOPP, Stimmung −10)
@@ -154,7 +157,7 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
   const glow=(X,Y,r,c,a)=>{const g=x.createRadialGradient(X,Y,0,X,Y,r);g.addColorStop(0,`rgba(${c},${a})`);g.addColorStop(1,`rgba(${c},0)`);x.fillStyle=g;x.fillRect(X-r,Y-r,r*2,r*2)};
   // Zustand der Physik (Sprite-Pixel)
   const ph={jy:0,vy:0,jx:0,vx:0,hx:0,hv:0,hy:0,hyv:0,wippV:0,wippA:0,huefV:0,theta:0,thetaZiel:0,maus:0,vibe:40,pop:[],kopfPuffer:[],
-    pauseSum:0,pauseBis:0,zoom:1,zoomZiel:1,zoomBis:0,torso:null,risiko:null,handT:0,handZiel:null,erfolg:false,tempoDa:0,riskBis:0,winkN:0,
+    pauseSum:0,pauseBis:0,zoom:1,zoomZiel:1,zoomBis:0,torso:null,risiko:null,handT:0,handZiel:null,erfolg:false,tempoDa:0,riskBis:0,winkN:0,twerk:null,twerkPause:0,
     zin:{sicht:false,ab:0,naechste:6+Math.random()*5,auftritt:-9}};cv3._ph=ph;   // Zustand für automatische Tests
   let fin=false,T0=performance.now(),tAlt=0,mausWinkel=null,mausKreis=0,letzterSchlag=-1;
   // ---- Eingabe: Takt (Leertaste/Klick) und Maus-Kreisen ----
@@ -171,7 +174,7 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
   const menu=document.createElement('div');menu.id='tanzmenu';$('#game').appendChild(menu);
   function menuBau(){const c=player.cash;
     menu.innerHTML=`<button data-m="tempo" ${ph.tempoDa?'disabled':''}>🧻 Tempos zustecken</button><button data-m="wink">👋 Näher ranbeugen</button>
-      <button data-m="risk" ${ph.risiko||jetztT()<ph.riskBis?'disabled':''}>✋ Riskant anfassen <small>ab ${GRIFF_SCHWELLE} % Beziehung</small></button>${c>0?`<button data-m="geld">💸 Geld zustecken <small>${c} ₽</small></button>`:''}`;
+      ${skin==='dessous'?`<button data-m="twerk" ${ph.twerk||jetztT()<ph.twerkPause?'disabled':''}>💃 Twerken</button>`:''}${c>0?`<button data-m="geld">💸 Geld zustecken <small>${c} ₽</small></button>`:''}`;
     menu.querySelectorAll('button').forEach(b=>{b.onmousedown=e=>{e.preventDefault();e.stopPropagation()};b.onclick=e=>{e.stopPropagation();aktion(b.dataset.m)}})}
   function aktion(m){const t=jetztT(),u=t-OFF-ph.pauseSum;if(t<ph.pauseBis)return;
     if(m==='tempo'&&!ph.tempoDa){ph.tempoDa=1;FL.na_tempo=Math.min(2,(FL.na_tempo||0)+1);ph.vibe=Math.min(100,ph.vibe+8);ph.pop.push({t:u,txt:'+ Frechheit',c:'255,220,160'});
@@ -179,6 +182,9 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
         ['P','(Ich glaube, das war ein Kompliment. Auf Russisch klingt alles wie eine Drohung.)','smirk']])}
     if(m==='wink'){ph.zoomZiel=Math.min(1.9,ph.zoomZiel+.3);ph.zoomBis=t+6;ph.vibe=Math.min(100,ph.vibe+3);
       if(!ph.winkN++)sprich([['NA','*beugt sich vor* Näher, Zwiebel? Noch näher kostet Aufpreis.','flirt']])}
+    if(m==='twerk'&&skin==='dessous'&&!ph.twerk&&t>=ph.twerkPause){ph.twerk={ende:t+TWERK_TAKTE*BEAT};ph.vibe=Math.min(100,ph.vibe+12);
+      ph.pop.push({t:u,txt:'Twerk! ♥',c:'255,215,120'});
+      sprich([['NA',['*dreht sich um und wirft dir einen Blick über die Schulter zu* Schön im Takt bleiben, Zwiebel.','*dreht sich um* Augen nach vorn, Süßer. Also … nach hinten.','*über die Schulter* Zähl mit. Eins, zwei …'][(ph.twerkN=(ph.twerkN||0)+1)%3],'flirt']])}
     if(m==='risk'&&!ph.risiko&&t>=ph.riskBis){ph.risiko='wählen';cv3.style.cursor='grab';$('#box').style.pointerEvents='none';ph.pop.push({t:u,txt:'✋ Klick auf Kopf, Oberkörper oder Hüfte …',c:'255,200,160'})}
     if(m==='geld'&&player.cash>0){player.cash--;FL.na_tip=Math.min(3,(FL.na_tip||0)+1);ph.vibe=Math.min(100,ph.vibe+15);ph.pop.push({t:u,txt:'+ Rubel ₽',c:'160,255,170'});
       sprich([['NA','*nimmt den Rubel und steckt ihn ins Strumpfband* Na also. Geht doch, Zwiebel. Für Geld tanz ich sogar mit Gefühl.','flirt']])}
@@ -276,6 +282,11 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
     else if(frei)ph.thetaZiel=2*Math.PI+ph.maus;                               // Spieler dreht mit der Maus
     else if(u<19.5)ph.thetaZiel=ease(ph.thetaZiel,Math.round((ph.thetaZiel-Math.PI)/(2*Math.PI))*2*Math.PI+Math.PI,seg(u,17,17.6));   // Rücken zeigen
     else if(u<21)ph.thetaZiel=ease(ph.thetaZiel,Math.round(ph.thetaZiel/(2*Math.PI))*2*Math.PI,seg(u,19.5,20.2));                    // wieder nach vorn
+    if(ph.twerk){const T2=2*Math.PI;
+      if(t<ph.twerk.ende)ph.thetaZiel=Math.round((ph.theta-Math.PI)/T2)*T2+Math.PI;   // Rücken zum Sofa
+      else if(t<ph.twerk.ende+.6)ph.thetaZiel=Math.round(ph.theta/T2)*T2;             // wieder nach vorn
+      else{ph.twerk=null;ph.twerkPause=t+TWERK_PAUSE;menuBau()}}
+    if(!ph.twerk&&ph.twerkPause&&t>=ph.twerkPause){ph.twerkPause=0;menuBau()}
     if(!frei)ph.maus*=Math.pow(.2,dt);
     const thAlt=ph.theta;ph.theta+=(ph.thetaZiel-ph.theta)*Math.min(1,dt*(frei?5:7));const omega=(ph.theta-thAlt)/dt;
     if(u>=21){const a=seg(u,21,22.6),b=seg(u,23.4,24.6);sit=a>.85;sc=b>0?ease(2.6,3.1,b):ease(1.5,2.6,a);py=b>0?ease(780,900,b):ease(520,780,a)}
@@ -311,7 +322,7 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
       const[kx0,ky0]=P2(-.2,.01),[kx1]=P2(.2,.01),[ux0,uy1]=P2(-.21,SK.zonen.huefte+.03),[ux1]=P2(.21,SK.zonen.huefte);
       ph.zoneOben={x0:Math.min(kx0,kx1),x1:Math.max(kx0,kx1),y0:ky0,y1:ay0};ph.zoneUnten={x0:Math.min(ux0,ux1),x1:Math.max(ux0,ux1),y0:ay1,y1:uy1}}   // upper_torso_zone in Bildschirm-Koordinaten (800×500)
     x.save();x.translate(px,fy);x.scale(zm,zm);x.translate(-px,-fy);
-    const twerk=skin==='dessous'&&NASTJA_TWERK.ready&&u>=17.5&&u<19.4&&Math.cos(ph.theta)<-.85;   // Rücken zum Sofa: gezeichnete Frames statt Rig
+    const twerk=skin==='dessous'&&NASTJA_TWERK.ready&&Math.cos(ph.theta)<-.85&&((ph.twerk&&t<ph.twerk.ende)||(u>=17.5&&u<19.4));   // Rücken zum Sofa: gezeichnete Frames statt Rig
     if(twerk){NASTJA_TWERK.sync(u,BEAT);NASTJA_TWERK.draw(x,px,py,266/500*sc)}
     else if(u>-.9&&rig){x.save();x.translate(px,py+(sit?-2:0));x.rotate(Math.sin(w*u)*.025*inten);const s0=266/rig.h*sc;x.scale(s0,s0);
       const st={kopf,brust,huefte,wipp:ph.wipp,jigX:ph.jx,jigY:ph.jy,haar:ph.hx,haarY:ph.hy,faecher:Math.min(.18,Math.abs(omega)*.04)};
@@ -365,6 +376,7 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
 
 // Petjas ausgestreckter Arm aus der Ich-Sicht: Handfläche (PETJA_ARM_ANKER) liegt auf X/Y, Ärmel läuft nach rechts unten aus dem Bild.
 // rot dreht um die Handfläche (weggeschlagen = im Uhrzeigersinn). Solange das Bild noch lädt, springt die klobige Hand ein.
+const TWERK_TAKTE=6,TWERK_PAUSE=3;   // Twerken: 6 Takte lang, danach 3 s Pause bis zum nächsten Mal
 const RISK_PAUSE=4;   // Sekunden, bis „Riskant anfassen“ wieder geht
 const GRIFF_SCHWELLE=70;   // über dieser Beziehung lässt Nastja sich anfassen
 const ARM_S=.7,ARM_DIR=(()=>{const v=[PETJA_ARM_W-PETJA_ARM_ANKER[0],PETJA_ARM_H*.85-PETJA_ARM_ANKER[1]],l=Math.hypot(...v);return[v[0]/l,v[1]/l]})();
