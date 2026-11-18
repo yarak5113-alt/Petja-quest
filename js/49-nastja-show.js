@@ -202,17 +202,23 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
     else{const d=Math.hypot(900-mx,620-my);ph.handZiel=[mx+(900-mx)/d*34,my+(620-my)/d*34]}   // Hand bleibt 34 px vor dem Ziel in der Luft
     menuBau()}
   // Gezeichnete Rücken-Frames mit Wackel-Physik (wie beim Rig, nur auf die Frames übertragen):
-  //   Hüfte: gedämpfte Feder 4 Hz, ζ 0,22 – Impuls beim Wechsel in den tiefsten Frame, Gegenimpuls beim Hochkommen.
-  //   Haare: Feder 1,8 Hz, ζ 0,3, folgen dem seitlichen Hüftschwung verzögert; die Spitzen schwingen am meisten.
+  //   Ablauf: Frame 0 (Hände an der Hüfte) → Frame 1 → Frame 2 sind nur der Übergang hinein; danach BLEIBT sie im tiefsten
+  //   Frame 2, und nur die Physik bewegt sie. Kurz vor Schluss Frame 1 als Übergang hinaus (twerkFrame).
+  //   Hüfte: gedämpfte Feder 4 Hz, ζ 0,22 – Impuls auf jedem Schlag (und beim Ankommen im tiefsten Frame).
+  //   Haare: Feder 1,8 Hz, ζ 0,3, schwingen über zwei Takte hin und her, verzögert; die Spitzen schwingen am meisten.
   //   Umsetzung: der Frame wird in 2-px-Zeilen gezeichnet, jede Zeile bekommt ihren eigenen Versatz.
   const TJ_HUEFTE=[.40,.64],TJ_HAAR=.45;   // Zeilenbereiche im Frame (Anteil der Höhe)
-  function twerkZeichnen(x,X,Y,mass,dt,startFrame=null){const sch=startFrame!=null?-1:NASTJA_TWERK.schritt(),J=ph.tj||(ph.tj={y:0,vy:0,hx:0,hv:0,alt:sch});
-    if(sch!==J.alt){if(sch===1){J.vy+=120;J.hv-=40}else if(J.alt===1){J.vy-=70;J.hv+=25}J.alt=sch}
+  const TWERK_UEBERGANG=[.55,.3,.35];   // s: Frame 0, dann Frame 1 hinein; Frame 1 hinaus vor dem Ende
+  function twerkFrame(seit,rest){const[a,b,c]=TWERK_UEBERGANG;return seit<a?0:seit<a+b?1:rest<c?1:2}
+  function twerkZeichnen(x,X,Y,mass,dt,frame,u){const J=ph.tj||(ph.tj={y:0,vy:0,hx:0,hv:0,alt:frame,schlag:Math.floor(u/BEAT)});
+    if(frame===2&&J.alt!==2){J.vy+=120;J.hv-=30}                         // angekommen im tiefsten Frame
+    else if(frame!==2&&J.alt===2){J.vy-=60}J.alt=frame;
+    const sl=Math.floor(u/BEAT);if(sl!==J.schlag){J.schlag=sl;if(frame===2){J.vy+=110;J.hv+=sl%2?28:-28}}   // auf jedem Schlag
     {const k=(2*Math.PI*4)**2,c=2*.22*Math.sqrt(k);J.vy+=(-k*J.y-c*J.vy)*dt;J.y=Math.max(-5,Math.min(5,J.y+J.vy*dt))}
-    {const ziel=Math.sin(NASTJA_TWERK.phase()*2*Math.PI)*4,k=(2*Math.PI*1.8)**2,c=2*.3*Math.sqrt(k);J.hv+=(k*(ziel-J.hx)-c*J.hv)*dt;J.hx=Math.max(-6,Math.min(6,J.hx+J.hv*dt))}
+    {const ziel=frame===2?Math.sin(u/BEAT*Math.PI)*4:0,k=(2*Math.PI*1.8)**2,c=2*.3*Math.sqrt(k);J.hv+=(k*(ziel-J.hx)-c*J.hv)*dt;J.hx=Math.max(-6,Math.min(6,J.hx+J.hv*dt))}
     const[A,B]=TJ_HUEFTE;
     NASTJA_TWERK.draw(x,X,Y,mass,false,yr=>[yr<TJ_HAAR?J.hx*yr/TJ_HAAR:yr<TJ_HAAR+.06?J.hx*(1-(yr-TJ_HAAR)/.06):0,
-      yr>A&&yr<B?J.y*Math.sin(Math.PI*(yr-A)/(B-A)):0],startFrame)}
+      yr>A&&yr<B?J.y*Math.sin(Math.PI*(yr-A)/(B-A)):0],frame)}
   // Kopf- und Hüft-Zone: nur Dialog und Stimmung, kein Arm
   function zoneKlick(zone,ok,t){const u=t-OFF-ph.pauseSum;
     if(zone==='oben'){if(ok){ph.vibe=Math.min(100,ph.vibe+5);ph.hv+=18;ph.pop.push({t:u,txt:'♥',c:'255,215,120'});
@@ -335,8 +341,8 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
       ph.zoneOben={x0:Math.min(kx0,kx1),x1:Math.max(kx0,kx1),y0:ky0,y1:ay0};ph.zoneUnten={x0:Math.min(ux0,ux1),x1:Math.max(ux0,ux1),y0:ay1,y1:uy1}}   // upper_torso_zone in Bildschirm-Koordinaten (800×500)
     x.save();x.translate(px,fy);x.scale(zm,zm);x.translate(-px,-fy);
     const twerk=skin==='dessous'&&NASTJA_TWERK.ready&&Math.cos(ph.theta)<-.85&&((ph.twerk&&t<ph.twerk.ende)||(u>=17.5&&u<19.4));   // Rücken zum Sofa: gezeichnete Frames statt Rig
-    if(twerk){NASTJA_TWERK.sync(u,BEAT);const seit=ph.twerk&&t<ph.twerk.ende?t-ph.twerk.start:u-17.5;
-      twerkZeichnen(x,px,py,266/500*sc,dt,seit<TWERK_START_DAUER?NASTJA_TWERK_START:null)}   // Start-Pose nur zu Beginn, nicht im Loop
+    if(twerk){const knopf=ph.twerk&&t<ph.twerk.ende,seit=knopf?t-ph.twerk.start:u-17.5,rest=knopf?ph.twerk.ende-t:19.4-u;
+      twerkZeichnen(x,px,py,266/500*sc,dt,twerkFrame(seit,rest),u)}   // 0 → 1 → 2 hinein, Frame 2 halten (Physik), 1 hinaus
     else if(u>-.9&&rig){x.save();x.translate(px,py+(sit?-2:0));x.rotate(Math.sin(w*u)*.025*inten);const s0=266/rig.h*sc;x.scale(s0,s0);
       const st={kopf,brust,huefte,wipp:ph.wipp,jigX:ph.jx,jigY:ph.jy,haar:ph.hx,haarY:ph.hy,faecher:Math.min(.18,Math.abs(omega)*.04)};
       naZeichne(x,rig,SK.zonen,st,eigen?0:ph.theta);x.restore()}
@@ -389,7 +395,7 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
 
 // Petjas ausgestreckter Arm aus der Ich-Sicht: Handfläche (PETJA_ARM_ANKER) liegt auf X/Y, Ärmel läuft nach rechts unten aus dem Bild.
 // rot dreht um die Handfläche (weggeschlagen = im Uhrzeigersinn). Solange das Bild noch lädt, springt die klobige Hand ein.
-const TWERK_TAKTE=6,TWERK_PAUSE=3,TWERK_START_DAUER=1;   // Start-Pose (Hände an der Hüfte) die erste Sekunde, danach nur noch die Schleife   // Twerken: 6 Takte lang, danach 3 s Pause bis zum nächsten Mal
+const TWERK_TAKTE=6,TWERK_PAUSE=3;   // Twerken: 6 Takte lang, danach 3 s Pause bis zum nächsten Mal
 const RISK_PAUSE=4;   // Sekunden, bis „Riskant anfassen“ wieder geht
 const GRIFF_SCHWELLE=70;   // über dieser Beziehung lässt Nastja sich anfassen
 const ARM_S=.7,ARM_DIR=(()=>{const v=[PETJA_ARM_W-PETJA_ARM_ANKER[0],PETJA_ARM_H*.85-PETJA_ARM_ANKER[1]],l=Math.hypot(...v);return[v[0]/l,v[1]/l]})();

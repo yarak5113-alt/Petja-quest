@@ -1,6 +1,7 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'2.46',d:'18.11.2026',t:'Halten',n:['Twerken: Die ersten beiden Frames sind nur noch der Übergang hinein, danach bleibt Nastja im tiefsten Frame und nur die Wackel-Physik bewegt sie, die Hüfte federt auf jedem Schlag, die Haare schwingen mit. Zum Schluss geht es über die Zwischenstufe zurück.']},
   {v:'2.45',d:'18.11.2026',t:'Startpose',n:['Twerken: Die Pose mit den Händen an der Hüfte kommt nur noch einmal zu Beginn; die Schleife wechselt danach nur zwischen Zwischenstufe und tiefstem Punkt.']},
   {v:'2.44',d:'18.11.2026',t:'Mit Schwung',n:['Twerken läuft halb so schnell: ein Durchgang dauert zwei Takte, jeder Frame bleibt länger stehen.','Wackel-Physik für die gezeichneten Frames: die Hüfte federt beim tiefsten Punkt gedämpft nach, die Haare schwingen verzögert hinterher.']},
   {v:'2.43',d:'18.11.2026',t:'Twerken',n:['Im Dessous-Tanz ersetzt „Twerken“ den Knopf „Riskant anfassen“: Nastja dreht sich um und tanzt 6 Takte lang die gezeichneten Frames, tiefster Punkt auf dem Schlag, Stimmung +12. Danach 3 Sekunden Pause, dann geht es wieder.']},

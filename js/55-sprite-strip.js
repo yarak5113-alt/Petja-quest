@@ -27,8 +27,7 @@ function spriteStrip(src,{w,h,anker=[w/2,h-2],folge,anteile=null,schlag=0,takte=
       else for(let y=0;y<h;y+=2){const n=Math.min(2,h-y),[dx,dy]=versatz(y/h);x.drawImage(img,f*w,y,w,n,Math.round(dx),Math.round(y+dy),w,n+(dy?1:0))}
       x.restore()}}}
 
-// Nastja von hinten (Dessous-Outfit). Frame 0 (Hände an der Hüfte) ist nur die Start-Pose (NASTJA_TWERK_START, in 49 erzwungen),
-// die Schleife wechselt nur Zwischenstufe ↔ tief (tief auf dem Schlag), ein Durchgang = 1 Takt → jeder Frame ≈ 0,3 s.
-const NASTJA_TWERK_START=0;
+// Nastja von hinten (Dessous-Outfit). 49 wählt den Frame selbst (twerkFrame: 0 → 1 → 2 hinein, 2 halten, 1 hinaus) und gibt ihn
+// an draw() weiter; folge/takte unten gelten nur, wenn kein Frame erzwungen wird.
 const NASTJA_TWERK=spriteStrip(NASTJA_TWERK_URL,{w:NASTJA_TWERK_W,h:NASTJA_TWERK_H,anker:NASTJA_TWERK_ANKER,
   folge:[1,2],anteile:[.5,.5],schlag:1,takte:1});
