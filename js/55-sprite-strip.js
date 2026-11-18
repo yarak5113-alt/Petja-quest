@@ -7,7 +7,8 @@
 //   takte    wie viele Takte ein Durchgang dauert (2 = halb so schnell)
 // Abspielen: sync(u, beat) hängt die Animation an die Tanzzeit (u in s, beat = Sekunden pro Schlag; ändert sich das Tempo,
 // läuft sie mit) – oder tick(dt, beat) für freies Weiterlaufen.
-// draw(x, X, Y, maßstab, spiegeln, versatz): versatz(yAnteil) → [dx, dy] in Frame-Pixeln verschiebt jede 2-px-Zeile einzeln
+// draw(x, X, Y, maßstab, spiegeln, versatz, frame): frame erzwingt einen bestimmten Frame (z. B. eine Start-Pose außerhalb der Schleife).
+// versatz(yAnteil) → [dx, dy] in Frame-Pixeln verschiebt jede 2-px-Zeile einzeln
 // (für Wackel-Physik); ohne versatz wird der Frame in einem Stück gezeichnet.
 function spriteStrip(src,{w,h,anker=[w/2,h-2],folge,anteile=null,schlag=0,takte=1}){
   const img=new Image();img.src=src;
@@ -20,12 +21,14 @@ function spriteStrip(src,{w,h,anker=[w/2,h-2],folge,anteile=null,schlag=0,takte=
     phase(){return(phase+versatz0)%1},
     schritt(){const p=this.phase();let i=folge.length-1;while(i>0&&start[i]>p)i--;return i},
     frame(){return folge[this.schritt()]},
-    draw(x,X,Y,mass=1,spiegeln=false,versatz=null){if(!this.ready)return;const f=this.frame();
+    draw(x,X,Y,mass=1,spiegeln=false,versatz=null,frame=null){if(!this.ready)return;const f=frame??this.frame();
       x.save();x.translate(X,Y);if(spiegeln)x.scale(-1,1);x.imageSmoothingEnabled=false;x.scale(mass,mass);x.translate(-anker[0],-anker[1]);
       if(!versatz)x.drawImage(img,f*w,0,w,h,0,0,w,h);
       else for(let y=0;y<h;y+=2){const n=Math.min(2,h-y),[dx,dy]=versatz(y/h);x.drawImage(img,f*w,y,w,n,Math.round(dx),Math.round(y+dy),w,n+(dy?1:0))}
       x.restore()}}}
 
-// Nastja von hinten (Dessous-Outfit): aufrecht → Zwischenstufe → tief (auf dem Schlag) → Zwischenstufe, ein Durchgang = 2 Takte
+// Nastja von hinten (Dessous-Outfit). Frame 0 (Hände an der Hüfte) ist nur die Start-Pose (NASTJA_TWERK_START, in 49 erzwungen),
+// die Schleife wechselt nur Zwischenstufe ↔ tief (tief auf dem Schlag), ein Durchgang = 1 Takt → jeder Frame ≈ 0,3 s.
+const NASTJA_TWERK_START=0;
 const NASTJA_TWERK=spriteStrip(NASTJA_TWERK_URL,{w:NASTJA_TWERK_W,h:NASTJA_TWERK_H,anker:NASTJA_TWERK_ANKER,
-  folge:[0,1,2,1],anteile:[.3,.2,.3,.2],schlag:2,takte:2});
+  folge:[1,2],anteile:[.5,.5],schlag:1,takte:1});
