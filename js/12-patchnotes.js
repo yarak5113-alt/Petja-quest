@@ -1,6 +1,7 @@
 // ================= Patch Notes (Startmenü) =================
 // Neues Update? Einfach OBEN einen Eintrag ergänzen. v muss eindeutig sein – daran erkennt das Spiel, ob der Spieler die Notes schon kennt.
 const PATCH=[
+  {v:'2.44',d:'18.11.2026',t:'Mit Schwung',n:['Twerken läuft halb so schnell: ein Durchgang dauert zwei Takte, jeder Frame bleibt länger stehen.','Wackel-Physik für die gezeichneten Frames: die Hüfte federt beim tiefsten Punkt gedämpft nach, die Haare schwingen verzögert hinterher.']},
   {v:'2.43',d:'18.11.2026',t:'Twerken',n:['Im Dessous-Tanz ersetzt „Twerken“ den Knopf „Riskant anfassen“: Nastja dreht sich um und tanzt 6 Takte lang die gezeichneten Frames, tiefster Punkt auf dem Schlag, Stimmung +12. Danach 3 Sekunden Pause, dann geht es wieder.']},
   {v:'2.42',d:'17.11.2026',t:'Von hinten',n:['Im Dessous-Tanz zeigt Nastja in der Rückenphase jetzt gezeichnete Frames statt des Rigs: aufrecht, Zwischenstufe und tiefster Punkt genau auf dem Schlag, im Takt der Musik.']},
   {v:'2.41',d:'17.11.2026',t:'Nochmal versuchen',n:['Riskant anfassen geht jetzt mehrmals pro Tanz, nach jedem Versuch mit 4 Sekunden Pause.','Drei Zonen: Kopf, Oberkörper (Griff an der Taille) und Hüfte, jeweils mit eigener Reaktion, über 70 Beziehung freundlich, sonst Abfuhr oder Zinaida.','Deutsche Fassung ohne russische Sprüche: Nastja, Zinaida und Opa reden Deutsch; die russischen Originale gibt es jetzt in der russischen Sprachfassung.']},
