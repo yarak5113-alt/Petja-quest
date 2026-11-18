@@ -3,7 +3,8 @@
 // 1 = aufrecht, Hände an der Hüfte · 2 = Zwischenstufe · 3 = tiefster Punkt (liegt im Spiel auf dem Schlag).
 // Heller Karo-Hintergrund raus (Flutfüllung von den Rändern), nur die größte Fläche bleibt, alle Frames gleich skaliert (MASS)
 // und an der Mitte zwischen den Stiefeln ausgerichtet, damit sie beim Abspielen nicht rutscht.
-// Ergebnis: pixel/nastja_twerk.png (horizontaler Streifen) und js/56-nastja-twerk-pixel.js.
+// Ergebnis: pixel/nastja_twerk.png (horizontaler Streifen) und js/48b-nastja-twerk-pixel.js (nur Maße – das Bild wird erst beim
+// ersten Dessous-Tanz geladen, damit der Spielstart nicht 400 KB mitschleppt).
 const fs=require('fs'),path=require('path'),os=require('os'),{execFileSync}=require('child_process');
 const root=path.join(__dirname,'..'),MASS=.48;   // Bildpixel → Sprite-Pixel (passt zur Beinlänge des Dessous-Sprites, 500 px hoch)
 const urls=[1,2,3].map(n=>'data:image/png;base64,'+fs.readFileSync(path.join(root,`pixel/nastja_twerk_${n}_vorlage.png`)).toString('base64'));
@@ -41,10 +42,11 @@ fs.unlinkSync(tmp);
 const p=out.match(/<pre id="png">([\s\S]*?)<\/pre>/);if(!p||!p[1])throw new Error('kein Ergebnis');
 const r=JSON.parse(p[1].replace(/&quot;/g,'"').replace(/&amp;/g,'&'));
 fs.writeFileSync(path.join(root,'pixel/nastja_twerk.png'),Buffer.from(r.url.split(',')[1],'base64'));
-fs.writeFileSync(path.join(root,'js/56-nastja-twerk-pixel.js'),`// ================= Nastja tanzt von hinten (Dessous-Outfit): 3 Frames als horizontaler Streifen =================
+fs.writeFileSync(path.join(root,'js/48b-nastja-twerk-pixel.js'),`// ================= Nastja tanzt von hinten (Dessous-Outfit): 3 Frames als horizontaler Streifen =================
 // AUTOMATISCH erzeugt aus pixel/nastja_twerk_{1,2,3}_vorlage.png mit: node tools/nastja-twerk.js  – nicht von Hand ändern.
 // Frame 0 aufrecht · 1 Zwischenstufe · 2 tiefster Punkt. Anker = Mitte zwischen den Stiefelsohlen.
-const NASTJA_TWERK_URL=${JSON.stringify(r.url)};
+// Das Bild selbst liegt in pixel/nastja_twerk.png und wird erst geladen, wenn der Dessous-Tanz beginnt (NASTJA_TWERK.laden()).
+const NASTJA_TWERK_URL='pixel/nastja_twerk.png';
 const NASTJA_TWERK_W=${r.w},NASTJA_TWERK_H=${r.h},NASTJA_TWERK_ANKER=${JSON.stringify(r.anker)};
 `);
 console.log('ok',r.w,r.h,r.anker,Math.round(r.url.length/1024)+' KB');

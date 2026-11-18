@@ -4,7 +4,7 @@
 //   Oben ein geteilter Balken: Petjas und Opas Standfestigkeit. Jeder Shot kostet; daneben (verschluckt) kostet viel mehr.
 //   Pro Shot wird der Zeiger schneller und zittert stärker, die grüne Mitte schmaler, das Bild kippt (Schlagseite) und sieht doppelt.
 //   Wer zuerst auf 0 ist, liegt unterm Tisch. Nach 3 Niederlagen lässt es sich überspringen (wie die anderen Minispiele).
-// Sieg: viel Dorf-Ruf (+40) und Rubel (player.cash: 3 beim ersten Sieg, danach je 1) – damit geht beim Privattanz „Башли“.
+// Sieg: Dorf-Ruf (beim ersten Sieg) und Opas Respekt. Geld gibt es im Spiel nicht.
 //
 // ENDE-MATRIX (an Baba Jagas Tisch, Hauptentscheidung return = Joint / stay = Hierbleiben):
 //   return + Polaroid            → 'nastja'  Wahres Ende (Beweis in der echten Welt: das Foto über dem Schreibtisch)
@@ -152,10 +152,10 @@ function duellRun(){const{cv2,x}=a3Canvas(),T0=performance.now(),opaBild=DUELL_O
 const DUELL_OPA=(()=>{const im=new Image();im.src=OPA_GANZ;return im})();   // pixel/portraets/opa_drinking.png
 const DUELL_PIMG={opa:Object.fromEntries(Object.entries(PORTRAETS.opa).map(([k,u])=>{const im=new Image();im.src=u;return[k,im]}))};
 
-function duellSieg(übersprungen){const neu=!FL.duellSieg;FL.duellSieg=1;const rubel=neu?3:1;player.cash+=rubel;
+function duellSieg(übersprungen){const neu=!FL.duellSieg;FL.duellSieg=1;
   say([['G','*kriecht unterm Tisch hervor* … Junge. Du hast Grischa untern Tisch getrunken.','drunk'],['G','Das hat seit Breschnew keiner geschafft. Du bist einer von uns. Ab heute.'],
-    ['G',neu?'Und hier. Dein Wetteinsatz. Drei Rubel. Gib sie nicht für Schnaps aus. Schnaps kriegst du bei mir.':'Hier, ein Rubel. Revanche ist Revanche.','drunk'],
-    ['P','(Ich hab gerade das Dorf erobert. Mit der Leber.)','smirk']],()=>{toast(`+${rubel} Rubel · jetzt ${player.cash} ₽`,'done','tasche');if(neu){toast(`Dorf-Ruf +${DORF_RUF.duellSieg} · jetzt ${dorfRuf()} / 100`,'done','figuren');
+    ['G',neu?'Und hier. Mein Gefreiten-Abzeichen. Hab ich seit ’79 nicht abgenommen. Jetzt trägst du’s.':'Revanche ist Revanche. Nächsten Freitag wieder. Ich übe schon.','drunk'],
+    ['P','(Ich hab gerade das Dorf erobert. Mit der Leber.)','smirk']],()=>{if(neu){toast(`Dorf-Ruf +${DORF_RUF.duellSieg} · jetzt ${dorfRuf()} / 100`,'done','figuren');
       if(ehrenOk())setTimeout(()=>toast('Das Dorf will dich ehren. An Baba Jagas Tisch gibt es jetzt eine neue Wahl.','done','tipp'),900);
       else setTimeout(()=>toast(`Für „Ehrenbürger“ fehlt noch Dorf-Ruf: ${dorfRuf()} / ${EHREN_RUF}. Hilf den Leuten im Dorf.`,0,'tipp'),900)}})}
 

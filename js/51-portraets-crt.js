@@ -1,5 +1,5 @@
 // ================= Dialog-Porträts mit Mimik + CRT-Filter =================
-// PORTRÄTS: Spricht Petja (P), Opa Grischa (G) oder Nastja (NA), steht links in der Leseleiste ein Pixel-Porträt (50-portraets-pixel.js).
+// PORTRÄTS: Spricht Petja (P), Opa Grischa (G) oder Nastja (NA), steht links in der Leseleiste ein Pixel-Porträt (48a-portraets-pixel.js).
 //   Die Mimik kommt aus dem Text – oder fest als 3. Element einer Zeile: ['G','Твою мать!','angry'].
 //   Petja:  neutral · smirk (sarkastisch, genervt, „na klar“) · pain (würgen, husten, Fusel, Schmerz)
 //   Opa:    neutral · angry (Großbuchstaben, Flüche, „Твою мать“) · drunk (*hicks*, Prost, Schnaps, Lachen)

@@ -1,24 +1,259 @@
-# Privattanz und Trinkduell (49, 52): Diese Sprüche standen früher auf Russisch im deutschen Code.
+# Privattanz, Trinkduell, Dorf-Quests, Verteilerkasten, Trafo, Ehrenbürger-Ende (49–53)
+# Stimmen wie in zz-stimmen-*.txt: Nastja «Лучок»/«зайчик», Opa «Твою мать»/«Ёмаё», Oma шепелявит (с/ш/ч → ф), Fjodor коротко и грубо,
+# Ignati – сомнительный поп. Petja: «Эх, была не была», «Опа».
+
+# ---------- Privattanz: Richtungen, Takt, Menü ----------
+=vorn => спереди
+=vorn-rechts => спереди-справа
+=Profil rechts => профиль справа
+=hinten-rechts => сзади-справа
+=hinten => сзади
+=hinten-links => сзади-слева
+=Profil links => профиль слева
+=vorn-links => спереди-слева
+=Perfekt! ♥ => Идеально! ♥
+=Im Takt ♪ => В ритм ♪
+=Daneben … => Мимо…
+=Dreh dich! ✦ => Крутись! ✦
+=+ Frechheit => + Наглость
+=STIMMUNG => НАСТРОЙ
+=Leertaste / Klick, wenn der Ring den Kreis trifft · Maus im Kreis: sie dreht sich mit · Esc beendet => Пробел / клик, когда кольцо коснётся круга · Мышь по кругу — она крутится следом · Esc — выход
+~Freier Tanz – kreise mit der Maus! ({}) => Свободный танец — крути мышью! ({})
 =🧻 Tempos zustecken => 🧻 Скомканные салфетки
 =👋 Näher ranbeugen => 👋 Ближе наклониться
-=✋ Riskant anfassen => ✋ Рискнуть и приобнять
-=ab # % Beziehung => от # % отношений
-=💸 Geld zustecken => 💸 Башли
-=+ Rubel ₽ => + Башли ₽
-=*zieht das zerknüllte Taschentuch aus dem Strumpfband und hält es hoch* Sag mal, du Pleitegeier, hast du komplett die Orientierung verloren? Na gut, für die Frechheit gibt’s einen Punkt. => *вытаскивает скомканную салфетку из подвязки и поднимает её* Ты чё, нищеброд, совсем берега попутал? Ну ладно, за наглость засчитаю.
-=*streicht sich die Strähne zurück* Na gut. An die Haare kommst du nicht ran … aber so geht’s. Die Frisur ist heilig, Zwiebel. => *поправляет прядь* Ну ладно, волосы не трогай… но сойдёт. Причёска — это святое, Лучок.
-=Finger weg von der Frisur! Die hat zwei Stunden und eine Dose Haarspray gekostet. => Руки прочь от причёски! Два часа и целый баллон лака, между прочим.
-=*zieht eine Augenbraue hoch* Du legst es drauf an, Pjotr. Ich merk mir das. => *приподнимает бровь* Ты нарываешься, Пётр… Я это запомню.
-=*reißt den Vorhang auf* Schluss mit dem Zirkus, ihr zwei! Hände aufs Sofa, Süßer! => *отдёргивает занавеску* А ну прекратили балаган! Руки на диван, сладенький!
-=Oh … du bist ja ein ganz Frecher. => Ой… ну ты и наглец.
-=*schlägt deine Hand genervt zur Seite* Pfoten weg, du Pleitegeier! => *раздражённо отбивает твою руку* Клешни свои убрал, нищеброд!
-=Auf die Gesundheit! *kipp* … Ahh. Wie Muttermilch. Wenn die Mutter ein Traktor war. => За здоровье! *опрокидывает* … Ах. Как материнское молоко. Если мать — трактор.
-=Selbstgebrannter, bis einer liegt => самосад, пока кто-то не ляжет
-=Selbstgebrannter. Aus Kartoffeln, Zucker und Groll. => Самосад. Из картошки, сахара и обиды.
-=*hicks* … Verdammt nochmal! … Der Boden … der Boden kommt hoch! => *ик* … Твою мать! … Пол … пол поднимается!
-=*heftet dir einen Orden an* Ehrenbürger. Der war mal für 30 Jahre Melkbetrieb. Jetzt ist er deiner. => *прикалывает тебе орден* Почётный гражданин. Был за 30 лет на молочной ферме. Теперь твой.
 =💃 Twerken => 💃 Тверк
 =Twerk! ♥ => Тверк! ♥
+=*zieht das zerknüllte Taschentuch aus dem Strumpfband und hält es hoch* Sag mal, du Pleitegeier, hast du komplett die Orientierung verloren? Na gut, für die Frechheit gibt’s einen Punkt. => *вытаскивает скомканную салфетку из подвязки и поднимает её* Ты чё, нищеброд, совсем берега попутал? Ну ладно, за наглость засчитаю.
+=(Ich glaube, das war ein Kompliment. Bei ihr klingt alles wie eine Drohung.) => (Кажется, это был комплимент. У неё всё звучит как угроза.)
+=*beugt sich vor* Näher, Zwiebel? Noch näher kostet Aufpreis. => *наклоняется* Ближе, Лучок? Ещё ближе — за доплату.
 =*dreht sich um und wirft dir einen Blick über die Schulter zu* Schön im Takt bleiben, Zwiebel. => *разворачивается и бросает взгляд через плечо* Держи ритм, Лучок.
-=*dreht sich um* Augen nach vorn, Süßer. Also … nach hinten. => *разворачивается* Глаза вперёд, сладенький. Ну… назад.
+=*dreht sich um* Augen nach vorn, Süßer. Also … nach hinten. => *разворачивается* Глаза вперёд, зайчик. Ну… назад.
 =*über die Schulter* Zähl mit. Eins, zwei … => *через плечо* Считай со мной. Раз, два…
+
+# ---------- Privattanz: Umziehen, Schluss, Sprüche je Outfit ----------
+=*raschel* => *шурх*
+=*Strapse schnalzen* => *щёлк подвязок*
+=*Reißverschluss* => *вжик молнии*
+=*Fünf Minuten später. Stimmung: # %* => *Пять минут спустя. Настрой: # %*
+=*außer Atem* Du hast den Takt gehalten, Zwiebel. Das schaffen nicht mal Zinaidas Stammgäste. => *запыхавшись* Ритм держал, Лучок. Даже завсегдатаи Зинаиды так не могут.
+=*zupft dich am Kragen* Nächstes Mal klatschst du im Takt mit, Süßer. Oder wenigstens in der Nähe vom Takt. => *дёргает тебя за воротник* В следующий раз хлопай в такт, зайчик. Ну или хотя бы рядом с тактом.
+=*haucht* Augen zu, Zwiebel. Ich hab was Neues an. Na ja – weniger Altes. => *шепчет* Глаза закрой, Лучок. У меня обновка. Ну как — меньше старого.
+=Augen zu. Und diesmal wirklich, Süßer. Das hier hat nicht mal Zinaida gesehen. => Глаза закрой. В этот раз по-настоящему, зайчик. Такого даже Зинаида не видела.
+=(Das war ein Reißverschluss. Das war eindeutig ein Reißverschluss.) => (Это была молния. Это точно была молния.)
+=Hände aufs Sofa, Zwiebel. Ich mach den Rest. => Руки на диван, Лучок. Остальное — моё дело.
+=Einmal rum … damit du siehst, dass hinten auch was ist. => Разок кругом… чтоб ты видел, что сзади тоже кое-что есть.
+=Na los, dreh mich. Du hast doch Hände. Benutz sie – an der Maus. => Давай, крути меня. Руки-то есть. Вот и работай ими — мышкой.
+=(Die Haare. Die Haare machen mich fertig.) => (Волосы. Меня добивают волосы.)
+=*öffnet ein Auge, zieht die Braue hoch* Na? Das Outfit gibt’s nur für Stammkunden. Und für Zwiebeln. => *открывает один глаз, поднимает бровь* Ну? Этот наряд только для постоянных клиентов. И для луковиц.
+=Langsam drehen … so. Damit du was zum Erzählen hast. => Медленно кругом… вот так. Чтоб было что рассказать.
+=Freier Tanz, Süßer. Du führst. Aber wehe, du trittst mir auf die Stiefel. => Свободный танец, зайчик. Ведёшь ты. Но только попробуй наступить мне на сапоги.
+=*zwinkert* Dreihundert Jahre im Sumpf, und das hier hat mich noch keiner tragen sehen. Fühl dich geehrt. => *подмигивает* Триста лет в болоте, и никто меня в таком не видел. Цени.
+=Ganz rum, Zwiebel. Von hinten bin ich übrigens genauso gefährlich. => Полный круг, Лучок. Сзади я, между прочим, такая же опасная.
+=Dreh mich. Schneller. … Nicht so schnell, ich hab Absätze an! => Крути. Быстрее. … Не так быстро, я на каблуках!
+=*haucht* Ganz ruhig atmen, Süßer. Wenn du jetzt umkippst, tanz ich trotzdem zu Ende. => *шепчет* Дыши спокойно, зайчик. Грохнешься в обморок — я всё равно дотанцую.
+=Wenn du so weitermachst, kriegst du noch was zum Mitnehmen. Was mit Rand. Zum Aufhängen. => Будешь так продолжать — получишь кое-что с собой. С рамочкой. На стенку повесить.
+=(Ein … Foto? Meint sie ein Foto?) => (Фото…? Она про фото?)
+=Nastja … ein Privattanz? => Настя… приватный танец?
+=Langsam, Zwiebel. Erst redest du mit mir, dann trinkst du mit mir – und dann reden wir übers Tanzen. => Не гони, Лучок. Сначала поговоришь со мной, потом выпьешь со мной — а потом поговорим о танцах.
+=(Sie will mich erst besser kennenlernen. Reden, anstoßen … ab „Freundlich“ tanzt sie vielleicht.) => (Сначала хочет узнать меня получше. Поболтать, чокнуться… с «Дружелюбно» может и станцует.)
+=Ein Privattanz? Heute nicht im Korsett, Süßer. Heute gibt’s … weniger. Ab in die Kabine. => Приватный танец? Сегодня не в корсете, зайчик. Сегодня будет… поменьше. Марш в кабинку.
+=Die Kabine ist frei, Zwiebel. Und ich bin’s auch – fast. => Кабинка свободна, Лучок. И я тоже — почти.
+=VIP-Kabine, wie immer? Natürlich wie immer. => VIP-кабинка, как обычно? Конечно, как обычно.
+=Wahres Ende: Ein Foto über dem Schreibtisch => Настоящий финал: фото над столом
+
+# ---------- Einstellungen ----------
+=📺 CRT-Filter => 📺 ЭЛТ-фильтр
+=🙂 Porträts im Gespräch => 🙂 Портреты в диалогах
+
+# ---------- Trinkduell ----------
+=Auf die Gesundheit! *kipp* … Ahh. Wie Muttermilch. Wenn die Mutter ein Traktor war. => За здоровье! *опрокидывает* … Ах. Как материнское молоко. Если мать — трактор.
+=*kipp* Der ist vom Februar. Guter Monat. Kurzer Monat. => *опрокидывает* Этот февральский. Хороший месяц. Короткий.
+=*hicks* Noch einer, Städter? Oder brauchst du ein Kissen? => *ик* Ещё по одной, городской? Или подушку подать?
+=*kipp* *rülps* Für die Sowjetunion! Die war auch irgendwann alle. => *опрокидывает* *рыг* За Союз! Он тоже когда-то кончился.
+=*hicks* … Der Tisch wackelt. Nicht ich. Der Tisch. => *ик* … Стол шатается. Не я. Стол.
+=*kipp* *hicks* Ich seh dich doppelt, Junge. Beide sehen blass aus. => *опрокидывает* *ик* Вас двое, сынок. И оба бледные. Ёмаё.
+=*HUST* *würg* … Das ist kein Schnaps, das ist Abbeizer! => *КХЕ* *буэ* … Это не самогон, это растворитель!
+=Ha! Wie ein Spatz am Brunnen! => Ха! Как воробей у колодца!
+=*röchel* Mein Hals … ich glaub, mein Hals ist ausgezogen. => *хрип* Горло… по-моему, горло от меня съехало.
+=*lacht* Durch die Nase! Der Junge trinkt durch die Nase! => *ржёт* Носом! Пацан носом пьёт!
+=*keuch* Der brennt bis in die Schuhe. => *кхх* До ботинок прожигает.
+=Dafür ist er ja da. Wärmt auch die Füße. => На то он и есть. Ноги тоже греет.
+=*schluck* … Geht. Geht doch. => *глоток* … Пошло. Пошло же.
+=*kipp* Ich spür meine Zunge nicht mehr. Ist das gut? => *опрокидывает* Языка не чувствую. Это хорошо?
+=*schluck* Na klar. Wie Wasser. Brennendes Wasser. => *глоток* Ну конечно. Как вода. Горящая вода.
+=/ # · 🏅 Trinkduell gewonnen => / # · 🏅 Дуэль выиграна
+=Dorf-Ruf: => Уважение в деревне:
+=🥃 Trinkduell => 🥃 Дуэль на самогоне
+=💬 Reden => 💬 Поговорить
+=Selbstgebrannter, bis einer liegt => самосад, пока кто-то не ляжет
+=Revanche? *hicks* Ich hab extra den vom März aufgemacht. Der ist böser. => Реванш? *ик* Я специально мартовский открыл. Он злее.
+=Na, Städter? Wieder wach? Dann setz dich. Diesmal halt ich dir die Stirn fest. => Ну что, городской? Очухался? Садись. В этот раз я тебе лоб придержу.
+=Opa … was ist das für eine Flasche? => Дед… это что за бутылка?
+=Selbstgebrannter. Aus Kartoffeln, Zucker und Groll. => Самосад. Из картошки, сахара и обиды.
+=Wer im Dorf was gelten will, muss mit Grischa trinken. Wer zuerst umfällt, verliert. Wer gewinnt, ist einer von uns. => Кто хочет, чтоб в деревне уважали, пьёт с Гришей. Кто первый упал — проиграл. Кто выиграл — наш.
+=Und wenn ich verliere? => А если я проиграю?
+=Dann schläfst du unterm Tisch. Ist auch gemütlich. Frisch geteert. => Тогда спишь под столом. Там тоже уютно. Свежий дёготь.
+=(Kipp ihn, wenn das Herz in der Mitte ist. Leertaste oder Klick.) => (Опрокидывать, когда сердце в середине. Пробел или клик.)
+=Trinkduell mit Opa => Дуэль с дедом
+=Perfekt runter! ♥ => Идеально зашло! ♥
+=Runtergewürgt => Еле проглотил
+=*HUST* Verschluckt! => *КХЕ* Поперхнулся!
+=OPA => ДЕД
+=Glas # => Стакан #
+=Leertaste / Klick: kippen! => Пробел / клик: опрокинуть!
+=Trink endlich! Der Schnaps wird nicht jünger! => Пей уже! Самогон не молодеет!
+=*RUMMS* => *БАМС*
+=(Opa liegt unterm Tisch. Ich sitze noch. Glaube ich.) => (Дед под столом. Я ещё сижу. Кажется.)
+=*hicks* … Verdammt nochmal! … Der Boden … der Boden kommt hoch! => *ик* … Твою мать! … Пол… пол поднимается!
+=*würg* … Opa … warum dreht sich Ihr Haus? => *буэ* … Дед… а чего у вас дом крутится?
+=*lacht* Städter! Weich wie Butter! => *ржёт* Городской! Мягкий, как масло!
+=*Später. Unterm Tisch.* => *Позже. Под столом.*
+=(Es riecht nach Teer und Kartoffeln. Und nach Niederlage.) => (Пахнет дёгтем и картошкой. И поражением.)
+=*von oben* Morgen nochmal, Junge. Dann trink ich mit links. => *сверху* Завтра ещё раз, сынок. Левой рукой пить буду.
+=Aufhören mittendrin? Pfff. Feigling. … Der Schnaps läuft nicht weg. Du schon. => Бросить на полпути? Тьфу, блин. Слабак. … Самогон никуда не денется. А ты — да.
+=*kriecht unterm Tisch hervor* … Junge. Du hast Grischa untern Tisch getrunken. => *выползает из-под стола* … Сынок. Ты Гришу перепил.
+=Das hat seit Breschnew keiner geschafft. Du bist einer von uns. Ab heute. => Со времён Брежнева никто не мог. Ты наш. С сегодняшнего дня.
+=Und hier. Mein Gefreiten-Abzeichen. Hab ich seit ’79 nicht abgenommen. Jetzt trägst du’s. => И вот. Мой ефрейторский значок. С семьдесят девятого не снимал. Теперь носи ты.
+=Revanche ist Revanche. Nächsten Freitag wieder. Ich übe schon. => Реванш есть реванш. В следующую пятницу снова. Я уже тренируюсь.
+=(Ich hab gerade das Dorf erobert. Mit der Leber.) => (Я только что покорил деревню. Печенью.)
+=Dorf-Ruf +# · jetzt # / # => Уважение +# · теперь # / #
+=Das Dorf will dich ehren. An Baba Jagas Tisch gibt es jetzt eine neue Wahl. => Деревня хочет тебя наградить. У стола Бабы-яги теперь новый выбор.
+=Für „Ehrenbürger“ fehlt noch Dorf-Ruf: # / #. Hilf den Leuten im Dorf. => До «Почётного гражданина» не хватает уважения: # / #. Помогай людям в деревне.
+
+# ---------- Ende: Ehrenbürger ----------
+=Ende: Ehrenbürger => Финал: Почётный гражданин
+=Petja blieb. Nicht als Zahnrad – als einer von ihnen. Mit Urkunde. => Петя остался. Не винтиком — своим. С грамотой.
+=Petja blieb. Nicht als Zahnrad – als einer von ihnen. Mit Urkunde und eigenem Haus. => Петя остался. Не винтиком — своим. С грамотой и собственным домом.
+=🎖 Hierbleiben – als Ehrenbürger => 🎖 Остаться — почётным гражданином
+=Das Dorf will dich behalten: Orden, Urkunde, Freitagsduell => Деревня хочет тебя оставить: орден, грамота, дуэль по пятницам
+=🎖 Dorf-Ruf # / # => 🎖 Уважение # / #
+=🎖 Dorf-Ruf # / # – mit mehr Ruf würde das Dorf dich als Ehrenbürger behalten => 🎖 Уважение # / # — с бо́льшим уважением деревня оставила бы тебя почётным гражданином
+=Frau Jaga … das Dorf hat mich gefragt, ob ich bleibe. => Бабушка Яга… деревня спросила, останусь ли я.
+=Das Dorf fragt nie jemanden. Was hast du angestellt? => Деревня никого не спрашивает. Что ты натворил?
+=Grischa untern Tisch getrunken. => Гришу перепил.
+=Strom gelegt. Kohle geschleppt. Einen Kater gefunden. Grischa untern Tisch getrunken. => Свет провёл. Уголь притащил. Кота нашёл. Гришу перепил.
+=*lacht krächzend* Dann bist du verloren. Geh. Die warten schon. => *хрипло смеётся* Тогда ты пропал. Иди. Тебя уже ждут.
+=*steht stramm, schwankt leicht* Achtung! Hiermit ernenne ich, Grischa, Gefreiter a. D., dich zum Ehrenbürger! => *стоит смирно, слегка покачиваясь* Смирно! Я, Гриша, ефрейтор запаса, объявляю тебя почётным гражданином!
+=Achtung! Hiermit ernenne ich, Grischa, Gefreiter a. D., dich zum Ehrenbürger! => Смирно! Я, Гриша, ефрейтор запаса, объявляю тебя почётным гражданином!
+=*heftet dir einen Orden an* Ehrenbürger. Der war mal für 30 Jahre Melkbetrieb. Jetzt ist er deiner. => *прикалывает тебе орден* Почётный гражданин. Был за 30 лет на молочной ферме. Теперь твой.
+=Ich … danke. Ehrlich. => Я… спасибо. Честно.
+=Ehrenbürger! Dann darfst du mir jetzt auch offiziell die Kohlen reintragen. Mit Orden. => Почётный гражданин! Значит, теперь официально будешь мне уголь таскать. С орденом.
+=Natürlich, Oma Dusja. => Конечно, баба Дуся.
+=Und jeden Freitag: Duell. Ehrenbürger trinken nicht weniger. Ehrenbürger trinken pünktlich. => И каждую пятницу — дуэль. Почётные граждане пьют не меньше. Почётные граждане пьют вовремя.
+=(Drüben war ich der Typ auf Wowas Sofa. Hier hab ich einen Orden. Für Saufen. Aber einen Orden.) => (Там я был тем типом с Вовиного дивана. Тут у меня орден. За пьянку. Но орден.)
+=(Ich glaube, ich bleibe.) => (Кажется, я остаюсь.)
+=Und ein Ehrenbürger braucht ein Dach. Das Holz liegt bereit. Ich hab die Nägel geschmiedet. => А почётному гражданину нужна крыша. Брёвна готовы. Гвозди я выковал.
+=Ich segne es. Und Murka kommt zur Einweihung. => Я освящу. И Мурка придёт на новоселье.
+=Ich bring Pirogi. Mit Gebiff gebacken. => Пирожков принефу. С фелюфтью пекла.
+=(Ein eigenes Haus. Ich. Der Typ von Wowas Sofa.) => (Свой дом. У меня. У типа с Вовиного дивана.)
+=Petjas eigenes Haus => Собственный дом Пети
+=Petjas Haus => Дом Пети
+=Ein Haus aus Birken, mit Fjodors Nägeln, Dusjas Pirogi und Ignatis Segen. Jetzt bist du einer von uns, Junge. => Дом из берёзы, с гвоздями Фёдора, пирожками Дуси и благословением Игнатия. Теперь ты наш, сынок.
+=(Drüben hatte ich ein Sofa, das mir nicht gehört. Hier hab ich ein Haus. Mit Tür.) => (Там у меня был чужой диван. Тут у меня дом. С дверью.)
+=(Ich bleibe.) => (Я остаюсь.)
+
+# ---------- Gegenstände ----------
+=Kabelrolle und Isolierzange => Катушка кабеля и изолированные кусачки
+=Fjodors neues Kabel. Kupfer, schwarz ummantelt, schwer wie ein Gewissen. Die Zange hat gelbe Griffe. Gegen Strom. Hoffentlich. => Новый кабель Фёдора. Медь в чёрной оплётке, тяжёлый, как совесть. У кусачек жёлтые ручки. От тока. Надеюсь.
+=Kohlensack => Мешок угля
+=Ein Sack Steinkohle aus der Schmiede. Für Oma Dusja. Sie friert, sagt Fjodor. Sie würde es nie zugeben. => Мешок каменного угля из кузницы. Для бабы Дуси. Мёрзнет, говорит Фёдор. Сама ни за что не признается.
+=Vater Ignatis Kater => Кот отца Игнатия
+=Nass, beleidigt, riecht nach Fisch und Steg. Krallt sich in meine Jacke, als wäre ich ein Baum. Ich hab’s verdient. => Мокрый, обиженный, пахнет рыбой и мостками. Вцепился в куртку, будто я дерево. Заслужил.
+
+# ---------- Kater-Flug und Suche ----------
+=*springt mit allen Krallen an mein Bein* MRRRAAAAU! => *прыгает всеми когтями мне на ногу* МРРРАААУ!
+=AU! AU! LOS! LASS LOS! => АЙ! АЙ! ПУСТИ! ПУСТИ!
+=… Ups. => … Опа.
+=Der landet bestimmt weich. Katzen landen immer weich. Steht in jedem Buch. => Он точно мягко приземлится. Кошки всегда мягко приземляются. Во всех книжках написано.
+=Und da liegt … Omas Gebiss. Na lecker. => А вот и… бабкина челюсть. Аппетитно.
+=*TRITT* => *ПИНОК*
+=MIAAAUUUUU! => МЯЯЯУУУУ!
+=Da unten, zwischen den Pfählen … zwei gelbe Augen. Der Kater vom Friedhof! => Там, между сваями… два жёлтых глаза. Кот с кладбища!
+=Er sitzt auf den Gräten von meinem Fisch und guckt, als hätte ich ihn getreten. => Сидит на костях от моей рыбы и смотрит, будто я его пнул.
+=… Hab ich ja auch. => … Ну, я и пнул.
+=Okay. Ich lass dich in Ruhe. Für heute. => Ладно. Не трогаю. На сегодня.
+=*kriecht auf allen vieren unter den Steg* Komm, Mieze. Dein Herrchen vermisst dich. => *ползёт на четвереньках под мостки* Кис-кис. Хозяин скучает.
+=*FAUCH* … *mrrr* … => *ШШШ* … *мррр* …
+=*packt den nassen Kater* Na also. Ganz ruhig. Ich trete heute niemanden mehr. Versprochen. => *хватает мокрого кота* Ну вот. Тихо. Сегодня я больше никого не пинаю. Честно.
+=Vater Ignati … ich hab da was. Unter dem Steg beim Fischer gefunden. => Отец Игнатий… у меня тут кое-что. Нашёл под мостками у рыбака.
+=MURKA! Mein Kater! *drückt ihn an die Brust* Wie ist er bloß unter den Steg gekommen? => МУРКА! Мой кот! *прижимает к груди* Как же он под мостки-то попал?
+=Er … ist geflogen. Im hohen Bogen. => Он… прилетел. Высокой дугой.
+=*bekreuzigt sich* Ein Wunder. Ich wusste es. Der Herr wirkt durch Kater. => *крестится* Чудо. Я так и знал. Господь действует через котов.
+=Gott vergelt’s dir, mein Sohn. Ich bete für deine Beine. Die langen. => Спаси тебя Господь, сын мой. Помолюсь за твои ноги. За длинные.
+=Mein Sohn, hast du meinen Kater gesehen? Den Dicken vom Friedhof? => Сын мой, кота моего не видал? Толстого, с кладбища?
+=Die Dusja sagt, er ist über die Kirche geflogen. GEFLOGEN. Sie trinkt zu viel Kräutertee. => Дуся говорит, он через церковь перелетел. ПЕРЕЛЕТЕЛ. Пьёт она слишком много травяного чаю.
+=(Oh nein.) => (Ой-ой.)
+=Ich … halte die Augen offen, Vater. => Я… буду смотреть в оба, батюшка.
+=Gott segne dich. Er frisst gern Fisch. Vielleicht ist er beim See. => Благослови тебя Бог. Он рыбу любит. Может, он у озера.
+=Noch keine Spur von meinem Kater? Er mag Fisch. Und dunkle Ecken. => Не нашёлся кот? Он рыбу любит. И тёмные углы.
+=Beim See, mein Sohn. Wo es nach Fisch riecht. Unter etwas. => У озера, сын мой. Где рыбой пахнет. Под чем-нибудь.
+=(Fisch, dunkel, unter etwas … der Steg beim Fischer!) => (Рыба, темно, под чем-то… мостки у рыбака!)
+
+# ---------- Schmied: Stromleitung ----------
+=Du. Lange. Kannst du Kabel? => Ты. Длинный. Кабель умеешь?
+=Kabel … gucken? => Кабель… смотреть?
+=Die Dorfleitung ist von 1971. Mein Licht flackert, als wär’s besoffen, und bei der Dusja ist es ganz dunkel. => Деревенская линия — семьдесят первого года. Свет мигает, как пьяный. А у Дуси вообще темно.
+=Im Verteilerkasten am Trafo liegen die Kabelstücke kreuz und quer. Dreh sie so, dass der Strom zu mir UND zur Dusja kommt. => В щитке у трансформатора куски кабеля вкривь и вкось. Поверни так, чтоб ток шёл ко мне И к Дусе.
+=Und keine offenen Enden! Wo ein Kabel ins Leere zeigt, funkt es. Dann brennt das Dorf und nicht meine Lampe. => И никаких открытых концов! Где кабель в пустоту — там искрит. Тогда горит деревня, а не моя лампа.
+=*bekommt Kabelrolle und Isolierzange* => *получает катушку кабеля и кусачки*
+=Der Verteilerkasten, Junge. Vom Trafo zu meiner Schmiede und zu Dusjas Hütte. Leg los. => Щиток, парень. От трансформатора к кузнице и к Дусиной избе. Давай.
+=*schaut zur flackerfreien Lampe* … Na sieh mal an. Licht wie im Kreml. => *смотрит на ровную лампу* … Гляди-ка. Свет как в Кремле.
+=Hier, ein Sack Kohle. Der ist nicht für dich. Der ist für die Dusja. => На, мешок угля. Не тебе. Дусе.
+=Sie friert in ihrer Hütte, sagt aber nix. Stolz wie ein Ziegenbock. Bring ihn ihr und sag nicht, dass er von mir ist. => Мёрзнет в избе, а молчит. Гордая, как козёл. Отнеси и не говори, что от меня.
+=Verteilerkasten => Щиток
+=*dreht das letzte Stück* … *KLACK* => *поворачивает последний кусок* … *КЛАЦ*
+=*aus der Schmiede* LICHT! Junge, ich seh meine eigenen Füße! Die sind hässlich, aber ich seh sie! => *из кузницы* СВЕТ! Парень, я свои ноги вижу! Страшные, но вижу!
+=Und bei der Dusja brennt auch Licht. Aber Licht wärmt nicht. Die Alte friert, sagt aber nix. Stolz wie ein Ziegenbock. => И у Дуси свет горит. Только свет не греет. Старая мёрзнет, а молчит. Гордая, как козёл.
+=Hier, ein Sack Kohle. Der ist nicht für dich, der ist für sie. Bring ihn ihr und sag nicht, dass er von mir ist. => На, мешок угля. Не тебе — ей. Отнеси и не говори, что от меня.
+=*bekommt einen Sack Kohle* => *получает мешок угля*
+=Neue Aufgabe: Kohle für Oma Dusja => Новое задание: уголь для бабы Дуси
+=Trafo => Трансформатор
+=Schmiede => Кузница
+=Omas Hütte => Изба бабы Дуси
+=Strom überall, kein Funke. Sauber! => Ток везде, ни искры. Чисто!
+=Klick dreht ein Kabelstück. Strom zur Schmiede UND zu Omas Hütte, kein offenes Ende. => Клик поворачивает кусок кабеля. Ток в кузницу И в избу бабы Дуси, без открытых концов.
+~Schmiede {} · Omas Hütte {} · Offene Enden: # · Züge: # => Кузница {} · Изба {} · Открытые концы: # · Ходы: #
+=Esc: aufhören => Esc: бросить
+=Pause. Mir drehen sich die Kabel vor den Augen. => Перерыв. У меня кабели перед глазами крутятся.
+=Komm wieder, wenn dein Kopf sortiert ist. => Приходи, когда в голове порядок будет.
+
+# ---------- Trafohäuschen ----------
+=Trafohäuschen => Трансформаторная будка
+=Der Verteilerkasten. Fjodor sagt, die Kabelstücke darin liegen kreuz und quer. => Щиток. Фёдор говорит, куски кабеля там вкривь и вкось.
+=*biegt den Draht an der Tür auf* Na dann. Mit der gelben Zange. => *раскручивает проволоку на двери* Ну, поехали. Жёлтыми кусачками.
+=*Das Trafohäuschen brummt zufrieden.* => *Будка довольно гудит.*
+=(Strom bis zur Schmiede und zu Oma Dusja. Mein erstes Bauwerk. Na ja, mein erstes Umgedrehtes.) => (Ток до кузницы и до бабы Дуси. Моя первая стройка. Ну, моя первая перекрутка.)
+=Ein Trafohäuschen. Beton, Baujahr 1971, schätze ich. Es brummt wie Opa nach dem Mittagessen. => Трансформаторная будка. Бетон, семьдесят первый год, не иначе. Гудит, как дед после обеда.
+=Die Tür ist mit Draht zugebunden. Ohne Werkzeug und ohne Plan fass ich da nichts an. => Дверь проволокой замотана. Без инструмента и без плана я туда не полезу.
+=(Die Leitung geht direkt zur Schmiede. Der Schmied weiß bestimmt, was damit los ist.) => (Провод идёт прямо в кузницу. Кузнец точно знает, что с ней.)
+
+# ---------- Oma Dusja: Kohle (lispelt: с/ш/ч → ф) ----------
+=Oma Dusja, ich hab hier einen Sack Kohle. Für Ihren Ofen. => Баба Дуся, у меня тут мешок угля. Для вашей печки.
+=Kohle? Für mich? Ich frier doch nicht! … Wer fagt daf? => Уголь? Мне? Да я не мёрзну! … Кто фказал?
+=Niemand. Die Kohle ist … einfach übrig. => Никто. Уголь… просто лишний.
+=*schnuppert am Sack* Daf riecht nach Fjodorf Fchmiede. Der alte Bock. => *нюхает мешок* Фёдоровой кузней пахнет. Фтарый козёл.
+=*heizt den Ofen an* … Ahhh. Warm. Junge, du bift ein Engel mit langen Beinen. => *растапливает печь* … Ах. Тепло. Фынок, ты ангел на длинных ногах.
+=Fag ihm danke. Aber nicht fo, daff er ef merkt. => Фкажи ему фпафибо. Только фтоб он не понял.
+=Brrr … Junge, mach die Tür zu, ef zieht. => Брр… Фынок, дверь закрой, дует.
+=(Die Kohle für sie. Ich hab den Sack doch … wo hab ich den Sack?) => (Уголь для неё. Мешок же был… где мешок?)
+=*reibt fich die Hände* Brrr. Feit die Leitung fpinnt, ift ef bei mir dunkel UND kalt. => *трёт руки* Брр. Как линия барахлит, у меня и темно, И холодно.
+=Fag dem Fjodor, er foll endlich feinen Kaften reparieren. Der am Trafo, hinter feinem Zaun. => Фкажи Фёдору, пуфть уже фиток фвой починит. Тот, у трансформатора, за его забором.
+=(Der Trafo auf dem Schmiedehof. Da bin ich eh dran.) => (Трансформатор во дворе кузницы. Я как раз им занят.)
+=*zieht daf Tuch enger und zittert* … Waf guckft du? Ich frier nicht. Ich doch nicht. => *кутается в платок и дрожит* … Фего уфтавилфя? Я не мёрзну. Я-то?
+=Aber der Fjodor, der hat Kohle in der Fchmiede. Und Ftrom. Und ich hab Gänfehaut. Nur fo. => А у Фёдора в кузне уголь ефть. И фвет. А у меня муфашки. Так, профто.
+=(Sie friert. Und sie wird es nie zugeben. Vielleicht hat der Schmied was für sie.) => (Мёрзнет. И ни за что не признается. Может, у кузнеца для неё что-то найдётся.)
+
+# ---------- Auftragsbuch ----------
+=Strom für die Schmiede => Свет для кузницы
+=Fjodors Dorfleitung ist von 1971. Im Verteilerkasten liegen die Kabelstücke kreuz und quer. => Деревенская линия Фёдора — семьдесят первого года. В щитке куски кабеля вкривь и вкось.
+=In der Schmiede mit Fjodor reden. Die Kabelstücke drehen, bis Schmiede und Omas Hütte Strom haben. Kein Kabel darf ins Leere zeigen. => Поговорить с Фёдором в кузнице. Поворачивать куски кабеля, пока ток не дойдёт до кузницы и до избы бабы Дуси. Ни один кабель не должен смотреть в пустоту.
+=Kohle für Oma Dusja => Уголь для бабы Дуси
+=Oma Dusja friert, sagt aber nix. Fjodor hat einen Sack Kohle für sie. => Баба Дуся мёрзнет, а молчит. У Фёдора для неё мешок угля.
+=Den Kohlensack zu Oma Dusja an der Dorfstraße bringen. => Отнести мешок угля бабе Дусе на деревенскую улицу.
+=Ignatis Kater => Кот Игнатия
+=Vater Ignati vermisst seinen Kater. Er ist … geflogen. Meinetwegen. => Отец Игнатий потерял кота. Тот… улетел. Из-за меня.
+=Den Kater zu Vater Ignati an der Kirche bringen. => Отнести кота отцу Игнатию к церкви.
+=Wo riecht es nach Fisch, und wo ist es dunkel? Unter dem Pier nachsehen (vom Ufer aus). => Где пахнет рыбой и темно? Посмотреть под мостками (с берега).
+=Einer von uns werden => Стать своим
+=Vier Dinge machen dich im Dorf zu einem von ihnen: Strom für Fjodor, Kohle für Dusja, Ignatis Kater und ein Trinkduell gegen Opa. => Четыре дела делают тебя в деревне своим: свет для Фёдора, уголь для Дуси, кот Игнатия и дуэль на самогоне с дедом.
+=Geschafft: # von #. Wer alle vier schafft und am Ende bleibt, baut sich ein eigenes Haus. => Сделано: # из #. Кто сделает все четыре и останется в конце, построит себе дом.

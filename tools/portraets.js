@@ -1,6 +1,6 @@
 // Dialog-Porträts: schneidet die Köpfe aus pixel/petja.json, pixel/opa.json, pixel/nastja.json und malt die Mimik pixelgenau drauf.
 //   node tools/portraets.js
-// Schreibt pixel/portraets/<figur>_<mimik>.png (Originalgröße) und js/50-portraets-pixel.js (Data-URLs fürs Spiel).
+// Schreibt pixel/portraets/<figur>_<mimik>.png (Originalgröße) und js/48a-portraets-pixel.js (Data-URLs fürs Spiel).
 //   Petja:  neutral · smirk (sarkastisch) · pain (nach dem Fusel)
 //   Opa:    neutral · angry (flucht) · drunk (grinst, rote Nase)
 //   Nastja: neutral · flirt (zwinkert) · laugh (lacht dich aus)
@@ -80,7 +80,7 @@ for(const[name,f]of Object.entries(FIG)){const src=laden(f.datei);urls[name]={};
 // ganze Opa-Figur (für das Trinkduell: das Mimik-Porträt liegt bei FIG.opa.box pixelgenau darauf)
 const opaGanz=laden('opa'),opaB=bild(opaGanz,[0,0,opaGanz.W,opaGanz.H]),opaPng=png(opaB);fs.writeFileSync(path.join(aus,'opa_drinking.png'),opaPng);
 const zin=laden('zinaida'),zinPng=png(bild(zin,[0,0,zin.W,zin.H]));   // Zinaida als Aufpasserin beim Privattanz (49-nastja-show.js)
-fs.writeFileSync(path.join(root,'js/50-portraets-pixel.js'),`// ================= Dialog-Porträts (Pixel, 3 Mimiken je Figur) =================
+fs.writeFileSync(path.join(root,'js/48a-portraets-pixel.js'),`// ================= Dialog-Porträts (Pixel, 3 Mimiken je Figur) =================
 // AUTOMATISCH erzeugt aus pixel/{petja,opa,nastja}.json mit: node tools/portraets.js  – nicht von Hand ändern.
 // Gleiche Bilder liegen als PNG in pixel/portraets/. OPA_GANZ = ganze Opa-Figur fürs Trinkduell, Porträt-Ausschnitt bei PORTRAET_BOX.opa. ZINAIDA_GANZ = Aufpasserin beim Privattanz.
 const PORTRAETS=${JSON.stringify(urls)};

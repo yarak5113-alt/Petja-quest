@@ -12,17 +12,9 @@
 =Daneben … => Off beat …
 =Dreh dich! ✦ => Spin! ✦
 =+ Frechheit => + Cheek
-=(Ich glaube, das war ein Kompliment. Auf Russisch klingt alles wie eine Drohung.) => (I think that was a compliment. In Russian everything sounds like a threat.)
 =*beugt sich vor* Näher, Zwiebel? Noch näher kostet Aufpreis. => *leans in* Closer, Onion? Any closer costs extra.
-=*nimmt den Rubel und steckt ihn ins Strumpfband* Na also. Geht doch, Zwiebel. Für Geld tanz ich sogar mit Gefühl. => *takes the rouble and tucks it into her garter* There we go, Onion. For money I even dance with feeling.
-=Sie dreht dir den Rücken zu … => She has her back to you …
-=… doch nicht. Feigling. => … or not. Coward.
-=*KLATSCH* => *SLAP*
-=(Meine Hand pocht. Mein Stolz auch.) => (My hand is throbbing. So is my pride.)
 =STIMMUNG => MOOD
-=*grinst hämisch* => *grins smugly*
 =Leertaste / Klick, wenn der Ring den Kreis trifft · Maus im Kreis: sie dreht sich mit · Esc beendet => Space / click when the ring meets the circle · circle the mouse: she spins along · Esc ends
-=✋ Klick auf ihren Oberkörper – auf eigene Gefahr! (daneben klicken = lassen) => ✋ Click her upper body – at your own risk! (click elsewhere = never mind)
 =*raschel* => *rustle*
 =*Strapse schnalzen* => *suspenders snap*
 =*Reißverschluss* => *zip*
@@ -97,11 +89,7 @@
 =Aufhören mittendrin? Pfff. Feigling. … Der Schnaps läuft nicht weg. Du schon. => Quitting halfway? Pfff. Coward. … The booze won’t run away. You do.
 =*kriecht unterm Tisch hervor* … Junge. Du hast Grischa untern Tisch getrunken. => *crawls out from under the table* … Boy. You drank Grisha under the table.
 =Das hat seit Breschnew keiner geschafft. Du bist einer von uns. Ab heute. => Nobody has done that since Brezhnev. You’re one of us. As of today.
-=Und hier. Dein Wetteinsatz. Drei Rubel. Gib sie nicht für Schnaps aus. Schnaps kriegst du bei mir. => And here. Your winnings. Three roubles. Don’t spend them on booze. Booze you get from me.
-=Hier, ein Rubel. Revanche ist Revanche. => Here, a rouble. A rematch is a rematch.
 =(Ich hab gerade das Dorf erobert. Mit der Leber.) => (I just conquered the village. With my liver.)
-=+# Rubel · jetzt # ₽ => +# roubles · now # ₽
-=+# Rubel => +# rouble
 =Dorf-Ruf +# · jetzt # / # => Village standing +# · now # / #
 =Das Dorf will dich ehren. An Baba Jagas Tisch gibt es jetzt eine neue Wahl. => The village wants to honour you. At Baba Yaga’s table there’s a new choice now.
 =Für „Ehrenbürger“ fehlt noch Dorf-Ruf: # / #. Hilf den Leuten im Dorf. => For “Honorary Citizen” you still need village standing: # / #. Help the villagers.
@@ -147,7 +135,6 @@
 =MURKA! Mein Kater! *drückt ihn an die Brust* Wie ist er bloß unter den Steg gekommen? => MURKA! My tomcat! *hugs him to his chest* How on earth did he get under the pier?
 =Er … ist geflogen. Im hohen Bogen. => He … flew. In a high arc.
 =*bekreuzigt sich* Ein Wunder. Ich wusste es. Der Herr wirkt durch Kater. => *crosses himself* A miracle. I knew it. The Lord works through tomcats.
-=Hier, mein Sohn. Aus der Kollekte. Ein Rubel. Sag’s keinem, sonst wollen alle einen. => Here, my son. From the collection. One rouble. Don’t tell anyone, or everyone will want one.
 =Mein Sohn, hast du meinen Kater gesehen? Den Dicken vom Friedhof? => My son, have you seen my tomcat? The fat one from the graveyard?
 =Die Dusja sagt, er ist über die Kirche geflogen. GEFLOGEN. Sie trinkt zu viel Kräutertee. => Dusya says he flew over the church. FLEW. She drinks too much herbal tea.
 =(Oh nein.) => (Oh no.)
@@ -217,33 +204,11 @@
 =Fjodors Dorfleitung ist von 1971. Im Verteilerkasten liegen die Kabelstücke kreuz und quer. => Fyodor’s village line is from 1971. In the junction box the cable pieces are all over the place.
 =In der Schmiede mit Fjodor reden. Die Kabelstücke drehen, bis Schmiede und Omas Hütte Strom haben. Kein Kabel darf ins Leere zeigen. => Talk to Fyodor at the smithy. Turn the cable pieces until the smithy and Granny’s hut have power. No cable may point at nothing.
 # Tanz: 70-%-Schwelle, russische Menünamen (2.39)
-=ab # % Beziehung => from # % relationship
-=Mutig! ♥♥ => Bold! ♥♥
-=Erwischt! => Caught!
-=STOPP! => STOP!
-=(Sie riecht nach Vanille und Haarspray. Ich darf jetzt nie wieder blinzeln.) => (She smells of vanilla and hairspray. I am never allowed to blink again.)
-=*reißt den Vorhang auf* STOPP! Hände aufs Sofa, Süßer! In meinem Haus wird geguckt, nicht gegrapscht! => *rips the curtain open* STOP! Hands on the sofa, sweetie! In my house we look, we don’t grab!
-=*verdreht die Augen* Danke, Mamotschka. Wir hatten’s gerade so gemütlich. => *rolls her eyes* Thanks, Mamochka. We were just getting cosy.
-=(Herzinfarkt. Fast.) => (Heart attack. Almost.)
 # Tanz: drei Zonen (2.41)
-=✋ Klick auf Kopf, Oberkörper oder Hüfte … => ✋ Click her head, upper body or hip …
-=Nö. => Nope.
-=Frech! ♥ => Cheeky! ♥
-=Finger weg von der Frisur! Die hat zwei Stunden und eine Dose Haarspray gekostet. => Hands off the hairdo! That took two hours and a whole can of hairspray.
-=*zieht eine Augenbraue hoch* Du legst es drauf an, Pjotr. Ich merk mir das. => *raises an eyebrow* You’re pushing it, Pyotr. I’ll remember that.
-=*reißt den Vorhang auf* Schluss mit dem Zirkus, ihr zwei! Hände aufs Sofa, Süßer! => *rips the curtain open* Enough of this circus, you two! Hands on the sofa, sweetie!
-=*lässt sich von dir an der Taille ein Stück näher ziehen* Mutig, Zwiebel. Dir lass ich das durchgehen. Einmal. Hände bleiben, wo ich sie sehe. => *lets you pull her a little closer by the waist* Bold, Onion. I’ll let you get away with it. Once. Hands stay where I can see them.
-=Schaufelhände weg, Zwiebel. Gucken ja, Baustelle nein. => Shovel hands off, Onion. Looking yes, building site no.
 # Deutsch statt Russisch im Code (2.41)
 =🧻 Tempos zustecken => 🧻 Slip her some tissues
 =👋 Näher ranbeugen => 👋 Lean in closer
-=✋ Riskant anfassen => ✋ Risky touch
-=💸 Geld zustecken => 💸 Slip her some cash
-=+ Rubel ₽ => + Rouble ₽
 =*zieht das zerknüllte Taschentuch aus dem Strumpfband und hält es hoch* Sag mal, du Pleitegeier, hast du komplett die Orientierung verloren? Na gut, für die Frechheit gibt’s einen Punkt. => *pulls the crumpled tissue out of her garter and holds it up* Seriously, you broke little vulture, have you lost all sense of direction? Fine, one point for the cheek.
-=*streicht sich die Strähne zurück* Na gut. An die Haare kommst du nicht ran … aber so geht’s. Die Frisur ist heilig, Zwiebel. => *smooths the strand back* Fine. You don’t get near the hair … but this is okay. The hairdo is sacred, Onion.
-=Oh … du bist ja ein ganz Frecher. => Oh … aren’t you a cheeky one.
-=*schlägt deine Hand genervt zur Seite* Pfoten weg, du Pleitegeier! => *swats your hand aside, annoyed* Paws off, you broke little vulture!
 =Auf die Gesundheit! *kipp* … Ahh. Wie Muttermilch. Wenn die Mutter ein Traktor war. => To your health! *knocks it back* … Ahh. Like mother’s milk. If your mother was a tractor.
 =Selbstgebrannter, bis einer liegt => moonshine until someone drops
 =Selbstgebrannter. Aus Kartoffeln, Zucker und Groll. => Moonshine. Made from potatoes, sugar and grudges.
@@ -255,3 +220,24 @@
 =*dreht sich um und wirft dir einen Blick über die Schulter zu* Schön im Takt bleiben, Zwiebel. => *turns around and throws you a look over her shoulder* Stay on the beat, Onion.
 =*dreht sich um* Augen nach vorn, Süßer. Also … nach hinten. => *turns around* Eyes front, sweetie. Well … back.
 =*über die Schulter* Zähl mit. Eins, zwei … => *over her shoulder* Count along. One, two …
+
+# Kein Geld mehr, Trafohäuschen, Oma friert (2.47)
+=(Ich glaube, das war ein Kompliment. Bei ihr klingt alles wie eine Drohung.) => (I think that was a compliment. Everything she says sounds like a threat.)
+=Und hier. Mein Gefreiten-Abzeichen. Hab ich seit ’79 nicht abgenommen. Jetzt trägst du’s. => And here. My lance corporal’s badge. Haven’t taken it off since ’79. Now you wear it.
+=Revanche ist Revanche. Nächsten Freitag wieder. Ich übe schon. => A rematch is a rematch. Next Friday again. I’m already practising.
+=Gott vergelt’s dir, mein Sohn. Ich bete für deine Beine. Die langen. => God reward you, my son. I’ll pray for your legs. The long ones.
+=Trafohäuschen => Transformer hut
+=Der Verteilerkasten. Fjodor sagt, die Kabelstücke darin liegen kreuz und quer. => The junction box. Fyodor says the cable pieces in there are all over the place.
+=*biegt den Draht an der Tür auf* Na dann. Mit der gelben Zange. => *untwists the wire on the door* Right then. With the yellow pliers.
+=*Das Trafohäuschen brummt zufrieden.* => *The transformer hut hums contentedly.*
+=(Strom bis zur Schmiede und zu Oma Dusja. Mein erstes Bauwerk. Na ja, mein erstes Umgedrehtes.) => (Power to the smithy and to Granny Dusya. My first construction. Well, my first re-turning.)
+=Ein Trafohäuschen. Beton, Baujahr 1971, schätze ich. Es brummt wie Opa nach dem Mittagessen. => A transformer hut. Concrete, built 1971, I’d guess. It hums like Grandpa after lunch.
+=Die Tür ist mit Draht zugebunden. Ohne Werkzeug und ohne Plan fass ich da nichts an. => The door is tied shut with wire. Without tools and without a plan I’m not touching that.
+=(Die Leitung geht direkt zur Schmiede. Der Schmied weiß bestimmt, was damit los ist.) => (The line runs straight to the smithy. The smith will know what’s wrong with it.)
+=*reibt fich die Hände* Brrr. Feit die Leitung fpinnt, ift ef bei mir dunkel UND kalt. => *rubs her hands* Brrr. Thince the line went funny it’th dark AND cold at my plathe.
+=Fag dem Fjodor, er foll endlich feinen Kaften reparieren. Der am Trafo, hinter feinem Zaun. => Tell Fyodor to finally fixth hith box. The one by the tranthformer, behind hith fenthe.
+=(Der Trafo auf dem Schmiedehof. Da bin ich eh dran.) => (The transformer in the smithy yard. I’m on it anyway.)
+=*zieht daf Tuch enger und zittert* … Waf guckft du? Ich frier nicht. Ich doch nicht. => *pulls her shawl tighter and shivers* … What are you thtaring at? I’m not cold. Not me.
+=Aber der Fjodor, der hat Kohle in der Fchmiede. Und Ftrom. Und ich hab Gänfehaut. Nur fo. => But Fyodor, he’th got coal in the thmithy. And power. And I’ve got gooth bumpth. Jutht tho.
+=(Sie friert. Und sie wird es nie zugeben. Vielleicht hat der Schmied was für sie.) => (She’s freezing. And she’ll never admit it. Maybe the smith has something for her.)
+=Petja blieb. Nicht als Zahnrad – als einer von ihnen. Mit Urkunde und eigenem Haus. => Petya stayed. Not as a cog – as one of them. With a certificate and a house of his own.

@@ -6,7 +6,7 @@
 // 2) Oma Dusja friert, sagt es aber nicht. Kohlensack hinbringen (anklicken oder Sack auf sie ziehen) → Ofen an, Dorf-Ruf.
 // 3) Ignatis Kater: Gibt Petja dem Kater am Friedhof den Fisch, springt der ihm mit allen Krallen ans Bein – Petja tritt reflexartig aus,
 //    und der Kater fliegt wie im Zeichentrick im hohen Bogen über die Kirche. Er landet unter dem Pier (Raum „unter“).
-//    Ist Vater Ignati zurück (und das Weihwasser erledigt), sucht er ihn: unter dem Steg einsammeln, zurückbringen → Dorf-Ruf, 1 Rubel.
+//    Ist Vater Ignati zurück (und das Weihwasser erledigt), sucht er ihn: unter dem Pier einsammeln, zurückbringen → Dorf-Ruf und Ignatis Segen.
 // 4) Das Trinkduell mit Opa (52-trinkduell.js).
 // Alle vier geschafft + „Hierbleiben“ am Tisch → Ehrenbürger-Ende mit Hausbau: Petja baut sich sein eigenes Haus im Dorf.
 
@@ -58,8 +58,8 @@ T.katerSteg={n:'Kater',at:[270,478],fn:katerUnterSteg};
 // ---------- Vater Ignati sucht seinen Kater ----------
 wrapFn('pope2',function(orig){if(!FL.weih||!FL.kater||FL.katzeHeim)return orig();
   if(has('katze'))return say([['P','Vater Ignati … ich hab da was. Unter dem Steg beim Fischer gefunden.'],['PO','MURKA! Mein Kater! *drückt ihn an die Brust* Wie ist er bloß unter den Steg gekommen?'],
-    ['P','Er … ist geflogen. Im hohen Bogen.','smirk'],['PO','*bekreuzigt sich* Ein Wunder. Ich wusste es. Der Herr wirkt durch Kater.'],['PO','Hier, mein Sohn. Aus der Kollekte. Ein Rubel. Sag’s keinem, sonst wollen alle einen.']],
-    ()=>{dropInv('katze');FL.katzeHeim=1;player.cash+=1;questVis();toast('+1 Rubel','done','tasche');rufToast(DORF_RUF.katzeHeim)});
+    ['P','Er … ist geflogen. Im hohen Bogen.','smirk'],['PO','*bekreuzigt sich* Ein Wunder. Ich wusste es. Der Herr wirkt durch Kater.'],['PO','Gott vergelt’s dir, mein Sohn. Ich bete für deine Beine. Die langen.']],
+    ()=>{dropInv('katze');FL.katzeHeim=1;questVis();rufToast(DORF_RUF.katzeHeim)});
   if(!FL.katzeQ)return say([['PO','Mein Sohn, hast du meinen Kater gesehen? Den Dicken vom Friedhof?'],['PO','Die Dusja sagt, er ist über die Kirche geflogen. GEFLOGEN. Sie trinkt zu viel Kräutertee.'],
     ['P','(Oh nein.)','pain'],['P','Ich … halte die Augen offen, Vater.'],['PO','Gott segne dich. Er frisst gern Fisch. Vielleicht ist er beim See.']],()=>{FL.katzeQ=1});
   return hint('katzeSuche',[[['PO','Noch keine Spur von meinem Kater? Er mag Fisch. Und dunkle Ecken.']],[['PO','Beim See, mein Sohn. Wo es nach Fisch riecht. Unter etwas.']],[['P','(Fisch, dunkel, unter etwas … der Steg beim Fischer!)']]])});
@@ -155,6 +155,34 @@ function kabelRun(){const{cv2,x,P:M,pos}=a3Canvas(),T0=performance.now(),t=()=>(
     if(sieg)return kabelSieg();say([['P','Pause. Mir drehen sich die Kabel vor den Augen.'],['SM','Komm wieder, wenn dein Kopf sortiert ist.']])}
   requestAnimationFrame(frame)}
 
+// ---------- Trafohäuschen auf dem Schmiedehof (rechts hinter dem Flechtzaun) ----------
+// Gemalt wie die übrige Szene (verwitterter Beton, Blechtür, Warnschild, Isolatoren, Leitung zur Schmiede), klickbar:
+// mit Fjodors Auftrag startet es den Verteilerkasten, danach brummt es zufrieden, vorher beschreibt Petja es und denkt an den Schmied.
+function malTrafo(){const x=lay(),X=716,B=380,w=74,h=96;shadowAt(x,X,B+3,62,.55);
+  const g=x.createLinearGradient(X-w/2,0,X+w/2,0);g.addColorStop(0,'#a9a493');g.addColorStop(.55,'#8e8a7c');g.addColorStop(1,'#6c695f');x.fillStyle=g;x.fillRect(X-w/2,B-h,w,h);
+  x.fillStyle='rgba(60,50,40,.18)';for(let r=0;r<7;r++)x.fillRect(X-w/2,B-h+8+r*13,w,1.2);   // Betonfugen
+  [[X-24,3,34],[X+10,2,22],[X+26,3,44]].forEach(([a,bw,bh])=>{const rg=x.createLinearGradient(0,B-h+6,0,B-h+6+bh);rg.addColorStop(0,'rgba(120,64,24,.55)');rg.addColorStop(1,'rgba(120,64,24,0)');x.fillStyle=rg;x.fillRect(a,B-h+6,bw,bh)});   // Roststreifen
+  x.fillStyle='#4c4a44';x.beginPath();x.moveTo(X-w/2-7,B-h+2);x.lineTo(X,B-h-20);x.lineTo(X+w/2+7,B-h+2);x.closePath();x.fill();   // Blechdach
+  x.strokeStyle='rgba(20,16,12,.8)';x.lineWidth=1.2;x.stroke();x.fillStyle='rgba(0,0,0,.3)';x.fillRect(X-w/2,B-h+2,w,5);
+  x.fillStyle='#5a5246';x.fillRect(X-16,B-56,30,56);x.strokeStyle='#2a241c';x.lineWidth=1.6;x.strokeRect(X-16,B-56,30,56);   // Blechtür
+  x.strokeStyle='rgba(255,255,255,.12)';x.lineWidth=1;for(let i=0;i<4;i++){x.beginPath();x.moveTo(X-14,B-50+i*13);x.lineTo(X+12,B-50+i*13);x.stroke()}
+  x.strokeStyle='#8a7a5a';x.lineWidth=1.4;x.beginPath();x.moveTo(X+8,B-30);x.lineTo(X+18,B-28);x.stroke();   // Draht statt Schloss
+  x.fillStyle='#e8c820';x.beginPath();x.moveTo(X-1,B-h+16);x.lineTo(X-11,B-h+33);x.lineTo(X+9,B-h+33);x.closePath();x.fill();x.strokeStyle='#2a2010';x.lineWidth=1;x.stroke();
+  x.fillStyle='#1a1408';x.font='bold 11px Georgia';x.textAlign='center';x.fillText('⚡',X-1,B-h+31);x.textAlign='left';
+  [X-20,X,X+20].forEach(px=>{x.fillStyle='#d8d4c8';x.fillRect(px-2,B-h-14+Math.abs(px-X)*.55,4,9);x.fillStyle='#6a665c';x.fillRect(px-.5,B-h-6+Math.abs(px-X)*.55,1,6)});   // Isolatoren
+  x.strokeStyle='rgba(24,20,16,.85)';x.lineWidth=1.3;x.beginPath();x.moveTo(X-20,B-h-3);x.quadraticCurveTo(620,B-h+40,560,262);x.stroke();   // Leitung zur Schmiede
+  put(x)}
+{const _p=SCN.schmiede.paint;SCN.schmiede.paint=function(){const r=_p.apply(this,arguments);malTrafo();return r}}
+(()=>{const g=document.createElementNS(NS_SVG,'g');g.setAttribute('class','interactive painted');g.dataset.id='trafo';
+  const p=document.createElementNS(NS_SVG,'path');p.setAttribute('class','hit');p.setAttribute('d','M672,382L672,286L716,262L760,286L760,382Z');g.appendChild(p);
+  const r=document.getElementById('r-schmiede');if(r)r.appendChild(g)})();
+T.trafo={n:'Trafohäuschen',at:[700,440],fn(){
+  if(FL.kabelQ&&!FL.kabel)return say([['P','Der Verteilerkasten. Fjodor sagt, die Kabelstücke darin liegen kreuz und quer.'],['P','*biegt den Draht an der Tür auf* Na dann. Mit der gelben Zange.']],kabelGame);
+  if(FL.kabel)return say([['P','*Das Trafohäuschen brummt zufrieden.*'],['P','(Strom bis zur Schmiede und zu Oma Dusja. Mein erstes Bauwerk. Na ja, mein erstes Umgedrehtes.)']]);
+  return hint('trafo',[[['P','Ein Trafohäuschen. Beton, Baujahr 1971, schätze ich. Es brummt wie Opa nach dem Mittagessen.'],['P','Die Tür ist mit Draht zugebunden. Ohne Werkzeug und ohne Plan fass ich da nichts an.']],
+    [['P','(Die Leitung geht direkt zur Schmiede. Der Schmied weiß bestimmt, was damit los ist.)']]])}};
+(ZIELE_EXTRA.trafo=ZIELE_EXTRA.trafo||[]).push('kabel');
+
 // ---------- Oma Dusja: Kohle ----------
 for(const[id,it]of[['oma','kohle'],['pope2','katze'],['schmied','kabel']])(ZIELE_EXTRA[id]=ZIELE_EXTRA[id]||[]).push(it);   // Gegenstand auf Figur ziehen = anklicken
 wrapFn('oma',function(orig){
@@ -162,6 +190,11 @@ wrapFn('oma',function(orig){
     ['O','*schnuppert am Sack* Daf riecht nach Fjodorf Fchmiede. Der alte Bock.'],['O','*heizt den Ofen an* … Ahhh. Warm. Junge, du bift ein Engel mit langen Beinen.'],['O','Fag ihm danke. Aber nicht fo, daff er ef merkt.']],
     ()=>{dropInv('kohle');FL.omaKohle=1;rufToast(DORF_RUF.omaKohle)});
   if(FL.kohleGeg&&!FL.omaKohle)return say([['O','Brrr … Junge, mach die Tür zu, ef zieht.'],['P','(Die Kohle für sie. Ich hab den Sack doch … wo hab ich den Sack?)']]);
+  // Oma friert sichtbar – einmal pro Stufe ein Hinweis Richtung Schmied, danach wieder ihr normales Gespräch
+  if(!FL.omaKohle&&FL.kabelQ&&!FL.kabel&&!FL.omaBrr2){FL.omaBrr2=1;return say([['O','*reibt fich die Hände* Brrr. Feit die Leitung fpinnt, ift ef bei mir dunkel UND kalt.'],
+    ['O','Fag dem Fjodor, er foll endlich feinen Kaften reparieren. Der am Trafo, hinter feinem Zaun.'],['P','(Der Trafo auf dem Schmiedehof. Da bin ich eh dran.)']])}
+  if(!FL.omaKohle&&!FL.kabelQ&&(FL.schuld||FL.glut||FL.cut)&&!FL.omaBrr1){FL.omaBrr1=1;return say([['O','*zieht daf Tuch enger und zittert* … Waf guckft du? Ich frier nicht. Ich doch nicht.'],
+    ['O','Aber der Fjodor, der hat Kohle in der Fchmiede. Und Ftrom. Und ich hab Gänfehaut. Nur fo.'],['P','(Sie friert. Und sie wird es nie zugeben. Vielleicht hat der Schmied was für sie.)']])}
   return orig()});
 
 // ---------- Auftragsbuch ----------

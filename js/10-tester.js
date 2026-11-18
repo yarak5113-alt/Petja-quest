@@ -52,7 +52,6 @@ const TNEBEN=[
   {t:'Nastja: Max-Level-Modus (95 %)',v:{na_talk:4,na_drink:3},at:['buehne',260,486]},
   {t:'Nastja: 100 % – Klick auf sie gibt das Polaroid',v:{na_talk:5,na_drink:3},at:['buehne',260,486]},
   {t:'VIP-Kabine (100 %, Polaroid schon in der Tasche) – Nastja → Privattanz',f:['polaroid'],add:['polaroid'],at:['buehne',260,486]},
-  {t:'3 Rubel in der Tasche – beim Privattanz gibt es „Башли“',v:{cash:3},at:['buehne',260,486]},
   {t:'Trinkduell: zu Opa (Haus steht) – Klick auf Opa → Trinkduell',at:['dorf',420,480]},
   {t:'Trinkduell gewonnen – „Hierbleiben“ am Tisch wird zum Ehrenbürger-Ende (bei Dorf-Ruf ≥ 70)',f:['duellSieg'],at:['huette',640,488]},
   {t:'Dorf-Aufgaben: Strom gelegt, Kohle bei Oma, Kater zurück (mit Duellsieg = alle vier)',f:['kabelQ','kabel','kohleGeg','omaKohle','kater','katzeQ','katzeHeim'],at:['dorf',420,480]},

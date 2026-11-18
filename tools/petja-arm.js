@@ -3,6 +3,8 @@
 // Die Vorlage hat einen hellen, eingebackenen Karo-Hintergrund: Flutfüllung von allen Rändern durch helle, graue Pixel;
 // die dunkle Kontur hält sie auf. Danach zuschneiden, auf 75 % verkleinern (pixelig, ohne Glätten) und als PNG + JS-Datei ablegen.
 // Ergebnis: pixel/petja_arm.png und js/54-petja-arm-pixel.js (PETJA_ARM_IMG, PETJA_ARM_ANKER = Handfläche im Bild).
+// HINWEIS: Seit 2.47 benutzt das Spiel den Arm nicht mehr (der Griff im Tanz wurde durch „Twerken“ ersetzt). Wer ihn zurückwill:
+// Werkzeug laufen lassen, die erzeugte Datei in index.html vor 49 eintragen und den Griff-Code aus der Git-Geschichte (bis 2.46) holen.
 const fs=require('fs'),path=require('path'),os=require('os'),{execFileSync}=require('child_process');
 const root=path.join(__dirname,'..'),IN=path.join(root,'pixel/petja_arm_vorlage.png');
 const data='data:image/png;base64,'+fs.readFileSync(IN).toString('base64');
