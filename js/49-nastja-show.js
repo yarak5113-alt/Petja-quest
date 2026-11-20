@@ -54,17 +54,32 @@ function naRig(img,zonen,brust){if(!img||!img.complete||!img.naturalWidth)return
   // Aufräumen 1: kleine Haar-Inseln (Hautlichter mit Haar-Farbton) gehören zum Körper – sonst entstehen beim Bewegen Löcher
   {const lab=new Int32Array(w*h).fill(-1);for(let s0=0;s0<w*h;s0++){if(typ[s0]!==2||lab[s0]>=0)continue;const comp=[s0],st=[s0];lab[s0]=s0;
     while(st.length){const k=st.pop(),x=k%w,y=(k-x)/w;for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){const X=x+dx,Y=y+dy;if(X<0||Y<0||X>=w||Y>=h)continue;const j=Y*w+X;if(typ[j]===2&&lab[j]<0){lab[j]=s0;st.push(j);comp.push(j)}}}
-    if(comp.length<250)comp.forEach(k=>typ[k]=1)}}
+    // … und Flächen, die nicht bis zum Kopf reichen (helle Haut an Bauch/Oberschenkeln) – sonst reißt der Körper beim Tanzen auf
+    if(comp.length<250||!comp.some(k=>k<w*Math.round(h*zonen.hals)))comp.forEach(k=>typ[k]=1)}}
   // Aufräumen 2: Haarpixel, die links UND rechts UND oben UND unten (≤ 5 px) Körper haben, liegen im Körper → Körper
   {const istK=(x,y)=>x>=0&&y>=0&&x<w&&y<h&&typ[y*w+x]===1,neu=[];
     for(let y=0;y<h;y++)for(let x=0;x<w;x++){if(typ[y*w+x]!==2)continue;let l=0,r=0,o=0,u=0;
       for(let i=1;i<=5;i++){l|=istK(x-i,y);r|=istK(x+i,y);o|=istK(x,y-i);u|=istK(x,y+i)}if(l&&r&&o&&u)neu.push(y*w+x)}
     neu.forEach(k=>typ[k]=1)}
+  // Aufräumen 3 (Kopf): Haarpixel mit Gesichtshaut links UND rechts in derselben Zeile (≤ 8 px) gehören zum Gesicht –
+  // z. B. das helle Augenweiß; sonst wandert es mit den Haaren und das Auge reißt auf. Strähnen am Rand haben nur auf einer Seite Haut.
+  {const istK=(x,y)=>x>=0&&x<w&&typ[y*w+x]===1,neu=[],bis=Math.round(h*zonen.hals);
+    for(let y=0;y<bis;y++)for(let x=0;x<w;x++){if(typ[y*w+x]!==2)continue;let l=0,r=0;
+      for(let i=1;i<=8;i++){l|=istK(x-i,y);r|=istK(x+i,y)}if(l&&r)neu.push(y*w+x)}
+    neu.forEach(k=>typ[k]=1)}
   hr=hg=hb=hn=0;const toene=[];for(let k=0;k<w*h;k++)if(typ[k]===2){const q=k*4;hr+=d[q];hg+=d[q+1];hb+=d[q+2];hn++;toene.push([d[q],d[q+1],d[q+2]])}
-  // Kontur: gehört zum Haar, wenn in 2 px Haar liegt und kein Körper
-  const t2=typ.slice();for(let y=0;y<h;y++)for(let x=0;x<w;x++){const k=y*w+x;if(typ[k]!==3)continue;let haar=0,koerper=0;
-    for(let dy=-2;dy<=2;dy++)for(let dx=-2;dx<=2;dx++){const X=x+dx,Y=y+dy;if(X<0||Y<0||X>=w||Y>=h)continue;const t=typ[Y*w+X];if(t===2)haar=1;else if(t===1)koerper=1}
-    t2[k]=haar&&!koerper?2:1}
+  // Kontur und dunkle Töne: Nur Haar und helle Körperflächen (Helligkeit ≥ 140) bzw. roter Stoff stehen fest. Alles Dunkle
+  // (Tusche, Schattenkante der Haare) gehört zum nächstgelegenen festen Pixel (Breitensuche). Haar wächst dabei höchstens
+  // 6 px weit – so schwingt die dunkle Haarkante mit, ohne dass Halsband oder Korsettränder mitgezogen werden.
+  // Körper steht nur fest, wo er eine Fläche ist (≥ 5 der 8 Nachbarn ebenso) – dünne helle Kantenlinien am Haarrand zählen nicht.
+  const t2=new Uint8Array(w*h);{let q=[];const fest=k=>{if(typ[k]!==1)return false;const p=k*4;return Math.max(d[p],d[p+1],d[p+2])>=140||d[p]>d[p+1]*1.3};
+    const flaeche=k=>{const x=k%w,y=(k-x)/w;let n=0;for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){const X=x+dx,Y=y+dy;if((dx||dy)&&X>=0&&Y>=0&&X<w&&Y<h&&fest(Y*w+X))n++}return n>=5};
+    for(let k=0;k<w*h;k++){if(!typ[k])continue;
+      if(typ[k]===2){t2[k]=2;q.push(k)}else if(fest(k)&&flaeche(k)){t2[k]=1;q.push(k)}else t2[k]=9}
+    for(let tiefe=1;q.length;tiefe++){const nq=[];for(const k of q){const x=k%w,y=(k-x)/w;if(t2[k]===2&&tiefe>6)continue;
+      for(const[dx,dy]of[[1,0],[-1,0],[0,1],[0,-1]]){const X=x+dx,Y=y+dy;if(X<0||Y<0||X>=w||Y>=h)continue;const j=Y*w+X;if(t2[j]===9){t2[j]=t2[k]+10;nq.push(j)}}}
+      for(const j of nq)t2[j]-=10;q=nq}
+    for(let k=0;k<w*h;k++)if(t2[k]===9)t2[k]=1}
   const lay=want=>{const o=document.createElement('canvas');o.width=w;o.height=h;const og=o.getContext('2d'),oi=og.createImageData(w,h);
     for(let k=0;k<w*h;k++)if(t2[k]===want){const q=k*4;oi.data[q]=d[q];oi.data[q+1]=d[q+1];oi.data[q+2]=d[q+2];oi.data[q+3]=255}og.putImageData(oi,0,0);return o};
   // Kopf (Gesicht) über dem Hals: für die Rückansicht mit Hinterkopf übermalen
@@ -138,7 +153,8 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
   // Zustand der Physik (Sprite-Pixel)
   const ph={jy:0,vy:0,jx:0,vx:0,hx:0,hv:0,hy:0,hyv:0,wippV:0,wippA:0,huefV:0,theta:0,thetaZiel:0,maus:0,vibe:40,pop:[],kopfPuffer:[],
     pauseSum:0,pauseBis:0,zoom:1,zoomZiel:1,zoomBis:0,tempoDa:0,winkN:0,twerk:null,twerkPause:0,
-    zin:{sicht:false,ab:0,naechste:6+Math.random()*5,auftritt:-9}};cv3._ph=ph;   // Zustand für automatische Tests
+    zin:{sicht:false,ab:0,naechste:6+Math.random()*5,auftritt:-9}};cv3._ph=ph;
+  const BE=typeof naBeuleStart=='function'?naBeuleStart(skin,SK,ph):null;   // Szene „Kleiner Unfall“ (55-nastja-beule.js)   // Zustand für automatische Tests
   let fin=false,T0=performance.now(),tAlt=0,mausWinkel=null,mausKreis=0,letzterSchlag=-1;
   // ---- Eingabe: Takt (Leertaste/Klick) und Maus-Kreisen ----
   const schlag=()=>{const t=(performance.now()-T0)/1000-OFF-ph.pauseSum;if(t<0||fin)return;const ph0=t/BEAT,abw=Math.abs(ph0-Math.round(ph0))*BEAT,nr=Math.round(ph0);
@@ -206,7 +222,7 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
     const g=x.createLinearGradient(0,Y0+Hm,0,Y0);g.addColorStop(0,'#6a1b4d');g.addColorStop(.5,'#d0407a');g.addColorStop(1,'#ffd27a');x.fillStyle=g;x.fillRect(X-8,Y0+Hm*(1-v),16,Hm*v);
     x.fillStyle=`rgba(255,${200+puls*55|0},${220-puls*80|0},${.55+.45*puls})`;x.font='bold 11px Georgia';x.textAlign='center';x.font='bold 9px Georgia';x.fillText('STIMMUNG',X,Y0-12);
     x.font=`${18+puls*6}px Georgia`;x.fillText('♥',X,Y0+Hm+24);x.textAlign='left';
-    if(u<0)return;
+    if(u<0||(BE&&BE.on))return;
     // Taktring: schrumpft auf den Kreis zu – genau wenn er ihn berührt, drücken
     {const ph0=((u%BEAT)+BEAT)%BEAT/BEAT,r=12+28*(1-ph0),CX=400,CY=470,treff=ph0>.75||ph0<.12;
       x.strokeStyle='rgba(255,230,240,.85)';x.lineWidth=2.5;x.beginPath();x.arc(CX,CY,12,0,7);x.stroke();
@@ -218,7 +234,7 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
   const TEXT=NA_SHOW_TEXT[skin]||{};
   if(skin==='dessous')NASTJA_TWERK.laden();   // Twerk-Frames erst jetzt nachladen (pixel/nastja_twerk.png)
   function frame(){if(fin)return;const jetzt=(performance.now()-T0)/1000,dt=Math.min(1/30,Math.max(1/240,jetzt-tAlt));tAlt=jetzt;const t=jetzt;
-    if(t<ph.pauseBis)ph.pauseSum+=dt;const u=t-OFF-ph.pauseSum;   // Zinaida unterbricht: Choreografie steht still
+    if(BE)BE.tick(t,t-OFF-ph.pauseSum);if(t<ph.pauseBis)ph.pauseSum+=dt;const u=t-OFF-ph.pauseSum;   // Zinaida unterbricht: Choreografie steht still
     // Zinaida linst ab und zu hinter dem Vorhang hervor
     {const Z=ph.zin;if(!Z.sicht&&u>2&&u<21&&u>=Z.naechste&&t>ph.pauseBis){Z.sicht=true;Z.ab=t}
       if(Z.sicht&&t-Z.ab>2.6){Z.sicht=false;Z.naechste=u+7+Math.random()*6}}
@@ -241,12 +257,14 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
       else if(t<ph.twerk.ende+.6)ph.thetaZiel=Math.round(ph.theta/T2)*T2;             // wieder nach vorn
       else{ph.twerk=null;ph.twerkPause=t+TWERK_PAUSE;menuBau()}}
     if(!ph.twerk&&ph.twerkPause&&t>=ph.twerkPause){ph.twerkPause=0;menuBau()}
+    if(BE&&BE.on){ph.thetaZiel=Math.round(ph.theta/(2*Math.PI))*2*Math.PI;({px,py,sc}=BE.pose(t,px,py,sc))}
     if(!frei)ph.maus*=Math.pow(.2,dt);
     const thAlt=ph.theta;ph.theta+=(ph.thetaZiel-ph.theta)*Math.min(1,dt*(frei?5:7));const omega=(ph.theta-thAlt)/dt;
     if(u>=21){const a=seg(u,21,22.6),b=seg(u,23.4,24.6);sit=a>.85;sc=b>0?ease(2.6,3.1,b):ease(1.5,2.6,a);py=b>0?ease(780,900,b):ease(520,780,a)}
     // ---- Bewegungs-Wellen (Sinus/Kosinus, im Takt) ----
-    const w=2*Math.PI/(BEAT*2),wippZiel=(1-Math.cos(2*w*u))/2*5*inten*(u<2?.4:1)+(sit?Math.abs(Math.sin(u*4.2))*4:0);
-    const huefte=Math.sin(w*u)*9*inten,brust=-huefte*.45+Math.sin(w*u+.6)*2.5*inten,kopf=brust*.8+Math.sin(w*u+1.2)*2*inten;
+    let w=2*Math.PI/(BEAT*2),wippZiel=(1-Math.cos(2*w*u))/2*5*inten*(u<2?.4:1)+(sit?Math.abs(Math.sin(u*4.2))*4:0);
+    let huefte=Math.sin(w*u)*9*inten,brust=-huefte*.45+Math.sin(w*u+.6)*2.5*inten,kopf=brust*.8+Math.sin(w*u+1.2)*2*inten;
+    if(BE&&BE.on){const r=1-BE.ruhe(t);huefte*=r;brust*=r;kopf*=r;wippZiel*=r}
     // Beschleunigungen für die Federn
     const wippV=(wippZiel-(ph.wipp||0))/dt,wippA=(wippV-ph.wippV)/dt;ph.wippV=wippV;ph.wipp=wippZiel;
     const huefV=(huefte-(ph.huef||0))/dt,huefA=(huefV-ph.huefV)/dt;ph.huefV=huefV;ph.huef=huefte;
@@ -277,22 +295,24 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
       twerkZeichnen(x,px,py,266/500*sc,dt,twerkFrame(seit,rest),u)}   // 0 → 1 → 2 hinein, Frame 2 halten (Physik), 1 hinaus
     else if(u>-.9&&rig){x.save();x.translate(px,py+(sit?-2:0));x.rotate(Math.sin(w*u)*.025*inten);const s0=266/rig.h*sc;x.scale(s0,s0);
       const st={kopf,brust,huefte,wipp:ph.wipp,jigX:ph.jx,jigY:ph.jy,haar:ph.hx,haarY:ph.hy,faecher:Math.min(.18,Math.abs(omega)*.04)};
-      naZeichne(x,rig,SK.zonen,st,eigen?0:ph.theta);x.restore()}
+      if(BE&&BE.on)BE.zeichne(x,st);else naZeichne(x,rig,SK.zonen,st,eigen?0:ph.theta);x.restore()}
     x.restore();
     if(!sit){sofa();fpKnees(x)}
+    if(BE&&BE.on)BE.vorne(x,t);
     // Glitzer und Noten, mehr bei viel Vibe
     if(u>0){x.save();x.globalCompositeOperation='lighter';const n=4+Math.round(vib*10);for(let j=0;j<n;j++){const p=(u*.4+j/n)%1,X=400+Math.sin(j*7.1)*280,Y=440-p*380;
       x.fillStyle=`rgba(255,235,200,${.8*(1-p)})`;x.save();x.translate(X,Y);x.rotate(t*2+j);x.fillRect(-4,-.8,8,1.6);x.fillRect(-.8,-4,1.6,8);x.restore()}
       for(let j=0;j<4;j++){const p=(u*.25+j/4)%1;x.fillStyle=`rgba(255,180,220,${.6*(1-p)})`;x.font='22px Georgia';x.fillText('♪',120+j*150+Math.sin(t+j)*20,420-p*300)}x.restore()}
     const v=x.createRadialGradient(400,250,150,400,250,520);v.addColorStop(0,'rgba(0,0,0,0)');v.addColorStop(1,'rgba(20,0,10,.7)');x.fillStyle=v;x.fillRect(0,0,800,500);
     meter(t,u);
-    if(u>0&&u<7){x.fillStyle=`rgba(255,230,240,${Math.min(1,u)*Math.min(1,7-u)*.85})`;x.font='13px Georgia';x.textAlign='center';
+    if(u>0&&u<7&&!(BE&&BE.on)){x.fillStyle=`rgba(255,230,240,${Math.min(1,u)*Math.min(1,7-u)*.85})`;x.font='13px Georgia';x.textAlign='center';
       x.fillText('Leertaste / Klick, wenn der Ring den Kreis trifft · Maus im Kreis: sie dreht sich mit · Esc beendet',400,30);x.textAlign='left'}
     if(frei){x.fillStyle='rgba(255,220,235,.8)';x.font='italic 13px Georgia';x.textAlign='center';x.fillText(`Freier Tanz – kreise mit der Maus! (${NA_RICHTUNG[idx]})`,400,30);x.textAlign='left'}
     // Umziehen: Augen zu → auf
     if(enthuellen){const k=t<.4?seg(t,0,.4):t<OFF-1?1:1-seg(t,OFF-1,OFF-.2);lider(k,t);
       if(k>=1){x.fillStyle='rgba(255,200,220,.55)';x.font='italic 15px Georgia';x.textAlign='center';x.fillText(['*raschel*','*Strapse schnalzen*','*Reißverschluss*'][Math.floor(t*1.3)%3],400,250);x.textAlign='left'}
       if(u>-.2&&u<.8){x.save();x.globalCompositeOperation='lighter';glow(400,280,320,'255,200,230',.5*(1-seg(u,-.2,.8)));x.restore()}}
+    if(BE&&BE.on)BE.oben(x,t);
     requestAnimationFrame(frame)}
   requestAnimationFrame(frame);
   async function beenden(){if(fin)return;fin=true;removeEventListener('keydown',key,true);menu.remove();if(busy)advance();
