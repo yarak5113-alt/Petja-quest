@@ -54,6 +54,9 @@ const TNEBEN=[
   {t:'VIP-Kabine (100 %, Polaroid schon in der Tasche) – Nastja → Privattanz',f:['polaroid'],add:['polaroid'],at:['buehne',260,486]},
   {t:'Trinkduell: zu Opa (Haus steht) – Klick auf Opa → Trinkduell',at:['dorf',420,480]},
   {t:'Trinkduell gewonnen – „Hierbleiben“ am Tisch wird zum Ehrenbürger-Ende (bei Dorf-Ruf ≥ 70)',f:['duellSieg'],at:['huette',640,488]},
+  {t:'Kusmitschs Kahn: Auftrag da, Oma hat Kohle (Teer holen), Strom liegt (Haken holen)',f:['haus','welsTalk','kahnQ','kabelQ','kabel','kohleGeg','omaKohle'],at:['ufer',520,440]},
+  {t:'Kusmitschs Kahn: Teer verdünnen bei Opa',f:['haus','welsTalk','kahnQ','teerdoseGeg'],add:['teerdose'],at:['dorf',420,480]},
+  {t:'Kusmitschs Kahn: alles dabei – zum Wrack',f:['haus','welsTalk','kahnQ','teerdoseGeg','hakenGeg','opaZieht'],add:['teerduenn','haken'],at:['ufer',520,440]},
   {t:'Dorf-Aufgaben: Strom gelegt, Kohle bei Oma, Kater zurück (mit Duellsieg = alle vier)',f:['kabelQ','kabel','kohleGeg','omaKohle','kater','katzeQ','katzeHeim'],at:['dorf',420,480]},
   {t:'Enden: mit Polaroid zu Baba Jagas Tisch (Joint = Nastja-Ende, Hierbleiben = Zahnrad)',at:['huette',640,488]}];
 function tNeben(n){const d=tState(TSTEPS.length-1);TNEBEN.slice(0,n+1).forEach(st=>{(st.f||[]).forEach(k=>d.FL[k]=1);Object.assign(d.FL,st.v||{});

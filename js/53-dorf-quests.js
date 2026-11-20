@@ -213,7 +213,7 @@ wrapFn('oma',function(orig){
   say([['P','Frau Jaga … das Dorf hat mich gefragt, ob ich bleibe.'],['J2','Das Dorf fragt nie jemanden. Was hast du angestellt?'],['P','Strom gelegt. Kohle geschleppt. Einen Kater gefunden. Grischa untern Tisch getrunken.'],
     ['J2','*lacht krächzend* Dann bist du verloren. Geh. Die warten schon.']],()=>{FL.ende=3;enter('dorf',[420,470]);
     setTimeout(()=>say([['G','Achtung! Hiermit ernenne ich, Grischa, Gefreiter a. D., dich zum Ehrenbürger!','drunk'],['SM','Und ein Ehrenbürger braucht ein Dach. Das Holz liegt bereit. Ich hab die Nägel geschmiedet.'],
-      ['PO','Ich segne es. Und Murka kommt zur Einweihung.'],['O','Ich bring Pirogi. Mit Gebiff gebacken.'],['P','(Ein eigenes Haus. Ich. Der Typ von Wowas Sofa.)','smirk']],()=>
+      ['PO','Ich segne es. Und Murka kommt zur Einweihung.'],['O','Ich bring Pirogi. Mit Gebiff gebacken.'],...(FL.kahn?[['F','Und ich bring Fisch. Frisch aus der Swetlana. Ohne Schnaps-Diebe an Bord.']]:[]),['P','(Ein eigenes Haus. Ich. Der Typ von Wowas Sofa.)','smirk']],()=>
       animShots([{d:2.6,cap:'Petjas eigenes Haus',draw(x,t,k){x.drawImage(bauBG(),0,0);x.fillStyle=`rgba(0,0,0,${.45*(1-k)})`;x.fillRect(0,0,800,500);x.font='bold 40px Georgia';x.textAlign='center';x.lineWidth=6;x.strokeStyle='#000';
         x.strokeText('Petjas Haus',400,200);x.fillStyle='#ffd25a';x.fillText('Petjas Haus',400,200);x.textAlign='left'}},...hausShots()],()=>{enter('dorf',[420,470]);
         setTimeout(()=>say([['G','Ein Haus aus Birken, mit Fjodors Nägeln, Dusjas Pirogi und Ignatis Segen. Jetzt bist du einer von uns, Junge.','drunk'],

@@ -2,7 +2,8 @@
 //   node tools/test-neu.js
 // Läuft in Edge headless (wie die Bild-Werkzeuge), ohne Spielstand anzufassen: die Seite wird mit einem Testskript in einer
 // Temp-Datei geöffnet, das Ergebnis aus dem DOM gelesen. Zwei Durchgänge:
-//   A) Welt in echter Zeit: Trafohäuschen, Rätsel lösen, Kohle für Oma, Kater, Duell ohne Geld, alle vier Aufgaben, Russisch.
+//   A) Welt in echter Zeit: Trafohäuschen, Rätsel lösen, Kohle für Oma, Kater, Duell ohne Geld, alle vier Aufgaben,
+//      Kusmitschs Kahn (Teer, Haken, Opa verdünnt, Heben, Versöhnung), Russisch.
 //   B) Tanz mit angehaltener Zeit (performance.now / requestAnimationFrame werden Bild für Bild weitergestellt):
 //      Menüknöpfe je Outfit, kein Geld, Twerken: Start-Pose nur am Anfang, tiefster Frame halten, Übergang hinaus.
 // Ausgabe: eine Zeile PASS/FAIL je Prüfung, Exit-Code 1 bei Fehlern.
@@ -35,15 +36,24 @@ const durch=async(n=25)=>{for(let i=0;i<n&&busy;i++){advance();await wait(60)}};
   busy=false;queue=[];T.pope2.fn();await durch();ok('Kater zurück bei Vater Ignati',!!FL.katzeHeim&&!has('katze'));
   busy=false;queue=[];duellSieg();await durch();ok('Duell gewonnen, ohne Geld',!!FL.duellSieg&&!('cash' in FL));
   ok('Alle vier Dorf-Aufgaben erledigt',alleVierQuests());
+  // Kusmitschs Kahn
+  FL.haus=1;FL.welsTalk=1;const relK=relOf('Fischer Kusmitsch');busy=false;queue=[];T.fischer.fn();await durch();ok('Kusmitsch gibt den Auftrag „Kahn“',!!FL.kahnQ);
+  busy=false;queue=[];T.oma.fn();await durch();ok('Oma gibt Teer (nach der Kohle)',has('teerdose'));
+  busy=false;queue=[];T.schmied.fn();await durch();ok('Fjodor schmiedet den Haken (nach dem Strom)',has('haken'));
+  busy=false;queue=[];T.wrack.fn();await durch();ok('Wrack ohne verdünnten Teer: nur Hinweis',!FL.kahn);
+  busy=false;queue=[];T.opa.fn();await durch();ok('Opa verdünnt den Teer',has('teerduenn')&&!has('teerdose')&&!document.getElementById('fg'));
+  busy=false;queue=[];T.wrack.fn();await durch(40);await wait(2200);await durch(40);
+  ok('Kahn gehoben',!!FL.kahn&&!has('haken')&&!has('teerduenn'));ok('Kusmitsch versöhnt',relOf('Fischer Kusmitsch')>=relK+50,relK+' → '+relOf('Fischer Kusmitsch'));
+  ok('Auftragsbuch: Kusmitschs Kahn erledigt',quests().some(q=>q.t==='Kusmitschs Kahn'&&q.ok));
   FL.haus=1;ok('Auftragsbuch zeigt „Einer von uns werden“ als erledigt (sobald Opas Haus steht)',quests().some(q=>q.t==='Einer von uns werden'&&q.ok));
-  const alt=LANG;LANG='ru';const proben=['Strom für die Schmiede','Trafohäuschen','Kohle für Oma Dusja','🧻 Tempos zustecken','Trinkduell mit Opa','Petjas Haus'];
+  const alt=LANG;LANG='ru';const proben=['Kusmitschs Kahn','Verdünnter Teer','Strom für die Schmiede','Trafohäuschen','Kohle für Oma Dusja','🧻 Tempos zustecken','Trinkduell mit Opa','Petjas Haus'];
   const fehlt=proben.filter(p=>tr(p)===p||!/[а-яё]/i.test(tr(p)));LANG=alt;ok('Russische Übersetzung vorhanden',!fehlt.length,fehlt.join(', '));
  }catch(e){R.push('FAIL Abbruch: '+e.message)}fertig()})();`;
 
 const TANZ=`${GEMEINSAM}
 const realNow=performance.now.bind(performance);let VT=null;performance.now=()=>VT===null?realNow():VT;
-let pend=null;window.requestAnimationFrame=cb=>{pend=cb;return 1};
-const step=to=>{while(VT<to){VT+=1000/60;const p=pend;pend=null;if(p)p(VT)}};
+let pend=[];window.requestAnimationFrame=cb=>{pend.push(cb);return pend.length};   // Warteschlange: mehrere Nutzer (Tanz, Porträt-Leiste) dürfen sich nicht verdrängen
+const step=to=>{while(VT<to){VT+=1000/60;const q=pend;pend=[];q.forEach(f=>f(VT))}};
 const knoepfe=()=>[...document.querySelectorAll('#tanzmenu button')].map(b=>b.dataset.m);
 const schliessen=async T0=>{step(T0+40000);await wait(300);for(let k=0;k<40&&busy;k++){advance();await wait(20)}document.querySelectorAll('#cut,#tanzmenu').forEach(c=>c.remove());VT=null};
 (async()=>{await wait(1500);try{FL.rekrut=1;
@@ -55,7 +65,7 @@ const schliessen=async T0=>{step(T0+40000);await wait(300);for(let k=0;k<40&&bus
   for(let i=0;i<60&&!NASTJA_TWERK.ready;i++){await wait(50);step(VT+16)}ok('Twerk-Bild wird beim Dessous-Tanz nachgeladen',NASTJA_TWERK.ready);
   document.querySelector('#tanzmenu [data-m=twerk]').click();const t0=VT,seq=[];for(let d=100;d<=3700;d+=100){step(t0+d);seq.push(zuletzt)}
   const s=seq.join('').replace(/-/g,''),erste=s.indexOf('2'),letzte0=s.lastIndexOf('0');
-  ok('Twerken: Start-Pose nur am Anfang',s.startsWith('0')&&letzte0<erste,s);
+  const P_=document.getElementById('cut')._ph;ok('Twerken: Start-Pose nur am Anfang',s.startsWith('0')&&letzte0<erste,'seq='+seq.join('')+' twerk='+JSON.stringify(P_.twerk)+' cos='+Math.cos(P_.theta).toFixed(2)+' ready='+NASTJA_TWERK.ready+' pause='+P_.pauseBis);
   ok('Twerken: hält den tiefsten Frame',/2{15,}/.test(s),s);ok('Twerken: Übergang hinaus über Frame 1',/21+$/.test(s),s);
   ok('Twerken-Knopf während des Tanzes gesperrt',document.querySelector('#tanzmenu [data-m=twerk]').disabled);
   step(t0+7600);ok('Twerken-Knopf nach der Pause wieder frei',!document.querySelector('#tanzmenu [data-m=twerk]').disabled);
@@ -66,7 +76,7 @@ function lauf(name,skript,budget){
   const html=basis.replace('</body>',`<pre id="out"></pre><script>{${skript}}</script></body>`);
   const tmp=path.join(os.tmpdir(),`petja-test-${name}-${Date.now()}.html`);fs.writeFileSync(tmp,html);
   const prof=fs.mkdtempSync(path.join(os.tmpdir(),'petja-test-prof-'));
-  let out='';try{out=execFileSync(EDGE,['--headless','--disable-gpu','--allow-file-access-from-files','--user-data-dir='+prof,`--virtual-time-budget=${budget}`,'--dump-dom','file:///'+tmp.replace(/\\/g,'/')],{maxBuffer:64<<20,timeout:600000}).toString('utf8')}
+  let out='';try{out=execFileSync(EDGE,['--headless','--disable-gpu','--allow-file-access-from-files','--window-size=1200,750','--user-data-dir='+prof,`--virtual-time-budget=${budget}`,'--dump-dom','file:///'+tmp.replace(/\\/g,'/')],{maxBuffer:64<<20,timeout:600000}).toString('utf8')}
   catch(e){out=String(e.stdout||'')}
   fs.unlinkSync(tmp);const m=out.match(/<pre id="out">([\s\S]*?)<\/pre>/);
   return(m&&m[1].trim()?m[1].replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"'):'FAIL '+name+': kein Ergebnis (Zeitbudget zu knapp?)').split('\n')}

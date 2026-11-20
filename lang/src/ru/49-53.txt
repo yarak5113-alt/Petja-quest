@@ -257,3 +257,74 @@
 =Einer von uns werden => Стать своим
 =Vier Dinge machen dich im Dorf zu einem von ihnen: Strom für Fjodor, Kohle für Dusja, Ignatis Kater und ein Trinkduell gegen Opa. => Четыре дела делают тебя в деревне своим: свет для Фёдора, уголь для Дуси, кот Игнатия и дуэль на самогоне с дедом.
 =Geschafft: # von #. Wer alle vier schafft und am Ende bleibt, baut sich ein eigenes Haus. => Сделано: # из #. Кто сделает все четыре и останется в конце, построит себе дом.
+
+# ---------- Kusmitschs Kahn (54) ----------
+=Dose Teer => Банка дёгтя
+=Oma Dusjas Birkenteer. Zäh wie ihre Laune vor dem Frühstück. So kriegt den keiner in die Ritzen. => Берёзовый дёготь бабы Дуси. Тягучий, как её настроение до завтрака. Такой ни в одну щель не залезет.
+=Verdünnter Teer => Разбавленный дёготь
+=Bootshaken => Багор
+=Von Fjodor geschmiedet, noch warm. Hält einen Kahn. Oder einen Wels. Oder Kusmitsch, wenn er reinfällt. => Фёдор выковал, ещё тёплый. Удержит лодку. Или сома. Или Кузьмича, если тот свалится.
+=(Mir fehlt noch Teer. Oma Dusja hat welchen.) => (Мне ещё нужен дёготь. У бабы Дуси есть.)
+=Bei Oma Dusja Teer holen. => Взять дёготь у бабы Дуси.
+=(Der Teer ist zu zäh. Opa soll ihn verdünnen.) => (Дёготь слишком густой. Пусть дед разбавит.)
+=Den Teer von Opa verdünnen lassen. => Попросить деда разбавить дёготь.
+=(Mir fehlt noch ein Haken. Den muss der Schmied machen.) => (Мне ещё нужен багор. Это к кузнецу.)
+=Bei Fjodor einen Bootshaken holen. => Взять у Фёдора багор.
+=*sitzt im Kahn statt auf dem Pier* Die Swetlana. Schwimmt. Und ich sitz drin wie ein Kapitän. => *сидит в лодке, а не на мостках* «Светлана». На плаву. А я в ней — как капитан.
+=Setz dich dazu, Junge. Aber fass den Schnaps nicht an. Das sag ich jetzt aus Gewohnheit. => Садись, парень. Только самогон не трогай. Это я уже по привычке.
+=*starrt aufs Schilf* … Siehst du das Wrack da drüben? Das ist die Swetlana. Mein Kahn. => *смотрит на камыши* … Видишь обломки вон там? Это «Светлана». Моя лодка.
+=Sturm von ’91. Seitdem liegt sie da und ich sitz auf dem Pier wie ein Reiher ohne Beine. => Шторм девяносто первого. С тех пор лежит, а я сижу на мостках, как цапля без ног.
+=Und DU hast mir meinen Selbstgebrannten geklaut. Glaub nicht, ich wüsste das nicht. => А ТЫ у меня самогон стащил. Не думай, что я не знаю.
+=(Er weiß es.) => (Знает.)
+=Wenn die Swetlana wieder schwimmt … dann vergess ich alles. Sogar die Sache mit dem Schnaps. => Если «Светлана» снова поплывёт… всё забуду. Даже про самогон.
+=Was braucht man, um einen Kahn zu heben? => А что нужно, чтобы лодку поднять?
+=Teer für die Löcher – die Dusja hat welchen. Einen Haken, der hält – frag den Schmied. Und Kerle, die ziehen können. => Дёготь на дыры — у Дуси есть. Багор, чтоб держал, — спроси кузнеца. И мужиков, чтоб тянуть.
+=Grischa zieht alles, wenn es nach Schnaps riecht. => Гриша что угодно потянет, если самогоном пахнет.
+=Neue Aufgabe: Kusmitschs Kahn => Новое задание: лодка Кузьмича
+=Du hast alles? Dann los, ans Ufer! Bevor ich wieder nüchtern werde und es mir anders überlege. => Всё собрал? Тогда на берег! Пока я не протрезвел и не передумал.
+=Die Swetlana wartet. Ich auch. Wir sind beide nicht mehr die Jüngsten. => «Светлана» ждёт. И я жду. Оба уже не молоды.
+=Oma Dusja, haben Sie Teer? Für Kusmitschs Kahn. => Баба Дуся, у вас дёготь есть? Для лодки Кузьмича.
+=Teer? Für den alten Fufel? Erft wird mir warm, dann wird geteilt. => Дёготь? Этому фтарому пьянице? Фначала мне тепло, потом делюфь.
+=(Ihr ist kalt. Wer hat hier Kohle … der Schmied.) => (Ей холодно. У кого тут уголь… у кузнеца.)
+=Oma Dusja, haben Sie noch Teer? Kusmitsch will seinen Kahn heben. => Баба Дуся, дёготь ещё есть? Кузьмич лодку поднять хочет.
+=Die Fwetlana? *lacht* Da hat er mich ’72 mal rumgerudert. Bif er reingefallen ift. => «Фветлана»? *смеётся* Он меня в фемьдефят втором на ней катал. Пока фам не выпал.
+=Hier. Birkenteer. Aber der ift zäh wie Grifcha morgenf. Den muff man verdünnen. Mit waf Fcharfem. => На. Берёзовый. Только он тягучий, как Гриша поутру. Разбавить надо. Фем-нибудь крепким.
+=*bekommt eine Dose Teer* => *получает банку дёгтя*
+=Fjodor, Kusmitsch braucht einen Bootshaken. Für seinen Kahn. => Фёдор, Кузьмичу нужен багор. Для лодки.
+=Haken. Später. Erst Strom. Ohne Licht schmied ich mir die Finger krumm. => Багор. Потом. Сначала свет. Без света пальцы себе откую.
+=Fjodor, Kusmitsch braucht einen Bootshaken. Einen, der hält. => Фёдор, Кузьмичу нужен багор. Чтоб держал.
+=Für die Swetlana? Hm. => Для «Светланы»? Хм.
+=*hämmert, zischt, hämmert* … Da. Hält einen Kahn. Und einen Wels. Und Kusmitsch, wenn er reinfällt. => *бьёт, шипит, бьёт* … На. Лодку удержит. И сома. И Кузьмича, если свалится.
+=Und wenn ihr zieht, ruft mich. Zwei Hände mehr. => Тянуть будете — зовите. Две руки лишними не будут.
+=*bekommt einen Bootshaken* => *получает багор*
+=Opa, Omas Teer ist zu zäh. Sie sagt, er muss mit was Scharfem verdünnt werden. => Дед, бабкин дёготь слишком густой. Говорит, надо разбавить чем-то крепким.
+=Mit MEINEM Selbstgebrannten? … Für Kusmitschs Kahn? Pfui Teufel. => МОИМ самогоном? … Для лодки Кузьмича? Тьфу, блин.
+=Die Swetlana. Geflickt, geteert, schwimmt. Kusmitsch hat ihr sogar den Namen nachgemalt. => «Светлана». Залатана, просмолена, на плаву. Кузьмич даже имя подновил.
+=(Mit Rechtschreibfehler. Aber mit Liebe.) => (С ошибкой. Но с любовью.)
+=Kusmitschs Swetlana. Halb im Schlamm, halb im Schilf. => «Светлана» Кузьмича. Наполовину в иле, наполовину в камышах.
+=*watet ins Schilf und streicht den verdünnten Teer in jede Ritze* => *бредёт в камыши и мажет разбавленным дёгтем каждую щель*
+=(Riecht wie Opas Schuppen nach einem Feiertag.) => (Пахнет, как дедов сарай после праздника.)
+=*stapft durchs Wasser* Haken her. *rammt ihn in den Bug* Der hält. => *шлёпает по воде* Багор давай. *вгоняет его в нос лодки* Держит.
+=*krempelt die Hosen hoch* So. Wer nicht zieht, trinkt nicht mit. Auf drei! => *закатывает штаны* Так. Кто не тянет, тот не пьёт. На счёт три!
+=Eins … zwei … HAU-RUCK! => Раз… два… ВЗЯЛИ!
+=*zieht* HAU-RUCK! => *тянет* ВЗЯЛИ!
+=HAU-RUCK! => ВЗЯЛИ!
+=*SCHMATZ* … *BLUBB* … => *ЧАВК* … *БУЛЬК* …
+=Sie kommt! Sie kommt, die alte Kuh! => Идёт! Идёт, старая корова!
+=*kommt den Pier runtergerannt* SWETLANA! Mädchen! Du schwimmst! => *бежит по мосткам* СВЕТЛАНА! Девочка! Ты плывёшь!
+=*streichelt den Bug* Dreißig Jahre … Und gerochen hast du nie so gut. => *гладит нос лодки* Тридцать лет… И никогда ты так хорошо не пахла.
+=Junge. Die Sache mit dem Schnaps … vergessen. Weggespült. Wir sind quitt. => Парень. Про самогон… забыто. Смыто. Мы в расчёте.
+=Und ICH krieg dafür eine Fahrt über den See. Mit Proviant. => А МНЕ за это — прогулка по озеру. С провиантом.
+=Ich auch. Aber ohne Proviant. Ich will ankommen. => И мне. Только без провианта. Я доплыть хочу.
+=(Das halbe Dorf in einem Kahn. Was soll da schon schiefgehen.) => (Полдеревни в одной лодке. Что может пойти не так.)
+=Kusmitsch mag dich wieder => Кузьмич снова к тебе хорошо относится
+=Kusmitschs Kahn => Лодка Кузьмича
+=Kusmitschs Kahn „Swetlana“ liegt seit ’91 im Schilf. Schwimmt er wieder, ist die Sache mit dem Schnaps vergessen. => Лодка Кузьмича «Светлана» лежит в камышах с девяносто первого. Поплывёт снова — история с самогоном забыта.
+=Alles dabei. Ab zum Wrack am Ufer! => Всё собрано. К обломкам на берегу!
+=Und ich bring Fisch. Frisch aus der Swetlana. Ohne Schnaps-Diebe an Bord. => А я рыбы принесу. Свежей, со «Светланы». Без самогонных воров на борту.
+
+=*seufzt, holt einen Eimer* Na gut. Für die Swetlana. Die hat mich ’72 auch mal nach Hause gerudert. => *вздыхает, берёт ведро* Ладно. Ради «Светланы». Она меня в семьдесят втором тоже домой довезла.
+=*kippt ab, rührt, schnuppert* … Der Teer ist jetzt so dünn, der läuft dir freiwillig in jede Ritze. => *отливает, мешает, нюхает* … Дёготь теперь такой жидкий, сам в каждую щель полезет.
+=Und wenn ihr den Kahn zieht: ich zieh mit. Hab ich ’79 auch, mit einem Panzer. => А лодку тянуть будете — я с вами. В семьдесят девятом я так танк тянул. Ёмаё.
+=*bekommt verdünnten Teer* => *получает разбавленный дёготь*
+=Teer mit einem ordentlichen Schuss von Opas Selbstgebranntem. Riecht, als könnte er auch alleine schwimmen. => Дёготь с хорошей порцией дедова самогона. Пахнет так, будто и сам поплывёт.
