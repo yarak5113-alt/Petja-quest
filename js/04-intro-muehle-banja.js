@@ -98,9 +98,9 @@ function cutscene(){changing=true;const cv3=document.createElement('canvas');cv3
   function wowa(X,B,sc){if(!WOWAIMG)return;x.imageSmoothingEnabled=false;x.drawImage(WOWAIMG,X+(-52)*sc,B-276*sc,104*sc,280*sc);x.imageSmoothingEnabled=true}
   function draw(){if(fin)return;const T=performance.now()/1000;x.setTransform(1,0,0,1,0,0);x.filter='none';x.fillStyle='#000';x.fillRect(0,0,W,H);
     if(st=='room'){x.drawImage(APT,0,0);x.setTransform(SC,0,0,SC,0,0);fpDoor(x,door);
-      x.save();x.translate(560,300);x.rotate(-Math.PI/2);x.scale(.8,.8);if(PI.complete&&PI.naturalWidth){x.imageSmoothingEnabled=false;x.drawImage(PI,-48,-254,96,258);x.imageSmoothingEnabled=true};x.restore();
-      x.save();x.globalCompositeOperation='lighter';dab(x,388,292,6+Math.sin(T*3)*2,[255,120,40],.9);x.restore();
-      for(let i=0;i<6;i++){const p=(T*.35+i/6)%1;dab(x,388+Math.sin(p*6+i)*12,292-p*120,6+p*20,[200,200,210],.25*(1-p))}
+      x.save();x.translate(560,296);x.rotate(-Math.PI/2+.08);x.scale(1,1);   /* volle Größe wie im Spiel, Kopf leicht gekippt aufs Kissen */if(PI.complete&&PI.naturalWidth){x.imageSmoothingEnabled=false;x.drawImage(PI,-48,-254,96,258);x.imageSmoothingEnabled=true};x.restore();
+      x.save();x.globalCompositeOperation='lighter';dab(x,346,271,6+Math.sin(T*3)*2,[255,120,40],.9);x.restore();
+      for(let i=0;i<6;i++){const p=(T*.35+i/6)%1;dab(x,346+Math.sin(p*6+i)*12,271-p*120,6+p*20,[200,200,210],.25*(1-p))}
       if(wx<800)wowa(wx,382,.95)}
     if(st=='fp'){x.setTransform(1,0,0,1,0,0);x.filter=`blur(${blur*SC}px) saturate(${1+blur*.2}) hue-rotate(${blur*14}deg)`;x.translate(W/2,H/2);x.rotate(Math.sin(T*1.3)*.012*blur);const z=1.6+Math.sin(T*.9)*.015*blur;x.scale(z,z);x.translate(-W/2,-H/2-30*SC);x.drawImage(APT,0,0);
       x.setTransform(SC,0,0,SC,0,0);if(blur>1){x.globalAlpha=Math.min(.5,blur*.06);x.drawImage(APT,-60,-100,1280,800);x.globalAlpha=1}

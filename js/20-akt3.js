@@ -255,8 +255,8 @@ function finale(){FL.ende=1;say([['J2','Fertig. Der schönste Ausweg-Joint, den 
   function draw(){if(fin)return;const T=performance.now()/1000;x.setTransform(1,0,0,1,0,0);
     if(st=='flash'){x.drawImage(cv,0,0);x.fillStyle=`rgba(255,250,235,${wf})`;x.fillRect(0,0,W,H);const g=x.createRadialGradient(W/2,H/2,10,W/2,H/2,W*.7*wf+1);g.addColorStop(0,`rgba(255,255,255,${wf})`);g.addColorStop(1,'rgba(255,240,200,0)');x.fillStyle=g;x.fillRect(0,0,W,H)}
     if(st=='room'){x.drawImage(APT,0,0);x.setTransform(SC,0,0,SC,0,0);x.fillStyle='#120c08';x.fillRect(690,100,100,280);x.fillStyle='#6a4a2a';x.fillRect(690,100,100*(1-door*.85),280);x.strokeStyle='#2a1a0c';x.lineWidth=2;x.strokeRect(690,100,100*(1-door*.85),280);
-      x.save();x.translate(560,300);x.rotate(-Math.PI/2);x.scale(.8,.8);if(PI.complete&&PI.naturalWidth){x.imageSmoothingEnabled=false;x.drawImage(PI,-48,-254,96,258);x.imageSmoothingEnabled=true}x.restore();
-      for(let i=0;i<6;i++){const p=(T*.35+i/6)%1;dab(x,388+Math.sin(p*6+i)*12,292-p*120,6+p*20,[200,200,210],.25*(1-p))}
+      x.save();x.translate(560,296);x.rotate(-Math.PI/2+.08);x.scale(1,1);   /* volle Größe wie im Spiel, Kopf leicht gekippt aufs Kissen */if(PI.complete&&PI.naturalWidth){x.imageSmoothingEnabled=false;x.drawImage(PI,-48,-254,96,258);x.imageSmoothingEnabled=true}x.restore();
+      for(let i=0;i<6;i++){const p=(T*.35+i/6)%1;dab(x,346+Math.sin(p*6+i)*12,271-p*120,6+p*20,[200,200,210],.25*(1-p))}
       if(wx<800&&WOWAIMG){x.imageSmoothingEnabled=false;x.drawImage(WOWAIMG,wx-52*.95,382-276*.95,104*.95,280*.95);x.imageSmoothingEnabled=true}
       x.setTransform(1,0,0,1,0,0);if(wf>0){x.fillStyle=`rgba(255,250,235,${wf})`;x.fillRect(0,0,W,H)}}
     if(dark>0){x.setTransform(1,0,0,1,0,0);x.fillStyle=`rgba(0,0,0,${dark})`;x.fillRect(0,0,W,H)}requestAnimationFrame(draw)}

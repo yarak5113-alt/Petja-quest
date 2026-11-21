@@ -29,16 +29,20 @@ function naArmBau(img,def){if(!img||!img.complete||!img.naturalWidth)return null
   const src=mk(),g=src.getContext('2d');g.drawImage(img,0,0);const id=g.getImageData(0,0,w,h),d=id.data;
   const P=def.poly,innen=(x,y)=>{let r=false;for(let i=0,j=P.length-1;i<P.length;j=i++){const[xi,yi]=P[i],[xj,yj]=P[j];if((yi>y)!==(yj>y)&&x<(xj-xi)*(y-yi)/(yj-yi)+xi)r=!r}return r};
   const arm=new Uint8Array(w*h);for(let y=0;y<h;y++)for(let x=0;x<w;x++)if(innen(x+.5,y+.5))arm[y*w+x]=1;
-  // Teilung am Ellbogen: Normale = Richtung Unterarm minus Richtung Oberarm; 2 px Überlappung gegen Lücken
-  const[Sx,Sy]=def.S,[Ex,Ey]=def.E,[Hx,Hy]=def.H,nz=(a,b)=>{const l=Math.hypot(a,b)||1;return[a/l,b/l]};
-  const u1=nz(Hx-Ex,Hy-Ey),u2=nz(Sx-Ex,Sy-Ey),n=nz(u1[0]-u2[0],u1[1]-u2[1]);
-  const ober=mk(),unter=mk(),go=ober.getContext('2d'),gu=unter.getContext('2d'),io=go.createImageData(w,h),iu=gu.createImageData(w,h);
-  for(let k=0;k<w*h;k++){if(!arm[k]||d[k*4+3]<128)continue;const x=k%w,y=(k-x)/w,v=(x+.5-Ex)*n[0]+(y+.5-Ey)*n[1];
-    for(const[ziel,ok]of[[io,v<=2],[iu,v>=-2]])if(ok)for(let c=0;c<4;c++)ziel.data[k*4+c]=d[k*4+c]}
-  go.putImageData(io,0,0);gu.putImageData(iu,0,0);
+  // Arm als EIN Stück mit weichem Ellbogen (Skinning): jedes Pixel bekommt ein Gewicht 0 (folgt dem Oberarm) … 1 (folgt dem
+  // Unterarm samt Hand), weich verlaufend über ±6 px um die Gelenklinie. So knickt oder bricht der Arm beim Bewegen nicht.
+  // Pixel in Lesereihenfolge [x, y, Gewicht, r, g, b]; gezeichnet wird über einen Puffer (siehe vorne()), nicht Farbe für Farbe.
+  const[Ex,Ey]=def.E,[Sx,Sy]=def.S,[Hx,Hy]=def.H,nz=(a,b)=>{const l=Math.hypot(a,b)||1;return[a/l,b/l]};
+  const u1=nz(Hx-Ex,Hy-Ey),u2=nz(Sx-Ex,Sy-Ey),n=nz(u1[0]-u2[0],u1[1]-u2[1]),pixel=[];
+  for(let k=0;k<w*h;k++){if(!arm[k]||d[k*4+3]<128)continue;const x=k%w,y=(k-x)/w,v=(x+.5-Ex)*n[0]+(y+.5-Ey)*n[1],p=Math.max(0,Math.min(1,(v+6)/12));
+    pixel.push([x+.5,y+.5,p*p*(3-2*p),d[k*4],d[k*4+1],d[k*4+2]])}
   // Onion-Peel: unbekannte Pixel übernehmen schichtweise die Farbe eines zufälligen bekannten Nachbarn (auch „leer“ am Rand)
   let rnd=12345;const R=()=>(rnd=(rnd*1103515245+12345)&0x7fffffff)/0x7fffffff;
   const bekannt=new Uint8Array(w*h);for(let k=0;k<w*h;k++)bekannt[k]=arm[k]?0:1;
+  // Erst zeilenweise spiegeln: linke Hälfte eines Lochs von links (Körper), rechte Hälfte von rechts (Haar) – setzt Muster fort
+  for(let y=0;y<h;y++){let x=0;while(x<w){if(!arm[y*w+x]){x++;continue}let x1=x;while(x1+1<w&&arm[y*w+x1+1])x1++;const L=x-1,Rr=x1+1;
+    for(let i=x;i<=x1;i++){const q=i-x<x1-i?2*L-i:2*Rr-i;if(q<0||q>=w||arm[y*w+q])continue;const k=y*w+i,j=y*w+q;for(let c=0;c<4;c++)d[k*4+c]=d[j*4+c];bekannt[k]=1}
+    x=x1+1}}
   for(let pass=0;pass<60;pass++){const neu=[];
     for(let k=0;k<w*h;k++){if(bekannt[k])continue;const x=k%w,y=(k-x)/w,nb=[];
       for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){const X=x+dx,Y=y+dy;if((dx||dy)&&X>=0&&Y>=0&&X<w&&Y<h&&bekannt[Y*w+X])nb.push(Y*w+X)}
@@ -52,7 +56,7 @@ function naArmBau(img,def){if(!img||!img.complete||!img.naturalWidth)return null
     if(x===0||y===0||x===w-1||y===h-1||leer(k-1)||leer(k+1)||leer(k-w)||leer(k+w))neuK.push(k)}
     for(const k of neuK){d[k*4]=46;d[k*4+1]=28;d[k*4+2]=16;d[k*4+3]=255}}
   g.putImageData(id,0,0);src.complete=true;src.naturalWidth=w;src.naturalHeight=h;   // naRig erwartet ein „Bild“
-  return{rest:src,ober,unter,w,h}}
+  return{rest:src,pixel,w,h}}
 
 // ---------- Beule (Petjas Hose, gleiche Pixeldichte wie seine Knie) ----------
 let NA_ZELT=null;
@@ -76,7 +80,7 @@ function naBeuleStart(skin,SK,ph){
   const sm=(b,a,e)=>{const p=Math.max(0,Math.min(1,(b-a)/(e-a)));return p*p*(3-2*p)};
   const lerpW=(a,b,p)=>{let d=b-a;while(d>Math.PI)d-=2*Math.PI;while(d<-Math.PI)d+=2*Math.PI;return a+d*p};
   const LR=document.createElement('canvas');LR.width=200;LR.height=125;   // Spritzer in grober Pixelauflösung (4 Einheiten pro Pixel)
-  let A=null,M=null,lean=0,said=new Set(),tropfen=null,linse=null,bs=0,tAlt=0,offen=false,tF=null;
+  let armPuf=null,armBild=null,A=null,M=null,lean=0,said=new Set(),tropfen=null,linse=null,bs=0,tAlt=0,offen=false,tF=null;
   const ENDE=18.9,G0=9.4,TF=12.4,HUBE=2;   // Szenen-Uhr: Ende, Zugreifen, Blitz; dazwischen HUBE langsame Auf-und-ab-Bewegungen
   const ZEILEN=[
     [2.7,[['P','(Oh nein. Nein, nein, nein. Nicht jetzt. Denk an Oma Dusja. Denk an den Wels. DENK AN DEN WELS!)']]],
@@ -143,8 +147,16 @@ function naBeuleStart(skin,SK,ph){
       // Hand ausschütteln
       const quetsch=b>G0&&b<TF?1-.05*(1-Math.cos((b-G0)/(TF-G0)*HUBE*2*Math.PI))/2:1;
       const Ep=[Sp[0]+Math.cos(w1)*l1/g0*s1,Sp[1]+Math.sin(w1)*l1/g0*s1];
-      const teil=(im,P,Q,wink,ruhW,s,sy)=>{x.save();x.translate(P[0],P[1]);x.rotate(wink-ruhW);x.scale(s,s*(sy||1));x.translate(-(Q[0]-A.w/2),-(Q[1]-A.h));x.drawImage(im,-A.w/2,-A.h);x.restore()};
-      teil(A.ober,Sp,def.S,w1,a1r,s1);teil(A.unter,Ep,def.E,w2,a2r,s2,quetsch);
+      // Jedes Arm-Pixel = Mischung aus Oberarm- und Unterarm-Bewegung; in einen Puffer (2× Auflösung) in Lesereihenfolge
+      // gestempelt – keine Lücken, kein Punktmuster – und dann pixelgenau wie der Körper gezeichnet.
+      const c1=Math.cos(w1-a1r)*s1,n1=Math.sin(w1-a1r)*s1,c2=Math.cos(w2-a2r)*s2,n2=Math.sin(w2-a2r)*s2,K=2,BW=A.w*K,BH=A.h*K;
+      if(!armPuf){armPuf=document.createElement('canvas');armPuf.width=BW;armPuf.height=BH;armBild=armPuf.getContext('2d').createImageData(BW,BH)}
+      const bd=armBild.data;bd.fill(0);const st=Math.max(2,Math.ceil(K*Math.max(s1,s2)*1.25));
+      for(const[px,py,p,r,g,b]of A.pixel){const ax=px-Sx,ay=py-Sy,bx=px-Ex,by=(py-Ey)*quetsch;
+        const X=(1-p)*(Sp[0]+c1*ax-n1*ay)+p*(Ep[0]+c2*bx-n2*by),Y=(1-p)*(Sp[1]+n1*ax+c1*ay)+p*(Ep[1]+n2*bx+c2*by);
+        const X0=Math.round((X+A.w/2)*K-st/2),Y0=Math.round((Y+A.h)*K-st/2);
+        for(let yy=Y0;yy<Y0+st;yy++){if(yy<0||yy>=BH)continue;for(let xx=X0;xx<X0+st;xx++){if(xx<0||xx>=BW)continue;const o=(yy*BW+xx)*4;bd[o]=r;bd[o+1]=g;bd[o+2]=b;bd[o+3]=255}}}
+      armPuf.getContext('2d').putImageData(armBild,0,0);x.drawImage(armPuf,-A.w/2,-A.h,A.w,A.h);
       x.restore()},
     // Blitz, Spritzer, Tropfen auf der Linse (ganz oben)
     oben(x,t){if(tF===null)return;const f=t-tF;if(f<0||f>3.2)return;x.setTransform(SC,0,0,SC,0,0);

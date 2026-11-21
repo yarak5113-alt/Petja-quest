@@ -76,6 +76,11 @@ function naRig(img,zonen,brust){if(!img||!img.complete||!img.naturalWidth)return
     const flaeche=k=>{const x=k%w,y=(k-x)/w;let n=0;for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){const X=x+dx,Y=y+dy;if((dx||dy)&&X>=0&&Y>=0&&X<w&&Y<h&&fest(Y*w+X))n++}return n>=5};
     for(let k=0;k<w*h;k++){if(!typ[k])continue;
       if(typ[k]===2){t2[k]=2;q.push(k)}else if(fest(k)&&flaeche(k)){t2[k]=1;q.push(k)}else t2[k]=9}
+    // Vorrang Körper: Konturpixel mit Körperfläche in ≤ 2 px (Gesichtsrand, Haaransatz, Armkontur) bleiben am Körper –
+    // sonst schwingt die Gesichtskontur mit den Haaren und liegt als Riss im Gesicht
+    {const neu=[];for(let k=0;k<w*h;k++){if(t2[k]!==9)continue;const x=k%w,y=(k-x)/w;let nah=false;
+      for(let dy=-2;dy<=2&&!nah;dy++)for(let dx=-2;dx<=2;dx++){const X=x+dx,Y=y+dy;if(X>=0&&Y>=0&&X<w&&Y<h&&t2[Y*w+X]===1){nah=true;break}}if(nah)neu.push(k)}
+      for(const k of neu){t2[k]=1;q.push(k)}}
     for(let tiefe=1;q.length;tiefe++){const nq=[];for(const k of q){const x=k%w,y=(k-x)/w;if(t2[k]===2&&tiefe>6)continue;
       for(const[dx,dy]of[[1,0],[-1,0],[0,1],[0,-1]]){const X=x+dx,Y=y+dy;if(X<0||Y<0||X>=w||Y>=h)continue;const j=Y*w+X;if(t2[j]===9){t2[j]=t2[k]+10;nq.push(j)}}}
       for(const j of nq)t2[j]-=10;q=nq}
@@ -122,7 +127,8 @@ function naZeichne(x,rig,z,st,theta){const p=NA_PUF.getContext('2d'),{w,h}=rig,Y
   p.setTransform(1,0,0,1,0,0);p.clearRect(0,0,NA_PUF.width,NA_PUF.height);p.imageSmoothingEnabled=false;p.translate(NA_PUF.width/2,NA_PUF.height-14);
   const c=Math.cos(theta),hinten=c<0;
   // Zeilen-Verschiebungen (Sprite-Pixel)
-  const knX=[[0,st.kopf],[Y(z.hals),st.kopf*.6+st.brust*.4],[Y(z.brust),st.brust],[Y(z.taille),(st.brust+st.huefte)/2],[Y(z.huefte),st.huefte],[Y(z.knie),st.huefte*.3],[h,0]];
+  const knX=[[0,st.kopf],[Y(z.hals),st.kopf],[Y(z.brust),st.brust],   // Kopf bis zum Hals starr – sonst läuft ein 1-px-Treppenversatz durchs Gesicht/Auge
+    [Y(z.taille),(st.brust+st.huefte)/2],[Y(z.huefte),st.huefte],[Y(z.knie),st.huefte*.3],[h,0]];
   const bell=y=>Math.exp(-(((y-Y(z.brust))/(h*.045))**2));
   const dxK=y=>naKurve(knX,y)+st.jigX*bell(y);
   const dyK=y=>{const bein=Math.max(0,Math.min(1,(h-y)/(h-Y(z.huefte))));return st.wipp*bein+st.jigY*bell(y)};
