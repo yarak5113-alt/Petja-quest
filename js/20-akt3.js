@@ -1,4 +1,4 @@
-// ================= Akt 3: Der Ausweg-Joint (siehe PLAN-AKT3.md) =================
+// ================= Akt 3: Der Ausweg-Joint =================
 // Rezept vom Pilzmeister: Ur-Spore (Pilzbeet der Gnome), geweihte Glut (Pope → Weihwasser → Schmied), echte Träne (Zwiebel in der Lounge-Lüftung)
 // + der Papierfilter vom alten Joint. Am Tisch bei Baba Jaga zusammenbauen → anzünden → zurück auf Wowas Sofa → Abspann.
 // Flags: recipe, a3 (Akt-3-Gegenstände verteilt), popeBack, weih, glutQ, glut, zwiebel, trQ, booked, zwIn, traene, sporeQ, ende
