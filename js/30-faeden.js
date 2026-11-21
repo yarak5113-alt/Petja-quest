@@ -27,7 +27,8 @@ wrapFn('see',function(orig){if(!(has('angel')&&!FL.fisch&&!FL.kater)||FL.kette)r
   if(FL.clubQ)L.push('Damit Madame eine Neue kriegt.','Damit der Müller sein „Mehl“ rausrückt.');
   if(FL.labQ)L.push('Damit die Gnome mich in ihre Höhle lassen.','Damit die Hexe mir hilft.');
   const end=FL.labQ?[['P','Damit ich nach Hause komm. Auf mein Sofa. Wo ich nichts tue.'],['P','…Na super.']]:[['P','Und wofür ich Teer brauch? Keine Ahnung. Aber im Märchen braucht man irgendwann alles.']];
-  say([['P','Mal kurz zusammenfassen.'],['P','Ich angle. '+L.join(' ')],...end],()=>orig())});
+  // Teilsätze einzeln übersetzen: der zusammengesetzte Satz hat keinen eigenen Eintrag in lang/
+  say([['P','Mal kurz zusammenfassen.'],['P',tr('Ich angle.')+' '+L.map(tr).join(' ')],...end],()=>orig())});
 
 // ---------- 3. Der Wels: Kusmitsch hat ihn doch gekriegt. Jetzt hängt er an der Hütte. Er ist kein normaler Fisch. ----------
 // Gemalt an die Hüttenwand rechts vom Fenster: am Schwanz an einem Nagel, Kopf nach unten, Barteln, Brustflossen mit Fingern und Schwimmhäuten,

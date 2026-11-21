@@ -240,7 +240,7 @@ function bone(x,X,Y,a,l){const c=Math.cos(a)*l/2,d=Math.sin(a)*l/2;x.strokeStyle
 function skull(x,X,Y,s){shadowAt(x,X,Y+5*s,9*s);const g=x.createRadialGradient(X+1.5*s,Y-2*s,0,X,Y,7*s);g.addColorStop(0,'#f0e8d4');g.addColorStop(1,'#8a8068');x.fillStyle=g;x.beginPath();x.ellipse(X,Y,5.5*s,6*s,0,0,7);x.fill();x.fillRect(X-3.5*s,Y+3*s,7*s,4*s);
   ell(x,X-2.2*s,Y,1.6*s,1.9*s,[20,14,10]);ell(x,X+2.2*s,Y,1.6*s,1.9*s,[20,14,10]);ell(x,X,Y+3*s,.8*s,1*s,[40,30,20])}
 function fallenSign(x,X,Y){shadowAt(x,X+20,Y+3,34);x.save();x.translate(X,Y);x.rotate(.18);wood(x,0,-11,52,12,0);x.strokeStyle='rgba(15,8,2,.8)';x.lineWidth=.8;x.strokeRect(0,-11,52,12);
-  x.fillStyle='rgba(200,60,40,.85)';x.font='bold 5.6px Georgia';x.fillText('BETRETEN',5,-6.5);x.fillText('VERBOTEN',5,-1.2);x.restore();x.save();x.translate(X+50,Y+6);x.rotate(-1.2);wood(x,0,-2.5,22,5,0);x.restore()}
+  x.fillStyle='rgba(200,60,40,.85)';x.font='bold 5.6px Georgia';{const[z1,z2=' ']=tr('BETRETEN VERBOTEN').split(' ');x.fillText(z1,5,-6.5);x.fillText(z2,5,-1.2)}x.restore();x.save();x.translate(X+50,Y+6);x.rotate(-1.2);wood(x,0,-2.5,22,5,0);x.restore()}
 function cauldron(x,X,Y){shadowAt(x,X,Y+2,30);x.save();x.globalCompositeOperation='lighter';dab(x,X,Y,40,[255,120,30],.25);x.restore();
   x.strokeStyle='#2a1c10';x.lineWidth=2;x.beginPath();x.moveTo(X-20,Y+2);x.lineTo(X,Y-40);x.lineTo(X+20,Y+2);x.moveTo(X,Y-40);x.lineTo(X+4,Y+4);x.stroke();
   for(let i=0;i<10;i++){const fx=X+(R()-.5)*14;dab(x,fx,Y-2-R()*6,4+R()*4,R()<.5?[255,140,30]:[255,210,90],.8)}

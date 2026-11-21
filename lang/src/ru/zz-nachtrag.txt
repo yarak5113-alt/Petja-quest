@@ -1,0 +1,48 @@
+# Nachtrag 2.57: Texte, die beim Durchlauf noch deutsch waren
+# Tastenleiste (Tooltip „Name (Taste)“ – der Name wird selbst übersetzt)
+~{} (H) => {} (H)
+~{} (Leertaste) => {} (Пробел)
+~{} (I) => {} (I)
+~{} (J) => {} (J)
+~{} (M) => {} (M)
+~{} (ESC) => {} (ESC)
+# Hover-Text an jedem Gegenstand in den Taschen
+~{} – Klick: untersuchen · ziehen: kombinieren oder benutzen => {} – клик: осмотреть · перетащить: совместить или использовать
+# Erfolg freigeschaltet
+~Erfolg: {} => Достижение: {}
+# Gemalte Schilder (zweizeilige Schilder werden als Ganzes übersetzt und am Leerzeichen geteilt)
+=BETRETEN VERBOTEN => ВХОД ВОСПРЕЩЁН
+=FINGER WEG! => РУКИ ПРОЧЬ!
+=LADEN => МАГАЗИН
+=BANJA => БАНЯ
+=GUTSCHEIN => КУПОН
+=# Säcke „Mehl“ => # мешка «муки»
+# Hausbau-Animation (59-bau-wiese.js)
+=Tag 1. Stamm für Stamm … => День 1. Бревно за бревном …
+=Tag 2. Die Wand wächst. Mein Rücken schrumpft. => День 2. Стена растёт. Спина отваливается.
+=Zwei Tage später: Fenster, Tür, Schornstein. => Через два дня: окна, дверь, труба.
+=Richtfest. Das halbe Dorf ist da. Also alle. => Новоселье. Пришла полдеревни. То есть все.
+# Lounge: Szene „Kleiner Unfall“ (55-nastja-beule.js)
+=(Oh nein. Nein, nein, nein. Nicht jetzt. Denk an Oma Dusja. Denk an den Wels. DENK AN DEN WELS!) => (О нет. Нет, нет, нет. Только не сейчас. Думай о бабе Дусе. Думай о соме. ДУМАЙ О СОМЕ!)
+=*hört mitten in der Bewegung auf, ihr Blick wandert langsam nach unten* … Na sieh mal einer an. => *замирает посреди движения, её взгляд медленно ползёт вниз* … Ну надо же.
+=*kommt ganz nah, beugt sich vor und grinst von unten zu dir hoch* Ist das ein Zauberstab in deiner Hose, Zwiebel, oder freust du dich nur, mich zu sehen? => *подходит вплотную, наклоняется и ухмыляется снизу вверх* Это у тебя в штанах волшебная палочка, Лучок, или ты просто рад меня видеть?
+=Das … das ist … mein Schlüsselbund. => Это … это … мои ключи.
+=Dein Schlüsselbund. Klar. Der zuckt ja auch immer so, wenn du ihn anguckst. => Ключи. Ну конечно. Они у тебя всегда так дёргаются, когда ты на них смотришь.
+=Mal sehen, ob der Schlüssel auch passt … => Посмотрим, подойдёт ли ключик …
+=*richtet sich auf und wischt sich gelassen die Hand am Strumpfband ab* Ups. Das kann jedem mal passieren. => *выпрямляется и спокойно вытирает руку о подвязку* Упс. С кем не бывает.
+=Drei Sekunden, Zwiebel. Ich hab Kerle gesehen, die beim Hinsetzen länger durchgehalten haben. => Три секунды, Лучок. Я видела мужиков, которые дольше садились на стул.
+=Das war … die Aufregung. Und der Wein. Und das Märchen. => Это … волнение. И вино. И сказка.
+=Ja, ja. Passiert den Besten. Dir halt nur schneller. => Да-да. Бывает с лучшими. Просто у тебя быстрее.
+=*zwinkert* Lehn dich zurück, der Tanz ist bezahlt. Für dich ist er zwar schon vorbei, aber ich tanz trotzdem zu Ende. => *подмигивает* Откинься, танец оплачен. Для тебя он, конечно, уже закончился, но я всё равно дотанцую.
+=SPLOOSH! => ПЛЮХ!
+# Neuigkeiten-Karte im Startmenü
+=NEU => НОВОЕ
+~NEU · Version {} · {} => НОВОЕ · Версия {} · {}
+=Alle Neuigkeiten ansehen › => Все новости ›
+=Richtfest => Новоселье
+=Hausbau auf der Wiese: Stamm für Stamm über Rutschbalken, das Dach Schindel für Schindel – und zum Richtfest steht das ganze Dorf vor dem Haus. => Стройка на лугу: бревно за бревном по слегам, крыша — дранка за дранкой, а на новоселье перед домом собирается вся деревня.
+=Alle Figuren haben jetzt richtige Hände mit Fingern und Daumen wie Petja, dazu Schuhe mit Sohle und Absatz. => У всех персонажей теперь настоящие руки с пальцами, как у Пети, и обувь с подошвой и каблуком.
+=Baba Jagas Hütte: neuer Hintergrund mit Fichten im Dunst, toten Bäumen mit Rinde und Bodennebel. => Избушка Бабы Яги: новый фон — ели в дымке, мёртвые деревья с корой и туман у земли.
+=Nastjas erstes Outfit wippt beim Tanz wieder sauber mit, ohne dass etwas verrutscht. => Первый наряд Насти снова аккуратно покачивается в танце, ничего не съезжает.
+=Englisch und Russisch: fehlende Texte nachgetragen (Tastenleiste, Hover-Texte, Schilder, Erfolge, Neuigkeiten, eine Szene in der Lounge). => Английский и русский: добавлены недостающие тексты (панель клавиш, подсказки при наведении, вывески, достижения, новости, сцена в лаунже).
+~Version {} · {} => Версия {} · {}

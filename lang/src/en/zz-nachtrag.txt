@@ -1,0 +1,47 @@
+# Nachtrag 2.57: Texte, die beim englischen Durchlauf noch deutsch waren
+# Tastenleiste (Tooltip „Name (Taste)“ – der Name wird selbst übersetzt)
+~{} (H) => {} (H)
+~{} (Leertaste) => {} (Space)
+~{} (I) => {} (I)
+~{} (J) => {} (J)
+~{} (M) => {} (M)
+~{} (ESC) => {} (ESC)
+# Hover-Text an jedem Gegenstand in den Taschen
+~{} – Klick: untersuchen · ziehen: kombinieren oder benutzen => {} – click: examine · drag: combine or use
+# Erfolg freigeschaltet
+~Erfolg: {} => Achievement: {}
+# Gemalte Schilder (zweizeilige Schilder werden als Ganzes übersetzt und am Leerzeichen geteilt)
+=BETRETEN VERBOTEN => KEEP OUT
+=FINGER WEG! => HANDS OFF!
+=LADEN => SHOP
+=BANJA => BANYA
+=GUTSCHEIN => VOUCHER
+=# Säcke „Mehl“ => # sacks of "flour"
+# Hausbau-Animation (59-bau-wiese.js)
+=Tag 1. Stamm für Stamm … => Day 1. Log by log …
+=Tag 2. Die Wand wächst. Mein Rücken schrumpft. => Day 2. The wall grows. My back shrinks.
+=Zwei Tage später: Fenster, Tür, Schornstein. => Two days later: windows, door, chimney.
+=Richtfest. Das halbe Dorf ist da. Also alle. => Topping-out party. Half the village is here. So, everyone.
+# Lounge: Szene „Kleiner Unfall“ (55-nastja-beule.js)
+=(Oh nein. Nein, nein, nein. Nicht jetzt. Denk an Oma Dusja. Denk an den Wels. DENK AN DEN WELS!) => (Oh no. No, no, no. Not now. Think of Granny Dusya. Think of the catfish. THINK OF THE CATFISH!)
+=*hört mitten in der Bewegung auf, ihr Blick wandert langsam nach unten* … Na sieh mal einer an. => *stops mid-move, her gaze slowly drifts downwards* … Well, well, look at that.
+=*kommt ganz nah, beugt sich vor und grinst von unten zu dir hoch* Ist das ein Zauberstab in deiner Hose, Zwiebel, oder freust du dich nur, mich zu sehen? => *comes right up close, leans in and grins up at you* Is that a magic wand in your trousers, Onion, or are you just happy to see me?
+=Das … das ist … mein Schlüsselbund. => That … that's … my keys.
+=Dein Schlüsselbund. Klar. Der zuckt ja auch immer so, wenn du ihn anguckst. => Your keys. Sure. And they always twitch like that when you look at them.
+=Mal sehen, ob der Schlüssel auch passt … => Let's see if the key fits …
+=*richtet sich auf und wischt sich gelassen die Hand am Strumpfband ab* Ups. Das kann jedem mal passieren. => *straightens up and calmly wipes her hand on her garter* Oops. Happens to everyone.
+=Drei Sekunden, Zwiebel. Ich hab Kerle gesehen, die beim Hinsetzen länger durchgehalten haben. => Three seconds, Onion. I've seen blokes last longer sitting down.
+=Das war … die Aufregung. Und der Wein. Und das Märchen. => That was … the excitement. And the wine. And the fairytale.
+=Ja, ja. Passiert den Besten. Dir halt nur schneller. => Yeah, yeah. Happens to the best of them. You just got there quicker.
+=*zwinkert* Lehn dich zurück, der Tanz ist bezahlt. Für dich ist er zwar schon vorbei, aber ich tanz trotzdem zu Ende. => *winks* Sit back, the dance is paid for. It's already over for you, but I'll dance to the end anyway.
+=SPLOOSH! => SPLOOSH!
+# Neuigkeiten-Karte im Startmenü
+=NEU => NEW
+~NEU · Version {} · {} => NEW · Version {} · {}
+=Alle Neuigkeiten ansehen › => See all news ›
+=Richtfest => Topping Out
+=Hausbau auf der Wiese: Stamm für Stamm über Rutschbalken, das Dach Schindel für Schindel – und zum Richtfest steht das ganze Dorf vor dem Haus. => House-building on the meadow: log by log up the skids, the roof shingle by shingle – and for the topping-out party the whole village stands in front of the house.
+=Alle Figuren haben jetzt richtige Hände mit Fingern und Daumen wie Petja, dazu Schuhe mit Sohle und Absatz. => Every character now has proper hands with fingers and thumbs like Petya, plus shoes with soles and heels.
+=Baba Jagas Hütte: neuer Hintergrund mit Fichten im Dunst, toten Bäumen mit Rinde und Bodennebel. => Baba Yaga's hut: new background with spruces in the haze, dead trees with bark and ground fog.
+=Nastjas erstes Outfit wippt beim Tanz wieder sauber mit, ohne dass etwas verrutscht. => Nastya's first outfit bounces cleanly again during the dance, without anything slipping out of place.
+=Englisch und Russisch: fehlende Texte nachgetragen (Tastenleiste, Hover-Texte, Schilder, Erfolge, Neuigkeiten, eine Szene in der Lounge). => English and Russian: missing texts added (hotkey bar, hover texts, signs, achievements, news, a scene in the lounge).

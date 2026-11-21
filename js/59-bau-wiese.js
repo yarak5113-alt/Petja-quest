@@ -66,11 +66,11 @@ function bwLeiter(x,ax,ay,bx,by){const L=Math.hypot(bx-ax,by-ay),a=Math.atan2(by
 
 // ----- Dorfbewohner für die Schlussszene (fertige Sprites aus dem Spiel; Box + Fußlinie in Figuren-Einheiten) -----
 function bwLeute(){const bild=h=>{if(!h)return null;const im=new Image();im.src=h;return im},href=e=>e&&(e.getAttribute('href')||e.getAttribute('xlink:href'));
-  const L=[{n:'Oma',im:bild(href($('#omaimg'))),box:[-46,-200,92,204],fuss:2,X:140,Y:470,s:1},
-    {n:'Opa',im:bild(href($('#opaimg'))),box:[-44,-184,88,188],fuss:1,X:250,Y:484,s:1.1,flip:1},
-    {n:'Kusmitsch',im:bild(href($('#fishimg'))),box:[-64,-142,134,224],fuss:82,X:560,Y:478,s:1.02},
-    {n:'Fjodor',im:bild(typeof A3IMG!='undefined'&&href(A3IMG.schmied)),box:[-56,-220,112,224],fuss:0,X:690,Y:468,s:1.12,flip:1}];
-  if(typeof FL!='undefined'&&FL.popeBack)L.push({n:'Pope',im:bild(typeof A3IMG!='undefined'&&href(A3IMG.pope2)),box:[-56,-220,112,224],fuss:0,X:50,Y:462,s:1.05});
+  const L=[{im:bild(href($('#omaimg'))),box:[-46,-200,92,204],fuss:2,X:140,Y:470,s:1},
+    {im:bild(href($('#opaimg'))),box:[-44,-184,88,188],fuss:1,X:250,Y:484,s:1.1,flip:1},
+    {im:bild(href($('#fishimg'))),box:[-64,-142,134,224],fuss:82,X:560,Y:478,s:1.02},
+    {im:bild(typeof A3IMG!='undefined'&&href(A3IMG.schmied)),box:[-56,-220,112,224],fuss:0,X:690,Y:468,s:1.12,flip:1}];
+  if(typeof FL!='undefined'&&FL.popeBack)L.push({im:bild(typeof A3IMG!='undefined'&&href(A3IMG.pope2)),box:[-56,-220,112,224],fuss:0,X:50,Y:462,s:1.05});
   return L.filter(q=>q.im)}
 function bwFigur(x,q,t){if(!q.im.complete||!q.im.naturalWidth)return;const[bx,by,bw,bh]=q.box,atm=1+Math.sin(t*2.2+q.X)*.008;   // leichtes Atmen
   ell(x,q.X,q.Y+2,bw*q.s*.36,5,[10,20,6],.35);x.save();x.translate(q.X,q.Y);x.scale(q.flip?-q.s:q.s,q.s*atm);x.drawImage(q.im,bx,by-q.fuss,bw,bh);x.restore()}
@@ -119,6 +119,6 @@ function hausShots(){const pet=petPic(1),petF=petPic(0),T=bwTeile(),bg=wieseBG()
     drawPet(x,petF,650,478,.9,0);if(t>1.6)bwRumms(x,t-1.6)}},
   // Schlussbild: das ganze Dorf steht mit Petja vor dem neuen Haus, dann langsam ausblenden
   {d:5.6,cap:'Richtfest. Das halbe Dorf ist da. Also alle.',draw(x,t){x.drawImage(bg,0,0);bwZeig(x,T.fertig);
-    const alle=[...leute,{n:'Petja',P:1,X:400,Y:490}].sort((a,b)=>a.Y-b.Y);
+    const alle=[...leute,{P:1,X:400,Y:490}].sort((a,b)=>a.Y-b.Y);
     alle.forEach(q=>{if(q.P){ell(x,q.X,q.Y+2,34,5,[10,20,6],.35);drawPet(x,petF,q.X,q.Y,.92,0)}else bwFigur(x,q,t)});
     const a=Math.max(0,Math.min(1,(t-4.2)/1.2));if(a>0){x.fillStyle='rgba(0,0,0,'+(a*.85)+')';x.fillRect(0,0,800,500)}}}]}

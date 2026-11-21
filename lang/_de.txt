@@ -10,6 +10,7 @@ t0l45e	.slotc
 ## 01-malwerkzeuge.js
 13thqhr	Fehler:
 ux28qq	(Zeile
+18up0y9	BETRETEN VERBOTEN
 ## 02-orte-sumpf-see-dorf.js
 1i2r6d5	Sumpf der
 13osbww	ertrunkenen Huren
@@ -179,7 +180,10 @@ ho911t	*Drei Minuten später*
 igtiz9	Komm wieder, Petja. Aber bring Trinkgeld mit.
 1qfrgfs	Zurück an die Bar
 o0b4oz	Hände aufs Sofa, Süßer. Hausregel.
+barvp0	*SCHLUCK* … Ist das … erlaubt?
 1e1cfq2	*schluck*
+3mhyjq	*haucht dir ins Ohr* Du bist fast am Ziel, Süßer … Mal sehen, ob du dir den Hauptgewinn leisten kannst.
+1cd3umw	*haucht dir ins Ohr* Sitzt du bequem, Süßer? Ich spür da was. …Hoffentlich ist das dein Portemonnaie.
 q87ds7	*schnief* … Was … was ist das? Meine Augen!
 18p60yk	*SCHNIEF* Ich weine! Ich weine doch nie! Dreihundert Jahre nicht!
 r4zf36	Halt still. *hält die Phiole unters Kinn*
@@ -238,6 +242,7 @@ bnd27v	Eine Holzkirche mit Zwiebeltürmen. Und ein Friedhof mit blauen Gittern.
 ht7hm6	.room
 ## 06-dialog-stimme.js
 1d80x1j	Petja
+bzkrxw	Kater
 1g35d77	Krähe
 rjuwe6	Sonne
 1n9smtc	Fliegenpilz
@@ -613,7 +618,6 @@ he6asu	Holzkirche
 tbyusp	Gräber
 1hdgync	„Fjodor, 1931–2024. Hat nie gewonnen.“ Wobei, was?
 1c7itq1	Plastikblumen. Die halten länger als die Leute.
-bzkrxw	Kater
 10a80xp	Hier, Mieze. Ein Fisch. Frisch aus dem See.
 1smolep	*der Kater schnappt sich den Fisch und verschwindet hinter der Kirche*
 161zj9y	Und da liegt... Omas Gebiss. Na lecker.
@@ -1276,7 +1280,9 @@ oyyg2s	Was war nochmal der Plan? Ach ja.
 1bj89zf	Oder ich kümmere mich erst um:
 dplmny	Und wenn ich nicht weiterkomme: Leute fragen. Mehrmals. Irgendwer quatscht immer.
 1ym367f	Eingesteckt:
+1ekpmgw	Neue Nebenquest:
 ehbpqs	Neuer Auftrag:
+1546d47	Nebenquest erledigt:
 1m4qraz	Auftrag erledigt:
 y9n0av	Aufträge aktualisiert
 1qpsxb2	So spielst du
@@ -1397,7 +1403,7 @@ bigh3w	Ausweg-Joint
 1omd8b4	[data-a3]
 1p91qn4	Nastja macht sich frisch. Ich hab vielleicht eine Minute.
 16oeur8	(Und die Lüftung da oben bläst direkt aufs Sofa …)
-1xldkb5	WEG!
+3j9s2g	FINGER WEG!
 17h9qud	Entschuldigung … Sind Sie zufällig der Pope aus dem Dorf?
 117jx9q	*hicks* Vater Ignati. Zu Diensten. Ich bin nur kurz hier. Auf ein Bier.
 1k3fyzj	An Ihrer Kirche hängt ein Zettel. „Kollege kommt gleich wieder.“ Von 1993.
@@ -1510,6 +1516,11 @@ u003m2	Ein Tropfen von der Träne dazu.
 bh7ybj	Aber da sind so lustige blaue Pilze drin …
 1o42k99	*starrt auf die Pilze*
 17loldt	… Na super.
+1hacr3o	*Tür knallt. Stille.*
+1z04ro7	(Baba Jaga. Gnome. Eine Nymphe, die mich Zwiebel nennt.)
+1ry5ocq	(War das alles … einfach nur ein Traum?)
+xhjr22	*zieht ein Birkenblatt aus den Haaren*
+1uakexy	… Hm.
 x04l6m	der Typ auf dem Sofa
 e9s0xt	der Grund für alles
 yqmuoj	Hexe, Köchin, Lebensberaterin
@@ -1916,6 +1927,787 @@ hh6z6t	Hat mich bei Baba Jaga verpfiffen. Krähen sind die Stasi des Waldes.
 4pkw54	Noch niemanden getroffen. Gut so, eigentlich.
 10k4la5	… Da steckt noch mehr dahinter.
 quph13	Notizbuch: Neues über eine Figur (Taste C)
+## 36-zweite-taenzerin.js
+1nkzu2w	Anwerbebogen
+ilaoli	Madames neuer Bogen: Schön · Bühnenerfahrung · Frech · Will raus. Darunter in Lippenstift: „Die Zweitbeste reicht. Die Beste hab ich schon.“
+1s5t2j0	Strass-Diadem
+1y42c8t	Nastjas altes Diadem. Strass, Blech und ein roter Glasstein. Piekt angeblich. Glitzert garantiert.
+djcn2p	Volles Haus. Marfa an der Stange, die Scheine fliegen. Madame zählt schon.
+1ficd6d	Die Jungs wedeln wieder. Diesmal für Marfa. Nastja guckt vom Rand zu und trinkt.
+1eg6ify	*gleitet an der Stange runter* Na, Bauer? Guck nicht so. Oder guck ruhig. Aber dann zahl auch.
+y5tiq	Nastja trinkt, ich tanze. Sie nennt es Pause. Ich nenne es Thronfolge. Ihre Stammgäste nenne ich jetzt meine.
+1tcrllw	Hundert Jahre Schlamm zwischen den Zehen. Jetzt hab ich Scheine im Strumpfband. Rate mal, was sich besser anfühlt.
+i39ktz	Wenn einer grabscht, lächle ich. Und dann lächelt er nie wieder. Willst du’s ausprobieren? *zwinkert*
+dmcxj7	Der Choker verdeckt, was die Kaufmannsfrau mit ihren Händen gemacht hat. Da dürfen deine Hände nicht hin. Andere Stellen … verhandelbar.
+137726k	Komm näher, Süßer. Noch näher. … So. Jetzt riechst du nach mir. Viel Spaß, das Nastja zu erklären.
+l2xndq	Petja, Süßer. Auf ein Wort. Unter uns.
+1xpeoxk	Nastja ist ein Knaller. Aber ein Knaller brennt ab. Zwischen den Shows trinkt sie mir die Bar leer.
+t55m9v	Ich brauche eine Zweite. Eine, die die Stange übernimmt, wenn Nastja das Glas übernimmt.
+1r5bpml	Und wieder aus dem Sumpf?
+7wa9kq	Wo sonst kriegt man heute noch Personal, das nicht nach Lohn fragt? Hier, mein neuer Anwerbebogen. Diesmal mit Bühnenerfahrung.
+1qqr6gf	Das ist kein Muss, Süßer. Nur eine Gefälligkeit. Aber ich vergesse Gefälligkeiten nicht. In keine Richtung.
+t7owb0	(Ein Nebenjob. Den Ausweg-Joint vergess ich deswegen nicht.)
+1bljyzg	Und? Schon eine gefunden? Die Beste hab ich ja. Mir reicht die Zweitbeste.
+1kcj6e8	Schön, Bühnenerfahrung, frech, will raus. Alles vier, Süßer. Frag die Mädels im Sumpf aus und kreuz ehrlich an.
+1vleowr	Eine Krone? Für eine Nymphe? *lacht* Frag Nastja. Die hat mehr Glitzerkram als ich Schulden.
+1kescyz	Hör genau hin, was sie dort unten hält. Jede hat ihren Preis. Wie oben auch.
+16z9j3e	Marfa! Eine echte Königin. Sie hat dem ersten Gast das Trinkgeld aus der Brusttasche gelächelt. Ohne Hände.
+ouv2uo	Und Nastja hat endlich Pause. Die verbringt sie am Tresen. Mit meinem besten Rotwein. Na ja.
+1elnciq	Du hast was gut bei mir, Süßer. Ich vergesse das nicht.
+3f7jdr	(Bei Madame was gut haben. Ich weiß nicht, ob das ein Geschenk ist oder eine Drohung.)
+jg1v4w	Zwei Tänzerinnen, volles Haus. So muss das, Süßer.
+1i5a4eb	Marfa tanzt, Nastja trinkt, ich zähle. Jede macht, was sie am besten kann.
+1bms97l	Wenn du wieder mal eine Gefälligkeit loswerden willst – du weißt, wo ich wohne.
+13fiac1	Weißt du, was ich an dir mag, Zwiebel? Du guckst mir in die Augen. Meistens. Die anderen Kerle reden mit meinem Ausschnitt.
+1461czu	Im Sumpf hat mich mal ein Wassermann angebaggert. Kalte Hände, kalte Füße, kalter … na ja. Du bist wenigstens warm. Glaub ich.
+120winf	Sag mal ehrlich: Hast du beim Tanz an deine Oma gedacht, damit nichts passiert?
+1900g1q	… Vielleicht.
+117f3wg	*lacht* Hat nicht geklappt, Süßer. Ich saß drauf.
+k48lta	Wenn du mir noch einmal so auf die Lippen starrst, berechne ich das als Privattanz. Halbe Stunde. Mit Zuschlag.
+79oebw	Ich hab Zinaida gesagt, du bist mein Stammgast. Sie hat gefragt, was du zahlst. Ich hab gesagt: Nerven.
+1pkcr0p	Weißt du, was Männer und der Sumpf gemeinsam haben? Wer zu lange drinsteckt, kommt nicht mehr raus. Bleib in Bewegung, Süßer.
+rmxp4h	Dreihundert Jahre hab ich im Schilf die Unschuld vom Lande gespielt. Dann kommst du mit Rauch im Haar und Gemüse in der Tasche. Das Leben ist ein Witz, Zwiebel. Ein schmutziger.
+10pp9pl	Wenn du hier rauskommst, aus diesem Märchen … vergiss mich nicht ganz, ja? Und wenn doch, dann vergiss wenigstens meinen Hintern nicht.
+4d8ajq	*nippt* Pause, Zwiebel. Marfa hat die Stange, ich hab den Wein. Und ehrlich: Die Stange war nie so gut wie der Wein.
+ftxe2u	Sie tanzt nicht schlecht, die Alte. Für eine, die hundert Jahre im Schlamm lag. *trinkt* Ich lag dreihundert drin und hab trotzdem mehr Hüfte.
+lxzxbk	*schwenkt das Glas* Rotwein. Der einzige Mann hier, der mich nie enttäuscht hat. Und der Einzige, der nicht zu früh fertig ist.
+1b8f8ed	Mein Diadem steht ihr. Sag ihr das nicht. Sag ihr lieber, es piekt. Überall.
+1gljg90	*schenkt zwei Gläser ein* Auf was trinken wir, Zwiebel?
+dhmbq1	Auf dich.
+1vb14v	*klirr* Gute Wahl. Die einzig richtige.
+fcreu3	*schluck* … Das ist kein Wein, das ist Lack.
+xqg4v2	Zinaidas bester. Geht auf deine Rechnung. Kleiner Scherz. … Oder?
+5ym0kq	*klirr* Auf die Frösche! Ohne die hätte ich nie gewusst, wie wenig man von Männern erwarten kann.
+1hukh9q	Danke.
+wey9if	Dich hab ich nicht gemeint. Noch nicht.
+eajiur	Auf ex, Zwiebel! *kippt* … Na? Wird dir warm? Mir auch. Aber das liegt nicht am Wein.
+ktxzf5	*stößt an und beugt sich vor* Weißt du, warum man sich beim Anstoßen in die Augen schaut? Damit man nicht woanders hinschaut. … Du hast verloren.
+1k0yzcz	*klirr* Auf Gemüse. Und auf Männer, die wissen, wo man es hinsteckt.
+mrngpk	In die Lüftung.
+1kcobv9	*prustet in den Wein* Genau da, Süßer.
+zrlykf	Sie leckt sich die Lippen und lässt dich nicht aus den Augen.
+1masuv8	Was willst du mit ihr machen?
+1ee5of1	👑 Nach einer Krone für Marfa fragen
+1m710zk	💃 Privattanz
+g4emx9	💬 Ein Gespräch führen
+b3vgck	🍷 Mit ihr anstoßen
+1mh17yb	[data-a]
+x2y4nn	Du bist fast am Ziel, Süßer … Mal sehen, ob du dir den Hauptgewinn leisten kannst.
+orii5v	Hände aufs Sofa, Zwiebel. … Ach, scheiß drauf. Heute dürfen die Hände hin, wo sie wollen. Fast.
+gcd8fe	Dreihundert Jahre hat mich keiner rumgekriegt. Du hast es mit einer Zwiebel fast geschafft. Fast, Süßer. Das letzte Stück musst du dir verdienen.
+fi4p15	Zinaida sagt, ich soll dich nicht so ansehen, sonst berechnet sie dir Miete. Für den Platz in meinem Kopf. Und in meinem Bett.
+15671ie	Noch zwei Gläser und ich vergess, dass du nie Trinkgeld gibst. Noch drei, und ich vergess meine Hausregeln. Alle.
+oxmkrj	*fährt dir mit dem Finger über die Brust* Weißt du, was unter dem Korsett ist? Noch mehr Nastja. Und die ist heute nicht im Angebot. Sie ist ein Geschenk.
+4k7sv8	*setzt sich auf deinen Schoß und hält dir das Glas an die Lippen* Trink, Zwiebel. Aus meinem Glas. Da ist schon mein Lippenstift dran. Gratisprobe.
+1xkqstk	*klirr* Auf uns. … Guck nicht so. Ja, ich hab „uns“ gesagt. Erzähl’s Marfa, und ich ertränk dich im Wein.
+1v0mbv2	Auf ex! *kippt und leckt sich die Lippen* … Wenn du wüsstest, was ich gerade denke, würdest du rot werden. Du wirst schon rot. Süß.
+l2wh2w	Nastja … noch ein Privattanz?
+io7p0r	Für dich gibt’s heute die Version, die Zinaida verboten hat, Süßer.
+1sntuky	Hände aufs Sofa. … Oder auch nicht. Mal sehen, wie lange du durchhältst.
+80ruqc	Für dich, Zwiebel? Freundschaftspreis: umsonst. Erzähl’s keinem, sonst wollen das alle.
+13tno3p	Hände aufs Sofa. Und diesmal ohne Gemüse.
+1x5p8ky	Nastja … hast du zufällig eine Krone? Für Marfa. Aus dem Sumpf.
+5hwpla	Marfa? Die alte Giftspritze? *lacht* Ich hab da was. Aber das kriegt nicht jeder, Zwiebel.
+ik0q96	So gut kennen wir uns noch nicht. Tanz mit mir, trink mit mir, red mit mir. Nicht nur, wenn du was willst.
+1a6lza0	Das Diadem? Erst ein bisschen Liebe, Zwiebel. Dann vielleicht Schmuck. So läuft das bei Frauen. Und bei Banken.
+4n1o43	Nastja … Marfa will nur mit Krone aus dem Sumpf.
+5am34l	Typisch. Hundert Jahre Schlamm und immer noch Ansprüche wie eine Zarin.
+13gmzfl	*kramt in ihrem Ausschnitt* Hier. Mein altes Strass-Diadem. Ich trag’s eh nicht mehr, es piekt. Überall.
+1nc6dzj	Aber wenn sie mir die Stange klaut, Zwiebel, dann sind wir geschieden.
+1v61gj7	Wir sind doch gar nicht …
+fw7sip	Eben.
+qyiu6t	Publikum? Süßer, ich hab auf Kaufmannshochzeiten getanzt, bis die Tische brachen. Und die Ehen. Der Bräutigam hat mir sein Erbe ins Mieder gesteckt. Die Braut ihren Dolch.
+vrskbp	Mit Krone? Dann soll die Welt mal schauen, wer da aus dem Sumpf steigt. Tropfnass und unbezahlbar.
+i0tk2r	Raus? Pff. Hier unten bin ich Königin. Da oben wär ich nur eine nasse Frau mit schönem Busen und ohne Krone.
+6giy10	Wie mit Schlamm. Erst reinlegen, dann drübersteigen. Und wenn er Glück hat, dazwischen ein bisschen wälzen.
+1j2uw5o	Nichts mehr. Die Krone sitzt. Ich warte nur noch auf deinen Bogen, Bauer.
+cjfnbj	Mein Thron. Na gut, ein Baumstumpf. Eine Königin ohne Krone ist nur eine Frau mit Haltung und nassen Unterröcken. Bring mir eine Krone, Bauer, dann zeig ich dir, wie ich mich bedanke.
+2tsbml	Primaballerina, 1903! Der Zar hat geklatscht. Oder gehustet. Jedenfalls hat er Geräusche gemacht.
+14ykcm5	Oh ja! Applaus! Blumen! Und eine Treppe, die ich hinunterschreiten kann.
+1ac1shp	Männer hält man wie Pudel, mein Lieber. An der Leine, mit Schleifchen.
+1pmehbp	Nichts. Nur die Knie. Die sind jetzt aus Schlamm.
+ofb4qe	Publikum? Die Aale gucken mir beim Blubbern zu. Zählt das?
+1wr9n0b	Ich setz mich drauf. Dann ist Ruhe.
+193oj1r	Die Schwerkraft. Und die Würmer. Die sind wie Familie.
+1lq1hu4	Getanzt? Ich hab geschlagen. Manchmal im Takt.
+1oo38o7	Mit der Faust. Nächste Frage.
+102vpq5	Nichts. Nur dass ich noch nicht weiß, wen ich zuerst erwürge.
+1la7ipu	*klapper* Ich tanze den Knochentanz. Jede Nacht. Alleine. Ohne Zuschauer.
+1uoi26g	Höflich, Jungchen. Ich biete ihnen Tee an. Aus Sumpfwasser.
+1lh5m0o	*klapper* Der Fluch. Und meine Nase. Irgendwo hier liegt meine Nase.
+lwbn8j	Ich? Ich bin doch schon angeworben, Süßer.
+xtwtke	Raus? Bin ich längst.
+1vifu6u	Das weißt du doch.
+1ppdm5p	Nichts. Ich bin im Banja.
+1asatv1	Hast du schon mal vor Publikum getanzt?
+jrtxx7	Wie gehst du mit Männern um?
+1ltzn65	Was hält dich hier unten?
+183gbpn	Das Diadem anbieten
+1afj6f2	Bühnenerfahrung
+7twdzz	Frech
+1jvp120	.qb[data-q]
+1r0c93d	.dia
+u6ockd	„*setzt das Diadem auf* Strass. Billig. Wunderschön. Wie ich früher. … Na gut, Bauer. Für eine Krone steig ich aus dem Schlamm. Du darfst mir dabei die Hand geben. Nur die Hand.“
+ehk48p	Hm. Ich glaube, ich hab sie falsch eingeschätzt. Der Bogen stimmt nicht.
+1wolhs9	Der Bogen stimmt. Marfa passt fast perfekt – nur raus will sie nicht. Was hält sie hier unten?
+2qknk6	Der Bogen stimmt. Aber Madame will alle vier Kreuze.
+if1fhl	Marfa. Madame Zinaida sucht eine Königin für ihre Bühne. Mit Spiegel, Scheinwerfer und Männern, die zahlen.
+33w4de	Männer, die zahlen? So hab ich sie am liebsten. Gleich nach denen, die schweigen. Und die, die beides können, heirate ich. Kurz.
+5cwjew	Ich komme. Sag deiner Madame: Die Königin des Sumpfs gibt sich die Ehre.
+138frva	(Die Zweitbeste. Madame wird zufrieden sein.)
+6nbvpf	Die zweite Tänzerin
+1clawdq	Madame Zinaida will eine zweite Tänzerin, damit Nastja Pause machen kann. Kein Muss – aber Madame vergisst keine Gefälligkeit.
+1agt4p2	Die Zweitbeste im Sumpf finden
+7ti2c1	Mit dem Anwerbebogen in den Sumpf, die Nymphen anklicken, ausfragen und den Bogen ehrlich ausfüllen. Gesucht: schön, Bühnenerfahrung, frech, will raus.
+2j4a04	Eine Krone für Marfa
+1wn7iiq	Mit dem Diadem in den Sumpf zu Marfa und es ihr im Gespräch anbieten.
+1qi090g	Nastja hat so ein Glitzerding. Aber das gibt sie nur jemandem, den sie richtig mag: öfter mit ihr reden (Beziehung im Notizbuch, Taste C).
+1ljyyay	Marfa anwerben
+l0s2qd	Im Sumpf Marfa anklicken und den Bogen ausfüllen. Mit Krone will sie raus.
+80raz5	Madame Bescheid sagen
+1dcqeye	Zurück ins Banja zu Madame Zinaida.
+8rvfrs	Die Beste hat Madame schon. Wer im Sumpf kommt gleich danach?
+1l37c4x	Im Sumpf hinter der Birkensperre.
+q8xztq	Eine Krone. Wer hier hat Glitzerkram und mag mich wenigstens ein bisschen?
+thgeum	Im Banja. Nastja steht an der Stange.
+1gbeu24	Jetzt hat sie, was sie wollte. Jetzt will sie bestimmt.
+1hbmfu0	Im Sumpf.
+cg0mwn	Madame wartet auf gute Nachrichten.
+1kwrga7	Im Banja.
+1hb9r3l	Nebenquest
+1gnupj1	Nymphe, jetzt zweite Tänzerin im Banja
+1xrz8uy	War mal die teuerste Frau im ganzen Gouvernement. Lächelt, wenn sie droht. Droht, wenn sie lächelt.
+6cmz9q	Geht nur mit Krone aus dem Sumpf. Eine Königin ohne Krone ist für sie bloß eine Frau mit Haltung.
+bfssx2	Tanzt jetzt im Banja an der Stange, mit Nastjas altem Strass-Diadem. Der Choker verdeckt die Würgemale. Ich frag nicht.
+## 37-beziehungen.js
+5qxt17	Feindselig
+khm392	Misstrauisch
+1spd2m0	Neutral
+d3l3e1	Freundlich
+k2cg76	Vertraut
+1x2z6ne	Eng verbunden
+1klzzan	Verrückt nach dir
+1nqkbo7	right:50%
+8m0z4y	left:50%
+1efsbro	Beziehung
+ff3gnk	mag dich mehr
+qcdv39	mag dich weniger
+gdqaqt	Beziehung zu
+## 39-enden.js
+174kp49	Nastjas Polaroid
+1w3chbp	Nastja an der Stange, mit Zwinkern und Schmollmund. Auf dem weißen Rand in Kugelschreiber: „Vermiss dich, Zwiebel ♥“. Hat sie geschrieben, bevor ich überhaupt weg bin.
+qa9deh	Vermiss dich, Zwiebel ♥
+zz4oa6	*kramt eine Sofortbildkamera hinter dem Tresen hervor* Halt mal still, Zwiebel. … Nein, warte. Andersrum. Ich bin das Motiv.
+19htnab	*posiert, zwinkert* *KLICK* … *wedelt mit dem Foto* Nicht gucken, das muss erst entwickeln. Wie du.
+1hbnaka	*schreibt etwas auf den Rand* Hier. Damit du mich nicht vergisst, wenn du in deine echte Welt verschwindest.
+fzn90g	Was steht da?
+1dt5mym	Lies es zu Hause, Süßer. Und häng mich irgendwo hin, wo du jeden Tag hinguckst.
+631q0z	(Mein Herz klopft. Oder der Wein. Eins von beiden.)
+doq73m	📸 Nastjas Polaroid steckt in deiner Tasche.
+10hz1gv	Wie geht’s weiter?
+1m32y28	Alles liegt auf dem Tisch. Baba Jaga schaut dich an.
+1wbrtcg	🚬 Den Ausweg-Joint drehen
+15dn92a	Zurück in die echte Welt
+39v0ai	🌲 Hierbleiben
+oiebld	Ein Zahnrad im Märchen werden
+8iy1k5	Wissen Sie was, Frau Jaga? … Ich bleibe.
+1mmzugd	Wie bitte?
+6orbvf	Drüben bin ich mein eigenes Problem. Hier bin ich wenigstens das Problem von allen.
+m8wurz	*lacht krächzend* Dummkopf. Aber mein Dummkopf. Die Zutaten kommen in den Schrank. Für schlechte Zeiten.
+pi44rl	Na, Langer? Du bist ja immer noch da. Dann trag mir die Kohlen rein. Und Finger weg von meinem Gebiss.
+199fnqv	Bleibst du, Sohnemann? Dann hilf mir mit dem Dach. Teer ist noch da. Und Selbstgebrannter. Den teilen wir gerecht: ich zwei Drittel.
+1xjl17s	Der Lange bleibt? Gut. Wir brauchen einen, der an die oberen Regale kommt. Lohn: eine Laterne. Leihweise.
+1j8wt2w	Na, Zahnrad? Morgen früh Würmer sammeln. Für die Suppe.
+52usfh	Jawohl, Frau Jaga.
+p3ilfo	(Drüben merkt Wowa erst, dass ich weg bin, wenn ihm das Feuerzeug fehlt.)
+1kfx727	(Hier merkt es jeder. Das ist neu.)
+19a80nt	*kramt in der Hosentasche* … Moment.
+1amr86k	Das Polaroid. Es ist mitgekommen.
+1b1x4x6	Da. Über dem Schreibtisch. Da guck ich jeden Tag hin.
+44lbtf	(Wowa wird fragen, wer das ist.)
+g0jwa7	(Ich werd sagen: eine Bekannte. Aus dem Sumpf.)
+1jhpw3j	Wahres Ende: Ein Foto über dem Schreibtisch
+1dqbdof	Manche Märchen nimmt man mit nach Hause.
+jn3nvj	Ende: Das Zahnrad
+fsg7du	Petja blieb im Märchen. Wowa sucht noch sein Feuerzeug.
+x3tuly	.end
+y8jtq7	.end.small
+17pti5o	Gefundene Enden:
+## 41-nastja-vip.js
+ghryc9	Mach es dir bequem, Süßer … gleich wird es hier drin deutlich wärmer.
+qpfg5y	*haucht* Augen zu, Zwiebel. … Meine sind auch zu. Das ist nur gerecht.
+zilv3e	*hört Strapse schnalzen* … *SCHLUCK*
+1v7997p	*öffnet ein Auge, zieht die Braue hoch* Na? Das hier hat Zinaida verboten. Herzinfarkte sind schlecht fürs Geschäft.
+16djhf3	Ich … äh … meine Hände sind auf dem Sofa. Beide. Glaub ich.
+m8pxno	*haucht* Ganz ruhig atmen, Süßer. Wenn du jetzt umkippst, tanz ich trotzdem zu Ende. Und morgen erzähl ich allen, du hättest gebettelt.
+ke4t7	*Fünf Minuten später*
+a3nuxv	(Ich glaube, ich hab vergessen, wie man atmet. Und wie ich heiße.)
+9bwh86	*zwinkert* Das Outfit bleibt unter uns, Zwiebel. Sonst muss ich dich heiraten. Oder umbringen. Je nach Laune.
+## 42-komfort-plus.js
+fsi4we	Ein Joint-Stummel. Das letzte Stück meiner Würde. Leicht angekokelt.
+pzm3dq	Frisch geschärft. Jetzt schneidet sie Birken. Vorher hat sie nur Ausreden geschnitten.
+esmjno	Rostiger als Opas Witze. Und genauso stumpf.
+1kwdl7r	Ein Apfel. Gesund, sagt man. Ich nutz ihn lieber als Wurfgeschoss. Das ist auch Sport.
+1hzb108	Ein Stock. Mit Schnur dran wär er eine Angel. Ohne Schnur ist er … ein Stock. So wie ich ohne Kaffee.
+dkzwjl	Schnur. Zum Angeln, zum Knoten, zum … nein. So schlimm ist es noch nicht.
+1r3qifn	Stock, Schnur, Sicherheitsnadel. Meine bisher größte Ingenieursleistung. Traurig, eigentlich.
+9ljzm0	Neun blaue Pilzstücke. Wenn Mama wüsste, was ich in der Tasche hab. Sie würde fragen, ob ich genug esse.
+45jlob	Frische Traumschwämme. Leuchten blau. Ich ess die nicht. Ich hab aus dem letzten Mal gelernt. Glaub ich.
+1qeziog	Baba Jagas Karte. Halb verbrannt. Wie meine Pläne fürs Wochenende.
+vegf3	Madames Wunschliste: schön, frech, will raus. Ich bin keins davon. Okay, raus will ich.
+1ghbkvx	Ein Gutschein für den Banja. Das Wertvollste, was ich je besessen hab. Erschreckend.
+3lgpsw	„Mehl“. In Anführungszeichen. Ich stell keine Fragen. Ich trag nur.
+1et4d6z	Grünes Licht. Brennt mit irgendwas Gnomischem. Mein Abstellraum hatte nie so viel Atmosphäre.
+13qksym	Würmer. Sie zappeln. Ich auch, innerlich.
+mg7nwr	Kusmitschs Selbstgebrannter. Riecht nach Benzin und Reue. Ich hab ihn geklaut. Er weiß es. Ich weiß, dass er es weiß.
+1xqntkx	Eine Leiter. Nach oben geht’s für mich sonst nie.
+1dmmzpp	Ein Fisch. Guckt mich an, als hätte ich was falsch gemacht. Hab ich auch. Ich hab ihn gefangen.
+hl6tuy	Omas Gebiss. Ich halt es mit zwei Fingern. Mehr Berührung verkraftet meine Seele nicht.
+6vu5br	Birkenteer. Klebt an allem. Vor allem an mir.
+10bxpf	Der Filter vom alten Joint. Hat alles mitgemacht. Wir verstehen uns.
+1b4uv82	Goldene Sporen. Glitzern wie Kryptowährung. Und sind genauso stabil.
+arbmce	Glut vom Schmied, in einer Dose. Heiß. Ich halte sie wie ein rohes Ei. Ein brennendes rohes Ei.
+1jgiret	Weihwasser. Ich hab mal dran gerochen. Riecht nach Wasser. Enttäuschend heilig.
+62ixe1	Eine Zwiebel. Bringt Leute zum Weinen. Wie meine Lebensgeschichte, nur schneller.
+1iti11z	Eine leere Phiole. Für eine Träne. Ich hätte meine eigene anbieten können. Hab genug.
+17iumvn	Nastjas Träne. Dreihundert Jahre lang aufgespart. Für mich. Und eine Zwiebel.
+1vm5jbr	Der Ausweg-Joint. Mein Ticket nach Hause. Hoffentlich ohne Umsteigen.
+13vimmv	Madames neuer Bogen: „Die Zweitbeste reicht.“ Das Motto meines Lebens, endlich schriftlich.
+vreeu5	Ein Strass-Diadem. Piekt angeblich überall. Ich probier’s nicht an. Heute nicht.
+10eucwg	Nastja. Zwinkert. Ich guck nicht zu lange hin. … Okay, ein bisschen.
+17lusox	Sieht aus wie immer. Ich auch.
+u4unc3	Hm. Ja. Ein Ding. In meiner Tasche. Spannend.
+1it35oh	seil+stock
+apfo	angel+wuermer
+f3b2dg	Würmer an die Angel? Gute Idee. Aber erst, wenn ich weiß, wo der Fisch ist. Ich verschwende keine Würmer.
+jkbffm	apfel+stock
+9x986g	Apfel auf den Stock spießen? Toffee-Apfel ohne Toffee. Nein, danke.
+wibmo4	filter+pilze
+17v8pr2	Pilze in den Filter? Nein. Das hat mich überhaupt erst hierher gebracht.
+oj00bg	gebiss+fisch
+pcf1z6	Das Gebiss frisst den Fisch nicht von allein. Hab ich ausprobiert. Im Kopf.
+1im3ev6	schnaps+zwiebel
+hy4c1f	Wodka und Zwiebel. Klingt nach Opas Frühstück.
+ihg46i	laterne+karte
+uc8aiz	Mit der Laterne auf die Karte leuchten. Jetzt seh ich deutlicher, dass ich mich verlaufen werde.
+3rx88z	glut+kippe
+a7ey50	Die Glut an den Stummel? Und dann? Noch tiefer ins Märchen? Lieber nicht.
+2qxqp3	Das passt nicht zusammen. Wie ich und Frühaufstehen.
+1qnbmp	Nein. Das ergibt nicht mal im Märchen Sinn.
+1ckx04p	Ich halte das eine ans andere. Nichts passiert. Wie bei mir montags.
+1h8dim5	Wenn ich das kombiniere, krieg ich nur Ärger. Und ein Loch in der Hose.
+1rjblju	(Ein Stock. Und Schnur. Wenn ich das eine an das andere knote … )
+ksj696	(Zieh die Schnur in der Tasche auf den Stock.)
+7insg1	.ziel
+1jp33zg	– Klick: untersuchen · ziehen: kombinieren oder benutzen
+c8c80c	Birken
+tjjsn	Birken. Tausende. Wenn man eine gesehen hat, hat man alle gesehen. Und ich hab alle gesehen.
+k3icve	Ich glaube, die Birken tuscheln über mich.
+uawr09	Ein Baumstumpf. Der einzige hier, der noch weniger vorhat als ich.
+1oc0e75	Himmel
+1fmzear	Blauer Himmel, Sonne, Vögel. Viel zu fröhlich für meinen Zustand.
+i0q6xo	Birkenstamm
+wc2x36	Noch eine Birke. Ich glaube, die folgen mir.
+1m63bc6	Umgestürzter Baum
+13owber	Ein umgestürzter Baum. Hat auch einfach aufgegeben. Respekt.
+10bern3	Ein Zaun aus Schädeln. Bei uns stehen Gartenzwerge im Vorgarten. Hier ist der Gartenzwerg der Zaun.
+835hcm	Ich zähle die Schädel. Ich hoffe, ich werde nicht der nächste.
+rv80zn	Feuerholz
+pa0ala	Feuerholz. Ordentlich gestapelt. Das Ordentlichste an diesem ganzen Grundstück.
+zek8b4	Tote Bäume
+dj168r	Kahle Bäume. Selbst die Natur hat hier keine Lust mehr.
+1400g5y	Hexenfenster
+ha4958	Ein Fenster mit Gardine. Sogar Hexen wollen nicht, dass die Nachbarn reingucken.
+1wna9an	Regale
+1itw24x	Gläser über Gläser: „Krötenschleim“, „Augen, gemischt“, „NICHT ANFASSEN, PETJA“. Woher kennt die meinen Namen?
+odem38	Porträt
+y6am3f	Ein Porträt. Der Typ guckt, als hätte er auch mal einen Joint geraucht. Und dann nie wieder irgendwas.
+mpketl	Tafel
+leb0vd	„Kräuter + Mond … ?“ Ich hab in Mathe auch nie die Lösung gewusst.
+hu1pqi	Pfütze
+a5umh8	Eine Pfütze. Tiefer als sie aussieht. Mein Schuh weiß das jetzt.
+1h92is5	Strommast
+ldaxzi	Ein Strommast. Hier gibt’s Strom? Aber kein WLAN. Ich hasse es hier.
+dnfwxr	Schornstein
+1usqyrr	Ein Schornstein ohne Haus. Postsowjetische Architektur in Reinform.
+1a24yyv	Sonnenblumen
+180pfl7	Sonnenblumen. Größer als ich. Und mit mehr Lebensfreude.
+1j0djo3	Noch eine Pfütze. Das Dorf besteht zu dreißig Prozent aus Pfützen.
+wpu2s6	Friedhof
+1uef4q5	Ein Friedhof. Ruhige Nachbarschaft. Keiner beschwert sich über laute Musik.
+ewlnr9	Zwiebelturm
+zn27yy	Eine goldene Zwiebel auf dem Dach. Selbst die Kirche hier hat was mit Gemüse.
+1yixk2r	Mühlrad
+16pprmg	Das Mühlrad dreht sich. Im Gegensatz zu mir. Ich dreh nur durch.
+192q8xj	Bank
+md9rb2	Eine Bank. Ich setz mich nicht. Wenn ich sitze, steh ich nie wieder auf.
+5wmmz	Augen im Gebüsch
+1fxsfjo	Da leuchten Augen im Gebüsch. Ich winke. Sie winken nicht zurück.
+1njxdrc	Neonschild
+ubgsnm	„BANJA – Dampf, Tanz, Wodka.“ Drei Dinge, von denen ich zwei verstehe.
+4ko1te	Flaschenregal
+cfrxkh	Wodka, Wodka, etwas Grünes, Wodka. Die Getränkekarte ist kurz und ehrlich.
+y33zb7	Pappschild
+5gi3i1	„… KEINE S…“ Keine Socken? Keine Sorgen? Keine Seele? Ich tippe auf alles drei.
+1kg8u02	Da drin ist es so dunkel, dass selbst die Dunkelheit eine Taschenlampe bräuchte.
+q7qmq6	Schilf
+1g5iqzr	Schilf. Ideal zum Verstecken. Oder zum Ertrinken. Der Sumpf lässt einem die Wahl.
+10qfdqj	Seerosen
+13kla3v	Seerosen. Hübsch. Bestimmt giftig. Wie alles Hübsche hier.
+fdwx6d	Boot
+hday32	Ein Boot, kieloben. Wie mein Leben.
+u94hsm	Der See. Spiegelglatt. Irgendwo da unten liegt bestimmt mein Selbstwertgefühl.
+bal17r	Ruderboot
+14vucq1	Noch ein Boot. Halb versunken. Das Ufer ist ein Friedhof für Boote.
+15crsot	Kahler Baum
+6gfscy	Ein kahler Baum am Wasser. Sieht aus wie ich nach einer Party.
+1x61eus	Pfähle
+pcjrlj	Glitschige Pfähle mit Algen. Hier unten wohnt garantiert was mit Zähnen.
+19rkx8l	Ein Fass in Gnomgröße. Für mich ein Schnapsglas.
+1urpfob	Lila Kristalle, leuchten von selbst. Entweder Magie oder Radioaktivität. In Russland weiß man das nie so genau.
+1q40go0	Schädel
+exf2lw	Ein Schädel. Der Vorgänger von dem, der hier zu laut war.
+u7dzry	Geldscheine
+1awqs0q	Geldscheine auf der Bühne. Bücken wäre unhöflich. Und Madame sieht alles.
+1yx8t5o	Spiegel
+76erua	Ein ovaler Spiegel. Ich seh darin einen Mann, der nach Zwiebel riecht. Er guckt zurück.
+1wdw27e	Kerzen
+lzdmyy	Kerzen. Romantisch. Oder Brandschutz-Albtraum. Je nach Perspektive.
+1bzy61r	Riesenkohl. Gnome düngen offenbar mit Größenwahn.
+kayffh	Kisten
+ogrm21	Kisten. „Wodka – nicht Wodka“ steht drauf. Ich frag lieber nicht.
+kkostl	Holz für die Esse. Mehr Holz, als dieses Dorf Birken hat. Und das will was heißen.
+ndlmhb	interactive painted deko
+1xvby00	.legend
+bksw49	Klick auf einen besuchten Ort: Schnellreise
+86qvqn	Schnellreise ab
+10v8bp6	entdeckten Orten
+l9763n	.mapgo
+## 44-geht-nicht-erfolge.js
+1noepyj	Bist du komplett durch? Das passt doch vorne und hinten nicht.
+wvbp3	Ich halt es hin. Die Figur guckt mich an wie einen Vertreter für Staubsauger.
+t5ckaa	Nein. Einfach nein. Selbst im Märchen gibt es Grenzen.
+hqjte3	Das will keiner haben. Nicht mal geschenkt. Nicht mal hier.
+1jdw7kk	Ich reib das eine am anderen. Nichts. Außer peinlich.
+1jo49c1	Wenn ich das da reinstecke, ruft garantiert jemand die Miliz.
+ht9o4b	Nö. Das Ding und das Ding haben sich nichts zu sagen.
+453upo	Ich soll das … an mir benutzen? So verzweifelt bin ich noch nicht. Fast.
+c723im	Nein. Mein Körper ist ein Tempel. Ein verfallener, aber trotzdem.
+15o02fm	Ich steck mir das nicht an. Ich steck mir das nicht rein. Ich steck es zurück in die Tasche.
+1yiffa6	Was soll ich damit, Langer? Ich hab nicht mal Zähne, um mich darüber aufzuregen.
+132vgvu	Steck das weg, bevor ich’s in den Ofen werf.
+1qs7oak	Sohnemann, das nehm ich nicht. Es sei denn, es brennt. Oder man kann’s trinken.
+5hekec	Was ist das? Kann man das rauchen? Nein? Dann weg damit.
+19w5bqj	Damit? Damit fang ich nicht mal Ärger. Den hab ich schon. Dich.
+b59120	Gib mir lieber meinen Schnaps wieder, Dieb.
+1t3mabc	Was soll ich mit dem Krempel, Bürschchen? Ich koche Zaubertränke, keine Flohmärkte.
+itowal	Noch einmal so was, und du landest im Kessel. Als Einlage.
+e3nybi	Nee, Süßer. Das kannst du dir sonst wohin stecken. Ich zeig dir auch gern, wohin.
+1fe7xg6	Das ist kein Trinkgeld. Das ist eine Beleidigung.
+1ydjdoq	Was ist das, Zwiebel? Ein Geschenk? Dann üb noch ein bisschen.
+hmcbju	Wenn du schon was in meine Hand drückst, dann bitte Geld. Oder dich.
+171bx4o	Das ist kein Mehl. Und kein Zoll. Also verschwinde.
+dfwaqb	Gnome nehmen nur zwei Dinge: Mehl und Bestechung. Das da ist keins von beiden.
+15ro0k3	Hier,
+1ahh9cm	Hier?
+1wc756g	Nervensäge
+1fqw32r	Zehnmal hintereinander auf dasselbe geklickt.
+961wdw	Russische Seele
+142iemr	Die versteckte Matrjoschka in der Höhle gefunden.
+hj7vao	Wiedervereinigung
+u8dtcs	Petjas verlorene Socke im Sumpf gefunden.
+ehuvlj	Mixtape ’98
+gf02j2	Die Kassette hinter der Kirche gefunden.
+19x6jka	Schatzsucher
+1c2fl72	Alle drei versteckten Dinge gefunden.
+1wj1ord	Tourist
+qbawcf	Bastler ohne Plan
+n2cwgz	Mit dem Kopf durch die Wand
+cblnhh	Taxi Petja
+7rak66	Alle Wege führen …
+1ecfc5a	Alle drei Enden gesehen.
+us1sz6	Erfolg:
+yciw7o	???
+1gerwp1	Noch nicht gefunden.
+1ht4tjv	Erfolge
+7wq73d	Zehnmal. Ich hab zehnmal draufgeklickt. Da werden Sie geholfen? Nein. Hier wird keinem geholfen.
+a9ackp	Elf, zwölf … Ich hör jetzt auf. Wirklich. Gleich.
+ucg164	Matrjoschka
+cvq4bk	Eine Matrjoschka. Ich mach sie auf. Noch eine. Und noch eine. Und noch eine.
+1zi4il	Ganz innen ein Zettel: „Geh raus und triff Leute.“ … Mama, bist du das?
+lowpf4	Socke
+u5abdv	Meine Socke! Die hab ich 2019 in der Waschmaschine verloren.
+1kyu3up	Sie war die ganze Zeit hier. Im Sumpf. Das erklärt so einiges über Waschmaschinen.
+1b9fdb5	Kassette
+p88kl6	Eine Kassette. Aufschrift: „Mixtape ’98 – nicht überspielen!!!“
+oweea0	Ohne Rekorder nutzlos. Wie alles aus ’98. Mich eingeschlossen.
+14d06ff	Klick / Rechtsklick auf Gegenstand
+1s32wj9	Untersuchen
+4gwb1q	Gegenstand ziehen
+aoz60v	Auf anderen Gegenstand: kombinieren · auf Figur/Ding: benutzen
+## 45-buendel-karte.js
+1sisbq5	image/jpeg
+m62or8	Erst einen Gegenstand, dann einen zweiten anklicken.
+1f5ian0	Klick auf einen Gegenstand: ansehen.
+1thvup	Petjas Bündel
+dvx7im	Kombinieren
+oz5ziw	.buendel
+1qckk4s	.bzeile
+1nq4y7d	.bsache
+1yzqwy9	… und womit?
+1i1obpv	Der Verfluchte Birkenwald
+1m4c40f	.kview
+1g2ryda	.kinner
+1mjn6uo	[data-z]
+1udp6x9	.kzoom
+18yhcwc	Mausrad oder + / −: zoomen · Ziehen: verschieben
+4d6u3s	.kmap
+1vxc32r	.kcv
+1klxom8	.korte
+14vnwt	.kfuss
+230it3	.kort.go
+1pxzsv2	Karte vormalen
+## 46-gespraeche-figuren.js
+1gu3l1l	.fig
+1v85qhp	Weitere Stimmen
+1gxbait	Selbstgespräche
+1ysshn2	.figs
+165m9wl	Figuren und Gespräche
+ap10rw	.invpf.l
+gssa1a	.invpf.r
+bcvyff	Weiter
+## 47-madames-liste.js
+uhihsx	schön
+1325hdq	Gesucht: eine neue Tänzerin
+1psy1jf	Keine Blubberer!
+1jorrtt	Erledigt
+1ngxrct	Klick zum Schließen
+## 49-nastja-show.js
+1h5y9bu	Profil rechts
+1r98gee	Profil links
+1dlho1a	Perfekt! ♥
+1j1d1mn	Im Takt ♪
+mychr6	Daneben …
+129xy19	💃 Twerken
+rb245y	🧻 Tempos zustecken
+j23sav	👋 Näher ranbeugen
+ldrvy4	+ Frechheit
+1w9suyz	*zieht das zerknüllte Taschentuch aus dem Strumpfband und hält es hoch* Sag mal, du Pleitegeier, hast du komplett die Orientierung verloren? Na gut, für die Frechheit gibt’s einen Punkt.
+cqajis	(Ich glaube, das war ein Kompliment. Bei ihr klingt alles wie eine Drohung.)
+1ekdyvs	*beugt sich vor* Näher, Zwiebel? Noch näher kostet Aufpreis.
+1tnz7z8	Twerk! ♥
+58gx62	*dreht sich um und wirft dir einen Blick über die Schulter zu* Schön im Takt bleiben, Zwiebel.
+ghfl06	*dreht sich um* Augen nach vorn, Süßer. Also … nach hinten.
+1ib0lyu	*über die Schulter* Zähl mit. Eins, zwei …
+1pe47t3	Dreh dich! ✦
+p913et	Leertaste / Klick, wenn der Ring den Kreis trifft · Maus im Kreis: sie dreht sich mit · Esc beendet
+1yiddph	Freier Tanz – kreise mit der Maus! (
+hbjss7	*raschel*
+y6ct2b	*Strapse schnalzen*
+rgq11i	*Reißverschluss*
+uak0b5	*Fünf Minuten später. Stimmung:
+11qyncs	*außer Atem* Du hast den Takt gehalten, Zwiebel. Das schaffen nicht mal Zinaidas Stammgäste.
+e0nxpb	*zupft dich am Kragen* Nächstes Mal klatschst du im Takt mit, Süßer. Oder wenigstens in der Nähe vom Takt.
+1iw845v	*haucht* Augen zu, Zwiebel. Ich hab was Neues an. Na ja – weniger Altes.
+lfz6s0	Augen zu. Und diesmal wirklich, Süßer. Das hier hat nicht mal Zinaida gesehen.
+2hb9me	(Das war ein Reißverschluss. Das war eindeutig ein Reißverschluss.)
+z6j786	Hände aufs Sofa, Zwiebel. Ich mach den Rest.
+qllcao	Einmal rum … damit du siehst, dass hinten auch was ist.
+1hvcv82	Na los, dreh mich. Du hast doch Hände. Benutz sie – an der Maus.
+muq42m	(Die Haare. Die Haare machen mich fertig.)
+1en121f	*öffnet ein Auge, zieht die Braue hoch* Na? Das Outfit gibt’s nur für Stammkunden. Und für Zwiebeln.
+1hyuq4j	Langsam drehen … so. Damit du was zum Erzählen hast.
+18bk5bi	Freier Tanz, Süßer. Du führst. Aber wehe, du trittst mir auf die Stiefel.
+zk7758	*zwinkert* Dreihundert Jahre im Sumpf, und das hier hat mich noch keiner tragen sehen. Fühl dich geehrt.
+s06j2t	Ganz rum, Zwiebel. Von hinten bin ich übrigens genauso gefährlich.
+li2x0g	Dreh mich. Schneller. … Nicht so schnell, ich hab Absätze an!
+1lmcn7p	*haucht* Ganz ruhig atmen, Süßer. Wenn du jetzt umkippst, tanz ich trotzdem zu Ende.
+1n8itfi	Wenn du so weitermachst, kriegst du noch was zum Mitnehmen. Was mit Rand. Zum Aufhängen.
+8kq03m	(Ein … Foto? Meint sie ein Foto?)
+10qiku4	Nastja … ein Privattanz?
+1diy6bo	Langsam, Zwiebel. Erst redest du mit mir, dann trinkst du mit mir – und dann reden wir übers Tanzen.
+1f2qbqg	(Sie will mich erst besser kennenlernen. Reden, anstoßen … ab „Freundlich“ tanzt sie vielleicht.)
+16cd69z	Ein Privattanz? Heute nicht im Korsett, Süßer. Heute gibt’s … weniger. Ab in die Kabine.
+y7h4kn	Die Kabine ist frei, Zwiebel. Und ich bin’s auch – fast.
+kqio0e	Ein Privattanz? Für dich gibt’s heute was, das nicht mal Zinaida gesehen hat. Ab in die VIP-Kabine, Süßer.
+1r5xvbt	VIP-Kabine, wie immer? Natürlich wie immer.
+qz2r3x	.namenu .nahead img
+fugyec	.namenu [data-a] small
+## 51-portraets-crt.js
+njihpz	.opts
+1g9dlnu	📺 CRT-Filter
+1altw4m	🙂 Porträts im Gespräch
+## 52-trinkduell.js
+1tez0xs	Auf die Gesundheit! *kipp* … Ahh. Wie Muttermilch. Wenn die Mutter ein Traktor war.
+16hx0t	*kipp* Der ist vom Februar. Guter Monat. Kurzer Monat.
+10qvxei	*hicks* Noch einer, Städter? Oder brauchst du ein Kissen?
+zq4fh4	*kipp* *rülps* Für die Sowjetunion! Die war auch irgendwann alle.
+4hqpi6	*hicks* … Der Tisch wackelt. Nicht ich. Der Tisch.
+1ffiq66	*kipp* *hicks* Ich seh dich doppelt, Junge. Beide sehen blass aus.
+1pldsnz	*HUST* *würg* … Das ist kein Schnaps, das ist Abbeizer!
+7zfn2v	Ha! Wie ein Spatz am Brunnen!
+ciagfu	*röchel* Mein Hals … ich glaub, mein Hals ist ausgezogen.
+1s47ykh	*lacht* Durch die Nase! Der Junge trinkt durch die Nase!
+tq3k6c	*keuch* Der brennt bis in die Schuhe.
+403g0m	Dafür ist er ja da. Wärmt auch die Füße.
+1bv55m2	*schluck* … Geht. Geht doch.
+1c63w34	*kipp* Ich spür meine Zunge nicht mehr. Ist das gut?
+airbzc	*schluck* Na klar. Wie Wasser. Brennendes Wasser.
+rxcfmg	· 🏅 Trinkduell gewonnen
+cvp0ma	Dorf-Ruf:
+fx6xva	🥃 Trinkduell
+1ahttz2	Selbstgebrannter, bis einer liegt
+d1fodg	💬 Reden
+1eadrcj	Revanche? *hicks* Ich hab extra den vom März aufgemacht. Der ist böser.
+p2j3a7	Na, Städter? Wieder wach? Dann setz dich. Diesmal halt ich dir die Stirn fest.
+a9zd2i	Opa … was ist das für eine Flasche?
+1ivinn0	Selbstgebrannter. Aus Kartoffeln, Zucker und Groll.
+16y8jdo	Wer im Dorf was gelten will, muss mit Grischa trinken. Wer zuerst umfällt, verliert. Wer gewinnt, ist einer von uns.
+1gnzcgb	Und wenn ich verliere?
+17zidgn	Dann schläfst du unterm Tisch. Ist auch gemütlich. Frisch geteert.
+18fabak	(Kipp ihn, wenn das Herz in der Mitte ist. Leertaste oder Klick.)
+pzi901	Trinkduell mit Opa
+bge7z2	Perfekt runter! ♥
+tjbxyz	Runtergewürgt
+jxbjeg	*HUST* Verschluckt!
+1ymepay	Glas
+8k3eg3	Leertaste / Klick: kippen!
+cjb6v	Trink endlich! Der Schnaps wird nicht jünger!
+10ei547	*hicks* … Verdammt nochmal! … Der Boden … der Boden kommt hoch!
+1dpjr5i	(Opa liegt unterm Tisch. Ich sitze noch. Glaube ich.)
+29tyrk	*würg* … Opa … warum dreht sich Ihr Haus?
+1ppak6	*lacht* Städter! Weich wie Butter!
+1k94drx	*Später. Unterm Tisch.*
+1t72our	(Es riecht nach Teer und Kartoffeln. Und nach Niederlage.)
+1bncvtn	*von oben* Morgen nochmal, Junge. Dann trink ich mit links.
+rt8lsh	Aufhören mittendrin? Pfff. Feigling. … Der Schnaps läuft nicht weg. Du schon.
+6je9cm	*kriecht unterm Tisch hervor* … Junge. Du hast Grischa untern Tisch getrunken.
+ejm9n6	Das hat seit Breschnew keiner geschafft. Du bist einer von uns. Ab heute.
+18lmene	Und hier. Mein Gefreiten-Abzeichen. Hab ich seit ’79 nicht abgenommen. Jetzt trägst du’s.
+1deykmq	Revanche ist Revanche. Nächsten Freitag wieder. Ich übe schon.
+5bdtjs	(Ich hab gerade das Dorf erobert. Mit der Leber.)
+1rii2hp	Dorf-Ruf +
+ncl893	· jetzt
+1nfl447	Das Dorf will dich ehren. An Baba Jagas Tisch gibt es jetzt eine neue Wahl.
+16wt93f	Für „Ehrenbürger“ fehlt noch Dorf-Ruf:
+1q6f5x	. Hilf den Leuten im Dorf.
+1wpsczd	Ende: Ehrenbürger
+16kphd8	Petja blieb. Nicht als Zahnrad – als einer von ihnen. Mit Urkunde.
+1tou1sy	.endwahl
+90n9p5	🎖 Hierbleiben – als Ehrenbürger
+zrt812	Das Dorf will dich behalten: Orden, Urkunde, Freitagsduell
+zxb4px	– mit mehr Ruf würde das Dorf dich als Ehrenbürger behalten
+6clqos	🎖 Dorf-Ruf
+93rftf	Frau Jaga … das Dorf hat mich gefragt, ob ich bleibe.
+5p8k64	Das Dorf fragt nie jemanden. Was hast du angestellt?
+wat8li	Grischa untern Tisch getrunken.
+1vkoxpb	*lacht krächzend* Dann bist du verloren. Geh. Die warten schon.
+puxntf	*steht stramm, schwankt leicht* Achtung! Hiermit ernenne ich, Grischa, Gefreiter a. D., dich zum Ehrenbürger!
+vqpxw5	*heftet dir einen Orden an* Ehrenbürger. Der war mal für 30 Jahre Melkbetrieb. Jetzt ist er deiner.
+1g9e8g1	Ich … danke. Ehrlich.
+1xms2fw	Ehrenbürger! Dann darfst du mir jetzt auch offiziell die Kohlen reintragen. Mit Orden.
+1wkj7fi	Natürlich, Oma Dusja.
+vd0zxg	Und jeden Freitag: Duell. Ehrenbürger trinken nicht weniger. Ehrenbürger trinken pünktlich.
+p0xq4e	(Drüben war ich der Typ auf Wowas Sofa. Hier hab ich einen Orden. Für Saufen. Aber einen Orden.)
+xmy84b	(Ich glaube, ich bleibe.)
+## 53-dorf-quests.js
+11dl687	Kabelrolle und Isolierzange
+8pycza	Fjodors neues Kabel. Kupfer, schwarz ummantelt, schwer wie ein Gewissen. Die Zange hat gelbe Griffe. Gegen Strom. Hoffentlich.
+irgc62	Kohlensack
+1uzsaww	Ein Sack Steinkohle aus der Schmiede. Für Oma Dusja. Sie friert, sagt Fjodor. Sie würde es nie zugeben.
+1aelp9b	Vater Ignatis Kater
+kz6qj2	Nass, beleidigt, riecht nach Fisch und Steg. Krallt sich in meine Jacke, als wäre ich ein Baum. Ich hab’s verdient.
+m18y1a	*springt mit allen Krallen an mein Bein* MRRRAAAAU!
+16wd0r6	AU! AU! LOS! LASS LOS!
+1fyhuzv	… Ups.
+ptwjrs	Der landet bestimmt weich. Katzen landen immer weich. Steht in jedem Buch.
+1vhp9ui	Und da liegt … Omas Gebiss. Na lecker.
+1a90tea	MIAAAUUUUU!
+15zwxk6	xlink:href
+h54art	Da unten, zwischen den Pfählen … zwei gelbe Augen. Der Kater vom Friedhof!
+12bpv9p	Er sitzt auf den Gräten von meinem Fisch und guckt, als hätte ich ihn getreten.
+82j6k2	… Hab ich ja auch.
+17u6enm	Okay. Ich lass dich in Ruhe. Für heute.
+18tu5vo	*kriecht auf allen vieren unter den Steg* Komm, Mieze. Dein Herrchen vermisst dich.
+p8r9qf	*FAUCH* … *mrrr* …
+99otuc	*packt den nassen Kater* Na also. Ganz ruhig. Ich trete heute niemanden mehr. Versprochen.
+1vwv65c	Vater Ignati … ich hab da was. Unter dem Steg beim Fischer gefunden.
+gudry1	MURKA! Mein Kater! *drückt ihn an die Brust* Wie ist er bloß unter den Steg gekommen?
+aitwla	Er … ist geflogen. Im hohen Bogen.
+wnlvhg	*bekreuzigt sich* Ein Wunder. Ich wusste es. Der Herr wirkt durch Kater.
+1v1yqup	Gott vergelt’s dir, mein Sohn. Ich bete für deine Beine. Die langen.
+e0b041	Mein Sohn, hast du meinen Kater gesehen? Den Dicken vom Friedhof?
+1mc7hu	Die Dusja sagt, er ist über die Kirche geflogen. GEFLOGEN. Sie trinkt zu viel Kräutertee.
+f6392r	(Oh nein.)
+1w21551	Ich … halte die Augen offen, Vater.
+jwuzu2	Gott segne dich. Er frisst gern Fisch. Vielleicht ist er beim See.
+1temu3m	Noch keine Spur von meinem Kater? Er mag Fisch. Und dunkle Ecken.
+zo5x5w	Beim See, mein Sohn. Wo es nach Fisch riecht. Unter etwas.
+8mpno0	(Fisch, dunkel, unter etwas … der Steg beim Fischer!)
+tenf93	Du. Lange. Kannst du Kabel?
+6wryxg	Kabel … gucken?
+1hn74ef	Die Dorfleitung ist von 1971. Mein Licht flackert, als wär’s besoffen, und bei der Dusja ist es ganz dunkel.
+t6hzby	Im Verteilerkasten am Trafo liegen die Kabelstücke kreuz und quer. Dreh sie so, dass der Strom zu mir UND zur Dusja kommt.
+pwq17m	Und keine offenen Enden! Wo ein Kabel ins Leere zeigt, funkt es. Dann brennt das Dorf und nicht meine Lampe.
+34i1nq	*bekommt Kabelrolle und Isolierzange*
+c79uc1	Der Verteilerkasten, Junge. Vom Trafo zu meiner Schmiede und zu Dusjas Hütte. Leg los.
+1h0ax1b	*schaut zur flackerfreien Lampe* … Na sieh mal an. Licht wie im Kreml.
+1fj95ub	Hier, ein Sack Kohle. Der ist nicht für dich. Der ist für die Dusja.
+1vghex1	Sie friert in ihrer Hütte, sagt aber nix. Stolz wie ein Ziegenbock. Bring ihn ihr und sag nicht, dass er von mir ist.
+jcvd7f	Verteilerkasten
+1t5ndb9	*dreht das letzte Stück* … *KLACK*
+17hb06b	*aus der Schmiede* LICHT! Junge, ich seh meine eigenen Füße! Die sind hässlich, aber ich seh sie!
+ni4pyg	Und bei der Dusja brennt auch Licht. Aber Licht wärmt nicht. Die Alte friert, sagt aber nix. Stolz wie ein Ziegenbock.
+gbhuz0	Hier, ein Sack Kohle. Der ist nicht für dich, der ist für sie. Bring ihn ihr und sag nicht, dass er von mir ist.
+zwl1ws	*bekommt einen Sack Kohle*
+1jtbi9s	Neue Aufgabe: Kohle für Oma Dusja
+1y6f6f1	Trafo
+qx96d2	Omas Hütte
+f3ub9v	Strom überall, kein Funke. Sauber!
+7zvd92	Klick dreht ein Kabelstück. Strom zur Schmiede UND zu Omas Hütte, kein offenes Ende.
+1c0lgml	· Omas Hütte
+10rr735	· Offene Enden:
+is24de	· Züge:
+vhdonn	Esc: aufhören
+e156g7	Pause. Mir drehen sich die Kabel vor den Augen.
+1ao1adb	Komm wieder, wenn dein Kopf sortiert ist.
+17y81g5	Trafohäuschen
+gozs75	Der Verteilerkasten. Fjodor sagt, die Kabelstücke darin liegen kreuz und quer.
+1j6so7z	*biegt den Draht an der Tür auf* Na dann. Mit der gelben Zange.
+slyu3u	*Das Trafohäuschen brummt zufrieden.*
+1m41in4	(Strom bis zur Schmiede und zu Oma Dusja. Mein erstes Bauwerk. Na ja, mein erstes Umgedrehtes.)
+kmkydz	Ein Trafohäuschen. Beton, Baujahr 1971, schätze ich. Es brummt wie Opa nach dem Mittagessen.
+bpi9ht	Die Tür ist mit Draht zugebunden. Ohne Werkzeug und ohne Plan fass ich da nichts an.
+ef9b35	(Die Leitung geht direkt zur Schmiede. Der Schmied weiß bestimmt, was damit los ist.)
+fm4uqe	Oma Dusja, ich hab hier einen Sack Kohle. Für Ihren Ofen.
+1qjkhc8	Kohle? Für mich? Ich frier doch nicht! … Wer fagt daf?
+1300q0u	Niemand. Die Kohle ist … einfach übrig.
+11sjzc4	*schnuppert am Sack* Daf riecht nach Fjodorf Fchmiede. Der alte Bock.
+10987n3	*heizt den Ofen an* … Ahhh. Warm. Junge, du bift ein Engel mit langen Beinen.
+cjm7b3	Fag ihm danke. Aber nicht fo, daff er ef merkt.
+134g7f	Brrr … Junge, mach die Tür zu, ef zieht.
+11gyj4n	(Die Kohle für sie. Ich hab den Sack doch … wo hab ich den Sack?)
+18sx4cx	*reibt fich die Hände* Brrr. Feit die Leitung fpinnt, ift ef bei mir dunkel UND kalt.
+18l22pq	Fag dem Fjodor, er foll endlich feinen Kaften reparieren. Der am Trafo, hinter feinem Zaun.
+kcuxm0	(Der Trafo auf dem Schmiedehof. Da bin ich eh dran.)
+1ekbmew	*zieht daf Tuch enger und zittert* … Waf guckft du? Ich frier nicht. Ich doch nicht.
+s4rgnx	Aber der Fjodor, der hat Kohle in der Fchmiede. Und Ftrom. Und ich hab Gänfehaut. Nur fo.
+841x8b	(Sie friert. Und sie wird es nie zugeben. Vielleicht hat der Schmied was für sie.)
+4h4lvm	Strom für die Schmiede
+1ak3e04	Fjodors Dorfleitung ist von 1971. Im Verteilerkasten liegen die Kabelstücke kreuz und quer.
+prnj2r	In der Schmiede mit Fjodor reden. Die Kabelstücke drehen, bis Schmiede und Omas Hütte Strom haben. Kein Kabel darf ins Leere zeigen.
+18zw5go	Kohle für Oma Dusja
+1xjhu47	Oma Dusja friert, sagt aber nix. Fjodor hat einen Sack Kohle für sie.
+o8jy0k	Den Kohlensack zu Oma Dusja an der Dorfstraße bringen.
+7u12wb	Ignatis Kater
+1c5hrtz	Vater Ignati vermisst seinen Kater. Er ist … geflogen. Meinetwegen.
+1y19dot	Den Kater zu Vater Ignati an der Kirche bringen.
+8ufm0z	Wo riecht es nach Fisch, und wo ist es dunkel? Unter dem Pier nachsehen (vom Ufer aus).
+95saqc	Einer von uns werden
+zhfx1b	Vier Dinge machen dich im Dorf zu einem von ihnen: Strom für Fjodor, Kohle für Dusja, Ignatis Kater und ein Trinkduell gegen Opa.
+4uywte	Geschafft:
+3w5dda	von 4. Wer alle vier schafft und am Ende bleibt, baut sich ein eigenes Haus.
+9hp8n	Strom gelegt. Kohle geschleppt. Einen Kater gefunden. Grischa untern Tisch getrunken.
+rdsy4f	Achtung! Hiermit ernenne ich, Grischa, Gefreiter a. D., dich zum Ehrenbürger!
+1vqkwsp	Und ein Ehrenbürger braucht ein Dach. Das Holz liegt bereit. Ich hab die Nägel geschmiedet.
+mr7dz6	Ich segne es. Und Murka kommt zur Einweihung.
+1crhuke	Ich bring Pirogi. Mit Gebiff gebacken.
+1bm79wv	Und ich bring Fisch. Frisch aus der Swetlana. Ohne Schnaps-Diebe an Bord.
+1axrap8	(Ein eigenes Haus. Ich. Der Typ von Wowas Sofa.)
+1o0s36b	Petjas eigenes Haus
+1puvpqf	Petjas Haus
+cya3ms	Ein Haus aus Birken, mit Fjodors Nägeln, Dusjas Pirogi und Ignatis Segen. Jetzt bist du einer von uns, Junge.
+1ihrd48	(Drüben hatte ich ein Sofa, das mir nicht gehört. Hier hab ich ein Haus. Mit Tür.)
+ykkrwf	(Ich bleibe.)
+16e3klu	Petja blieb. Nicht als Zahnrad – als einer von ihnen. Mit Urkunde und eigenem Haus.
+## 54-kusmitsch-kahn.js
+1f60i0o	Dose Teer
+1n9an8x	Oma Dusjas Birkenteer. Zäh wie ihre Laune vor dem Frühstück. So kriegt den keiner in die Ritzen.
+1b7ah07	Verdünnter Teer
+1l68b6f	Teer mit einem ordentlichen Schuss von Opas Selbstgebranntem. Riecht, als könnte er auch alleine schwimmen.
+faa2c1	Bootshaken
+wcwr6m	Von Fjodor geschmiedet, noch warm. Hält einen Kahn. Oder einen Wels. Oder Kusmitsch, wenn er reinfällt.
+oz0ww2	(Mir fehlt noch Teer. Oma Dusja hat welchen.)
+1lgcwoz	Bei Oma Dusja Teer holen.
+nrwcph	(Der Teer ist zu zäh. Opa soll ihn verdünnen.)
+r5lnl3	Den Teer von Opa verdünnen lassen.
+1mn00er	(Mir fehlt noch ein Haken. Den muss der Schmied machen.)
+gy4dui	Bei Fjodor einen Bootshaken holen.
+wrapze	*sitzt im Kahn statt auf dem Pier* Die Swetlana. Schwimmt. Und ich sitz drin wie ein Kapitän.
+1kng7g8	Setz dich dazu, Junge. Aber fass den Schnaps nicht an. Das sag ich jetzt aus Gewohnheit.
+sbj7vz	*starrt aufs Schilf* … Siehst du das Wrack da drüben? Das ist die Swetlana. Mein Kahn.
+1va2rfw	Sturm von ’91. Seitdem liegt sie da und ich sitz auf dem Pier wie ein Reiher ohne Beine.
+1u1icc8	Und DU hast mir meinen Selbstgebrannten geklaut. Glaub nicht, ich wüsste das nicht.
+1cemvtp	(Er weiß es.)
+1fqlxch	Wenn die Swetlana wieder schwimmt … dann vergess ich alles. Sogar die Sache mit dem Schnaps.
+xw78yo	Was braucht man, um einen Kahn zu heben?
+1uryc5r	Teer für die Löcher – die Dusja hat welchen. Einen Haken, der hält – frag den Schmied. Und Kerle, die ziehen können.
+eqq1o8	Grischa zieht alles, wenn es nach Schnaps riecht.
+c1howj	Neue Aufgabe: Kusmitschs Kahn
+1l0tct9	Du hast alles? Dann los, ans Ufer! Bevor ich wieder nüchtern werde und es mir anders überlege.
+8gqht4	Die Swetlana wartet. Ich auch. Wir sind beide nicht mehr die Jüngsten.
+cs68o5	Oma Dusja, haben Sie Teer? Für Kusmitschs Kahn.
+10hc8l5	Teer? Für den alten Fufel? Erft wird mir warm, dann wird geteilt.
+8byig3	(Ihr ist kalt. Wer hat hier Kohle … der Schmied.)
+m7bijw	Oma Dusja, haben Sie noch Teer? Kusmitsch will seinen Kahn heben.
+1loh4oh	Die Fwetlana? *lacht* Da hat er mich ’72 mal rumgerudert. Bif er reingefallen ift.
+5t0osk	Hier. Birkenteer. Aber der ift zäh wie Grifcha morgenf. Den muff man verdünnen. Mit waf Fcharfem.
+1wjd8cu	*bekommt eine Dose Teer*
+1swh3mu	Fjodor, Kusmitsch braucht einen Bootshaken. Für seinen Kahn.
+19sqkhn	Haken. Später. Erst Strom. Ohne Licht schmied ich mir die Finger krumm.
+1j9sm1a	Fjodor, Kusmitsch braucht einen Bootshaken. Einen, der hält.
+1afd9ww	Für die Swetlana? Hm.
+jmctao	*hämmert, zischt, hämmert* … Da. Hält einen Kahn. Und einen Wels. Und Kusmitsch, wenn er reinfällt.
+qcwx4d	Und wenn ihr zieht, ruft mich. Zwei Hände mehr.
+1wavsl	*bekommt einen Bootshaken*
+1gzq83n	Opa, Omas Teer ist zu zäh. Sie sagt, er muss mit was Scharfem verdünnt werden.
+1r96538	Mit MEINEM Selbstgebrannten? … Für Kusmitschs Kahn? Pfui Teufel.
+4txa19	*seufzt, holt einen Eimer* Na gut. Für die Swetlana. Die hat mich ’72 auch mal nach Hause gerudert.
+1y4x742	*kippt ab, rührt, schnuppert* … Der Teer ist jetzt so dünn, der läuft dir freiwillig in jede Ritze.
+1r4427x	Und wenn ihr den Kahn zieht: ich zieh mit. Hab ich ’79 auch, mit einem Panzer.
+1r6ce9i	*bekommt verdünnten Teer*
+12j8nmw	Die Swetlana. Geflickt, geteert, schwimmt. Kusmitsch hat ihr sogar den Namen nachgemalt.
+qa5vaf	(Mit Rechtschreibfehler. Aber mit Liebe.)
+14tew5m	Kusmitschs Swetlana. Halb im Schlamm, halb im Schilf.
+145wmcy	*watet ins Schilf und streicht den verdünnten Teer in jede Ritze*
+gpnvvu	(Riecht wie Opas Schuppen nach einem Feiertag.)
+1v2gq8e	*stapft durchs Wasser* Haken her. *rammt ihn in den Bug* Der hält.
+1de181l	*krempelt die Hosen hoch* So. Wer nicht zieht, trinkt nicht mit. Auf drei!
+10tnwlw	Eins … zwei … HAU-RUCK!
+ripyfe	*zieht* HAU-RUCK!
+1efpyoy	HAU-RUCK!
+19prcsz	Sie kommt! Sie kommt, die alte Kuh!
+bt25o4	*kommt den Pier runtergerannt* SWETLANA! Mädchen! Du schwimmst!
+15m9mtv	*streichelt den Bug* Dreißig Jahre … Und gerochen hast du nie so gut.
+73xjm7	Junge. Die Sache mit dem Schnaps … vergessen. Weggespült. Wir sind quitt.
+1pwo2f	Und ICH krieg dafür eine Fahrt über den See. Mit Proviant.
+cb634f	Ich auch. Aber ohne Proviant. Ich will ankommen.
+lfzfmw	(Das halbe Dorf in einem Kahn. Was soll da schon schiefgehen.)
+y8fjnj	Kusmitsch mag dich wieder
+1vwg8qz	Kusmitschs Kahn
+3ykbe3	Kusmitschs Kahn „Swetlana“ liegt seit ’91 im Schilf. Schwimmt er wieder, ist die Sache mit dem Schnaps vergessen.
+10s4l9f	Alles dabei. Ab zum Wrack am Ufer!
+## 55-nastja-beule.js
+nr86k4	Beule
+coguzc	(Oh nein. Nein, nein, nein. Nicht jetzt. Denk an Oma Dusja. Denk an den Wels. DENK AN DEN WELS!)
+1jshiw6	*hört mitten in der Bewegung auf, ihr Blick wandert langsam nach unten* … Na sieh mal einer an.
+10xe49r	*kommt ganz nah, beugt sich vor und grinst von unten zu dir hoch* Ist das ein Zauberstab in deiner Hose, Zwiebel, oder freust du dich nur, mich zu sehen?
+1o0ylz4	Das … das ist … mein Schlüsselbund.
+l9v1sv	Dein Schlüsselbund. Klar. Der zuckt ja auch immer so, wenn du ihn anguckst.
+1rnnnof	Mal sehen, ob der Schlüssel auch passt …
+164o0du	*richtet sich auf und wischt sich gelassen die Hand am Strumpfband ab* Ups. Das kann jedem mal passieren.
+zadw0w	Drei Sekunden, Zwiebel. Ich hab Kerle gesehen, die beim Hinsetzen länger durchgehalten haben.
+4a6qgs	Das war … die Aufregung. Und der Wein. Und das Märchen.
+12nw7xz	Ja, ja. Passiert den Besten. Dir halt nur schneller.
+19rw7q7	*zwinkert* Lehn dich zurück, der Tanz ist bezahlt. Für dich ist er zwar schon vorbei, aber ich tanz trotzdem zu Ende.
+1u2pdwi	SPLOOSH!
+## 57-wege.js
+pimkv1	Wege
+## 59-bau-wiese.js
+18a1b3k	Tag 1. Stamm für Stamm …
+13f7vb6	Tag 2. Die Wand wächst. Mein Rücken schrumpft.
+12ho8ac	Zwei Tage später: Fenster, Tür, Schornstein.
+n9qo7u	Richtfest. Das halbe Dorf ist da. Also alle.
 ## index.html
 1gdbhhi	Petja und der Verfluchte Birkenwald
 1sl08td	Wald wird gemalt...

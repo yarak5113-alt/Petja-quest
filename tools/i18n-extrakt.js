@@ -5,7 +5,7 @@
 // zu lang/en.js / lang/ru.js gebaut. Dieses Skript zeigt außerdem, wie viele Texte pro Sprache noch fehlen.
 //   node tools/i18n-extrakt.js [--fehlt en]   (listet fehlende IDs für eine Sprache)
 const fs=require('fs'),path=require('path'),root=path.join(__dirname,'..');
-const SKIP=/^(10-tester|12-patchnotes|26-durchlauf|15-musik|3[1-4]-|08b-|00a-)/;
+const SKIP=/^(10-tester|12-patchnotes|26-durchlauf|15-musik|3[1-4]-|38-|08b-|00a-)/;   // 38 = Pixel-Daten der Nymphen
 const files=fs.readdirSync(path.join(root,'js')).filter(f=>f.endsWith('.js')&&!SKIP.test(f));
 const key=s=>{let h=0x811c9dc5;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,0x01000193)}return(h>>>0).toString(36)};
 const unesc=s=>{try{return JSON.parse('"'+s.replace(/\\'/g,"'").replace(/\\`/g,'`').replace(/"/g,'\\"').replace(/\\\\"/g,'\\"')+'"')}catch(e){return s}};
@@ -42,6 +42,6 @@ console.log('Texte:',n,'Zeichen:',c);
 const ids=new Set();for(const f in out)out[f].forEach(t=>ids.add(key(t)));
 const wantMiss=process.argv.indexOf('--fehlt')>0?process.argv[process.argv.indexOf('--fehlt')+1]:null;
 for(const L of ['en','ru']){const dir=path.join(root,'lang/src',L);if(!fs.existsSync(dir))continue;const have=new Set();
-  for(const f of fs.readdirSync(dir))fs.readFileSync(path.join(dir,f),'utf8').split(/\r?\n/).forEach(l=>{const m=l.match(/^([0-9a-z]+)\s/);if(m)have.add(m[1])});
+  for(const f of fs.readdirSync(dir))fs.readFileSync(path.join(dir,f),'utf8').split(/\r?\n/).forEach(l=>{const m=l.match(/^([0-9a-z]+)\s/);if(m)have.add(m[1]);const q=l[0]==='='&&l.slice(1).match(/^(.+?)(?:\t| => )/);if(q)have.add(key(q[1].replace(/\s+/g,' ').trim()))});   // auch „=Deutsch => Übersetzung“ zählt als übersetzt
   const miss=[...ids].filter(k=>!have.has(k));console.log(L,'übersetzt:',ids.size-miss.length,'fehlen:',miss.length);
   if(wantMiss===L)for(const f in out){const m=out[f].filter(t=>!have.has(key(t)));if(m.length)console.log('## '+f+'\n'+m.map(t=>key(t)+'\t'+t).join('\n'))}}
