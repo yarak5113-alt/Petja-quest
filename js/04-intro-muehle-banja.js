@@ -15,11 +15,9 @@ const WOWA=`<g stroke="#1a1208" stroke-width="1.4" stroke-linejoin="round" strok
 <path d="M-14,-150C-10,-146 -2,-146 2,-148M8,-150C14,-146 22,-146 26,-150" fill="none" stroke="#1c2448" stroke-width=".9"/>
 <path d="M-8,-206C-6,-196 -2,-188 2,-184C6,-188 10,-196 12,-206" fill="none" stroke="#d8b040" stroke-width="1.4"/><circle cx="2" cy="-182" r="3.4" fill="#e0b848" stroke-width=".9"/><path d="M0,-183L4,-181" fill="none" stroke="#8a6a20" stroke-width=".7"/>
 <path d="M-30,-196C-42,-182 -46,-160 -44,-140C-43,-130 -40,-122 -36,-118L-24,-122C-28,-132 -28,-146 -26,-160C-24,-172 -22,-182 -20,-190Z" fill="#2c3a6e"/><path d="M-42,-180C-46,-162 -46,-144 -42,-128" fill="none" stroke="#e8e8e2" stroke-width="1.8"/>
-<path d="M-38,-122C-36,-116 -30,-112 -24,-114C-20,-116 -20,-120 -22,-124" fill="#202a52"/><path d="M-26,-124C-24,-116 -18,-112 -12,-114" fill="none" stroke="#1c2448" stroke-width=".8"/>
+${HAND({x:-31,y:-117,rot:6,s:1.05,pose:'offen',sk:'#e0b090',ln:'#a8704e'})}<path d="M-38,-122C-36,-116 -30,-112 -24,-114C-20,-116 -20,-120 -22,-124" fill="#202a52"/><path d="M-26,-124C-24,-116 -18,-112 -12,-114" fill="none" stroke="#1c2448" stroke-width=".8"/>
 <path d="M28,-198C38,-188 42,-174 40,-160C38,-152 34,-146 28,-142L22,-148C26,-154 28,-160 28,-166C28,-176 26,-184 22,-190Z" fill="#202a52"/><path d="M38,-186C42,-176 42,-164 39,-154" fill="none" stroke="#e8e8e2" stroke-width="1.8"/>
-<path d="M8,-147C8,-155 14,-159 22,-159C28,-159 33,-155 33,-149C33,-143 27,-139 19,-139C13,-139 8,-142 8,-147Z" fill="#e0b090"/>
-<path d="M10,-143C14,-141 20,-140 26,-141M12,-140C16,-138 22,-138 27,-139" fill="none" stroke="#a8704e" stroke-width=".7"/>
-<path d="M9,-150C12,-155 17,-157 22,-156C20,-153 16,-151 12,-149Z" fill="#d6a282" stroke-width=".9"/>
+${HAND({x:26,y:-150,rot:92,s:1.05,pose:'offen',flip:1,sk:'#e0b090',ln:'#a8704e'})}
 <g stroke="#2a2a26" stroke-width=".5"><ellipse cx="22" cy="-158" rx="1.5" ry="2.3" fill="#3a3a36" transform="rotate(70 22 -158)"/><ellipse cx="17" cy="-159" rx="1.5" ry="2.3" fill="#2a2a26" transform="rotate(100 17 -159)"/><ellipse cx="27" cy="-157" rx="1.5" ry="2.3" fill="#3a3a36" transform="rotate(60 27 -157)"/></g>
 <path d="M-6,-216L-6,-204C-2,-200 4,-200 8,-204L8,-216Z" fill="#d8a888"/><path d="M-2,-210C0,-208 2,-207 4,-206" fill="none" stroke="#a8704e" stroke-width=".7"/>
 <g transform="translate(0,-206) scale(1.16) translate(0,206)"><path d="M-20,-232C-22,-222 -18,-212 -10,-206C-4,-202 4,-202 10,-206C18,-212 22,-222 20,-232C18,-246 10,-252 0,-252C-10,-252 -18,-246 -20,-232Z" fill="#e2b292"/>
@@ -235,9 +233,8 @@ const ZINA=`<g stroke="#1a0a0a" stroke-width="1.4" stroke-linejoin="round" strok
 <path d="M0,-156C0,-152 0,-150 0,-148" fill="none" stroke="#b07a5a" stroke-width=".9"/><path d="M-14,-160C-10,-158 -6,-158 -4,-160M4,-160C6,-158 10,-158 14,-160" fill="none" stroke="#d09878" stroke-width=".7"/>
 <path d="M-28,-152C-20,-146 -10,-144 0,-148C10,-144 20,-146 28,-152L28,-146C20,-140 10,-138 0,-142C-10,-138 -20,-140 -28,-146Z" fill="#b01830"/>
 <path d="M-32,-176C-40,-164 -46,-148 -50,-128C-52,-118 -48,-112 -44,-116C-40,-130 -36,-144 -28,-158Z" fill="#ecb898"/>
-<path d="M-48,-120C-50,-112 -46,-106 -40,-104C-34,-102 -30,-104 -28,-108C-26,-112 -30,-116 -36,-116Z" fill="#ecb898"/><path d="M-44,-110C-40,-108 -36,-108 -32,-109" fill="none" stroke="#b07a5a" stroke-width=".7"/>
+${HAND({x:-46.5,y:-117,rot:-62,s:.95,pose:'ruecken',sk:'#ecb898',ln:'#b07a5a'})}
 <path d="M30,-174C40,-168 46,-160 48,-150C50,-142 48,-136 44,-134L36,-138C38,-144 38,-150 34,-156C32,-160 28,-164 24,-168Z" fill="#d8a484"/>
-<path d="M44,-136C48,-138 52,-136 52,-132C52,-128 48,-126 44,-127C40,-128 38,-132 40,-135Z" fill="#ecb898"/><path d="M45,-138C46,-142 48,-144 50,-143" fill="#ecb898"/>
 <path d="M50,-138L72,-178" stroke="#141010" stroke-width="2.2"/><path d="M50,-138L54,-145" stroke="#c8a040" stroke-width="2.4"/><path d="M70,-174L74,-181" stroke="#f0ece4" stroke-width="2.6"/><circle cx="74.6" cy="-182" r="1.4" fill="#ff7030" stroke="none"/>
 <path d="M76,-186C72,-194 78,-200 74,-208C72,-214 76,-220 74,-226" fill="none" stroke="#e0dcd4" stroke-width="1.6" opacity=".6"/>
 <g fill="#f4b4d0" stroke="#c87aa0" stroke-width=".8"><path d="M-34,-178C-44,-170 -50,-156 -52,-140C-48,-138 -44,-142 -42,-148C-40,-160 -34,-170 -26,-176Z"/><path d="M-44,-166C-50,-164 -54,-158 -54,-152C-50,-154 -46,-158 -44,-162Z"/><path d="M-50,-146C-56,-142 -58,-134 -56,-128C-52,-132 -50,-138 -48,-142Z"/>
@@ -263,6 +260,7 @@ const ZINA=`<g stroke="#1a0a0a" stroke-width="1.4" stroke-linejoin="round" strok
 <path d="M-10,-236C-14,-230 -16,-222 -14,-214C-12,-220 -10,-226 -4,-230C2,-226 6,-224 12,-226C8,-230 2,-234 -4,-234Z" fill="#f0d070"/>
 <path d="M-16,-246C-10,-252 0,-254 10,-250M-20,-236C-14,-244 -4,-246 6,-244M14,-246C20,-240 22,-232 22,-222M-22,-226C-22,-232 -20,-238 -16,-242" fill="none" stroke="#b8902e" stroke-width=".8"/>
 <path d="M-4,-262C0,-266 6,-266 8,-262C6,-258 0,-258 -4,-262Z" fill="#e01880" stroke-width=".9"/><path d="M2,-264C0,-272 4,-278 10,-280" fill="none" stroke="#f4b4d0" stroke-width="2"/>
+${HAND({x:42,y:-137,rot:-28,s:.85,pose:'griff',sk:'#ecb898',ln:'#b07a5a'})}
 </g>`;
 // ================= Nymphen-Bewerbungsgespräch =================
 const NT={nastja:{s:1,t:1,v:1,r:1,a:['Tanzen? Süßer, ich hab den ganzen Sumpf um den Finger gewickelt. Mit den Hüften. Die Frösche quaken seitdem anders.','Raus? JA! Hier unten fasst einen nur Schilf an. Und das ist nicht zärtlich.','Du? Riechst nach Rauch und Panik. Aber du guckst mich an wie ein Kater die Sahne. Gefällt mir.']},

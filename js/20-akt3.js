@@ -9,16 +9,15 @@ N.PO=['Vater Ignati','#e8d8a0'];N.SM=['Schmied Fjodor','#e8a070'];VOX.PO=[0,.55,
 // ----- Figuren (gleiche Zeichen-Pipeline wie alle anderen) -----
 // Vater Ignati: orthodoxer Pope, seit 1993 „in der Stadt“ (= schläft im Heu hinterm Banja, siehe 22-banja-hof.js). Kamilavka, riesiger grauer Bart, rote Nase, Goldkreuz, Schnapsglas
 const POPE=`<g stroke="#1e140c" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round">
-<path d="M-21,-2C-23,-8 -19,-13 -12,-13L-3,-13C-1,-8 -1,-4 -3,-2Z" fill="#1e1a1c"/><path d="M3,-2C1,-8 5,-13 12,-13L21,-13C23,-8 23,-4 21,-2Z" fill="#1e1a1c"/>
+<path d="M-21,-2C-23,-8 -19,-13 -12,-13L-3,-13C-1,-8 -1,-4 -3,-2Z" fill="#1e1a1c"/><path d="M3,-2C1,-8 5,-13 12,-13L21,-13C23,-8 23,-4 21,-2Z" fill="#1e1a1c"/>${SOHLE({x:-23,w:21,y:1,h:3,toe:-1,c:'#0e0c0e'})}${SOHLE({x:2,w:21,y:1,h:3,toe:1,c:'#0e0c0e'})}
 <path d="M-26,-150C-33,-110 -37,-60 -35,-10L35,-10C37,-60 33,-110 26,-150C14,-158 -14,-158 -26,-150Z" fill="#2c2a34"/>
 <path d="M12,-152C20,-112 24,-60 22,-10L35,-10C37,-60 33,-110 26,-150Z" fill="#1c1a22" stroke="none"/>
 <path d="M0,-140L0,-14" fill="none" stroke="#4a4856" stroke-width=".9"/><path d="M-20,-60C-22,-44 -22,-28 -21,-14M18,-62C20,-44 20,-28 19,-14" fill="none" stroke="#14121a" stroke-width=".8"/>
 <path d="M-31,-98C-10,-93 10,-93 31,-98L31,-91C10,-86 -10,-86 -31,-91Z" fill="#6e2c2a"/><path d="M-6,-90L-9,-70M-2,-90L-1,-72" fill="none" stroke="#6e2c2a" stroke-width="2.4"/>
 <path d="M-24,-146C-35,-130 -39,-104 -37,-82C-33,-77 -27,-79 -27,-85C-27,-104 -23,-122 -16,-136Z" fill="#2c2a34"/>
-<path d="M-37,-84C-39,-78 -36,-72 -31,-72C-27,-72 -25,-77 -27,-83Z" fill="#e6b090"/>
+${HAND({x:-32,y:-82,s:.95,pose:'offen',sk:'#e6b090',ln:'#b07858'})}
 <path d="M22,-146C35,-141 42,-126 44,-112C45,-106 38,-102 33,-107C29,-119 23,-127 16,-132Z" fill="#2c2a34"/>
-<path d="M34,-108C32,-114 36,-119 41,-118C46,-117 47,-111 44,-107C41,-104 36,-104 34,-108Z" fill="#e6b090"/>
-<path d="M37,-117L36,-128L46,-128L45,-117Z" fill="#cfe2e6" fill-opacity=".85" stroke-width="1"/><path d="M36.6,-123L45.4,-123L45,-117L37,-117Z" fill="#e8e4d0" stroke="none" opacity=".8"/>
+<path d="M37,-117L36,-128L46,-128L45,-117Z" fill="#cfe2e6" fill-opacity=".85" stroke-width="1"/><path d="M36.6,-123L45.4,-123L45,-117L37,-117Z" fill="#e8e4d0" stroke="none" opacity=".8"/>${HAND({x:39.5,y:-106,rot:180,s:.9,pose:'griff',flip:1,sk:'#e6b090',ln:'#b07858'})}
 <path d="M-13,-150C-9,-128 9,-128 13,-150" fill="none" stroke="#d8b860" stroke-width="1.6"/>
 <path d="M-2,-116L2,-116L2,-98L-2,-98Z" fill="#e2c264"/><path d="M-7,-111L7,-111L7,-107L-7,-107Z" fill="#e2c264"/><path d="M-4,-102L4,-104" fill="none" stroke="#a8862c" stroke-width="1.2"/>
 <path d="M-16,-186C-23,-176 -23,-160 -19,-150L-14,-163Z" fill="#a8a8a2"/><path d="M16,-186C23,-176 23,-160 19,-150L14,-163Z" fill="#a8a8a2"/>
@@ -34,7 +33,7 @@ const POPE=`<g stroke="#1e140c" stroke-width="1.4" stroke-linejoin="round" strok
 </g>`;
 // Schmied Fjodor: breit, Glatze, schwarzer Vollbart, Lederschürze, aufgekrempelte Ärmel, Hammer, Ruß im Gesicht
 const SMITH=`<g stroke="#1e140c" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round">
-<path d="M-24,-2C-26,-10 -22,-15 -13,-15L-2,-15C0,-9 0,-4 -2,-2Z" fill="#2a2018"/><path d="M2,-2C0,-9 2,-15 13,-15L24,-15C26,-10 26,-4 24,-2Z" fill="#2a2018"/>
+<path d="M-24,-2C-26,-10 -22,-15 -13,-15L-2,-15C0,-9 0,-4 -2,-2Z" fill="#2a2018"/><path d="M2,-2C0,-9 2,-15 13,-15L24,-15C26,-10 26,-4 24,-2Z" fill="#2a2018"/>${SOHLE({x:-26,w:25,y:1,h:3.2,toe:-1})}${SOHLE({x:1,w:25,y:1,h:3.2,toe:1})}
 <path d="M-23,-14L-21,-92L21,-92L23,-14L4,-14L0,-72L-4,-14Z" fill="#3c3c44"/><path d="M8,-90L21,-92L23,-14L12,-14Z" fill="#2c2c34" stroke="none"/>
 <path d="M-31,-152C-41,-142 -45,-126 -46,-113L-35,-111C-35,-123 -31,-135 -25,-141Z" fill="#cbb994"/><path d="M-46,-113L-35,-111L-35,-117C-38,-118 -42,-118 -46,-117Z" fill="#b0a07a"/>
 <path d="M31,-152C41,-142 45,-126 46,-113L35,-111C35,-123 31,-135 25,-141Z" fill="#cbb994"/><path d="M46,-113L35,-111L35,-117C38,-118 42,-118 46,-117Z" fill="#b0a07a"/>
@@ -43,9 +42,9 @@ const SMITH=`<g stroke="#1e140c" stroke-width="1.4" stroke-linejoin="round" stro
 <path d="M-46,-113C-48,-97 -46,-83 -44,-75L-33,-75C-33,-87 -33,-99 -35,-111Z" fill="#d49c74"/>
 <path d="M-41,-100C-39,-96 -37,-94 -35,-94" fill="none" stroke="#a46a48" stroke-width=".7"/>
 <path d="M-38,-82L-38,-26" fill="none" stroke="#6a4428" stroke-width="4"/><path d="M-48,-36L-28,-36L-28,-24L-48,-24Z" fill="#5a5a64"/><path d="M-48,-33L-28,-33" fill="none" stroke="#8a8a96" stroke-width="1"/>
-<path d="M-45,-80C-46,-71 -42,-66 -38,-66C-33,-66 -30,-71 -32,-79C-35,-83 -42,-84 -45,-80Z" fill="#d49c74"/>
+${HAND({x:-38.6,y:-77,s:1,pose:'griff',flip:1,sk:'#d49c74',ln:'#a46a48'})}
 <path d="M46,-113C42,-100 33,-94 24,-92L22,-101C28,-104 32,-108 35,-112Z" fill="#d49c74"/>
-<path d="M27,-104C22,-106 17,-102 18,-96C19,-91 25,-90 28,-94C30,-97 30,-101 27,-104Z" fill="#d49c74"/>
+${HAND({x:25,y:-97,rot:70,s:1,pose:'ruecken',flip:1,sk:'#d49c74',ln:'#a46a48'})}
 <path d="M-21,-142L21,-142L25,-40C11,-35 -11,-35 -25,-40Z" fill="#6c4428"/><path d="M8,-142L21,-142L25,-40C20,-38 15,-37 11,-37C13,-70 12,-110 8,-142Z" fill="#54341c" stroke="none"/>
 <path d="M-21,-142L-14,-158M21,-142L14,-158" fill="none" stroke="#4a2a14" stroke-width="2.4"/><path d="M-12,-108L8,-108L8,-92L-12,-92Z" fill="#5c3a20" stroke-width="1"/>
 <ellipse cx="-6" cy="-70" rx="6" ry="3.4" fill="#3a2414" stroke="none" opacity=".6"/><ellipse cx="10" cy="-56" rx="4" ry="2.4" fill="#3a2414" stroke="none" opacity=".5"/>

@@ -9,7 +9,7 @@
 //   naZeichne()     zeichnet beide Schichten in 2-px-Zeilenstreifen. Jede Zeile bekommt eine eigene Verschiebung:
 //                   Stiefel fest → Knie → Hüfte (Sinus) → Taille → Brust (gegenläufig + Feder) → Kopf. Das ist ein 1D-Mesh-Warp,
 //                   deshalb biegt sich der Körper weich statt zu springen.
-//   Federn          Brust: gedämpfte Feder (3 Hz, ζ 0,2), angetrieben von der Beschleunigung des Wippens und der Hüfte.
+//   Federn          Brust: gedämpfte Feder (3 Hz, ζ 0,3), angetrieben von der Beschleunigung des Wippens und der Hüfte.
 //                   Haare: hängen dem Kopf 0,15 s hinterher (Ringpuffer) und schwingen mit einer weicheren Feder (1,8 Hz) nach;
 //                   bei Drehungen fächern sie auf.
 //   8 Richtungen    directionIndex 0–7 (0° vorn, 45° vorn-rechts, 90° Profil rechts … 315° vorn-links). Hat ein Outfit für eine
@@ -111,7 +111,12 @@ function naRig(img,zonen,brust){if(!img||!img.complete||!img.naturalWidth)return
     rg.putImageData(ri,0,0)}
   let brustCv=null;if(brust){const[bx,by,bw,bh]=brust.box;brustCv=document.createElement('canvas');brustCv.width=bw;brustCv.height=bh;const bg=brustCv.getContext('2d'),bi=bg.createImageData(bw,bh);
     for(let y=0;y<bh;y++)for(let x=0;x<bw;x++){const k=(by+y)*w+bx+x;if(t2[k]!==1)continue;const q=k*4,o=(y*bw+x)*4;bi.data[o]=d[q];bi.data[o+1]=d[q+1];bi.data[o+2]=d[q+2];bi.data[o+3]=255}bg.putImageData(bi,0,0)}
-  return img._naRig={w,h,koerper:lay(1),haar:lay(2),ruecken:rk,brustCv,brust,haarFarbe:`rgb(${haarFarbe.join(',')})`,kopf:x1>x0?{x0,x1,y0,y1}:null}}
+  const koerper=lay(1);
+  // Standard-Outfit: vergrößertes Oberteil fest in die Körperschicht backen – so verformt es sich mit denselben Zeilenstreifen wie der Rest
+  // (früher eigene Ebene mit eigenem Versatz: Schnürung, Kanten und Arm rutschten beim Wippen treppig gegeneinander)
+  if(brustCv){const[bx,by,bw,bh]=brust.box,[ax,ay]=brust.anker,[sx,sy]=brust.s,kg=koerper.getContext('2d');kg.imageSmoothingEnabled=false;
+    kg.drawImage(brustCv,Math.round(ax+(bx-ax)*sx),Math.round(ay+(by-ay)*sy),Math.round(bw*sx),Math.round(bh*sy))}
+  return img._naRig={w,h,koerper,haar:lay(2),ruecken:rk,brust,haarFarbe:`rgb(${haarFarbe.join(',')})`,kopf:x1>x0?{x0,x1,y0,y1}:null}}
 
 // ---------- Weiche Stützstellen-Kurve (Kosinus zwischen den Knoten) ----------
 const naKurve=(knoten,y)=>{if(y<=knoten[0][0])return knoten[0][1];for(let i=1;i<knoten.length;i++){const[a,va]=knoten[i-1],[b,vb]=knoten[i];
@@ -129,14 +134,13 @@ function naZeichne(x,rig,z,st,theta){const p=NA_PUF.getContext('2d'),{w,h}=rig,Y
   // Zeilen-Verschiebungen (Sprite-Pixel)
   const knX=[[0,st.kopf],[Y(z.hals),st.kopf],[Y(z.brust),st.brust],   // Kopf bis zum Hals starr – sonst läuft ein 1-px-Treppenversatz durchs Gesicht/Auge
     [Y(z.taille),(st.brust+st.huefte)/2],[Y(z.huefte),st.huefte],[Y(z.knie),st.huefte*.3],[h,0]];
-  const bell=y=>Math.exp(-(((y-Y(z.brust))/(h*.045))**2));
+  const bell=y=>Math.exp(-(((y-Y(z.brust))/(h*.065))**2));
   const dxK=y=>naKurve(knX,y)+st.jigX*bell(y);
   const dyK=y=>{const bein=Math.max(0,Math.min(1,(h-y)/(h-Y(z.huefte))));return st.wipp*bein+st.jigY*bell(y)};
   const wH=y=>Math.max(0,Math.min(1,(y-Y(z.hals)+h*.04)/(Y(z.haar)-Y(z.hals))));
   const dxH=y=>st.kopf+wH(y)*st.haar,sxH=y=>1+wH(y)*st.faecher,dyH=y=>st.wipp*.95+wH(y)*st.haarY;
   if(!hinten){naStreifen(p,rig.haar,w,h,y=>st.kopf,y=>st.wipp*.95);naStreifen(p,rig.haar,w,h,dxH,dyH,sxH);naStreifen(p,rig.koerper,w,h,dxK,dyK);   // Haare: fester Grund + nachschwingende Lage
-    if(rig.brustCv){const[bx,by,bw,bh]=rig.brust.box,[ax,ay]=rig.brust.anker,[sx,sy]=rig.brust.s;   // größere Brust (Standard-Outfit), wippt mit
-      p.drawImage(rig.brustCv,Math.round(-w/2+ax+dxK(ay)+(bx-ax)*sx),Math.round(-h+ay+dyK(ay)+(by-ay)*sy+st.jigY*.7),Math.round(bw*sx),Math.round(bh*sy))}}
+}
   else{p.filter='brightness(.72) saturate(.9)';naStreifen(p,rig.koerper,w,h,dxK,dyK);p.filter='none';
     naStreifen(p,rig.haar,w,h,dxH,dyH,sxH);naStreifen(p,rig.ruecken,w,h,dxH,dyH,sxH)}   // Haarspitzen, darüber der Haarvorhang (verdeckt Gesicht und Rücken)
   // Schatten zur abgewandten Seite (nur auf der Figur)
@@ -274,9 +278,9 @@ async function nastjaShow(skin,enthuellen){const SK=NA_SKINS[skin]||NA_SKINS.sta
     // Beschleunigungen für die Federn
     const wippV=(wippZiel-(ph.wipp||0))/dt,wippA=(wippV-ph.wippV)/dt;ph.wippV=wippV;ph.wipp=wippZiel;
     const huefV=(huefte-(ph.huef||0))/dt,huefA=(huefV-ph.huefV)/dt;ph.huefV=huefV;ph.huef=huefte;
-    // Brust: gedämpfte Feder, 3 Hz, ζ 0,2
-    {const k=(2*Math.PI*3)**2,c=2*.2*Math.sqrt(k);ph.vy+=(-k*ph.jy-c*ph.vy-wippA*2.2)*dt;ph.jy+=ph.vy*dt;ph.jy=Math.max(-3.5,Math.min(3.5,ph.jy));
-      ph.vx+=(-k*ph.jx-c*ph.vx-huefA*1.0)*dt;ph.jx+=ph.vx*dt;ph.jx=Math.max(-2,Math.min(2,ph.jx))}
+    // Brust: gedämpfte Feder, 3 Hz, ζ 0,3
+    {const k=(2*Math.PI*3)**2,c=2*.3*Math.sqrt(k);ph.vy+=(-k*ph.jy-c*ph.vy-wippA*1.8)*dt;ph.jy+=ph.vy*dt;ph.jy=Math.max(-2.5,Math.min(2.5,ph.jy));
+      ph.vx+=(-k*ph.jx-c*ph.vx-huefA*1.0)*dt;ph.jx+=ph.vx*dt;ph.jx=Math.max(-1.5,Math.min(1.5,ph.jx))}
     // Haare: hängen dem Kopf 0,15 s hinterher, Feder 1,8 Hz, ζ 0,35; Drehung schleudert sie raus
     const kopfWelt=px/sc+kopf;ph.kopfPuffer.push([t,kopfWelt]);while(ph.kopfPuffer.length>2&&ph.kopfPuffer[1][0]<=t-.15)ph.kopfPuffer.shift();
     {const alt=ph.kopfPuffer[0][1],ziel=Math.max(-7,Math.min(7,(alt-kopfWelt)*1.2-omega*1.2)),k=(2*Math.PI*1.8)**2,c=2*.35*Math.sqrt(k);
