@@ -43,6 +43,7 @@ function sawShots(){const bg=snapBG(),pet=petPic(1);return[{d:3.6,cap:'*säg* �
     drawPet(x,pet,568+sx*10,476,1.05,1,sx*.03)}}]}
 
 // ----- Hausbau nach dem Minispiel: Holz legen, Dach machen, Tür zuschlagen -----
+// HINWEIS (2.55): hausShots und bauBG werden in 59-bau-wiese.js überschrieben (Wiese + Haus im Spielstil). Diese Fassung bleibt nur als Rückfall.
 function hausShots(){const pet=petPic(1),petF=petPic(0),LH=34,X0=210,X1=590,BASE=440;
   const wall=(x,n)=>{for(let i=0;i<n;i++)logH(x,X0,X1,BASE-(i+1)*LH,LH-2,0);for(let i=0;i<n-1;i++){x.fillStyle='#14100c';x.fillRect(X0,BASE-(i+1)*LH-2,X1-X0,4)}};
   return[
